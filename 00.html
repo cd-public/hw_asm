@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Prof.&nbsp;Calvin">
 
-<title>Hardware &amp; Assembly – Systems in C</title>
+<title>quarto-input6737025d5ed739ee – Systems in C</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./00_podman.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -105,35 +105,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -146,7 +117,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Hardware &amp; Assembly</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00.html">Not Found</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -172,7 +143,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00.html" class="sidebar-item-text sidebar-link">
+  <a href="./00.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Not Found</span></a>
   </div>
 </li>
@@ -342,35 +313,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#calendar" id="toc-calendar" class="nav-link active" data-scroll-target="#calendar">Calendar</a></li>
-  <li><a href="#recordings" id="toc-recordings" class="nav-link" data-scroll-target="#recordings">Recordings</a></li>
-  <li><a href="#cs-371-hardware-assembly" id="toc-cs-371-hardware-assembly" class="nav-link" data-scroll-target="#cs-371-hardware-assembly">CS 371 “Hardware &amp; Assembly”</a>
-  <ul class="collapse">
-  <li><a href="#prof.-calvin" id="toc-prof.-calvin" class="nav-link" data-scroll-target="#prof.-calvin">Prof.&nbsp;Calvin</a></li>
-  <li><a href="#syllabus" id="toc-syllabus" class="nav-link" data-scroll-target="#syllabus">Syllabus</a></li>
-  </ul></li>
+  <li><a href="#not-found" id="toc-not-found" class="nav-link active" data-scroll-target="#not-found">Not Found</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="00.rjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Hardware &amp; Assembly</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
-<p class="subtitle lead">CS 371</p>
+<p class="subtitle lead">Systems in C</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Prof.&nbsp;Calvin </p>
-          </div>
-  </div>
     
   
     
@@ -381,188 +339,15 @@ window.Quarto = {
 </header>
 
 
-<section id="calendar" class="level1">
-<h1>Calendar</h1>
-<!-- https://www.cs.unc.edu/~kakiryan/teaching/311-sp26/311-sp26.html -->
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Week Num.</th>
-<th style="text-align: left;">Date Tues</th>
-<th style="text-align: left;">Tues/Talk</th>
-<th style="text-align: left;">Thurs/Lab</th>
-<th style="text-align: left;">HW/Nxt Th</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">0x0</td>
-<td style="text-align: left;">08/35</td>
-<td style="text-align: left;"><a href="./00_podman.html">podman</a></td>
-<td style="text-align: left;"><a href="01_alpine.qmd">alpine</a></td>
-<td style="text-align: left;"><a href="02_enigma.qmd">Enigma</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">0x1</td>
-<td style="text-align: left;">09/01</td>
-<td style="text-align: left;"><a href="10_c89_99.qmd">C89/99</a></td>
-<td style="text-align: left;"><a href="11_printb.qmd">printb</a></td>
-<td style="text-align: left;"><a href="12_macros.qmd">macros</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0x2</td>
-<td style="text-align: left;">09/08</td>
-<td style="text-align: left;"><a href="20_sha256.qmd">SHA256</a></td>
-<td style="text-align: left;"><a href="21_endian.qmd">Endian</a></td>
-<td style="text-align: left;"><a href="22_shainc.qmd">SHAinC</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">0x3</td>
-<td style="text-align: left;">09/15</td>
-<td style="text-align: left;">INTCEC</td>
-<td style="text-align: left;"><a href="30_finite.qmd">Finite</a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0x4</td>
-<td style="text-align: left;">09/22</td>
-<td style="text-align: left;"><a href="31_bigadd.qmd">BigAdd</a></td>
-<td style="text-align: left;"><a href="40_fermat.qmd">Fermat</a></td>
-<td style="text-align: left;"><a href="32_4096_t.qmd">4096_t</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">0x5</td>
-<td style="text-align: left;">09/29</td>
-<td style="text-align: left;">IASC26</td>
-<td style="text-align: left;"><a href="41_keygen.qmd">KeyGen</a></td>
-<td style="text-align: left;"><a href="42_rsainc.qmd">RSAinC</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0x6</td>
-<td style="text-align: left;">10/06</td>
-<td style="text-align: left;"><a href="50_euclid.qmd">Euclid</a></td>
-<td style="text-align: left;"><a href="51_ops_ui.qmd">ops_ui</a></td>
-<td style="text-align: left;"><a href="52_bigrsa.qmd">BigRSA</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">0x7</td>
-<td style="text-align: left;">10/13</td>
-<td style="text-align: left;">Middle</td>
-<td style="text-align: left;">Assess</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0x8</td>
-<td style="text-align: left;">10/20</td>
-<td style="text-align: left;"><a href="60_mounts.qmd">Mounts</a></td>
-<td style="text-align: left;"><a href="61_action.qmd">action</a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">0x9</td>
-<td style="text-align: left;">10/27</td>
-<td style="text-align: left;"><a href="70_stream.qmd">Stream</a></td>
-<td style="text-align: left;"><a href="71_malloc.qmd">malloc</a></td>
-<td style="text-align: left;"><a href="72_list_t.qmd">list_t</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0bX</td>
-<td style="text-align: left;">11/03</td>
-<td style="text-align: left;"><code>break;</code></td>
-<td style="text-align: left;"><a href="80_struct.qmd">struct</a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">0xA</td>
-<td style="text-align: left;">11/10</td>
-<td style="text-align: left;"><a href="81_bchain.qmd">bchain</a></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0xB</td>
-<td style="text-align: left;">11/17</td>
-<td style="text-align: left;"><a href="90_graphs.qmd">graphs</a></td>
-<td style="text-align: left;"><a href="91_merkle.qmd">Merkle</a></td>
-<td style="text-align: left;"><a href="92_heap_t.qmd">heap_t</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">0xC</td>
-<td style="text-align: left;">11/24</td>
-<td style="text-align: left;"><a href="A0_logics.qmd">Logics</a></td>
-<td style="text-align: left;"><code>break;</code></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0xD</td>
-<td style="text-align: left;">12/01</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><a href="A2_btcinc.qmd">BTCinC</a></td>
-</tr>
-</tbody>
-</table>
-<p>*The final is described as <a href="A2_btcinc.qmd">BTCinC</a> and is due <a href="https://my.willamette.edu/site/registrar/info/mywu-summative-evaluations">Tuesday, December 8th at 5:00 p.m.</a>.</p>
-</section>
-<section id="recordings" class="level1">
-<h1>Recordings</h1>
-<p>This isn’t real, its a placeholder from a previous term.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=aonYOyE6DyUx5Bfs&amp;list=PLRUtrB1tmoTs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
-</iframe>
-</section>
-<section id="cs-371-hardware-assembly" class="level1">
-<h1>CS 371 “Hardware &amp; Assembly”</h1>
-<ul>
-<li>Called:
-<ul>
-<li>CS 371: Advanced Systems Computing</li>
-<li>CS 371: Hardware Designs and Assembly Language</li>
-<li>CS 371: Hardware and Assembly</li>
-</ul></li>
-<li>The second semester class in a:
-<ul>
-<li>Compiled language, with</li>
-<li>No garbage collector.</li>
-</ul></li>
-<li>In the second semester, one of the great <span class="math inline">\(n\)</span> systems
-<ul>
-<li>Operating System (OS)</li>
-<li>Compiler
-<ul>
-<li>We cover the special case of compiler design from the level of hardware design.</li>
-</ul></li>
-<li>Server.</li>
-</ul></li>
-<li>Taught this year in language-agnostic digital logic.
-<ul>
-<li>Though I expect you’ll want to know C; Rust may be okay.</li>
-</ul></li>
-<li>With great appreciation to a former fellow group member, <a href="https://www.cs.unc.edu/~kakiryan/">Kaki Ryan</a>, who is as smart as I wish I was and develops great course materials.</li>
-</ul>
-<p>Course Description:</p>
-<blockquote class="blockquote">
-<p>A semester-long study of computer architecture and organization, information management, networking and communication, operating systems, or parallel and distributed computing that applies or extends the content of CS 271 or more advanced classes.</p>
-</blockquote>
-<p>Semester Description:</p>
-<blockquote class="blockquote">
-<p>This course provides a foundational understanding of how computers work at the hardware level, from binary data to instruction execution. Students will begin with binary arithmetic and Boolean algebra, developing the skills to reason about digital logic and data representation. The course then introduces the RISC-V assembly language, allowing students to explore how high-level instructions are translated into machine-level operations.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Building on this knowledge, students will learn how a processor executes instructions by designing a single-cycle RISC-V datapath. Students will design and implement core processor components—including the Arithmetic Logic Unit (ALU) and the control unit—and integrate them into a working datapath. Using a graphical digital logic simulator, they will construct and test their designs by simulating real RISC-V instructions. By the end of the course, students will have a working understanding of the key architectural components of a processor and the logical structures that support them.</p>
-</blockquote>
-<section id="prof.-calvin" class="level3">
-<h3 class="anchored" data-anchor-id="prof.-calvin"><a href="mailto:ckdeutschbein@willamette.edu">Prof.&nbsp;Calvin</a></h3>
-</section>
-<section id="syllabus" class="level3">
-<h3 class="anchored" data-anchor-id="syllabus">Syllabus</h3>
-<ul>
-<li><a href="syllabus/syllabus.pdf">Syllabus link</a></li>
-</ul>
+<section id="not-found" class="level1">
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+<hr>
+<p>Apache Server at www.cs.unc.edu Port 443</p>
 
 
 <!-- -->
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1016,77 +801,23 @@ window.Quarto = {
       }
     }
   });
-  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> Hardware &amp; Assembly </span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="an">author:</span><span class="co"> "Prof. Calvin"</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="an">subtitle:</span><span class="co"> "CS 371"</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">---</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu"># Calendar</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">&lt;!-- https://www.cs.unc.edu/~kakiryan/teaching/311-sp26/311-sp26.html --&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="pp">|</span>Week Num.<span class="pp">|</span>Date Tues<span class="pp">|</span>Tues/Talk<span class="pp">|</span>Thurs/Lab<span class="pp">|</span>HW/Nxt Th<span class="pp">|</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="pp">|</span>:--:<span class="pp">|:---|:----|:-------|:-------|</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="pp">|</span>0x0<span class="pp">|</span>08/35<span class="pp">|</span><span class="co">[</span><span class="ot">podman</span><span class="co">](00_podman.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">alpine</span><span class="co">](01_alpine.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">Enigma</span><span class="co">](02_enigma.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="pp">|</span>0x1<span class="pp">|</span>09/01<span class="pp">|</span><span class="co">[</span><span class="ot">C89/99</span><span class="co">](10_c89_99.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">printb</span><span class="co">](11_printb.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">macros</span><span class="co">](12_macros.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="pp">|</span>0x2<span class="pp">|</span>09/08<span class="pp">|</span><span class="co">[</span><span class="ot">SHA256</span><span class="co">](20_sha256.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">Endian</span><span class="co">](21_endian.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">SHAinC</span><span class="co">](22_shainc.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="pp">|</span>0x3<span class="pp">|</span>09/15<span class="pp">|</span>INTCEC<span class="pp">|</span><span class="co">[</span><span class="ot">Finite</span><span class="co">](30_finite.qmd)</span><span class="pp">||</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="pp">|</span>0x4<span class="pp">|</span>09/22<span class="pp">|</span><span class="co">[</span><span class="ot">BigAdd</span><span class="co">](31_bigadd.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">Fermat</span><span class="co">](40_fermat.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">4096_t</span><span class="co">](32_4096_t.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="pp">|</span>0x5<span class="pp">|</span>09/29<span class="pp">|</span>IASC26<span class="pp">|</span><span class="co">[</span><span class="ot">KeyGen</span><span class="co">](41_keygen.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">RSAinC</span><span class="co">](42_rsainc.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="pp">|</span>0x6<span class="pp">|</span>10/06<span class="pp">|</span><span class="co">[</span><span class="ot">Euclid</span><span class="co">](50_euclid.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">ops_ui</span><span class="co">](51_ops_ui.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">BigRSA</span><span class="co">](52_bigrsa.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="pp">|</span>0x7<span class="pp">|</span>10/13<span class="pp">|</span>Middle<span class="pp">|</span>Assess<span class="pp">||</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="pp">|</span>0x8<span class="pp">|</span>10/20<span class="pp">|</span><span class="co">[</span><span class="ot">Mounts</span><span class="co">](60_mounts.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">action</span><span class="co">](61_action.qmd)</span><span class="pp">||</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="pp">|</span>0x9<span class="pp">|</span>10/27<span class="pp">|</span><span class="co">[</span><span class="ot">Stream</span><span class="co">](70_stream.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">malloc</span><span class="co">](71_malloc.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">list_t</span><span class="co">](72_list_t.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="pp">|</span>0bX<span class="pp">|</span>11/03<span class="pp">|</span><span class="in">`break;`</span><span class="pp">|</span><span class="co">[</span><span class="ot">struct</span><span class="co">](80_struct.qmd)</span><span class="pp">||</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="pp">|</span>0xA<span class="pp">|</span>11/10<span class="pp">|</span><span class="co">[</span><span class="ot">bchain</span><span class="co">](81_bchain.qmd)</span><span class="pp">||</span>               <span class="pp">|</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="pp">|</span>0xB<span class="pp">|</span>11/17<span class="pp">|</span><span class="co">[</span><span class="ot">graphs</span><span class="co">](90_graphs.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">Merkle</span><span class="co">](91_merkle.qmd)</span><span class="pp">|</span><span class="co">[</span><span class="ot">heap_t</span><span class="co">](92_heap_t.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="pp">|</span>0xC<span class="pp">|</span>11/24<span class="pp">|</span><span class="co">[</span><span class="ot">Logics</span><span class="co">](A0_logics.qmd)</span><span class="pp">|</span><span class="in">`break;`</span><span class="pp">|</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="pp">|</span>0xD<span class="pp">|</span>12/01<span class="pp">|||</span><span class="co">[</span><span class="ot">BTCinC</span><span class="co">](A2_btcinc.qmd)</span><span class="pp">|</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a>*The final is described as <span class="co">[</span><span class="ot">BTCinC</span><span class="co">](A2_btcinc.qmd)</span> and is due <span class="co">[</span><span class="ot">Tuesday, December 8th at 5:00 p.m.</span><span class="co">](https://my.willamette.edu/site/registrar/info/mywu-summative-evaluations)</span>.</span>
-<span id="cb1-31"><a href="#cb1-31"></a></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="fu"># Recordings</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a></span>
-<span id="cb1-34"><a href="#cb1-34"></a>This isn't real, its a placeholder from a previous term.</span>
-<span id="cb1-35"><a href="#cb1-35"></a></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"560"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"315"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://www.youtube.com/embed/videoseries?si=aonYOyE6DyUx5Bfs</span><span class="dv">&amp;amp;</span><span class="st">list=PLRUtrB1tmoTs"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"YouTube video player"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="ot"> allow</span><span class="op">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"</span><span class="ot"> referrerpolicy</span><span class="op">=</span><span class="st">"strict-origin-when-cross-origin"</span><span class="ot"> allowfullscreen</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="fu"># CS 371 "Hardware &amp; Assembly" </span></span>
-<span id="cb1-39"><a href="#cb1-39"></a></span>
-<span id="cb1-40"><a href="#cb1-40"></a><span class="ss">- </span>Called:</span>
-<span id="cb1-41"><a href="#cb1-41"></a><span class="ss">    - </span>CS 371: Advanced Systems Computing </span>
-<span id="cb1-42"><a href="#cb1-42"></a><span class="ss">    - </span>CS 371: Hardware Designs and Assembly Language</span>
-<span id="cb1-43"><a href="#cb1-43"></a><span class="ss">    - </span>CS 371: Hardware and Assembly </span>
-<span id="cb1-44"><a href="#cb1-44"></a><span class="ss">- </span>The second semester class in a:</span>
-<span id="cb1-45"><a href="#cb1-45"></a><span class="ss">    - </span>Compiled language, with</span>
-<span id="cb1-46"><a href="#cb1-46"></a><span class="ss">    - </span>No garbage collector.</span>
-<span id="cb1-47"><a href="#cb1-47"></a><span class="ss">- </span>In the second semester, one of the great $n$ systems</span>
-<span id="cb1-48"><a href="#cb1-48"></a><span class="ss">    - </span>Operating System (OS)</span>
-<span id="cb1-49"><a href="#cb1-49"></a><span class="ss">    - </span>Compiler</span>
-<span id="cb1-50"><a href="#cb1-50"></a><span class="ss">        - </span>We cover the special case of compiler design from the level of hardware design.</span>
-<span id="cb1-51"><a href="#cb1-51"></a><span class="ss">    - </span>Server.</span>
-<span id="cb1-52"><a href="#cb1-52"></a><span class="ss">- </span>Taught this year in language-agnostic digital logic.</span>
-<span id="cb1-53"><a href="#cb1-53"></a><span class="ss">    - </span>Though I expect you'll want to know C; Rust may be okay. </span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="ss">- </span>With great appreciation to a former fellow group member, <span class="co">[</span><span class="ot">Kaki Ryan</span><span class="co">](https://www.cs.unc.edu/~kakiryan/)</span>, who is as smart as I wish I was and develops great course materials.</span>
-<span id="cb1-55"><a href="#cb1-55"></a></span>
-<span id="cb1-56"><a href="#cb1-56"></a>Course Description:</span>
-<span id="cb1-57"><a href="#cb1-57"></a></span>
-<span id="cb1-58"><a href="#cb1-58"></a><span class="at">&gt; A semester-long study of computer architecture and organization, information management, networking and communication, operating systems, or parallel and distributed computing that applies or extends the content of CS 271 or more advanced classes.</span></span>
-<span id="cb1-59"><a href="#cb1-59"></a></span>
-<span id="cb1-60"><a href="#cb1-60"></a>Semester Description:</span>
-<span id="cb1-61"><a href="#cb1-61"></a></span>
-<span id="cb1-62"><a href="#cb1-62"></a><span class="at">&gt;  This course provides a foundational understanding of how computers work at the hardware level, from binary data to instruction execution. Students will begin with binary arithmetic and Boolean algebra, developing the skills to reason about digital logic and data representation. The course then introduces the RISC-V assembly language, allowing students to explore how high-level instructions are translated into machine-level operations.</span></span>
-<span id="cb1-63"><a href="#cb1-63"></a></span>
-<span id="cb1-64"><a href="#cb1-64"></a><span class="at">&gt; Building on this knowledge, students will learn how a processor executes instructions by designing a single-cycle RISC-V datapath. Students will design and implement core processor components—including the Arithmetic Logic Unit (ALU) and the control unit—and integrate them into a working datapath. Using a graphical digital logic simulator, they will construct and test their designs by simulating real RISC-V instructions. By the end of the course, students will have a working understanding of the key architectural components of a processor and the logical structures that support them.</span></span>
-<span id="cb1-65"><a href="#cb1-65"></a></span>
-<span id="cb1-66"><a href="#cb1-66"></a><span class="fu">### [Prof. Calvin](mailto:ckdeutschbein@willamette.edu)</span></span>
-<span id="cb1-67"><a href="#cb1-67"></a></span>
-<span id="cb1-68"><a href="#cb1-68"></a><span class="fu">### Syllabus</span></span>
-<span id="cb1-69"><a href="#cb1-69"></a></span>
-<span id="cb1-70"><a href="#cb1-70"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Syllabus link</span><span class="co">](syllabus/syllabus.pdf)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./00_podman.html" class="pagination-link" aria-label="Podman">
+        <span class="nav-page-text">Podman</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu"># Not Found</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>The requested URL was not found on this server.</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>---</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>Apache Server at www.cs.unc.edu Port 443</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
