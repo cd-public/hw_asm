@@ -1,0 +1,38 @@
+project:
+    type: website
+    output-dir: ../
+
+website:
+    title: "Systems in C"
+    sidebar:
+        contents: auto
+    search: true
+    page-navigation: true
+
+subtitle: "Systems in C"
+
+format:
+    html:
+        toc: true
+        theme: darkly 
+        code-line-numbers: true
+        mainfont: monospace
+        code-tools:
+            source: true
+            toggle: false
+            caption: none
+    revealjs: 
+        theme: dark
+        mainfont: monospace
+        slide-number: true
+        show-slide-number: all
+        width: 1050
+        height: 700
+        footer: "[Home](index.html)"
+        output-ext: rjs.html        
+        
+execute:
+    echo: true
+    cache: true
+    freeze: auto    
+    code-fold: false

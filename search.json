@@ -1,0 +1,1107 @@
+[
+  {
+    "objectID": "00_podman.html",
+    "href": "00_podman.html",
+    "title": "Podman",
+    "section": "",
+    "text": "Welcome to Systems in C\n\nYou first semester in a compiled language - more on that soon.\n\nAction Items:\n\nAccess the course webpage\nJoin the Discord!\n\nWorking on this.\n\nSpin up a GitHub acct if you don’t have one.\n\n\n\n\n\n\nThe first homework, “Enigma”, is ready after this class.\n\nDue Thursday, 03 Sep at midnight AOE\nThe infamous CS1 hw, now in a good language!\nMostly just get the toolchain working.\n\n\n\n\n\n\n\nABCDEFGHIJKLMNOPQRSTUVWXYZ # in\n    |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # fast\n    &gt;&gt;&gt;&gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ \n         |\nAJDKSIRUXBLHWTMCQGZNPYFVOE # mid\n &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ\n |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # slow\n\n→\n\nBDFHJLCPRTXVZNYEIWGAKMUSQO\n &gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ \n   |\nIXUHFEZDAOMTKQJWNSRLCYPBVG # reflect\n   |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # slow\n   &gt;&gt;&gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ # out\n\n## etc etc   \n\n\n\n\n\n\nIntroduce the course\n\nThe C Programming Language\nCryptography + Cryptocurrency\n\nIntroduce the technologies\n\npodman\nvim\ngcc\ngit\n\n\n\n\n\n\nThese things:\n\npodman\nvim\ngcc\ngit\n\nAre commands at the command line\nIf you are afraid of the command line, we will fix that!\n\n\n\n\n\nName\n\nCalvin (Deutschbein)\n\nCall me\n\n(Professor) Calvin\n\nPronouns\n\npronouns or big frowns - me\nthey/them\n\n\n\n\n\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#announcements",
+    "href": "00_podman.html#announcements",
+    "title": "Podman",
+    "section": "",
+    "text": "Welcome to Systems in C\n\nYou first semester in a compiled language - more on that soon.\n\nAction Items:\n\nAccess the course webpage\nJoin the Discord!\n\nWorking on this.\n\nSpin up a GitHub acct if you don’t have one.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#homework",
+    "href": "00_podman.html#homework",
+    "title": "Podman",
+    "section": "",
+    "text": "The first homework, “Enigma”, is ready after this class.\n\nDue Thursday, 03 Sep at midnight AOE\nThe infamous CS1 hw, now in a good language!\nMostly just get the toolchain working.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#enigma",
+    "href": "00_podman.html#enigma",
+    "title": "Podman",
+    "section": "",
+    "text": "ABCDEFGHIJKLMNOPQRSTUVWXYZ # in\n    |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # fast\n    &gt;&gt;&gt;&gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ \n         |\nAJDKSIRUXBLHWTMCQGZNPYFVOE # mid\n &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ\n |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # slow\n\n→\n\nBDFHJLCPRTXVZNYEIWGAKMUSQO\n &gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ \n   |\nIXUHFEZDAOMTKQJWNSRLCYPBVG # reflect\n   |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # slow\n   &gt;&gt;&gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ # out\n\n## etc etc",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#today",
+    "href": "00_podman.html#today",
+    "title": "Podman",
+    "section": "",
+    "text": "Introduce the course\n\nThe C Programming Language\nCryptography + Cryptocurrency\n\nIntroduce the technologies\n\npodman\nvim\ngcc\ngit",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#pre-reqs",
+    "href": "00_podman.html#pre-reqs",
+    "title": "Podman",
+    "section": "",
+    "text": "These things:\n\npodman\nvim\ngcc\ngit\n\nAre commands at the command line\nIf you are afraid of the command line, we will fix that!",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#it-me",
+    "href": "00_podman.html#it-me",
+    "title": "Podman",
+    "section": "",
+    "text": "Name\n\nCalvin (Deutschbein)\n\nCall me\n\n(Professor) Calvin\n\nPronouns\n\npronouns or big frowns - me\nthey/them",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#the-great-work",
+    "href": "00_podman.html#the-great-work",
+    "title": "Podman",
+    "section": "",
+    "text": "Thesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#how-to-do-it",
+    "href": "00_podman.html#how-to-do-it",
+    "title": "Podman",
+    "section": "How To Do It",
+    "text": "How To Do It\n\nAfter ~10 years of systems research I’ve convinced myself only two things that really matter:\n\nPointers, and\nRecursion\n\nRecursion isn’t too bad…\n\n&gt;&gt;&gt; exp = lambda b, n : b if n == 1 else b*exp(b,n-1)\n&gt;&gt;&gt; exp(2,8)\n256",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#pointers",
+    "href": "00_podman.html#pointers",
+    "title": "Podman",
+    "section": "Pointers",
+    "text": "Pointers\n\nPointers are a beast, but without them nothing makes sense!\n\n\n\n&gt;&gt;&gt; x = 1\n&gt;&gt;&gt; def addx():\n...     x += 1\n...\n&gt;&gt;&gt; addx()\nUnboundLocalError:\n&lt;blah blah blah error messages&gt;\n\n&gt;&gt;&gt; x = [1]\n&gt;&gt;&gt; def addx():\n...     x[0] += 1\n...\n&gt;&gt;&gt; addx()\n&gt;&gt;&gt; x\n[2]",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#insight",
+    "href": "00_podman.html#insight",
+    "title": "Podman",
+    "section": "Insight",
+    "text": "Insight\n\nDefinition:\n\nPointers: Variables that store memory addresses.\nRecursion: Functions calling themselves to solve sub-problems.\n\nImportance:\n\nCore to efficient algorithms and memory management in low-level programming.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#python-and-pointers",
+    "href": "00_podman.html#python-and-pointers",
+    "title": "Podman",
+    "section": "Python and Pointers",
+    "text": "Python and Pointers\n\nWhy not .py (.js, .java, .cs, .cpp, etc)?\n\nThese languages abstract memory.\nThis abstraction makes computation unclear\nThis lack of clarity:\n\nAdversely impacts education\nComplicates low-level design\nLeads to low performance\n\nGood languages (except Java) but not for us",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#c-and-pointers",
+    "href": "00_podman.html#c-and-pointers",
+    "title": "Podman",
+    "section": "C and Pointers",
+    "text": "C and Pointers\n\nWhy C?\n\nEveryone hates C because it makes us think…\nAnd thinking is hard.\nBut there exist problems (security) for which careful thought is necessary.\nLearning C makes us better Blub programmers.\n\nI claim: You needn’t use C in real life.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#kennedy-is-my-middle-name",
+    "href": "00_podman.html#kennedy-is-my-middle-name",
+    "title": "Podman",
+    "section": "Kennedy is my middle name",
+    "text": "Kennedy is my middle name\n\n\n\nNot an endorsement; I voted for ******* **** ****** ********!",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#c-is-for-clear",
+    "href": "00_podman.html#c-is-for-clear",
+    "title": "Podman",
+    "section": "C is for Clear",
+    "text": "C is for Clear\n\nC does not obscure what a computer is doing.\nThis lack of obscurity allows for greater precision.\nThis greater precision can be used to achieve security goals.\nAdvantages of C:\n\nFine-grained control over memory.\nEssential for systems programming.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#this-class",
+    "href": "00_podman.html#this-class",
+    "title": "Podman",
+    "section": "This class",
+    "text": "This class\n\nI am a systems security researcher and I discerned two core gaps in Willamette CS education:\n\nSystems, and\nSecurity\n\nTeaching systems alone can be boring or tedious.\nTeaching security alone can be defuse and ethereal.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#learning-objectives-1",
+    "href": "00_podman.html#learning-objectives-1",
+    "title": "Podman",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nDifferentiate confidentiality, integrity, and availability.\nApply modular arithmetic to computational systems.\nApply recursion and a pointers to programming problems.\nArticulate the impossibility of distributed consensus.\nUnderstand a low-level systems language.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#sketch",
+    "href": "00_podman.html#sketch",
+    "title": "Podman",
+    "section": "Sketch",
+    "text": "Sketch\n\nflowchart LR\n  A( ) --&gt; B(SHA)\n  A --&gt; C(RSA)\n  B --&gt; E(Block Chain)\n  C --&gt; F(Merkle Tree)\n  B --&gt; F\n  E --&gt; G(Nakamoto'08)\n  F --&gt; G\n  G --&gt; I((Capstone))\n\n\n\n\nflowchart LR\n  A( ) --&gt; B(SHA)\n  A --&gt; C(RSA)\n  B --&gt; E(Block Chain)\n  C --&gt; F(Merkle Tree)\n  B --&gt; F\n  E --&gt; G(Nakamoto'08)\n  F --&gt; G\n  G --&gt; I((Capstone))",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#sha",
+    "href": "00_podman.html#sha",
+    "title": "Podman",
+    "section": "SHA",
+    "text": "SHA\n\nSHA Basics:\n\nCryptographic hash function family.\nInput data into fixed-size hash values.\n\nUse Cases:\n\nData integrity.\n\nLearning Objectives:\n\nReason about bits and bytes.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#rsa",
+    "href": "00_podman.html#rsa",
+    "title": "Podman",
+    "section": "RSA",
+    "text": "RSA\n\nRSA Basics:\n\nPublic-key cryptography algorithm.\nBased on prime factorization being hard.\n\nUse Cases:\n\nData confidentiality.\n\nLearning Objectives:\n\nReason about numerical computing.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#rsa-sha-btc",
+    "href": "00_podman.html#rsa-sha-btc",
+    "title": "Podman",
+    "section": "RSA + SHA = BTC",
+    "text": "RSA + SHA = BTC\n\nFacilitating Blockchain:\n\nSHA & RSA in play\n\nRSA: Keep wallet keys confidential\nSHA: Maintain wallet content integrity\n\n\nBut we need some techniques to implement…\n\nPointers & Recursion",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#blockchain",
+    "href": "00_podman.html#blockchain",
+    "title": "Podman",
+    "section": "Blockchain",
+    "text": "Blockchain\n\nBlockchain:\n\nBlockchain structure resembles linked lists.\n\nLinked lists use pointers\nPointers are used recursively\n\nPointers are validated with SHA\n\nThat is, they have integrity",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#merkle-trees",
+    "href": "00_podman.html#merkle-trees",
+    "title": "Podman",
+    "section": "Merkle Trees",
+    "text": "Merkle Trees\n\nMerkle Trees:\n\nTree structure using SHA for data integrity.\nHashes stored as nodes; pointers link them.\nLeaf nodes are RSA signatures!\n\nMerkle Trees are balanced\n\nWe get to see a way to implement complex data structures in a low level language in a way that solves a real problem.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#final",
+    "href": "00_podman.html#final",
+    "title": "Podman",
+    "section": "Final",
+    "text": "Final\n\nImplement Full-Custom BTC\n\nUnder absolutely no circumstances use it\n\nIt’ll be insecure for reasons out-of-scope",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#today-1",
+    "href": "00_podman.html#today-1",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\npodman\nvim\ngcc\ngit",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#what-is-podman",
+    "href": "00_podman.html#what-is-podman",
+    "title": "Podman",
+    "section": "What is Podman?",
+    "text": "What is Podman?\n\nDefinition:\n\nPlatform to develop, ship, and run applications in isolated containers.\n\nBenefits:\n\nPortability, consistency across environments.\n\nEditorializing:\n\nProbably all code should be written in a container now that they exist.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#in-practice",
+    "href": "00_podman.html#in-practice",
+    "title": "Podman",
+    "section": "In practice:",
+    "text": "In practice:\n\nWindows only\n\nRun wsl --install -d ubuntu command once\n\nWindows+Mac:\n\nUse Podman Installer once\nLaunch Podman Desktop each time you code\nUse podman commands\n\nLinux:\n\nHave fun with your package manager.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#circa-2013",
+    "href": "00_podman.html#circa-2013",
+    "title": "Podman",
+    "section": "Circa ~2013",
+    "text": "Circa ~2013\n\nThe problem:\n\nWe want to run code.\nWe want the code to create programs\nWe want the programs to work on more than one computer.\n\nThe solution:\n\nRealistically, the Java Virtual Machine\nBut then you have to write Java (this is pre-Scala, pre-Kotlin)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#circa-2008",
+    "href": "00_podman.html#circa-2008",
+    "title": "Podman",
+    "section": "Circa ~2008",
+    "text": "Circa ~2008\n\nThe setting:\n\nCloud is taking off, mainly Amazon + Google\nThey already have to run everything in virtual machine.\nThey needed a lightweight solution.\n\nThe solution:\n\nDocker is written in the Google C-like, Go\nIt is a lightweight pretend computer.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#dockerpodman",
+    "href": "00_podman.html#dockerpodman",
+    "title": "Podman",
+    "section": "Docker→Podman",
+    "text": "Docker→Podman\n\nDocker is closed-source (bad)\nDocker is critical infastructre in most code bases\nThe Redhat team (from CAROLINA) stepped into solve the problem\nThey make Podman - completely compatible, completely open-source\nWe use Podman in this class",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#podman-1",
+    "href": "00_podman.html#podman-1",
+    "title": "Podman",
+    "section": "Podman",
+    "text": "Podman\n\nPodman solves the problem of writing code on one computer and running it another.\nSimply specify a Podman image\n\na description of a imaginary computer\n\nPodman will pretend to be that computer\nWe can run code “inside” Podman\n\nCode in the container can’t tell it’s running inside Podman",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#podman-python",
+    "href": "00_podman.html#podman-python",
+    "title": "Podman",
+    "section": "Podman & Python",
+    "text": "Podman & Python\n\nWindows, Mac, Linux:\n\nWin tends to refer to Python3 as “python”\nMac tends to refer to Python2 as “python”\nLinux, because its good, makes you specify:\n\n\nuser@DESKTOP-THMS2PJ:~$ python\nCommand 'python' not found, did you mean:\n  command 'python3' from deb python3\n  command 'python' from deb python-is-python3",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#bugs",
+    "href": "00_podman.html#bugs",
+    "title": "Podman",
+    "section": "Bugs",
+    "text": "Bugs\n\nThis can lead to bugs pretty quickly\n\nSay I write and test a .py file on Mac\nI email it to my prof for help\nSyntaxError on my prof’s Linux device:\n\n\nuser@DESKTOP-THMS2PJ:~$ python2 -c \"print 'hello world'\"\nhello world\nuser@DESKTOP-THMS2PJ:~$ python3 -c \"print 'hello world'\"\n  File \"&lt;string&gt;\", line 1\n    print 'hello world'\n    ^^^^^^^^^^^^^^^^^^^\nSyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#versioning",
+    "href": "00_podman.html#versioning",
+    "title": "Podman",
+    "section": "Versioning",
+    "text": "Versioning\n\nPython2/3 is just an extreme example\n\nMost of code reuse has versioning problems\nMany CS1 headaches are Win/Mac python’ing\nBut really: everything breaks all the time\n\nSolution: Just run in podman:\n\nC:\\Users\\cd-desk&gt;podman run -it python:alpine python\nPython 3.13.1 (main, Dec  4 2024, 20:31:31) [GCC 13.2.1 20240309] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; print(\"hello world\")\nhello world\n&gt;&gt;&gt; exit()",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#images",
+    "href": "00_podman.html#images",
+    "title": "Podman",
+    "section": "Images",
+    "text": "Images\n\nSomething we podman run -it is an image\n\nIt is a template that correspond to many possible pretend computers\nI think of them like object oriented class\nThey define something that could be",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#containers",
+    "href": "00_podman.html#containers",
+    "title": "Podman",
+    "section": "Containers",
+    "text": "Containers\n\nEach time we run said command, we have a different container\n\nThey have different file systems\nThings we install don’t persist to future run instances.\nI think of them like objects of a class\nLike ‘1’ instead of ‘integer’\nThey actually existing, running code.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#today-2",
+    "href": "00_podman.html#today-2",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\n✓ podman\nvim\ngcc\ngit",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#ides",
+    "href": "00_podman.html#ides",
+    "title": "Podman",
+    "section": "IDEs",
+    "text": "IDEs\n\nAt some point in time, code started being written in IDEs.\n\nIntegrated design environments.\nTo me, the first one was Eclipse (for Java)\n\nVS Code is the ascendent IDE, and is everywhere.\n\nGoogle Cloud has browser based VS Code clone\n\nVS Code has some nice things - including good git and docker (less so podman) integration.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#integration",
+    "href": "00_podman.html#integration",
+    "title": "Podman",
+    "section": "Integration",
+    "text": "Integration\n\nVS Code has some nice things\n\nWorks with git/docker (less so podman).\nYou know what else can do that?\nThe command line\nWhich you don’t have to install\n\nIDEs are ~new, the was command line utilities\n\nVi(m)\nEmacs\nNano",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#why-vim",
+    "href": "00_podman.html#why-vim",
+    "title": "Podman",
+    "section": "Why Vim?",
+    "text": "Why Vim?\n\nWhile IDEs are ascendent…\n\nThe are not installed on every system\nThey can be hard to use in cloud\nThey can start costing money at any time\nThey seem slower and to produce worse code\n\nLike Python, IDEs are easy!\n\nThis is good for new coders\nIt is a design decision thereafter",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#vim-1",
+    "href": "00_podman.html#vim-1",
+    "title": "Podman",
+    "section": "Vim",
+    "text": "Vim\n\nVim isn’t too bad\n\nIt can basically be used as a keyboard navigated text editor.\nIt has really good keyboard shortcuts and modes that we learn over time.\nIt seems to be the pound-for-pound productivity champion of all time.\n\nIt is hard to find people who have learned vim who don’t prefer it.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#podvim",
+    "href": "00_podman.html#podvim",
+    "title": "Podman",
+    "section": "Podvim",
+    "text": "Podvim\n\nWe can install and run vim inside a container (which happens to run Debian & ∴ apt)\nEven directly from Python…\n\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; os.system(\"apt update\") # update the registry of packages\n&lt;blah blah blah&gt;\n&gt;&gt;&gt; os.system(\"apt install vim -y\") # -y saves us from having to say \"yes\" to any prompts\n&lt;blah blah blah&gt;\n&gt;&gt;&gt; os.system(\"vim\") # a vim window will open\n\nThis is vim inside python inside podman\n\nDon’t do this, it’s a proof-of-concept",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#vim-2",
+    "href": "00_podman.html#vim-2",
+    "title": "Podman",
+    "section": "Vim",
+    "text": "Vim\n\nIt looks like this:\n\n~               VIM - Vi IMproved\n~                  version 9.1\n~            by Bram Moolenaar et al.\n~   Vim is open source and freely distributable\n~\n~          Become a registered Vim user!\n~  type  :help register&lt;Enter&gt;   for information\n~\n~  type  :q&lt;Enter&gt;              to exit\n~  type  :help&lt;Enter&gt;  or  &lt;F1&gt; for on-line help\n~  type  :help version9&lt;Enter&gt;  for version info",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#usage",
+    "href": "00_podman.html#usage",
+    "title": "Podman",
+    "section": "Usage",
+    "text": "Usage\n\nI usually use vim as vim filename.py\n\nWhen vim opens I type i (for “insert”)\nThen I write code.\nESC → :x → ENTER to save+quit\n\nLearn vim incrementally by using it for this class - for code, for notes, for whatever.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#today-3",
+    "href": "00_podman.html#today-3",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\n✓ podman\n✓ vim\ngcc\ngit",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#gcc-1",
+    "href": "00_podman.html#gcc-1",
+    "title": "Podman",
+    "section": "GCC",
+    "text": "GCC\n\nDeveloped for the C language to make an open source operating system in 1987.\nMainly around today for the C language to make an open source operating system (Linux)\n(The C language was invented to write an operating system).\npython is written in GCC C\n\nC:\\Users\\cd-desk&gt;podman run -it python\nPython 3.13.1 (main, Dec  4 2024, 20:40:27) [GCC 12.2.0] on linux",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#great-freeware",
+    "href": "00_podman.html#great-freeware",
+    "title": "Podman",
+    "section": "Great freeware",
+    "text": "Great freeware\n\nMany legendary programs created using GCC:\n\nHTTPD & NGINX, which serve a majority of webtraffic\nEvery major Linux and FreeBSD distribution\nMajor browsers like Firefox and Chromium\n\nFirefox is on clang now but that’s new\n\nGNU Bash and Coreutils, like cat, ls, rm\nBitcoin Core",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#compilation",
+    "href": "00_podman.html#compilation",
+    "title": "Podman",
+    "section": "Compilation",
+    "text": "Compilation\n\nLike python or podman or vim, GCC is a command - gcc\ngcc takes at least one argument: a filename, usually of a C file\nGCC takes this C file and makes an executable\n\na program, sort of\n\nExecutables run as command with ./ prefix\n\nThis differs from python which runs a script without creating a corresponding program.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#py-vs-.c",
+    "href": "00_podman.html#py-vs-.c",
+    "title": "Podman",
+    "section": ".py vs .c",
+    "text": ".py vs .c\n\nflowchart LR\n  A(Python) --&gt; B[fname.py file]\n  B --&gt; C[python fname.py]\n  C --&gt; D{hello world}\n  E(C) --&gt; F[fname.c  file]\n  F --&gt; G[gcc fname.c -o ename]\n  G --&gt; H[./ename]\n  H --&gt; I{hello world}\n\n\n\n\nflowchart LR\n  A(Python) --&gt; B[fname.py file]\n  B --&gt; C[python fname.py]\n  C --&gt; D{hello world}\n  E(C) --&gt; F[fname.c  file]\n  F --&gt; G[gcc fname.c -o ename]\n  G --&gt; H[./ename]\n  H --&gt; I{hello world}\n\n\n\n\n\n\n\nYou only have to compile once to have the executable forever.\nMost programs are executables, not scripts.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#today-4",
+    "href": "00_podman.html#today-4",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\n✓ podman\n✓ vim\n✓ gcc\ngit",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#git-1",
+    "href": "00_podman.html#git-1",
+    "title": "Podman",
+    "section": "Git",
+    "text": "Git\n\n\nGit was invented… to store the C language source code for an open source operating system (Linux)\n\n\nIt is de facto the only way in the universe to store code other than “on my HDD/SSD”\n\n\nIt is also a very good way to\n\n\n\nKeep track of podman images\n\n\nKeep track of podman containers\n\n\nKeep track of code used inside containers",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-command",
+    "href": "00_podman.html#as-a-command",
+    "title": "Podman",
+    "section": "As a command",
+    "text": "As a command\n\nGit corresponds, like the others, to a command: git\n\nIt is common now to use other techniques, but the command remains extremely stable\n\nQuoth GitHub, the first and greatest of the collaboration tools:\n\n\n\nIf you want a lot of control and flexibility, you can use the command line.",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology",
+    "href": "00_podman.html#as-a-technology",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nSo basically, you have things called repositories or “repos”\n\n\nflowchart LR\n  A(My ️‍🔥 code repo)\n\n\n\n\nflowchart LR\n  A(My ️‍🔥 code repo)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-1",
+    "href": "00_podman.html#as-a-technology-1",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nThen you realize you wrote an infinite loop so you update it\n\n\nflowchart LR\n  A(My ️‍🔥 code repo v0 ) --&gt; B(My ️‍🔥 code repo v1)\n\n\n\n\nflowchart LR\n  A(My ️‍🔥 code repo v0 ) --&gt; B(My ️‍🔥 code repo v1)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-2",
+    "href": "00_podman.html#as-a-technology-2",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nThen you come to class and realize your code is on your gaming rig in your apartment.\n\n\nflowchart LR\n  A(&lt;s&gt;My ️‍🔥 code repo v0&lt;/s&gt;) --&gt; B(&lt;s&gt;My ️‍🔥 code repo v1&lt;/s&gt;)\n\n\n\n\nflowchart LR\n  A(&lt;s&gt;My ️‍🔥 code repo v0&lt;/s&gt;) --&gt; B(&lt;s&gt;My ️‍🔥 code repo v1&lt;/s&gt;)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-3",
+    "href": "00_podman.html#as-a-technology-3",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nSo you save your code on GitHub\n\nGH = GitHub, GR = Gaming Rig\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GH.‍🔥 v0)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GH.‍🔥 v0)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-4",
+    "href": "00_podman.html#as-a-technology-4",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nBut you realize you didn’t sanitize your inputs so you update again.\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-5",
+    "href": "00_podman.html#as-a-technology-5",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nThen you have class again and grab the GitHub version onto your LT = Laptop\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-6",
+    "href": "00_podman.html#as-a-technology-6",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nYou notice it has the bug so you fix it again on your laptop in almost the same way\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-7",
+    "href": "00_podman.html#as-a-technology-7",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nAnd save that back to GitHub then head back home to play Nethack on your 12000USD Gaming PC\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-8",
+    "href": "00_podman.html#as-a-technology-8",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nYou realize you also added some ASCII art and try to send that to GitHub\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H(GH.‍🔥 v2)\n  C --&gt; H\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H(GH.‍🔥 v2)\n  C --&gt; H",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-9",
+    "href": "00_podman.html#as-a-technology-9",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nTwo arrows into one thing is a merge conflict and out-of-scope for now.\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#as-a-technology-10",
+    "href": "00_podman.html#as-a-technology-10",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nBasically versions of code can live in more than one place.\n\nAh, versions, our old friend…\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#in-brief",
+    "href": "00_podman.html#in-brief",
+    "title": "Podman",
+    "section": "In Brief",
+    "text": "In Brief\n\nGenerally create repositories + tokens in browser\nUse command line and use ‘git clone ’ once.\nAuthenticate via access token from browser\nThen use ‘git add’, ‘git commit’, ‘git push’ to save work\nUse ‘git pull’ to grab saved work\nUse a “.gitignore” file so only code (NOT executables) live on GitHub",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.html#today-5",
+    "href": "00_podman.html#today-5",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\n✓ Introduce the technologies\n\n✓ podman\n✓ vim\n✓ gcc\n✓ git",
+    "crumbs": [
+      "Podman"
+    ]
+  },
+  {
+    "objectID": "00_podman.rjs.html#announcements",
+    "href": "00_podman.rjs.html#announcements",
+    "title": "Podman",
+    "section": "Announcements",
+    "text": "Announcements\n\nWelcome to Systems in C\n\nYou first semester in a compiled language - more on that soon.\n\nAction Items:\n\nAccess the course webpage\nJoin the Discord!\n\nWorking on this.\n\nSpin up a GitHub acct if you don’t have one."
+  },
+  {
+    "objectID": "00_podman.rjs.html#homework",
+    "href": "00_podman.rjs.html#homework",
+    "title": "Podman",
+    "section": "Homework",
+    "text": "Homework\n\nThe first homework, “Enigma”, is ready after this class.\n\nDue Thursday, 03 Sep at midnight AOE\nThe infamous CS1 hw, now in a good language!\nMostly just get the toolchain working."
+  },
+  {
+    "objectID": "00_podman.rjs.html#enigma",
+    "href": "00_podman.rjs.html#enigma",
+    "title": "Podman",
+    "section": "Enigma",
+    "text": "Enigma\n\n\nABCDEFGHIJKLMNOPQRSTUVWXYZ # in\n    |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # fast\n    &gt;&gt;&gt;&gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ \n         |\nAJDKSIRUXBLHWTMCQGZNPYFVOE # mid\n &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ\n |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # slow\n\n→\n\nBDFHJLCPRTXVZNYEIWGAKMUSQO\n &gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ \n   |\nIXUHFEZDAOMTKQJWNSRLCYPBVG # reflect\n   |\nBDFHJLCPRTXVZNYEIWGAKMUSQO # slow\n   &gt;&gt;&gt;&gt;&gt;\nABCDEFGHIJKLMNOPQRSTUVWXYZ # out\n\n## etc etc"
+  },
+  {
+    "objectID": "00_podman.rjs.html#today",
+    "href": "00_podman.rjs.html#today",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\nIntroduce the course\n\nThe C Programming Language\nCryptography + Cryptocurrency\n\nIntroduce the technologies\n\npodman\nvim\ngcc\ngit"
+  },
+  {
+    "objectID": "00_podman.rjs.html#pre-reqs",
+    "href": "00_podman.rjs.html#pre-reqs",
+    "title": "Podman",
+    "section": "Pre-reqs",
+    "text": "Pre-reqs\n\nThese things:\n\npodman\nvim\ngcc\ngit\n\nAre commands at the command line\nIf you are afraid of the command line, we will fix that!"
+  },
+  {
+    "objectID": "00_podman.rjs.html#it-me",
+    "href": "00_podman.rjs.html#it-me",
+    "title": "Podman",
+    "section": "It me",
+    "text": "It me\n\nName\n\nCalvin (Deutschbein)\n\nCall me\n\n(Professor) Calvin\n\nPronouns\n\npronouns or big frowns - me\nthey/them"
+  },
+  {
+    "objectID": "00_podman.rjs.html#the-great-work",
+    "href": "00_podman.rjs.html#the-great-work",
+    "title": "Podman",
+    "section": "The Great Work",
+    "text": "The Great Work\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs."
+  },
+  {
+    "objectID": "00_podman.rjs.html#how-to-do-it",
+    "href": "00_podman.rjs.html#how-to-do-it",
+    "title": "Podman",
+    "section": "How To Do It",
+    "text": "How To Do It\n\nAfter ~10 years of systems research I’ve convinced myself only two things that really matter:\n\nPointers, and\nRecursion\n\nRecursion isn’t too bad…\n\n&gt;&gt;&gt; exp = lambda b, n : b if n == 1 else b*exp(b,n-1)\n&gt;&gt;&gt; exp(2,8)\n256"
+  },
+  {
+    "objectID": "00_podman.rjs.html#pointers",
+    "href": "00_podman.rjs.html#pointers",
+    "title": "Podman",
+    "section": "Pointers",
+    "text": "Pointers\n\nPointers are a beast, but without them nothing makes sense!\n\n\n\n&gt;&gt;&gt; x = 1\n&gt;&gt;&gt; def addx():\n...     x += 1\n...\n&gt;&gt;&gt; addx()\nUnboundLocalError:\n&lt;blah blah blah error messages&gt;\n\n&gt;&gt;&gt; x = [1]\n&gt;&gt;&gt; def addx():\n...     x[0] += 1\n...\n&gt;&gt;&gt; addx()\n&gt;&gt;&gt; x\n[2]"
+  },
+  {
+    "objectID": "00_podman.rjs.html#insight",
+    "href": "00_podman.rjs.html#insight",
+    "title": "Podman",
+    "section": "Insight",
+    "text": "Insight\n\nDefinition:\n\nPointers: Variables that store memory addresses.\nRecursion: Functions calling themselves to solve sub-problems.\n\nImportance:\n\nCore to efficient algorithms and memory management in low-level programming."
+  },
+  {
+    "objectID": "00_podman.rjs.html#python-and-pointers",
+    "href": "00_podman.rjs.html#python-and-pointers",
+    "title": "Podman",
+    "section": "Python and Pointers",
+    "text": "Python and Pointers\n\nWhy not .py (.js, .java, .cs, .cpp, etc)?\n\nThese languages abstract memory.\nThis abstraction makes computation unclear\nThis lack of clarity:\n\nAdversely impacts education\nComplicates low-level design\nLeads to low performance\n\nGood languages (except Java) but not for us"
+  },
+  {
+    "objectID": "00_podman.rjs.html#c-and-pointers",
+    "href": "00_podman.rjs.html#c-and-pointers",
+    "title": "Podman",
+    "section": "C and Pointers",
+    "text": "C and Pointers\n\nWhy C?\n\nEveryone hates C because it makes us think…\nAnd thinking is hard.\nBut there exist problems (security) for which careful thought is necessary.\nLearning C makes us better Blub programmers.\n\nI claim: You needn’t use C in real life."
+  },
+  {
+    "objectID": "00_podman.rjs.html#kennedy-is-my-middle-name",
+    "href": "00_podman.rjs.html#kennedy-is-my-middle-name",
+    "title": "Podman",
+    "section": "Kennedy is my middle name",
+    "text": "Kennedy is my middle name\n\nNot an endorsement; I voted for ******* **** ****** ********!"
+  },
+  {
+    "objectID": "00_podman.rjs.html#c-is-for-clear",
+    "href": "00_podman.rjs.html#c-is-for-clear",
+    "title": "Podman",
+    "section": "C is for Clear",
+    "text": "C is for Clear\n\nC does not obscure what a computer is doing.\nThis lack of obscurity allows for greater precision.\nThis greater precision can be used to achieve security goals.\nAdvantages of C:\n\nFine-grained control over memory.\nEssential for systems programming."
+  },
+  {
+    "objectID": "00_podman.rjs.html#this-class",
+    "href": "00_podman.rjs.html#this-class",
+    "title": "Podman",
+    "section": "This class",
+    "text": "This class\n\nI am a systems security researcher and I discerned two core gaps in Willamette CS education:\n\nSystems, and\nSecurity\n\nTeaching systems alone can be boring or tedious.\nTeaching security alone can be defuse and ethereal."
+  },
+  {
+    "objectID": "00_podman.rjs.html#learning-objectives-1",
+    "href": "00_podman.rjs.html#learning-objectives-1",
+    "title": "Podman",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nDifferentiate confidentiality, integrity, and availability.\nApply modular arithmetic to computational systems.\nApply recursion and a pointers to programming problems.\nArticulate the impossibility of distributed consensus.\nUnderstand a low-level systems language."
+  },
+  {
+    "objectID": "00_podman.rjs.html#sketch",
+    "href": "00_podman.rjs.html#sketch",
+    "title": "Podman",
+    "section": "Sketch",
+    "text": "Sketch\n\nflowchart LR\n  A( ) --&gt; B(SHA)\n  A --&gt; C(RSA)\n  B --&gt; E(Block Chain)\n  C --&gt; F(Merkle Tree)\n  B --&gt; F\n  E --&gt; G(Nakamoto'08)\n  F --&gt; G\n  G --&gt; I((Capstone))\n\n\n\n\nflowchart LR\n  A( ) --&gt; B(SHA)\n  A --&gt; C(RSA)\n  B --&gt; E(Block Chain)\n  C --&gt; F(Merkle Tree)\n  B --&gt; F\n  E --&gt; G(Nakamoto'08)\n  F --&gt; G\n  G --&gt; I((Capstone))"
+  },
+  {
+    "objectID": "00_podman.rjs.html#sha",
+    "href": "00_podman.rjs.html#sha",
+    "title": "Podman",
+    "section": "SHA",
+    "text": "SHA\n\nSHA Basics:\n\nCryptographic hash function family.\nInput data into fixed-size hash values.\n\nUse Cases:\n\nData integrity.\n\nLearning Objectives:\n\nReason about bits and bytes."
+  },
+  {
+    "objectID": "00_podman.rjs.html#rsa",
+    "href": "00_podman.rjs.html#rsa",
+    "title": "Podman",
+    "section": "RSA",
+    "text": "RSA\n\nRSA Basics:\n\nPublic-key cryptography algorithm.\nBased on prime factorization being hard.\n\nUse Cases:\n\nData confidentiality.\n\nLearning Objectives:\n\nReason about numerical computing."
+  },
+  {
+    "objectID": "00_podman.rjs.html#rsa-sha-btc",
+    "href": "00_podman.rjs.html#rsa-sha-btc",
+    "title": "Podman",
+    "section": "RSA + SHA = BTC",
+    "text": "RSA + SHA = BTC\n\nFacilitating Blockchain:\n\nSHA & RSA in play\n\nRSA: Keep wallet keys confidential\nSHA: Maintain wallet content integrity\n\n\nBut we need some techniques to implement…\n\nPointers & Recursion"
+  },
+  {
+    "objectID": "00_podman.rjs.html#blockchain",
+    "href": "00_podman.rjs.html#blockchain",
+    "title": "Podman",
+    "section": "Blockchain",
+    "text": "Blockchain\n\nBlockchain:\n\nBlockchain structure resembles linked lists.\n\nLinked lists use pointers\nPointers are used recursively\n\nPointers are validated with SHA\n\nThat is, they have integrity"
+  },
+  {
+    "objectID": "00_podman.rjs.html#merkle-trees",
+    "href": "00_podman.rjs.html#merkle-trees",
+    "title": "Podman",
+    "section": "Merkle Trees",
+    "text": "Merkle Trees\n\nMerkle Trees:\n\nTree structure using SHA for data integrity.\nHashes stored as nodes; pointers link them.\nLeaf nodes are RSA signatures!\n\nMerkle Trees are balanced\n\nWe get to see a way to implement complex data structures in a low level language in a way that solves a real problem."
+  },
+  {
+    "objectID": "00_podman.rjs.html#final",
+    "href": "00_podman.rjs.html#final",
+    "title": "Podman",
+    "section": "Final",
+    "text": "Final\n\nImplement Full-Custom BTC\n\nUnder absolutely no circumstances use it\n\nIt’ll be insecure for reasons out-of-scope"
+  },
+  {
+    "objectID": "00_podman.rjs.html#today-1",
+    "href": "00_podman.rjs.html#today-1",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\npodman\nvim\ngcc\ngit"
+  },
+  {
+    "objectID": "00_podman.rjs.html#what-is-podman",
+    "href": "00_podman.rjs.html#what-is-podman",
+    "title": "Podman",
+    "section": "What is Podman?",
+    "text": "What is Podman?\n\nDefinition:\n\nPlatform to develop, ship, and run applications in isolated containers.\n\nBenefits:\n\nPortability, consistency across environments.\n\nEditorializing:\n\nProbably all code should be written in a container now that they exist."
+  },
+  {
+    "objectID": "00_podman.rjs.html#in-practice",
+    "href": "00_podman.rjs.html#in-practice",
+    "title": "Podman",
+    "section": "In practice:",
+    "text": "In practice:\n\nWindows only\n\nRun wsl --install -d ubuntu command once\n\nWindows+Mac:\n\nUse Podman Installer once\nLaunch Podman Desktop each time you code\nUse podman commands\n\nLinux:\n\nHave fun with your package manager."
+  },
+  {
+    "objectID": "00_podman.rjs.html#circa-2013",
+    "href": "00_podman.rjs.html#circa-2013",
+    "title": "Podman",
+    "section": "Circa ~2013",
+    "text": "Circa ~2013\n\nThe problem:\n\nWe want to run code.\nWe want the code to create programs\nWe want the programs to work on more than one computer.\n\nThe solution:\n\nRealistically, the Java Virtual Machine\nBut then you have to write Java (this is pre-Scala, pre-Kotlin)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#circa-2008",
+    "href": "00_podman.rjs.html#circa-2008",
+    "title": "Podman",
+    "section": "Circa ~2008",
+    "text": "Circa ~2008\n\nThe setting:\n\nCloud is taking off, mainly Amazon + Google\nThey already have to run everything in virtual machine.\nThey needed a lightweight solution.\n\nThe solution:\n\nDocker is written in the Google C-like, Go\nIt is a lightweight pretend computer."
+  },
+  {
+    "objectID": "00_podman.rjs.html#dockerpodman",
+    "href": "00_podman.rjs.html#dockerpodman",
+    "title": "Podman",
+    "section": "Docker→Podman",
+    "text": "Docker→Podman\n\nDocker is closed-source (bad)\nDocker is critical infastructre in most code bases\nThe Redhat team (from CAROLINA) stepped into solve the problem\nThey make Podman - completely compatible, completely open-source\nWe use Podman in this class"
+  },
+  {
+    "objectID": "00_podman.rjs.html#podman-1",
+    "href": "00_podman.rjs.html#podman-1",
+    "title": "Podman",
+    "section": "Podman",
+    "text": "Podman\n\nPodman solves the problem of writing code on one computer and running it another.\nSimply specify a Podman image\n\na description of a imaginary computer\n\nPodman will pretend to be that computer\nWe can run code “inside” Podman\n\nCode in the container can’t tell it’s running inside Podman"
+  },
+  {
+    "objectID": "00_podman.rjs.html#podman-python",
+    "href": "00_podman.rjs.html#podman-python",
+    "title": "Podman",
+    "section": "Podman & Python",
+    "text": "Podman & Python\n\nWindows, Mac, Linux:\n\nWin tends to refer to Python3 as “python”\nMac tends to refer to Python2 as “python”\nLinux, because its good, makes you specify:\n\n\nuser@DESKTOP-THMS2PJ:~$ python\nCommand 'python' not found, did you mean:\n  command 'python3' from deb python3\n  command 'python' from deb python-is-python3"
+  },
+  {
+    "objectID": "00_podman.rjs.html#bugs",
+    "href": "00_podman.rjs.html#bugs",
+    "title": "Podman",
+    "section": "Bugs",
+    "text": "Bugs\n\nThis can lead to bugs pretty quickly\n\nSay I write and test a .py file on Mac\nI email it to my prof for help\nSyntaxError on my prof’s Linux device:\n\n\nuser@DESKTOP-THMS2PJ:~$ python2 -c \"print 'hello world'\"\nhello world\nuser@DESKTOP-THMS2PJ:~$ python3 -c \"print 'hello world'\"\n  File \"&lt;string&gt;\", line 1\n    print 'hello world'\n    ^^^^^^^^^^^^^^^^^^^\nSyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?"
+  },
+  {
+    "objectID": "00_podman.rjs.html#versioning",
+    "href": "00_podman.rjs.html#versioning",
+    "title": "Podman",
+    "section": "Versioning",
+    "text": "Versioning\n\nPython2/3 is just an extreme example\n\nMost of code reuse has versioning problems\nMany CS1 headaches are Win/Mac python’ing\nBut really: everything breaks all the time\n\nSolution: Just run in podman:\n\nC:\\Users\\cd-desk&gt;podman run -it python:alpine python\nPython 3.13.1 (main, Dec  4 2024, 20:31:31) [GCC 13.2.1 20240309] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; print(\"hello world\")\nhello world\n&gt;&gt;&gt; exit()"
+  },
+  {
+    "objectID": "00_podman.rjs.html#images",
+    "href": "00_podman.rjs.html#images",
+    "title": "Podman",
+    "section": "Images",
+    "text": "Images\n\nSomething we podman run -it is an image\n\nIt is a template that correspond to many possible pretend computers\nI think of them like object oriented class\nThey define something that could be"
+  },
+  {
+    "objectID": "00_podman.rjs.html#containers",
+    "href": "00_podman.rjs.html#containers",
+    "title": "Podman",
+    "section": "Containers",
+    "text": "Containers\n\nEach time we run said command, we have a different container\n\nThey have different file systems\nThings we install don’t persist to future run instances.\nI think of them like objects of a class\nLike ‘1’ instead of ‘integer’\nThey actually existing, running code."
+  },
+  {
+    "objectID": "00_podman.rjs.html#today-2",
+    "href": "00_podman.rjs.html#today-2",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\n✓ podman\nvim\ngcc\ngit"
+  },
+  {
+    "objectID": "00_podman.rjs.html#ides",
+    "href": "00_podman.rjs.html#ides",
+    "title": "Podman",
+    "section": "IDEs",
+    "text": "IDEs\n\nAt some point in time, code started being written in IDEs.\n\nIntegrated design environments.\nTo me, the first one was Eclipse (for Java)\n\nVS Code is the ascendent IDE, and is everywhere.\n\nGoogle Cloud has browser based VS Code clone\n\nVS Code has some nice things - including good git and docker (less so podman) integration."
+  },
+  {
+    "objectID": "00_podman.rjs.html#integration",
+    "href": "00_podman.rjs.html#integration",
+    "title": "Podman",
+    "section": "Integration",
+    "text": "Integration\n\nVS Code has some nice things\n\nWorks with git/docker (less so podman).\nYou know what else can do that?\nThe command line\nWhich you don’t have to install\n\nIDEs are ~new, the was command line utilities\n\nVi(m)\nEmacs\nNano"
+  },
+  {
+    "objectID": "00_podman.rjs.html#why-vim",
+    "href": "00_podman.rjs.html#why-vim",
+    "title": "Podman",
+    "section": "Why Vim?",
+    "text": "Why Vim?\n\nWhile IDEs are ascendent…\n\nThe are not installed on every system\nThey can be hard to use in cloud\nThey can start costing money at any time\nThey seem slower and to produce worse code\n\nLike Python, IDEs are easy!\n\nThis is good for new coders\nIt is a design decision thereafter"
+  },
+  {
+    "objectID": "00_podman.rjs.html#vim-1",
+    "href": "00_podman.rjs.html#vim-1",
+    "title": "Podman",
+    "section": "Vim",
+    "text": "Vim\n\nVim isn’t too bad\n\nIt can basically be used as a keyboard navigated text editor.\nIt has really good keyboard shortcuts and modes that we learn over time.\nIt seems to be the pound-for-pound productivity champion of all time.\n\nIt is hard to find people who have learned vim who don’t prefer it."
+  },
+  {
+    "objectID": "00_podman.rjs.html#podvim",
+    "href": "00_podman.rjs.html#podvim",
+    "title": "Podman",
+    "section": "Podvim",
+    "text": "Podvim\n\nWe can install and run vim inside a container (which happens to run Debian & ∴ apt)\nEven directly from Python…\n\n&gt;&gt;&gt; import os\n&gt;&gt;&gt; os.system(\"apt update\") # update the registry of packages\n&lt;blah blah blah&gt;\n&gt;&gt;&gt; os.system(\"apt install vim -y\") # -y saves us from having to say \"yes\" to any prompts\n&lt;blah blah blah&gt;\n&gt;&gt;&gt; os.system(\"vim\") # a vim window will open\n\nThis is vim inside python inside podman\n\nDon’t do this, it’s a proof-of-concept"
+  },
+  {
+    "objectID": "00_podman.rjs.html#vim-2",
+    "href": "00_podman.rjs.html#vim-2",
+    "title": "Podman",
+    "section": "Vim",
+    "text": "Vim\n\nIt looks like this:\n\n~               VIM - Vi IMproved\n~                  version 9.1\n~            by Bram Moolenaar et al.\n~   Vim is open source and freely distributable\n~\n~          Become a registered Vim user!\n~  type  :help register&lt;Enter&gt;   for information\n~\n~  type  :q&lt;Enter&gt;              to exit\n~  type  :help&lt;Enter&gt;  or  &lt;F1&gt; for on-line help\n~  type  :help version9&lt;Enter&gt;  for version info"
+  },
+  {
+    "objectID": "00_podman.rjs.html#usage",
+    "href": "00_podman.rjs.html#usage",
+    "title": "Podman",
+    "section": "Usage",
+    "text": "Usage\n\nI usually use vim as vim filename.py\n\nWhen vim opens I type i (for “insert”)\nThen I write code.\nESC → :x → ENTER to save+quit\n\nLearn vim incrementally by using it for this class - for code, for notes, for whatever."
+  },
+  {
+    "objectID": "00_podman.rjs.html#today-3",
+    "href": "00_podman.rjs.html#today-3",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\n✓ podman\n✓ vim\ngcc\ngit"
+  },
+  {
+    "objectID": "00_podman.rjs.html#gcc-1",
+    "href": "00_podman.rjs.html#gcc-1",
+    "title": "Podman",
+    "section": "GCC",
+    "text": "GCC\n\nDeveloped for the C language to make an open source operating system in 1987.\nMainly around today for the C language to make an open source operating system (Linux)\n(The C language was invented to write an operating system).\npython is written in GCC C\n\nC:\\Users\\cd-desk&gt;podman run -it python\nPython 3.13.1 (main, Dec  4 2024, 20:40:27) [GCC 12.2.0] on linux"
+  },
+  {
+    "objectID": "00_podman.rjs.html#great-freeware",
+    "href": "00_podman.rjs.html#great-freeware",
+    "title": "Podman",
+    "section": "Great freeware",
+    "text": "Great freeware\n\nMany legendary programs created using GCC:\n\nHTTPD & NGINX, which serve a majority of webtraffic\nEvery major Linux and FreeBSD distribution\nMajor browsers like Firefox and Chromium\n\nFirefox is on clang now but that’s new\n\nGNU Bash and Coreutils, like cat, ls, rm\nBitcoin Core"
+  },
+  {
+    "objectID": "00_podman.rjs.html#compilation",
+    "href": "00_podman.rjs.html#compilation",
+    "title": "Podman",
+    "section": "Compilation",
+    "text": "Compilation\n\nLike python or podman or vim, GCC is a command - gcc\ngcc takes at least one argument: a filename, usually of a C file\nGCC takes this C file and makes an executable\n\na program, sort of\n\nExecutables run as command with ./ prefix\n\nThis differs from python which runs a script without creating a corresponding program."
+  },
+  {
+    "objectID": "00_podman.rjs.html#py-vs-.c",
+    "href": "00_podman.rjs.html#py-vs-.c",
+    "title": "Podman",
+    "section": ".py vs .c",
+    "text": ".py vs .c\n\nflowchart LR\n  A(Python) --&gt; B[fname.py file]\n  B --&gt; C[python fname.py]\n  C --&gt; D{hello world}\n  E(C) --&gt; F[fname.c  file]\n  F --&gt; G[gcc fname.c -o ename]\n  G --&gt; H[./ename]\n  H --&gt; I{hello world}\n\n\n\n\nflowchart LR\n  A(Python) --&gt; B[fname.py file]\n  B --&gt; C[python fname.py]\n  C --&gt; D{hello world}\n  E(C) --&gt; F[fname.c  file]\n  F --&gt; G[gcc fname.c -o ename]\n  G --&gt; H[./ename]\n  H --&gt; I{hello world}\n\n\n\n\n\n\n\nYou only have to compile once to have the executable forever.\nMost programs are executables, not scripts."
+  },
+  {
+    "objectID": "00_podman.rjs.html#today-4",
+    "href": "00_podman.rjs.html#today-4",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\nIntroduce the technologies\n\n✓ podman\n✓ vim\n✓ gcc\ngit"
+  },
+  {
+    "objectID": "00_podman.rjs.html#git-1",
+    "href": "00_podman.rjs.html#git-1",
+    "title": "Podman",
+    "section": "Git",
+    "text": "Git\n\n\nGit was invented… to store the C language source code for an open source operating system (Linux)\n\n\nIt is de facto the only way in the universe to store code other than “on my HDD/SSD”\n\n\nIt is also a very good way to\n\n\n\nKeep track of podman images\n\n\nKeep track of podman containers\n\n\nKeep track of code used inside containers"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-command",
+    "href": "00_podman.rjs.html#as-a-command",
+    "title": "Podman",
+    "section": "As a command",
+    "text": "As a command\n\nGit corresponds, like the others, to a command: git\n\nIt is common now to use other techniques, but the command remains extremely stable\n\nQuoth GitHub, the first and greatest of the collaboration tools:\n\n\n\nIf you want a lot of control and flexibility, you can use the command line."
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology",
+    "href": "00_podman.rjs.html#as-a-technology",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nSo basically, you have things called repositories or “repos”\n\n\nflowchart LR\n  A(My ️‍🔥 code repo)\n\n\n\n\nflowchart LR\n  A(My ️‍🔥 code repo)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-1",
+    "href": "00_podman.rjs.html#as-a-technology-1",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nThen you realize you wrote an infinite loop so you update it\n\n\nflowchart LR\n  A(My ️‍🔥 code repo v0 ) --&gt; B(My ️‍🔥 code repo v1)\n\n\n\n\nflowchart LR\n  A(My ️‍🔥 code repo v0 ) --&gt; B(My ️‍🔥 code repo v1)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-2",
+    "href": "00_podman.rjs.html#as-a-technology-2",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nThen you come to class and realize your code is on your gaming rig in your apartment.\n\n\nflowchart LR\n  A(&lt;s&gt;My ️‍🔥 code repo v0&lt;/s&gt;) --&gt; B(&lt;s&gt;My ️‍🔥 code repo v1&lt;/s&gt;)\n\n\n\n\nflowchart LR\n  A(&lt;s&gt;My ️‍🔥 code repo v0&lt;/s&gt;) --&gt; B(&lt;s&gt;My ️‍🔥 code repo v1&lt;/s&gt;)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-3",
+    "href": "00_podman.rjs.html#as-a-technology-3",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nSo you save your code on GitHub\n\nGH = GitHub, GR = Gaming Rig\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GH.‍🔥 v0)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GH.‍🔥 v0)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-4",
+    "href": "00_podman.rjs.html#as-a-technology-4",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nBut you realize you didn’t sanitize your inputs so you update again.\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-5",
+    "href": "00_podman.rjs.html#as-a-technology-5",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nThen you have class again and grab the GitHub version onto your LT = Laptop\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-6",
+    "href": "00_podman.rjs.html#as-a-technology-6",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nYou notice it has the bug so you fix it again on your laptop in almost the same way\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-7",
+    "href": "00_podman.rjs.html#as-a-technology-7",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nAnd save that back to GitHub then head back home to play Nethack on your 12000USD Gaming PC\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-8",
+    "href": "00_podman.rjs.html#as-a-technology-8",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nYou realize you also added some ASCII art and try to send that to GitHub\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H(GH.‍🔥 v2)\n  C --&gt; H\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H(GH.‍🔥 v2)\n  C --&gt; H"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-9",
+    "href": "00_podman.rjs.html#as-a-technology-9",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nTwo arrows into one thing is a merge conflict and out-of-scope for now.\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H"
+  },
+  {
+    "objectID": "00_podman.rjs.html#as-a-technology-10",
+    "href": "00_podman.rjs.html#as-a-technology-10",
+    "title": "Podman",
+    "section": "As a technology",
+    "text": "As a technology\n\nBasically versions of code can live in more than one place.\n\nAh, versions, our old friend…\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H\n\n\n\n\nflowchart LR\n  A(GR.️‍🔥 v0) --&gt; B(GR.️‍🔥 v1)\n  B --&gt; C(GR.️‍🔥 v2)\n  B --&gt; D(GH.‍🔥 v0)\n  D --&gt; E(LT.‍🔥 v0)\n  E --&gt; F(LT.‍🔥 v1)\n  F --&gt; G(GH.‍🔥 v1)\n  G --&gt; H{💥}\n  C --&gt; H"
+  },
+  {
+    "objectID": "00_podman.rjs.html#in-brief",
+    "href": "00_podman.rjs.html#in-brief",
+    "title": "Podman",
+    "section": "In Brief",
+    "text": "In Brief\n\nGenerally create repositories + tokens in browser\nUse command line and use ‘git clone ’ once.\nAuthenticate via access token from browser\nThen use ‘git add’, ‘git commit’, ‘git push’ to save work\nUse ‘git pull’ to grab saved work\nUse a “.gitignore” file so only code (NOT executables) live on GitHub"
+  },
+  {
+    "objectID": "00_podman.rjs.html#today-5",
+    "href": "00_podman.rjs.html#today-5",
+    "title": "Podman",
+    "section": "Today",
+    "text": "Today\n\n✓ Introduce the course\n\n✓ The C Programming Language\n✓ Cryptography + Cryptocurrency\n\n✓ Introduce the technologies\n\n✓ podman\n✓ vim\n✓ gcc\n✓ git"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Systems in C",
+    "section": "",
+    "text": "CS 271 “Systems in C”\n\nCalled:\n\nCS 271: Systems Programming\nCS 271: Sys Programming, Computer Arch\n\nThe first semester class in a:\n\nCompiled language, with\nNo garbage collector.\n\nTerm these “systems” languages.\n\nSuitable to write an operating system.\n\nTaught this year in C.\n\nSo to me, “Systems in C”\n\n\n\nTTh 1310-1440\n\n\nProf. Calvin\n\n\nSyllabus\n\nSyllabus link\n\n\n\n\nCalendar\n\n\n\nWeek Num.\nDate Tues\nTues/Talk\nThurs/Lab\nHW/Nxt Th\n\n\n\n\n0x0\n08/35\npodman\nalpine\nEnigma\n\n\n0x1\n09/01\nC89/99\nprintb\nmacros\n\n\n0x2\n09/08\nSHA256\nEndian\nSHAinC\n\n\n0x3\n09/15\nINTCEC\nFinite\n\n\n\n0x4\n09/22\nBigAdd\nFermat\n4096_t\n\n\n0x5\n09/29\nIASC26\nKeyGen\nRSAinC\n\n\n0x6\n10/06\nEuclid\nops_ui\nBigRSA\n\n\n0x7\n10/13\nMiddle\nAssess\n\n\n\n0x8\n10/20\nMounts\naction\n\n\n\n0x9\n10/27\nStream\nmalloc\nlist_t\n\n\n0bX\n11/03\nbreak;\nstruct\n\n\n\n0xA\n11/10\nbchain\n\n\n\n\n0xB\n11/17\ngraphs\nMerkle\nheap_t\n\n\n0xC\n11/24\nLogics\nbreak;\n\n\n\n0xD\n12/01\n\n\nBTCinC\n\n\n\n*The final is described as BTCinC and is due Tuesday, December 8th at 5:00 p.m..\n\n\nRecordings"
+  }
+]
