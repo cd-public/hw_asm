@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>b0 – Systems in C</title>
+<title>Memory Hierarchy – Systems in C</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./B0.html">B0</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./B0.html">Memory Hierarchy</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,163 +145,145 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matching RISC-V assembly</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./00_podman.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Podman</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10</span></a>
+ <span class="menu-text">Circuits</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11</span></a>
+ <span class="menu-text">Transistors</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">20</span></a>
+ <span class="menu-text">Gates</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">21</span></a>
+ <span class="menu-text">Multiplexers</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./30.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">30</span></a>
+ <span class="menu-text">Minimization</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./31.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">31</span></a>
+ <span class="menu-text">Karnaugh Maps</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./40.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">40</span></a>
+ <span class="menu-text">Encoders</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./41.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2</span></a>
+ <span class="menu-text">Adders</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./50.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">50</span></a>
+ <span class="menu-text">ALU</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./51.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">51</span></a>
+ <span class="menu-text">Register File</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./60.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">60</span></a>
+ <span class="menu-text">Timing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./61.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">61</span></a>
+ <span class="menu-text">Performance</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./70.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">cycles to complete one operation</span></a>
+ <span class="menu-text">Pipelines</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./71.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">71</span></a>
+ <span class="menu-text">Load/Store</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./80.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">80</span></a>
+ <span class="menu-text">Pipeline RISC-V</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./81.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assembly code for</span></a>
+ <span class="menu-text">Stages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./90.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assembly code for</span></a>
+ <span class="menu-text">Procedures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./91.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">91</span></a>
+ <span class="menu-text">The Stack</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></a>
+ <span class="menu-text">Hazards</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></a>
+ <span class="menu-text">Source Bypassing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B0.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">B0</span></a>
+ <span class="menu-text">Memory Hierarchy</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">m</span></a>
+ <span class="menu-text">Caching</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./C0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">m</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./D0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matching RISC-V assembly</span></a>
+ <span class="menu-text">Security</span></a>
   </div>
 </li>
     </ul>
@@ -310,14 +292,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="B0.rjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#logistics" id="toc-logistics" class="nav-link active" data-scroll-target="#logistics">Logistics</a>
+  <ul class="collapse">
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="B0.rjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<p class="subtitle lead">Systems in C</p>
+<div class="quarto-title-block"><div><h1 class="title">Memory Hierarchy</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+<p class="subtitle lead">wBd0</p>
 </div>
 
 
@@ -334,6 +327,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="logistics" class="level1">
+<h1>Logistics</h1>
+<section id="announcements" class="level2">
+<h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
+<ul>
+<li><strong>Welcome</strong> to HW/<code>asm</code></li>
+<li><strong>Action Items</strong> discussion</li>
+</ul>
+</section>
+</section>
+<section id="section" class="level1">
+<h1></h1>
 <p>COMP311: COMPUTER ORGANIZATION! Lecture 23: Intro to Memory Hierachy tinyurl.com/comp311-sp26 1</p>
 <p>Logistics Update! ■ Written Assignment 6 – Due tomorrow ■ Lab 5 due LDOC (4/27) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day 2</p>
 <p>REVIEW: SOURCE BYPASSING 3</p>
@@ -369,6 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -824,137 +830,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./A1.html" class="pagination-link" aria-label="𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span>
+      <a href="./A1.html" class="pagination-link" aria-label="Source Bypassing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Source Bypassing</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./B1.html" class="pagination-link" aria-label="m">
-        <span class="nav-page-text">m</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./B1.html" class="pagination-link" aria-label="Caching">
+        <span class="nav-page-text">Caching</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="an">COMP311:</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>COMPUTER ORGANIZATION!</span>
-<span id="cb1-3"><a href="#cb1-3"></a>Lecture 23: Intro to Memory Hierachy</span>
-<span id="cb1-4"><a href="#cb1-4"></a>tinyurl.com/comp311-sp26</span>
-<span id="cb1-5"><a href="#cb1-5"></a>1</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>Logistics Update!</span>
-<span id="cb1-8"><a href="#cb1-8"></a>■ Written Assignment 6</span>
-<span id="cb1-9"><a href="#cb1-9"></a>– Due tomorrow</span>
-<span id="cb1-10"><a href="#cb1-10"></a>■ Lab 5 due LDOC (4/27)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>■ Office Hours Ending LDOC</span>
-<span id="cb1-12"><a href="#cb1-12"></a>■ Final Review Session on First Reading Day</span>
-<span id="cb1-13"><a href="#cb1-13"></a>2</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> Memory Hierarchy </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="an">subtitle:</span><span class="co"> "wBd0"</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu"># Logistics</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">## Announcements</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="ss">- </span>**Welcome** to HW/<span class="in">`asm`</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="ss">- </span>**Action Items** discussion</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="fu"># </span></span>
 <span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a>REVIEW: SOURCE</span>
-<span id="cb1-16"><a href="#cb1-16"></a>BYPASSING</span>
-<span id="cb1-17"><a href="#cb1-17"></a>3</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>Source Bypass Muxes:</span>
-<span id="cb1-20"><a href="#cb1-20"></a>Now, we can choose if the bottom input of</span>
-<span id="cb1-21"><a href="#cb1-21"></a>3 case each</span>
-<span id="cb1-22"><a href="#cb1-22"></a>the ALU should come from</span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="ss">1. </span>The register file (no forwarding) -- 00</span>
-<span id="cb1-24"><a href="#cb1-24"></a>ForwardA</span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="ss">2. </span>The instruction two stages ahead -- 01</span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="ss">3. </span>The instruction one stage ahead -- 10</span>
-<span id="cb1-27"><a href="#cb1-27"></a>M</span>
-<span id="cb1-28"><a href="#cb1-28"></a>u</span>
-<span id="cb1-29"><a href="#cb1-29"></a>x</span>
-<span id="cb1-30"><a href="#cb1-30"></a>M</span>
-<span id="cb1-31"><a href="#cb1-31"></a>u</span>
-<span id="cb1-32"><a href="#cb1-32"></a>x</span>
-<span id="cb1-33"><a href="#cb1-33"></a>ForwardB</span>
-<span id="cb1-34"><a href="#cb1-34"></a>4</span>
-<span id="cb1-35"><a href="#cb1-35"></a></span>
-<span id="cb1-36"><a href="#cb1-36"></a>Graphical Representation of Forwarding</span>
-<span id="cb1-37"><a href="#cb1-37"></a>Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf</span>
-<span id="cb1-38"><a href="#cb1-38"></a>5</span>
-<span id="cb1-39"><a href="#cb1-39"></a></span>
-<span id="cb1-40"><a href="#cb1-40"></a>LOAD-USE HAZARD</span>
-<span id="cb1-41"><a href="#cb1-41"></a>6</span>
-<span id="cb1-42"><a href="#cb1-42"></a></span>
-<span id="cb1-43"><a href="#cb1-43"></a>Load-Use Data Hazard</span>
-<span id="cb1-44"><a href="#cb1-44"></a>ForwardA</span>
-<span id="cb1-45"><a href="#cb1-45"></a>M</span>
-<span id="cb1-46"><a href="#cb1-46"></a>u</span>
-<span id="cb1-47"><a href="#cb1-47"></a>x</span>
-<span id="cb1-48"><a href="#cb1-48"></a>M</span>
-<span id="cb1-49"><a href="#cb1-49"></a>u</span>
-<span id="cb1-50"><a href="#cb1-50"></a>x</span>
-<span id="cb1-51"><a href="#cb1-51"></a>ForwardB</span>
-<span id="cb1-52"><a href="#cb1-52"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-53"><a href="#cb1-53"></a>7</span>
-<span id="cb1-54"><a href="#cb1-54"></a></span>
-<span id="cb1-55"><a href="#cb1-55"></a>Load-Use Data Hazard</span>
-<span id="cb1-56"><a href="#cb1-56"></a>ForwardA</span>
-<span id="cb1-57"><a href="#cb1-57"></a>M</span>
-<span id="cb1-58"><a href="#cb1-58"></a>u</span>
-<span id="cb1-59"><a href="#cb1-59"></a>x</span>
-<span id="cb1-60"><a href="#cb1-60"></a>M</span>
-<span id="cb1-61"><a href="#cb1-61"></a>u</span>
-<span id="cb1-62"><a href="#cb1-62"></a>x</span>
-<span id="cb1-63"><a href="#cb1-63"></a>ForwardB</span>
-<span id="cb1-64"><a href="#cb1-64"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-65"><a href="#cb1-65"></a>8</span>
-<span id="cb1-66"><a href="#cb1-66"></a></span>
-<span id="cb1-67"><a href="#cb1-67"></a>Load-Use Data Hazard</span>
-<span id="cb1-68"><a href="#cb1-68"></a>ForwardA</span>
-<span id="cb1-69"><a href="#cb1-69"></a>M</span>
-<span id="cb1-70"><a href="#cb1-70"></a>The updated valueu of x4 cannot be forwarded until it is</span>
-<span id="cb1-71"><a href="#cb1-71"></a>x</span>
-<span id="cb1-72"><a href="#cb1-72"></a>read from the data memory.</span>
-<span id="cb1-73"><a href="#cb1-73"></a>M</span>
-<span id="cb1-74"><a href="#cb1-74"></a>u</span>
-<span id="cb1-75"><a href="#cb1-75"></a>We need to stall the add instruction in the decode stage for</span>
+<span id="cb1-15"><a href="#cb1-15"></a>COMP311:</span>
+<span id="cb1-16"><a href="#cb1-16"></a>COMPUTER ORGANIZATION!</span>
+<span id="cb1-17"><a href="#cb1-17"></a>Lecture 23: Intro to Memory Hierachy</span>
+<span id="cb1-18"><a href="#cb1-18"></a>tinyurl.com/comp311-sp26</span>
+<span id="cb1-19"><a href="#cb1-19"></a>1</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a>Logistics Update!</span>
+<span id="cb1-22"><a href="#cb1-22"></a>■ Written Assignment 6</span>
+<span id="cb1-23"><a href="#cb1-23"></a>– Due tomorrow</span>
+<span id="cb1-24"><a href="#cb1-24"></a>■ Lab 5 due LDOC (4/27)</span>
+<span id="cb1-25"><a href="#cb1-25"></a>■ Office Hours Ending LDOC</span>
+<span id="cb1-26"><a href="#cb1-26"></a>■ Final Review Session on First Reading Day</span>
+<span id="cb1-27"><a href="#cb1-27"></a>2</span>
+<span id="cb1-28"><a href="#cb1-28"></a></span>
+<span id="cb1-29"><a href="#cb1-29"></a>REVIEW: SOURCE</span>
+<span id="cb1-30"><a href="#cb1-30"></a>BYPASSING</span>
+<span id="cb1-31"><a href="#cb1-31"></a>3</span>
+<span id="cb1-32"><a href="#cb1-32"></a></span>
+<span id="cb1-33"><a href="#cb1-33"></a>Source Bypass Muxes:</span>
+<span id="cb1-34"><a href="#cb1-34"></a>Now, we can choose if the bottom input of</span>
+<span id="cb1-35"><a href="#cb1-35"></a>3 case each</span>
+<span id="cb1-36"><a href="#cb1-36"></a>the ALU should come from</span>
+<span id="cb1-37"><a href="#cb1-37"></a><span class="ss">1. </span>The register file (no forwarding) -- 00</span>
+<span id="cb1-38"><a href="#cb1-38"></a>ForwardA</span>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="ss">2. </span>The instruction two stages ahead -- 01</span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="ss">3. </span>The instruction one stage ahead -- 10</span>
+<span id="cb1-41"><a href="#cb1-41"></a>M</span>
+<span id="cb1-42"><a href="#cb1-42"></a>u</span>
+<span id="cb1-43"><a href="#cb1-43"></a>x</span>
+<span id="cb1-44"><a href="#cb1-44"></a>M</span>
+<span id="cb1-45"><a href="#cb1-45"></a>u</span>
+<span id="cb1-46"><a href="#cb1-46"></a>x</span>
+<span id="cb1-47"><a href="#cb1-47"></a>ForwardB</span>
+<span id="cb1-48"><a href="#cb1-48"></a>4</span>
+<span id="cb1-49"><a href="#cb1-49"></a></span>
+<span id="cb1-50"><a href="#cb1-50"></a>Graphical Representation of Forwarding</span>
+<span id="cb1-51"><a href="#cb1-51"></a>Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf</span>
+<span id="cb1-52"><a href="#cb1-52"></a>5</span>
+<span id="cb1-53"><a href="#cb1-53"></a></span>
+<span id="cb1-54"><a href="#cb1-54"></a>LOAD-USE HAZARD</span>
+<span id="cb1-55"><a href="#cb1-55"></a>6</span>
+<span id="cb1-56"><a href="#cb1-56"></a></span>
+<span id="cb1-57"><a href="#cb1-57"></a>Load-Use Data Hazard</span>
+<span id="cb1-58"><a href="#cb1-58"></a>ForwardA</span>
+<span id="cb1-59"><a href="#cb1-59"></a>M</span>
+<span id="cb1-60"><a href="#cb1-60"></a>u</span>
+<span id="cb1-61"><a href="#cb1-61"></a>x</span>
+<span id="cb1-62"><a href="#cb1-62"></a>M</span>
+<span id="cb1-63"><a href="#cb1-63"></a>u</span>
+<span id="cb1-64"><a href="#cb1-64"></a>x</span>
+<span id="cb1-65"><a href="#cb1-65"></a>ForwardB</span>
+<span id="cb1-66"><a href="#cb1-66"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-67"><a href="#cb1-67"></a>7</span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a>Load-Use Data Hazard</span>
+<span id="cb1-70"><a href="#cb1-70"></a>ForwardA</span>
+<span id="cb1-71"><a href="#cb1-71"></a>M</span>
+<span id="cb1-72"><a href="#cb1-72"></a>u</span>
+<span id="cb1-73"><a href="#cb1-73"></a>x</span>
+<span id="cb1-74"><a href="#cb1-74"></a>M</span>
+<span id="cb1-75"><a href="#cb1-75"></a>u</span>
 <span id="cb1-76"><a href="#cb1-76"></a>x</span>
-<span id="cb1-77"><a href="#cb1-77"></a>one cycle so that we can forward the value read from data</span>
-<span id="cb1-78"><a href="#cb1-78"></a>ForwardB</span>
-<span id="cb1-79"><a href="#cb1-79"></a>memory.</span>
-<span id="cb1-80"><a href="#cb1-80"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-81"><a href="#cb1-81"></a>9</span>
-<span id="cb1-82"><a href="#cb1-82"></a></span>
-<span id="cb1-83"><a href="#cb1-83"></a>Load-Use Data Hazard</span>
-<span id="cb1-84"><a href="#cb1-84"></a>ForwardA</span>
-<span id="cb1-85"><a href="#cb1-85"></a>M</span>
-<span id="cb1-86"><a href="#cb1-86"></a>u</span>
-<span id="cb1-87"><a href="#cb1-87"></a>x</span>
-<span id="cb1-88"><a href="#cb1-88"></a>M</span>
-<span id="cb1-89"><a href="#cb1-89"></a>u</span>
+<span id="cb1-77"><a href="#cb1-77"></a>ForwardB</span>
+<span id="cb1-78"><a href="#cb1-78"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-79"><a href="#cb1-79"></a>8</span>
+<span id="cb1-80"><a href="#cb1-80"></a></span>
+<span id="cb1-81"><a href="#cb1-81"></a>Load-Use Data Hazard</span>
+<span id="cb1-82"><a href="#cb1-82"></a>ForwardA</span>
+<span id="cb1-83"><a href="#cb1-83"></a>M</span>
+<span id="cb1-84"><a href="#cb1-84"></a>The updated valueu of x4 cannot be forwarded until it is</span>
+<span id="cb1-85"><a href="#cb1-85"></a>x</span>
+<span id="cb1-86"><a href="#cb1-86"></a>read from the data memory.</span>
+<span id="cb1-87"><a href="#cb1-87"></a>M</span>
+<span id="cb1-88"><a href="#cb1-88"></a>u</span>
+<span id="cb1-89"><a href="#cb1-89"></a>We need to stall the add instruction in the decode stage for</span>
 <span id="cb1-90"><a href="#cb1-90"></a>x</span>
-<span id="cb1-91"><a href="#cb1-91"></a>ForwardB</span>
-<span id="cb1-92"><a href="#cb1-92"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-93"><a href="#cb1-93"></a>10</span>
-<span id="cb1-94"><a href="#cb1-94"></a></span>
-<span id="cb1-95"><a href="#cb1-95"></a>Load-Use Data Hazard</span>
-<span id="cb1-96"><a href="#cb1-96"></a>ForwardA</span>
-<span id="cb1-97"><a href="#cb1-97"></a>M</span>
-<span id="cb1-98"><a href="#cb1-98"></a>u</span>
-<span id="cb1-99"><a href="#cb1-99"></a>x</span>
-<span id="cb1-100"><a href="#cb1-100"></a>M</span>
-<span id="cb1-101"><a href="#cb1-101"></a>u</span>
-<span id="cb1-102"><a href="#cb1-102"></a>x</span>
-<span id="cb1-103"><a href="#cb1-103"></a>ForwardB</span>
-<span id="cb1-104"><a href="#cb1-104"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
-<span id="cb1-105"><a href="#cb1-105"></a>11</span>
-<span id="cb1-106"><a href="#cb1-106"></a></span>
-<span id="cb1-107"><a href="#cb1-107"></a>How do our forwarding muxes come into play?</span>
-<span id="cb1-108"><a href="#cb1-108"></a>ForwardA</span>
-<span id="cb1-109"><a href="#cb1-109"></a>M</span>
-<span id="cb1-110"><a href="#cb1-110"></a>u</span>
-<span id="cb1-111"><a href="#cb1-111"></a>x</span>
-<span id="cb1-112"><a href="#cb1-112"></a>M</span>
-<span id="cb1-113"><a href="#cb1-113"></a>u</span>
-<span id="cb1-114"><a href="#cb1-114"></a>x</span>
-<span id="cb1-115"><a href="#cb1-115"></a>ForwardB</span>
-<span id="cb1-116"><a href="#cb1-116"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
-<span id="cb1-117"><a href="#cb1-117"></a>12</span>
-<span id="cb1-118"><a href="#cb1-118"></a></span>
-<span id="cb1-119"><a href="#cb1-119"></a>How do our forwarding muxes come into play?</span>
-<span id="cb1-120"><a href="#cb1-120"></a>(forward from two stages ahead)</span>
-<span id="cb1-121"><a href="#cb1-121"></a>ForwardA = 0b01</span>
+<span id="cb1-91"><a href="#cb1-91"></a>one cycle so that we can forward the value read from data</span>
+<span id="cb1-92"><a href="#cb1-92"></a>ForwardB</span>
+<span id="cb1-93"><a href="#cb1-93"></a>memory.</span>
+<span id="cb1-94"><a href="#cb1-94"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-95"><a href="#cb1-95"></a>9</span>
+<span id="cb1-96"><a href="#cb1-96"></a></span>
+<span id="cb1-97"><a href="#cb1-97"></a>Load-Use Data Hazard</span>
+<span id="cb1-98"><a href="#cb1-98"></a>ForwardA</span>
+<span id="cb1-99"><a href="#cb1-99"></a>M</span>
+<span id="cb1-100"><a href="#cb1-100"></a>u</span>
+<span id="cb1-101"><a href="#cb1-101"></a>x</span>
+<span id="cb1-102"><a href="#cb1-102"></a>M</span>
+<span id="cb1-103"><a href="#cb1-103"></a>u</span>
+<span id="cb1-104"><a href="#cb1-104"></a>x</span>
+<span id="cb1-105"><a href="#cb1-105"></a>ForwardB</span>
+<span id="cb1-106"><a href="#cb1-106"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-107"><a href="#cb1-107"></a>10</span>
+<span id="cb1-108"><a href="#cb1-108"></a></span>
+<span id="cb1-109"><a href="#cb1-109"></a>Load-Use Data Hazard</span>
+<span id="cb1-110"><a href="#cb1-110"></a>ForwardA</span>
+<span id="cb1-111"><a href="#cb1-111"></a>M</span>
+<span id="cb1-112"><a href="#cb1-112"></a>u</span>
+<span id="cb1-113"><a href="#cb1-113"></a>x</span>
+<span id="cb1-114"><a href="#cb1-114"></a>M</span>
+<span id="cb1-115"><a href="#cb1-115"></a>u</span>
+<span id="cb1-116"><a href="#cb1-116"></a>x</span>
+<span id="cb1-117"><a href="#cb1-117"></a>ForwardB</span>
+<span id="cb1-118"><a href="#cb1-118"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
+<span id="cb1-119"><a href="#cb1-119"></a>11</span>
+<span id="cb1-120"><a href="#cb1-120"></a></span>
+<span id="cb1-121"><a href="#cb1-121"></a>How do our forwarding muxes come into play?</span>
 <span id="cb1-122"><a href="#cb1-122"></a>ForwardA</span>
 <span id="cb1-123"><a href="#cb1-123"></a>M</span>
 <span id="cb1-124"><a href="#cb1-124"></a>u</span>
@@ -963,149 +969,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-127"><a href="#cb1-127"></a>u</span>
 <span id="cb1-128"><a href="#cb1-128"></a>x</span>
 <span id="cb1-129"><a href="#cb1-129"></a>ForwardB</span>
-<span id="cb1-130"><a href="#cb1-130"></a>ForwardB = 0b00</span>
-<span id="cb1-131"><a href="#cb1-131"></a>(read from reg file)</span>
-<span id="cb1-132"><a href="#cb1-132"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
-<span id="cb1-133"><a href="#cb1-133"></a>13</span>
-<span id="cb1-134"><a href="#cb1-134"></a></span>
-<span id="cb1-135"><a href="#cb1-135"></a>Pipeline Diagram Hint: the only stalls should be</span>
-<span id="cb1-136"><a href="#cb1-136"></a>because of Load-Use hazards!</span>
-<span id="cb1-137"><a href="#cb1-137"></a>1.</span>
-<span id="cb1-138"><a href="#cb1-138"></a>Fill out the pipeline diagram for the following set of instructions.</span>
-<span id="cb1-139"><a href="#cb1-139"></a>2.</span>
-<span id="cb1-140"><a href="#cb1-140"></a>What should ForwardA and ForwardB be set to on each cycle?</span>
-<span id="cb1-141"><a href="#cb1-141"></a>•</span>
-<span id="cb1-142"><a href="#cb1-142"></a>If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX.</span>
-<span id="cb1-143"><a href="#cb1-143"></a>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</span>
-<span id="cb1-144"><a href="#cb1-144"></a>lw x3, 0(x8)</span>
-<span id="cb1-145"><a href="#cb1-145"></a>add x11, x3, x3</span>
-<span id="cb1-146"><a href="#cb1-146"></a>lw x4, 0(x11)</span>
-<span id="cb1-147"><a href="#cb1-147"></a>add x9, x11, x9</span>
-<span id="cb1-148"><a href="#cb1-148"></a>sub x10, x4, x9</span>
-<span id="cb1-149"><a href="#cb1-149"></a>ForwardA</span>
-<span id="cb1-150"><a href="#cb1-150"></a>ForwardB</span>
-<span id="cb1-151"><a href="#cb1-151"></a>14</span>
-<span id="cb1-152"><a href="#cb1-152"></a></span>
-<span id="cb1-153"><a href="#cb1-153"></a>Forwarding Explanation</span>
-<span id="cb1-154"><a href="#cb1-154"></a>Cycle 0-1:</span>
-<span id="cb1-155"><a href="#cb1-155"></a>No instruction in EX.</span>
-<span id="cb1-156"><a href="#cb1-156"></a>Cycle 6: add x9, x11, x9 in EX</span>
-<span id="cb1-157"><a href="#cb1-157"></a>(ForwardA, ForwardB) = (XX, XX)</span>
-<span id="cb1-158"><a href="#cb1-158"></a>Needs x11 from previous add.</span>
-<span id="cb1-159"><a href="#cb1-159"></a>At start of cycle, value is in EX/MEM.</span>
-<span id="cb1-160"><a href="#cb1-160"></a>Cycle 2: lw x3, 0(x8) in EX</span>
-<span id="cb1-161"><a href="#cb1-161"></a>Forward from EX/MEM for operand A.</span>
-<span id="cb1-162"><a href="#cb1-162"></a>Load computes address only.</span>
-<span id="cb1-163"><a href="#cb1-163"></a>Operand B from register file.</span>
-<span id="cb1-164"><a href="#cb1-164"></a>Operands come from register file.</span>
-<span id="cb1-165"><a href="#cb1-165"></a>(10, 00)</span>
-<span id="cb1-166"><a href="#cb1-166"></a>(00, 00)</span>
-<span id="cb1-167"><a href="#cb1-167"></a>Cycle 7: sub x10, x4, x9 in EX</span>
-<span id="cb1-168"><a href="#cb1-168"></a>Cycle 3: Stall (load-use hazard)</span>
-<span id="cb1-169"><a href="#cb1-169"></a>Two dependencies:</span>
-<span id="cb1-170"><a href="#cb1-170"></a>No real instruction in EX.</span>
-<span id="cb1-171"><a href="#cb1-171"></a>x4 from lw → value in MEM/WB → forward (01)</span>
-<span id="cb1-172"><a href="#cb1-172"></a>(XX, XX)</span>
-<span id="cb1-173"><a href="#cb1-173"></a>x9 from add → value in EX/MEM → forward (10)</span>
-<span id="cb1-174"><a href="#cb1-174"></a>(01, 10)</span>
-<span id="cb1-175"><a href="#cb1-175"></a>Cycle 4: add x11, x3, x3 in EX</span>
-<span id="cb1-176"><a href="#cb1-176"></a>Needs x3 from lw.</span>
-<span id="cb1-177"><a href="#cb1-177"></a>Forwarding Codes:</span>
-<span id="cb1-178"><a href="#cb1-178"></a>Load result is in MEM/WB at start of cycle.</span>
-<span id="cb1-179"><a href="#cb1-179"></a>00 = register file</span>
-<span id="cb1-180"><a href="#cb1-180"></a>Forward both operands from MEM/WB.</span>
-<span id="cb1-181"><a href="#cb1-181"></a>10 = EX/MEM (1 stage ahead)</span>
-<span id="cb1-182"><a href="#cb1-182"></a>(01, 01)</span>
-<span id="cb1-183"><a href="#cb1-183"></a>01 = MEM/WB (2 stages ahead)</span>
-<span id="cb1-184"><a href="#cb1-184"></a>XX = don’t care (no instruction in EX)</span>
-<span id="cb1-185"><a href="#cb1-185"></a>Cycle 5: lw x4, 0(x11) in EX</span>
-<span id="cb1-186"><a href="#cb1-186"></a>Key Rule:</span>
-<span id="cb1-187"><a href="#cb1-187"></a>Load computes address only.</span>
-<span id="cb1-188"><a href="#cb1-188"></a>Forward based on where the value is at the start of the</span>
-<span id="cb1-189"><a href="#cb1-189"></a>Operands come from register file.</span>
-<span id="cb1-190"><a href="#cb1-190"></a>cycle, not the end.</span>
-<span id="cb1-191"><a href="#cb1-191"></a>15</span>
-<span id="cb1-192"><a href="#cb1-192"></a>(00, 00)</span>
-<span id="cb1-193"><a href="#cb1-193"></a></span>
-<span id="cb1-194"><a href="#cb1-194"></a>Another Explanation of Previous Slide</span>
-<span id="cb1-195"><a href="#cb1-195"></a>●</span>
-<span id="cb1-196"><a href="#cb1-196"></a>Cycle 0-1: Nothing to be executed yet</span>
-<span id="cb1-197"><a href="#cb1-197"></a>○ (XX, XX)</span>
-<span id="cb1-198"><a href="#cb1-198"></a>●</span>
-<span id="cb1-199"><a href="#cb1-199"></a>Cycle 2: Instruction_1: LW in the execution stage → A load in EX only computes an address and does not need forwarded ALU operands.</span>
-<span id="cb1-200"><a href="#cb1-200"></a>Both ALU inputs come from the register file through the ID/EX register.</span>
-<span id="cb1-201"><a href="#cb1-201"></a>○ (00, 00)</span>
-<span id="cb1-202"><a href="#cb1-202"></a>●</span>
-<span id="cb1-203"><a href="#cb1-203"></a>Cycle 3: Stall bc of Load-Use hazard!</span>
-<span id="cb1-204"><a href="#cb1-204"></a>○ (XX, XX)</span>
-<span id="cb1-205"><a href="#cb1-205"></a>●</span>
-<span id="cb1-206"><a href="#cb1-206"></a>Cycle 4: Instruction_2: Add in the execution stage. The add instruction needs x3, which was loaded by Instruction 1. Load results are</span>
-<span id="cb1-207"><a href="#cb1-207"></a>available at the end of the MEM stage. At this moment, Instruction 1 is in MEM and its loaded value will be placed in MEM/WB this</span>
-<span id="cb1-208"><a href="#cb1-208"></a>cycle. Instruction 2 needs the value now in EX, so it must forward from the MEM/WB pipeline register. This is considered two stages</span>
-<span id="cb1-209"><a href="#cb1-209"></a>ahead.</span>
-<span id="cb1-210"><a href="#cb1-210"></a>○ (01, 01)</span>
-<span id="cb1-211"><a href="#cb1-211"></a>●</span>
-<span id="cb1-212"><a href="#cb1-212"></a>Cycle 5: Instruction_3: LW in execution stage → use ALU operands, so both inputs should come from the regfile.</span>
-<span id="cb1-213"><a href="#cb1-213"></a>○ (00, 00)</span>
-<span id="cb1-214"><a href="#cb1-214"></a>●</span>
-<span id="cb1-215"><a href="#cb1-215"></a>Cycle 6: Instruction_4: Add in execution stage → This instruction needs x11, which was produced by Instruction 2. At the start of this cycle,</span>
-<span id="cb1-216"><a href="#cb1-216"></a>Instruction 2’s ALU result is sitting in the EX/MEM pipeline register, because it completed EX one cycle earlier. Forwarding from EX/MEM</span>
-<span id="cb1-217"><a href="#cb1-217"></a>corresponds to “one stage ahead.” The other operand (x9) comes from the register file.</span>
-<span id="cb1-218"><a href="#cb1-218"></a>○ (10, 00)</span>
+<span id="cb1-130"><a href="#cb1-130"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
+<span id="cb1-131"><a href="#cb1-131"></a>12</span>
+<span id="cb1-132"><a href="#cb1-132"></a></span>
+<span id="cb1-133"><a href="#cb1-133"></a>How do our forwarding muxes come into play?</span>
+<span id="cb1-134"><a href="#cb1-134"></a>(forward from two stages ahead)</span>
+<span id="cb1-135"><a href="#cb1-135"></a>ForwardA = 0b01</span>
+<span id="cb1-136"><a href="#cb1-136"></a>ForwardA</span>
+<span id="cb1-137"><a href="#cb1-137"></a>M</span>
+<span id="cb1-138"><a href="#cb1-138"></a>u</span>
+<span id="cb1-139"><a href="#cb1-139"></a>x</span>
+<span id="cb1-140"><a href="#cb1-140"></a>M</span>
+<span id="cb1-141"><a href="#cb1-141"></a>u</span>
+<span id="cb1-142"><a href="#cb1-142"></a>x</span>
+<span id="cb1-143"><a href="#cb1-143"></a>ForwardB</span>
+<span id="cb1-144"><a href="#cb1-144"></a>ForwardB = 0b00</span>
+<span id="cb1-145"><a href="#cb1-145"></a>(read from reg file)</span>
+<span id="cb1-146"><a href="#cb1-146"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
+<span id="cb1-147"><a href="#cb1-147"></a>13</span>
+<span id="cb1-148"><a href="#cb1-148"></a></span>
+<span id="cb1-149"><a href="#cb1-149"></a>Pipeline Diagram Hint: the only stalls should be</span>
+<span id="cb1-150"><a href="#cb1-150"></a>because of Load-Use hazards!</span>
+<span id="cb1-151"><a href="#cb1-151"></a>1.</span>
+<span id="cb1-152"><a href="#cb1-152"></a>Fill out the pipeline diagram for the following set of instructions.</span>
+<span id="cb1-153"><a href="#cb1-153"></a>2.</span>
+<span id="cb1-154"><a href="#cb1-154"></a>What should ForwardA and ForwardB be set to on each cycle?</span>
+<span id="cb1-155"><a href="#cb1-155"></a>•</span>
+<span id="cb1-156"><a href="#cb1-156"></a>If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX.</span>
+<span id="cb1-157"><a href="#cb1-157"></a>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</span>
+<span id="cb1-158"><a href="#cb1-158"></a>lw x3, 0(x8)</span>
+<span id="cb1-159"><a href="#cb1-159"></a>add x11, x3, x3</span>
+<span id="cb1-160"><a href="#cb1-160"></a>lw x4, 0(x11)</span>
+<span id="cb1-161"><a href="#cb1-161"></a>add x9, x11, x9</span>
+<span id="cb1-162"><a href="#cb1-162"></a>sub x10, x4, x9</span>
+<span id="cb1-163"><a href="#cb1-163"></a>ForwardA</span>
+<span id="cb1-164"><a href="#cb1-164"></a>ForwardB</span>
+<span id="cb1-165"><a href="#cb1-165"></a>14</span>
+<span id="cb1-166"><a href="#cb1-166"></a></span>
+<span id="cb1-167"><a href="#cb1-167"></a>Forwarding Explanation</span>
+<span id="cb1-168"><a href="#cb1-168"></a>Cycle 0-1:</span>
+<span id="cb1-169"><a href="#cb1-169"></a>No instruction in EX.</span>
+<span id="cb1-170"><a href="#cb1-170"></a>Cycle 6: add x9, x11, x9 in EX</span>
+<span id="cb1-171"><a href="#cb1-171"></a>(ForwardA, ForwardB) = (XX, XX)</span>
+<span id="cb1-172"><a href="#cb1-172"></a>Needs x11 from previous add.</span>
+<span id="cb1-173"><a href="#cb1-173"></a>At start of cycle, value is in EX/MEM.</span>
+<span id="cb1-174"><a href="#cb1-174"></a>Cycle 2: lw x3, 0(x8) in EX</span>
+<span id="cb1-175"><a href="#cb1-175"></a>Forward from EX/MEM for operand A.</span>
+<span id="cb1-176"><a href="#cb1-176"></a>Load computes address only.</span>
+<span id="cb1-177"><a href="#cb1-177"></a>Operand B from register file.</span>
+<span id="cb1-178"><a href="#cb1-178"></a>Operands come from register file.</span>
+<span id="cb1-179"><a href="#cb1-179"></a>(10, 00)</span>
+<span id="cb1-180"><a href="#cb1-180"></a>(00, 00)</span>
+<span id="cb1-181"><a href="#cb1-181"></a>Cycle 7: sub x10, x4, x9 in EX</span>
+<span id="cb1-182"><a href="#cb1-182"></a>Cycle 3: Stall (load-use hazard)</span>
+<span id="cb1-183"><a href="#cb1-183"></a>Two dependencies:</span>
+<span id="cb1-184"><a href="#cb1-184"></a>No real instruction in EX.</span>
+<span id="cb1-185"><a href="#cb1-185"></a>x4 from lw → value in MEM/WB → forward (01)</span>
+<span id="cb1-186"><a href="#cb1-186"></a>(XX, XX)</span>
+<span id="cb1-187"><a href="#cb1-187"></a>x9 from add → value in EX/MEM → forward (10)</span>
+<span id="cb1-188"><a href="#cb1-188"></a>(01, 10)</span>
+<span id="cb1-189"><a href="#cb1-189"></a>Cycle 4: add x11, x3, x3 in EX</span>
+<span id="cb1-190"><a href="#cb1-190"></a>Needs x3 from lw.</span>
+<span id="cb1-191"><a href="#cb1-191"></a>Forwarding Codes:</span>
+<span id="cb1-192"><a href="#cb1-192"></a>Load result is in MEM/WB at start of cycle.</span>
+<span id="cb1-193"><a href="#cb1-193"></a>00 = register file</span>
+<span id="cb1-194"><a href="#cb1-194"></a>Forward both operands from MEM/WB.</span>
+<span id="cb1-195"><a href="#cb1-195"></a>10 = EX/MEM (1 stage ahead)</span>
+<span id="cb1-196"><a href="#cb1-196"></a>(01, 01)</span>
+<span id="cb1-197"><a href="#cb1-197"></a>01 = MEM/WB (2 stages ahead)</span>
+<span id="cb1-198"><a href="#cb1-198"></a>XX = don’t care (no instruction in EX)</span>
+<span id="cb1-199"><a href="#cb1-199"></a>Cycle 5: lw x4, 0(x11) in EX</span>
+<span id="cb1-200"><a href="#cb1-200"></a>Key Rule:</span>
+<span id="cb1-201"><a href="#cb1-201"></a>Load computes address only.</span>
+<span id="cb1-202"><a href="#cb1-202"></a>Forward based on where the value is at the start of the</span>
+<span id="cb1-203"><a href="#cb1-203"></a>Operands come from register file.</span>
+<span id="cb1-204"><a href="#cb1-204"></a>cycle, not the end.</span>
+<span id="cb1-205"><a href="#cb1-205"></a>15</span>
+<span id="cb1-206"><a href="#cb1-206"></a>(00, 00)</span>
+<span id="cb1-207"><a href="#cb1-207"></a></span>
+<span id="cb1-208"><a href="#cb1-208"></a>Another Explanation of Previous Slide</span>
+<span id="cb1-209"><a href="#cb1-209"></a>●</span>
+<span id="cb1-210"><a href="#cb1-210"></a>Cycle 0-1: Nothing to be executed yet</span>
+<span id="cb1-211"><a href="#cb1-211"></a>○ (XX, XX)</span>
+<span id="cb1-212"><a href="#cb1-212"></a>●</span>
+<span id="cb1-213"><a href="#cb1-213"></a>Cycle 2: Instruction_1: LW in the execution stage → A load in EX only computes an address and does not need forwarded ALU operands.</span>
+<span id="cb1-214"><a href="#cb1-214"></a>Both ALU inputs come from the register file through the ID/EX register.</span>
+<span id="cb1-215"><a href="#cb1-215"></a>○ (00, 00)</span>
+<span id="cb1-216"><a href="#cb1-216"></a>●</span>
+<span id="cb1-217"><a href="#cb1-217"></a>Cycle 3: Stall bc of Load-Use hazard!</span>
+<span id="cb1-218"><a href="#cb1-218"></a>○ (XX, XX)</span>
 <span id="cb1-219"><a href="#cb1-219"></a>●</span>
-<span id="cb1-220"><a href="#cb1-220"></a>Cycle 7: instruction_5: Sub in execution stage → This instruction has two dependencies.</span>
-<span id="cb1-221"><a href="#cb1-221"></a>x4 was produced by Instruction 3 (a load). Load values become available at the end of MEM. At the start of cycle 7, Instruction 3 is in</span>
-<span id="cb1-222"><a href="#cb1-222"></a>WB and its load result is sitting in MEM/WB. That requires forwarding from two stages ahead.</span>
-<span id="cb1-223"><a href="#cb1-223"></a>x9 was produced by Instruction 4 (an ALU instruction). At the start of this cycle, Instruction 4 is in MEM, so its ALU result is in EX/MEM.</span>
-<span id="cb1-224"><a href="#cb1-224"></a>That requires forwarding from one stage ahead.</span>
-<span id="cb1-225"><a href="#cb1-225"></a>○ (01, 10)</span>
-<span id="cb1-226"><a href="#cb1-226"></a>16</span>
-<span id="cb1-227"><a href="#cb1-227"></a></span>
-<span id="cb1-228"><a href="#cb1-228"></a>Pipeline Diagram</span>
-<span id="cb1-229"><a href="#cb1-229"></a>1.</span>
-<span id="cb1-230"><a href="#cb1-230"></a>Fill out the pipeline diagram for the following set of instructions.</span>
-<span id="cb1-231"><a href="#cb1-231"></a>2.</span>
-<span id="cb1-232"><a href="#cb1-232"></a>What should ForwardA and ForwardB be set to on each cycle?</span>
-<span id="cb1-233"><a href="#cb1-233"></a>•</span>
-<span id="cb1-234"><a href="#cb1-234"></a>If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX.</span>
-<span id="cb1-235"><a href="#cb1-235"></a><span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 2   <span class="pp">|</span> 3   <span class="pp">|</span> 4   <span class="pp">|</span> 5   <span class="pp">|</span> 6   <span class="pp">|</span> 7   <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-236"><a href="#cb1-236"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-237"><a href="#cb1-237"></a>lw x3, 0(x8)</span>
-<span id="cb1-238"><a href="#cb1-238"></a><span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-239"><a href="#cb1-239"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-240"><a href="#cb1-240"></a>add x11, x3, x3</span>
-<span id="cb1-241"><a href="#cb1-241"></a><span class="pp">|</span>                 <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-242"><a href="#cb1-242"></a><span class="pp">| ---------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-243"><a href="#cb1-243"></a><span class="pp">|</span> lw x4, 0(x11)   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-244"><a href="#cb1-244"></a><span class="pp">|</span> add x9, x11, x9 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-245"><a href="#cb1-245"></a>sub x10, x4, x9</span>
-<span id="cb1-246"><a href="#cb1-246"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-247"><a href="#cb1-247"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-248"><a href="#cb1-248"></a>ForwardA</span>
-<span id="cb1-249"><a href="#cb1-249"></a><span class="pp">|</span>     <span class="pp">|</span> XX  <span class="pp">|</span> XX  <span class="pp">|</span> 00  <span class="pp">|</span> XX  <span class="pp">|</span> 01  <span class="pp">|</span> 00  <span class="pp">|</span> 10  <span class="pp">|</span> 01  <span class="pp">|</span> XX XX <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-250"><a href="#cb1-250"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-251"><a href="#cb1-251"></a>ForwardB</span>
-<span id="cb1-252"><a href="#cb1-252"></a><span class="pp">|</span>     <span class="pp">|</span> XX  <span class="pp">|</span> XX  <span class="pp">|</span> 00  <span class="pp">|</span> XX  <span class="pp">|</span> 01  <span class="pp">|</span> 00  <span class="pp">|</span> 00  <span class="pp">|</span> 10  <span class="pp">|</span> XX XX <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-253"><a href="#cb1-253"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-254"><a href="#cb1-254"></a>17</span>
-<span id="cb1-255"><a href="#cb1-255"></a></span>
-<span id="cb1-256"><a href="#cb1-256"></a>Performance Analysis + Pipelining</span>
-<span id="cb1-257"><a href="#cb1-257"></a>Assume a 1 GHz clock. One</span>
-<span id="cb1-258"><a href="#cb1-258"></a>clock cycle is 1 ns</span>
-<span id="cb1-259"><a href="#cb1-259"></a>Assume a pipelined implementation where:</span>
-<span id="cb1-260"><a href="#cb1-260"></a>●</span>
-<span id="cb1-261"><a href="#cb1-261"></a>Taken branches take 2 cycles.</span>
-<span id="cb1-262"><a href="#cb1-262"></a>○</span>
-<span id="cb1-263"><a href="#cb1-263"></a>Loads and stores take 2 cycles.</span>
-<span id="cb1-264"><a href="#cb1-264"></a>○</span>
-<span id="cb1-265"><a href="#cb1-265"></a>Assuming approximately 10% of instructions executed are</span>
-<span id="cb1-266"><a href="#cb1-266"></a>●</span>
-<span id="cb1-267"><a href="#cb1-267"></a>branches, and of those 80% of the time they are taken, and</span>
-<span id="cb1-268"><a href="#cb1-268"></a>15% of instructions executed are loads or stores, what sort of</span>
-<span id="cb1-269"><a href="#cb1-269"></a>speed-up do we expect?</span>
-<span id="cb1-270"><a href="#cb1-270"></a>18</span>
-<span id="cb1-271"><a href="#cb1-271"></a></span>
-<span id="cb1-272"><a href="#cb1-272"></a>Performance Analysis + Pipelining</span>
+<span id="cb1-220"><a href="#cb1-220"></a>Cycle 4: Instruction_2: Add in the execution stage. The add instruction needs x3, which was loaded by Instruction 1. Load results are</span>
+<span id="cb1-221"><a href="#cb1-221"></a>available at the end of the MEM stage. At this moment, Instruction 1 is in MEM and its loaded value will be placed in MEM/WB this</span>
+<span id="cb1-222"><a href="#cb1-222"></a>cycle. Instruction 2 needs the value now in EX, so it must forward from the MEM/WB pipeline register. This is considered two stages</span>
+<span id="cb1-223"><a href="#cb1-223"></a>ahead.</span>
+<span id="cb1-224"><a href="#cb1-224"></a>○ (01, 01)</span>
+<span id="cb1-225"><a href="#cb1-225"></a>●</span>
+<span id="cb1-226"><a href="#cb1-226"></a>Cycle 5: Instruction_3: LW in execution stage → use ALU operands, so both inputs should come from the regfile.</span>
+<span id="cb1-227"><a href="#cb1-227"></a>○ (00, 00)</span>
+<span id="cb1-228"><a href="#cb1-228"></a>●</span>
+<span id="cb1-229"><a href="#cb1-229"></a>Cycle 6: Instruction_4: Add in execution stage → This instruction needs x11, which was produced by Instruction 2. At the start of this cycle,</span>
+<span id="cb1-230"><a href="#cb1-230"></a>Instruction 2’s ALU result is sitting in the EX/MEM pipeline register, because it completed EX one cycle earlier. Forwarding from EX/MEM</span>
+<span id="cb1-231"><a href="#cb1-231"></a>corresponds to “one stage ahead.” The other operand (x9) comes from the register file.</span>
+<span id="cb1-232"><a href="#cb1-232"></a>○ (10, 00)</span>
+<span id="cb1-233"><a href="#cb1-233"></a>●</span>
+<span id="cb1-234"><a href="#cb1-234"></a>Cycle 7: instruction_5: Sub in execution stage → This instruction has two dependencies.</span>
+<span id="cb1-235"><a href="#cb1-235"></a>x4 was produced by Instruction 3 (a load). Load values become available at the end of MEM. At the start of cycle 7, Instruction 3 is in</span>
+<span id="cb1-236"><a href="#cb1-236"></a>WB and its load result is sitting in MEM/WB. That requires forwarding from two stages ahead.</span>
+<span id="cb1-237"><a href="#cb1-237"></a>x9 was produced by Instruction 4 (an ALU instruction). At the start of this cycle, Instruction 4 is in MEM, so its ALU result is in EX/MEM.</span>
+<span id="cb1-238"><a href="#cb1-238"></a>That requires forwarding from one stage ahead.</span>
+<span id="cb1-239"><a href="#cb1-239"></a>○ (01, 10)</span>
+<span id="cb1-240"><a href="#cb1-240"></a>16</span>
+<span id="cb1-241"><a href="#cb1-241"></a></span>
+<span id="cb1-242"><a href="#cb1-242"></a>Pipeline Diagram</span>
+<span id="cb1-243"><a href="#cb1-243"></a>1.</span>
+<span id="cb1-244"><a href="#cb1-244"></a>Fill out the pipeline diagram for the following set of instructions.</span>
+<span id="cb1-245"><a href="#cb1-245"></a>2.</span>
+<span id="cb1-246"><a href="#cb1-246"></a>What should ForwardA and ForwardB be set to on each cycle?</span>
+<span id="cb1-247"><a href="#cb1-247"></a>•</span>
+<span id="cb1-248"><a href="#cb1-248"></a>If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX.</span>
+<span id="cb1-249"><a href="#cb1-249"></a><span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 2   <span class="pp">|</span> 3   <span class="pp">|</span> 4   <span class="pp">|</span> 5   <span class="pp">|</span> 6   <span class="pp">|</span> 7   <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-250"><a href="#cb1-250"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-251"><a href="#cb1-251"></a>lw x3, 0(x8)</span>
+<span id="cb1-252"><a href="#cb1-252"></a><span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-253"><a href="#cb1-253"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-254"><a href="#cb1-254"></a>add x11, x3, x3</span>
+<span id="cb1-255"><a href="#cb1-255"></a><span class="pp">|</span>                 <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-256"><a href="#cb1-256"></a><span class="pp">| ---------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-257"><a href="#cb1-257"></a><span class="pp">|</span> lw x4, 0(x11)   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-258"><a href="#cb1-258"></a><span class="pp">|</span> add x9, x11, x9 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-259"><a href="#cb1-259"></a>sub x10, x4, x9</span>
+<span id="cb1-260"><a href="#cb1-260"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-261"><a href="#cb1-261"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-262"><a href="#cb1-262"></a>ForwardA</span>
+<span id="cb1-263"><a href="#cb1-263"></a><span class="pp">|</span>     <span class="pp">|</span> XX  <span class="pp">|</span> XX  <span class="pp">|</span> 00  <span class="pp">|</span> XX  <span class="pp">|</span> 01  <span class="pp">|</span> 00  <span class="pp">|</span> 10  <span class="pp">|</span> 01  <span class="pp">|</span> XX XX <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-264"><a href="#cb1-264"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-265"><a href="#cb1-265"></a>ForwardB</span>
+<span id="cb1-266"><a href="#cb1-266"></a><span class="pp">|</span>     <span class="pp">|</span> XX  <span class="pp">|</span> XX  <span class="pp">|</span> 00  <span class="pp">|</span> XX  <span class="pp">|</span> 01  <span class="pp">|</span> 00  <span class="pp">|</span> 00  <span class="pp">|</span> 10  <span class="pp">|</span> XX XX <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-267"><a href="#cb1-267"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-268"><a href="#cb1-268"></a>17</span>
+<span id="cb1-269"><a href="#cb1-269"></a></span>
+<span id="cb1-270"><a href="#cb1-270"></a>Performance Analysis + Pipelining</span>
+<span id="cb1-271"><a href="#cb1-271"></a>Assume a 1 GHz clock. One</span>
+<span id="cb1-272"><a href="#cb1-272"></a>clock cycle is 1 ns</span>
 <span id="cb1-273"><a href="#cb1-273"></a>Assume a pipelined implementation where:</span>
 <span id="cb1-274"><a href="#cb1-274"></a>●</span>
 <span id="cb1-275"><a href="#cb1-275"></a>Taken branches take 2 cycles.</span>
@@ -1117,188 +1123,202 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-281"><a href="#cb1-281"></a>branches, and of those 80% of the time they are taken, and</span>
 <span id="cb1-282"><a href="#cb1-282"></a>15% of instructions executed are loads or stores, what sort of</span>
 <span id="cb1-283"><a href="#cb1-283"></a>speed-up do we expect?</span>
-<span id="cb1-284"><a href="#cb1-284"></a>19</span>
+<span id="cb1-284"><a href="#cb1-284"></a>18</span>
 <span id="cb1-285"><a href="#cb1-285"></a></span>
 <span id="cb1-286"><a href="#cb1-286"></a>Performance Analysis + Pipelining</span>
-<span id="cb1-287"><a href="#cb1-287"></a>20</span>
-<span id="cb1-288"><a href="#cb1-288"></a></span>
-<span id="cb1-289"><a href="#cb1-289"></a>Some takeaways…</span>
-<span id="cb1-290"><a href="#cb1-290"></a>Design strategy: Focus our attention on placing pipelining</span>
-<span id="cb1-291"><a href="#cb1-291"></a>●</span>
-<span id="cb1-292"><a href="#cb1-292"></a>registers around the slowest circuit elements (bottlenecks!)</span>
-<span id="cb1-293"><a href="#cb1-293"></a>You can pipeline an RISC-V CPU even more. There exist</span>
+<span id="cb1-287"><a href="#cb1-287"></a>Assume a pipelined implementation where:</span>
+<span id="cb1-288"><a href="#cb1-288"></a>●</span>
+<span id="cb1-289"><a href="#cb1-289"></a>Taken branches take 2 cycles.</span>
+<span id="cb1-290"><a href="#cb1-290"></a>○</span>
+<span id="cb1-291"><a href="#cb1-291"></a>Loads and stores take 2 cycles.</span>
+<span id="cb1-292"><a href="#cb1-292"></a>○</span>
+<span id="cb1-293"><a href="#cb1-293"></a>Assuming approximately 10% of instructions executed are</span>
 <span id="cb1-294"><a href="#cb1-294"></a>●</span>
-<span id="cb1-295"><a href="#cb1-295"></a>implementations with 7, 8, and 9 pipeline stages. But the</span>
-<span id="cb1-296"><a href="#cb1-296"></a>overhead of bypass paths and the number of stall cases increase</span>
-<span id="cb1-297"><a href="#cb1-297"></a>.</span>
-<span id="cb1-298"><a href="#cb1-298"></a>Memory access time is our real bottleneck!</span>
-<span id="cb1-299"><a href="#cb1-299"></a>●</span>
-<span id="cb1-300"><a href="#cb1-300"></a>21</span>
-<span id="cb1-301"><a href="#cb1-301"></a></span>
-<span id="cb1-302"><a href="#cb1-302"></a>MEMORY: AN</span>
-<span id="cb1-303"><a href="#cb1-303"></a>OVERVIEW</span>
-<span id="cb1-304"><a href="#cb1-304"></a>22</span>
-<span id="cb1-305"><a href="#cb1-305"></a></span>
-<span id="cb1-306"><a href="#cb1-306"></a>Topics</span>
-<span id="cb1-307"><a href="#cb1-307"></a>■ Memory Arrays</span>
-<span id="cb1-308"><a href="#cb1-308"></a>■ Transparent Latches</span>
-<span id="cb1-309"><a href="#cb1-309"></a>■ Edge-Triggered Registers</span>
-<span id="cb1-310"><a href="#cb1-310"></a>■ Finite State Machines</span>
-<span id="cb1-311"><a href="#cb1-311"></a></span>
-<span id="cb1-312"><a href="#cb1-312"></a>Read-Only Memory = a Lookup Table</span>
-<span id="cb1-313"><a href="#cb1-313"></a>A B</span>
-<span id="cb1-314"><a href="#cb1-314"></a>Read-Only</span>
-<span id="cb1-315"><a href="#cb1-315"></a><span class="pp">|</span> A B   <span class="pp">|</span> F n ( A , <span class="pp">|</span> B )   <span class="pp">|</span> Memory  <span class="pp">|</span></span>
-<span id="cb1-316"><a href="#cb1-316"></a><span class="pp">| -----</span> <span class="pp">| ---------</span> <span class="pp">| -----</span> <span class="pp">| -------</span> <span class="pp">|</span></span>
-<span id="cb1-317"><a href="#cb1-317"></a>(ROM)</span>
-<span id="cb1-318"><a href="#cb1-318"></a><span class="pp">|</span> 0 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-319"><a href="#cb1-319"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-320"><a href="#cb1-320"></a><span class="pp">|</span> 0 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-321"><a href="#cb1-321"></a>MUX</span>
-<span id="cb1-322"><a href="#cb1-322"></a>Fn(A,B)</span>
-<span id="cb1-323"><a href="#cb1-323"></a>Logic</span>
-<span id="cb1-324"><a href="#cb1-324"></a><span class="pp">|</span> 1 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-325"><a href="#cb1-325"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-326"><a href="#cb1-326"></a><span class="pp">|</span> 1 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-327"><a href="#cb1-327"></a></span>
-<span id="cb1-328"><a href="#cb1-328"></a>■ A multiplexer can implement a lookup table:</span>
-<span id="cb1-329"><a href="#cb1-329"></a>– for an N-input function we need a 2N input multiplexer</span>
-<span id="cb1-330"><a href="#cb1-330"></a>Takeaway: ROM → “hardcoded</span>
-<span id="cb1-331"><a href="#cb1-331"></a>– simply select one row out of 2N</span>
-<span id="cb1-332"><a href="#cb1-332"></a>truth table”</span>
-<span id="cb1-333"><a href="#cb1-333"></a>– 2N values go into the mux, only one comes out</span>
-<span id="cb1-334"><a href="#cb1-334"></a>MUX → Hardware that selects</span>
-<span id="cb1-335"><a href="#cb1-335"></a>– N-bit select input is now the “address” of data being accessed</span>
-<span id="cb1-336"><a href="#cb1-336"></a>correct output based on the input</span>
-<span id="cb1-337"><a href="#cb1-337"></a>■ Limitations:</span>
-<span id="cb1-338"><a href="#cb1-338"></a>– mux can get really big:  10-bit address → 1024 rows!</span>
-<span id="cb1-339"><a href="#cb1-339"></a>– read-only; we also would like to write!</span>
-<span id="cb1-340"><a href="#cb1-340"></a></span>
-<span id="cb1-341"><a href="#cb1-341"></a>A Mux’s Guts: Decoder + Selector</span>
-<span id="cb1-342"><a href="#cb1-342"></a>Decoder Selector</span>
-<span id="cb1-343"><a href="#cb1-343"></a>I Multiplexers</span>
-<span id="cb1-344"><a href="#cb1-344"></a>00</span>
-<span id="cb1-345"><a href="#cb1-345"></a>A can be partitioned</span>
-<span id="cb1-346"><a href="#cb1-346"></a>0</span>
-<span id="cb1-347"><a href="#cb1-347"></a>into two sections.</span>
-<span id="cb1-348"><a href="#cb1-348"></a>B</span>
-<span id="cb1-349"><a href="#cb1-349"></a>I</span>
-<span id="cb1-350"><a href="#cb1-350"></a>A decoder 01</span>
-<span id="cb1-351"><a href="#cb1-351"></a>generates A A DECODER that</span>
-<span id="cb1-352"><a href="#cb1-352"></a>1</span>
-<span id="cb1-353"><a href="#cb1-353"></a>all possible</span>
-<span id="cb1-354"><a href="#cb1-354"></a>Y</span>
-<span id="cb1-355"><a href="#cb1-355"></a>identifies the</span>
-<span id="cb1-356"><a href="#cb1-356"></a>product B</span>
-<span id="cb1-357"><a href="#cb1-357"></a>I</span>
-<span id="cb1-358"><a href="#cb1-358"></a>terms for 10 desired input,and</span>
-<span id="cb1-359"><a href="#cb1-359"></a>a set of</span>
-<span id="cb1-360"><a href="#cb1-360"></a>A</span>
-<span id="cb1-361"><a href="#cb1-361"></a>inputs 2</span>
-<span id="cb1-362"><a href="#cb1-362"></a>a SELECTOR that</span>
-<span id="cb1-363"><a href="#cb1-363"></a>B</span>
-<span id="cb1-364"><a href="#cb1-364"></a>I</span>
-<span id="cb1-365"><a href="#cb1-365"></a>11 enables that input</span>
-<span id="cb1-366"><a href="#cb1-366"></a>A</span>
-<span id="cb1-367"><a href="#cb1-367"></a>onto the output.</span>
-<span id="cb1-368"><a href="#cb1-368"></a>3</span>
-<span id="cb1-369"><a href="#cb1-369"></a>B</span>
-<span id="cb1-370"><a href="#cb1-370"></a>Key idea behind building ROMs: by sharing the decoder part of</span>
-<span id="cb1-371"><a href="#cb1-371"></a>the logic MUXs could be adapted to make lookup tables with</span>
-<span id="cb1-372"><a href="#cb1-372"></a>any number of outputs</span>
-<span id="cb1-373"><a href="#cb1-373"></a></span>
-<span id="cb1-374"><a href="#cb1-374"></a>Decoder</span>
-<span id="cb1-375"><a href="#cb1-375"></a>D DECODER:</span>
-<span id="cb1-376"><a href="#cb1-376"></a>1</span>
-<span id="cb1-377"><a href="#cb1-377"></a>D</span>
-<span id="cb1-378"><a href="#cb1-378"></a>2</span>
-<span id="cb1-379"><a href="#cb1-379"></a>k SELECT inputs,</span>
-<span id="cb1-380"><a href="#cb1-380"></a>N = 2k DATA OUTPUTs.</span>
-<span id="cb1-381"><a href="#cb1-381"></a>D Selected D HIGH; One-hot signal to</span>
-<span id="cb1-382"><a href="#cb1-382"></a>N</span>
-<span id="cb1-383"><a href="#cb1-383"></a>j</span>
-<span id="cb1-384"><a href="#cb1-384"></a>all others LOW. identify row we are</span>
-<span id="cb1-385"><a href="#cb1-385"></a>K == Address working with</span>
-<span id="cb1-386"><a href="#cb1-386"></a>k</span>
-<span id="cb1-387"><a href="#cb1-387"></a>NOW, we are well on our way to building a general purpose table-lookup</span>
-<span id="cb1-388"><a href="#cb1-388"></a>device.</span>
-<span id="cb1-389"><a href="#cb1-389"></a>We can build a 2-dimensional ARRAY of decoders and selectors as</span>
-<span id="cb1-390"><a href="#cb1-390"></a>follows by arranging them in a grid...</span>
-<span id="cb1-391"><a href="#cb1-391"></a></span>
-<span id="cb1-392"><a href="#cb1-392"></a>This structure is exactly what a ROM does:</span>
-<span id="cb1-393"><a href="#cb1-393"></a>the decoder selects a row (the address), and</span>
-<span id="cb1-394"><a href="#cb1-394"></a>Shared Decoding Logic</span>
-<span id="cb1-395"><a href="#cb1-395"></a>each output corresponds to a column that</span>
-<span id="cb1-396"><a href="#cb1-396"></a>determines whether that row produces a 1 or 0.</span>
-<span id="cb1-397"><a href="#cb1-397"></a>We can build a general purpose “table-lookup” device called a Read-Only</span>
-<span id="cb1-398"><a href="#cb1-398"></a>Memory (ROM), from which we can implement any truth table and, thus,</span>
-<span id="cb1-399"><a href="#cb1-399"></a>any combinational device</span>
-<span id="cb1-400"><a href="#cb1-400"></a></span>
-<span id="cb1-401"><a href="#cb1-401"></a>Logic According to ROMs</span>
-<span id="cb1-402"><a href="#cb1-402"></a>■ Different ROM implementation technologies</span>
-<span id="cb1-403"><a href="#cb1-403"></a>– Mask (old) → ROM</span>
-<span id="cb1-404"><a href="#cb1-404"></a>■ read-only memory</span>
-<span id="cb1-405"><a href="#cb1-405"></a>– Fuses (old) → PROM</span>
-<span id="cb1-406"><a href="#cb1-406"></a>■ programmable read-only memory</span>
-<span id="cb1-407"><a href="#cb1-407"></a>– Erasable → EPROM</span>
-<span id="cb1-408"><a href="#cb1-408"></a>■ erasable programmable read-only memory</span>
-<span id="cb1-409"><a href="#cb1-409"></a>– Electrically erasable → EEPROM</span>
-<span id="cb1-410"><a href="#cb1-410"></a>■ electrically-erasable programmable read-only memory</span>
-<span id="cb1-411"><a href="#cb1-411"></a>➔ today called FLASH! Used everywhere!</span>
-<span id="cb1-412"><a href="#cb1-412"></a>■ Model: LOOK UP value of function in truth table...</span>
-<span id="cb1-413"><a href="#cb1-413"></a>– Inputs: “ADDRESS” of a truth table entry</span>
-<span id="cb1-414"><a href="#cb1-414"></a>– ROM SIZE = # truth table entries...</span>
-<span id="cb1-415"><a href="#cb1-415"></a>2N x #outputs</span>
-<span id="cb1-416"><a href="#cb1-416"></a>■ ... for an N-input boolean function, size = ____________</span>
-<span id="cb1-417"><a href="#cb1-417"></a></span>
-<span id="cb1-418"><a href="#cb1-418"></a>Read-Write Memories (RAM)</span>
-<span id="cb1-419"><a href="#cb1-419"></a>■ Read-Write often called random-access memories (RAM)</span>
-<span id="cb1-420"><a href="#cb1-420"></a>■ Dynamic RAM uses analog storage:</span>
-<span id="cb1-421"><a href="#cb1-421"></a>word</span>
-<span id="cb1-422"><a href="#cb1-422"></a>N-transistor</span>
-<span id="cb1-423"><a href="#cb1-423"></a>line</span>
-<span id="cb1-424"><a href="#cb1-424"></a>– encode information using voltages</span>
-<span id="cb1-425"><a href="#cb1-425"></a>serves</span>
-<span id="cb1-426"><a href="#cb1-426"></a>bit line</span>
-<span id="cb1-427"><a href="#cb1-427"></a>– from physics: we can “store” a as an</span>
-<span id="cb1-428"><a href="#cb1-428"></a>voltage as “charge” on a capacitor access</span>
-<span id="cb1-429"><a href="#cb1-429"></a>switch</span>
-<span id="cb1-430"><a href="#cb1-430"></a>V</span>
-<span id="cb1-431"><a href="#cb1-431"></a>REF</span>
-<span id="cb1-432"><a href="#cb1-432"></a>To write:</span>
-<span id="cb1-433"><a href="#cb1-433"></a>Drive bit line, turn on access transistor,</span>
-<span id="cb1-434"><a href="#cb1-434"></a>force storage cap to new voltage</span>
-<span id="cb1-435"><a href="#cb1-435"></a>To read:</span>
-<span id="cb1-436"><a href="#cb1-436"></a>precharge bit line, turn on access trans.,</span>
-<span id="cb1-437"><a href="#cb1-437"></a>detect (small) change in bit line voltage</span>
-<span id="cb1-438"><a href="#cb1-438"></a></span>
-<span id="cb1-439"><a href="#cb1-439"></a>Read-Write Memories (RAM)</span>
-<span id="cb1-440"><a href="#cb1-440"></a>■ Dynamic RAM uses analog storage:</span>
-<span id="cb1-441"><a href="#cb1-441"></a>– encode information using voltages</span>
-<span id="cb1-442"><a href="#cb1-442"></a>word</span>
-<span id="cb1-443"><a href="#cb1-443"></a>– from physics: we can “store” a N-transistor</span>
-<span id="cb1-444"><a href="#cb1-444"></a>line</span>
-<span id="cb1-445"><a href="#cb1-445"></a>voltage as “charge” on a capacitor</span>
-<span id="cb1-446"><a href="#cb1-446"></a>serves</span>
-<span id="cb1-447"><a href="#cb1-447"></a>bit line</span>
-<span id="cb1-448"><a href="#cb1-448"></a>– Pros: as an</span>
-<span id="cb1-449"><a href="#cb1-449"></a>■ compact! access</span>
-<span id="cb1-450"><a href="#cb1-450"></a>– Cons: switch</span>
-<span id="cb1-451"><a href="#cb1-451"></a>■ it leaks! -&gt; refresh</span>
-<span id="cb1-452"><a href="#cb1-452"></a>■ complex interface</span>
-<span id="cb1-453"><a href="#cb1-453"></a>V</span>
-<span id="cb1-454"><a href="#cb1-454"></a>REF</span>
-<span id="cb1-455"><a href="#cb1-455"></a>■ reading a bit, destroys it</span>
-<span id="cb1-456"><a href="#cb1-456"></a>To write:</span>
-<span id="cb1-457"><a href="#cb1-457"></a>– (you have to rewrite the</span>
-<span id="cb1-458"><a href="#cb1-458"></a>Drive bit line, turn on access transistor,</span>
-<span id="cb1-459"><a href="#cb1-459"></a>value after each read)</span>
-<span id="cb1-460"><a href="#cb1-460"></a>force storage cap to new voltage</span>
-<span id="cb1-461"><a href="#cb1-461"></a>■ it’s NOT a digital circuit</span>
-<span id="cb1-462"><a href="#cb1-462"></a>To read:</span>
-<span id="cb1-463"><a href="#cb1-463"></a>precharge bit line, turn on access trans.,</span>
-<span id="cb1-464"><a href="#cb1-464"></a>This storage circuit is the basis detect (small) change in bit line voltage</span>
-<span id="cb1-465"><a href="#cb1-465"></a>for commodity DRAMs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-295"><a href="#cb1-295"></a>branches, and of those 80% of the time they are taken, and</span>
+<span id="cb1-296"><a href="#cb1-296"></a>15% of instructions executed are loads or stores, what sort of</span>
+<span id="cb1-297"><a href="#cb1-297"></a>speed-up do we expect?</span>
+<span id="cb1-298"><a href="#cb1-298"></a>19</span>
+<span id="cb1-299"><a href="#cb1-299"></a></span>
+<span id="cb1-300"><a href="#cb1-300"></a>Performance Analysis + Pipelining</span>
+<span id="cb1-301"><a href="#cb1-301"></a>20</span>
+<span id="cb1-302"><a href="#cb1-302"></a></span>
+<span id="cb1-303"><a href="#cb1-303"></a>Some takeaways…</span>
+<span id="cb1-304"><a href="#cb1-304"></a>Design strategy: Focus our attention on placing pipelining</span>
+<span id="cb1-305"><a href="#cb1-305"></a>●</span>
+<span id="cb1-306"><a href="#cb1-306"></a>registers around the slowest circuit elements (bottlenecks!)</span>
+<span id="cb1-307"><a href="#cb1-307"></a>You can pipeline an RISC-V CPU even more. There exist</span>
+<span id="cb1-308"><a href="#cb1-308"></a>●</span>
+<span id="cb1-309"><a href="#cb1-309"></a>implementations with 7, 8, and 9 pipeline stages. But the</span>
+<span id="cb1-310"><a href="#cb1-310"></a>overhead of bypass paths and the number of stall cases increase</span>
+<span id="cb1-311"><a href="#cb1-311"></a>.</span>
+<span id="cb1-312"><a href="#cb1-312"></a>Memory access time is our real bottleneck!</span>
+<span id="cb1-313"><a href="#cb1-313"></a>●</span>
+<span id="cb1-314"><a href="#cb1-314"></a>21</span>
+<span id="cb1-315"><a href="#cb1-315"></a></span>
+<span id="cb1-316"><a href="#cb1-316"></a>MEMORY: AN</span>
+<span id="cb1-317"><a href="#cb1-317"></a>OVERVIEW</span>
+<span id="cb1-318"><a href="#cb1-318"></a>22</span>
+<span id="cb1-319"><a href="#cb1-319"></a></span>
+<span id="cb1-320"><a href="#cb1-320"></a>Topics</span>
+<span id="cb1-321"><a href="#cb1-321"></a>■ Memory Arrays</span>
+<span id="cb1-322"><a href="#cb1-322"></a>■ Transparent Latches</span>
+<span id="cb1-323"><a href="#cb1-323"></a>■ Edge-Triggered Registers</span>
+<span id="cb1-324"><a href="#cb1-324"></a>■ Finite State Machines</span>
+<span id="cb1-325"><a href="#cb1-325"></a></span>
+<span id="cb1-326"><a href="#cb1-326"></a>Read-Only Memory = a Lookup Table</span>
+<span id="cb1-327"><a href="#cb1-327"></a>A B</span>
+<span id="cb1-328"><a href="#cb1-328"></a>Read-Only</span>
+<span id="cb1-329"><a href="#cb1-329"></a><span class="pp">|</span> A B   <span class="pp">|</span> F n ( A , <span class="pp">|</span> B )   <span class="pp">|</span> Memory  <span class="pp">|</span></span>
+<span id="cb1-330"><a href="#cb1-330"></a><span class="pp">| -----</span> <span class="pp">| ---------</span> <span class="pp">| -----</span> <span class="pp">| -------</span> <span class="pp">|</span></span>
+<span id="cb1-331"><a href="#cb1-331"></a>(ROM)</span>
+<span id="cb1-332"><a href="#cb1-332"></a><span class="pp">|</span> 0 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-333"><a href="#cb1-333"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-334"><a href="#cb1-334"></a><span class="pp">|</span> 0 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-335"><a href="#cb1-335"></a>MUX</span>
+<span id="cb1-336"><a href="#cb1-336"></a>Fn(A,B)</span>
+<span id="cb1-337"><a href="#cb1-337"></a>Logic</span>
+<span id="cb1-338"><a href="#cb1-338"></a><span class="pp">|</span> 1 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-339"><a href="#cb1-339"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-340"><a href="#cb1-340"></a><span class="pp">|</span> 1 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-341"><a href="#cb1-341"></a></span>
+<span id="cb1-342"><a href="#cb1-342"></a>■ A multiplexer can implement a lookup table:</span>
+<span id="cb1-343"><a href="#cb1-343"></a>– for an N-input function we need a 2N input multiplexer</span>
+<span id="cb1-344"><a href="#cb1-344"></a>Takeaway: ROM → “hardcoded</span>
+<span id="cb1-345"><a href="#cb1-345"></a>– simply select one row out of 2N</span>
+<span id="cb1-346"><a href="#cb1-346"></a>truth table”</span>
+<span id="cb1-347"><a href="#cb1-347"></a>– 2N values go into the mux, only one comes out</span>
+<span id="cb1-348"><a href="#cb1-348"></a>MUX → Hardware that selects</span>
+<span id="cb1-349"><a href="#cb1-349"></a>– N-bit select input is now the “address” of data being accessed</span>
+<span id="cb1-350"><a href="#cb1-350"></a>correct output based on the input</span>
+<span id="cb1-351"><a href="#cb1-351"></a>■ Limitations:</span>
+<span id="cb1-352"><a href="#cb1-352"></a>– mux can get really big:  10-bit address → 1024 rows!</span>
+<span id="cb1-353"><a href="#cb1-353"></a>– read-only; we also would like to write!</span>
+<span id="cb1-354"><a href="#cb1-354"></a></span>
+<span id="cb1-355"><a href="#cb1-355"></a>A Mux’s Guts: Decoder + Selector</span>
+<span id="cb1-356"><a href="#cb1-356"></a>Decoder Selector</span>
+<span id="cb1-357"><a href="#cb1-357"></a>I Multiplexers</span>
+<span id="cb1-358"><a href="#cb1-358"></a>00</span>
+<span id="cb1-359"><a href="#cb1-359"></a>A can be partitioned</span>
+<span id="cb1-360"><a href="#cb1-360"></a>0</span>
+<span id="cb1-361"><a href="#cb1-361"></a>into two sections.</span>
+<span id="cb1-362"><a href="#cb1-362"></a>B</span>
+<span id="cb1-363"><a href="#cb1-363"></a>I</span>
+<span id="cb1-364"><a href="#cb1-364"></a>A decoder 01</span>
+<span id="cb1-365"><a href="#cb1-365"></a>generates A A DECODER that</span>
+<span id="cb1-366"><a href="#cb1-366"></a>1</span>
+<span id="cb1-367"><a href="#cb1-367"></a>all possible</span>
+<span id="cb1-368"><a href="#cb1-368"></a>Y</span>
+<span id="cb1-369"><a href="#cb1-369"></a>identifies the</span>
+<span id="cb1-370"><a href="#cb1-370"></a>product B</span>
+<span id="cb1-371"><a href="#cb1-371"></a>I</span>
+<span id="cb1-372"><a href="#cb1-372"></a>terms for 10 desired input,and</span>
+<span id="cb1-373"><a href="#cb1-373"></a>a set of</span>
+<span id="cb1-374"><a href="#cb1-374"></a>A</span>
+<span id="cb1-375"><a href="#cb1-375"></a>inputs 2</span>
+<span id="cb1-376"><a href="#cb1-376"></a>a SELECTOR that</span>
+<span id="cb1-377"><a href="#cb1-377"></a>B</span>
+<span id="cb1-378"><a href="#cb1-378"></a>I</span>
+<span id="cb1-379"><a href="#cb1-379"></a>11 enables that input</span>
+<span id="cb1-380"><a href="#cb1-380"></a>A</span>
+<span id="cb1-381"><a href="#cb1-381"></a>onto the output.</span>
+<span id="cb1-382"><a href="#cb1-382"></a>3</span>
+<span id="cb1-383"><a href="#cb1-383"></a>B</span>
+<span id="cb1-384"><a href="#cb1-384"></a>Key idea behind building ROMs: by sharing the decoder part of</span>
+<span id="cb1-385"><a href="#cb1-385"></a>the logic MUXs could be adapted to make lookup tables with</span>
+<span id="cb1-386"><a href="#cb1-386"></a>any number of outputs</span>
+<span id="cb1-387"><a href="#cb1-387"></a></span>
+<span id="cb1-388"><a href="#cb1-388"></a>Decoder</span>
+<span id="cb1-389"><a href="#cb1-389"></a>D DECODER:</span>
+<span id="cb1-390"><a href="#cb1-390"></a>1</span>
+<span id="cb1-391"><a href="#cb1-391"></a>D</span>
+<span id="cb1-392"><a href="#cb1-392"></a>2</span>
+<span id="cb1-393"><a href="#cb1-393"></a>k SELECT inputs,</span>
+<span id="cb1-394"><a href="#cb1-394"></a>N = 2k DATA OUTPUTs.</span>
+<span id="cb1-395"><a href="#cb1-395"></a>D Selected D HIGH; One-hot signal to</span>
+<span id="cb1-396"><a href="#cb1-396"></a>N</span>
+<span id="cb1-397"><a href="#cb1-397"></a>j</span>
+<span id="cb1-398"><a href="#cb1-398"></a>all others LOW. identify row we are</span>
+<span id="cb1-399"><a href="#cb1-399"></a>K == Address working with</span>
+<span id="cb1-400"><a href="#cb1-400"></a>k</span>
+<span id="cb1-401"><a href="#cb1-401"></a>NOW, we are well on our way to building a general purpose table-lookup</span>
+<span id="cb1-402"><a href="#cb1-402"></a>device.</span>
+<span id="cb1-403"><a href="#cb1-403"></a>We can build a 2-dimensional ARRAY of decoders and selectors as</span>
+<span id="cb1-404"><a href="#cb1-404"></a>follows by arranging them in a grid...</span>
+<span id="cb1-405"><a href="#cb1-405"></a></span>
+<span id="cb1-406"><a href="#cb1-406"></a>This structure is exactly what a ROM does:</span>
+<span id="cb1-407"><a href="#cb1-407"></a>the decoder selects a row (the address), and</span>
+<span id="cb1-408"><a href="#cb1-408"></a>Shared Decoding Logic</span>
+<span id="cb1-409"><a href="#cb1-409"></a>each output corresponds to a column that</span>
+<span id="cb1-410"><a href="#cb1-410"></a>determines whether that row produces a 1 or 0.</span>
+<span id="cb1-411"><a href="#cb1-411"></a>We can build a general purpose “table-lookup” device called a Read-Only</span>
+<span id="cb1-412"><a href="#cb1-412"></a>Memory (ROM), from which we can implement any truth table and, thus,</span>
+<span id="cb1-413"><a href="#cb1-413"></a>any combinational device</span>
+<span id="cb1-414"><a href="#cb1-414"></a></span>
+<span id="cb1-415"><a href="#cb1-415"></a>Logic According to ROMs</span>
+<span id="cb1-416"><a href="#cb1-416"></a>■ Different ROM implementation technologies</span>
+<span id="cb1-417"><a href="#cb1-417"></a>– Mask (old) → ROM</span>
+<span id="cb1-418"><a href="#cb1-418"></a>■ read-only memory</span>
+<span id="cb1-419"><a href="#cb1-419"></a>– Fuses (old) → PROM</span>
+<span id="cb1-420"><a href="#cb1-420"></a>■ programmable read-only memory</span>
+<span id="cb1-421"><a href="#cb1-421"></a>– Erasable → EPROM</span>
+<span id="cb1-422"><a href="#cb1-422"></a>■ erasable programmable read-only memory</span>
+<span id="cb1-423"><a href="#cb1-423"></a>– Electrically erasable → EEPROM</span>
+<span id="cb1-424"><a href="#cb1-424"></a>■ electrically-erasable programmable read-only memory</span>
+<span id="cb1-425"><a href="#cb1-425"></a>➔ today called FLASH! Used everywhere!</span>
+<span id="cb1-426"><a href="#cb1-426"></a>■ Model: LOOK UP value of function in truth table...</span>
+<span id="cb1-427"><a href="#cb1-427"></a>– Inputs: “ADDRESS” of a truth table entry</span>
+<span id="cb1-428"><a href="#cb1-428"></a>– ROM SIZE = # truth table entries...</span>
+<span id="cb1-429"><a href="#cb1-429"></a>2N x #outputs</span>
+<span id="cb1-430"><a href="#cb1-430"></a>■ ... for an N-input boolean function, size = ____________</span>
+<span id="cb1-431"><a href="#cb1-431"></a></span>
+<span id="cb1-432"><a href="#cb1-432"></a>Read-Write Memories (RAM)</span>
+<span id="cb1-433"><a href="#cb1-433"></a>■ Read-Write often called random-access memories (RAM)</span>
+<span id="cb1-434"><a href="#cb1-434"></a>■ Dynamic RAM uses analog storage:</span>
+<span id="cb1-435"><a href="#cb1-435"></a>word</span>
+<span id="cb1-436"><a href="#cb1-436"></a>N-transistor</span>
+<span id="cb1-437"><a href="#cb1-437"></a>line</span>
+<span id="cb1-438"><a href="#cb1-438"></a>– encode information using voltages</span>
+<span id="cb1-439"><a href="#cb1-439"></a>serves</span>
+<span id="cb1-440"><a href="#cb1-440"></a>bit line</span>
+<span id="cb1-441"><a href="#cb1-441"></a>– from physics: we can “store” a as an</span>
+<span id="cb1-442"><a href="#cb1-442"></a>voltage as “charge” on a capacitor access</span>
+<span id="cb1-443"><a href="#cb1-443"></a>switch</span>
+<span id="cb1-444"><a href="#cb1-444"></a>V</span>
+<span id="cb1-445"><a href="#cb1-445"></a>REF</span>
+<span id="cb1-446"><a href="#cb1-446"></a>To write:</span>
+<span id="cb1-447"><a href="#cb1-447"></a>Drive bit line, turn on access transistor,</span>
+<span id="cb1-448"><a href="#cb1-448"></a>force storage cap to new voltage</span>
+<span id="cb1-449"><a href="#cb1-449"></a>To read:</span>
+<span id="cb1-450"><a href="#cb1-450"></a>precharge bit line, turn on access trans.,</span>
+<span id="cb1-451"><a href="#cb1-451"></a>detect (small) change in bit line voltage</span>
+<span id="cb1-452"><a href="#cb1-452"></a></span>
+<span id="cb1-453"><a href="#cb1-453"></a>Read-Write Memories (RAM)</span>
+<span id="cb1-454"><a href="#cb1-454"></a>■ Dynamic RAM uses analog storage:</span>
+<span id="cb1-455"><a href="#cb1-455"></a>– encode information using voltages</span>
+<span id="cb1-456"><a href="#cb1-456"></a>word</span>
+<span id="cb1-457"><a href="#cb1-457"></a>– from physics: we can “store” a N-transistor</span>
+<span id="cb1-458"><a href="#cb1-458"></a>line</span>
+<span id="cb1-459"><a href="#cb1-459"></a>voltage as “charge” on a capacitor</span>
+<span id="cb1-460"><a href="#cb1-460"></a>serves</span>
+<span id="cb1-461"><a href="#cb1-461"></a>bit line</span>
+<span id="cb1-462"><a href="#cb1-462"></a>– Pros: as an</span>
+<span id="cb1-463"><a href="#cb1-463"></a>■ compact! access</span>
+<span id="cb1-464"><a href="#cb1-464"></a>– Cons: switch</span>
+<span id="cb1-465"><a href="#cb1-465"></a>■ it leaks! -&gt; refresh</span>
+<span id="cb1-466"><a href="#cb1-466"></a>■ complex interface</span>
+<span id="cb1-467"><a href="#cb1-467"></a>V</span>
+<span id="cb1-468"><a href="#cb1-468"></a>REF</span>
+<span id="cb1-469"><a href="#cb1-469"></a>■ reading a bit, destroys it</span>
+<span id="cb1-470"><a href="#cb1-470"></a>To write:</span>
+<span id="cb1-471"><a href="#cb1-471"></a>– (you have to rewrite the</span>
+<span id="cb1-472"><a href="#cb1-472"></a>Drive bit line, turn on access transistor,</span>
+<span id="cb1-473"><a href="#cb1-473"></a>value after each read)</span>
+<span id="cb1-474"><a href="#cb1-474"></a>force storage cap to new voltage</span>
+<span id="cb1-475"><a href="#cb1-475"></a>■ it’s NOT a digital circuit</span>
+<span id="cb1-476"><a href="#cb1-476"></a>To read:</span>
+<span id="cb1-477"><a href="#cb1-477"></a>precharge bit line, turn on access trans.,</span>
+<span id="cb1-478"><a href="#cb1-478"></a>This storage circuit is the basis detect (small) change in bit line voltage</span>
+<span id="cb1-479"><a href="#cb1-479"></a>for commodity DRAMs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Systems in C – quarto-input78fe4d25164018c9</title>
+  <title>Systems in C – Procedures</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -125,9 +125,28 @@
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Procedures</h1>
+  <p class="subtitle">w9d0</p>
 
-<section class="slide level2">
+<div class="quarto-title-authors">
+</div>
 
+</section>
+<section>
+<section id="logistics" class="title-slide slide level1 center">
+<h1>Logistics</h1>
+
+</section>
+<section id="announcements" class="slide level2">
+<h2>Announcements</h2>
+<ul>
+<li><strong>Welcome</strong> to HW/<code>asm</code></li>
+<li><strong>Action Items</strong> discussion</li>
+</ul>
+</section></section>
+<section id="section" class="title-slide slide level1 center">
+<h1></h1>
 <p>COMP311: COMPUTER ORGANIZATION! Lecture 19: RISC-V Programming with Procedures, Odds &amp; Ends tinyurl.com/comp311-sp26 1</p>
 <p>The RISC-V was designed so every instruction keeps the same few fields (opcode, rs1, rs2, rd) in the same positions, and the immediates have to bend around that fixed layout. FUN IMMEDIATE ENCODING DETAILS ☺ The immediates are complicated/confusing in some cases b/c RISC-V prioritizes a consistent instruction layout over simple immediate encoding! (design tradeoff…)</p>
 <p>Immediate Encodings Many RISC-V instructions encode a constant value as part of the instruction. Unlike other ISAs, the encoding of constants is not uniform. The I-type instructions encode their immediate operand as follows: Examples: | | | | | | addi | | lb | | —– | —– | —– | ——- | — | ——– | ——- | — | | | | | | | andi | | lbu | | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 | | | | | | | | | | | ori | lh | | | | | | | | slti | | lhu | | | | | | | sltui | | lw | xori | | imm12 | | | rs1 | func3 | rd | opcode | | — | —– | — | — | — | —– | — | —— | I-type: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 3</p>

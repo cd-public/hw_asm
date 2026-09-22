@@ -16,14 +16,12 @@ subtitle: "w1d0"
 COMPUTER ORGANIZATION!
 Lecture 1: Introduction
 tinyurl.com/comp311-sp26
-1
 
-Welcome! ☺
+## Welcome! ☺
 ■ Target audience: COMP majors
 ■ Pre-reqs: 210, 211
-2
 
-What is the course about?
+## What is the course about?
 High-level programming Assembly Machine code
 languages Low-level languages
 0000000 01011 01010
@@ -44,20 +42,17 @@ ret # return
 Easy for humans to
 Human readable Machine-readable
 read/write
-3
 
-Why should we care?
+## Why should we care?
 Intel Core i9-13900K Apple M1 Pro
-4
 
-Artificial Intelligence
+## Artificial Intelligence
 Advancements in computer
 architecture have been a driving
 force behind the advancement of
 AI technologies
-5
 
-Goals of this Course
+## Goals of this Course
 ■ How does a computer work?
 ■ How is data represented in a computer?
 – Numbers, strings, arrays, photos, music
@@ -65,18 +60,16 @@ Goals of this Course
 ■ What does a computer do with my program?
 ■ How is data stored? How is data processed?
 ■ Are there any limits to what a computer can do?
-6
 
-Logic Circuits and Digital Hardware
+## Logic Circuits and Digital Hardware
 ■ Logic circuits are used to build computer hardware, as well as
 many other types of systems. All such systems are broadly
 classified as digital hardware.
 ■ Digital derives from how information is represented as discrete
 ranges of electrical signals. Using discrete ranges provides
 robustness and scalability.
-7
 
-Digital Logic is Relatively New + Revolutionary!
+## Digital Logic is Relatively New + Revolutionary!
 ■ Digital hardware technology has evolved dramatically
 over the past 75 years!
 – In the 1960s logic was built with discrete components,
@@ -86,12 +79,10 @@ of transistors on a single chip.
 – By 1970 it was possible to implement all circuitry needed
 to realize a microprocessor on a single chip.
 – Complexity has exploded!
-8
 
-Moore’s Law!
-9
+## Moore’s Law!
 
-Course Theme #1: Demystify Computers!
+## Course Theme #1: Demystify Computers!
 Strangely, most people seem to be afraid of computers.
 People only fear things they do not understand!
 |     | “I do not fear computers, I fear the lack of them.” |     |     |     |     |                              |
@@ -104,26 +95,22 @@ People only fear things they do not understand!
   “Nobody knows exactly what’s going on because of computers!”
 |     |     |     |     |     |     | - Donald Trump |
 | --- | --- | --- | --- | --- | --- | -------------- |
-10
 
-Course Theme #2: The Power of Abstraction!
+## Course Theme #2: The Power of Abstraction!
 Define a function, develop a roust implementation, and
 then put a box around it, and then reuse it (over and over!).
 Abstraction enables us to create unfathomable systems,
 including computer hardware and software.
-11
 
-Course Theme #2: The Power of Abstraction!
+## Course Theme #2: The Power of Abstraction!
 (transistors)
-12
 
-Computational structures!
+## Computational structures!
 ■ What are the fundamental elements of computation?
 ■ Can we define computation independent of implementation or
 the technology that it is implemented with?
-13
 
-Recall: Goals of this Course
+## Recall: Goals of this Course
 ■ How does a computer work?
 ■ How is data represented in a computer?
 – Numbers, strings, arrays, photos, music
@@ -131,9 +118,8 @@ Recall: Goals of this Course
 ■ What does a computer do with my program?
 ■ How is data stored? How is data processed?
 ■ Are there any limits to what a computer can do?
-14
 
-What does Digital Logic do?
+## What does Digital Logic do?
 It processes bits: 1s and 0s
 ■
 It implements abstract logic functions
@@ -144,9 +130,8 @@ It doubles every two years.
 ■
 It represents, transforms, and stores information
 ■
-15
 
-What is “Information”?
+## What is “Information”?
 information, n. Knowledge “5 problem sets, a midterm and a final!
 Any questions?”
 communicated or received concerning a
@@ -156,9 +141,8 @@ Information resolves uncertainty.
 Information is simply that "stuff" which
 cannot be predicted. The less likely a
 message is, the more information it conveys.
-16
 
-Quantifying Information
+## Quantifying Information
 Suppose you’re faced with N equally probable choices, and I give
 you a fact that narrows it down to M possibilities. Then you’ve been
 given:
@@ -176,16 +160,14 @@ Information is the theoretical
 underpinning of why digital
 phone number is a palindrome?
 computers use bits! ☺
-17
 
-An exercise: How many bits?
+## An exercise: How many bits?
 With 1-2 classmates, take 5 minutes to answer question 1 on your
 worksheet.
 You can take “N” to represent the number of students in this class,
 and “M” to be the number of students with the last name Ryan.
-18
 
-An exercise: How many bits?
+## An exercise: How many bits?
 With 1-2 classmates, take 5 minutes to answer question 1 on your
 worksheet.
 You can take “N” to represent the number of students in this class,
@@ -195,9 +177,8 @@ and “M” to be the number of students with the last name Ryan.
 if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits!
 2
 1.2 N/M
-19
 
-What do programs really do?
+## What do programs really do?
 At this point in your CS career, you
 int f(int x) {
 look at a program specification and int r;
@@ -212,9 +193,8 @@ strategy for figuring it out?
 return r;
 }
 Hint: Try f(36), f(64), f(100)
-20
 
-What do programs really do?
+## What do programs really do?
 At this point in your CS career, you
 int f(int x) {
 look at a program specification and int r;
@@ -230,9 +210,8 @@ return r;
 }
 Hint: Try f(36), f(64), f(100)
 This is computing the square root
-21
 
-How does a computer do it?
+## How does a computer do it?
 What would a computer do with this
 program specification?
 f: mv t0,a0
@@ -255,9 +234,8 @@ return: ret
 }
 It translates it into a series of simple
 instructions!
-22
 
-Are there limits to computation?
+## Are there limits to computation?
 ■ Will some new instruction be invented
 that fundamentally changes how fast
 computers solve problems?
@@ -269,9 +247,8 @@ a computer to solve a given problem?
 – COMP210, COMP550
 ■ Does there exist a new model of
 computation?
-23
 
-ADMINISTRATIVE
+## ADMINISTRATIVE
 DETAILS
 
 Syllabus!
@@ -280,9 +257,8 @@ https://www.cs.unc.edu/~kakiryan/teaching/311-
 sp26/311-sp26.html
 Or
 https://tinyurl.com/comp311-sp26
-25
 
-Course Structure
+## Course Structure
 ■ Assessment (65%):
 – 6x Quizzes (QZ): 50% Your final can replace up to two of your
 lowest quiz scores.
@@ -293,9 +269,8 @@ lowest quiz scores.
 ■ In-Class Participation (5%):
 – 1x Submission to Gradescope per class.
 ■ 4 can be dropped, no questions asked.
-26
 
-Extensions + Late Days
+## Extensions + Late Days
 ■ You have 8 days to use on any assignment in the course, with no
 explanation needed.
 ■ You may request extensions for illness or personal life events so
@@ -305,14 +280,12 @@ you don’t have to use up your late days.
 out the form anyway, and we will get back to you.
 ■ You will not be penalized for submitting the assignment within
 the provided grace period if you receive an extension!
-27
 
-Gradescope
+## Gradescope
 ■ Make sure you are enrolled!
 – For the correct section!
-28
 
-The Team!
+## The Team!
 ■ LAs:
 – Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain,
 Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil
@@ -354,20 +327,17 @@ John Hennessey
 ■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by
 David Patterson and Andrew Waterman.
 ■ Connor McMahon, Leonard McMillan, Montek Singh
-34
 
-211 REVIEW ☺
-35
+## 211 REVIEW ☺
 
-Base
+## Base
 ■ A base is the number of different digits that a system can use to
 represent numbers
 ■ Binary is base 2 because it has the digits 0 and 1
 ■ Decimal base 10 because it has the digits 0-9
 ■ Hex is base 16 because it has the digits 0-F
-36
 
-Binary Notation
+## Binary Notation
 ■ Always prepend binary numbers with “0b” or add a subscript of 2
 – Ex: 0b 1001 or 1001
 2
@@ -376,35 +346,30 @@ Binary Notation
 – If you cannot evenly break up the number into groups of four,
 start making the groups from the right
 ■ Ex: 0b10_1010_0011
-37
 
-Hex Notation
+## Hex Notation
 ■ Always prepend hex numbers with “0x” or add a subscript of 16
 – Ex: 0xE2A or E2A
 16
-38
 
-Decimal Notation
+## Decimal Notation
 ■ You can indicate that a number is a decimal value by adding a
 subscript of 10
 – Ex: 54
 10
 ■ If a number does not have a leading “0b” or “0x” and does not
 have a subscript, it is assumed to be a decimal value
-39
 
-Overflow
+## Overflow
 ■ Overflow occurs when the result of the operation cannot be
 represented with the given number of bits
 ■ When adding two unsigned numbers, overflow occurs when the
 carry-out of the operation is 1
-40
 
-Binary Addition and Overflow
+## Binary Addition and Overflow
 Take 5 minutes to answer question 3 on your worksheets!
-41
 
-Review: Binary Addition and Overflow
+## Review: Binary Addition and Overflow
 1111
 1010
 1001
@@ -434,13 +399,11 @@ yes
 1100
 0001
 yes no
-42
 
-Two’s Complement
+## Two’s Complement
 Take 5 minutes to answer question 4 on your worksheets!
-43
 
-Two’s Complement
+## Two’s Complement
 4.2: What is the minimum number of
 4.1: Represent -15 in two’s complement with 7
 bits needed to represent 20 in two’s
@@ -458,4 +421,3 @@ Flip bits: 0b 0000 0001
 Positive, so no need to flip bits
 56
 Add one: 0b 0000 0010 → -2
-44

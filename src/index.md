@@ -9,11 +9,11 @@ format: html
 
 <!-- https://www.cs.unc.edu/~kakiryan/teaching/311-sp26/311-sp26.html -->
 
-|Week Num.|Date Tues|Tues/Talk|Thurs/Lab|HW/Nxt Th|
+|Week Num.|Week Date|Day One|Day Two|HW or Lab|
 |:--:|:---|:----|:-------|:-------|
-|0x0|08/35|[podman](00_podman.qmd)|[alpine](01_alpine.qmd)|[Enigma](02_enigma.qmd)|
-|0x1|09/01|[C89/99](10_c89_99.qmd)|[printb](11_printb.qmd)|[macros](12_macros.qmd)|
-|0x2|09/08|[SHA256](20_sha256.qmd)|[Endian](21_endian.qmd)|[SHAinC](22_shainc.qmd)|
+|0x0|01/11|[podman](00_podman.qmd)|[alpine](01_alpine.qmd)|[Enigma](02_enigma.qmd)|
+|0x1|01/18|King Day|[printb](11_printb.qmd)|[macros](12_macros.qmd)|
+|0x2|01/25|[SHA256](20_sha256.qmd)|[Endian](21_endian.qmd)|[SHAinC](22_shainc.qmd)|
 |0x3|09/15|INTCEC|[Finite](30_finite.qmd)||
 |0x4|09/22|[BigAdd](31_bigadd.qmd)|[Fermat](40_fermat.qmd)|[4096_t](32_4096_t.qmd)|
 |0x5|09/29|IASC26|[KeyGen](41_keygen.qmd)|[RSAinC](42_rsainc.qmd)|
