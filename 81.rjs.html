@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Systems in C – quarto-input722db7db7a4fe278</title>
+  <title>Systems in C – quarto-input88a2126310583be7</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -128,238 +128,80 @@
 
 <section class="slide level2">
 
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 17: Pipelining the RISC-V CPU tinyurl.com/comp311-sp26 1</p>
-<p>RISC-V Resources. We are getting into the thick of it now! I posted a “reading”. Please do this ASAP if you haven’t! ● Chapter 2 of the RISC-V reader/”Mona Lisa Book” ● I will give you p.&nbsp;15-16 of this book on the next quizzes and on the final as a ○ reference sheet (on the next slides, too) Play around with the simulator!! Leonard built this! ● The best way to learn is by doing in this setting. (Think of other times you ○ have learned a programming language ☺) If you want even more details, you can read Andrew Waterman’s ● PhD dissertation https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf ○ 2</p>
-<p>3</p>
-<p>I-type Data Processing 4</p>
-<p>Logistics Updates &amp; Quiz Topics Computer Performance Metrics, Latency, Throughput ● Pipeline Diagrams ● Pipelining Concepts, How to analyze if a 2 vs.&nbsp;3 stage pipelined ● approach (or single-cycle) approach is better More emphasis RISC-V Assembly ● Load and Store Instructions, Reading &amp; Writing to Memory ○ Going from RISC-V to C and C to RISC-V. The written assignment has some ○ examples! WA5 is out and due next week! ● Next lab will be released in the next few days. Building the register ● file for the CPU. ☺ Review Session for quiz tomorrow at 5pm in SN014 ● 5</p>
-<p>RISC-V REVIEW</p>
-<p>The miniRISC-V ISA | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——— | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 1 | 1 0 0 1 1 | | R-type: | | func7 | rs2 | rs1 | func3 | rd | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | | rs1 | | rd | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | | func3 | | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | rs2 | rs1 | | | 0 1 | 0 0 0 1 1 | | B/S-type: | | imm7 | | | func3 | imm5 | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 1 | U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand. (LOADS HAVE DIFF OPCODE!) 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC) 7</p>
-<p>Load and Store Instructions RISC-V is a “Load/Store architecture”. That means that only a specific class of instructions are used to reference data in memory. As a rule, data is loaded into registers first, then processed, and the results are written back using stores. Load and Store instructions have their own format: | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm12 | | rs1 | func3 | rd | 0 0 | 0 0 0 1 1 | I-type: | | | | 000 -LB | | | | There are five types of loads | | — | — | — | ——- | — | — | — | —————————— | 001 -LH from memory. Load a word, a | | | | 010 -LW | | | | half-word, or a byte. Bytes | | — | — | — | ——– | — | — | — | —————————– | | | | | 100 -LBU | | | | and half-words can be either | 101 -LHU signed or unsigned | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm7 | rs2 | rs1 | func3 | imm5 | 0 1 | 0 0 0 1 1 | S-type: There are three types of 000 -SB | | | | 001 -SH | | | | stores to memory. Store a | | — | — | — | ——- | — | — | — | ————————– | word, a half-word, or a byte. 010 -SW There is no need to distinguish signed and unsigned.</p>
-<p>Load Word (lw) ■ Used to read 4 bytes (one word) of data from memory ■ lw rd, offset(rs1) – rs1 is a register that holds a memory address – offset is a 12 bit immediate value – The loaded word will be stored in rd R[rd] = M[R[rs1] + offset] 9</p>
-<p>Store Word (sw) ■ Used to store 4 bytes (one word) of data to memory ■ sw rs2 offset(rs1) – rs1 is a register that holds a memory address – offset is a signed 12-bit immediate value – rs2 is the value that will be written at this address M[R[rs1] + offset] = R[rs2] 10</p>
-<p>Load Word vs Store Word ■ Load Word – Reads 4 bytes (one word) from memory ■ Store word – Writes 4 bytes (one word) to memory 11</p>
-<p>Load and Store Options RISC-V’s load and store instructions are versatile. They provide a wide range of addressing modes. Only a subset is shown here. Rd ← Memory[Rs + imm12] lw rd,imm12(rs) Rd is loaded with the contents of memory at the address found by adding the contents of the base register, Rs, to the supplied constant Rd ← sign_extend(Memory[Rs -4]) lb rd,-4(rs) Offsets can be either added or subtracted, as indicated by a negative sign. The byte is signed-extend to fill the 32 bits of lw rd,(rs) If no offset is specified it is assumed to be zero sw rd,12(rs) The contents of a register hold the address of the either the data value or a base address for a composite type (structure, object, sh rd,(rs) array, or a stack) 12</p>
-<p>MEMORY REVIEW</p>
-<p>Memory ■ The register file only contains 32, 32-bit registers – We saw pipeline registers last time, but the programmer doesn’t have access to these! ■ We can’t store all of our data in the register file. So where does it all go? ■ In the main memory 14</p>
-<p>RISC-V Memory Model Used to manage function calls and local variables Used for dynamic memory allocation Variables allocated at compile-time Programs Reserved for the OS 15</p>
-<p>Only reaches out to memory when a load or a store happens! RISC-V Datapath Memory Register File 16</p>
-<p>Memory vs.&nbsp;Register File ■ So what’s the point of the register file? ■ It is MUCH, much..! faster to access the register file ■ We’ll store the values that we are currently working with in the register file Memory Register File 1. large 1. small 2. takes longer to 2. quick access access 3. part of the CPU 3. not part of the CPU 17</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x11 after executing the following instruction? • | | lw x11, 0(x10) | | | | | — | ————— | — | — | — | 18</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x11 after executing the following instruction? • | | lw x11, 0(x10) | | | | | — | ————— | — | — | — | 5 19</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x12 after executing the following instruction? • lw x12, 4(x10) 20</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instruction? lw x12, 4(x10) 90 21</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x12 after executing the following instructions? • | | addi | x10, x10, 4 | | | | — | ————— | ———– | — | — | | | lw x12, 8(x10) | | | | 22</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x12 after executing the following instructions? • | | addi | x10, x10, 4 | | | | — | ————— | ———– | — | — | | | lw x12, 8(x10) | | | | 40 23</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? | | sw x7, 12(x10) | | | | | — | ————— | — | — | — | 24</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? | | sw x7, 12(x10) | | | | | — | ————— | — | — | — | | 5 | 90 | 100 | 8 | 11 | | | | 2 | 3 | 4 | | 0 | 1 | | | | 25</p>
-<p>Storing Arrays in Memory ■ We will store our statically allocated arrays in the static data segment ■ To store data in the static data segment, we use an assembler directive. – The miniRISCV assembler and simulator provides a set of directives for allocating space for data and initializing variables 26</p>
-<p>Memory Example ■ If the address of A is 0x00003000, what is the value of registers 14-18 after the program is run? A: .word 5 90 100 40 11 lw x15, 0(x14) # x15 = A[0] addi x16, x14, 8 # x16 = &amp;A[2] lw x17, 4(x16) # x17 = A[3] sw x17, 4(x14) # A[1] = x17 lw x18, -4(x16) # x18 = A[1] 27</p>
-<p>Load Address AUIPC is an instruction we will talk about more in a bit… it adds an immediate to the PC. Let’s review what the PC is / related to program ■ How do you get the address of the array into a register? execution. – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions! 29</p>
-<p>Program Counter (PC) ■ The Program Counter (PC) is a 32-bit register ■ The PC is not inside of the register file!!! ■ The datapath executes one instruction per clock cycle ■ On every clock cycle, PC is incremented by 4 to fetch the next instruction Program Counter 30</p>
-<p>Program Counter (PC) 32 4 32 Adder PC 32 Increment the PC by 4 on every clock cycle 31</p>
-<p>Program Counter (PC) Example: Current PC = 0x00004010 32 4 32 0x00004014 Adder 0x00004010 PC 32 0x00004014 On the next rising edge of the clock, PC will become 0x00004014 32</p>
-<p>32 4 32 Adder Address PC 32 Instruction Instruction 32 Instruction PC holds the address of the Memory instruction currently being executed 33</p>
-<p>Storing Code in Memory ■ Code is stored in the text segment ■ To store code in the text segment, we use the .text directive 34</p>
-<p>Array access in C → in RISC-V: Load and Stores in action compute addr, load value, then use it! An example of how loads and stores are used to access arrays. C: Assembly: int sum = 0; int values[10] = {1,3,5,7,9,11, | | | | addi | x31,x0,10 | | — | — | — | —- | ———— | 13,15,17,19}; | | | | addi | x5,x0,0 # x5 is i | | — | — | — | —- | ————————- | loop: slli x6,x5,2 | int i; | | | lw | x6,values(x6) # value[i] | | —— | — | — | — | ————————— | | | | | lw | x7,sum(x0) # x5 is sum | add x7,x7,x6 # sum += value[i]; | for (i | = 0; i | &lt; 10; i++) | | | | —— | —— | ———- | — | ———- | | | | | sw | x7,sum(x0) | sum += value[i]; | | | | addi | x5,x5,1 | | — | — | — | —- | ———– | | | | | blt | x5,x31,loop | *halt: jal x0,halt sum: .word 0 values: .word 1,3,5,7,9,11,13,15,17,19 35</p>
-<p>PIPELINING THE RISC-V CPU! 36</p>
-<p>Recall: Pipeline Registers ■ Inserted between stages of execution to hold intermediate values. – Ex: ALU operands that were decoded! ■ These registers are not visible / programmable by the user – Not part of the 32 general purpose registers ■ Allow the synchronization of execution of multiple operations (AKA: instructions) – Different stages operate on different instructions in each clock cycle 37</p>
-<p>Recall: Pipeline Registers | COMB | COMB | COMB | | —– | —– | —– | REG REG REG | LOGIC | LOGIC | LOGIC | | —— | —— | —— | #1 #2 #3 | BLOCK #1 | BLOCK #2 | BLOCK #3 | | ——– | ——– | ——– | CLOCK 38</p>
-<p>Some Review: Unpipelined Circuits F(x) 0 15 20 45 15 X H(F(x),G(x)) P(X F(X) X 25 ) G(x) G(X) 20 P(X) For combinational logic: latency = t , PD throughput = 1/t F &amp; G are “idle”, just PD. We can’t get the answer faster. holding their outputs Are we making effective use of stable while H performs its our hardware at all times? computation 39</p>
-<p>Pipelined Circuits Use registers to hold H’s inputs stable! Now F &amp; G can be working on input X i+1 while H is performing its computation on F X . We’ve created a 2-stage pipeline: i 15 if we have a valid input X during clock cycle j, P(X) is valid during clock j+2. X H P(X) 25 latency throughput unpipelined 45 1/45 G 20 2-stage pipeline ______ ______ 50 1/25 worse better Suppose F, G, H have propagation delays of 15, 20, 25 ns and we are using ideal zero-delay registers (t = 0): Pipelining uses registers to pd improve the throughput of combinational circuits 40</p>
-<p>Pipeline Diagrams F Clock cycle 15 This is an example of parallelism. At X H P(X) any instant we are 25 busy computing G | | | i | i+1 | | i+2 | | i+3 | | 2 results. | | — | — | — | — | — | — | — | — | — | ———- | 20 s … | | Input | X | X | | X | | X | | | | — | —– | — | — | — | — | — | — | — | — | e | | | i | | | i+2 | | | | | | — | — | — | — | — | — | — | — | — | — | | | | | i+1 | | | | i+3 | | | g a | t | F Reg | | F(X | ) | F(X | ) | F(X | ) | | | — | —– | — | — | — | — | — | — | — | — | s i+1 | | | | | i | | | i+2 | | | | — | — | — | — | — | — | — | — | — | — |</p>
-<p>… e G Reg | | | | G(X | ) | G(X | ) | G(X | ) | | | — | — | — | — | — | — | — | — | — | — | n | | | | | i | | i+1 | | | | | — | — | — | — | — | — | — | — | — | — | i+2 i l e | p | | | | | H(X | ) | H(X | ) | | | — | —– | — | — | — | — | — | — | — | — | | | H Reg | | | | | | | H(X | ) | | i | | | | | | i | i+1 | | i+2 | P A pipeline diagram is just a depiction of what inputs are being processed during a given clock period. The results associated with a particular set of input data move diagonally through the diagram, progressing through one pipeline stage on each clock cycle. 41</p>
-<p>Pipeline Conventions DEFINITION: A K-Stage Pipeline (“K-pipeline”) is an acyclic circuit having exactly K registers on every path from an input to an output. A COMBINATIONAL CIRCUIT is thus a 0-stage pipeline. CONVENTION: Every pipeline stage, hence every K-Stage pipeline, has a register on its OUTPUTS (as opposed to, alternatively, its inputs). ALWAYS: The CLOCK common to all registers must have a period sufficient to allow for the propagation delays of all combinational paths (i.e.&nbsp;the worst case path) PLUS (input) register’s t PLUS PD (output) register’s t . [We haven’t gotten to setup time yet] SETUP The LATENCY of a K-pipeline is K times the period of the clock common to all registers. The THROUGHPUT of a K-pipeline is the frequency of the clock. 42</p>
-<p>Pipelining Summary Advantages: Higher throughput than combinational system – Different parts of the logic work on different parts of the problem… – Disadvantages: Generally, increases latency – Only as good as the <em>weakest</em> link – (often called the pipeline’s BOTTLENECK) The bottleneck is the problem Is there a way around this “weak link”? 43</p>
-<p>How UNC students REALLY do Laundry? How to work around a bottleneck. Step 1: First, find a place with twice as many dryers as washers. Step 2: Step 3: Throughput = ______ loads/min 1/30 Step 4: 90 Latency = ______ mins/load 44</p>
-<p>This Speed-up is called “Interleaving” One way to overcome a pipeline bottleneck C’ is to replicate the critical element as many times as needed and alternate inputs EN EN between the various copies. D Q N-way interleaving is equivalent to how many C C pipeline Stages? <strong>N</strong> 0 1 N-way interleave Latency = 2 clocks 45</p>
-<p>Another Approach… Parallelism Step 1: We can combine interleaving and pipelining with parallelism. Step 2: 2/30 Throughput = _ 1 _ / _ 1 __ 5 ______ load/min Step 3: Latency = <strong>9_0</strong>_ min Step 4: Step 5: 46</p>
-<p>How to Pipeline This? A CPU is a digital circuit like any other. Thus, we should be able to pipeline it to increase its throughput. However, there are a few tricky issues. ● It already has registers that get updated on each clock (register file and PC) ● It has feedback, the ALU or Data Memory outputs are routed back to the register file 47</p>
-<p>Our Goal A simple 3-stage pipeline: Fetch Fetch: Instruction memory access Decode: Decode instruction Get source register operands Decode Execute: ALU operation Write-back destination register Execute 48</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Pipelining the Datapath!</th>
-<th></th>
-<th></th>
-<th>0000…0000</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p>[31:12]000000000000 reset 1 | | | | 0 | BT | | | — | — | — | — | — | — | SSS….SS[31][19:12][11][30:21]0 SSS….SS[31][7][30:25][11:8]0 | | | clk | PC | btype | | | — | — | — | — | —– | — | 0 1 2 3 ● Fetch, Decode, and Addr Add +4 | Execute | Stages | | Instruction | | | | ——- | —— | — | ———– | —————– | — | | | | | Memory | taken 1 | | 0 ● Instructions are decoded in both the Data 3D2ecode Decode | | | | rd[11:7] | WA[4:0] | | | ———————– | — | — | ———- | ——- | ——- | | Fetch and Decode stages | | | | | Execute | | | | | rs1[19:15] | RA[4:0] | 3 | 2 Din[31:0] 1 0 | ● Register ports are “Read” in the | | | rs2[24:20] | RB[4:0] | | | ———————————– | — | — | ———- | ——- | — | | | | | werf | WE | | asel Decode stage and “Written” at in the clk DA[31:0] DB[31:0] end of [31:12]:000000000000 SSS…SS:[31:25]:[11:7] | the Execute stage | | | SSS…SS:[31:20] | | | | —————– | — | — | ————– | — | — | Fetch Decode bsel 0 1 2 3 ● PC+4, and PC relative calculations are Execute Execute Execute Execute sub A B | “delayed” | | | Execute | math | | | ———- | — | ——- | ——- | ————— | — | | | | C,V,N,Z | | shift | | | | | | Decode | b00,b01,b10,b11 | | set R for use in later stages BT C,V,N,Z werf asel btype taken Addr Datain Data Wr Memory Dataout</p>
-<p>How Instructions flow Consider the following instruction sequence: Progress in a three-stage pipeline … Once filled, at every clock there sub t1,t1,t2 are 3 instructions at various stages addi t2,t2,2 of execution. andi t0,t0,1 slt t2,t2,t0 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Fetch sub t1,t1,t2 P i p e Decode l i n e Execute 50</p>
-<p>How Instructions flow Consider the following instruction sequence: Progress in a three-stage pipeline … Once filled, at every clock there sub t1,t1,t2 are 3 instructions at various stages addi t2,t2,2 of execution. andi t0,t0,1 slt t2,t2,t0 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Fetch sub t1,t1,t2 addi t2,t2,2 P i p e Decode sub t1,t1,t2 l i n e Execute 51</p>
-<p>How Instructions flow Consider the following instruction sequence: Progress in a three-stage pipeline … Once filled, at every clock there sub t1,t1,t2 are 3 instructions at various stages addi t2,t2,2 of execution. andi t0,t0,1 slt t2,t2,t0 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Fetch sub t1,t1,t2 addi t2,t2,2 andi t0,t0,1 P i p e Decode sub t1,t1,t2 addi t2,t2,2 l i n e Execute sub t1,t1,t2 52</p>
-<p>How Instructions flow Consider the following instruction sequence: Progress in a three-stage pipeline … Once filled, at every clock there sub t1,t1,t2 are 3 instructions at various stages addi t2,t2,2 of execution. andi t0,t0,1 slt t2,t2,t0 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Source Fetch sub t1,t1,t2 addi t2,t2,2 andi t0,t0,1 slt t2,t2,t0 P operands i p are fetched e l Decode sub t1,t1,t2 addi t2,t2,2 andi t0,t0,1 slt t2,t2,t0 in this stage i n e Execute sub t1,t1,t2 addi t2,t2,2 andi t0,t0,1 slt t2,t2,t0 53</p>
-<p>How Instructions flow Consider the following instruction sequence: Progress in a three-stage pipeline … Once filled, at every clock there sub t1,t1,t2 are 3 instructions at various stages addi t2,t2,2 of execution. andi t0,t0,1 slt t2,t2,t0 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Source Fetch sub t1,t1,t2 addi t2,t2,2 andi t0,t0,1 slt t2,t2,t0 P operands i p are fetched e l Decode sub t1,t1,t2 addi t2,t2,2 andi t0,t0,1 slt t2,t2,t0 in this stage i n e Execute sub t1,t1,t2 addi t2,t2,2 andi t0,t0,1 slt t2,t2,t0 Destination operands are updated in this stage 54</p>
-<p>Simple Instruction flow Consider the following instruction sequence: Instruction becomes available at the … sub t1,t1,t2 end of the Fetch stage addi t2,t2,2 andi t0,t0,1 Operands at the end of Decode slt t2,t2,t0 Destination and ALU flags are updated at the end of Execute Time (in clock cycles) | | i | i+1 | i+2 | i+3 | i+4 | i+5 | | | —– | ———— | ———— | ———— | ———— | — | — | — | | Fetch | sub t1,t1,t2 | addi t2,t2,2 | andi t0,t0,1 | slt t2,t2,t0 | | | | P i p | | | | t1 | t2 | t0 | t2 | | | — | — | — | — | — | — | — | — | e | l Decode | | sub t1,t1,t2 | addi t2,t2,2 | andi t0,t0,1 | slt t2,t2,t0 | | | | ——– | — | ———— | ———— | ———— | ———— | — | — | | i | | | t2 | 2 | 1 | t0 | | n e | Execute | | | sub t1,t1,t2 | addi t2,t2,2 | andi t0,t0,1 | slt t2,t2,t0 | | | ——- | — | — | ———— | ———— | ———— | ———— | — | | | | | | t1 | t2 | t0 | t2 | 55</p>
-<p>Splitting our CPU Datapath into 5 Stages ● Instruction Fetch ○ Reading the instruction from memory ● Instruction Decode ○ Splitting up the instruction, generating control signals, and reading the register file ○ Jump address calculation ● Execute ○ ALU Operation Instructions pass through all 5 stages, ○ Branch address calculation but different work happens in each stage ● Memory depending on the instruction type. ○ Reading/writing data memory ● Writeback ○ Writing the result to the register file 56</p>
-<p>Behavior of instructions starts to diverge Summary Table Instruction | | IF | ID | EX | MEM | WB | | — | — | — | — | — | — | Type | Arithmetic | | | ALU | — | Write result | | ———- | — | — | ——— | ——— | ———— | | LW | | | Addr calc | Read mem | Write result | | SW | | | Addr calc | Write mem | — | Compare + | Branch | | | | — | — | | —— | — | — | — | — | — | branch Jump | | | | Jump target* | — | — | | — | — | — | ———— | — | — | EX: Figure out what to MEM: Only matters for WB: Only matters if we do/action to take for specific loads/stores produce a value instruction type 57</p>
-<p>Datapath Split into 5 Stages Challenge Q: What This version of the HW would need to be full data path has added to support some details JALR? Other types of abstracted away for branches? Offset readability/tracing Scale (the full ALU control purposes. unit also missing…) 1 2 This datapath has support for: • R-type arithmetic • I-type arithmetic Immediate generator • Loads • Stores • BEQ • JAL 58</p>
-<p>Instruction Fetch Reading the Offset Scale instruction from memory 1 2 Immediate generator 59</p>
-<p>Instruction Decode • Splitting up the instruction fields • Generating control Offset Scale signals • Reading the 1 register file 2 • Jump address calculation Immediate generator 60</p>
-<p>Execute • ALU Operation • Branch address Offset Scale calculation 1 2 Immediate generator 61</p>
-<p>Memory Reading/writing data Offset Scale memory 1 2 Immediate generator 62</p>
-<p>Writeback Offset Scale Writing the result to the register file 1 2 Immediate generator 63</p>
-<p>5-Stage Pipeline Offset Scale 1 2 Immediate generator We add in pipeline registers to separate each stage 64</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 18: The 5 Stage RISC-V CPU tinyurl.com/comp311-sp26 1</p>
+<p>5 STAGE RISC-V CPU! 2</p>
+<p>Splitting our CPU Datapath into 5 Stages ● Instruction Fetch ○ Reading the instruction from memory ● Instruction Decode ○ Splitting up the instruction, generating control signals, and reading the register file ○ Jump address calculation ● Execute ○ ALU Operation Instructions pass through all 5 stages, ○ Branch address calculation but different work happens in each stage ● Memory depending on the instruction type. ○ Reading/writing data memory ● Writeback ○ Writing the result to the register file 3</p>
+<p>Behavior of instructions starts to diverge Summary Table Instruction | | IF | ID | EX | MEM | WB | | — | — | — | — | — | — | Type | Arithmetic | | | ALU | — | Write result | | ———- | — | — | ——— | ——— | ———— | | LW | | | Addr calc | Read mem | Write result | | SW | | | Addr calc | Write mem | — | Compare + | Branch | | | | — | — | | —— | — | — | — | — | — | branch Jump | | | | Jump target* | — | — | | — | — | — | ———— | — | — | EX: Figure out what to MEM: Only matters for WB: Only matters if we do/action to take for specific loads/stores produce a value instruction type 4</p>
+<p>Datapath Split into 5 Stages Challenge Q: What This version of the HW would need to be full data path has added to support some details JALR? Other types of abstracted away for branches? Offset readability/tracing Scale (the full ALU control purposes. unit also missing…) 1 2 This datapath has support for: • R-type arithmetic • I-type arithmetic Immediate generator • Loads • Stores • BEQ • JAL 5</p>
+<p>Instruction Fetch Reading the Offset Scale instruction from memory 1 2 Immediate generator 6</p>
+<p>Instruction Decode • Splitting up the instruction fields • Generating control Offset Scale signals • Reading the 1 register file 2 • Jump address calculation Immediate generator 7</p>
+<p>Execute • ALU Operation • Branch address Offset Scale calculation 1 2 Immediate generator 8</p>
+<p>Memory Reading/writing data Offset Scale memory 1 2 Immediate generator 9</p>
+<p>Writeback Offset Scale Writing the result to the register file 1 2 Immediate generator 10</p>
+<p>5-Stage Pipeline Offset Scale 1 2 Immediate generator We add in pipeline registers to separate each stage 11</p>
+<p>Stages Used by Each Instruction Instruction Fetch Decode Execute Memory Writeback arithmetic and logical (add, addi, or, etc) sw lw branch j 12</p>
+<p>Stages Used by Each Instruction | Instruction | Fetch | Decode | Execute | Memory | Writeback | | ———– | —– | —— | ——- | —— | ——— | arithmetic and | logical (add, addi, | X | X | X | | X | | ——————– | — | — | — | — | — | or, etc) sw lw branch j 13</p>
+<p>Time Needed for Each Stage | | Fetch | Decode | Execute | Memory | Writeback | | —- | —– | —— | ——- | —— | ——— | | Time | 200ps | 100ps | 200ps | 200ps | 100ps | 15</p>
+<p>Time Needed for Each Instruction | | Fetch | Decode | Execute | Memory | Writeback | | | — | —– | —— | ——- | —— | ——— | — | Time | | 200ps | 100ps | 200ps | 200ps | 100ps | | | ———– | —– | —— | ——- | —— | ——— | ———- | | Instruction | Fetch | Decode | Execute | Memory | Writeback | Total Time | arithmetic 200ps + 100ps + 200ps + 100ps = 600ps and logical | | X | X | X | | X | | | — | — | — | — | — | — | — | (add, addi, or, etc) sw lw branch j 16</p>
+<p>Time Needed for Each Instruction | | Fetch | Decode | Execute | Memory | Writeback | | | | — | —– | —— | ——- | —— | ——— | — | — | Time | | 200ps | 100ps | 200ps | 200ps | 100ps | | | | ———– | —– | —— | ——- | —— | ——— | ————————————- | ———- | | Instruction | Fetch | Decode | Execute | Memory | Writeback | | Total Time | | arithmetic | | | | | | 200ps + 100ps + 200ps + 100ps = 600ps | | and logical | | X | X | X | | X | | | | — | — | — | — | — | — | — | — | (add, addi, or, etc) | sw | X | X | X | X | | 200 + 100 + 200 + 200 = 700ps | | | — | — | — | — | — | — | ———————————– | — | | lw | X | X | X | X | X | 200 + 100 + 200 + 200 + 100 = 800ps | | branch 200 + 100 + 200 = 500ps | | X | X | X | | | | | | — | — | — | — | — | — | —————– | — | | j | | | | | | 200 + 100 = 300ps | | | | X | X | | | | | | 17</p>
+<p>Min Clock Period ● What is the minimum clock period that will work for all instructions? ○ Assuming a clock-to-q delay of 20ps Even though instructions conceptually pass through all stages in a pipeline, for this question assume a single- cycle datapath where only the required components contribute to delay 18</p>
+<p>Single Cycle Datapath Timing ● It takes one clock cycle to execute one instruction ● If we need to execute 100 instructions, it will take 100 clock cycles ● If we set our clock period to 820ps, it will take ○ 820ps to execute one instruction ○ 82,000ps to execute 100 instructions 20</p>
+<p>Executing Instructions on Our Pipelined Datapath add x8, x6, x7 lw x9, 100(x0) sub x8, x9, x20 sw x10, 0(x20) or x21, x11, x12 21</p>
+<p>Cycle 0 add x8, x6, x7 22</p>
+<p>Cycle 1 lw x9, 100(x0) add x8, x6, x7 23</p>
+<p>Cycle 2 | sub x8, x9, x20 | lw x9, 100(x0) | add x8, x6, x7 | | —————- | ————— | ————– | 24</p>
+<p>Cycle 3 sw x10, 0(x20) lw x9, 100(x0) add x8, x6, x7 sub x8, x9, x20 25</p>
+<p>Cycle 4 add x8, x6, x7 | or x21, x11, x12 | sw x10, 0(x20) | lw x9, 100(x0) | | —————- | ————– | ————— | sub x8, x9, x20 26</p>
+<p>Cycle 5 sw x10, 0(x20) lw x9, 100(x0) or x21, x11, x12 sub x8, x9, x20 27</p>
+<p>Cycle 6 or x21, x11, x12 sw x10, 0(x20) sub x8, x9, x20 28</p>
+<p>Cycle 7 or x21, x11, x12 sw x10, 0(x20) 29</p>
+<p>Cycle 8 or x21, x11, x12 30</p>
+<p>The clock-to-q delay of a pipeline Determine the Min Clock Period register is 20ps | 200ps | 100ps | 200ps | 200ps | 100ps | | —– | —– | —– | —– | —– | 31</p>
+<p>Latency ■ What is the latency of executing a single instruction on – The single cycle datapath with a clock period of 820ps? – The 5-stage pipelined datapath with a clock period of 220ps? 33</p>
+<p>Speedup ■ What is the speedup of executing the following set of instructions on a single-cycle vs pipelined datapath assuming – single-cycle clock period = 820 ps add x8, x6, x7 – pipelined clock period = 220 ps lw x9, 100(x0) sub x8, x9, x20 𝑠𝑖𝑛𝑔𝑙𝑒 𝑐𝑦𝑙𝑒 𝑒𝑥𝑒𝑐𝑢𝑡𝑖𝑜𝑛 𝑡𝑖𝑚𝑒 𝑠𝑝𝑒𝑒𝑑𝑢𝑝 = sw x10, 0(x20) 𝑝𝑖𝑝𝑒𝑙𝑖𝑛𝑒𝑑 𝑒𝑥𝑒𝑐𝑢𝑡𝑖𝑜𝑛 𝑡𝑖𝑚𝑒 or x21, x11, x12 35</p>
+<p>SOME REMAINING RISC-V DETAILS…</p>
+<p>Branch Encoding ■ Target instruction – The instruction the program will go to if the branch is taken ■ Byte offset to target instruction – The distance, in bytes, between the current branch instruction and the instruction it would go to if the branch is taken 38</p>
+<p>Fill in the blanks ■ The byte offset will always be a multiple of ________, which means that the last ________ bits of the byte offset will always be 0. 39</p>
+<p>Generating the Branch Immediate 1. Compute the byte offset relative to PC + 4 (the next instruction) 2. Remove the bottom two bits (these will always be 0) 41</p>
+<p>Branching Instructions: Changing the PC The Program Counter, or PC, is a special register that points to the address of the next instruction to be fetched. There are special instructions for changing the PC. One type is Branching Instructions. Branches are to nearby place within +/- 512 instructions away. 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 B-type: imm7 rs2 rs1 func3 imm5 1 1 0 0 0 1 1 There are six types of branching 000 - BEQ instructions. All compare the the 001 - BNE contents of two registers. If the 100 - BLT comparison is true then the next 101 - BGE instruction will be from PC + imm12, if 110 - BLTU false PC+4 111 - BGEU 42</p>
+<p>Branch Examples If the contents of x10 is not equal to 0 then branch to the nearby address bne x10,x0,else with the label “else” If the contents of x10 is less than 0 then branch to the nearby address with blt x10,x0,neg the label “neg” An infinite loop. loop: beq x0,x0,loop 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 1 beq x0,x0,’s encoding. 43</p>
+<p>Branch Immediate ■ For each of the branch instructions below, what is the byte offset of the target instruction? beq x4, x5, elseIf add x7, x8, x9 add x7, x8, x20 jal x0, exit elseIf: bne x4, x6, else add x7, x10, x11 add x7, x7, x12 add x7, x7, x8 jal x0, exit else: add x7, x8, x11 exit: 44</p>
+<p>Branch Immediate ■ For each of the branch instructions below, what is the byte offset of the target instruction? beq x4, x5, elseIf add x7, x8, x9 4 instructions = 16 bytes add x7, x8, x20 jal x0, exit elseIf: bne x4, x6, else add x7, x10, x11 add x7, x7, x12 add x7, x7, x8 5 instructions = 20 bytes jal x0, exit else: add x7, x8, x11 exit: 45</p>
+<p>PC relative: make the code PC Relative offsets relocatable ☺ All branch offsets in RISC-V are added to the PC to determine the target address of the next instruction in the case of a valid condition. Earlier ISAs would instead specify the “absolute” target address. What are the advantages of “relative” vs “absolute”? ● Does not implicitly limit the address space ● Requires fewer instruction bits, supports the most common cases -4096 ︙ ● Allows for “relocatable” code pc → ︙ 4094 46</p>
+<p>A simple Program addi x7,x0,11 # x7 is 10 + 1 addi x5,x0,0 # x5 is i addi x6,x0,0 # x6 is sum loop: add x6,x6,x5 # sum = sum + i addi x5,x5,1 # i++ blt x5,x7,loop halt: beq x0,x0,halt 47</p>
+<p>A simple Program addi x7,x0,11 # x7 is 10 + 1 addi x5,x0,0 # x5 is i addi x6,x0,0 # x6 is sum loop: add x6,x6,x5 # sum = sum + i addi x5,x5,1 # i++ blt x5,x7,loop halt: beq x0,x0,halt # Assembly code for # sum = 0; # for (i = 0; i &lt;= 10; i++) # sum = sum + i; 48</p>
+<p>JAL: move the PC and record Jumping long distances where to come back to! There are two more instructions for jumping long distances. Both are “unconditional”, meaning that the branch is always taken, but they have another interesting feature 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 U-type: 0 0 0 0 0 0 0 0 0Im0m0200 0 0 0 0 0 0 0 0 0 0r0d0 0 1 1 0 1 1 1 1 JAL: jump and link jalr can be used to jump to an absolute location by Syntax: jal rd,imm20 first loading the address into a register Description: The link step (saving PC + Reg[d] ← PC + 4 4 in a register) is how we PC ← PC + sign_extended(imm20) can support fn call returns Write the address of the following instruction, PC + 4, into Reg[d], then jump to the instruction that is found by adding the current PC to the signed immediate offset. In practice this is usually specified by a label. 49</p>
+<p>Jumping long distances JALR: jump anywhere by computing addr in register first. There are two more instructions for jumping long distances. Both are “unconditional”, meaning that the branch is always taken, but they have another interesting feature 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 I-type: 0 0 0 0 0Im0m0120 0 0 0 0 0 0r0s0 0 0 0 0 0 0r0d0 0 1 1 0 0 1 1 1 JALR: jump and link register Syntax: jalr rd,imm12(rs) jalr rd,(rs) Description: Reg[d] ← PC + 4 PC ← Reg[s] + sign_extended(imm12) Jump to the instruction given by the contents of Reg[s], and save the location of the next instruction in Reg[s]. 50</p>
+<p>Why store PC + 4? These long-distance “jump” instructions also save the address of the following instruction in a register specified by Rd. Often, this register will be x0, and therefore is ignored. But in other cases it is useful to get back to where we jumped from. 51</p>
+<p>Missing Math instructions The RISC-V ISA includes integer multiplication and division as an extension to the RV32I minimal ISA called RV32M. This is because multiply and divide require significant additional H/W. These instructions can always be emulated, and cost is a consideration for embedded systems. Our miniRISCV simulator includes a subset of RV32M, the subset necessary to implement C. 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 R-type: 0 0 0 0 0 0 1 rs2 rs1 func3 rd 0 1 1 0 0 1 1 000 - MUL 100 - DIV This opcode is the same as the all other R- 110 - REM type instructions. It is the setting of the “func7” field that indicates the optional multiply/divide instructions 52</p>
+<p>Multiply MUL: multiply registers | Syntax: | | mul rd,rs,rt | | | | ———- | — | ————————————— | — | — | | Encoding: | | 0000 001t tttt ssss s000 dddd d011 0011 | | | Description: Reg[d] ← Reg[s] * Reg[t] Multiply the contents of Reg[s] and Reg[t], and place the lower 32- bits of the product in Reg[d]. Overflows are ignored. MUL is binary and semantically compliant with the RV32M mul instruction. | Example: | mul x5,x6,x7 | | | # Encoded as: 0x027302B3 | | ——— | ————- | — | — | ———————— | 53</p>
+<p>Divide DIV: divide registers Syntax: div rd,rs,rt Encoding: 0000 001t tttt ssss s100 dddd d011 0011 Description: Reg[d] ← Reg[s] / Reg[t] Divide the contents of Reg[s] by Reg[t], and place the quotient in Reg[d]. A divisor of 0 does not generate an overflow, and the destination register rd is set to all ones. DIV is binary and semantically compliant with the RV32M div instruction. Example: div x7,x5,x6 # Encoded as: 0x0262C3B3 54</p>
+<p>Remainder REM: remainder of a register quotient Syntax: rem rd,rs,rt Encoding: 0000 001t tttt ssss s110 dddd d011 0011 Description: Reg[d] ← Reg[s] % Reg[t] | Divide | the | contents | | of Reg[s] | | by Reg[t], | | and place | the | | ———- | —- | ———— | ——— | ———– | — | —————– | —- | ———– | ——- | | remainder | | in Reg[d]. | | A divisor | | of 0 does | not | generate | an | | overflow | | and the | contents | | of | the destination | | register | rd is | set to the dividend, Reg[s]. REM is binary and semantically compliant with the RV32M rem instruction. Example: | rem x7,x5,x6 | | | | | | # Encoded as: 0x0262E3B3 | | | | | ————- | — | — | — | — | — | ———————— | — | — | — | 55</p>
+<p>Another instruction: AUIPC PC-relative branch + jump instructions allow for relocatable code. However, what about relocatable “data”? Ex: you might want to place a data structure in a code section and be able to relocate it without the need for keeping track of the absolute addresses. RISCV fixes this problem with a PC-relative lui-like instruction called auipc 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 U-type: Imm20 rd 0 0 1 0 1 1 1 auipc x10,next # encoded as 0x00000517 56</p>
+<p>AUIPC details This instruction gives you a PC-relative base address. Once you have it in a register (rd), you can use a load AUIPC: Add Upper Immediate to PC instruction with it to read memory Syntax: auipc rd,imm20 Encoding: iiii iiii iiii iiii iiii dddd d011 0011 Description: Reg[d] ← PC + sign_extend(imm20 &lt;&lt; 12) Adds the sign-extended 20-bit immediate value, left-shifted by 12 bits, to the program counter, and writes the result to Reg[d]. Example: auipc x31,1024 # Encoded as: 0x00400F97 Also, the combination of an auipc instruction and a jalr can transfer control (jump) to any memory location. Both branch and jump instructions have limited ranges. Load/Store offsets are only 12 bits, we can’t encode large addresses directly. AUIC shifts a 20 bit immediate by 12 to get the upper 20 bits of an address near our target. AUIPC + load offset = full 32 bit address computation 57</p>
+<p>Branch, Jump, lui and auipc Branches add a 12-bit “sign-extended” immediate value (multiplied by 2) to the current PC if taken. Jumps always add a 20-bit sign-extended immediate value and support saving PC+4. We also need to be able to compute the PC-relative offsets used by the AUIPC instruction, and large immediates of LUI and store them into the register file. 58</p>
+<p>THE APPLICATION BINARY INTERFACE (ABI) AND PROCEDURE CALLS!</p>
+<p>The Beauty and Power of Procedures | ● Reusable code fragments (modular design) | | | | —————————————— | — | — |</p>
+<p>clear_screen(); // code to draw a bunch of lines | | clear_screen(); | | | — | ————— | — | | | | … | Parameterized procedures (variable behaviors) ●</p>
+<p>line(x1,y1,x2,y2,color); for (int i = 0; i &lt; N-1; i++) | | line(x2,y2,x3,y3,color); | | | — | ———————— | — | line(x[i],y[i],x[i+1],y[i+1],color); | | | … | | — | — | — | line(x[i],y[i],x[0],y[0],color); Functions (procedures that return values) ●</p>
+<p>xMax = max(max(x1,x2),x3); | | yMax = max(max(y1,y2),y3); | | | — | ————————– | — | 60</p>
+<p>More Procedure Power Global vs.&nbsp;Local scope (Name Independence) How do we int x = 9; These are different keep track of int fee(int x) { “x”s return x+x-1; all these } variables? int foo(int i) { This is yet another “x” int x = 0; while (i &gt; 0) { x = x + fee(i); i = i - 1; } That “fee( )” seems odd to me? return x; And, foo( )’s a little square. } main() { fee(foo(x)); } 61</p>
+<p>Functions and procedure Calls Functions and procedures are essential components of code reuse. The also allow code to be organized into modules. A key components of procedures are they: ● can be called from anywhere by a caller, and, when finished, they return back to where they were called from ● can have their only local variables ● clean up behind themselves, they avoid creating unintended side-effects ● can call themselves to implement Recursive methods/functions 62</p>
+<p>Supporting procedure Calls Reusable code also requires agreed upon conventions, such as where a caller’s arguments can be found by the callee. These are actually not part of the ISA, they are part of a standard called the processor’s “Application Binary Interface” or ABI. Basics of procedure calling: 1. Put parameters where the called procedure can find them 2. Transfer control to the procedure 3. Acquire the needed storage for procedure variables 4. Perform the expected calculation 5. Put the result where the caller can find them 6. Return control to the point just after where it was called 63</p>
+<p>Register use conventions | | x0/zero (always zero) | x16/a6 (argument) | | — | ——————— | —————– | By convention, the RISC-V | | x1/ra (return address) | x17/a7 (argument) | | — | ———————- | —————– | registers are assigned to x2/sp (stack pointer) x18/s2 (saved) | | x3/gp (global pointer) | x19/s3 (saved) | | — | ———————- | ————– | specific uses and names | | x4/tp (thread pointer) | x20/s4 (saved) | | ————————— | ———————- | ————– | | used in the ABI. These are | x5/t0 (temporary) | x21/s5 (saved) | x6/t1 (temporary) x22 (saved) supported by the assembler, x7/t2 (temporary) x23 (saved) | | x8/fp (frame pointer) | x24 (saved) | | — | ——————— | ———– | and high-level languages. x9/s1 (saved) x25 (saved) | | x10/a0 (argument/return value 1) | x26 (saved) | | — | ——————————– | ———– | | | x11/a1 (argument/return value 2) | x27 (saved) | We’ll use these names | | x12/a2 (argument) | x28 (temporary) | | — | —————– | ————— | | | x13/a3 (argument) | x29 (temporary) | increasingly. | | x14/a4 (argument) | X30 (temporary) | | — | —————– | ————— | | | x15/a5 (argument) | X31 (temporary) | Why have such conventions? Prevents functions from Allows independently Separately written fns can accidentally overwriting each compiled code to co-execute safely share CPU without | other’s values | correctly! | corrupting each other’s data | | ————– | ———- | —————————- | 64</p>
+<p>These conventions for allocating variables when RISC-V Stack Convention calling fns → part of the ABI CONVENTIONS: Higher • Assign a register as addresses the Stack Pointer BFFF FFF0 16 “stack” segment (sp = x2). SP • Stack grows DOWN (towards ?kcats eht fo lower addresses) on pushes and POT eht taht si allocates yhW …mmuH • sp points to the last or Dynamic data (Heap) TOP <em>used</em> location. “text” segment (Program) • Stack is placed far away 0001 0000 16 Reserved from the program Lower addresses and its data. 65</p>
+<p>Stack Management Policies ALLOCATE k: reserve k WORDS of stack addi sp,sp,-4<em>k SP = SP - 4</em>k DEALLOCATE k: release k WORDS of stack addi sp,sp,4<em>k SP = SP + 4</em>k PUSH x: push Reg[x] onto stack addi sp,sp,-4 Mem[SP - 4] = Rx sw rx,(sp) SP = SP - 4 lw rx,(sp) POP x: pop the top of the stack into Reg[x] addi sp,sp,4 Rx = Mem[SP] SP = SP + 4 66</p>
+<p>Basics of Procedure Calling int x = 35; int y = 55; int z; void main() { z = gcd(x, y); } int gcd(a,b) { while (a != b) { if (a &gt; b) { a = a - b; } else { b = b - a; } } return a; } 67</p>
+<p>Basics of Procedure Calling main: lw a0,x int x = 35; lw a1,y int y = 55; jal ra,gcd int z; sw a0,z void main() { *halt: j halt z = gcd(x, y); } x: .word 35 y: .word 55 z: .word 0 int gcd(a,b) { while (a != b) { if (a &gt; b) { gcd: beq a0,a1,return a = a - b; blt a0,a1,else } else { sub a0,a0,a1 b = b - a; beq x0,x0,gcd } else: sub a1,a1,a0 } beq x0,x0,gcd return a; return: jalr zero,(ra) } 68</p>
+<p>This time, things are really messed up. That was a little too easy… The recursive call to fact( ) overwrites the saved value of x in t0. To make a bad thing worse, the ra is also int x = 5; main: lw a0,x overwritten. int y; jal ra,fact I knew there was a sw a0,y reason that I avoid <em>halt: j halt recursion. void main() { y = fact(x); x: .word 2 } y: .word 0 int fact(x) { fact: addi t0,x0,1 if (x &lt;= 1) bge t0,a0,return return x; addi t0,x0,a0 else addi a0,a0,-1 return x</em>fact(x-1); jal ra,fact } mul a0,a0,t0 return: jalr x0,ra 69</p>
+<p>Incorporating A Stack int sqr(int x) { sqr: addi sp,sp,-8 function sw ra,4(sp) if (x &gt; 1) sw s0,0(sp) prologue x = sqr(x-1)+x+x-1; slti t0,a0,2 return x; bne t0,x0,return } add s0,x0,a0 addi a0,a0,-1 jal ra,sqr add a0,a0,s0 main() add a0,a0,s0 { addi a0,a0,-1 sqr(10); return: lw s0,0(sp) function } lw ra,4(sp) addi sp,sp,8 epilogue jalr x0,ra main: addi sp,sp,-4 sw ra,(sp) addi a0,x0,10 Every call pushes a frame (prologue) and jal ra,sqr lw ra,(sp) pops it (epilogue), so nested/recursive addi sp,sp,4 calls don’t overwrite each other’s saved jalr x0,ra ra or saved registers 70</p>
+<p>The RISC-V was designed so every instruction keeps the same few fields (opcode, rs1, rs2, rd) in the same positions, and the immediates have to bend around that fixed layout. FUN IMMEDIATE ENCODING DETAILS ☺ The immediates are complicated/confusing in some cases b/c RISC-V prioritizes a consistent instruction layout over simple immediate encoding! (design tradeoff…)</p>
+<p>Immediate Encodings Many RISC-V instructions encode a constant value as part of the instruction. Unlike other ISAs, the encoding of constants is not uniform. The I-type instructions encode their immediate operand as follows: Examples: | | | | | | addi | | lb | | —– | —– | —– | ——- | — | ——– | ——- | — | | | | | | | andi | | lbu | | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 | | | | | | | | | | | ori | lh | | | | | | | | slti | | lhu | | | | | | | sltui | | lw | xori | | imm12 | | | rs1 | func3 | rd | opcode | | — | —– | — | — | — | —– | — | —— | I-type: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 72</p>
+<p>Immediate Encodings Many RISC-V instructions encode a constant value as part of the instruction. Unlike other ISAs, the encoding of constants is not uniform. The I-type instructions encode their immediate operand as follows: Examples: 4 3 2 1 0 slli srli srai 0 0 0 0 0 0 0 imm5 rs1 func3 rd opcode I-type: 1 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 But there are exceptions! 73</p>
+<p>LUI’s Immediate Value The immediate-field encoding of lui and auipc also seems straightforward, but, the immediate values might not be what you expect due to the sign- extension of its companion addi instruction. if bit 11 of the large Examples: 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 constant is set, then you lui add 1 to the LUI/AUIPC immediate value. auipc imm20 rd opcode U-type: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 74</p>
+<p>Immediate Offsets for Stores RISC-V store instructions include an offset, but it is not encoded in an obvious way. Note that there is no need for a rd register in a store, but both rs1 and rs2 are needed if the encodings are used consistently. | | | | | | | | Examples: | | | The assembler will take care | | — | — | — | — | — | — | — | ——— | — | — | —————————– | of filling in the immediate | | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 | | | | | | | | — | —– | —– | —– | ——- | — | — | — | — | — | — | sb fields, of the instruction. It has some impact on the sh H/W design sw | | | | | | | | | 0 1 | 0 0 0 | 1 1 | | ——- | — | —- | — | — | — | —– | —- | — | —– | — | | | | | | rs2 | rs1 | func3 | | | | | | S-type: | | imm7 | | | | | imm5 | | | | 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 75</p>
+<p>Immediate Offsets for Branches The offsets of RISC-V branch instructions use the same format as a stores, but the offset encoding is non-obvious. Again, there is no need for a rd register; only rs1 and rs2 are used. Branch offsets can only be even. In fact, all instructions must be aligned to half-word boundaries. Examples: | 12 11 10 | 9 8 | 7 6 5 | 4 3 2 | 1 0 | | | | | | | ——– | — | —– | —– | — | — | — | — | — | — | 0 | | | | | | | beq | | bne | | | — | —- | — | — | — | —– | ——- | — | —– | — | | | | | | | | blt | | bltu | | | | | | | | | bge | | bgeu | | | | | | | | | | 1 1 | 0 0 0 | 1 1 | | | imm7 | | rs2 | rs1 | func3 | imm5 | | | | S -type: B 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 76</p>
+<p>Crazy Jump offsets The offsets of RISC-V jump instructions use the same U-format as lui/auipc, but the offset encoding is even stranger. Jump offsets, like branch offsets can only be even. 2019 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 Example: 0 jal 77 U -type: imm20 rd opcode J 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</p>
 
 
 </section>

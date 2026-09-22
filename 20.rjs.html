@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Systems in C – quarto-inpute6676be1ad6aa823</title>
+  <title>Systems in C – quarto-inputc609dd1d06b8598d</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -128,39 +128,93 @@
 
 <section class="slide level2">
 
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 4: Transistors, Intro to CMOS Gates tinyurl.com/comp311-sp26 1</p>
-<p>TRANSISTORS 2</p>
-<p>Transistors are the physical building blocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s. You can think of it as an electrically controlled switch that turns current on or off. 3</p>
-<p>Transistors ■ We will be working with two types of transistors – nMOS transistors – pMOS transistors ■ There are three terminals – Gate: controls whether the transistor is on or off – Source and Drain: endpoints 4</p>
-<p>Transistor Symbol Transistor Switch (n-channel MOSFET) The terminal labeled with the blue dot determines whether current can flow between the terminals labeled with the red dot. 5</p>
-<p>NMOS Transistor ■ There are three terminals V (drain voltage) D – Gate: controls whether the transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (source voltage) S 6</p>
-<p>NMOS Transistor ■ If the gate voltage is high (logic 1), V (drain voltage) D current can flow between source and drain – The source and drain will be connected and will have the V (gate voltage) G same voltage ■ If the gate voltage is low, current cannot flow between source and drain V (source voltage) S – The source and drain are not connected 7</p>
-<p>NMOS Transistor Let’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | D | | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? V | | V | | V | | | | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | | | D | | D | | | | D | | D | | V | | V | | | V | | | V | | | G | | G | | | G | | | G | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | V | | V | | | | V | | V | | | S | | S | | | | S | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 | 8</p>
-<p>NMOS Transistor V V V V D D D D Logic 0 Logic 1 unknown unknown V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are connected V is low, so source and drain are not connected G G 9</p>
-<p>PMOS Transistor ■ There are three terminals – Gate: controls whether the V (source voltage) S transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (drain voltage) D 10</p>
-<p>PMOS Transistor ■ If the gate voltage is low (logic 0), current can flow between source V (drain voltage) D and drain – This source and drain will be connected and will have the same voltage V (gate voltage) G ■ If the gate voltage is high, current cannot flow between source and drain – The source and drain are not V (source voltage) S connected 11</p>
-<p>PMOS Transistor Let’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | | D | | — | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? | | V | | V | | | | V | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | — | | | D | | D | | | | D | | | D | | V | | V | | | V | | | V | | | | G | | G | | | G | | | G | | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | | V | | V | | | | V | | | V | | | S | | S | | | | S | | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 | | 12</p>
-<p>PMOS Transistor V V V V D D D D unknown unknown Logic 0 Logic 1 V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are not connected V is low, so source and drain are connected G G 13</p>
-<p>Two Types of Transistors 14</p>
-<p>nMOS Transistors V G V V s D nMOS Acts as a(n) ________ (open/closed) switch when the gate voltage (Vg) is low. Meaning that current _______ (can/cannot) flow between source and drain. Acts as a(n) ________ (open/closed) switch when the gate voltage (Vg) is high. Meaning that current _______ (can/cannot) flow between source and drain. 15</p>
-<p>pMOS Transistors V G V V s D pMOS Acts as a(n) ________ (open/closed) switch when the gate voltage (Vg) is low. Meaning that current _______ (can/cannot) flow between source and drain. Acts as a(n) ________ (open/closed) switch when the gate voltage (Vg) is high. Meaning that current _______ (can/cannot) flow between source and drain. 16</p>
-<p>BUILDING LOGIC GATES WITH TRANSISTORS 17</p>
-<p>Abstraction ☺ CMOS Gates B A B Physical Transistors A C C A B C CMOS gates abstract away CMOS gates are the individual transistors, letting abstraction that lets many us design reliable logic at a transistors behave like a higher level. single logical unit. 18</p>
-<p>Let’s Design an Inverter! I want to design a circuit that takes as an input a one-bit value and outputs the complement of that number. Symbol Truth Table A Y A Y 0 1 1 0 19</p>
-<p>New Components ■ Power – a component that produces a logic high value ■ Ground – a component that produces a logic low value 20</p>
-<p>An Inverter with Switches Power Y A Ground 21</p>
-<p>An Inverter with Switches ■ When the input is 0 Power = 1 – The top switch is closed. – The bottom switch is open. – This will connect power to the output which will make Y = 1 A = 0 the output 1. Ground = 0 22</p>
-<p>An Inverter with Switches ■ When the input is 1 Power = 1 – The bottom switch is closed. – The top switch is open. – This will connect ground to Y = 0 the output which will make A = 1 the output 0. Ground = 0 23</p>
-<p>Building Logic Gates with Transistors ■ Engineering Digital Behavior from Analog Devices – NMOS transistors act as controllable connections to ground – PMOS transistors act as controllable connections to power CMOS gates work by carefully arranging these Another way to say this: CMOS gates work by devices so physics is forced to produce clean using NMOS transistors to pull outputs down digital logic! and PMOS transistors to pull outputs up. 24</p>
-<p>Building an Inverter with Transistors Power Should this switch be replaced by an nmos or pmos transistor? Y A Should this switch be replaced by an nmos or pmos transistor? Ground 25</p>
-<p>CMOS Inverter Power In Out In Out 0 1 1 0 Ground 26</p>
-<p>CMOS Inverter Power In Out In = 0 Out = 1 0 1 1 0 Ground 27</p>
-<p>CMOS Inverter Power In Out In = 1 Out = 0 0 1 1 0 Ground 28</p>
-<p>CMOS Gates ■ CMOS = Complementary MOS – The pMOS and nMOS transistors complement each other to form the logic gate ■ Common confusion – CMOS is not a type of transistor! – It is a technology that combines both nMOS and pMOS transistors You might also see MOSFET: MOS: Metal Oxide Metal Oxide Semiconductor Semiconductor ☺ Field-Effect Transistor 29</p>
-<p>Pull-up and Pull-down Networks Power ■ Only one network will be on at a time ■ The pull-up network drives the output when the output is 1 ■ The pull-down network drives the output when the output is 0 Ground 30</p>
-<p>CMOS Inverter Power pull-up network In Out 0 1 1 0 pull-down network Ground 31</p>
-<p>General CMOS Gate Recipe A Recall: Step 1. Figure out pulldown network that Series = AND does what you want (i.e the set of conditions B C Parallel = OR where the output is ‘0’) e.g., F = A*(B+C) This comes from B Step 2. Build the “opposite” version of that DeMorgan’s Laws! In A network to figure out when the output should C practice, we swap series + be 1. parallel connections, use pMOS instead of nMOS But isn’t it Step 3. Combine the two so you have a circuit A B hard to wire Yes it is! that always pulls the output either up to 1 or C it all up? This does down to 0. not scale… A B C 32 32</p>
-<p>What function does this gate compute? B A B C 0 0 0 1 1 0 1 1 A 33</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 5: Logic Gates tinyurl.com/comp311-sp26 1</p>
+<p>Logistics Updates ■ WA1 due tonight! – WA2 to follow shortly ■ Quiz schedule will be updated. I will announce via Canvas 2</p>
+<p>BUILDING LOGIC GATES WITH TRANSISTORS 3</p>
+<p>Abstraction ☺ CMOS Gates B A B Physical Transistors A C C A B C CMOS gates abstract away CMOS gates are the individual transistors, letting abstraction that lets many us design reliable logic at a transistors behave like a higher level. single logical unit. 4</p>
+<p>CMOS Gates ■ CMOS = Complementary MOS – The pMOS and nMOS transistors complement each other to form the logic gate ■ Common confusion – CMOS is not a type of transistor! – It is a technology that combines both nMOS and pMOS transistors You might also see MOSFET: MOS: Metal Oxide Metal Oxide Semiconductor Semiconductor ☺ Field-Effect Transistor 5</p>
+<p>Pull-up and Pull-down Networks Power ■ Only one network will be on at a time ■ The pull-up network drives the output when the output is 1 ■ The pull-down network drives the output when the output is 0 Ground 6</p>
+<p>CMOS Inverter Power pull-up network In Out 0 1 1 0 pull-down network Ground 7</p>
+<p>General CMOS Gate Recipe A Recall: Step 1. Figure out pulldown network that Series = AND does what you want (i.e the set of conditions B C Parallel = OR where the output is ‘0’) e.g., F = A*(B+C) This comes from B Step 2. Build the “opposite” version of that DeMorgan’s Laws! In A network to figure out when the output should C practice, we swap series + be 1. parallel connections, use pMOS instead of nMOS But isn’t it Step 3. Combine the two so you have a circuit A B hard to wire Yes it is! that always pulls the output either up to 1 or C it all up? This does down to 0. not scale… A B C 8 8</p>
+<p>What function does this gate compute? B A B C 0 0 0 1 1 0 1 1 A 9</p>
+<p>Designing hardware at the transistor level… ■ Does not scale! ■ What should we do? – Abstract again! ■ Logic gates are next! ■ But before we jump to the next level of abstraction, let’s cover some standard, easy-to-wire primitives – NAND and NOR – These functions are universal, meaning any Boolean function or digital logic can be built from them 10</p>
+<p>CMOS NOR 11</p>
+<p>CMOS NOR | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | 12</p>
+<p>CMOS NOR | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | 13</p>
+<p>CMOS NOR | A | B | Y | | | — | — | — | — | pull-up network | 0 | 0 | 1 | | | — | — | — | —————– | | 0 | 1 | 0 | | | 1 | 0 | 0 | pull-down network | | 1 | 1 | 0 | | 14</p>
+<p>CMOS NOR | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | both pMOS on, output pulled up 15</p>
+<p>CMOS NOR | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | B’s nMOS on, pulls down 16</p>
+<p>CMOS NOR | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | A’s nMOS on, pulls down 17</p>
+<p>CMOS NOR | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | both nMOS on, strong pull down 18</p>
+<p>CMOS NAND 19</p>
+<p>CMOS NAND | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 0 | 20</p>
+<p>CMOS NAND | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 0 | 21</p>
+<p>CMOS NAND | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 0 | both pMOS on, pull-up works 22</p>
+<p>CMOS NAND | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 0 | A’s pMOS still on, output pulled high 23</p>
+<p>CMOS NAND | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 0 | B’s pMOS still on, output pulled high 24</p>
+<p>CMOS NAND | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 0 | both pMOS off, both nMOS on → path to ground 25</p>
+<p>CMOS NAND | A | B | Y | | — | — | — | pull-up network | 0 | 0 | 1 | | — | — | — | | 0 | 1 | 1 | | 1 | 0 | 1 | pull-down network | 1 | 1 | 0 | | — | — | — | 26</p>
+<p>CMOS AND 27</p>
+<p>CMOS AND | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 1 | 28</p>
+<p>CMOS AND | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 1 | INVERTER NAND 29</p>
+<p>CMOS AND | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 1 | 30</p>
+<p>CMOS AND | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 1 | 31</p>
+<p>CMOS AND | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 1 | 32</p>
+<p>CMOS AND | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 1 | 33</p>
+<p>CMOS OR 34</p>
+<p>CMOS OR | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 1 | 35</p>
+<p>CMOS OR | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 1 | NOR INVERTER 36</p>
+<p>CMOS OR | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 1 | 37</p>
+<p>CMOS OR | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 1 | 38</p>
+<p>CMOS OR | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 1 | 39</p>
+<p>CMOS OR | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 1 | 40</p>
+<p>Transistor Count Gate Number of Transistors NOT 2 AND 6 OR 6 NAND 4 NOR 4 XOR 12 XNOR 12 41</p>
+<p>Popping up a level of abstraction! ☺ LOGIC GATES 42</p>
+<p>Now can we design larger systems! We need to start somewhere – usually with a functional specification Argh… I’m tired of word games A If C is 1 then Y B copy B to Y, otherwise copy C A to Y “Truth tables” are a concise description of Every combinational function the combinational system’s function, where can be expressed as a table! an output is specified for <em>every</em> input combination. 43</p>
+<p>Inverter/Not Gate Truth Table Equation Symbol | A | Y | ഥ | | — | — | — | Y = A A Y | 0 | 1 | | | — | — | — | | 1 | 0 | | 44</p>
+<p>What logic gates can we build? Recall, we need to design our gates using a pull-up network of pMOS transistors and a pull-down network of nMOS transistors AND OR NAND NOR What gates can we - build? - define? Let’s start by considering only 2-input gates. How many possible 2-input gates are there? KEY IDEA: As many as there are 2-input truth tables. 45</p>
+<p>All the gates! There are only 16 possible 2-input gates… Let’s examine all of them. Some we already know, others are just silly. How many of these gates can be implemented using a single CMOS gate? Do we really need all of these gates? Nope! Once we realize that we can describe all of them using just AND, OR, and NOT 46</p>
+<p>Composing gates: AND and OR Each can be constructed using a pair of CMOS gates AND is just NAND with an inverter, and OR is just NOR with an inverted output. AND OR These two gates are particularly important. Using them will allows us to develop a systematic approach for constructing any combinational A A y Y function. B B 47</p>
+<p>Composing gates B&gt;A XOR A B Y A y A Y B B How many different gates do we really need? We can always do it with 3 different types of gates (AND, OR, INVERT), and sometimes with 2, but, can we use fewer? 48</p>
+<p>Implementing XOR with AND, OR, NOT! Truth Table | A | B | Y | | — | — | — | | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 0 | Challenge question: convert this use ONLY NAND gates. How many NAND gates did you use? 49</p>
+<p>One gate will do! A UNIVERSAL gate is one that can be used to implement <em>ANY</em> COMBINATIONAL FUNCTION. There are many UNIVERSAL gates, but not all gates are UNIVERSAL. NANDs and NORs are UNIVERSAL! = = INVERTER = = AND = = OR NANDS NORS 50</p>
+<p>AND Gate | Symbol | | Truth Table | | | Equation | | —— | — | ———– | — | — | ——– | | | | A | B | Y | | Y = A x B A | | Y | 0 | 0 | 0 | | | — | — | — | — | — | — | or B | | | 0 | 1 | 0 | Y = AB | | — | — | — | — | — | —— | | | | 1 | 0 | 0 | | | | | 1 | 1 | 1 | | 51</p>
+<p>OR Gate Symbol Equation Truth Table | | A | B | Y | | — | — | — | — | Y = A + B A | Y | 0 | 0 | 0 | | — | — | — | — | B | | 0 | 1 | 1 | | — | — | — | — | | | 1 | 0 | 1 | | | 1 | 1 | 1 | 52</p>
+<p>XOR Gate | Symbol | | Truth Table | | | Equation | | —— | — | ———– | — | — | ——– | | | | A | B | Y | | A 𝐴 + Y = 𝐵 | | Y | 0 | 0 | 0 | | | — | — | — | — | — | — | B | | | 0 | 1 | 1 | | | — | — | — | — | — | — | | | | 1 | 0 | 1 | | | | | 1 | 1 | 0 | | 53</p>
+<p>NAND | Symbol | | Truth Table | | | Equation | | —— | — | ———– | — | — | ——– | | | | A | B | Y | | A Y = 𝐴 𝑥 𝐵 | | Y | 0 | 0 | 1 | | | — | — | — | — | — | — | or B | | | 0 | 1 | 1 | | | — | — | — | — | — | — | 𝑌 = 𝐴𝐵 | | | 1 | 0 | 1 | | | — | — | — | — | — | — | | | | 1 | 1 | 0 | | 54</p>
+<p>NOR | Symbol | | Truth Table | | | Equation | | | | —— | — | ———– | — | — | ——– | — | — | | | | A | B | Y | | | | A | | | | | | Y = | 𝐴 + | 𝐵 | | — | — | — | — | — | — | — | — | | | Y | 0 | 0 | 1 | | | | B | | | 0 | 1 | 0 | | | | | — | — | — | — | — | — | — | — | | | | 1 | 0 | 0 | | | | | | | 1 | 1 | 0 | | | | 55</p>
+<p>XNOR Gate | Symbol | | Truth Table | | | Equation | | —— | — | ———– | — | — | ——– | | | | A | B | Y | | A Y = 𝐴 + 𝐵 | | Y | 0 | 0 | 1 | | | — | — | — | — | — | — | B | | | 0 | 1 | 0 | | | — | — | — | — | — | — | | | | 1 | 0 | 0 | | | | | 1 | 1 | 1 | | 56</p>
+<p>FORMING EQUATIONS FROM LOGIC DIAGRAMS 57</p>
+<p>Ex1: Forming Equations from Logic Diagrams 58</p>
+<p>Ex1: Forming Equations from Logic Diagrams | 𝑌 = | 𝐴𝐵 | + 𝐶𝐷 | | — | — | —- | 59</p>
+<p>Ex2: Forming Equations from Logic Diagrams 60</p>
+<p>Ex2: Forming Equations from Logic Diagrams | 𝑌 = | (𝐴 + | 𝐵)(𝐶 | + 𝐷) | | — | —- | —- | —- | 61</p>
+<p>Ex3: Forming Equations from Logic Diagrams 62</p>
+<p>Ex3: Forming Equations from Logic Diagrams ത | 𝑌 = | 𝐴𝐵 | 𝐶 + | 𝐷 + | 𝐸 | | — | — | — | — | — | 63</p>
+<p>EX4: Forming Equations from Logic Diagrams 64</p>
+<p>Forming Equations from Logic Diagrams | 𝑌 = | (𝐴𝐵 | + 𝐶) (𝐷 | + 𝐸) | | — | — | ——- | —- | 65</p>
+<p>FORMING LOGIC DIAGRAMS FROM EQUATIONS 66</p>
+<p>Ex1: Forming Logic Diagrams from | Equations | 𝑌 = | 𝐴 + | 𝐵 𝐶 | | ——— | — | — | — | 67</p>
+<p>Ex1: Forming Logic Diagrams from | Equations | 𝑌 = | 𝐴 + | 𝐵 𝐶 | | ——— | — | — | — | 68</p>
+<p>Ex2: Forming Logic Diagrams from Equations | 𝑌 = | 𝐴 + | 𝐵 𝐶𝐷 | | — | — | —- | 69</p>
+<p>Ex2: Forming Logic Diagrams from Equations | 𝑌 = | 𝐴 + | 𝐵 𝐶𝐷 | | — | — | —- | 70</p>
+<p>Ex3: Forming Logic Diagrams from Equations | 𝑌 = | (𝐴 + | 𝐵)(𝐶𝐷) | + 𝐸 | | — | —- | —— | — | 71</p>
+<p>Ex3: Forming Logic Diagrams from Equations | 𝑌 = | (𝐴 + | 𝐵)(𝐶𝐷) | + 𝐸 | | — | —- | —— | — | 72</p>
+<p>Forming Logic Diagrams from Equations ҧ | 𝑌 = | (𝐴)( | 𝐵 + | 𝐶) + | 𝐷𝐸 | | — | —- | — | —- | — | 73</p>
+<p>Forming Logic Diagrams from Equations ҧ | 𝑌 = | (𝐴)( | 𝐵 + | 𝐶) + | 𝐷𝐸 | | — | —- | — | —- | — | 74</p>
+<p>FORMING TRUTH TABLES FROM EQUATIONS 75</p>
+<p>Ex1: Forming Truth Tables from Equations | | | | A | B | Y | | — | — | — | — | — | — | | | | | 0 | 0 | | ത | 𝑌 = | 𝐴 + | 𝐵 | 0 | 1 | | | — | — | — | — | — | — | | | | | 1 | 0 | | | | | | 1 | 1 | | 76</p>
+<p>Ex1: Forming Truth Tables from Equations | | | | A | B | Y | | — | — | — | — | — | — | | | | | 0 | 0 | 1 | ത | 𝑌 = | 𝐴 + | 𝐵 | 0 | 1 | 0 | | — | — | — | — | — | — | | | | | 1 | 0 | 1 | | | | | 1 | 1 | 1 | 77</p>
+<p>Ex2: Forming Truth Tables from Equations | | | | A | B | C | Y | | — | — | — | — | — | — | — | | | | | 0 | 0 | 0 | | | | | | 0 | 0 | 1 | | ҧ | 𝑌 = | 𝐴𝐵 | + 𝐶 | | | | | | — | — | —– | — | — | — | — | | | | | 0 | 1 | 0 | | | | | | 0 | 1 | 1 | | | | | | 1 | 0 | 0 | | | | | | 1 | 0 | 1 | | | | | | 1 | 1 | 0 | | | | | | 1 | 1 | 1 | | 78</p>
+<p>Ex2: Forming Truth Tables from Equations | | | | A | B | C | Y | | — | — | — | — | — | — | — | | | | | 0 | 0 | 0 | 1 | | | | | 0 | 0 | 1 | 0 | ҧ | 𝑌 = | 𝐴𝐵 | + 𝐶 | | | | | | — | — | —– | — | — | — | — | | | | | 0 | 1 | 0 | 1 | | | | | 0 | 1 | 1 | 0 | | | | | 1 | 0 | 0 | 1 | | | | | 1 | 0 | 1 | 0 | | | | | 1 | 1 | 0 | 1 | | | | | 1 | 1 | 1 | 1 | 79</p>
+<p>Forming Truth Tables from Equations | | | | A | B | Y | | — | — | —- | — | — | — | | | | | 0 | 0 | | | | ҧ ത | | 0 | 1 | | | 𝑌 = | 𝐴𝐵 | + 𝐴𝐵 | | | | | | | | 1 | 0 | | | | | | 1 | 1 | | 82</p>
+<p>FORMING EQUATIONS FROM TRUTH TABLES 83</p>
+<p>Sum of Products Form When two or more products (AND) are summed (OR) together | Sum of Products | | | | | Not Sum of Products | | —————- | — | — | — | — | ——————— | | 𝑌 = 𝐴𝐵 + 𝐴𝐶 | | | | | 𝑌 = (𝐴 + 𝐵)(𝐶 + 𝐴) | Approach: write down a boolean expression for every ‘1’ in the output 84</p>
+<p>Ex: Forming Equations from Truth Tables | A | B | C | Y | | — | — | — | — | | 0 | 0 | 0 | 1 | | 0 | 0 | 1 | 0 | | 0 | 1 | 0 | 1 | | 0 | 1 | 1 | 0 | | 1 | 0 | 0 | 0 | | 1 | 0 | 1 | 1 | | 1 | 1 | 0 | 0 | | 1 | 1 | 1 | 0 | 85</p>
+<p>Ex: Forming Equations from Truth Tables | A | B | C | Y | | | | | | — | — | — | — | — | — | — | — | ҧ ത ҧ 𝐴𝐵𝐶 | 0 | 0 | 0 | 1 | | | | | | — | — | — | — | — | — | — | — | | 0 | 0 | 1 | 0 | | | | | ҧ ҧ 𝐴𝐵𝐶 | 0 | 1 | 0 | 1 | | | | | | — | — | — | — | — | —– | — | — | | | | | | | ҧ ത ҧ | ҧ ҧ | ത | 𝑌 = 𝐴𝐵𝐶+ 𝐴𝐵𝐶 + 𝐴𝐵𝐶 | 0 | 1 | 1 | 0 | | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 0 | 0 | | | | | ത | 1 | 0 | 1 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 1 | 1 | 0 | 0 | | | | | | 1 | 1 | 1 | 0 | | | | | 86</p>
+<p>Forming Equations from Truth Tables | A | B | C | Y | | — | — | — | — | | 0 | 0 | 0 | 0 | | 0 | 0 | 1 | 1 | | 0 | 1 | 0 | 0 | | 0 | 1 | 1 | 0 | | 1 | 0 | 0 | 1 | | 1 | 0 | 1 | 0 | | 1 | 1 | 0 | 1 | | 1 | 1 | 1 | 1 | 87</p>
+<p>A Systematic Design Approach Truth Table 1) Write the functional spec as a truth table 2) Write down a Boolean expression for every ‘1’ in the output Y = (!C &amp;&amp; !B &amp;&amp; A) || (!C &amp;&amp; B &amp;&amp; A) || (C &amp;&amp; B &amp;&amp; !A) || (C &amp;&amp; B &amp;&amp; A) 3) Wire up the ideal gates, replace them with equivalent realizable gates, call it a day, and go home! This approach will always give us logic -it’s systematic! -it works! expressions in a particular form: -it’s easy! SUM-OF-PRODUCTS -we are done! (?) 89</p>
+<p>Straightforward Synthesis A B C We can implement sum-of- A products with just 3 levels of B C logic, using… Y A INVERTERS/AND/OR! B C A B C 90</p>
 
 
 </section>

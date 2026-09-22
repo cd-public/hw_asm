@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-input32127118d5c1c377 – Systems in C</title>
+<title>quarto-inputae5ed8c748692481 – Systems in C</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Not Found</span></a>
+ <span class="menu-text">Matching RISC-V assembly</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -157,13 +157,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matching RISC-V assembly</span></a>
+ <span class="menu-text">2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2</span></a>
+ <span class="menu-text">10</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,13 +205,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./41.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">41</span></a>
+ <span class="menu-text">2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./50.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2</span></a>
+ <span class="menu-text">50</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,13 +235,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./70.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">70</span></a>
+ <span class="menu-text">cycles to complete one operation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./71.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">cycles to complete one operation</span></a>
+ <span class="menu-text">71</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./81.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">81</span></a>
+ <span class="menu-text">Assembly code for</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -265,13 +265,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./91.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assembly code for</span></a>
+ <span class="menu-text">91</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A0</span></a>
+ <span class="menu-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -283,13 +283,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></a>
+ <span class="menu-text">B0</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">B1</span></a>
+ <span class="menu-text">m</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -300,8 +300,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">m</span></a>
+  <a href="./D0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching RISC-V assembly</span></a>
   </div>
 </li>
     </ul>
@@ -334,43 +334,681 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 11: R-Type vs I-Type, Intro to the ALU tinyurl.com/comp311-sp26 1</p>
-<table class="caption-top">
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 12: The ALU &amp; Register File tinyurl.com/comp311-sp26 1</p>
+<p>ARITHMETIC LOGIC | UNIT | (ALU) | ☺ | | —- | —– | — | 15</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Shifter Unit The “math center” of a computer! ☺ n Result 16</p>
+<p>What are the values on each signal when we want to perform Y = A XOR B | where | A is 0b1010 | and B | is 0b0001? | | | | | | —– | ———– | —– | ———- | — | — | — | — | 0b1010 0b0000 4 0b1011 4 4 0b0001 0b1011 | | | | | | Operation | Expression | Bool | | — | — | — | — | —— | ——— | ———- | —- | | | | | | 0b1011 | AND | A x B | 0b00 | | | | | | | OR | A + B | 0b01 | | | | | | 0b0100 | XOR | A + B | 0b10 | | | | | | | NOR | A + B | 0b11 | 2 0b10 4</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 5%">
+<col style="width: 11%">
+<col style="width: 4%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>R-T</th>
-<th>YPE VS. I-T</th>
-<th>YPE</th>
+<th>Bidirectional</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Shifter</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>■ The</td>
+<td>left bit</td>
+<td>tells</td>
+<td>you</td>
+<td>the direction</td>
+<td></td>
+<td>of the</td>
+<td>shift</td>
+<td>(left</td>
+<td>or right)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>■ The</td>
+<td>right</td>
+<td>bit tells</td>
+<td>you</td>
+<td>the type</td>
+<td>of shift</td>
+<td></td>
+<td>(arithmetic</td>
+<td></td>
+<td>or logical)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>■ Logical</td>
+<td>and</td>
+<td>arithmetic</td>
+<td></td>
+<td>left shift</td>
+<td>are</td>
+<td>the same</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Operation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Bool</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Left</td>
+<td></td>
+<td>Shift</td>
+<td></td>
+<td>B</td>
+<td>&lt;&lt;</td>
+<td>A</td>
+<td></td>
+<td>0 0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td>None</td>
+<td></td>
+<td></td>
+<td></td>
+<td>N/A</td>
+<td></td>
+<td></td>
+<td>0 1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Logical</td>
+<td></td>
+<td>Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B</td>
+<td>&gt;&gt;</td>
+<td>A</td>
+<td></td>
+<td>1 0</td>
+</tr>
+</tbody>
+</table>
+<p>Shift Arithmetic | | | | | | | B | &gt;&gt;&gt; | A | | 1 1 | | — | — | —– | — | —– | — | — | — | — | — | — | | | | Right | | Shift | | | | | | | 5</p>
+<p>Add/Sub A B n n | | | | | Operation | Expression | Sub | | — | — | — | — | ——— | ———- | — | | | | | | Add | A + B | 0 | Sub Add/Sub | | | | | Sub | A - B | 1 | | — | — | — | — | — | —– | — | n Y | Control | signal: | Tells the | circuit | | | | | ——- | ——— | ———- | ——- | — | — | — | | which | operation | to perform | | | | | 27</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Shifter Unit n Result 28</p>
+<p>A B Wiring up Add/Sub n n Add/ Bidirectional Boolean Sub Sub Shifter Unit n n Result 29</p>
+<p>A B | n Wiring | up | Boolean | Unit | | ——– | — | ——- | —- | n 1 2 Add/ | | Bidirectional | | Boolean | | — | ————- | — | ——- | Sub | Sub | Shifter | | | | — | ——- | — | — | Unit n 3 n n Result 30</p>
+<p>A B n Wiring up Boolean Unit n 1 2 Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n 3 4 n n Result 31</p>
+<p>A B n Wiring up Shifter n 1 2 Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n 3 n Result 11</p>
+<p>A B n Wiring up Shifter n 1 2 Add/ Bidirectional Boolean Sub Sub Shifter Unit 4 Bool n n n 3 n Result 12</p>
+<p>A B n Selecting Outputs n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n 1 0 1 n 1 0 2 n Result 13</p>
+<p>A B n Selecting Outputs n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 1 3 n Math 1 0 2 4 n Result 14</p>
+<p>A B n n Arithmetic Logic Unit Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 n Math 1 0 n Result 15</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ALU</th>
+<th>Control</th>
+<th></th>
+<th>Bits</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Sub</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Add</td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Operation</td>
+<td></td>
+<td>Sub</td>
+<td>Bool</td>
+<td>Shift</td>
+<td>Math</td>
+</tr>
+<tr class="even">
+<td>Sub</td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Left Shift</td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td>00</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Logical</td>
+<td>Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Shift</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &gt;&gt;&gt;</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Arithmetic</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A AND</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>B &gt;&gt;&gt;</td>
+<td>A</td>
+<td>11</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Right Shift</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A OR</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A XOR</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A NOR B | AND | | A x | B | 00 | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | | OR | | A + | B | 01 | | | | | | | | XOR | | A + | B | 10 | | | | | | | | NOR | | A + | B | 11 | | | | | | | 16</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ALU</th>
+<th>Control</th>
+<th></th>
+<th>Bits</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Sub</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Add</td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Operation</td>
+<td></td>
+<td>Sub</td>
+<td>Bool</td>
+<td>Shift</td>
+<td>Math</td>
+</tr>
+<tr class="even">
+<td>Sub</td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td>0b0</td>
+<td>0bXX</td>
+<td>0bX</td>
+<td>0b1</td>
+</tr>
+<tr class="even">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td>0b1</td>
+<td>0bXX</td>
+<td>0bX</td>
+<td>0b1</td>
+</tr>
+<tr class="even">
+<td>Left Shift</td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td>00</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td>0bX</td>
+<td>0b00</td>
+<td>0b1</td>
+<td>0b0</td>
+</tr>
+<tr class="even">
+<td>Logical</td>
+<td>Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td>0bX</td>
+<td>0b10</td>
+<td>0b1</td>
+<td>0b0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Shift | | | | | | B &gt;&gt;&gt; | A | 0bX | 0b11 | 0b1 | 0b0 | | — | — | — | — | — | —– | — | — | —- | — | — | Arithmetic | | | B &gt;&gt;&gt; | A | 11 | | | | | | | | ———– | — | ———- | — | —- | —— | — | — | —- | — | — | | | | | | | A AND | B | 0bX | 0b00 | 0b0 | 0b0 | | Right Shift | | | | | | | | | | | | | | | | | A OR B | | 0bX | 0b01 | 0b0 | 0b0 | | Operation | | Expression | | Bool | A XOR | B | 0bX | 0b10 | 0b0 | 0b0 | | AND | | A x | B | 00 | A NOR | B | 0bX | 0b11 | 0b0 | 0b0 | | OR | | A + | B | 01 | | | | | | | | XOR | | A + | B | 10 | | | | | | | | NOR | | A + | B | 11 | | | | | | | 17</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 n Math 1 0 . n Z flag is 1 when Result is 0 n Result Z flag 42</p>
+<p>A B 1 &lt;&lt; 2 4 4 Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool 4 4 4 Shift 1 0 4 Math 1 0 4 *if the bool input to the bidirectional Result shifter is 0b01, output 0 19</p>
+<p>A B 1 &lt;&lt; 2 4 4 0b0010 0b0001 0bX Add/ Bidirectional Boolean Sub Sub Shifter Unit 0b00 Bool 0b0000 4 4 4 Shift 1 0 0b0100 0b1 0b0001 4 Math 1 0 or 0b0 0b0011 0b0100 4 *if the bool input to the bidirectional Result shifter is 0b01, output 0 20</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 n Math 1 0 . n Z flag is 1 when Result is 0 n Result Z flag 42</p>
+<p>THE REGISTER FILE 15</p>
+<p>Reminder: What is a register? ■ Registers: special locations built directly into the hardware to store data! ■ These serve as the operands of many assembly instructions ■ These primitives are also visible to the assembly programmer once the computer is built. ■ The size of a register is determined by the architecture – We are assuming 32-bit registers in this class! ■ Registers are also synchronized with a clock! – We will get to this next week. ☺ ■ The processor’s 32 general-purpose registers are stored in a structure called a register file 23</p>
+<p>Register File | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | | —– | —– | —– | —– | —– | —– | — | —– | Reg 6 • Contains the | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | register state of | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | — | — | — | — | — | — | — | — | the computer | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | —– | —– | —— | —— | — | —— | —— | —— | Reg 12 • Any register can | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | be read or | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | — | — | — | — | — | — | — | — | written, just specify the | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | —— | —— | —— | —— | —— | —— | —— | —— | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | number of the | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | register | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | —— | —— | —— | —— | — | —— | —— | —— | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | Reg 28 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | 24</p>
+<p>x1 = x3 + x2 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | —– | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00011 | | 00010 | | 000 | | 00001 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 11 | | 7 6 | | 0 | 00000000001100010000000010110011 Opcode is always 0110011 for integer R-type ALU instructions funct3 is always the primary operation code group (e.g.&nbsp;000 = add/sub. 100 = xor, 111 = and) funct7 is used to further specify the operation (e.g.&nbsp;distinguishes add vs.&nbsp;sub. srl vs.&nbsp;sra) 25</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th>rs2</th>
+<th></th>
+<th>rs1</th>
+<th></th>
+<th>funct3</th>
+<th></th>
+<th>rd</th>
+<th>opcode</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 </tbody>
 </table>
-<p>INSTRUCTIONS 15</p>
-<p>Reminder: How are programs turned into machine code? High-level language c = a + b Assembly add x5, x4, x3 Machine Code 00000000001100100000001010110011 3</p>
-<p>The miniRISC-V ISA | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——— | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 1 | 1 0 0 1 1 | | R-type: | | func7 | rs2 | rs1 | func3 | rd | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | | rs1 | | rd | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | | func3 | | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | rs2 | rs1 | | | 0 1 | 0 0 0 1 1 | | B/S-type: | | imm7 | | | func3 | imm5 | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 1 | U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC) 4</p>
-<p>Syntax register 5 = register 4 + register 3 add x5, x4, x3 | destination | source | source | | ————- | ———– | ———– | | register (rd) | register 1 | register 2 | | | (rs1) | (rs2) | 6</p>
-<p>R-Format Syntax add x5, x4, x3 | | | destination | | | source | | source | | | | | | ——- | —– | ————- | —– | ———- | ———– | —— | ———– | ———— | — | ——- | — | | | | register (rd) | | | register 1 | | register 2 | | | | | | | | | | | (rs1) | | | (rs2) | | | | | | | source | | source | | | | destination | | | | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00011 | | 00100 | | 000 | | 00101 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 11 | | 7 6 | | 0 | 7</p>
-<p>R-Format Operations ■ add ■ sub ■ AND ■ OR ■ SLT (set on less than) ■ SLTU (Unsigned) ■ SLL (shift left logical) ■ SRL (shift right logical) ■ SRA (shift right arithmetic) 8</p>
-<p>Subtract Instruction sub rd, rs1, rs2 R[rd] = R[rs1] - R[rs2] | value of the | value of the | value of the | | ————- | ————- | ————- | | register rd | register rs1 | register rs2 | 9</p>
-<p>Translating from C to RISC-V c = a + b; | x5 | x8 | x9 | | — | — | — | add x5, x8, x9 10</p>
-<p>Translate this line from C to RISC-V a = b + c + d – e; | x14 | x15 | x16 | x17 | x18 | | — | — | — | — | — | You may use additional registers in your solution 11</p>
-<p>Translate this line from C to RISC-V a = b + c + d – e; | x14 | x15 | x16 | x17 | x18 | | — | — | — | — | — | add x14, x15, x16 add x5, x15, x16 | add x14, x14, x17 | | or sub x6, x17, x18 | | | | —————– | — | ——————- | — | — | sub x14, x14, x18 add x14, x5, x6 12</p>
-<p>R-format vs I-format Instructions ■ R-format – Used for operations between two registers ■ I-format – Used for operations between a register and an immediate value ■ in other words, if you want to use a constant that is not in a register 13</p>
-<p>I-type Data Processing Instructions that process one register and a constant: | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——- | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——— | | I-type: | | imm12 | | rs1 | func3 | rd | 0 0 | 1 0 0 1 1 | 000 - ADDI Notice there is no SUBI | instruction. Why? | | | | 001 - SLLI | | | | | | —————— | — | — | — | ———- | — | — | — | — | 010 - SLTI 011 - SLTUI 100 - XORI 101 - SRLI/SRAI 110 - ORI 111 - ANDI | | | | | | | andi | x5,x10,255 | | | — | — | — | — | — | — | —– | ———- | — | I-type instructions | have the following template: | | | | | Is encoded as: | | | | | —————————- | — | — | — | — | ————– | — | — | — | 0000 1111 1111 0101 0111 0010 1001 0011 | OPfunc3 | | rd,rs1,imm12 | | | | | | | | ——– | — | ———— | — | — | — | — | — | — | 0x0ff57293 14</p>
-<p>I-Format Syntax op rd, rs1, immediate12 this is where we will store the result of the operation 15</p>
-<p>I-Format Syntax x5 = x4 + 12 addi x5, x4, 12 | destination | source | immediate | | ————- | ——— | ———- | | register (rd) | register | | value (rs1) 16</p>
-<p>R-Format vs I-Format Syntax I-Format R-Format op rd, rs1, immediate op rd, rs1, rs2 R[rd] = R[rs1] op R[rs2] R[rd] = R[rs1] op immediate writes to rd writes to rd 17</p>
-<p>Register 0 ■ Register 0 always holds the value 0 ■ This is very useful when we want to write a constant value to a register 18</p>
-<p>I-Format Syntax addi x5, x0, 12 source destination immediate funct3 opcode register register 31 20 19 15 14 12 11 7 6 0 19</p>
-<p>I-Format Syntax addi x5, x0, 12 | | | source | | | | destination | | | | — | — | ——- | — | — | — | ———— | — | — | immediate funct3 opcode | | | register | | | | register | | | | ————– | —– | ——— | —– | — | —– | ——– | ——- | — | | 0000 0000 1100 | | 00000 | | 000 | | 00101 | 0010011 | | | 31 | 20 19 | | 15 14 | | 12 11 | | 7 6 | 0 | 20</p>
-<p>ARITHMETIC LOGIC | UNIT | (ALU) | ☺ | | —- | —– | — | 15</p>
-<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Shifter Unit The “math center” of a computer! ☺ n Result 16</p>
-<p>An Example Boolean Unit n n n | Operation | Expression | Bool | | ——— | ———- | —- | | AND | A x B | 0b00 | | OR | A + B | 0b01 | | XOR | A + B | 0b10 | | NOR | A + B | 0b11 | 2 23</p>
-<p>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4. 4 4 4 | Operation | Expression | Bool | | ——— | ———- | —- | | AND | A x B | 0b00 | | OR | A + B | 0b01 | | XOR | A + B | 0b10 | | NOR | A + B | 0b11 | 2 24</p>
-<p>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4. 0b0101 0b0100 4 0b0100 4 4 0b0100 0b0101 | | Operation | Expression | Bool | | —— | ——— | ———- | —- | | 0b0001 | AND | A x B | 0b00 | | | OR | A + B | 0b01 | | 0b1010 | XOR | A + B | 0b10 | | | NOR | A + B | 0b11 | 2 0b00 25</p>
-<p>What are the values on each signal when we want to perform Y = A XOR B where A | is 0b1010 | and | B is 0b0001? | | | | | ——— | — | ———— | — | — | — | 4 4 4 | | | | Operation | Expression | Bool | | — | — | — | ——— | ———- | —- | | | | | AND | A x B | 0b00 | | | | | OR | A + B | 0b01 | | | | | XOR | A + B | 0b10 | | | | | NOR | A + B | 0b11 | 2 24</p>
-<p>What are the values on each signal when we want to perform Y = A XOR B | where | A is 0b1010 | and B | is 0b0001? | | | | | | —– | ———– | —– | ———- | — | — | — | — | 0b1010 0b0000 4 0b1011 4 4 0b0001 0b1011 | | | | | | Operation | Expression | Bool | | — | — | — | — | —— | ——— | ———- | —- | | | | | | 0b1011 | AND | A x B | 0b00 | | | | | | | OR | A + B | 0b01 | | | | | | 0b0100 | XOR | A + B | 0b10 | | | | | | | NOR | A + B | 0b11 | 2 0b10 27</p>
+<p>funct7 | | 0000000 | | 00011 | | 00010 | | 000 | | 00001 | 0110011 | | | — | ——- | —– | —– | —– | —– | —– | — | —– | —– | ——- | — | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 11 | | 7 6 | 0 | 5 32 Read Read Register 1 Data 1 32 5 1 : 9 | | | | | 5 | | | | | | 32 | | | — | — | — | — | — | —– | — | — | —– | — | — | — | | n 1 | | | | | | | | | | | | | | | | | | Read | | | Read | | | | o | i 32 | 24:20 | | | | | | | Data 2 | | | | | —- | —– | — | — | ———- | — | — | — | —— | — | — | — | | t | | | | Register 2 | | | | | | | | c u 4 r Reg t s n File I 0010 7 : 1 1 In the textbook 5 | | | | | | Write | | | | | implementation of our | | | — | — | — | — | — | —— | — | — | — | — | ———————- | — | RISC-V CPU, ALUOp is Register the only externally 32 visible signal Write Data | | | | | | | | | RegWrite | 1 | | | | — | — | — | — | — | — | — | — | ——– | — | — | — | 26</p>
+<p>RISC-V 32I ALU | | Function ALU Operation | | | — | ———————- | —— | | | AND | 0b0000 | 32 | | OR | 0b0001 | | — | — | —— | A | 32 | ADD | 0b0010 | | — | — | —— | ALU | | SUB | 0b0110 | | — | — | —— | 32 Result B set on less than 0b0111 (SLT) 4 ALU operation Control Signal Input 27</p>
+<p>Set on Less Than ■ If A &lt; B – ALU result = 1 ■ If A &gt;= B – ALU result = 0 28</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x003202b3 0x00528533 0x00EA6020 29</p>
+<p>Contents of RegFile | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | | —– | —– | —– | —– | —– | —– | — | —– | Reg 6 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —– | —– | —— | —— | — | —— | —— | —— | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | Reg 12 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —— | —— | —— | —— | —— | —— | —— | —— | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | Reg 28 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | 30</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x003202b3 | | | source | | source | | | | destination | | | | | —— | —– | ———- | —– | ———- | —– | —— | — | ———— | — | —— | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | 31</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x003202b3 0b00000000001100100000001010110011 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | — | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00011 | | 00100 | | 000 | | 00101 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | x5 = x4 + x3 add x5, x4, x3 x5 = 56 + 100 x5 = 156 32</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00528533 | | | source | | source | | | | destination | | | | | —— | —– | ———- | —– | ———- | —– | —— | — | ———— | — | —— | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | 33</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00528533 0b00000000010100101000010100110011 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | — | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00101 | | 00101 | | 000 | | 01010 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | x10 = x5 + x5 x10 = 156 + 156 add x10, x5, x5 x10 = 312 34</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00a38633 | | | source | | source | | | | destination | | | | | —— | —– | ———- | —– | ———- | —– | —— | — | ———— | — | —— | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | 35</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00a38633 0b00000000101000111000011000110011 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | — | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 01010 | | 00111 | | 000 | | 01100 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | x12 = x7 + x10 x12 = 22 + 312 add x12, x7, x10 x12 = 334 36</p>
+<p>Final Contents of RegFile | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | | —– | —– | —– | —– | —– | —– | — | —– | Reg 6 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —– | —– | —— | —— | — | —— | —— | —— | | 0 | 5 | 11 | 100 | 56 | 156 | 25 | 22 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | Reg 12 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —— | —— | —— | —— | —— | —— | —— | —— | | 3 | 10 | 312 | 112 | 334 | 98 | 85 | 0 | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | Reg 28 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | 37</p>
+<p>What is the value of each signal when executing: and x4, x2, x5 2 5 5 32 Read Read Register 1 Data 1 32 5 1 6 : 1 9 5 32 n 1 3 Read Read o i t 32 24:20 Register 2 Data 2 c u 9 4 r Reg t s n File I 7 ALUOP : 1 1 4 5 Write Register 8 7 32 Write Data RegWrite 38</p>
 
 
 <!-- -->
@@ -830,8 +1468,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./50.html" class="pagination-link" aria-label="2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2</span>
+      <a href="./50.html" class="pagination-link" aria-label="50">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">50</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -842,295 +1480,714 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="an">COMP311:</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>COMPUTER ORGANIZATION!</span>
-<span id="cb1-3"><a href="#cb1-3"></a>Lecture 11: R-Type vs I-Type, Intro to the ALU</span>
+<span id="cb1-3"><a href="#cb1-3"></a>Lecture 12: The ALU &amp; Register File</span>
 <span id="cb1-4"><a href="#cb1-4"></a>tinyurl.com/comp311-sp26</span>
 <span id="cb1-5"><a href="#cb1-5"></a>1</span>
 <span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="pp">|</span> R-T <span class="pp">|</span> YPE VS. I-T <span class="pp">|</span> YPE  <span class="pp">|</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="pp">| ---</span> <span class="pp">| -----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>INSTRUCTIONS</span>
+<span id="cb1-7"><a href="#cb1-7"></a>ARITHMETIC LOGIC</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="pp">|</span> UNIT <span class="pp">|</span> (ALU) <span class="pp">|</span> ☺   <span class="pp">|</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>15</span>
 <span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a>Reminder: How are programs turned into</span>
-<span id="cb1-13"><a href="#cb1-13"></a>machine code?</span>
-<span id="cb1-14"><a href="#cb1-14"></a>High-level language c = a + b</span>
-<span id="cb1-15"><a href="#cb1-15"></a>Assembly add x5, x4, x3</span>
-<span id="cb1-16"><a href="#cb1-16"></a>Machine Code</span>
-<span id="cb1-17"><a href="#cb1-17"></a>00000000001100100000001010110011</span>
-<span id="cb1-18"><a href="#cb1-18"></a>3</span>
-<span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a>The miniRISC-V ISA</span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="pp">|</span>           <span class="pp">|</span> 31 30 <span class="pp">|</span> 29 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="pp">| ---------</span> <span class="pp">| -----</span> <span class="pp">| --------------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="pp">|</span>           <span class="pp">|</span>       <span class="pp">|</span>                <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span>            <span class="pp">|</span> 0 1     <span class="pp">|</span> 1 0 0 1 1 <span class="pp">|</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="pp">|</span> R-type:   <span class="pp">|</span>       <span class="pp">|</span> func7          <span class="pp">|</span> rs2         <span class="pp">|</span> rs1         <span class="pp">|</span> func3       <span class="pp">|</span> rd         <span class="pp">|</span>         <span class="pp">|</span>           <span class="pp">|</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="pp">|</span>           <span class="pp">|</span> 31 30 <span class="pp">|</span> 29 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="pp">|</span>           <span class="pp">|</span>       <span class="pp">|</span>                <span class="pp">|</span>             <span class="pp">|</span> rs1         <span class="pp">|</span>             <span class="pp">|</span> rd         <span class="pp">|</span> 0 0     <span class="pp">|</span> 1 0 0 1 1 <span class="pp">|</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="pp">|</span> I-type:   <span class="pp">|</span>       <span class="pp">|</span> imm12          <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span> func3       <span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span>           <span class="pp">|</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="pp">|</span>           <span class="pp">|</span> 31 30 <span class="pp">|</span> 29 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="pp">|</span>           <span class="pp">|</span>       <span class="pp">|</span>                <span class="pp">|</span> rs2         <span class="pp">|</span> rs1         <span class="pp">|</span>             <span class="pp">|</span>            <span class="pp">|</span> 0 1     <span class="pp">|</span> 0 0 0 1 1 <span class="pp">|</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a><span class="pp">|</span> B/S-type: <span class="pp">|</span>       <span class="pp">|</span> imm7           <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span> func3       <span class="pp">|</span> imm5       <span class="pp">|</span>         <span class="pp">|</span>           <span class="pp">|</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="pp">|</span>           <span class="pp">|</span> 31 30 <span class="pp">|</span> 29 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="pp">|</span>           <span class="pp">|</span>       <span class="pp">|</span>                <span class="pp">|</span> Imm20       <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span> rd         <span class="pp">|</span> 0 1     <span class="pp">|</span> 1 0 1 1 1 <span class="pp">|</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a>U-type:</span>
-<span id="cb1-34"><a href="#cb1-34"></a>Four key instruction formats (each one has a corresponding opcode!):</span>
-<span id="cb1-35"><a href="#cb1-35"></a>1) ALU with two register operands</span>
-<span id="cb1-36"><a href="#cb1-36"></a>2 ) ALU with a register and an immediate operand</span>
-<span id="cb1-37"><a href="#cb1-37"></a>3) Stores and Branches</span>
-<span id="cb1-38"><a href="#cb1-38"></a>4) Jumps and large constants (LUI, AUIPC)</span>
-<span id="cb1-39"><a href="#cb1-39"></a>4</span>
-<span id="cb1-40"><a href="#cb1-40"></a></span>
-<span id="cb1-41"><a href="#cb1-41"></a>Syntax</span>
-<span id="cb1-42"><a href="#cb1-42"></a>register 5 = register 4 + register 3</span>
-<span id="cb1-43"><a href="#cb1-43"></a>add x5, x4, x3</span>
-<span id="cb1-44"><a href="#cb1-44"></a><span class="pp">|</span> destination   <span class="pp">|</span> source      <span class="pp">|</span> source      <span class="pp">|</span></span>
-<span id="cb1-45"><a href="#cb1-45"></a><span class="pp">| -------------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">|</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a><span class="pp">|</span> register (rd) <span class="pp">|</span> register 1  <span class="pp">|</span> register 2  <span class="pp">|</span></span>
-<span id="cb1-47"><a href="#cb1-47"></a><span class="pp">|</span>               <span class="pp">|</span> (rs1)       <span class="pp">|</span> (rs2)       <span class="pp">|</span></span>
-<span id="cb1-48"><a href="#cb1-48"></a>6</span>
-<span id="cb1-49"><a href="#cb1-49"></a></span>
-<span id="cb1-50"><a href="#cb1-50"></a>R-Format Syntax</span>
-<span id="cb1-51"><a href="#cb1-51"></a>add x5, x4, x3</span>
-<span id="cb1-52"><a href="#cb1-52"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> destination   <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span> source      <span class="pp">|</span>        <span class="pp">|</span> source      <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-53"><a href="#cb1-53"></a><span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| -------------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----------</span> <span class="pp">| ------</span> <span class="pp">| -----------</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> register (rd) <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span> register 1  <span class="pp">|</span>        <span class="pp">|</span> register 2  <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-55"><a href="#cb1-55"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span> (rs1)       <span class="pp">|</span>        <span class="pp">|</span>             <span class="pp">|</span> (rs2)        <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-56"><a href="#cb1-56"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> source        <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>             <span class="pp">|</span>        <span class="pp">|</span>             <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-57"><a href="#cb1-57"></a><span class="pp">|</span> funct7  <span class="pp">|</span>       <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>             <span class="pp">|</span> funct3 <span class="pp">|</span>             <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode  <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-58"><a href="#cb1-58"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> register 2    <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>             <span class="pp">|</span>        <span class="pp">|</span>             <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-59"><a href="#cb1-59"></a><span class="pp">|</span> 0000000 <span class="pp">|</span>       <span class="pp">|</span> 00011         <span class="pp">|</span>       <span class="pp">|</span> 00100      <span class="pp">|</span>             <span class="pp">|</span> 000    <span class="pp">|</span>             <span class="pp">|</span> 00101        <span class="pp">|</span>     <span class="pp">|</span> 0110011 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-60"><a href="#cb1-60"></a><span class="pp">|</span> 31      <span class="pp">|</span> 25 24 <span class="pp">|</span>               <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14       <span class="pp">|</span>        <span class="pp">|</span> 12 11       <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>         <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-61"><a href="#cb1-61"></a>7</span>
-<span id="cb1-62"><a href="#cb1-62"></a></span>
-<span id="cb1-63"><a href="#cb1-63"></a>R-Format Operations</span>
-<span id="cb1-64"><a href="#cb1-64"></a>■ add</span>
-<span id="cb1-65"><a href="#cb1-65"></a>■ sub</span>
-<span id="cb1-66"><a href="#cb1-66"></a>■ AND</span>
-<span id="cb1-67"><a href="#cb1-67"></a>■ OR</span>
-<span id="cb1-68"><a href="#cb1-68"></a>■ SLT (set on less than)</span>
-<span id="cb1-69"><a href="#cb1-69"></a>■ SLTU (Unsigned)</span>
-<span id="cb1-70"><a href="#cb1-70"></a>■ SLL (shift left logical)</span>
-<span id="cb1-71"><a href="#cb1-71"></a>■ SRL (shift right logical)</span>
-<span id="cb1-72"><a href="#cb1-72"></a>■ SRA (shift right arithmetic)</span>
-<span id="cb1-73"><a href="#cb1-73"></a>8</span>
-<span id="cb1-74"><a href="#cb1-74"></a></span>
-<span id="cb1-75"><a href="#cb1-75"></a>Subtract Instruction</span>
-<span id="cb1-76"><a href="#cb1-76"></a>sub rd, rs1, rs2</span>
-<span id="cb1-77"><a href="#cb1-77"></a>R<span class="co">[</span><span class="ot">rd</span><span class="co">]</span> = R<span class="co">[</span><span class="ot">rs1</span><span class="co">]</span> - R<span class="co">[</span><span class="ot">rs2</span><span class="co">]</span></span>
-<span id="cb1-78"><a href="#cb1-78"></a><span class="pp">|</span> value of the  <span class="pp">|</span> value of the  <span class="pp">|</span> value of the  <span class="pp">|</span></span>
-<span id="cb1-79"><a href="#cb1-79"></a><span class="pp">| -------------</span> <span class="pp">| -------------</span> <span class="pp">| -------------</span> <span class="pp">|</span></span>
-<span id="cb1-80"><a href="#cb1-80"></a><span class="pp">|</span> register rd   <span class="pp">|</span> register rs1  <span class="pp">|</span> register rs2  <span class="pp">|</span></span>
-<span id="cb1-81"><a href="#cb1-81"></a>9</span>
-<span id="cb1-82"><a href="#cb1-82"></a></span>
-<span id="cb1-83"><a href="#cb1-83"></a>Translating from C to RISC-V</span>
-<span id="cb1-84"><a href="#cb1-84"></a>c = a + b;</span>
-<span id="cb1-85"><a href="#cb1-85"></a><span class="pp">|</span> x5  <span class="pp">|</span> x8  <span class="pp">|</span> x9  <span class="pp">|</span></span>
-<span id="cb1-86"><a href="#cb1-86"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-87"><a href="#cb1-87"></a>add x5, x8, x9</span>
-<span id="cb1-88"><a href="#cb1-88"></a>10</span>
+<span id="cb1-12"><a href="#cb1-12"></a>A B</span>
+<span id="cb1-13"><a href="#cb1-13"></a>n Arithmetic Logic Unit n</span>
+<span id="cb1-14"><a href="#cb1-14"></a>Add/</span>
+<span id="cb1-15"><a href="#cb1-15"></a>Bidirectional Boolean</span>
+<span id="cb1-16"><a href="#cb1-16"></a>Sub</span>
+<span id="cb1-17"><a href="#cb1-17"></a>Shifter Unit</span>
+<span id="cb1-18"><a href="#cb1-18"></a>The “math center” of a</span>
+<span id="cb1-19"><a href="#cb1-19"></a>computer! ☺</span>
+<span id="cb1-20"><a href="#cb1-20"></a>n</span>
+<span id="cb1-21"><a href="#cb1-21"></a>Result</span>
+<span id="cb1-22"><a href="#cb1-22"></a>16</span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a>What are the values on each signal when we want to perform Y = A XOR B</span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="pp">|</span> where <span class="pp">|</span> A is 0b1010 <span class="pp">|</span> and B <span class="pp">|</span> is 0b0001? <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="pp">| -----</span> <span class="pp">| -----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>0b1010</span>
+<span id="cb1-28"><a href="#cb1-28"></a>0b0000</span>
+<span id="cb1-29"><a href="#cb1-29"></a>4</span>
+<span id="cb1-30"><a href="#cb1-30"></a>0b1011</span>
+<span id="cb1-31"><a href="#cb1-31"></a>4</span>
+<span id="cb1-32"><a href="#cb1-32"></a>4</span>
+<span id="cb1-33"><a href="#cb1-33"></a>0b0001</span>
+<span id="cb1-34"><a href="#cb1-34"></a>0b1011</span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span> Operation <span class="pp">|</span> Expression <span class="pp">|</span> Bool <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0b1011 <span class="pp">|</span> AND       <span class="pp">|</span> A x B      <span class="pp">|</span> 0b00 <span class="pp">|</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span> OR        <span class="pp">|</span> A + B      <span class="pp">|</span> 0b01 <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0b0100 <span class="pp">|</span> XOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b10 <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span> NOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b11 <span class="pp">|</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>2</span>
+<span id="cb1-42"><a href="#cb1-42"></a>0b10</span>
+<span id="cb1-43"><a href="#cb1-43"></a>4</span>
+<span id="cb1-44"><a href="#cb1-44"></a></span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="pp">|</span> Bidirectional <span class="pp">|</span>          <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span> Shifter       <span class="pp">|</span>          <span class="pp">|</span>            <span class="pp">|</span>             <span class="pp">|</span>       <span class="pp">|</span>             <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="pp">| -------------</span> <span class="pp">| --------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">| -------------</span> <span class="pp">| --------</span> <span class="pp">| ----------</span> <span class="pp">| -----------</span> <span class="pp">| -----</span> <span class="pp">| -----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="pp">|</span> ■ The         <span class="pp">|</span> left bit <span class="pp">|</span> tells      <span class="pp">|</span> you  <span class="pp">|</span> the direction <span class="pp">|</span>          <span class="pp">|</span> of the     <span class="pp">|</span> shift       <span class="pp">|</span> (left <span class="pp">|</span> or right)   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="pp">|</span> ■ The         <span class="pp">|</span> right    <span class="pp">|</span> bit tells  <span class="pp">|</span> you  <span class="pp">|</span> the type      <span class="pp">|</span> of shift <span class="pp">|</span>            <span class="pp">|</span> (arithmetic <span class="pp">|</span>       <span class="pp">|</span> or logical) <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="pp">|</span> ■ Logical     <span class="pp">|</span> and      <span class="pp">|</span> arithmetic <span class="pp">|</span>      <span class="pp">|</span> left shift    <span class="pp">|</span> are      <span class="pp">|</span> the same   <span class="pp">|</span>             <span class="pp">|</span>       <span class="pp">|</span>             <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span> Operation  <span class="pp">|</span>      <span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span> Expression <span class="pp">|</span>             <span class="pp">|</span>       <span class="pp">|</span>             <span class="pp">|</span> Bool <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a><span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span> Left       <span class="pp">|</span>      <span class="pp">|</span> Shift         <span class="pp">|</span>          <span class="pp">|</span> B          <span class="pp">|</span> &lt;&lt;          <span class="pp">|</span> A     <span class="pp">|</span>             <span class="pp">|</span> 0 0  <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span>            <span class="pp">|</span> None <span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span>            <span class="pp">|</span> N/A         <span class="pp">|</span>       <span class="pp">|</span>             <span class="pp">|</span> 0 1  <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a><span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span> Logical    <span class="pp">|</span>      <span class="pp">|</span> Right         <span class="pp">|</span>          <span class="pp">|</span>            <span class="pp">|</span>             <span class="pp">|</span>       <span class="pp">|</span>             <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>               <span class="pp">|</span>          <span class="pp">|</span> B          <span class="pp">|</span> &gt;&gt;          <span class="pp">|</span> A     <span class="pp">|</span>             <span class="pp">|</span> 1 0  <span class="pp">|</span></span>
+<span id="cb1-55"><a href="#cb1-55"></a>Shift</span>
+<span id="cb1-56"><a href="#cb1-56"></a>Arithmetic</span>
+<span id="cb1-57"><a href="#cb1-57"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span> &gt;&gt;&gt; <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> 1 1 <span class="pp">|</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Right <span class="pp">|</span>     <span class="pp">|</span> Shift <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a>5</span>
+<span id="cb1-61"><a href="#cb1-61"></a></span>
+<span id="cb1-62"><a href="#cb1-62"></a>Add/Sub</span>
+<span id="cb1-63"><a href="#cb1-63"></a>A B</span>
+<span id="cb1-64"><a href="#cb1-64"></a>n n</span>
+<span id="cb1-65"><a href="#cb1-65"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Operation <span class="pp">|</span> Expression <span class="pp">|</span> Sub <span class="pp">|</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-67"><a href="#cb1-67"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Add       <span class="pp">|</span> A + B      <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-68"><a href="#cb1-68"></a>Sub</span>
+<span id="cb1-69"><a href="#cb1-69"></a>Add/Sub</span>
+<span id="cb1-70"><a href="#cb1-70"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Sub <span class="pp">|</span> A - B <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-71"><a href="#cb1-71"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-72"><a href="#cb1-72"></a>n</span>
+<span id="cb1-73"><a href="#cb1-73"></a>Y</span>
+<span id="cb1-74"><a href="#cb1-74"></a><span class="pp">|</span> Control <span class="pp">|</span> signal:   <span class="pp">|</span> Tells the  <span class="pp">|</span> circuit <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-75"><a href="#cb1-75"></a><span class="pp">| -------</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-76"><a href="#cb1-76"></a><span class="pp">|</span> which   <span class="pp">|</span> operation <span class="pp">|</span> to perform <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-77"><a href="#cb1-77"></a>27</span>
+<span id="cb1-78"><a href="#cb1-78"></a></span>
+<span id="cb1-79"><a href="#cb1-79"></a>A B</span>
+<span id="cb1-80"><a href="#cb1-80"></a>n Arithmetic Logic Unit</span>
+<span id="cb1-81"><a href="#cb1-81"></a>n</span>
+<span id="cb1-82"><a href="#cb1-82"></a>Add/</span>
+<span id="cb1-83"><a href="#cb1-83"></a>Bidirectional Boolean</span>
+<span id="cb1-84"><a href="#cb1-84"></a>Sub</span>
+<span id="cb1-85"><a href="#cb1-85"></a>Shifter Unit</span>
+<span id="cb1-86"><a href="#cb1-86"></a>n</span>
+<span id="cb1-87"><a href="#cb1-87"></a>Result</span>
+<span id="cb1-88"><a href="#cb1-88"></a>28</span>
 <span id="cb1-89"><a href="#cb1-89"></a></span>
-<span id="cb1-90"><a href="#cb1-90"></a>Translate this line from C to RISC-V</span>
-<span id="cb1-91"><a href="#cb1-91"></a>a = b + c + d – e;</span>
-<span id="cb1-92"><a href="#cb1-92"></a><span class="pp">|</span> x14 <span class="pp">|</span> x15 <span class="pp">|</span> x16 <span class="pp">|</span> x17 <span class="pp">|</span> x18 <span class="pp">|</span></span>
-<span id="cb1-93"><a href="#cb1-93"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-94"><a href="#cb1-94"></a>You may use additional registers in your solution</span>
-<span id="cb1-95"><a href="#cb1-95"></a>11</span>
-<span id="cb1-96"><a href="#cb1-96"></a></span>
-<span id="cb1-97"><a href="#cb1-97"></a>Translate this line from C to RISC-V</span>
-<span id="cb1-98"><a href="#cb1-98"></a>a = b + c + d – e;</span>
-<span id="cb1-99"><a href="#cb1-99"></a><span class="pp">|</span> x14 <span class="pp">|</span> x15 <span class="pp">|</span> x16 <span class="pp">|</span> x17 <span class="pp">|</span> x18 <span class="pp">|</span></span>
-<span id="cb1-100"><a href="#cb1-100"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-101"><a href="#cb1-101"></a>add x14, x15, x16 add x5, x15, x16</span>
-<span id="cb1-102"><a href="#cb1-102"></a><span class="pp">|</span> add x14, x14, x17 <span class="pp">|</span>     <span class="pp">|</span> or sub x6, x17, x18 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-103"><a href="#cb1-103"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| -------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-104"><a href="#cb1-104"></a>sub x14, x14, x18 add x14, x5, x6</span>
-<span id="cb1-105"><a href="#cb1-105"></a>12</span>
-<span id="cb1-106"><a href="#cb1-106"></a></span>
-<span id="cb1-107"><a href="#cb1-107"></a>R-format vs I-format Instructions</span>
-<span id="cb1-108"><a href="#cb1-108"></a>■ R-format</span>
-<span id="cb1-109"><a href="#cb1-109"></a>– Used for operations between two registers</span>
-<span id="cb1-110"><a href="#cb1-110"></a>■ I-format</span>
-<span id="cb1-111"><a href="#cb1-111"></a>– Used for operations between a register and an</span>
-<span id="cb1-112"><a href="#cb1-112"></a>immediate value</span>
-<span id="cb1-113"><a href="#cb1-113"></a>■ in other words, if you want to use a constant that is not in a</span>
-<span id="cb1-114"><a href="#cb1-114"></a>register</span>
-<span id="cb1-115"><a href="#cb1-115"></a>13</span>
-<span id="cb1-116"><a href="#cb1-116"></a></span>
-<span id="cb1-117"><a href="#cb1-117"></a>I-type Data Processing</span>
-<span id="cb1-118"><a href="#cb1-118"></a>Instructions that process one register and a constant:</span>
-<span id="cb1-119"><a href="#cb1-119"></a><span class="pp">|</span>         <span class="pp">|</span> 31 30 29 <span class="pp">|</span> 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
-<span id="cb1-120"><a href="#cb1-120"></a><span class="pp">| -------</span> <span class="pp">| --------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
-<span id="cb1-121"><a href="#cb1-121"></a><span class="pp">|</span> I-type: <span class="pp">|</span>          <span class="pp">|</span> imm12       <span class="pp">|</span>             <span class="pp">|</span> rs1         <span class="pp">|</span> func3       <span class="pp">|</span> rd         <span class="pp">|</span> 0 0     <span class="pp">|</span> 1 0 0 1 1 <span class="pp">|</span></span>
-<span id="cb1-122"><a href="#cb1-122"></a>000 - ADDI</span>
-<span id="cb1-123"><a href="#cb1-123"></a>Notice there is no SUBI</span>
-<span id="cb1-124"><a href="#cb1-124"></a><span class="pp">|</span> instruction. Why?  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 001 - SLLI <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-125"><a href="#cb1-125"></a><span class="pp">| ------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-126"><a href="#cb1-126"></a>010 - SLTI</span>
-<span id="cb1-127"><a href="#cb1-127"></a>011 - SLTUI</span>
-<span id="cb1-128"><a href="#cb1-128"></a>100 - XORI</span>
-<span id="cb1-129"><a href="#cb1-129"></a>101 - SRLI/SRAI</span>
-<span id="cb1-130"><a href="#cb1-130"></a>110 - ORI</span>
-<span id="cb1-131"><a href="#cb1-131"></a>111 - ANDI</span>
-<span id="cb1-132"><a href="#cb1-132"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> andi  <span class="pp">|</span> x5,x10,255 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-133"><a href="#cb1-133"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-134"><a href="#cb1-134"></a>I-type instructions</span>
-<span id="cb1-135"><a href="#cb1-135"></a><span class="pp">|</span> have the following template: <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Is encoded as: <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-136"><a href="#cb1-136"></a><span class="pp">| ----------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-137"><a href="#cb1-137"></a>0000 1111 1111 0101 0111 0010 1001 0011</span>
-<span id="cb1-138"><a href="#cb1-138"></a><span class="pp">|</span> OPfunc3  <span class="pp">|</span>     <span class="pp">|</span> rd,rs1,imm12 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-139"><a href="#cb1-139"></a><span class="pp">| --------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-140"><a href="#cb1-140"></a>   0x0ff57293</span>
-<span id="cb1-141"><a href="#cb1-141"></a>14</span>
-<span id="cb1-142"><a href="#cb1-142"></a></span>
-<span id="cb1-143"><a href="#cb1-143"></a>I-Format Syntax</span>
-<span id="cb1-144"><a href="#cb1-144"></a>op rd, rs1, immediate12</span>
-<span id="cb1-145"><a href="#cb1-145"></a>this is where we will store</span>
-<span id="cb1-146"><a href="#cb1-146"></a>the result of the operation</span>
-<span id="cb1-147"><a href="#cb1-147"></a>15</span>
-<span id="cb1-148"><a href="#cb1-148"></a></span>
-<span id="cb1-149"><a href="#cb1-149"></a>I-Format Syntax</span>
-<span id="cb1-150"><a href="#cb1-150"></a>x5 = x4 + 12</span>
-<span id="cb1-151"><a href="#cb1-151"></a>addi x5, x4, 12</span>
-<span id="cb1-152"><a href="#cb1-152"></a><span class="pp">|</span> destination   <span class="pp">|</span> source    <span class="pp">|</span> immediate  <span class="pp">|</span></span>
-<span id="cb1-153"><a href="#cb1-153"></a><span class="pp">| -------------</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">|</span></span>
-<span id="cb1-154"><a href="#cb1-154"></a><span class="pp">|</span> register (rd) <span class="pp">|</span> register  <span class="pp">|</span>            <span class="pp">|</span></span>
-<span id="cb1-155"><a href="#cb1-155"></a>value</span>
-<span id="cb1-156"><a href="#cb1-156"></a>(rs1)</span>
-<span id="cb1-157"><a href="#cb1-157"></a>16</span>
-<span id="cb1-158"><a href="#cb1-158"></a></span>
-<span id="cb1-159"><a href="#cb1-159"></a>R-Format vs I-Format Syntax</span>
-<span id="cb1-160"><a href="#cb1-160"></a>I-Format</span>
-<span id="cb1-161"><a href="#cb1-161"></a>R-Format</span>
-<span id="cb1-162"><a href="#cb1-162"></a>op rd, rs1, immediate</span>
-<span id="cb1-163"><a href="#cb1-163"></a>op rd, rs1, rs2</span>
-<span id="cb1-164"><a href="#cb1-164"></a>R<span class="co">[</span><span class="ot">rd</span><span class="co">]</span> = R<span class="co">[</span><span class="ot">rs1</span><span class="co">]</span> op R<span class="co">[</span><span class="ot">rs2</span><span class="co">]</span> R<span class="co">[</span><span class="ot">rd</span><span class="co">]</span> = R<span class="co">[</span><span class="ot">rs1</span><span class="co">]</span> op immediate</span>
-<span id="cb1-165"><a href="#cb1-165"></a>writes to rd writes to rd</span>
-<span id="cb1-166"><a href="#cb1-166"></a>17</span>
-<span id="cb1-167"><a href="#cb1-167"></a></span>
-<span id="cb1-168"><a href="#cb1-168"></a>Register 0</span>
-<span id="cb1-169"><a href="#cb1-169"></a>■ Register 0 always holds the value 0</span>
-<span id="cb1-170"><a href="#cb1-170"></a>■ This is very useful when we want to write a constant</span>
-<span id="cb1-171"><a href="#cb1-171"></a>value to a register</span>
-<span id="cb1-172"><a href="#cb1-172"></a>18</span>
-<span id="cb1-173"><a href="#cb1-173"></a></span>
-<span id="cb1-174"><a href="#cb1-174"></a>I-Format Syntax</span>
-<span id="cb1-175"><a href="#cb1-175"></a>addi x5, x0, 12</span>
-<span id="cb1-176"><a href="#cb1-176"></a>source destination</span>
-<span id="cb1-177"><a href="#cb1-177"></a>immediate</span>
-<span id="cb1-178"><a href="#cb1-178"></a>funct3 opcode</span>
-<span id="cb1-179"><a href="#cb1-179"></a>register register</span>
-<span id="cb1-180"><a href="#cb1-180"></a>31 20 19 15 14 12 11 7 6 0</span>
-<span id="cb1-181"><a href="#cb1-181"></a>19</span>
-<span id="cb1-182"><a href="#cb1-182"></a></span>
-<span id="cb1-183"><a href="#cb1-183"></a>I-Format Syntax</span>
-<span id="cb1-184"><a href="#cb1-184"></a>addi x5, x0, 12</span>
-<span id="cb1-185"><a href="#cb1-185"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> source  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-186"><a href="#cb1-186"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-187"><a href="#cb1-187"></a>immediate</span>
-<span id="cb1-188"><a href="#cb1-188"></a>funct3 opcode</span>
-<span id="cb1-189"><a href="#cb1-189"></a><span class="pp">|</span>                <span class="pp">|</span>       <span class="pp">|</span> register  <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> register <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-190"><a href="#cb1-190"></a><span class="pp">| --------------</span> <span class="pp">| -----</span> <span class="pp">| ---------</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| --------</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-191"><a href="#cb1-191"></a><span class="pp">|</span> 0000 0000 1100 <span class="pp">|</span>       <span class="pp">|</span> 00000     <span class="pp">|</span>       <span class="pp">|</span> 000 <span class="pp">|</span>       <span class="pp">|</span> 00101    <span class="pp">|</span> 0010011 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-192"><a href="#cb1-192"></a><span class="pp">|</span> 31             <span class="pp">|</span> 20 19 <span class="pp">|</span>           <span class="pp">|</span> 15 14 <span class="pp">|</span>     <span class="pp">|</span> 12 11 <span class="pp">|</span>          <span class="pp">|</span> 7 6     <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-193"><a href="#cb1-193"></a>20</span>
-<span id="cb1-194"><a href="#cb1-194"></a></span>
-<span id="cb1-195"><a href="#cb1-195"></a>ARITHMETIC LOGIC</span>
-<span id="cb1-196"><a href="#cb1-196"></a><span class="pp">|</span> UNIT <span class="pp">|</span> (ALU) <span class="pp">|</span> ☺   <span class="pp">|</span></span>
-<span id="cb1-197"><a href="#cb1-197"></a><span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-198"><a href="#cb1-198"></a>15</span>
-<span id="cb1-199"><a href="#cb1-199"></a></span>
-<span id="cb1-200"><a href="#cb1-200"></a>A B</span>
-<span id="cb1-201"><a href="#cb1-201"></a>n Arithmetic Logic Unit n</span>
-<span id="cb1-202"><a href="#cb1-202"></a>Add/</span>
-<span id="cb1-203"><a href="#cb1-203"></a>Bidirectional Boolean</span>
-<span id="cb1-204"><a href="#cb1-204"></a>Sub</span>
-<span id="cb1-205"><a href="#cb1-205"></a>Shifter Unit</span>
-<span id="cb1-206"><a href="#cb1-206"></a>The “math center” of a</span>
-<span id="cb1-207"><a href="#cb1-207"></a>computer! ☺</span>
-<span id="cb1-208"><a href="#cb1-208"></a>n</span>
-<span id="cb1-209"><a href="#cb1-209"></a>Result</span>
-<span id="cb1-210"><a href="#cb1-210"></a>16</span>
-<span id="cb1-211"><a href="#cb1-211"></a></span>
-<span id="cb1-212"><a href="#cb1-212"></a>An Example Boolean Unit</span>
-<span id="cb1-213"><a href="#cb1-213"></a>n</span>
-<span id="cb1-214"><a href="#cb1-214"></a>n</span>
-<span id="cb1-215"><a href="#cb1-215"></a>n</span>
-<span id="cb1-216"><a href="#cb1-216"></a><span class="pp">|</span> Operation <span class="pp">|</span> Expression <span class="pp">|</span> Bool <span class="pp">|</span></span>
-<span id="cb1-217"><a href="#cb1-217"></a><span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
-<span id="cb1-218"><a href="#cb1-218"></a><span class="pp">|</span> AND       <span class="pp">|</span> A x B      <span class="pp">|</span> 0b00 <span class="pp">|</span></span>
-<span id="cb1-219"><a href="#cb1-219"></a><span class="pp">|</span> OR        <span class="pp">|</span> A + B      <span class="pp">|</span> 0b01 <span class="pp">|</span></span>
-<span id="cb1-220"><a href="#cb1-220"></a><span class="pp">|</span> XOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b10 <span class="pp">|</span></span>
-<span id="cb1-221"><a href="#cb1-221"></a><span class="pp">|</span> NOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b11 <span class="pp">|</span></span>
-<span id="cb1-222"><a href="#cb1-222"></a>2</span>
-<span id="cb1-223"><a href="#cb1-223"></a>23</span>
-<span id="cb1-224"><a href="#cb1-224"></a></span>
-<span id="cb1-225"><a href="#cb1-225"></a>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4.</span>
-<span id="cb1-226"><a href="#cb1-226"></a>4</span>
-<span id="cb1-227"><a href="#cb1-227"></a>4</span>
-<span id="cb1-228"><a href="#cb1-228"></a>4</span>
-<span id="cb1-229"><a href="#cb1-229"></a><span class="pp">|</span> Operation <span class="pp">|</span> Expression <span class="pp">|</span> Bool <span class="pp">|</span></span>
-<span id="cb1-230"><a href="#cb1-230"></a><span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
-<span id="cb1-231"><a href="#cb1-231"></a><span class="pp">|</span> AND       <span class="pp">|</span> A x B      <span class="pp">|</span> 0b00 <span class="pp">|</span></span>
-<span id="cb1-232"><a href="#cb1-232"></a><span class="pp">|</span> OR        <span class="pp">|</span> A + B      <span class="pp">|</span> 0b01 <span class="pp">|</span></span>
-<span id="cb1-233"><a href="#cb1-233"></a><span class="pp">|</span> XOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b10 <span class="pp">|</span></span>
-<span id="cb1-234"><a href="#cb1-234"></a><span class="pp">|</span> NOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b11 <span class="pp">|</span></span>
-<span id="cb1-235"><a href="#cb1-235"></a>2</span>
-<span id="cb1-236"><a href="#cb1-236"></a>24</span>
-<span id="cb1-237"><a href="#cb1-237"></a></span>
-<span id="cb1-238"><a href="#cb1-238"></a>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4.</span>
-<span id="cb1-239"><a href="#cb1-239"></a>0b0101</span>
-<span id="cb1-240"><a href="#cb1-240"></a>0b0100</span>
-<span id="cb1-241"><a href="#cb1-241"></a>4</span>
-<span id="cb1-242"><a href="#cb1-242"></a>0b0100</span>
-<span id="cb1-243"><a href="#cb1-243"></a>4</span>
-<span id="cb1-244"><a href="#cb1-244"></a>4</span>
-<span id="cb1-245"><a href="#cb1-245"></a>0b0100</span>
-<span id="cb1-246"><a href="#cb1-246"></a>0b0101</span>
-<span id="cb1-247"><a href="#cb1-247"></a><span class="pp">|</span>        <span class="pp">|</span> Operation <span class="pp">|</span> Expression <span class="pp">|</span> Bool <span class="pp">|</span></span>
-<span id="cb1-248"><a href="#cb1-248"></a><span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
-<span id="cb1-249"><a href="#cb1-249"></a><span class="pp">|</span> 0b0001 <span class="pp">|</span> AND       <span class="pp">|</span> A x B      <span class="pp">|</span> 0b00 <span class="pp">|</span></span>
-<span id="cb1-250"><a href="#cb1-250"></a><span class="pp">|</span>        <span class="pp">|</span> OR        <span class="pp">|</span> A + B      <span class="pp">|</span> 0b01 <span class="pp">|</span></span>
-<span id="cb1-251"><a href="#cb1-251"></a><span class="pp">|</span> 0b1010 <span class="pp">|</span> XOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b10 <span class="pp">|</span></span>
-<span id="cb1-252"><a href="#cb1-252"></a><span class="pp">|</span>        <span class="pp">|</span> NOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b11 <span class="pp">|</span></span>
-<span id="cb1-253"><a href="#cb1-253"></a>2</span>
-<span id="cb1-254"><a href="#cb1-254"></a>0b00</span>
-<span id="cb1-255"><a href="#cb1-255"></a>25</span>
-<span id="cb1-256"><a href="#cb1-256"></a></span>
-<span id="cb1-257"><a href="#cb1-257"></a>What are the values on each signal when we want to perform Y = A XOR B where A</span>
-<span id="cb1-258"><a href="#cb1-258"></a><span class="pp">|</span> is 0b1010 <span class="pp">|</span> and <span class="pp">|</span> B is 0b0001? <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-259"><a href="#cb1-259"></a><span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-260"><a href="#cb1-260"></a>4</span>
-<span id="cb1-261"><a href="#cb1-261"></a>4</span>
-<span id="cb1-262"><a href="#cb1-262"></a>4</span>
-<span id="cb1-263"><a href="#cb1-263"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Operation <span class="pp">|</span> Expression <span class="pp">|</span> Bool <span class="pp">|</span></span>
-<span id="cb1-264"><a href="#cb1-264"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
-<span id="cb1-265"><a href="#cb1-265"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> AND       <span class="pp">|</span> A x B      <span class="pp">|</span> 0b00 <span class="pp">|</span></span>
-<span id="cb1-266"><a href="#cb1-266"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> OR        <span class="pp">|</span> A + B      <span class="pp">|</span> 0b01 <span class="pp">|</span></span>
-<span id="cb1-267"><a href="#cb1-267"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> XOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b10 <span class="pp">|</span></span>
-<span id="cb1-268"><a href="#cb1-268"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> NOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b11 <span class="pp">|</span></span>
-<span id="cb1-269"><a href="#cb1-269"></a>2</span>
-<span id="cb1-270"><a href="#cb1-270"></a>24</span>
-<span id="cb1-271"><a href="#cb1-271"></a></span>
-<span id="cb1-272"><a href="#cb1-272"></a>What are the values on each signal when we want to perform Y = A XOR B</span>
-<span id="cb1-273"><a href="#cb1-273"></a><span class="pp">|</span> where <span class="pp">|</span> A is 0b1010 <span class="pp">|</span> and B <span class="pp">|</span> is 0b0001? <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-274"><a href="#cb1-274"></a><span class="pp">| -----</span> <span class="pp">| -----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-275"><a href="#cb1-275"></a>0b1010</span>
-<span id="cb1-276"><a href="#cb1-276"></a>0b0000</span>
-<span id="cb1-277"><a href="#cb1-277"></a>4</span>
-<span id="cb1-278"><a href="#cb1-278"></a>0b1011</span>
-<span id="cb1-279"><a href="#cb1-279"></a>4</span>
-<span id="cb1-280"><a href="#cb1-280"></a>4</span>
-<span id="cb1-281"><a href="#cb1-281"></a>0b0001</span>
-<span id="cb1-282"><a href="#cb1-282"></a>0b1011</span>
-<span id="cb1-283"><a href="#cb1-283"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span> Operation <span class="pp">|</span> Expression <span class="pp">|</span> Bool <span class="pp">|</span></span>
-<span id="cb1-284"><a href="#cb1-284"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
-<span id="cb1-285"><a href="#cb1-285"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0b1011 <span class="pp">|</span> AND       <span class="pp">|</span> A x B      <span class="pp">|</span> 0b00 <span class="pp">|</span></span>
-<span id="cb1-286"><a href="#cb1-286"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span> OR        <span class="pp">|</span> A + B      <span class="pp">|</span> 0b01 <span class="pp">|</span></span>
-<span id="cb1-287"><a href="#cb1-287"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0b0100 <span class="pp">|</span> XOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b10 <span class="pp">|</span></span>
-<span id="cb1-288"><a href="#cb1-288"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span> NOR       <span class="pp">|</span> A + B      <span class="pp">|</span> 0b11 <span class="pp">|</span></span>
-<span id="cb1-289"><a href="#cb1-289"></a>2</span>
-<span id="cb1-290"><a href="#cb1-290"></a>0b10</span>
-<span id="cb1-291"><a href="#cb1-291"></a>27</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-90"><a href="#cb1-90"></a>A B</span>
+<span id="cb1-91"><a href="#cb1-91"></a>Wiring up Add/Sub</span>
+<span id="cb1-92"><a href="#cb1-92"></a>n n</span>
+<span id="cb1-93"><a href="#cb1-93"></a>Add/</span>
+<span id="cb1-94"><a href="#cb1-94"></a>Bidirectional Boolean</span>
+<span id="cb1-95"><a href="#cb1-95"></a>Sub</span>
+<span id="cb1-96"><a href="#cb1-96"></a>Sub</span>
+<span id="cb1-97"><a href="#cb1-97"></a>Shifter Unit</span>
+<span id="cb1-98"><a href="#cb1-98"></a>n</span>
+<span id="cb1-99"><a href="#cb1-99"></a>n</span>
+<span id="cb1-100"><a href="#cb1-100"></a>Result</span>
+<span id="cb1-101"><a href="#cb1-101"></a>29</span>
+<span id="cb1-102"><a href="#cb1-102"></a></span>
+<span id="cb1-103"><a href="#cb1-103"></a>A B</span>
+<span id="cb1-104"><a href="#cb1-104"></a><span class="pp">|</span> n Wiring <span class="pp">|</span> up  <span class="pp">|</span> Boolean <span class="pp">|</span> Unit <span class="pp">|</span></span>
+<span id="cb1-105"><a href="#cb1-105"></a><span class="pp">| --------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-106"><a href="#cb1-106"></a>n</span>
+<span id="cb1-107"><a href="#cb1-107"></a>1</span>
+<span id="cb1-108"><a href="#cb1-108"></a>2</span>
+<span id="cb1-109"><a href="#cb1-109"></a>Add/</span>
+<span id="cb1-110"><a href="#cb1-110"></a><span class="pp">|</span>     <span class="pp">|</span> Bidirectional <span class="pp">|</span>     <span class="pp">|</span> Boolean <span class="pp">|</span></span>
+<span id="cb1-111"><a href="#cb1-111"></a><span class="pp">| ---</span> <span class="pp">| -------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">|</span></span>
+<span id="cb1-112"><a href="#cb1-112"></a>Sub</span>
+<span id="cb1-113"><a href="#cb1-113"></a><span class="pp">|</span> Sub <span class="pp">|</span> Shifter <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-114"><a href="#cb1-114"></a><span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-115"><a href="#cb1-115"></a>Unit</span>
+<span id="cb1-116"><a href="#cb1-116"></a>n 3</span>
+<span id="cb1-117"><a href="#cb1-117"></a>n</span>
+<span id="cb1-118"><a href="#cb1-118"></a>n</span>
+<span id="cb1-119"><a href="#cb1-119"></a>Result</span>
+<span id="cb1-120"><a href="#cb1-120"></a>30</span>
+<span id="cb1-121"><a href="#cb1-121"></a></span>
+<span id="cb1-122"><a href="#cb1-122"></a>A B</span>
+<span id="cb1-123"><a href="#cb1-123"></a>n Wiring up Boolean Unit</span>
+<span id="cb1-124"><a href="#cb1-124"></a>n</span>
+<span id="cb1-125"><a href="#cb1-125"></a>1 2</span>
+<span id="cb1-126"><a href="#cb1-126"></a>Add/</span>
+<span id="cb1-127"><a href="#cb1-127"></a>Bidirectional Boolean</span>
+<span id="cb1-128"><a href="#cb1-128"></a>Sub</span>
+<span id="cb1-129"><a href="#cb1-129"></a>Sub</span>
+<span id="cb1-130"><a href="#cb1-130"></a>Shifter Unit</span>
+<span id="cb1-131"><a href="#cb1-131"></a>Bool</span>
+<span id="cb1-132"><a href="#cb1-132"></a>n 3</span>
+<span id="cb1-133"><a href="#cb1-133"></a>4 n</span>
+<span id="cb1-134"><a href="#cb1-134"></a>n</span>
+<span id="cb1-135"><a href="#cb1-135"></a>Result</span>
+<span id="cb1-136"><a href="#cb1-136"></a>31</span>
+<span id="cb1-137"><a href="#cb1-137"></a></span>
+<span id="cb1-138"><a href="#cb1-138"></a>A B</span>
+<span id="cb1-139"><a href="#cb1-139"></a>n Wiring up Shifter n</span>
+<span id="cb1-140"><a href="#cb1-140"></a>1</span>
+<span id="cb1-141"><a href="#cb1-141"></a>2</span>
+<span id="cb1-142"><a href="#cb1-142"></a>Add/</span>
+<span id="cb1-143"><a href="#cb1-143"></a>Bidirectional Boolean</span>
+<span id="cb1-144"><a href="#cb1-144"></a>Sub</span>
+<span id="cb1-145"><a href="#cb1-145"></a>Sub</span>
+<span id="cb1-146"><a href="#cb1-146"></a>Shifter Unit</span>
+<span id="cb1-147"><a href="#cb1-147"></a>Bool</span>
+<span id="cb1-148"><a href="#cb1-148"></a>n n n</span>
+<span id="cb1-149"><a href="#cb1-149"></a>3</span>
+<span id="cb1-150"><a href="#cb1-150"></a>n</span>
+<span id="cb1-151"><a href="#cb1-151"></a>Result</span>
+<span id="cb1-152"><a href="#cb1-152"></a>11</span>
+<span id="cb1-153"><a href="#cb1-153"></a></span>
+<span id="cb1-154"><a href="#cb1-154"></a>A B</span>
+<span id="cb1-155"><a href="#cb1-155"></a>n Wiring up Shifter n</span>
+<span id="cb1-156"><a href="#cb1-156"></a>1</span>
+<span id="cb1-157"><a href="#cb1-157"></a>2</span>
+<span id="cb1-158"><a href="#cb1-158"></a>Add/</span>
+<span id="cb1-159"><a href="#cb1-159"></a>Bidirectional Boolean</span>
+<span id="cb1-160"><a href="#cb1-160"></a>Sub</span>
+<span id="cb1-161"><a href="#cb1-161"></a>Sub</span>
+<span id="cb1-162"><a href="#cb1-162"></a>Shifter Unit</span>
+<span id="cb1-163"><a href="#cb1-163"></a>4</span>
+<span id="cb1-164"><a href="#cb1-164"></a>Bool</span>
+<span id="cb1-165"><a href="#cb1-165"></a>n n n</span>
+<span id="cb1-166"><a href="#cb1-166"></a>3</span>
+<span id="cb1-167"><a href="#cb1-167"></a>n</span>
+<span id="cb1-168"><a href="#cb1-168"></a>Result</span>
+<span id="cb1-169"><a href="#cb1-169"></a>12</span>
+<span id="cb1-170"><a href="#cb1-170"></a></span>
+<span id="cb1-171"><a href="#cb1-171"></a>A B</span>
+<span id="cb1-172"><a href="#cb1-172"></a>n Selecting Outputs n</span>
+<span id="cb1-173"><a href="#cb1-173"></a>Add/</span>
+<span id="cb1-174"><a href="#cb1-174"></a>Bidirectional Boolean</span>
+<span id="cb1-175"><a href="#cb1-175"></a>Sub</span>
+<span id="cb1-176"><a href="#cb1-176"></a>Sub</span>
+<span id="cb1-177"><a href="#cb1-177"></a>Shifter Unit</span>
+<span id="cb1-178"><a href="#cb1-178"></a>Bool</span>
+<span id="cb1-179"><a href="#cb1-179"></a>n</span>
+<span id="cb1-180"><a href="#cb1-180"></a>n n</span>
+<span id="cb1-181"><a href="#cb1-181"></a>1 0</span>
+<span id="cb1-182"><a href="#cb1-182"></a>1</span>
+<span id="cb1-183"><a href="#cb1-183"></a>n</span>
+<span id="cb1-184"><a href="#cb1-184"></a>1 0</span>
+<span id="cb1-185"><a href="#cb1-185"></a>2</span>
+<span id="cb1-186"><a href="#cb1-186"></a>n</span>
+<span id="cb1-187"><a href="#cb1-187"></a>Result</span>
+<span id="cb1-188"><a href="#cb1-188"></a>13</span>
+<span id="cb1-189"><a href="#cb1-189"></a></span>
+<span id="cb1-190"><a href="#cb1-190"></a>A B</span>
+<span id="cb1-191"><a href="#cb1-191"></a>n Selecting Outputs n</span>
+<span id="cb1-192"><a href="#cb1-192"></a>Add/</span>
+<span id="cb1-193"><a href="#cb1-193"></a>Bidirectional Boolean</span>
+<span id="cb1-194"><a href="#cb1-194"></a>Sub</span>
+<span id="cb1-195"><a href="#cb1-195"></a>Sub</span>
+<span id="cb1-196"><a href="#cb1-196"></a>Shifter Unit</span>
+<span id="cb1-197"><a href="#cb1-197"></a>Bool</span>
+<span id="cb1-198"><a href="#cb1-198"></a>n</span>
+<span id="cb1-199"><a href="#cb1-199"></a>n n</span>
+<span id="cb1-200"><a href="#cb1-200"></a>Shift 1 0</span>
+<span id="cb1-201"><a href="#cb1-201"></a>1</span>
+<span id="cb1-202"><a href="#cb1-202"></a>3</span>
+<span id="cb1-203"><a href="#cb1-203"></a>n</span>
+<span id="cb1-204"><a href="#cb1-204"></a>Math 1 0</span>
+<span id="cb1-205"><a href="#cb1-205"></a>2</span>
+<span id="cb1-206"><a href="#cb1-206"></a>4</span>
+<span id="cb1-207"><a href="#cb1-207"></a>n</span>
+<span id="cb1-208"><a href="#cb1-208"></a>Result</span>
+<span id="cb1-209"><a href="#cb1-209"></a>14</span>
+<span id="cb1-210"><a href="#cb1-210"></a></span>
+<span id="cb1-211"><a href="#cb1-211"></a>A B</span>
+<span id="cb1-212"><a href="#cb1-212"></a>n</span>
+<span id="cb1-213"><a href="#cb1-213"></a>n Arithmetic Logic Unit</span>
+<span id="cb1-214"><a href="#cb1-214"></a>Add/</span>
+<span id="cb1-215"><a href="#cb1-215"></a>Bidirectional Boolean</span>
+<span id="cb1-216"><a href="#cb1-216"></a>Sub</span>
+<span id="cb1-217"><a href="#cb1-217"></a>Sub</span>
+<span id="cb1-218"><a href="#cb1-218"></a>Shifter Unit</span>
+<span id="cb1-219"><a href="#cb1-219"></a>Bool</span>
+<span id="cb1-220"><a href="#cb1-220"></a>n</span>
+<span id="cb1-221"><a href="#cb1-221"></a>n n</span>
+<span id="cb1-222"><a href="#cb1-222"></a>Shift 1 0</span>
+<span id="cb1-223"><a href="#cb1-223"></a>n</span>
+<span id="cb1-224"><a href="#cb1-224"></a>Math 1 0</span>
+<span id="cb1-225"><a href="#cb1-225"></a>n</span>
+<span id="cb1-226"><a href="#cb1-226"></a>Result</span>
+<span id="cb1-227"><a href="#cb1-227"></a>15</span>
+<span id="cb1-228"><a href="#cb1-228"></a></span>
+<span id="cb1-229"><a href="#cb1-229"></a><span class="pp">|</span> ALU         <span class="pp">|</span> Control <span class="pp">|</span>            <span class="pp">|</span> Bits <span class="pp">|</span>      <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-230"><a href="#cb1-230"></a><span class="pp">| -----------</span> <span class="pp">| -------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-231"><a href="#cb1-231"></a><span class="pp">|</span> Operation   <span class="pp">|</span>         <span class="pp">|</span> Expression <span class="pp">|</span>      <span class="pp">|</span> Sub  <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-232"><a href="#cb1-232"></a><span class="pp">|</span> Add         <span class="pp">|</span>         <span class="pp">|</span> A +        <span class="pp">|</span> B    <span class="pp">|</span> 0    <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-233"><a href="#cb1-233"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> Operation <span class="pp">|</span>     <span class="pp">|</span> Sub <span class="pp">|</span> Bool <span class="pp">|</span> Shift <span class="pp">|</span> Math <span class="pp">|</span></span>
+<span id="cb1-234"><a href="#cb1-234"></a><span class="pp">|</span> Sub         <span class="pp">|</span>         <span class="pp">|</span> A -        <span class="pp">|</span> B    <span class="pp">|</span> 1    <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-235"><a href="#cb1-235"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> A +       <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-236"><a href="#cb1-236"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> A -       <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-237"><a href="#cb1-237"></a><span class="pp">|</span> Operation   <span class="pp">|</span>         <span class="pp">|</span> Expression <span class="pp">|</span>      <span class="pp">|</span> Bool <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-238"><a href="#cb1-238"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> B &lt;&lt;      <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-239"><a href="#cb1-239"></a><span class="pp">|</span> Left Shift  <span class="pp">|</span>         <span class="pp">|</span> B &lt;&lt;       <span class="pp">|</span> A    <span class="pp">|</span> 00   <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-240"><a href="#cb1-240"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> B &gt;&gt;      <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-241"><a href="#cb1-241"></a><span class="pp">|</span> Logical     <span class="pp">|</span> Right   <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-242"><a href="#cb1-242"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span> B &gt;&gt;       <span class="pp">|</span> A    <span class="pp">|</span> 10   <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-243"><a href="#cb1-243"></a><span class="pp">|</span> Shift       <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> B &gt;&gt;&gt;     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-244"><a href="#cb1-244"></a><span class="pp">|</span> Arithmetic  <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> A AND     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-245"><a href="#cb1-245"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span> B &gt;&gt;&gt;      <span class="pp">|</span> A    <span class="pp">|</span> 11   <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-246"><a href="#cb1-246"></a><span class="pp">|</span> Right Shift <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-247"><a href="#cb1-247"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> A OR      <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-248"><a href="#cb1-248"></a><span class="pp">|</span>             <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> A XOR     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-249"><a href="#cb1-249"></a><span class="pp">|</span> Operation   <span class="pp">|</span>         <span class="pp">|</span> Expression <span class="pp">|</span>      <span class="pp">|</span> Bool <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-250"><a href="#cb1-250"></a>A NOR B</span>
+<span id="cb1-251"><a href="#cb1-251"></a><span class="pp">|</span> AND <span class="pp">|</span>     <span class="pp">|</span> A x <span class="pp">|</span> B   <span class="pp">|</span> 00  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-252"><a href="#cb1-252"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-253"><a href="#cb1-253"></a><span class="pp">|</span> OR  <span class="pp">|</span>     <span class="pp">|</span> A + <span class="pp">|</span> B   <span class="pp">|</span> 01  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-254"><a href="#cb1-254"></a><span class="pp">|</span> XOR <span class="pp">|</span>     <span class="pp">|</span> A + <span class="pp">|</span> B   <span class="pp">|</span> 10  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-255"><a href="#cb1-255"></a><span class="pp">|</span> NOR <span class="pp">|</span>     <span class="pp">|</span> A + <span class="pp">|</span> B   <span class="pp">|</span> 11  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-256"><a href="#cb1-256"></a>16</span>
+<span id="cb1-257"><a href="#cb1-257"></a></span>
+<span id="cb1-258"><a href="#cb1-258"></a><span class="pp">|</span> ALU        <span class="pp">|</span> Control <span class="pp">|</span>            <span class="pp">|</span> Bits <span class="pp">|</span>      <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-259"><a href="#cb1-259"></a><span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-260"><a href="#cb1-260"></a><span class="pp">|</span> Operation  <span class="pp">|</span>         <span class="pp">|</span> Expression <span class="pp">|</span>      <span class="pp">|</span> Sub  <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-261"><a href="#cb1-261"></a><span class="pp">|</span> Add        <span class="pp">|</span>         <span class="pp">|</span> A +        <span class="pp">|</span> B    <span class="pp">|</span> 0    <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-262"><a href="#cb1-262"></a><span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> Operation <span class="pp">|</span>     <span class="pp">|</span> Sub <span class="pp">|</span> Bool <span class="pp">|</span> Shift <span class="pp">|</span> Math <span class="pp">|</span></span>
+<span id="cb1-263"><a href="#cb1-263"></a><span class="pp">|</span> Sub        <span class="pp">|</span>         <span class="pp">|</span> A -        <span class="pp">|</span> B    <span class="pp">|</span> 1    <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-264"><a href="#cb1-264"></a><span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> A +       <span class="pp">|</span> B   <span class="pp">|</span> 0b0 <span class="pp">|</span> 0bXX <span class="pp">|</span> 0bX   <span class="pp">|</span> 0b1  <span class="pp">|</span></span>
+<span id="cb1-265"><a href="#cb1-265"></a><span class="pp">|</span> Operation  <span class="pp">|</span>         <span class="pp">|</span> Expression <span class="pp">|</span>      <span class="pp">|</span> Bool <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-266"><a href="#cb1-266"></a><span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> A -       <span class="pp">|</span> B   <span class="pp">|</span> 0b1 <span class="pp">|</span> 0bXX <span class="pp">|</span> 0bX   <span class="pp">|</span> 0b1  <span class="pp">|</span></span>
+<span id="cb1-267"><a href="#cb1-267"></a><span class="pp">|</span> Left Shift <span class="pp">|</span>         <span class="pp">|</span> B &lt;&lt;       <span class="pp">|</span> A    <span class="pp">|</span> 00   <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-268"><a href="#cb1-268"></a><span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> B &lt;&lt;      <span class="pp">|</span> A   <span class="pp">|</span> 0bX <span class="pp">|</span> 0b00 <span class="pp">|</span> 0b1   <span class="pp">|</span> 0b0  <span class="pp">|</span></span>
+<span id="cb1-269"><a href="#cb1-269"></a><span class="pp">|</span> Logical    <span class="pp">|</span> Right   <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-270"><a href="#cb1-270"></a><span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span>            <span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> B &gt;&gt;      <span class="pp">|</span> A   <span class="pp">|</span> 0bX <span class="pp">|</span> 0b10 <span class="pp">|</span> 0b1   <span class="pp">|</span> 0b0  <span class="pp">|</span></span>
+<span id="cb1-271"><a href="#cb1-271"></a><span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span> B &gt;&gt;       <span class="pp">|</span> A    <span class="pp">|</span> 10   <span class="pp">|</span>           <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb1-272"><a href="#cb1-272"></a>Shift</span>
+<span id="cb1-273"><a href="#cb1-273"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> B &gt;&gt;&gt; <span class="pp">|</span> A   <span class="pp">|</span> 0bX <span class="pp">|</span> 0b11 <span class="pp">|</span> 0b1 <span class="pp">|</span> 0b0 <span class="pp">|</span></span>
+<span id="cb1-274"><a href="#cb1-274"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-275"><a href="#cb1-275"></a>Arithmetic</span>
+<span id="cb1-276"><a href="#cb1-276"></a><span class="pp">|</span>             <span class="pp">|</span>     <span class="pp">|</span> B &gt;&gt;&gt;      <span class="pp">|</span> A   <span class="pp">|</span> 11   <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-277"><a href="#cb1-277"></a><span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-278"><a href="#cb1-278"></a><span class="pp">|</span>             <span class="pp">|</span>     <span class="pp">|</span>            <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> A AND  <span class="pp">|</span> B   <span class="pp">|</span> 0bX <span class="pp">|</span> 0b00 <span class="pp">|</span> 0b0 <span class="pp">|</span> 0b0 <span class="pp">|</span></span>
+<span id="cb1-279"><a href="#cb1-279"></a><span class="pp">|</span> Right Shift <span class="pp">|</span>     <span class="pp">|</span>            <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-280"><a href="#cb1-280"></a><span class="pp">|</span>             <span class="pp">|</span>     <span class="pp">|</span>            <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> A OR B <span class="pp">|</span>     <span class="pp">|</span> 0bX <span class="pp">|</span> 0b01 <span class="pp">|</span> 0b0 <span class="pp">|</span> 0b0 <span class="pp">|</span></span>
+<span id="cb1-281"><a href="#cb1-281"></a><span class="pp">|</span> Operation   <span class="pp">|</span>     <span class="pp">|</span> Expression <span class="pp">|</span>     <span class="pp">|</span> Bool <span class="pp">|</span> A XOR  <span class="pp">|</span> B   <span class="pp">|</span> 0bX <span class="pp">|</span> 0b10 <span class="pp">|</span> 0b0 <span class="pp">|</span> 0b0 <span class="pp">|</span></span>
+<span id="cb1-282"><a href="#cb1-282"></a><span class="pp">|</span> AND         <span class="pp">|</span>     <span class="pp">|</span> A x        <span class="pp">|</span> B   <span class="pp">|</span> 00   <span class="pp">|</span> A NOR  <span class="pp">|</span> B   <span class="pp">|</span> 0bX <span class="pp">|</span> 0b11 <span class="pp">|</span> 0b0 <span class="pp">|</span> 0b0 <span class="pp">|</span></span>
+<span id="cb1-283"><a href="#cb1-283"></a><span class="pp">|</span> OR          <span class="pp">|</span>     <span class="pp">|</span> A +        <span class="pp">|</span> B   <span class="pp">|</span> 01   <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-284"><a href="#cb1-284"></a><span class="pp">|</span> XOR         <span class="pp">|</span>     <span class="pp">|</span> A +        <span class="pp">|</span> B   <span class="pp">|</span> 10   <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-285"><a href="#cb1-285"></a><span class="pp">|</span> NOR         <span class="pp">|</span>     <span class="pp">|</span> A +        <span class="pp">|</span> B   <span class="pp">|</span> 11   <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-286"><a href="#cb1-286"></a>17</span>
+<span id="cb1-287"><a href="#cb1-287"></a></span>
+<span id="cb1-288"><a href="#cb1-288"></a>A B</span>
+<span id="cb1-289"><a href="#cb1-289"></a>n Arithmetic Logic Unit</span>
+<span id="cb1-290"><a href="#cb1-290"></a>n</span>
+<span id="cb1-291"><a href="#cb1-291"></a>Add/</span>
+<span id="cb1-292"><a href="#cb1-292"></a>Bidirectional Boolean</span>
+<span id="cb1-293"><a href="#cb1-293"></a>Sub</span>
+<span id="cb1-294"><a href="#cb1-294"></a>Sub</span>
+<span id="cb1-295"><a href="#cb1-295"></a>Shifter Unit</span>
+<span id="cb1-296"><a href="#cb1-296"></a>Bool</span>
+<span id="cb1-297"><a href="#cb1-297"></a>n</span>
+<span id="cb1-298"><a href="#cb1-298"></a>n n</span>
+<span id="cb1-299"><a href="#cb1-299"></a>Shift 1 0</span>
+<span id="cb1-300"><a href="#cb1-300"></a>n</span>
+<span id="cb1-301"><a href="#cb1-301"></a>Math 1 0</span>
+<span id="cb1-302"><a href="#cb1-302"></a>.</span>
+<span id="cb1-303"><a href="#cb1-303"></a>n</span>
+<span id="cb1-304"><a href="#cb1-304"></a>Z flag is 1 when</span>
+<span id="cb1-305"><a href="#cb1-305"></a>Result is 0</span>
+<span id="cb1-306"><a href="#cb1-306"></a>n</span>
+<span id="cb1-307"><a href="#cb1-307"></a>Result Z flag</span>
+<span id="cb1-308"><a href="#cb1-308"></a>42</span>
+<span id="cb1-309"><a href="#cb1-309"></a></span>
+<span id="cb1-310"><a href="#cb1-310"></a>A B</span>
+<span id="cb1-311"><a href="#cb1-311"></a>1 &lt;&lt; 2</span>
+<span id="cb1-312"><a href="#cb1-312"></a>4 4</span>
+<span id="cb1-313"><a href="#cb1-313"></a>Add/</span>
+<span id="cb1-314"><a href="#cb1-314"></a>Bidirectional Boolean</span>
+<span id="cb1-315"><a href="#cb1-315"></a>Sub</span>
+<span id="cb1-316"><a href="#cb1-316"></a>Sub</span>
+<span id="cb1-317"><a href="#cb1-317"></a>Shifter Unit</span>
+<span id="cb1-318"><a href="#cb1-318"></a>Bool</span>
+<span id="cb1-319"><a href="#cb1-319"></a>4</span>
+<span id="cb1-320"><a href="#cb1-320"></a>4 4</span>
+<span id="cb1-321"><a href="#cb1-321"></a>Shift 1 0</span>
+<span id="cb1-322"><a href="#cb1-322"></a>4</span>
+<span id="cb1-323"><a href="#cb1-323"></a>Math 1 0</span>
+<span id="cb1-324"><a href="#cb1-324"></a>4</span>
+<span id="cb1-325"><a href="#cb1-325"></a>*if the bool input to the bidirectional</span>
+<span id="cb1-326"><a href="#cb1-326"></a>Result</span>
+<span id="cb1-327"><a href="#cb1-327"></a>shifter is 0b01, output 0</span>
+<span id="cb1-328"><a href="#cb1-328"></a>19</span>
+<span id="cb1-329"><a href="#cb1-329"></a></span>
+<span id="cb1-330"><a href="#cb1-330"></a>A B</span>
+<span id="cb1-331"><a href="#cb1-331"></a>1 &lt;&lt; 2</span>
+<span id="cb1-332"><a href="#cb1-332"></a>4 4</span>
+<span id="cb1-333"><a href="#cb1-333"></a>0b0010 0b0001</span>
+<span id="cb1-334"><a href="#cb1-334"></a>0bX</span>
+<span id="cb1-335"><a href="#cb1-335"></a>Add/</span>
+<span id="cb1-336"><a href="#cb1-336"></a>Bidirectional Boolean</span>
+<span id="cb1-337"><a href="#cb1-337"></a>Sub</span>
+<span id="cb1-338"><a href="#cb1-338"></a>Sub</span>
+<span id="cb1-339"><a href="#cb1-339"></a>Shifter Unit</span>
+<span id="cb1-340"><a href="#cb1-340"></a>0b00</span>
+<span id="cb1-341"><a href="#cb1-341"></a>Bool</span>
+<span id="cb1-342"><a href="#cb1-342"></a>0b0000</span>
+<span id="cb1-343"><a href="#cb1-343"></a>4</span>
+<span id="cb1-344"><a href="#cb1-344"></a>4 4</span>
+<span id="cb1-345"><a href="#cb1-345"></a>Shift 1 0</span>
+<span id="cb1-346"><a href="#cb1-346"></a>0b0100</span>
+<span id="cb1-347"><a href="#cb1-347"></a>0b1</span>
+<span id="cb1-348"><a href="#cb1-348"></a>0b0001 4</span>
+<span id="cb1-349"><a href="#cb1-349"></a>Math 1 0</span>
+<span id="cb1-350"><a href="#cb1-350"></a>or</span>
+<span id="cb1-351"><a href="#cb1-351"></a>0b0 0b0011</span>
+<span id="cb1-352"><a href="#cb1-352"></a>0b0100</span>
+<span id="cb1-353"><a href="#cb1-353"></a>4</span>
+<span id="cb1-354"><a href="#cb1-354"></a>*if the bool input to the bidirectional</span>
+<span id="cb1-355"><a href="#cb1-355"></a>Result</span>
+<span id="cb1-356"><a href="#cb1-356"></a>shifter is 0b01, output 0</span>
+<span id="cb1-357"><a href="#cb1-357"></a>20</span>
+<span id="cb1-358"><a href="#cb1-358"></a></span>
+<span id="cb1-359"><a href="#cb1-359"></a>A B</span>
+<span id="cb1-360"><a href="#cb1-360"></a>n Arithmetic Logic Unit</span>
+<span id="cb1-361"><a href="#cb1-361"></a>n</span>
+<span id="cb1-362"><a href="#cb1-362"></a>Add/</span>
+<span id="cb1-363"><a href="#cb1-363"></a>Bidirectional Boolean</span>
+<span id="cb1-364"><a href="#cb1-364"></a>Sub</span>
+<span id="cb1-365"><a href="#cb1-365"></a>Sub</span>
+<span id="cb1-366"><a href="#cb1-366"></a>Shifter Unit</span>
+<span id="cb1-367"><a href="#cb1-367"></a>Bool</span>
+<span id="cb1-368"><a href="#cb1-368"></a>n</span>
+<span id="cb1-369"><a href="#cb1-369"></a>n n</span>
+<span id="cb1-370"><a href="#cb1-370"></a>Shift 1 0</span>
+<span id="cb1-371"><a href="#cb1-371"></a>n</span>
+<span id="cb1-372"><a href="#cb1-372"></a>Math 1 0</span>
+<span id="cb1-373"><a href="#cb1-373"></a>.</span>
+<span id="cb1-374"><a href="#cb1-374"></a>n</span>
+<span id="cb1-375"><a href="#cb1-375"></a>Z flag is 1 when</span>
+<span id="cb1-376"><a href="#cb1-376"></a>Result is 0</span>
+<span id="cb1-377"><a href="#cb1-377"></a>n</span>
+<span id="cb1-378"><a href="#cb1-378"></a>Result Z flag</span>
+<span id="cb1-379"><a href="#cb1-379"></a>42</span>
+<span id="cb1-380"><a href="#cb1-380"></a></span>
+<span id="cb1-381"><a href="#cb1-381"></a>THE REGISTER FILE</span>
+<span id="cb1-382"><a href="#cb1-382"></a>15</span>
+<span id="cb1-383"><a href="#cb1-383"></a></span>
+<span id="cb1-384"><a href="#cb1-384"></a>Reminder: What is a register?</span>
+<span id="cb1-385"><a href="#cb1-385"></a>■ Registers: special locations built directly into the hardware to store data!</span>
+<span id="cb1-386"><a href="#cb1-386"></a>■ These serve as the operands of many assembly instructions</span>
+<span id="cb1-387"><a href="#cb1-387"></a>■ These primitives are also visible to the assembly programmer once the</span>
+<span id="cb1-388"><a href="#cb1-388"></a>computer is built.</span>
+<span id="cb1-389"><a href="#cb1-389"></a>■ The size of a register is determined by the architecture</span>
+<span id="cb1-390"><a href="#cb1-390"></a>– We are assuming 32-bit registers in this class!</span>
+<span id="cb1-391"><a href="#cb1-391"></a>■ Registers are also synchronized with a clock!</span>
+<span id="cb1-392"><a href="#cb1-392"></a>– We will get to this next week. ☺</span>
+<span id="cb1-393"><a href="#cb1-393"></a>■ The processor’s 32 general-purpose registers are stored in a structure</span>
+<span id="cb1-394"><a href="#cb1-394"></a>called a register file</span>
+<span id="cb1-395"><a href="#cb1-395"></a>23</span>
+<span id="cb1-396"><a href="#cb1-396"></a></span>
+<span id="cb1-397"><a href="#cb1-397"></a>Register File</span>
+<span id="cb1-398"><a href="#cb1-398"></a><span class="pp">|</span> Reg 0 <span class="pp">|</span> Reg 1 <span class="pp">|</span> Reg 2 <span class="pp">|</span> Reg 3 <span class="pp">|</span> Reg 4 <span class="pp">|</span> Reg 5 <span class="pp">|</span>     <span class="pp">|</span> Reg 7 <span class="pp">|</span></span>
+<span id="cb1-399"><a href="#cb1-399"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
+<span id="cb1-400"><a href="#cb1-400"></a>Reg 6</span>
+<span id="cb1-401"><a href="#cb1-401"></a>• Contains the</span>
+<span id="cb1-402"><a href="#cb1-402"></a><span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span></span>
+<span id="cb1-403"><a href="#cb1-403"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-404"><a href="#cb1-404"></a>register state of</span>
+<span id="cb1-405"><a href="#cb1-405"></a><span class="pp">|</span> 0   <span class="pp">|</span> 5   <span class="pp">|</span> 11  <span class="pp">|</span> 100 <span class="pp">|</span> 56  <span class="pp">|</span> 18  <span class="pp">|</span> 25  <span class="pp">|</span> 22  <span class="pp">|</span></span>
+<span id="cb1-406"><a href="#cb1-406"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-407"><a href="#cb1-407"></a>the computer</span>
+<span id="cb1-408"><a href="#cb1-408"></a><span class="pp">|</span> Reg 8 <span class="pp">|</span> Reg 9 <span class="pp">|</span> Reg 10 <span class="pp">|</span> Reg 11 <span class="pp">|</span>     <span class="pp">|</span> Reg 13 <span class="pp">|</span> Reg 14 <span class="pp">|</span> Reg 15 <span class="pp">|</span></span>
+<span id="cb1-409"><a href="#cb1-409"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-410"><a href="#cb1-410"></a>Reg 12</span>
+<span id="cb1-411"><a href="#cb1-411"></a>• Any register can</span>
+<span id="cb1-412"><a href="#cb1-412"></a><span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span></span>
+<span id="cb1-413"><a href="#cb1-413"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-414"><a href="#cb1-414"></a>be read or</span>
+<span id="cb1-415"><a href="#cb1-415"></a><span class="pp">|</span> 3   <span class="pp">|</span> 10  <span class="pp">|</span> 9   <span class="pp">|</span> 112 <span class="pp">|</span> 99  <span class="pp">|</span> 98  <span class="pp">|</span> 85  <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-416"><a href="#cb1-416"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-417"><a href="#cb1-417"></a>written, just</span>
+<span id="cb1-418"><a href="#cb1-418"></a>specify the</span>
+<span id="cb1-419"><a href="#cb1-419"></a><span class="pp">|</span> Reg 16 <span class="pp">|</span> Reg 17 <span class="pp">|</span> Reg 18 <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span> Reg 23 <span class="pp">|</span></span>
+<span id="cb1-420"><a href="#cb1-420"></a><span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-421"><a href="#cb1-421"></a><span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span> Reg 19 <span class="pp">|</span> Reg 20 <span class="pp">|</span> Reg 21 <span class="pp">|</span> Reg 22 <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-422"><a href="#cb1-422"></a>number of the</span>
+<span id="cb1-423"><a href="#cb1-423"></a><span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span></span>
+<span id="cb1-424"><a href="#cb1-424"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-425"><a href="#cb1-425"></a>register</span>
+<span id="cb1-426"><a href="#cb1-426"></a><span class="pp">|</span> 8      <span class="pp">|</span> 86     <span class="pp">|</span> 21     <span class="pp">|</span> 77     <span class="pp">|</span> 84  <span class="pp">|</span> 98     <span class="pp">|</span> 25     <span class="pp">|</span> 17     <span class="pp">|</span></span>
+<span id="cb1-427"><a href="#cb1-427"></a><span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-428"><a href="#cb1-428"></a><span class="pp">|</span> Reg 24 <span class="pp">|</span> Reg 25 <span class="pp">|</span> Reg 26 <span class="pp">|</span> Reg 27 <span class="pp">|</span>     <span class="pp">|</span> Reg 29 <span class="pp">|</span> Reg 30 <span class="pp">|</span> Reg 31 <span class="pp">|</span></span>
+<span id="cb1-429"><a href="#cb1-429"></a>Reg 28</span>
+<span id="cb1-430"><a href="#cb1-430"></a><span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span></span>
+<span id="cb1-431"><a href="#cb1-431"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-432"><a href="#cb1-432"></a><span class="pp">|</span> 5   <span class="pp">|</span> 67  <span class="pp">|</span> 55  <span class="pp">|</span> 44  <span class="pp">|</span> 62  <span class="pp">|</span> 33  <span class="pp">|</span> 34  <span class="pp">|</span> 47  <span class="pp">|</span></span>
+<span id="cb1-433"><a href="#cb1-433"></a>24</span>
+<span id="cb1-434"><a href="#cb1-434"></a></span>
+<span id="cb1-435"><a href="#cb1-435"></a>x1 = x3 + x2</span>
+<span id="cb1-436"><a href="#cb1-436"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-437"><a href="#cb1-437"></a><span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -----</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-438"><a href="#cb1-438"></a><span class="pp">|</span> funct7  <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>       <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-439"><a href="#cb1-439"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-440"><a href="#cb1-440"></a><span class="pp">|</span> 0000000 <span class="pp">|</span>       <span class="pp">|</span> 00011      <span class="pp">|</span>       <span class="pp">|</span> 00010      <span class="pp">|</span>       <span class="pp">|</span> 000    <span class="pp">|</span>       <span class="pp">|</span> 00001        <span class="pp">|</span>     <span class="pp">|</span> 0110011 <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-441"><a href="#cb1-441"></a><span class="pp">|</span> 31      <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12 11 <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>         <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-442"><a href="#cb1-442"></a>00000000001100010000000010110011</span>
+<span id="cb1-443"><a href="#cb1-443"></a>Opcode is always 0110011 for integer R-type ALU instructions</span>
+<span id="cb1-444"><a href="#cb1-444"></a>funct3 is always the primary operation code group (e.g. 000 = add/sub. 100 = xor, 111 = and)</span>
+<span id="cb1-445"><a href="#cb1-445"></a>funct7 is used to further specify the operation (e.g. distinguishes add vs. sub. srl vs. sra)</span>
+<span id="cb1-446"><a href="#cb1-446"></a>25</span>
+<span id="cb1-447"><a href="#cb1-447"></a></span>
+<span id="cb1-448"><a href="#cb1-448"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> rs2 <span class="pp">|</span>     <span class="pp">|</span> rs1 <span class="pp">|</span>     <span class="pp">|</span> funct3 <span class="pp">|</span>     <span class="pp">|</span> rd  <span class="pp">|</span> opcode <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-449"><a href="#cb1-449"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-450"><a href="#cb1-450"></a>funct7</span>
+<span id="cb1-451"><a href="#cb1-451"></a><span class="pp">|</span>     <span class="pp">|</span> 0000000 <span class="pp">|</span>       <span class="pp">|</span> 00011 <span class="pp">|</span>       <span class="pp">|</span> 00010 <span class="pp">|</span>       <span class="pp">|</span> 000 <span class="pp">|</span>       <span class="pp">|</span> 00001 <span class="pp">|</span> 0110011 <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-452"><a href="#cb1-452"></a><span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-453"><a href="#cb1-453"></a><span class="pp">|</span>     <span class="pp">|</span> 31      <span class="pp">|</span> 25 24 <span class="pp">|</span>       <span class="pp">|</span> 20 19 <span class="pp">|</span>       <span class="pp">|</span> 15 14 <span class="pp">|</span>     <span class="pp">|</span> 12 11 <span class="pp">|</span>       <span class="pp">|</span> 7 6     <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-454"><a href="#cb1-454"></a>5</span>
+<span id="cb1-455"><a href="#cb1-455"></a>32</span>
+<span id="cb1-456"><a href="#cb1-456"></a>Read</span>
+<span id="cb1-457"><a href="#cb1-457"></a>Read</span>
+<span id="cb1-458"><a href="#cb1-458"></a>Register 1</span>
+<span id="cb1-459"><a href="#cb1-459"></a>Data 1 32</span>
+<span id="cb1-460"><a href="#cb1-460"></a>5</span>
+<span id="cb1-461"><a href="#cb1-461"></a>1</span>
+<span id="cb1-462"><a href="#cb1-462"></a>:</span>
+<span id="cb1-463"><a href="#cb1-463"></a>9</span>
+<span id="cb1-464"><a href="#cb1-464"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 5   <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span> 32  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-465"><a href="#cb1-465"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-466"><a href="#cb1-466"></a><span class="pp">|</span> n 1 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-467"><a href="#cb1-467"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Read  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Read  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-468"><a href="#cb1-468"></a>o</span>
+<span id="cb1-469"><a href="#cb1-469"></a><span class="pp">|</span> i 32 <span class="pp">|</span> 24:20 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>            <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Data 2 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-470"><a href="#cb1-470"></a><span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-471"><a href="#cb1-471"></a><span class="pp">|</span> t    <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Register 2 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-472"><a href="#cb1-472"></a>c</span>
+<span id="cb1-473"><a href="#cb1-473"></a>u</span>
+<span id="cb1-474"><a href="#cb1-474"></a>4</span>
+<span id="cb1-475"><a href="#cb1-475"></a>r</span>
+<span id="cb1-476"><a href="#cb1-476"></a>Reg</span>
+<span id="cb1-477"><a href="#cb1-477"></a>t</span>
+<span id="cb1-478"><a href="#cb1-478"></a>s</span>
+<span id="cb1-479"><a href="#cb1-479"></a>n</span>
+<span id="cb1-480"><a href="#cb1-480"></a>File</span>
+<span id="cb1-481"><a href="#cb1-481"></a>I 0010</span>
+<span id="cb1-482"><a href="#cb1-482"></a>7</span>
+<span id="cb1-483"><a href="#cb1-483"></a>:</span>
+<span id="cb1-484"><a href="#cb1-484"></a>1</span>
+<span id="cb1-485"><a href="#cb1-485"></a>1</span>
+<span id="cb1-486"><a href="#cb1-486"></a>In the textbook</span>
+<span id="cb1-487"><a href="#cb1-487"></a>5</span>
+<span id="cb1-488"><a href="#cb1-488"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Write  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> implementation of our  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-489"><a href="#cb1-489"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----------------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-490"><a href="#cb1-490"></a>RISC-V CPU,  ALUOp is</span>
+<span id="cb1-491"><a href="#cb1-491"></a>Register</span>
+<span id="cb1-492"><a href="#cb1-492"></a>the only externally</span>
+<span id="cb1-493"><a href="#cb1-493"></a>32</span>
+<span id="cb1-494"><a href="#cb1-494"></a>visible signal</span>
+<span id="cb1-495"><a href="#cb1-495"></a>Write Data</span>
+<span id="cb1-496"><a href="#cb1-496"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> RegWrite <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-497"><a href="#cb1-497"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-498"><a href="#cb1-498"></a>26</span>
+<span id="cb1-499"><a href="#cb1-499"></a></span>
+<span id="cb1-500"><a href="#cb1-500"></a>RISC-V 32I ALU</span>
+<span id="cb1-501"><a href="#cb1-501"></a><span class="pp">|</span>     <span class="pp">|</span> Function ALU Operation <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-502"><a href="#cb1-502"></a><span class="pp">| ---</span> <span class="pp">| ----------------------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-503"><a href="#cb1-503"></a><span class="pp">|</span>     <span class="pp">|</span> AND                    <span class="pp">|</span> 0b0000 <span class="pp">|</span></span>
+<span id="cb1-504"><a href="#cb1-504"></a>32</span>
+<span id="cb1-505"><a href="#cb1-505"></a><span class="pp">|</span>     <span class="pp">|</span> OR  <span class="pp">|</span> 0b0001 <span class="pp">|</span></span>
+<span id="cb1-506"><a href="#cb1-506"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-507"><a href="#cb1-507"></a>A</span>
+<span id="cb1-508"><a href="#cb1-508"></a><span class="pp">|</span> 32  <span class="pp">|</span> ADD <span class="pp">|</span> 0b0010 <span class="pp">|</span></span>
+<span id="cb1-509"><a href="#cb1-509"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-510"><a href="#cb1-510"></a>ALU</span>
+<span id="cb1-511"><a href="#cb1-511"></a><span class="pp">|</span>     <span class="pp">|</span> SUB <span class="pp">|</span> 0b0110 <span class="pp">|</span></span>
+<span id="cb1-512"><a href="#cb1-512"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-513"><a href="#cb1-513"></a>32 Result</span>
+<span id="cb1-514"><a href="#cb1-514"></a>B</span>
+<span id="cb1-515"><a href="#cb1-515"></a>set on less than  0b0111</span>
+<span id="cb1-516"><a href="#cb1-516"></a>(SLT)</span>
+<span id="cb1-517"><a href="#cb1-517"></a>4</span>
+<span id="cb1-518"><a href="#cb1-518"></a>ALU operation</span>
+<span id="cb1-519"><a href="#cb1-519"></a>Control Signal Input</span>
+<span id="cb1-520"><a href="#cb1-520"></a>27</span>
+<span id="cb1-521"><a href="#cb1-521"></a></span>
+<span id="cb1-522"><a href="#cb1-522"></a>Set on Less Than</span>
+<span id="cb1-523"><a href="#cb1-523"></a>■ If A &lt; B</span>
+<span id="cb1-524"><a href="#cb1-524"></a>– ALU result = 1</span>
+<span id="cb1-525"><a href="#cb1-525"></a>■ If A &gt;= B</span>
+<span id="cb1-526"><a href="#cb1-526"></a>– ALU result = 0</span>
+<span id="cb1-527"><a href="#cb1-527"></a>28</span>
+<span id="cb1-528"><a href="#cb1-528"></a></span>
+<span id="cb1-529"><a href="#cb1-529"></a>What are the contents of the register file</span>
+<span id="cb1-530"><a href="#cb1-530"></a>after the following instructions are</span>
+<span id="cb1-531"><a href="#cb1-531"></a>executed?</span>
+<span id="cb1-532"><a href="#cb1-532"></a>0x003202b3</span>
+<span id="cb1-533"><a href="#cb1-533"></a>0x00528533</span>
+<span id="cb1-534"><a href="#cb1-534"></a>0x00EA6020</span>
+<span id="cb1-535"><a href="#cb1-535"></a>29</span>
+<span id="cb1-536"><a href="#cb1-536"></a></span>
+<span id="cb1-537"><a href="#cb1-537"></a>Contents of RegFile</span>
+<span id="cb1-538"><a href="#cb1-538"></a><span class="pp">|</span> Reg 0 <span class="pp">|</span> Reg 1 <span class="pp">|</span> Reg 2 <span class="pp">|</span> Reg 3 <span class="pp">|</span> Reg 4 <span class="pp">|</span> Reg 5 <span class="pp">|</span>     <span class="pp">|</span> Reg 7 <span class="pp">|</span></span>
+<span id="cb1-539"><a href="#cb1-539"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
+<span id="cb1-540"><a href="#cb1-540"></a>Reg 6</span>
+<span id="cb1-541"><a href="#cb1-541"></a><span class="pp">|</span> D Q   <span class="pp">|</span> D Q   <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span></span>
+<span id="cb1-542"><a href="#cb1-542"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-543"><a href="#cb1-543"></a><span class="pp">|</span> 0     <span class="pp">|</span> 5     <span class="pp">|</span> 11     <span class="pp">|</span> 100    <span class="pp">|</span> 56  <span class="pp">|</span> 18     <span class="pp">|</span> 25     <span class="pp">|</span> 22     <span class="pp">|</span></span>
+<span id="cb1-544"><a href="#cb1-544"></a><span class="pp">|</span> Reg 8 <span class="pp">|</span> Reg 9 <span class="pp">|</span> Reg 10 <span class="pp">|</span> Reg 11 <span class="pp">|</span>     <span class="pp">|</span> Reg 13 <span class="pp">|</span> Reg 14 <span class="pp">|</span> Reg 15 <span class="pp">|</span></span>
+<span id="cb1-545"><a href="#cb1-545"></a>Reg 12</span>
+<span id="cb1-546"><a href="#cb1-546"></a><span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span></span>
+<span id="cb1-547"><a href="#cb1-547"></a><span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-548"><a href="#cb1-548"></a><span class="pp">|</span> 3      <span class="pp">|</span> 10     <span class="pp">|</span> 9      <span class="pp">|</span> 112    <span class="pp">|</span> 99     <span class="pp">|</span> 98     <span class="pp">|</span> 85     <span class="pp">|</span> 0      <span class="pp">|</span></span>
+<span id="cb1-549"><a href="#cb1-549"></a><span class="pp">|</span> Reg 16 <span class="pp">|</span> Reg 17 <span class="pp">|</span> Reg 18 <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span> Reg 23 <span class="pp">|</span></span>
+<span id="cb1-550"><a href="#cb1-550"></a><span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span> Reg 19 <span class="pp">|</span> Reg 20 <span class="pp">|</span> Reg 21 <span class="pp">|</span> Reg 22 <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-551"><a href="#cb1-551"></a><span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span></span>
+<span id="cb1-552"><a href="#cb1-552"></a><span class="pp">|</span> 8      <span class="pp">|</span> 86     <span class="pp">|</span> 21     <span class="pp">|</span> 77     <span class="pp">|</span> 84     <span class="pp">|</span> 98     <span class="pp">|</span> 25     <span class="pp">|</span> 17     <span class="pp">|</span></span>
+<span id="cb1-553"><a href="#cb1-553"></a><span class="pp">|</span> Reg 24 <span class="pp">|</span> Reg 25 <span class="pp">|</span> Reg 26 <span class="pp">|</span> Reg 27 <span class="pp">|</span>        <span class="pp">|</span> Reg 29 <span class="pp">|</span> Reg 30 <span class="pp">|</span> Reg 31 <span class="pp">|</span></span>
+<span id="cb1-554"><a href="#cb1-554"></a>Reg 28</span>
+<span id="cb1-555"><a href="#cb1-555"></a><span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span></span>
+<span id="cb1-556"><a href="#cb1-556"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-557"><a href="#cb1-557"></a><span class="pp">|</span> 5   <span class="pp">|</span> 67  <span class="pp">|</span> 55  <span class="pp">|</span> 44  <span class="pp">|</span> 62  <span class="pp">|</span> 33  <span class="pp">|</span> 34  <span class="pp">|</span> 47  <span class="pp">|</span></span>
+<span id="cb1-558"><a href="#cb1-558"></a>30</span>
+<span id="cb1-559"><a href="#cb1-559"></a></span>
+<span id="cb1-560"><a href="#cb1-560"></a>What are the contents of the register file</span>
+<span id="cb1-561"><a href="#cb1-561"></a>after the following instructions are</span>
+<span id="cb1-562"><a href="#cb1-562"></a>executed?</span>
+<span id="cb1-563"><a href="#cb1-563"></a>0x003202b3</span>
+<span id="cb1-564"><a href="#cb1-564"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-565"><a href="#cb1-565"></a><span class="pp">| ------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-566"><a href="#cb1-566"></a><span class="pp">|</span> funct7 <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>     <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-567"><a href="#cb1-567"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-568"><a href="#cb1-568"></a><span class="pp">|</span> 31     <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12  <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-569"><a href="#cb1-569"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span> 11  <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>        <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-570"><a href="#cb1-570"></a>31</span>
+<span id="cb1-571"><a href="#cb1-571"></a></span>
+<span id="cb1-572"><a href="#cb1-572"></a>What are the contents of the register file</span>
+<span id="cb1-573"><a href="#cb1-573"></a>after the following instructions are</span>
+<span id="cb1-574"><a href="#cb1-574"></a>executed?</span>
+<span id="cb1-575"><a href="#cb1-575"></a>0x003202b3</span>
+<span id="cb1-576"><a href="#cb1-576"></a>0b00000000001100100000001010110011</span>
+<span id="cb1-577"><a href="#cb1-577"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-578"><a href="#cb1-578"></a><span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-579"><a href="#cb1-579"></a><span class="pp">|</span> funct7  <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>     <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-580"><a href="#cb1-580"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-581"><a href="#cb1-581"></a><span class="pp">|</span> 0000000 <span class="pp">|</span>       <span class="pp">|</span> 00011      <span class="pp">|</span>       <span class="pp">|</span> 00100      <span class="pp">|</span>       <span class="pp">|</span> 000    <span class="pp">|</span>     <span class="pp">|</span> 00101        <span class="pp">|</span>     <span class="pp">|</span> 0110011 <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-582"><a href="#cb1-582"></a><span class="pp">|</span> 31      <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12  <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-583"><a href="#cb1-583"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span> 11  <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>         <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-584"><a href="#cb1-584"></a>x5 = x4 + x3</span>
+<span id="cb1-585"><a href="#cb1-585"></a>add x5, x4, x3</span>
+<span id="cb1-586"><a href="#cb1-586"></a>x5 = 56 + 100</span>
+<span id="cb1-587"><a href="#cb1-587"></a>x5 = 156</span>
+<span id="cb1-588"><a href="#cb1-588"></a>32</span>
+<span id="cb1-589"><a href="#cb1-589"></a></span>
+<span id="cb1-590"><a href="#cb1-590"></a>What are the contents of the register file</span>
+<span id="cb1-591"><a href="#cb1-591"></a>after the following instructions are</span>
+<span id="cb1-592"><a href="#cb1-592"></a>executed?</span>
+<span id="cb1-593"><a href="#cb1-593"></a>0x00528533</span>
+<span id="cb1-594"><a href="#cb1-594"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-595"><a href="#cb1-595"></a><span class="pp">| ------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-596"><a href="#cb1-596"></a><span class="pp">|</span> funct7 <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>     <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-597"><a href="#cb1-597"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-598"><a href="#cb1-598"></a><span class="pp">|</span> 31     <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12  <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-599"><a href="#cb1-599"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span> 11  <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>        <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-600"><a href="#cb1-600"></a>33</span>
+<span id="cb1-601"><a href="#cb1-601"></a></span>
+<span id="cb1-602"><a href="#cb1-602"></a>What are the contents of the register file</span>
+<span id="cb1-603"><a href="#cb1-603"></a>after the following instructions are</span>
+<span id="cb1-604"><a href="#cb1-604"></a>executed?</span>
+<span id="cb1-605"><a href="#cb1-605"></a>0x00528533</span>
+<span id="cb1-606"><a href="#cb1-606"></a>0b00000000010100101000010100110011</span>
+<span id="cb1-607"><a href="#cb1-607"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-608"><a href="#cb1-608"></a><span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-609"><a href="#cb1-609"></a><span class="pp">|</span> funct7  <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>     <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-610"><a href="#cb1-610"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-611"><a href="#cb1-611"></a><span class="pp">|</span> 0000000 <span class="pp">|</span>       <span class="pp">|</span> 00101      <span class="pp">|</span>       <span class="pp">|</span> 00101      <span class="pp">|</span>       <span class="pp">|</span> 000    <span class="pp">|</span>     <span class="pp">|</span> 01010        <span class="pp">|</span>     <span class="pp">|</span> 0110011 <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-612"><a href="#cb1-612"></a><span class="pp">|</span> 31      <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12  <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-613"><a href="#cb1-613"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span> 11  <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>         <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-614"><a href="#cb1-614"></a>x10 = x5 + x5</span>
+<span id="cb1-615"><a href="#cb1-615"></a>x10 = 156 + 156</span>
+<span id="cb1-616"><a href="#cb1-616"></a>add x10, x5, x5</span>
+<span id="cb1-617"><a href="#cb1-617"></a>x10 = 312</span>
+<span id="cb1-618"><a href="#cb1-618"></a>34</span>
+<span id="cb1-619"><a href="#cb1-619"></a></span>
+<span id="cb1-620"><a href="#cb1-620"></a>What are the contents of the register file</span>
+<span id="cb1-621"><a href="#cb1-621"></a>after the following instructions are</span>
+<span id="cb1-622"><a href="#cb1-622"></a>executed?</span>
+<span id="cb1-623"><a href="#cb1-623"></a>0x00a38633</span>
+<span id="cb1-624"><a href="#cb1-624"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-625"><a href="#cb1-625"></a><span class="pp">| ------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-626"><a href="#cb1-626"></a><span class="pp">|</span> funct7 <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>     <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-627"><a href="#cb1-627"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-628"><a href="#cb1-628"></a><span class="pp">|</span> 31     <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12  <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-629"><a href="#cb1-629"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span> 11  <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>        <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-630"><a href="#cb1-630"></a>35</span>
+<span id="cb1-631"><a href="#cb1-631"></a></span>
+<span id="cb1-632"><a href="#cb1-632"></a>What are the contents of the register file</span>
+<span id="cb1-633"><a href="#cb1-633"></a>after the following instructions are</span>
+<span id="cb1-634"><a href="#cb1-634"></a>executed?</span>
+<span id="cb1-635"><a href="#cb1-635"></a>0x00a38633</span>
+<span id="cb1-636"><a href="#cb1-636"></a>0b00000000101000111000011000110011</span>
+<span id="cb1-637"><a href="#cb1-637"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-638"><a href="#cb1-638"></a><span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-639"><a href="#cb1-639"></a><span class="pp">|</span> funct7  <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>     <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-640"><a href="#cb1-640"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-641"><a href="#cb1-641"></a><span class="pp">|</span> 0000000 <span class="pp">|</span>       <span class="pp">|</span> 01010      <span class="pp">|</span>       <span class="pp">|</span> 00111      <span class="pp">|</span>       <span class="pp">|</span> 000    <span class="pp">|</span>     <span class="pp">|</span> 01100        <span class="pp">|</span>     <span class="pp">|</span> 0110011 <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-642"><a href="#cb1-642"></a><span class="pp">|</span> 31      <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12  <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-643"><a href="#cb1-643"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span> 11  <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>         <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-644"><a href="#cb1-644"></a>x12 = x7 + x10</span>
+<span id="cb1-645"><a href="#cb1-645"></a>x12 = 22 + 312</span>
+<span id="cb1-646"><a href="#cb1-646"></a>add x12, x7, x10</span>
+<span id="cb1-647"><a href="#cb1-647"></a>x12 = 334</span>
+<span id="cb1-648"><a href="#cb1-648"></a>36</span>
+<span id="cb1-649"><a href="#cb1-649"></a></span>
+<span id="cb1-650"><a href="#cb1-650"></a>Final Contents of RegFile</span>
+<span id="cb1-651"><a href="#cb1-651"></a><span class="pp">|</span> Reg 0 <span class="pp">|</span> Reg 1 <span class="pp">|</span> Reg 2 <span class="pp">|</span> Reg 3 <span class="pp">|</span> Reg 4 <span class="pp">|</span> Reg 5 <span class="pp">|</span>     <span class="pp">|</span> Reg 7 <span class="pp">|</span></span>
+<span id="cb1-652"><a href="#cb1-652"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
+<span id="cb1-653"><a href="#cb1-653"></a>Reg 6</span>
+<span id="cb1-654"><a href="#cb1-654"></a><span class="pp">|</span> D Q   <span class="pp">|</span> D Q   <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span></span>
+<span id="cb1-655"><a href="#cb1-655"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-656"><a href="#cb1-656"></a><span class="pp">|</span> 0     <span class="pp">|</span> 5     <span class="pp">|</span> 11     <span class="pp">|</span> 100    <span class="pp">|</span> 56  <span class="pp">|</span> 156    <span class="pp">|</span> 25     <span class="pp">|</span> 22     <span class="pp">|</span></span>
+<span id="cb1-657"><a href="#cb1-657"></a><span class="pp">|</span> Reg 8 <span class="pp">|</span> Reg 9 <span class="pp">|</span> Reg 10 <span class="pp">|</span> Reg 11 <span class="pp">|</span>     <span class="pp">|</span> Reg 13 <span class="pp">|</span> Reg 14 <span class="pp">|</span> Reg 15 <span class="pp">|</span></span>
+<span id="cb1-658"><a href="#cb1-658"></a>Reg 12</span>
+<span id="cb1-659"><a href="#cb1-659"></a><span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span></span>
+<span id="cb1-660"><a href="#cb1-660"></a><span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-661"><a href="#cb1-661"></a><span class="pp">|</span> 3      <span class="pp">|</span> 10     <span class="pp">|</span> 312    <span class="pp">|</span> 112    <span class="pp">|</span> 334    <span class="pp">|</span> 98     <span class="pp">|</span> 85     <span class="pp">|</span> 0      <span class="pp">|</span></span>
+<span id="cb1-662"><a href="#cb1-662"></a><span class="pp">|</span> Reg 16 <span class="pp">|</span> Reg 17 <span class="pp">|</span> Reg 18 <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span> Reg 23 <span class="pp">|</span></span>
+<span id="cb1-663"><a href="#cb1-663"></a><span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span>        <span class="pp">|</span> Reg 19 <span class="pp">|</span> Reg 20 <span class="pp">|</span> Reg 21 <span class="pp">|</span> Reg 22 <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-664"><a href="#cb1-664"></a><span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span> D Q    <span class="pp">|</span></span>
+<span id="cb1-665"><a href="#cb1-665"></a><span class="pp">|</span> 8      <span class="pp">|</span> 86     <span class="pp">|</span> 21     <span class="pp">|</span> 77     <span class="pp">|</span> 84     <span class="pp">|</span> 98     <span class="pp">|</span> 25     <span class="pp">|</span> 17     <span class="pp">|</span></span>
+<span id="cb1-666"><a href="#cb1-666"></a><span class="pp">|</span> Reg 24 <span class="pp">|</span> Reg 25 <span class="pp">|</span> Reg 26 <span class="pp">|</span> Reg 27 <span class="pp">|</span>        <span class="pp">|</span> Reg 29 <span class="pp">|</span> Reg 30 <span class="pp">|</span> Reg 31 <span class="pp">|</span></span>
+<span id="cb1-667"><a href="#cb1-667"></a>Reg 28</span>
+<span id="cb1-668"><a href="#cb1-668"></a><span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span> D Q <span class="pp">|</span></span>
+<span id="cb1-669"><a href="#cb1-669"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-670"><a href="#cb1-670"></a><span class="pp">|</span> 5   <span class="pp">|</span> 67  <span class="pp">|</span> 55  <span class="pp">|</span> 44  <span class="pp">|</span> 62  <span class="pp">|</span> 33  <span class="pp">|</span> 34  <span class="pp">|</span> 47  <span class="pp">|</span></span>
+<span id="cb1-671"><a href="#cb1-671"></a>37</span>
+<span id="cb1-672"><a href="#cb1-672"></a></span>
+<span id="cb1-673"><a href="#cb1-673"></a>What is the value of each signal when executing: and x4, x2, x5</span>
+<span id="cb1-674"><a href="#cb1-674"></a>2</span>
+<span id="cb1-675"><a href="#cb1-675"></a>5</span>
+<span id="cb1-676"><a href="#cb1-676"></a>5</span>
+<span id="cb1-677"><a href="#cb1-677"></a>32</span>
+<span id="cb1-678"><a href="#cb1-678"></a>Read</span>
+<span id="cb1-679"><a href="#cb1-679"></a>Read</span>
+<span id="cb1-680"><a href="#cb1-680"></a>Register 1</span>
+<span id="cb1-681"><a href="#cb1-681"></a>Data 1 32</span>
+<span id="cb1-682"><a href="#cb1-682"></a>5</span>
+<span id="cb1-683"><a href="#cb1-683"></a>1</span>
+<span id="cb1-684"><a href="#cb1-684"></a>6</span>
+<span id="cb1-685"><a href="#cb1-685"></a>:</span>
+<span id="cb1-686"><a href="#cb1-686"></a>1 9 5 32</span>
+<span id="cb1-687"><a href="#cb1-687"></a>n 1</span>
+<span id="cb1-688"><a href="#cb1-688"></a>3 Read Read</span>
+<span id="cb1-689"><a href="#cb1-689"></a>o</span>
+<span id="cb1-690"><a href="#cb1-690"></a>i t 32 24:20 Register 2 Data 2</span>
+<span id="cb1-691"><a href="#cb1-691"></a>c</span>
+<span id="cb1-692"><a href="#cb1-692"></a>u 9</span>
+<span id="cb1-693"><a href="#cb1-693"></a>4</span>
+<span id="cb1-694"><a href="#cb1-694"></a>r Reg</span>
+<span id="cb1-695"><a href="#cb1-695"></a>t</span>
+<span id="cb1-696"><a href="#cb1-696"></a>s</span>
+<span id="cb1-697"><a href="#cb1-697"></a>n</span>
+<span id="cb1-698"><a href="#cb1-698"></a>File</span>
+<span id="cb1-699"><a href="#cb1-699"></a>I 7 ALUOP</span>
+<span id="cb1-700"><a href="#cb1-700"></a>:</span>
+<span id="cb1-701"><a href="#cb1-701"></a>1</span>
+<span id="cb1-702"><a href="#cb1-702"></a>1 4</span>
+<span id="cb1-703"><a href="#cb1-703"></a>5</span>
+<span id="cb1-704"><a href="#cb1-704"></a>Write</span>
+<span id="cb1-705"><a href="#cb1-705"></a>Register</span>
+<span id="cb1-706"><a href="#cb1-706"></a>8 7</span>
+<span id="cb1-707"><a href="#cb1-707"></a>32</span>
+<span id="cb1-708"><a href="#cb1-708"></a>Write Data</span>
+<span id="cb1-709"><a href="#cb1-709"></a>RegWrite</span>
+<span id="cb1-710"><a href="#cb1-710"></a>38</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

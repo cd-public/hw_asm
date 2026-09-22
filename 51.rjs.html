@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Systems in C – quarto-input1a8db240652f73d1</title>
+  <title>Systems in C – quarto-input851700364351f3df</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -128,43 +128,681 @@
 
 <section class="slide level2">
 
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 11: R-Type vs I-Type, Intro to the ALU tinyurl.com/comp311-sp26 1</p>
-<table class="caption-top">
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 12: The ALU &amp; Register File tinyurl.com/comp311-sp26 1</p>
+<p>ARITHMETIC LOGIC | UNIT | (ALU) | ☺ | | —- | —– | — | 15</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Shifter Unit The “math center” of a computer! ☺ n Result 16</p>
+<p>What are the values on each signal when we want to perform Y = A XOR B | where | A is 0b1010 | and B | is 0b0001? | | | | | | —– | ———– | —– | ———- | — | — | — | — | 0b1010 0b0000 4 0b1011 4 4 0b0001 0b1011 | | | | | | Operation | Expression | Bool | | — | — | — | — | —— | ——— | ———- | —- | | | | | | 0b1011 | AND | A x B | 0b00 | | | | | | | OR | A + B | 0b01 | | | | | | 0b0100 | XOR | A + B | 0b10 | | | | | | | NOR | A + B | 0b11 | 2 0b10 4</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 5%">
+<col style="width: 11%">
+<col style="width: 4%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>R-T</th>
-<th>YPE VS. I-T</th>
-<th>YPE</th>
+<th>Bidirectional</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Shifter</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>■ The</td>
+<td>left bit</td>
+<td>tells</td>
+<td>you</td>
+<td>the direction</td>
+<td></td>
+<td>of the</td>
+<td>shift</td>
+<td>(left</td>
+<td>or right)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>■ The</td>
+<td>right</td>
+<td>bit tells</td>
+<td>you</td>
+<td>the type</td>
+<td>of shift</td>
+<td></td>
+<td>(arithmetic</td>
+<td></td>
+<td>or logical)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>■ Logical</td>
+<td>and</td>
+<td>arithmetic</td>
+<td></td>
+<td>left shift</td>
+<td>are</td>
+<td>the same</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Operation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Bool</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Left</td>
+<td></td>
+<td>Shift</td>
+<td></td>
+<td>B</td>
+<td>&lt;&lt;</td>
+<td>A</td>
+<td></td>
+<td>0 0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td>None</td>
+<td></td>
+<td></td>
+<td></td>
+<td>N/A</td>
+<td></td>
+<td></td>
+<td>0 1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Logical</td>
+<td></td>
+<td>Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B</td>
+<td>&gt;&gt;</td>
+<td>A</td>
+<td></td>
+<td>1 0</td>
+</tr>
+</tbody>
+</table>
+<p>Shift Arithmetic | | | | | | | B | &gt;&gt;&gt; | A | | 1 1 | | — | — | —– | — | —– | — | — | — | — | — | — | | | | Right | | Shift | | | | | | | 5</p>
+<p>Add/Sub A B n n | | | | | Operation | Expression | Sub | | — | — | — | — | ——— | ———- | — | | | | | | Add | A + B | 0 | Sub Add/Sub | | | | | Sub | A - B | 1 | | — | — | — | — | — | —– | — | n Y | Control | signal: | Tells the | circuit | | | | | ——- | ——— | ———- | ——- | — | — | — | | which | operation | to perform | | | | | 27</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Shifter Unit n Result 28</p>
+<p>A B Wiring up Add/Sub n n Add/ Bidirectional Boolean Sub Sub Shifter Unit n n Result 29</p>
+<p>A B | n Wiring | up | Boolean | Unit | | ——– | — | ——- | —- | n 1 2 Add/ | | Bidirectional | | Boolean | | — | ————- | — | ——- | Sub | Sub | Shifter | | | | — | ——- | — | — | Unit n 3 n n Result 30</p>
+<p>A B n Wiring up Boolean Unit n 1 2 Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n 3 4 n n Result 31</p>
+<p>A B n Wiring up Shifter n 1 2 Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n 3 n Result 11</p>
+<p>A B n Wiring up Shifter n 1 2 Add/ Bidirectional Boolean Sub Sub Shifter Unit 4 Bool n n n 3 n Result 12</p>
+<p>A B n Selecting Outputs n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n 1 0 1 n 1 0 2 n Result 13</p>
+<p>A B n Selecting Outputs n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 1 3 n Math 1 0 2 4 n Result 14</p>
+<p>A B n n Arithmetic Logic Unit Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 n Math 1 0 n Result 15</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ALU</th>
+<th>Control</th>
+<th></th>
+<th>Bits</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Sub</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Add</td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Operation</td>
+<td></td>
+<td>Sub</td>
+<td>Bool</td>
+<td>Shift</td>
+<td>Math</td>
+</tr>
+<tr class="even">
+<td>Sub</td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Left Shift</td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td>00</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Logical</td>
+<td>Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Shift</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &gt;&gt;&gt;</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Arithmetic</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A AND</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>B &gt;&gt;&gt;</td>
+<td>A</td>
+<td>11</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Right Shift</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A OR</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A XOR</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A NOR B | AND | | A x | B | 00 | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | | OR | | A + | B | 01 | | | | | | | | XOR | | A + | B | 10 | | | | | | | | NOR | | A + | B | 11 | | | | | | | 16</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ALU</th>
+<th>Control</th>
+<th></th>
+<th>Bits</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Sub</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Add</td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Operation</td>
+<td></td>
+<td>Sub</td>
+<td>Bool</td>
+<td>Shift</td>
+<td>Math</td>
+</tr>
+<tr class="even">
+<td>Sub</td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A +</td>
+<td>B</td>
+<td>0b0</td>
+<td>0bXX</td>
+<td>0bX</td>
+<td>0b1</td>
+</tr>
+<tr class="even">
+<td>Operation</td>
+<td></td>
+<td>Expression</td>
+<td></td>
+<td>Bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A -</td>
+<td>B</td>
+<td>0b1</td>
+<td>0bXX</td>
+<td>0bX</td>
+<td>0b1</td>
+</tr>
+<tr class="even">
+<td>Left Shift</td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td>00</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &lt;&lt;</td>
+<td>A</td>
+<td>0bX</td>
+<td>0b00</td>
+<td>0b1</td>
+<td>0b0</td>
+</tr>
+<tr class="even">
+<td>Logical</td>
+<td>Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td>0bX</td>
+<td>0b10</td>
+<td>0b1</td>
+<td>0b0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>B &gt;&gt;</td>
+<td>A</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Shift | | | | | | B &gt;&gt;&gt; | A | 0bX | 0b11 | 0b1 | 0b0 | | — | — | — | — | — | —– | — | — | —- | — | — | Arithmetic | | | B &gt;&gt;&gt; | A | 11 | | | | | | | | ———– | — | ———- | — | —- | —— | — | — | —- | — | — | | | | | | | A AND | B | 0bX | 0b00 | 0b0 | 0b0 | | Right Shift | | | | | | | | | | | | | | | | | A OR B | | 0bX | 0b01 | 0b0 | 0b0 | | Operation | | Expression | | Bool | A XOR | B | 0bX | 0b10 | 0b0 | 0b0 | | AND | | A x | B | 00 | A NOR | B | 0bX | 0b11 | 0b0 | 0b0 | | OR | | A + | B | 01 | | | | | | | | XOR | | A + | B | 10 | | | | | | | | NOR | | A + | B | 11 | | | | | | | 17</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 n Math 1 0 . n Z flag is 1 when Result is 0 n Result Z flag 42</p>
+<p>A B 1 &lt;&lt; 2 4 4 Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool 4 4 4 Shift 1 0 4 Math 1 0 4 *if the bool input to the bidirectional Result shifter is 0b01, output 0 19</p>
+<p>A B 1 &lt;&lt; 2 4 4 0b0010 0b0001 0bX Add/ Bidirectional Boolean Sub Sub Shifter Unit 0b00 Bool 0b0000 4 4 4 Shift 1 0 0b0100 0b1 0b0001 4 Math 1 0 or 0b0 0b0011 0b0100 4 *if the bool input to the bidirectional Result shifter is 0b01, output 0 20</p>
+<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Sub Shifter Unit Bool n n n Shift 1 0 n Math 1 0 . n Z flag is 1 when Result is 0 n Result Z flag 42</p>
+<p>THE REGISTER FILE 15</p>
+<p>Reminder: What is a register? ■ Registers: special locations built directly into the hardware to store data! ■ These serve as the operands of many assembly instructions ■ These primitives are also visible to the assembly programmer once the computer is built. ■ The size of a register is determined by the architecture – We are assuming 32-bit registers in this class! ■ Registers are also synchronized with a clock! – We will get to this next week. ☺ ■ The processor’s 32 general-purpose registers are stored in a structure called a register file 23</p>
+<p>Register File | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | | —– | —– | —– | —– | —– | —– | — | —– | Reg 6 • Contains the | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | register state of | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | — | — | — | — | — | — | — | — | the computer | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | —– | —– | —— | —— | — | —— | —— | —— | Reg 12 • Any register can | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | be read or | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | — | — | — | — | — | — | — | — | written, just specify the | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | —— | —— | —— | —— | —— | —— | —— | —— | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | number of the | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | register | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | —— | —— | —— | —— | — | —— | —— | —— | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | Reg 28 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | 24</p>
+<p>x1 = x3 + x2 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | —– | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00011 | | 00010 | | 000 | | 00001 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 11 | | 7 6 | | 0 | 00000000001100010000000010110011 Opcode is always 0110011 for integer R-type ALU instructions funct3 is always the primary operation code group (e.g.&nbsp;000 = add/sub. 100 = xor, 111 = and) funct7 is used to further specify the operation (e.g.&nbsp;distinguishes add vs.&nbsp;sub. srl vs.&nbsp;sra) 25</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th>rs2</th>
+<th></th>
+<th>rs1</th>
+<th></th>
+<th>funct3</th>
+<th></th>
+<th>rd</th>
+<th>opcode</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 </tbody>
 </table>
-<p>INSTRUCTIONS 15</p>
-<p>Reminder: How are programs turned into machine code? High-level language c = a + b Assembly add x5, x4, x3 Machine Code 00000000001100100000001010110011 3</p>
-<p>The miniRISC-V ISA | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——— | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 1 | 1 0 0 1 1 | | R-type: | | func7 | rs2 | rs1 | func3 | rd | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | | rs1 | | rd | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | | func3 | | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | rs2 | rs1 | | | 0 1 | 0 0 0 1 1 | | B/S-type: | | imm7 | | | func3 | imm5 | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 1 | U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC) 4</p>
-<p>Syntax register 5 = register 4 + register 3 add x5, x4, x3 | destination | source | source | | ————- | ———– | ———– | | register (rd) | register 1 | register 2 | | | (rs1) | (rs2) | 6</p>
-<p>R-Format Syntax add x5, x4, x3 | | | destination | | | source | | source | | | | | | ——- | —– | ————- | —– | ———- | ———– | —— | ———– | ———— | — | ——- | — | | | | register (rd) | | | register 1 | | register 2 | | | | | | | | | | | (rs1) | | | (rs2) | | | | | | | source | | source | | | | destination | | | | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00011 | | 00100 | | 000 | | 00101 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 11 | | 7 6 | | 0 | 7</p>
-<p>R-Format Operations ■ add ■ sub ■ AND ■ OR ■ SLT (set on less than) ■ SLTU (Unsigned) ■ SLL (shift left logical) ■ SRL (shift right logical) ■ SRA (shift right arithmetic) 8</p>
-<p>Subtract Instruction sub rd, rs1, rs2 R[rd] = R[rs1] - R[rs2] | value of the | value of the | value of the | | ————- | ————- | ————- | | register rd | register rs1 | register rs2 | 9</p>
-<p>Translating from C to RISC-V c = a + b; | x5 | x8 | x9 | | — | — | — | add x5, x8, x9 10</p>
-<p>Translate this line from C to RISC-V a = b + c + d – e; | x14 | x15 | x16 | x17 | x18 | | — | — | — | — | — | You may use additional registers in your solution 11</p>
-<p>Translate this line from C to RISC-V a = b + c + d – e; | x14 | x15 | x16 | x17 | x18 | | — | — | — | — | — | add x14, x15, x16 add x5, x15, x16 | add x14, x14, x17 | | or sub x6, x17, x18 | | | | —————– | — | ——————- | — | — | sub x14, x14, x18 add x14, x5, x6 12</p>
-<p>R-format vs I-format Instructions ■ R-format – Used for operations between two registers ■ I-format – Used for operations between a register and an immediate value ■ in other words, if you want to use a constant that is not in a register 13</p>
-<p>I-type Data Processing Instructions that process one register and a constant: | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——- | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——— | | I-type: | | imm12 | | rs1 | func3 | rd | 0 0 | 1 0 0 1 1 | 000 - ADDI Notice there is no SUBI | instruction. Why? | | | | 001 - SLLI | | | | | | —————— | — | — | — | ———- | — | — | — | — | 010 - SLTI 011 - SLTUI 100 - XORI 101 - SRLI/SRAI 110 - ORI 111 - ANDI | | | | | | | andi | x5,x10,255 | | | — | — | — | — | — | — | —– | ———- | — | I-type instructions | have the following template: | | | | | Is encoded as: | | | | | —————————- | — | — | — | — | ————– | — | — | — | 0000 1111 1111 0101 0111 0010 1001 0011 | OPfunc3 | | rd,rs1,imm12 | | | | | | | | ——– | — | ———— | — | — | — | — | — | — | 0x0ff57293 14</p>
-<p>I-Format Syntax op rd, rs1, immediate12 this is where we will store the result of the operation 15</p>
-<p>I-Format Syntax x5 = x4 + 12 addi x5, x4, 12 | destination | source | immediate | | ————- | ——— | ———- | | register (rd) | register | | value (rs1) 16</p>
-<p>R-Format vs I-Format Syntax I-Format R-Format op rd, rs1, immediate op rd, rs1, rs2 R[rd] = R[rs1] op R[rs2] R[rd] = R[rs1] op immediate writes to rd writes to rd 17</p>
-<p>Register 0 ■ Register 0 always holds the value 0 ■ This is very useful when we want to write a constant value to a register 18</p>
-<p>I-Format Syntax addi x5, x0, 12 source destination immediate funct3 opcode register register 31 20 19 15 14 12 11 7 6 0 19</p>
-<p>I-Format Syntax addi x5, x0, 12 | | | source | | | | destination | | | | — | — | ——- | — | — | — | ———— | — | — | immediate funct3 opcode | | | register | | | | register | | | | ————– | —– | ——— | —– | — | —– | ——– | ——- | — | | 0000 0000 1100 | | 00000 | | 000 | | 00101 | 0010011 | | | 31 | 20 19 | | 15 14 | | 12 11 | | 7 6 | 0 | 20</p>
-<p>ARITHMETIC LOGIC | UNIT | (ALU) | ☺ | | —- | —– | — | 15</p>
-<p>A B n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Shifter Unit The “math center” of a computer! ☺ n Result 16</p>
-<p>An Example Boolean Unit n n n | Operation | Expression | Bool | | ——— | ———- | —- | | AND | A x B | 0b00 | | OR | A + B | 0b01 | | XOR | A + B | 0b10 | | NOR | A + B | 0b11 | 2 23</p>
-<p>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4. 4 4 4 | Operation | Expression | Bool | | ——— | ———- | —- | | AND | A x B | 0b00 | | OR | A + B | 0b01 | | XOR | A + B | 0b10 | | NOR | A + B | 0b11 | 2 24</p>
-<p>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4. 0b0101 0b0100 4 0b0100 4 4 0b0100 0b0101 | | Operation | Expression | Bool | | —— | ——— | ———- | —- | | 0b0001 | AND | A x B | 0b00 | | | OR | A + B | 0b01 | | 0b1010 | XOR | A + B | 0b10 | | | NOR | A + B | 0b11 | 2 0b00 25</p>
-<p>What are the values on each signal when we want to perform Y = A XOR B where A | is 0b1010 | and | B is 0b0001? | | | | | ——— | — | ———— | — | — | — | 4 4 4 | | | | Operation | Expression | Bool | | — | — | — | ——— | ———- | —- | | | | | AND | A x B | 0b00 | | | | | OR | A + B | 0b01 | | | | | XOR | A + B | 0b10 | | | | | NOR | A + B | 0b11 | 2 24</p>
-<p>What are the values on each signal when we want to perform Y = A XOR B | where | A is 0b1010 | and B | is 0b0001? | | | | | | —– | ———– | —– | ———- | — | — | — | — | 0b1010 0b0000 4 0b1011 4 4 0b0001 0b1011 | | | | | | Operation | Expression | Bool | | — | — | — | — | —— | ——— | ———- | —- | | | | | | 0b1011 | AND | A x B | 0b00 | | | | | | | OR | A + B | 0b01 | | | | | | 0b0100 | XOR | A + B | 0b10 | | | | | | | NOR | A + B | 0b11 | 2 0b10 27</p>
+<p>funct7 | | 0000000 | | 00011 | | 00010 | | 000 | | 00001 | 0110011 | | | — | ——- | —– | —– | —– | —– | —– | — | —– | —– | ——- | — | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 11 | | 7 6 | 0 | 5 32 Read Read Register 1 Data 1 32 5 1 : 9 | | | | | 5 | | | | | | 32 | | | — | — | — | — | — | —– | — | — | —– | — | — | — | | n 1 | | | | | | | | | | | | | | | | | | Read | | | Read | | | | o | i 32 | 24:20 | | | | | | | Data 2 | | | | | —- | —– | — | — | ———- | — | — | — | —— | — | — | — | | t | | | | Register 2 | | | | | | | | c u 4 r Reg t s n File I 0010 7 : 1 1 In the textbook 5 | | | | | | Write | | | | | implementation of our | | | — | — | — | — | — | —— | — | — | — | — | ———————- | — | RISC-V CPU, ALUOp is Register the only externally 32 visible signal Write Data | | | | | | | | | RegWrite | 1 | | | | — | — | — | — | — | — | — | — | ——– | — | — | — | 26</p>
+<p>RISC-V 32I ALU | | Function ALU Operation | | | — | ———————- | —— | | | AND | 0b0000 | 32 | | OR | 0b0001 | | — | — | —— | A | 32 | ADD | 0b0010 | | — | — | —— | ALU | | SUB | 0b0110 | | — | — | —— | 32 Result B set on less than 0b0111 (SLT) 4 ALU operation Control Signal Input 27</p>
+<p>Set on Less Than ■ If A &lt; B – ALU result = 1 ■ If A &gt;= B – ALU result = 0 28</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x003202b3 0x00528533 0x00EA6020 29</p>
+<p>Contents of RegFile | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | | —– | —– | —– | —– | —– | —– | — | —– | Reg 6 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —– | —– | —— | —— | — | —— | —— | —— | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | Reg 12 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —— | —— | —— | —— | —— | —— | —— | —— | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | Reg 28 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | 30</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x003202b3 | | | source | | source | | | | destination | | | | | —— | —– | ———- | —– | ———- | —– | —— | — | ———— | — | —— | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | 31</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x003202b3 0b00000000001100100000001010110011 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | — | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00011 | | 00100 | | 000 | | 00101 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | x5 = x4 + x3 add x5, x4, x3 x5 = 56 + 100 x5 = 156 32</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00528533 | | | source | | source | | | | destination | | | | | —— | —– | ———- | —– | ———- | —– | —— | — | ———— | — | —— | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | 33</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00528533 0b00000000010100101000010100110011 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | — | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00101 | | 00101 | | 000 | | 01010 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | x10 = x5 + x5 x10 = 156 + 156 add x10, x5, x5 x10 = 312 34</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00a38633 | | | source | | source | | | | destination | | | | | —— | —– | ———- | —– | ———- | —– | —— | — | ———— | — | —— | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | 35</p>
+<p>What are the contents of the register file after the following instructions are executed? 0x00a38633 0b00000000101000111000011000110011 | | | source | | source | | | | destination | | | | | ——- | —– | ———- | —– | ———- | —– | —— | — | ———— | — | ——- | — | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 01010 | | 00111 | | 000 | | 01100 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 | | | | | | | | | | | | | 11 | | 7 6 | | 0 | x12 = x7 + x10 x12 = 22 + 312 add x12, x7, x10 x12 = 334 36</p>
+<p>Final Contents of RegFile | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | | —– | —– | —– | —– | —– | —– | — | —– | Reg 6 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —– | —– | —— | —— | — | —— | —— | —— | | 0 | 5 | 11 | 100 | 56 | 156 | 25 | 22 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | Reg 12 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | —— | —— | —— | —— | —— | —— | —— | —— | | 3 | 10 | 312 | 112 | 334 | 98 | 85 | 0 | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | Reg 28 | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | — | — | — | — | — | — | — | — | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | 37</p>
+<p>What is the value of each signal when executing: and x4, x2, x5 2 5 5 32 Read Read Register 1 Data 1 32 5 1 6 : 1 9 5 32 n 1 3 Read Read o i t 32 24:20 Register 2 Data 2 c u 9 4 r Reg t s n File I 7 ALUOP : 1 1 4 5 Write Register 8 7 32 Write Data RegWrite 38</p>
 
 
 </section>

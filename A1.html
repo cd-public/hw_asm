@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Not Found</span></a>
+ <span class="menu-text">Matching RISC-V assembly</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -157,13 +157,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matching RISC-V assembly</span></a>
+ <span class="menu-text">2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2</span></a>
+ <span class="menu-text">10</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,13 +205,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./41.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">41</span></a>
+ <span class="menu-text">2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./50.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2</span></a>
+ <span class="menu-text">50</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,13 +235,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./70.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">70</span></a>
+ <span class="menu-text">cycles to complete one operation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./71.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">cycles to complete one operation</span></a>
+ <span class="menu-text">71</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./81.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">81</span></a>
+ <span class="menu-text">Assembly code for</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -265,13 +265,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./91.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assembly code for</span></a>
+ <span class="menu-text">91</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A0</span></a>
+ <span class="menu-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -283,13 +283,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></a>
+ <span class="menu-text">B0</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">B1</span></a>
+ <span class="menu-text">m</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -300,8 +300,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">m</span></a>
+  <a href="./D0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching RISC-V assembly</span></a>
   </div>
 </li>
     </ul>
@@ -334,79 +334,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 21: Pipeline Hazards tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Update! ■ Last lab (5) will be posted today! – Optional lab 3.1 to update our API ■ Quiz Topics (Last Quiz on Wednesday!) – Advanced RISC-V Programming – Tracing and Writing Functions with RISC-V – Reading and Writing to Memory (Look at WA6) – Pipeline Hazards (Whatever we get through today!) 2</p>
-<p>RISC-V WARM UP</p>
-<p>SOME REMINDERS ☺ WE HAVE COVERED A LOT! 4</p>
-<p>Compilation vs.&nbsp;Disassembly Compilation Disassembly | | // | High-level | | (C) | | | | — | — | ———- | — | — | —— | — | | | int | add3(int | | a, | int b) | | { | | | return | | a + | b + 3; | | | — | — | —— | — | — | —— | — | } | add | a0, | a0, | a1 | # | a0 = a0 | + a1 | | —- | — | — | — | — | ——- | —- | | | | | | # | a0 = a0 | + 3 | | addi | a0, | a0, | 3 | | | | | ret | | | | # | return | | 00000000101101010000010100110011 00000000001101010 000010100010011 | 000000000000 | | | 00001000000001100111 | | | | | ———— | — | — | ——————– | — | — | — | 5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>PIPELINE HAZARDS</p>
-<p>Data Hazard Tracing Let’s say we want to execute the following two instructions sequentially add x5, x3, x4 sub x7, x5, x2 Back to 5 stages! ☺ But first a quick note about pipelining our datapath + pipeline registers 17</p>
-<p>Recall: Pipeline Register • A register placed between each stage of our pipelined datapath • Holds data being passed from one stage to the next • Controls the timing of instruction flow through the pipeline • Ensures that each stage is operating in isolation 18</p>
-<p>Each pipeline register name is based on the stages it separates Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— | 19</p>
-<p>Cycle 0 add x5, x3, x4 20</p>
-<p>Cycle 1 sub x7, x5 x2 add x5, x3, x4 21</p>
-<p>Cycle 2 sub x7, x5 x2 add x5, x3, x4 22</p>
-<p>Cycle 2 sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4 23</p>
-<p>Control Hazard: the pipeline does not know which instruction to fetch next because it is Pipeline Control Hazards waiting for the result of a branch or jump instruction to be computed. … Pipelining HAZARDS are situations where loop: add t0,t0,t0 the next instruction cannot execute in the addi t1,t1,-1 next clock cycle. blt t1,x0,loop srai t0,t0,8 Consider the instruction sequence shown: sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Fetch add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 sub t1,t0,t1 add t0,t0,t0 P i p e l Decode add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 ??? i n e Execute add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop ??? When the branch instruction reaches the execute stage the Let’s consider 3 stages again for a next 2 instructions have already been fetched! moment… 24</p>
-<p>Delay slot: an instruction slot that comes after a branch or a jump and the processor is guaranteed to execute that instruction Branch Fixes before the branch takes effect Problem: Two instructions following a branch are fetched before the branch decision is made (to take or not to take) Solutions: 1. Program around it. Define the ISA such that the branch does not take effect until after instructions in the “DELAY SLOTS” complete. This is how MIPS pipelines work. It leads to odd looking code in tight (short) loops. You could always put “NOPs” in the delay slots. 2. Detect the branch decision as early as possible, and ANNUL instructions in the delay slots. This is what RISC-V does. 25</p>
-<p>Early Detect and Annul Detect branch and jump instructions and It helps if … the ALU is make the branch decision in the decode stage. not used by loop: add t0,t0,t0 branch addi t1,t1,-1 We then annul the following instruction by instructions bne t1,x0,loop forcing it to be a NOP (addi x0, x0, 0) srai t0,t0,8 sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 P i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1 p e l i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 nop add t0,t0,t0 n e nop Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 We detect the branch in the decode stage then the instruction in the fetch stage can be ANNULLED and the next PC changed. 26</p>
-<p>Impact on the Hardware Two changes: Add H/W to test if the branch is taken during 1. annul register access. Easy for beq and bne (just NOR together the bitwise XORs). Use this zero detection from the decode stage, z , to D select the next pc (btype = 0, pcsel =1) Add a multiplexer to replace the already 2. fetched instruction with a NOP, and, thus ANNUL it. 27</p>
-<p>The cost of taken branches When an RISC-V branch is taken the branch instructions are effectively 2 cycles rather than 1 when they aren’t. In a MIPS-like instruction set, one can often fill the delay slots with useful instructions, but they are executed whether or not the branch is taken. The RISC-V approach is easier to understand, and since it does not “EXPOSE” the pipeline, it also allows for an alternative number of pipeline stages to be implemented in future designs, while conserving code compatibility. Lastly, using RISC-V, many conditional branches can be eliminated using the condition execution, which pipelines beautifully! 28</p>
-<p>The MIPS vs.&nbsp;RISC-V Approach loop: loop: add $t0, $t0, $t0 # work add t0, t0, t0 addi $t1, $t1, -1 addi t1, t1, -1 blt $t1, $zero, loop blt t1, x0, loop # resolved in Decode nop # delay slot (executes even if taken!) srai t0, t0, 8 srai $t0, $t0, 8 sub t1, t0, t1 sub $t1, $t0, $t1 One instruction after branch always Branch is resolved early and the next executes. The compiler must fill this with instruction can be “Annulled” or turned into useful work, or a NOP! a NOP if mispredicted 29</p>
-<p>Structural hazard: two instructions competing for hardware unit Structural Pipeline Hazards There’s another problem with our code fragment! … The destination register of instructions are loop: add t0,t0,t0 written at the end of the Execute stage. addi t1,t1,-1 However the following instruction might use bne t1,x0,loop srai t0,t0,8 this result as a source operand. sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 P i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1 p e l nop i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 n e Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop nop The “bne” instruction needs to access the contents of t1 before it is actually written are the end of i+3 30</p>
-<p>Data Hazard Tracing Let’s say we want to execute the following two instructions sequentially add x5, x3, x4 sub x7, x5, x2 Back to 5 stages! ☺ But first a quick note about pipelining our datapath + pipeline registers 31</p>
-<p>Recall: Pipeline Register • A register placed between each stage of our pipelined datapath • Holds data being passed from one stage to the next • Controls the timing of instruction flow through the pipeline • Ensures that each stage is operating in isolation 32</p>
-<p>Each pipeline register name is based on the stages it separates Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— | 33</p>
-<p>Cycle 0 add x5, x3, x4 34</p>
-<p>Cycle 1 sub x7, x5 x2 add x5, x3, x4 35</p>
-<p>Cycle 2 sub x7, x5 x2 add x5, x3, x4 36</p>
-<p>Cycle 2 sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4 37</p>
-<p>How can we fix this? Introducing pipeline stalls! (aka bubbles or nops) 38</p>
-<p>Pipeline Stalls • Also known as • bubbles • nops (no operation) • An instruction that does nothing • Provides time for the correct value to be written to the register file 39</p>
-<p>Cycle 2 sub x7, x5, x2 add x5, x3, x4 40</p>
-<p>Cycle 3 sub x7, x5, x2 STALL add x5, x3, x4 41</p>
-<p>Cycle 4 sub x7, x5, x2 | STALL | STALL | add x5, x3, x4 | | —– | —– | ————– | 42</p>
-<p>Cycle 4 add will write to the register file. Sub will then read the updated value. sub x7, x5, x2 STALL STALL add x5, x3, x4 43</p>
-<p>Cycle 5 sub x7, x5, x2 STALL STALL 44</p>
-<p>Cycle 6 sub x7, x5, x2 STALL 45</p>
-<p>Cycle 7 sub x7, x5, x2 46</p>
-<p>Pipeline Stalls • In this example, we inserted two stalls between the instructions to ensure that sub would read the correct value from x5 add x5, x3, x4 STALL STALL sub x7, x5, x2 47</p>
-<p>Data Hazards What if there was an independent instruction in between? add x5, x3, x4 or x8, x9, x10 sub x7, x5, x2 48</p>
-<p>Cycle 0 add x5, x3, x4 49</p>
-<p>Cycle 1 or x8, x9, x10 add x5, x3, x4 50</p>
-<p>Cycle 2 sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 51</p>
-<p>Cycle 3 sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 52</p>
-<p>Cycle 4 sub x7, x5, x2 | STALL | or x8, x9, x10 | add x5, x3, x4 | | —– | ————– | ————– | 53</p>
-<p>Cycle 5 | sub x7, x5, x2 | STALL | or x8, x9, x10 | | ————– | —– | ————– | 54</p>
-<p>Cycle 6 sub x7, x5, x2 STALL 55</p>
-<p>Cycle 7 sub x7, x5, x2 56</p>
-<p>Would we need to add any stalls for this program? add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 57</p>
-<p>Would we need to add any stalls for this program? add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 No! 58</p>
-<p>Pipeline Diagram Provides a way for us to visualize instructions moving through the pipeline. Instruction Cycle # 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 F = Fetch D = Decode X = Execute M = Memory W = Writeback 59</p>
-<p>Pipeline Diagram Provides a way for us to visualize instructions moving through the pipeline. Instruction Cycle # | 0 | 1 | 2 | 3 4 | 5 | 6 | 7 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | — | —– | —– | —– | — | add x5, x3, x4 | F | D | X | M W | | | | | | | | — | — | — | — | — | — | — | — | — | — | or x8, x9, x10 | | F | D | X M | W | | | | | | | — | — | — | — | — | — | — | — | — | — | xor x14, x15, x16 | | | F | D X | M | W | | | | | | — | — | — | — | — | — | — | — | — | — | sub x7, x5, x2 | | | | F D | X | M | W | | | | | — | — | — | — | — | — | — | — | — | — | F = Fetch D = Decode X = Execute M = Memory W = Writeback 60</p>
-<p>Would we need to add any stalls for this program? add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 61</p>
-<p>Would we need to add any stalls for this program? Data Hazard! add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 Yes! We need to add two stalls after the add instruction! And one stall after the and instruction! 62</p>
-<p>Pipeline Diagram Instruction Cycle # 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 F = Fetch D = Decode X = Execute M = Memory W = Writeback 63</p>
-<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 or x9, x28, x3 sub will remain in the decode stage until add writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 65</p>
-<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 | | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | sub will remain in the decode stage until add writes back and will remain in the fetch stage while sub is in the decode state F = Fetch D = Decode X = Execute M = Memory W = Writeback 66</p>
-<p>Pipeline Diagram | Instruction | | | | Cycle # | | | | | | —————– | — | — | — | ——- | — | —– | —– | — | | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | | and x27, x5, x18 | | F F | F D | X M | W | | | | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | or will remain in the decode stage until sub writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 67</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 68</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | —– | —– | — | add x20, x21, x22 | F D | X M | W | | | | | | | — | — | — | — | — | — | — | — | sub x28, x20, x15 | F | D D | D X | M W | | | | | | — | — | — | — | — | — | — | — | and x27, x5, x18 | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | 69</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | | 0 1 | 2 3 | 4 | 5 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | ——- | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D | X M | W | | | | | and x27, x5, x18 | | F F | F | D X | M W | | | | | or x9, x28, x3 | | | | F D | D X | M W | | | 11 | | | 𝐶𝑃𝐼 | = | = 2.75 | | | | | | — | — | — | — | —— | — | — | — | — | 4 70</p>
-<p>Ideal CPI (Cycles per instruction) = 1 # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝐶𝑃𝐼 = # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 71</p>
-<p>Ideal CPI (Cycles per instruction) = 1 In the ideal case, we will have one instruction finishing on every cycle. If one instruction finishes every cycle, the total number of cycles needed to execute the program is (4 + # of instructions). # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 (this equation 𝐶𝑃𝐼 = = assumes no stalls) # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠 Stalls are going to hurt our CPI. We are going to see later in the lecture how to reduce the number of stalls. 72</p>
-<p>Pipeline Diagram with Stalls 1. Fill out the pipeline diagram for the following set of instructions. 2. What is the CPI? 3. What is the speedup compared to a single-cycle datapath? • Assume pipelined clock period = 220ps and single-cycle clock period = 820ps 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x3, x2, x2 or x4, x2, x5 and x9, x4, x10 sub x11, x4, x14 add x11, x15, x18 73</p>
-<p>Pipeline Diagram with Stalls | | 0 | 1 | 2 3 | 4 5 | 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | — | ——- | —– | — | | add x3, x2, x2 | F | D | X M | W | | | | | | | or x4, x2, x5 | | F | D X | M W | | | | | | | and x9, x4, x10 | | | F D | D D | X | M W | | | | sub x11, x4, x14 | | | | F | F F | D | X M | W | | | | — | — | — | — | — | — | — | — | — | — | add x11, x15, x18 | | | | | | F | D X | M W | | | | — | — | — | — | — | — | — | — | — | — | 11 | | | | 𝐶𝑃𝐼 | = | = | 2.2 | | | | | — | — | — | — | — | — | — | — | — | — | 5 | | | | 5 | ∙ 820𝑝𝑠 | | 4100𝑝𝑠 | | | | | — | ——- | — | — | ——- | — | —— | —— | — | — | | | 𝑆𝑝𝑒𝑒𝑑𝑢𝑝 | | = | | = | | = 1.69 | | | | | | | 11 | ∙ 220𝑝𝑠 | | 2420𝑝𝑠 | | | | 74</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 22: Source Bypassing tinyurl.com/comp311-sp26 1</p>
+<p>Logistics Update! ■ Lab 5 Starter Code Updated if you pulled early – Due 4/27 (LDOC) ■ Written Assignment 6 – Due Tuesday (4/21) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day 2</p>
+<p>QUICK REVIEW: PIPELINE HAZARDS 3</p>
+<p>Each pipeline register name is based on the stages it separates Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— | 4</p>
+<p>Cycle 0 add x5, x3, x4 5</p>
+<p>Cycle 1 sub x7, x5 x2 add x5, x3, x4 6</p>
+<p>Cycle 2 sub x7, x5 x2 add x5, x3, x4 7</p>
+<p>Cycle 2 sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4 8</p>
+<p>Pipeline Stalls • Also known as • bubbles • nops (no operation) • An instruction that does nothing • Provides time for the correct value to be written to the register file 9</p>
+<p>Cycle 2 sub x7, x5, x2 add x5, x3, x4 10</p>
+<p>Cycle 3 sub x7, x5, x2 STALL add x5, x3, x4 11</p>
+<p>Cycle 4 sub x7, x5, x2 | STALL | STALL | add x5, x3, x4 | | —– | —– | ————– | 12</p>
+<p>Cycle 4 add will write to the register file. Sub will then read the updated value. sub x7, x5, x2 STALL STALL add x5, x3, x4 13</p>
+<p>Cycle 5 sub x7, x5, x2 STALL STALL 14</p>
+<p>Cycle 6 sub x7, x5, x2 STALL 15</p>
+<p>Cycle 7 sub x7, x5, x2 16</p>
+<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 or x9, x28, x3 sub will remain in the decode stage until add writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 17</p>
+<p>Question from last time: Why can Decode &amp; WriteBack happen in the same clock cycle? The bold/dark parts are | | | | | | | showing | when the stage is actively | | | — | — | — | — | — | — | ——- | ————————— | — | using its inputs / producing outputs within the cycle. add x20, x21, x22 Light parts are when we access memory. Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | 2 stalls RISC-V design: Register file writes in the first half of the cycle. Allows for reads in second half 18</p>
+<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 | | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | sub will remain in the decode stage until add writes back and will remain in the fetch stage while sub is in the decode state F = Fetch D = Decode X = Execute M = Memory W = Writeback 19</p>
+<p>Pipeline Diagram | Instruction | | | | Cycle # | | | | | | —————– | — | — | — | ——- | — | —– | —– | — | | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | | and x27, x5, x18 | | F F | F D | X M | W | | | | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | or will remain in the decode stage until sub writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 20</p>
+<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 21</p>
+<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | —– | —– | — | add x20, x21, x22 | F D | X M | W | | | | | | | — | — | — | — | — | — | — | — | sub x28, x20, x15 | F | D D | D X | M W | | | | | | — | — | — | — | — | — | — | — | and x27, x5, x18 | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | 22</p>
+<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | | 0 1 | 2 3 | 4 | 5 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | ——- | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D | X M | W | | | | | and x27, x5, x18 | | F F | F | D X | M W | | | | | or x9, x28, x3 | | | | F D | D X | M W | | | 11 | | | 𝐶𝑃𝐼 | = | = 2.75 | | | | | | — | — | — | — | —— | — | — | — | — | 4 23</p>
+<p>Ideal CPI (Cycles per instruction) = 1 # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝐶𝑃𝐼 = # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 24</p>
+<p>Ideal CPI (Cycles per instruction) = 1 In the ideal case, we will have one instruction finishing on every cycle. If one instruction finishes every cycle, the total number of cycles needed to execute the program is (4 + # of instructions). # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 (this equation 𝐶𝑃𝐼 = = assumes no stalls) # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠 Stalls are going to hurt our CPI. We are going to see later in the lecture how to reduce the number of stalls. 25</p>
+<p>Pipeline Diagram with Stalls 1. Fill out the pipeline diagram for the following set of instructions. 2. What is the CPI? 3. What is the speedup compared to a single-cycle datapath? • Assume pipelined clock period = 220ps and single-cycle clock period = 820ps 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x3, x2, x2 or x4, x2, x5 and x9, x4, x10 sub x11, x4, x14 add x11, x15, x18 26</p>
+<p>Recall: Data Hazards Data hazard: instruction depends on previous result that is still in the pipeline Problem: When a register source is needed from a later stage of the pipeline before it is written. Solutions: 1. Program around it. One could document the weird semantics– “You can’t reference the destination register of an instruction in the immediately following instruction.” Would make make assembly language even harder to understand. Would expose the pipeline, once again making future improvements difficult to implement while maintaining code compatibility. 2. Hardware bypass multiplexers. 29</p>
+<p>SOURCE BYPASSING 31</p>
+<p>Simplified datapath to focus on forwarding for r-format 32</p>
+<p>Forwarding rs1 sub x7, x5, x2 add x5, x3, x4 33</p>
+<p>Forwarding rs1 There is a data hazard between these two instructions! We can resolve this hazard by inserting two stalls. Or we can use a technique called forwarding! sub x7, x5, x2 add x5, x3, x4 34</p>
+<p>The value that is to be written to x5 is available at the ALU output sub x7, x5, x2 add x5, x3, x4 35</p>
+<p>Instead of waiting for this value to be written back to the register file, we can send it back to the sub instruction! sub x7, x5, x2 add x5, x3, x4 36</p>
+<p>Instead of waiting for this value to be written back to the register file, we can send it back to the sub instruction! We will send this value to the sub instruction when it moves into the execute stage. sub x7, x5, x2 add x5, x3, x4 37</p>
+<p>Forwarding rs1 The value to be written to x5 is here sub x7,x5, x2 add x5, x3, x4 38</p>
+<p>Forwarding rs1 We are forwarding the value to be written to x5 to the dependent instruction. M u x sub x7, x5, x2 add x5, x3, x4 39</p>
+<p>Forwarding rs1 M u x What if there was one instruction in between the dependent instructions? sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 40</p>
+<p>Forwarding rs1 The value to be written to x5 is at the output of the writeback mux. M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 41</p>
+<p>Forwarding rs1 The value to be written to x5 is at the output of the writeback mux. M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 42</p>
+<p>Forwarding rs1 Now, we can choose if the top input of the ALU should come from 1. The register file (no forwarding) 2. The instruction two stages ahead 3. The instruction one stage ahead M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 43</p>
+<p>Forwarding rs2 The value to be written to x5 is here M u x sub x7, x2, x5 add x5 x3, x4 44</p>
+<p>Forwarding rs2 We are forwarding the value to be written to x5 to the dependent instruction. M u x M u x sub x7, x2, x5 add x5 x3, x4 45</p>
+<p>Forwarding rs2 M u x What if there was one M instruction in between the u x dependent instructions? sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4 46</p>
+<p>Forwarding rs2 The value to be written to x5 is at the output of the writeback mux. M u x M u x sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4 47</p>
+<p>Forwarding rs2 Now, we can choose if the bottom input of the ALU should come from 1. The register file (no forwarding) 2. The instruction two stages ahead 3. The instruction one stage ahead M u x M u x sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4 48</p>
+<p>Graphical Representation of Forwarding Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf 49</p>
+<p>LOAD-USE HAZARD 50</p>
+<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 51</p>
+<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 52</p>
+<p>Load-Use Data Hazard ForwardA M The updated valueu of x4 cannot be forwarded until it is x read from the data memory. M u We need to stall the add instruction in the decode stage for x one cycle so that we can forward the value read from data ForwardB memory. add x5, x4, x3 lw x4 , 0(x9) 53</p>
+<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 54</p>
+<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9) 55</p>
+<p>Load-Use Data Hazard (forward from two stages ahead) ForwardA = 0b01 ForwardA M u x M u x ForwardB ForwardB = 0b00 (read from reg file) add x5, x4, x3 stall lw x4 , 0(x9) 56</p>
+<p>Pipeline Diagram 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 lw x3, 0(x8) add x11, x3, x3 lw x4, 0(x11) add x9, x11, x9 sub x10, x4, x9 ForwardA ForwardB 57</p>
+<p>Performance Analysis + Pipelining Assume a 1 GHz clock. One clock cycle is 1 ns Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of real speed-up do we expect? 60</p>
+<p>Some takeaways… Design strategy: Focus our attention on placing pipelining ● registers around the slowest circuit elements (bottlenecks!) You can pipeline an RISC-V CPU even more. There exist ● implementations with 7, 8, and 9 pipeline stages. But the overhead of bypass paths and the number of stall cases increase . Memory access time is our real bottleneck! ● 62</p>
 
 
 <!-- -->
@@ -866,674 +849,550 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./A0.html" class="pagination-link" aria-label="A0">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">A0</span>
+      <a href="./A0.html" class="pagination-link" aria-label="𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./B0.html" class="pagination-link" aria-label="𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠">
-        <span class="nav-page-text">𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./B0.html" class="pagination-link" aria-label="B0">
+        <span class="nav-page-text">B0</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="an">COMP311:</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>COMPUTER ORGANIZATION!</span>
-<span id="cb1-3"><a href="#cb1-3"></a>Lecture 21: Pipeline Hazards</span>
+<span id="cb1-3"><a href="#cb1-3"></a>Lecture 22: Source Bypassing</span>
 <span id="cb1-4"><a href="#cb1-4"></a>tinyurl.com/comp311-sp26</span>
 <span id="cb1-5"><a href="#cb1-5"></a>1</span>
 <span id="cb1-6"><a href="#cb1-6"></a></span>
 <span id="cb1-7"><a href="#cb1-7"></a>Logistics Update!</span>
-<span id="cb1-8"><a href="#cb1-8"></a>■ Last lab (5) will be posted today!</span>
-<span id="cb1-9"><a href="#cb1-9"></a>– Optional lab 3.1 to update our API</span>
-<span id="cb1-10"><a href="#cb1-10"></a>■ Quiz Topics (Last Quiz on Wednesday!)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>– Advanced RISC-V Programming</span>
-<span id="cb1-12"><a href="#cb1-12"></a>– Tracing and Writing Functions with RISC-V</span>
-<span id="cb1-13"><a href="#cb1-13"></a>– Reading and Writing to Memory (Look at WA6)</span>
-<span id="cb1-14"><a href="#cb1-14"></a>– Pipeline Hazards (Whatever we get through today!)</span>
-<span id="cb1-15"><a href="#cb1-15"></a>2</span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a>RISC-V WARM UP</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>SOME REMINDERS</span>
-<span id="cb1-20"><a href="#cb1-20"></a>☺</span>
-<span id="cb1-21"><a href="#cb1-21"></a>WE HAVE COVERED</span>
-<span id="cb1-22"><a href="#cb1-22"></a>A LOT!</span>
-<span id="cb1-23"><a href="#cb1-23"></a>4</span>
-<span id="cb1-24"><a href="#cb1-24"></a></span>
-<span id="cb1-25"><a href="#cb1-25"></a>Compilation vs. Disassembly</span>
-<span id="cb1-26"><a href="#cb1-26"></a>Compilation Disassembly</span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="pp">|</span>     <span class="pp">|</span> //  <span class="pp">|</span> High-level <span class="pp">|</span>     <span class="pp">|</span> (C) <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="pp">|</span>     <span class="pp">|</span> int <span class="pp">|</span> add3(int   <span class="pp">|</span>     <span class="pp">|</span> a,  <span class="pp">|</span> int b) <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a>{</span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> return <span class="pp">|</span>     <span class="pp">|</span> a + <span class="pp">|</span> b + 3; <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a>}</span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="pp">|</span> add  <span class="pp">|</span> a0, <span class="pp">|</span> a0, <span class="pp">|</span> a1  <span class="pp">|</span> #   <span class="pp">|</span> a0 = a0 <span class="pp">|</span> + a1 <span class="pp">|</span></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> #   <span class="pp">|</span> a0 = a0 <span class="pp">|</span> + 3  <span class="pp">|</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="pp">|</span> addi <span class="pp">|</span> a0, <span class="pp">|</span> a0, <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>      <span class="pp">|</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="pp">|</span> ret  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> #   <span class="pp">|</span> return  <span class="pp">|</span>      <span class="pp">|</span></span>
-<span id="cb1-39"><a href="#cb1-39"></a>00000000101101010000010100110011</span>
-<span id="cb1-40"><a href="#cb1-40"></a>00000000001101010 000010100010011</span>
-<span id="cb1-41"><a href="#cb1-41"></a><span class="pp">|</span> 000000000000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 00001000000001100111 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-42"><a href="#cb1-42"></a><span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-43"><a href="#cb1-43"></a>5</span>
-<span id="cb1-44"><a href="#cb1-44"></a></span>
-<span id="cb1-45"><a href="#cb1-45"></a>6</span>
-<span id="cb1-46"><a href="#cb1-46"></a></span>
-<span id="cb1-47"><a href="#cb1-47"></a>7</span>
-<span id="cb1-48"><a href="#cb1-48"></a></span>
-<span id="cb1-49"><a href="#cb1-49"></a>8</span>
-<span id="cb1-50"><a href="#cb1-50"></a></span>
-<span id="cb1-51"><a href="#cb1-51"></a>9</span>
-<span id="cb1-52"><a href="#cb1-52"></a></span>
-<span id="cb1-53"><a href="#cb1-53"></a>10</span>
-<span id="cb1-54"><a href="#cb1-54"></a></span>
-<span id="cb1-55"><a href="#cb1-55"></a>11</span>
-<span id="cb1-56"><a href="#cb1-56"></a></span>
-<span id="cb1-57"><a href="#cb1-57"></a>12</span>
+<span id="cb1-8"><a href="#cb1-8"></a>■ Lab 5 Starter Code Updated if you pulled early</span>
+<span id="cb1-9"><a href="#cb1-9"></a>– Due 4/27 (LDOC)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>■ Written Assignment 6</span>
+<span id="cb1-11"><a href="#cb1-11"></a>– Due Tuesday (4/21)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>■ Office Hours Ending LDOC</span>
+<span id="cb1-13"><a href="#cb1-13"></a>■ Final Review Session on First Reading Day</span>
+<span id="cb1-14"><a href="#cb1-14"></a>2</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>QUICK REVIEW:</span>
+<span id="cb1-17"><a href="#cb1-17"></a>PIPELINE HAZARDS</span>
+<span id="cb1-18"><a href="#cb1-18"></a>3</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>Each pipeline register name is based on the stages it separates</span>
+<span id="cb1-21"><a href="#cb1-21"></a>Cycle 0</span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="pp">|</span> Register Names <span class="pp">|</span> IF/ID <span class="pp">|</span> ID/EX <span class="pp">|</span> EX/MEM <span class="pp">|</span> MEM/WB <span class="pp">|</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="pp">| --------------</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>4</span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a>Cycle 0</span>
+<span id="cb1-27"><a href="#cb1-27"></a>add x5, x3, x4</span>
+<span id="cb1-28"><a href="#cb1-28"></a>5</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>Cycle 1</span>
+<span id="cb1-31"><a href="#cb1-31"></a>sub x7, x5 x2</span>
+<span id="cb1-32"><a href="#cb1-32"></a>add x5, x3, x4</span>
+<span id="cb1-33"><a href="#cb1-33"></a>6</span>
+<span id="cb1-34"><a href="#cb1-34"></a></span>
+<span id="cb1-35"><a href="#cb1-35"></a>Cycle 2</span>
+<span id="cb1-36"><a href="#cb1-36"></a>sub x7, x5 x2</span>
+<span id="cb1-37"><a href="#cb1-37"></a>add x5, x3, x4</span>
+<span id="cb1-38"><a href="#cb1-38"></a>7</span>
+<span id="cb1-39"><a href="#cb1-39"></a></span>
+<span id="cb1-40"><a href="#cb1-40"></a>Cycle 2</span>
+<span id="cb1-41"><a href="#cb1-41"></a>sub is going to read the wrong value from the register file!</span>
+<span id="cb1-42"><a href="#cb1-42"></a>This is known as a data hazard.</span>
+<span id="cb1-43"><a href="#cb1-43"></a>sub x7, x5, x2 add x5, x3, x4</span>
+<span id="cb1-44"><a href="#cb1-44"></a>8</span>
+<span id="cb1-45"><a href="#cb1-45"></a></span>
+<span id="cb1-46"><a href="#cb1-46"></a>Pipeline Stalls</span>
+<span id="cb1-47"><a href="#cb1-47"></a>•</span>
+<span id="cb1-48"><a href="#cb1-48"></a>Also known as</span>
+<span id="cb1-49"><a href="#cb1-49"></a>•</span>
+<span id="cb1-50"><a href="#cb1-50"></a>bubbles</span>
+<span id="cb1-51"><a href="#cb1-51"></a>•</span>
+<span id="cb1-52"><a href="#cb1-52"></a>nops (no operation)</span>
+<span id="cb1-53"><a href="#cb1-53"></a>•</span>
+<span id="cb1-54"><a href="#cb1-54"></a>An instruction that does nothing</span>
+<span id="cb1-55"><a href="#cb1-55"></a>•</span>
+<span id="cb1-56"><a href="#cb1-56"></a>Provides time for the correct value to be written to the register file</span>
+<span id="cb1-57"><a href="#cb1-57"></a>9</span>
 <span id="cb1-58"><a href="#cb1-58"></a></span>
-<span id="cb1-59"><a href="#cb1-59"></a>13</span>
-<span id="cb1-60"><a href="#cb1-60"></a></span>
-<span id="cb1-61"><a href="#cb1-61"></a>14</span>
-<span id="cb1-62"><a href="#cb1-62"></a></span>
-<span id="cb1-63"><a href="#cb1-63"></a>15</span>
-<span id="cb1-64"><a href="#cb1-64"></a></span>
-<span id="cb1-65"><a href="#cb1-65"></a>PIPELINE HAZARDS</span>
-<span id="cb1-66"><a href="#cb1-66"></a></span>
-<span id="cb1-67"><a href="#cb1-67"></a>Data Hazard Tracing</span>
-<span id="cb1-68"><a href="#cb1-68"></a>Let’s say we want to execute the</span>
-<span id="cb1-69"><a href="#cb1-69"></a>following two instructions</span>
-<span id="cb1-70"><a href="#cb1-70"></a>sequentially</span>
-<span id="cb1-71"><a href="#cb1-71"></a>add x5, x3, x4</span>
-<span id="cb1-72"><a href="#cb1-72"></a>sub x7, x5, x2</span>
-<span id="cb1-73"><a href="#cb1-73"></a>Back to 5 stages! ☺ But first a quick note</span>
-<span id="cb1-74"><a href="#cb1-74"></a>about pipelining our datapath + pipeline</span>
-<span id="cb1-75"><a href="#cb1-75"></a>registers</span>
-<span id="cb1-76"><a href="#cb1-76"></a>17</span>
-<span id="cb1-77"><a href="#cb1-77"></a></span>
-<span id="cb1-78"><a href="#cb1-78"></a>Recall: Pipeline Register</span>
-<span id="cb1-79"><a href="#cb1-79"></a>•</span>
-<span id="cb1-80"><a href="#cb1-80"></a>A register placed between each stage of our pipelined datapath</span>
-<span id="cb1-81"><a href="#cb1-81"></a>•</span>
-<span id="cb1-82"><a href="#cb1-82"></a>Holds data being passed from one stage to the next</span>
-<span id="cb1-83"><a href="#cb1-83"></a>•</span>
-<span id="cb1-84"><a href="#cb1-84"></a>Controls the timing of instruction flow through the pipeline</span>
-<span id="cb1-85"><a href="#cb1-85"></a>•</span>
-<span id="cb1-86"><a href="#cb1-86"></a>Ensures that each stage is operating in isolation</span>
-<span id="cb1-87"><a href="#cb1-87"></a>18</span>
-<span id="cb1-88"><a href="#cb1-88"></a></span>
-<span id="cb1-89"><a href="#cb1-89"></a>Each pipeline register name is based on the stages it separates</span>
-<span id="cb1-90"><a href="#cb1-90"></a>Cycle 0</span>
-<span id="cb1-91"><a href="#cb1-91"></a><span class="pp">|</span> Register Names <span class="pp">|</span> IF/ID <span class="pp">|</span> ID/EX <span class="pp">|</span> EX/MEM <span class="pp">|</span> MEM/WB <span class="pp">|</span></span>
-<span id="cb1-92"><a href="#cb1-92"></a><span class="pp">| --------------</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
-<span id="cb1-93"><a href="#cb1-93"></a>19</span>
-<span id="cb1-94"><a href="#cb1-94"></a></span>
-<span id="cb1-95"><a href="#cb1-95"></a>Cycle 0</span>
-<span id="cb1-96"><a href="#cb1-96"></a>add x5, x3, x4</span>
-<span id="cb1-97"><a href="#cb1-97"></a>20</span>
-<span id="cb1-98"><a href="#cb1-98"></a></span>
-<span id="cb1-99"><a href="#cb1-99"></a>Cycle 1</span>
-<span id="cb1-100"><a href="#cb1-100"></a>sub x7, x5 x2</span>
-<span id="cb1-101"><a href="#cb1-101"></a>add x5, x3, x4</span>
-<span id="cb1-102"><a href="#cb1-102"></a>21</span>
-<span id="cb1-103"><a href="#cb1-103"></a></span>
-<span id="cb1-104"><a href="#cb1-104"></a>Cycle 2</span>
-<span id="cb1-105"><a href="#cb1-105"></a>sub x7, x5 x2</span>
-<span id="cb1-106"><a href="#cb1-106"></a>add x5, x3, x4</span>
-<span id="cb1-107"><a href="#cb1-107"></a>22</span>
-<span id="cb1-108"><a href="#cb1-108"></a></span>
-<span id="cb1-109"><a href="#cb1-109"></a>Cycle 2</span>
-<span id="cb1-110"><a href="#cb1-110"></a>sub is going to read the wrong value from the register file!</span>
-<span id="cb1-111"><a href="#cb1-111"></a>This is known as a data hazard.</span>
-<span id="cb1-112"><a href="#cb1-112"></a>sub x7, x5, x2 add x5, x3, x4</span>
-<span id="cb1-113"><a href="#cb1-113"></a>23</span>
-<span id="cb1-114"><a href="#cb1-114"></a></span>
-<span id="cb1-115"><a href="#cb1-115"></a>Control Hazard: the pipeline does not know</span>
-<span id="cb1-116"><a href="#cb1-116"></a>which instruction to fetch next because it is</span>
-<span id="cb1-117"><a href="#cb1-117"></a>Pipeline Control Hazards</span>
-<span id="cb1-118"><a href="#cb1-118"></a>waiting for the result of a branch or jump</span>
-<span id="cb1-119"><a href="#cb1-119"></a>instruction to be computed.</span>
-<span id="cb1-120"><a href="#cb1-120"></a>...</span>
-<span id="cb1-121"><a href="#cb1-121"></a>Pipelining HAZARDS are situations where</span>
-<span id="cb1-122"><a href="#cb1-122"></a>loop: add t0,t0,t0</span>
-<span id="cb1-123"><a href="#cb1-123"></a>the next instruction cannot execute in the</span>
-<span id="cb1-124"><a href="#cb1-124"></a>addi t1,t1,-1</span>
-<span id="cb1-125"><a href="#cb1-125"></a>next clock cycle.</span>
-<span id="cb1-126"><a href="#cb1-126"></a>blt t1,x0,loop</span>
-<span id="cb1-127"><a href="#cb1-127"></a>srai t0,t0,8</span>
-<span id="cb1-128"><a href="#cb1-128"></a>Consider the instruction sequence shown: sub t1,t0,t1</span>
-<span id="cb1-129"><a href="#cb1-129"></a>Time (in clock cycles)</span>
-<span id="cb1-130"><a href="#cb1-130"></a>i i+1 i+2 i+3 i+4 i+5</span>
-<span id="cb1-131"><a href="#cb1-131"></a>Fetch add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 sub t1,t0,t1 add t0,t0,t0</span>
-<span id="cb1-132"><a href="#cb1-132"></a>P</span>
-<span id="cb1-133"><a href="#cb1-133"></a>i</span>
-<span id="cb1-134"><a href="#cb1-134"></a>p</span>
-<span id="cb1-135"><a href="#cb1-135"></a>e</span>
-<span id="cb1-136"><a href="#cb1-136"></a>l Decode add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 ???</span>
-<span id="cb1-137"><a href="#cb1-137"></a>i</span>
-<span id="cb1-138"><a href="#cb1-138"></a>n</span>
-<span id="cb1-139"><a href="#cb1-139"></a>e</span>
-<span id="cb1-140"><a href="#cb1-140"></a>Execute add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop</span>
-<span id="cb1-141"><a href="#cb1-141"></a>???</span>
-<span id="cb1-142"><a href="#cb1-142"></a>When the branch instruction</span>
-<span id="cb1-143"><a href="#cb1-143"></a>reaches the execute stage the</span>
-<span id="cb1-144"><a href="#cb1-144"></a>Let’s consider 3 stages again for a next 2 instructions have already</span>
-<span id="cb1-145"><a href="#cb1-145"></a>been fetched!</span>
-<span id="cb1-146"><a href="#cb1-146"></a>moment…</span>
-<span id="cb1-147"><a href="#cb1-147"></a>24</span>
-<span id="cb1-148"><a href="#cb1-148"></a></span>
-<span id="cb1-149"><a href="#cb1-149"></a>Delay slot: an instruction slot that comes</span>
-<span id="cb1-150"><a href="#cb1-150"></a>after a branch or a jump and the processor</span>
-<span id="cb1-151"><a href="#cb1-151"></a>is guaranteed to execute that instruction</span>
-<span id="cb1-152"><a href="#cb1-152"></a>Branch Fixes</span>
-<span id="cb1-153"><a href="#cb1-153"></a>before the branch takes effect</span>
-<span id="cb1-154"><a href="#cb1-154"></a>Problem: Two instructions following a branch are fetched before the branch</span>
-<span id="cb1-155"><a href="#cb1-155"></a>decision is made (to take or not to take)</span>
-<span id="cb1-156"><a href="#cb1-156"></a>Solutions:</span>
-<span id="cb1-157"><a href="#cb1-157"></a><span class="ss">1. </span>Program around it. Define the ISA such that the branch does</span>
-<span id="cb1-158"><a href="#cb1-158"></a>not take effect until after instructions in the “DELAY SLOTS”</span>
-<span id="cb1-159"><a href="#cb1-159"></a>complete. This is how MIPS pipelines work. It leads to odd looking</span>
-<span id="cb1-160"><a href="#cb1-160"></a>code in tight (short) loops. You could always put “NOPs”</span>
-<span id="cb1-161"><a href="#cb1-161"></a>in the delay slots.</span>
-<span id="cb1-162"><a href="#cb1-162"></a><span class="ss">2. </span>Detect the branch decision as early as possible, and ANNUL</span>
-<span id="cb1-163"><a href="#cb1-163"></a>instructions in the delay slots. This is what RISC-V does.</span>
-<span id="cb1-164"><a href="#cb1-164"></a>25</span>
-<span id="cb1-165"><a href="#cb1-165"></a></span>
-<span id="cb1-166"><a href="#cb1-166"></a>Early Detect and Annul</span>
-<span id="cb1-167"><a href="#cb1-167"></a>Detect branch and jump instructions and It helps if</span>
-<span id="cb1-168"><a href="#cb1-168"></a>... the ALU is</span>
-<span id="cb1-169"><a href="#cb1-169"></a>make the branch decision in the decode stage. not used by</span>
-<span id="cb1-170"><a href="#cb1-170"></a>loop: add t0,t0,t0</span>
-<span id="cb1-171"><a href="#cb1-171"></a>branch</span>
-<span id="cb1-172"><a href="#cb1-172"></a>addi t1,t1,-1</span>
-<span id="cb1-173"><a href="#cb1-173"></a>We then annul the following instruction by instructions</span>
-<span id="cb1-174"><a href="#cb1-174"></a>bne t1,x0,loop</span>
-<span id="cb1-175"><a href="#cb1-175"></a>forcing it to be a NOP (addi x0, x0, 0) srai t0,t0,8</span>
-<span id="cb1-176"><a href="#cb1-176"></a>sub t1,t0,t1</span>
-<span id="cb1-177"><a href="#cb1-177"></a>Time (in clock cycles)</span>
-<span id="cb1-178"><a href="#cb1-178"></a>i i+1 i+2 i+3 i+4 i+5</span>
-<span id="cb1-179"><a href="#cb1-179"></a>P</span>
-<span id="cb1-180"><a href="#cb1-180"></a>i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1</span>
-<span id="cb1-181"><a href="#cb1-181"></a>p</span>
-<span id="cb1-182"><a href="#cb1-182"></a>e</span>
-<span id="cb1-183"><a href="#cb1-183"></a>l</span>
-<span id="cb1-184"><a href="#cb1-184"></a>i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 nop add t0,t0,t0</span>
-<span id="cb1-185"><a href="#cb1-185"></a>n</span>
-<span id="cb1-186"><a href="#cb1-186"></a>e</span>
-<span id="cb1-187"><a href="#cb1-187"></a>nop</span>
-<span id="cb1-188"><a href="#cb1-188"></a>Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8</span>
-<span id="cb1-189"><a href="#cb1-189"></a>We detect the branch in the decode stage then the instruction</span>
-<span id="cb1-190"><a href="#cb1-190"></a>in the fetch stage can be ANNULLED and the next PC changed.</span>
-<span id="cb1-191"><a href="#cb1-191"></a>26</span>
-<span id="cb1-192"><a href="#cb1-192"></a></span>
-<span id="cb1-193"><a href="#cb1-193"></a>Impact on the Hardware</span>
-<span id="cb1-194"><a href="#cb1-194"></a>Two changes:</span>
-<span id="cb1-195"><a href="#cb1-195"></a>Add H/W to test if the branch is taken during</span>
-<span id="cb1-196"><a href="#cb1-196"></a>1.</span>
-<span id="cb1-197"><a href="#cb1-197"></a>annul</span>
-<span id="cb1-198"><a href="#cb1-198"></a>register access. Easy for beq and bne (just</span>
-<span id="cb1-199"><a href="#cb1-199"></a>NOR together the bitwise XORs). Use this</span>
-<span id="cb1-200"><a href="#cb1-200"></a>zero detection from the decode stage, z , to</span>
-<span id="cb1-201"><a href="#cb1-201"></a>D</span>
-<span id="cb1-202"><a href="#cb1-202"></a>select the next pc</span>
-<span id="cb1-203"><a href="#cb1-203"></a>(btype = 0, pcsel =1)</span>
-<span id="cb1-204"><a href="#cb1-204"></a>Add a multiplexer to replace the already</span>
-<span id="cb1-205"><a href="#cb1-205"></a>2.</span>
-<span id="cb1-206"><a href="#cb1-206"></a>fetched instruction with a NOP, and, thus</span>
-<span id="cb1-207"><a href="#cb1-207"></a>ANNUL it.</span>
-<span id="cb1-208"><a href="#cb1-208"></a>27</span>
-<span id="cb1-209"><a href="#cb1-209"></a></span>
-<span id="cb1-210"><a href="#cb1-210"></a>The cost of taken branches</span>
-<span id="cb1-211"><a href="#cb1-211"></a>When an RISC-V branch is taken the branch instructions are effectively 2 cycles rather than</span>
-<span id="cb1-212"><a href="#cb1-212"></a>1 when they aren’t. In a MIPS-like instruction set, one can often fill the delay slots with</span>
-<span id="cb1-213"><a href="#cb1-213"></a>useful instructions, but they are executed whether or not the branch is taken.</span>
-<span id="cb1-214"><a href="#cb1-214"></a>The RISC-V approach is easier to understand, and since it does not “EXPOSE” the pipeline, it</span>
-<span id="cb1-215"><a href="#cb1-215"></a>also allows for an alternative number of pipeline stages to be implemented in future</span>
-<span id="cb1-216"><a href="#cb1-216"></a>designs, while conserving code compatibility.</span>
-<span id="cb1-217"><a href="#cb1-217"></a>Lastly, using RISC-V, many conditional branches can be eliminated using the condition</span>
-<span id="cb1-218"><a href="#cb1-218"></a>execution, which pipelines beautifully!</span>
-<span id="cb1-219"><a href="#cb1-219"></a>28</span>
+<span id="cb1-59"><a href="#cb1-59"></a>Cycle 2</span>
+<span id="cb1-60"><a href="#cb1-60"></a>sub x7, x5, x2</span>
+<span id="cb1-61"><a href="#cb1-61"></a>add x5, x3, x4</span>
+<span id="cb1-62"><a href="#cb1-62"></a>10</span>
+<span id="cb1-63"><a href="#cb1-63"></a></span>
+<span id="cb1-64"><a href="#cb1-64"></a>Cycle 3</span>
+<span id="cb1-65"><a href="#cb1-65"></a>sub x7, x5, x2</span>
+<span id="cb1-66"><a href="#cb1-66"></a>STALL add x5, x3, x4</span>
+<span id="cb1-67"><a href="#cb1-67"></a>11</span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a>Cycle 4</span>
+<span id="cb1-70"><a href="#cb1-70"></a>sub x7, x5, x2</span>
+<span id="cb1-71"><a href="#cb1-71"></a><span class="pp">|</span> STALL <span class="pp">|</span> STALL <span class="pp">|</span> add x5, x3, x4 <span class="pp">|</span></span>
+<span id="cb1-72"><a href="#cb1-72"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
+<span id="cb1-73"><a href="#cb1-73"></a>12</span>
+<span id="cb1-74"><a href="#cb1-74"></a></span>
+<span id="cb1-75"><a href="#cb1-75"></a>Cycle 4</span>
+<span id="cb1-76"><a href="#cb1-76"></a>add will write to the register file. Sub will then read the</span>
+<span id="cb1-77"><a href="#cb1-77"></a>updated value.</span>
+<span id="cb1-78"><a href="#cb1-78"></a>sub x7, x5, x2</span>
+<span id="cb1-79"><a href="#cb1-79"></a>STALL STALL add x5, x3, x4</span>
+<span id="cb1-80"><a href="#cb1-80"></a>13</span>
+<span id="cb1-81"><a href="#cb1-81"></a></span>
+<span id="cb1-82"><a href="#cb1-82"></a>Cycle 5</span>
+<span id="cb1-83"><a href="#cb1-83"></a>sub x7, x5, x2</span>
+<span id="cb1-84"><a href="#cb1-84"></a>STALL STALL</span>
+<span id="cb1-85"><a href="#cb1-85"></a>14</span>
+<span id="cb1-86"><a href="#cb1-86"></a></span>
+<span id="cb1-87"><a href="#cb1-87"></a>Cycle 6</span>
+<span id="cb1-88"><a href="#cb1-88"></a>sub x7, x5, x2</span>
+<span id="cb1-89"><a href="#cb1-89"></a>STALL</span>
+<span id="cb1-90"><a href="#cb1-90"></a>15</span>
+<span id="cb1-91"><a href="#cb1-91"></a></span>
+<span id="cb1-92"><a href="#cb1-92"></a>Cycle 7</span>
+<span id="cb1-93"><a href="#cb1-93"></a>sub x7, x5, x2</span>
+<span id="cb1-94"><a href="#cb1-94"></a>16</span>
+<span id="cb1-95"><a href="#cb1-95"></a></span>
+<span id="cb1-96"><a href="#cb1-96"></a>Pipeline Diagram</span>
+<span id="cb1-97"><a href="#cb1-97"></a>Instruction Cycle #</span>
+<span id="cb1-98"><a href="#cb1-98"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-99"><a href="#cb1-99"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-100"><a href="#cb1-100"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-101"><a href="#cb1-101"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102"></a>and x27, x5,  x18</span>
+<span id="cb1-103"><a href="#cb1-103"></a>or  x9,  x28, x3</span>
+<span id="cb1-104"><a href="#cb1-104"></a>sub will remain in the decode stage until add writes back</span>
+<span id="cb1-105"><a href="#cb1-105"></a>F = Fetch</span>
+<span id="cb1-106"><a href="#cb1-106"></a>D = Decode</span>
+<span id="cb1-107"><a href="#cb1-107"></a>X = Execute</span>
+<span id="cb1-108"><a href="#cb1-108"></a>M = Memory</span>
+<span id="cb1-109"><a href="#cb1-109"></a>W = Writeback</span>
+<span id="cb1-110"><a href="#cb1-110"></a>17</span>
+<span id="cb1-111"><a href="#cb1-111"></a></span>
+<span id="cb1-112"><a href="#cb1-112"></a>Question from last time: Why can Decode &amp; WriteBack</span>
+<span id="cb1-113"><a href="#cb1-113"></a>happen in the same clock cycle?</span>
+<span id="cb1-114"><a href="#cb1-114"></a>The bold/dark parts are</span>
+<span id="cb1-115"><a href="#cb1-115"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> showing <span class="pp">|</span> when the stage is actively  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-116"><a href="#cb1-116"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---------------------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-117"><a href="#cb1-117"></a>using its inputs / producing outputs</span>
+<span id="cb1-118"><a href="#cb1-118"></a>within the cycle.</span>
+<span id="cb1-119"><a href="#cb1-119"></a>add x20, x21, x22</span>
+<span id="cb1-120"><a href="#cb1-120"></a>Light parts are when we access</span>
+<span id="cb1-121"><a href="#cb1-121"></a>memory.</span>
+<span id="cb1-122"><a href="#cb1-122"></a>Instruction Cycle #</span>
+<span id="cb1-123"><a href="#cb1-123"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-124"><a href="#cb1-124"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-125"><a href="#cb1-125"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-126"><a href="#cb1-126"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-127"><a href="#cb1-127"></a>2 stalls</span>
+<span id="cb1-128"><a href="#cb1-128"></a>RISC-V design:</span>
+<span id="cb1-129"><a href="#cb1-129"></a>Register file writes in the first half</span>
+<span id="cb1-130"><a href="#cb1-130"></a>of the cycle.</span>
+<span id="cb1-131"><a href="#cb1-131"></a>Allows for reads in second half</span>
+<span id="cb1-132"><a href="#cb1-132"></a>18</span>
+<span id="cb1-133"><a href="#cb1-133"></a></span>
+<span id="cb1-134"><a href="#cb1-134"></a>Pipeline Diagram</span>
+<span id="cb1-135"><a href="#cb1-135"></a>Instruction Cycle #</span>
+<span id="cb1-136"><a href="#cb1-136"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-137"><a href="#cb1-137"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-138"><a href="#cb1-138"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-139"><a href="#cb1-139"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-140"><a href="#cb1-140"></a>and x27, x5,  x18</span>
+<span id="cb1-141"><a href="#cb1-141"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-142"><a href="#cb1-142"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-143"><a href="#cb1-143"></a>or  x9,  x28, x3</span>
+<span id="cb1-144"><a href="#cb1-144"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-145"><a href="#cb1-145"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-146"><a href="#cb1-146"></a>sub will remain in the decode stage until add writes back</span>
+<span id="cb1-147"><a href="#cb1-147"></a>and will remain in the fetch stage while sub is in the decode state</span>
+<span id="cb1-148"><a href="#cb1-148"></a>F = Fetch</span>
+<span id="cb1-149"><a href="#cb1-149"></a>D = Decode</span>
+<span id="cb1-150"><a href="#cb1-150"></a>X = Execute</span>
+<span id="cb1-151"><a href="#cb1-151"></a>M = Memory</span>
+<span id="cb1-152"><a href="#cb1-152"></a>W = Writeback</span>
+<span id="cb1-153"><a href="#cb1-153"></a>19</span>
+<span id="cb1-154"><a href="#cb1-154"></a></span>
+<span id="cb1-155"><a href="#cb1-155"></a>Pipeline Diagram</span>
+<span id="cb1-156"><a href="#cb1-156"></a><span class="pp">|</span> Instruction       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Cycle # <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-157"><a href="#cb1-157"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-158"><a href="#cb1-158"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7     <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-159"><a href="#cb1-159"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-160"><a href="#cb1-160"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-161"><a href="#cb1-161"></a><span class="pp">|</span> and x27, x5,  x18 <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M     <span class="pp">|</span> W   <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-162"><a href="#cb1-162"></a>or  x9,  x28, x3</span>
+<span id="cb1-163"><a href="#cb1-163"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-164"><a href="#cb1-164"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-165"><a href="#cb1-165"></a>or will remain in the decode stage until sub writes back</span>
+<span id="cb1-166"><a href="#cb1-166"></a>F = Fetch</span>
+<span id="cb1-167"><a href="#cb1-167"></a>D = Decode</span>
+<span id="cb1-168"><a href="#cb1-168"></a>X = Execute</span>
+<span id="cb1-169"><a href="#cb1-169"></a>M = Memory</span>
+<span id="cb1-170"><a href="#cb1-170"></a>W = Writeback</span>
+<span id="cb1-171"><a href="#cb1-171"></a>20</span>
+<span id="cb1-172"><a href="#cb1-172"></a></span>
+<span id="cb1-173"><a href="#cb1-173"></a>Performance Metric: CPI (Cycles per instruction)</span>
+<span id="cb1-174"><a href="#cb1-174"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
+<span id="cb1-175"><a href="#cb1-175"></a>𝐶𝑃𝐼 =</span>
+<span id="cb1-176"><a href="#cb1-176"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
+<span id="cb1-177"><a href="#cb1-177"></a>21</span>
+<span id="cb1-178"><a href="#cb1-178"></a></span>
+<span id="cb1-179"><a href="#cb1-179"></a>Performance Metric: CPI (Cycles per instruction)</span>
+<span id="cb1-180"><a href="#cb1-180"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
+<span id="cb1-181"><a href="#cb1-181"></a>𝐶𝑃𝐼 =</span>
+<span id="cb1-182"><a href="#cb1-182"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
+<span id="cb1-183"><a href="#cb1-183"></a><span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-184"><a href="#cb1-184"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-185"><a href="#cb1-185"></a>add x20, x21, x22</span>
+<span id="cb1-186"><a href="#cb1-186"></a><span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-187"><a href="#cb1-187"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-188"><a href="#cb1-188"></a>sub x28, x20, x15</span>
+<span id="cb1-189"><a href="#cb1-189"></a><span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-190"><a href="#cb1-190"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-191"><a href="#cb1-191"></a>and x27, x5,  x18</span>
+<span id="cb1-192"><a href="#cb1-192"></a><span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-193"><a href="#cb1-193"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-194"><a href="#cb1-194"></a>or  x9,  x28, x3</span>
+<span id="cb1-195"><a href="#cb1-195"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-196"><a href="#cb1-196"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-197"><a href="#cb1-197"></a>22</span>
+<span id="cb1-198"><a href="#cb1-198"></a></span>
+<span id="cb1-199"><a href="#cb1-199"></a>Performance Metric: CPI (Cycles per instruction)</span>
+<span id="cb1-200"><a href="#cb1-200"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
+<span id="cb1-201"><a href="#cb1-201"></a>𝐶𝑃𝐼 =</span>
+<span id="cb1-202"><a href="#cb1-202"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
+<span id="cb1-203"><a href="#cb1-203"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4   <span class="pp">|</span> 5 6 <span class="pp">|</span> 7 8 <span class="pp">|</span> 9 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-204"><a href="#cb1-204"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-205"><a href="#cb1-205"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-206"><a href="#cb1-206"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D   <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-207"><a href="#cb1-207"></a><span class="pp">|</span> and x27, x5,  x18 <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F   <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-208"><a href="#cb1-208"></a><span class="pp">|</span> or  x9,  x28, x3  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F D <span class="pp">|</span> D X <span class="pp">|</span> M W     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-209"><a href="#cb1-209"></a>11</span>
+<span id="cb1-210"><a href="#cb1-210"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶𝑃𝐼 <span class="pp">|</span> =   <span class="pp">|</span> = 2.75 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-211"><a href="#cb1-211"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-212"><a href="#cb1-212"></a>4</span>
+<span id="cb1-213"><a href="#cb1-213"></a>23</span>
+<span id="cb1-214"><a href="#cb1-214"></a></span>
+<span id="cb1-215"><a href="#cb1-215"></a>Ideal CPI (Cycles per instruction) = 1</span>
+<span id="cb1-216"><a href="#cb1-216"></a><span class="fu"># 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></span>
+<span id="cb1-217"><a href="#cb1-217"></a>𝐶𝑃𝐼 =</span>
+<span id="cb1-218"><a href="#cb1-218"></a><span class="fu"># 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠</span></span>
+<span id="cb1-219"><a href="#cb1-219"></a>24</span>
 <span id="cb1-220"><a href="#cb1-220"></a></span>
-<span id="cb1-221"><a href="#cb1-221"></a>The MIPS vs. RISC-V Approach</span>
-<span id="cb1-222"><a href="#cb1-222"></a>loop: loop:</span>
-<span id="cb1-223"><a href="#cb1-223"></a>add $t0, $t0, $t0 # work add t0, t0, t0</span>
-<span id="cb1-224"><a href="#cb1-224"></a>addi $t1, $t1, -1 addi t1, t1, -1</span>
-<span id="cb1-225"><a href="#cb1-225"></a>blt $t1, $zero, loop blt t1, x0, loop # resolved in Decode</span>
-<span id="cb1-226"><a href="#cb1-226"></a>nop # delay slot (executes even if taken!) srai t0, t0, 8</span>
-<span id="cb1-227"><a href="#cb1-227"></a>srai $t0, $t0, 8 sub t1, t0, t1</span>
-<span id="cb1-228"><a href="#cb1-228"></a>sub $t1, $t0, $t1</span>
-<span id="cb1-229"><a href="#cb1-229"></a>One instruction after branch always Branch is resolved early and the next</span>
-<span id="cb1-230"><a href="#cb1-230"></a>executes. The compiler must fill this with instruction can be “Annulled” or turned into</span>
-<span id="cb1-231"><a href="#cb1-231"></a>useful work, or a NOP! a NOP if mispredicted</span>
-<span id="cb1-232"><a href="#cb1-232"></a>29</span>
+<span id="cb1-221"><a href="#cb1-221"></a>Ideal CPI (Cycles per instruction) = 1</span>
+<span id="cb1-222"><a href="#cb1-222"></a>In the ideal case, we will have one instruction finishing on every cycle.</span>
+<span id="cb1-223"><a href="#cb1-223"></a>If one instruction finishes every cycle, the total number of cycles</span>
+<span id="cb1-224"><a href="#cb1-224"></a>needed to execute the program is (4 + # of instructions).</span>
+<span id="cb1-225"><a href="#cb1-225"></a><span class="fu"># 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠</span></span>
+<span id="cb1-226"><a href="#cb1-226"></a>(this equation</span>
+<span id="cb1-227"><a href="#cb1-227"></a>𝐶𝑃𝐼 = =</span>
+<span id="cb1-228"><a href="#cb1-228"></a>assumes no stalls)</span>
+<span id="cb1-229"><a href="#cb1-229"></a><span class="fu"># 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠</span></span>
+<span id="cb1-230"><a href="#cb1-230"></a>Stalls are going to hurt our CPI. We are going to see later in the</span>
+<span id="cb1-231"><a href="#cb1-231"></a>lecture how to reduce the number of stalls.</span>
+<span id="cb1-232"><a href="#cb1-232"></a>25</span>
 <span id="cb1-233"><a href="#cb1-233"></a></span>
-<span id="cb1-234"><a href="#cb1-234"></a>Structural hazard: two instructions</span>
-<span id="cb1-235"><a href="#cb1-235"></a>competing for hardware unit</span>
-<span id="cb1-236"><a href="#cb1-236"></a>Structural Pipeline Hazards</span>
-<span id="cb1-237"><a href="#cb1-237"></a>There’s another problem with our code fragment!</span>
-<span id="cb1-238"><a href="#cb1-238"></a>...</span>
-<span id="cb1-239"><a href="#cb1-239"></a>The destination register of instructions are</span>
-<span id="cb1-240"><a href="#cb1-240"></a>loop: add t0,t0,t0</span>
-<span id="cb1-241"><a href="#cb1-241"></a>written at the end of the Execute stage.</span>
-<span id="cb1-242"><a href="#cb1-242"></a>addi t1,t1,-1</span>
-<span id="cb1-243"><a href="#cb1-243"></a>However the following instruction might use bne t1,x0,loop</span>
-<span id="cb1-244"><a href="#cb1-244"></a>srai t0,t0,8</span>
-<span id="cb1-245"><a href="#cb1-245"></a>this result as a source operand.</span>
-<span id="cb1-246"><a href="#cb1-246"></a>sub t1,t0,t1</span>
-<span id="cb1-247"><a href="#cb1-247"></a>Time (in clock cycles)</span>
-<span id="cb1-248"><a href="#cb1-248"></a>i i+1 i+2 i+3 i+4 i+5</span>
-<span id="cb1-249"><a href="#cb1-249"></a>P</span>
-<span id="cb1-250"><a href="#cb1-250"></a>i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1</span>
-<span id="cb1-251"><a href="#cb1-251"></a>p</span>
-<span id="cb1-252"><a href="#cb1-252"></a>e</span>
-<span id="cb1-253"><a href="#cb1-253"></a>l nop</span>
-<span id="cb1-254"><a href="#cb1-254"></a>i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0</span>
-<span id="cb1-255"><a href="#cb1-255"></a>n</span>
-<span id="cb1-256"><a href="#cb1-256"></a>e</span>
-<span id="cb1-257"><a href="#cb1-257"></a>Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop nop</span>
-<span id="cb1-258"><a href="#cb1-258"></a>The “bne” instruction needs to access the contents of</span>
-<span id="cb1-259"><a href="#cb1-259"></a>t1 before it is actually written are the end of i+3</span>
-<span id="cb1-260"><a href="#cb1-260"></a>30</span>
-<span id="cb1-261"><a href="#cb1-261"></a></span>
-<span id="cb1-262"><a href="#cb1-262"></a>Data Hazard Tracing</span>
-<span id="cb1-263"><a href="#cb1-263"></a>Let’s say we want to execute the</span>
-<span id="cb1-264"><a href="#cb1-264"></a>following two instructions</span>
-<span id="cb1-265"><a href="#cb1-265"></a>sequentially</span>
-<span id="cb1-266"><a href="#cb1-266"></a>add x5, x3, x4</span>
-<span id="cb1-267"><a href="#cb1-267"></a>sub x7, x5, x2</span>
-<span id="cb1-268"><a href="#cb1-268"></a>Back to 5 stages! ☺ But first a quick note</span>
-<span id="cb1-269"><a href="#cb1-269"></a>about pipelining our datapath + pipeline</span>
-<span id="cb1-270"><a href="#cb1-270"></a>registers</span>
-<span id="cb1-271"><a href="#cb1-271"></a>31</span>
-<span id="cb1-272"><a href="#cb1-272"></a></span>
-<span id="cb1-273"><a href="#cb1-273"></a>Recall: Pipeline Register</span>
-<span id="cb1-274"><a href="#cb1-274"></a>•</span>
-<span id="cb1-275"><a href="#cb1-275"></a>A register placed between each stage of our pipelined datapath</span>
-<span id="cb1-276"><a href="#cb1-276"></a>•</span>
-<span id="cb1-277"><a href="#cb1-277"></a>Holds data being passed from one stage to the next</span>
-<span id="cb1-278"><a href="#cb1-278"></a>•</span>
-<span id="cb1-279"><a href="#cb1-279"></a>Controls the timing of instruction flow through the pipeline</span>
-<span id="cb1-280"><a href="#cb1-280"></a>•</span>
-<span id="cb1-281"><a href="#cb1-281"></a>Ensures that each stage is operating in isolation</span>
-<span id="cb1-282"><a href="#cb1-282"></a>32</span>
-<span id="cb1-283"><a href="#cb1-283"></a></span>
-<span id="cb1-284"><a href="#cb1-284"></a>Each pipeline register name is based on the stages it separates</span>
-<span id="cb1-285"><a href="#cb1-285"></a>Cycle 0</span>
-<span id="cb1-286"><a href="#cb1-286"></a><span class="pp">|</span> Register Names <span class="pp">|</span> IF/ID <span class="pp">|</span> ID/EX <span class="pp">|</span> EX/MEM <span class="pp">|</span> MEM/WB <span class="pp">|</span></span>
-<span id="cb1-287"><a href="#cb1-287"></a><span class="pp">| --------------</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
-<span id="cb1-288"><a href="#cb1-288"></a>33</span>
+<span id="cb1-234"><a href="#cb1-234"></a>Pipeline Diagram with Stalls</span>
+<span id="cb1-235"><a href="#cb1-235"></a>1.</span>
+<span id="cb1-236"><a href="#cb1-236"></a>Fill out the pipeline diagram for the following set of instructions.</span>
+<span id="cb1-237"><a href="#cb1-237"></a>2.</span>
+<span id="cb1-238"><a href="#cb1-238"></a>What is the CPI?</span>
+<span id="cb1-239"><a href="#cb1-239"></a>3.</span>
+<span id="cb1-240"><a href="#cb1-240"></a>What is the speedup compared to a single-cycle datapath?</span>
+<span id="cb1-241"><a href="#cb1-241"></a>•</span>
+<span id="cb1-242"><a href="#cb1-242"></a>Assume pipelined clock period = 220ps and single-cycle clock period = 820ps</span>
+<span id="cb1-243"><a href="#cb1-243"></a>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</span>
+<span id="cb1-244"><a href="#cb1-244"></a>add x3, x2, x2</span>
+<span id="cb1-245"><a href="#cb1-245"></a>or x4, x2, x5</span>
+<span id="cb1-246"><a href="#cb1-246"></a>and x9, x4, x10</span>
+<span id="cb1-247"><a href="#cb1-247"></a>sub x11, x4, x14</span>
+<span id="cb1-248"><a href="#cb1-248"></a>add x11, x15, x18</span>
+<span id="cb1-249"><a href="#cb1-249"></a>26</span>
+<span id="cb1-250"><a href="#cb1-250"></a></span>
+<span id="cb1-251"><a href="#cb1-251"></a>Recall: Data Hazards Data hazard: instruction depends on</span>
+<span id="cb1-252"><a href="#cb1-252"></a>previous result that is still in the pipeline</span>
+<span id="cb1-253"><a href="#cb1-253"></a>Problem: When a register source is needed from a later stage of the pipeline before</span>
+<span id="cb1-254"><a href="#cb1-254"></a>it is written.</span>
+<span id="cb1-255"><a href="#cb1-255"></a>Solutions:</span>
+<span id="cb1-256"><a href="#cb1-256"></a><span class="ss">1. </span>Program around it. One could document the weird semantics-- “You can’t</span>
+<span id="cb1-257"><a href="#cb1-257"></a>reference the destination register of an instruction in the immediately following</span>
+<span id="cb1-258"><a href="#cb1-258"></a>instruction.” Would make make assembly language even harder to understand.</span>
+<span id="cb1-259"><a href="#cb1-259"></a>Would expose the pipeline, once again making future improvements difficult to</span>
+<span id="cb1-260"><a href="#cb1-260"></a>implement while maintaining code compatibility.</span>
+<span id="cb1-261"><a href="#cb1-261"></a><span class="ss">2. </span>Hardware bypass multiplexers.</span>
+<span id="cb1-262"><a href="#cb1-262"></a>29</span>
+<span id="cb1-263"><a href="#cb1-263"></a></span>
+<span id="cb1-264"><a href="#cb1-264"></a>SOURCE BYPASSING</span>
+<span id="cb1-265"><a href="#cb1-265"></a>31</span>
+<span id="cb1-266"><a href="#cb1-266"></a></span>
+<span id="cb1-267"><a href="#cb1-267"></a>Simplified datapath to focus on forwarding for r-format</span>
+<span id="cb1-268"><a href="#cb1-268"></a>32</span>
+<span id="cb1-269"><a href="#cb1-269"></a></span>
+<span id="cb1-270"><a href="#cb1-270"></a>Forwarding rs1</span>
+<span id="cb1-271"><a href="#cb1-271"></a>sub x7, x5, x2 add x5, x3, x4</span>
+<span id="cb1-272"><a href="#cb1-272"></a>33</span>
+<span id="cb1-273"><a href="#cb1-273"></a></span>
+<span id="cb1-274"><a href="#cb1-274"></a>Forwarding rs1</span>
+<span id="cb1-275"><a href="#cb1-275"></a>There is a data hazard between these two instructions!</span>
+<span id="cb1-276"><a href="#cb1-276"></a>We can resolve this hazard by inserting two stalls.</span>
+<span id="cb1-277"><a href="#cb1-277"></a>Or we can use a technique called forwarding!</span>
+<span id="cb1-278"><a href="#cb1-278"></a>sub x7, x5, x2 add x5, x3, x4</span>
+<span id="cb1-279"><a href="#cb1-279"></a>34</span>
+<span id="cb1-280"><a href="#cb1-280"></a></span>
+<span id="cb1-281"><a href="#cb1-281"></a>The value that is to be written to x5 is available at the ALU output</span>
+<span id="cb1-282"><a href="#cb1-282"></a>sub x7, x5, x2 add x5, x3, x4</span>
+<span id="cb1-283"><a href="#cb1-283"></a>35</span>
+<span id="cb1-284"><a href="#cb1-284"></a></span>
+<span id="cb1-285"><a href="#cb1-285"></a>Instead of waiting for this value to be written back to the register</span>
+<span id="cb1-286"><a href="#cb1-286"></a>file, we can send it back to the sub instruction!</span>
+<span id="cb1-287"><a href="#cb1-287"></a>sub x7, x5, x2 add x5, x3, x4</span>
+<span id="cb1-288"><a href="#cb1-288"></a>36</span>
 <span id="cb1-289"><a href="#cb1-289"></a></span>
-<span id="cb1-290"><a href="#cb1-290"></a>Cycle 0</span>
-<span id="cb1-291"><a href="#cb1-291"></a>add x5, x3, x4</span>
-<span id="cb1-292"><a href="#cb1-292"></a>34</span>
-<span id="cb1-293"><a href="#cb1-293"></a></span>
-<span id="cb1-294"><a href="#cb1-294"></a>Cycle 1</span>
-<span id="cb1-295"><a href="#cb1-295"></a>sub x7, x5 x2</span>
-<span id="cb1-296"><a href="#cb1-296"></a>add x5, x3, x4</span>
-<span id="cb1-297"><a href="#cb1-297"></a>35</span>
-<span id="cb1-298"><a href="#cb1-298"></a></span>
-<span id="cb1-299"><a href="#cb1-299"></a>Cycle 2</span>
-<span id="cb1-300"><a href="#cb1-300"></a>sub x7, x5 x2</span>
-<span id="cb1-301"><a href="#cb1-301"></a>add x5, x3, x4</span>
-<span id="cb1-302"><a href="#cb1-302"></a>36</span>
-<span id="cb1-303"><a href="#cb1-303"></a></span>
-<span id="cb1-304"><a href="#cb1-304"></a>Cycle 2</span>
-<span id="cb1-305"><a href="#cb1-305"></a>sub is going to read the wrong value from the register file!</span>
-<span id="cb1-306"><a href="#cb1-306"></a>This is known as a data hazard.</span>
+<span id="cb1-290"><a href="#cb1-290"></a>Instead of waiting for this value to be written back to the register</span>
+<span id="cb1-291"><a href="#cb1-291"></a>file, we can send it back to the sub instruction!</span>
+<span id="cb1-292"><a href="#cb1-292"></a>We will send this value to the sub instruction when it moves into</span>
+<span id="cb1-293"><a href="#cb1-293"></a>the execute stage.</span>
+<span id="cb1-294"><a href="#cb1-294"></a>sub x7, x5, x2 add x5, x3, x4</span>
+<span id="cb1-295"><a href="#cb1-295"></a>37</span>
+<span id="cb1-296"><a href="#cb1-296"></a></span>
+<span id="cb1-297"><a href="#cb1-297"></a>Forwarding rs1</span>
+<span id="cb1-298"><a href="#cb1-298"></a>The value to be written to x5 is here</span>
+<span id="cb1-299"><a href="#cb1-299"></a>sub x7,x5, x2 add x5, x3, x4</span>
+<span id="cb1-300"><a href="#cb1-300"></a>38</span>
+<span id="cb1-301"><a href="#cb1-301"></a></span>
+<span id="cb1-302"><a href="#cb1-302"></a>Forwarding rs1 We are forwarding the value to be written</span>
+<span id="cb1-303"><a href="#cb1-303"></a>to x5 to the dependent instruction.</span>
+<span id="cb1-304"><a href="#cb1-304"></a>M</span>
+<span id="cb1-305"><a href="#cb1-305"></a>u</span>
+<span id="cb1-306"><a href="#cb1-306"></a>x</span>
 <span id="cb1-307"><a href="#cb1-307"></a>sub x7, x5, x2 add x5, x3, x4</span>
-<span id="cb1-308"><a href="#cb1-308"></a>37</span>
+<span id="cb1-308"><a href="#cb1-308"></a>39</span>
 <span id="cb1-309"><a href="#cb1-309"></a></span>
-<span id="cb1-310"><a href="#cb1-310"></a>How can we fix this?</span>
-<span id="cb1-311"><a href="#cb1-311"></a>Introducing pipeline stalls!</span>
-<span id="cb1-312"><a href="#cb1-312"></a>(aka bubbles or nops)</span>
-<span id="cb1-313"><a href="#cb1-313"></a>38</span>
-<span id="cb1-314"><a href="#cb1-314"></a></span>
-<span id="cb1-315"><a href="#cb1-315"></a>Pipeline Stalls</span>
-<span id="cb1-316"><a href="#cb1-316"></a>•</span>
-<span id="cb1-317"><a href="#cb1-317"></a>Also known as</span>
-<span id="cb1-318"><a href="#cb1-318"></a>•</span>
-<span id="cb1-319"><a href="#cb1-319"></a>bubbles</span>
-<span id="cb1-320"><a href="#cb1-320"></a>•</span>
-<span id="cb1-321"><a href="#cb1-321"></a>nops (no operation)</span>
-<span id="cb1-322"><a href="#cb1-322"></a>•</span>
-<span id="cb1-323"><a href="#cb1-323"></a>An instruction that does nothing</span>
-<span id="cb1-324"><a href="#cb1-324"></a>•</span>
-<span id="cb1-325"><a href="#cb1-325"></a>Provides time for the correct value to be written to the register file</span>
-<span id="cb1-326"><a href="#cb1-326"></a>39</span>
+<span id="cb1-310"><a href="#cb1-310"></a>Forwarding rs1</span>
+<span id="cb1-311"><a href="#cb1-311"></a>M</span>
+<span id="cb1-312"><a href="#cb1-312"></a>u</span>
+<span id="cb1-313"><a href="#cb1-313"></a>x</span>
+<span id="cb1-314"><a href="#cb1-314"></a>What if there was one</span>
+<span id="cb1-315"><a href="#cb1-315"></a>instruction in between the</span>
+<span id="cb1-316"><a href="#cb1-316"></a>dependent instructions?</span>
+<span id="cb1-317"><a href="#cb1-317"></a>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</span>
+<span id="cb1-318"><a href="#cb1-318"></a>40</span>
+<span id="cb1-319"><a href="#cb1-319"></a></span>
+<span id="cb1-320"><a href="#cb1-320"></a>Forwarding rs1 The value to be written to x5 is at the</span>
+<span id="cb1-321"><a href="#cb1-321"></a>output of the writeback mux.</span>
+<span id="cb1-322"><a href="#cb1-322"></a>M</span>
+<span id="cb1-323"><a href="#cb1-323"></a>u</span>
+<span id="cb1-324"><a href="#cb1-324"></a>x</span>
+<span id="cb1-325"><a href="#cb1-325"></a>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</span>
+<span id="cb1-326"><a href="#cb1-326"></a>41</span>
 <span id="cb1-327"><a href="#cb1-327"></a></span>
-<span id="cb1-328"><a href="#cb1-328"></a>Cycle 2</span>
-<span id="cb1-329"><a href="#cb1-329"></a>sub x7, x5, x2</span>
-<span id="cb1-330"><a href="#cb1-330"></a>add x5, x3, x4</span>
-<span id="cb1-331"><a href="#cb1-331"></a>40</span>
-<span id="cb1-332"><a href="#cb1-332"></a></span>
-<span id="cb1-333"><a href="#cb1-333"></a>Cycle 3</span>
-<span id="cb1-334"><a href="#cb1-334"></a>sub x7, x5, x2</span>
-<span id="cb1-335"><a href="#cb1-335"></a>STALL add x5, x3, x4</span>
-<span id="cb1-336"><a href="#cb1-336"></a>41</span>
-<span id="cb1-337"><a href="#cb1-337"></a></span>
-<span id="cb1-338"><a href="#cb1-338"></a>Cycle 4</span>
-<span id="cb1-339"><a href="#cb1-339"></a>sub x7, x5, x2</span>
-<span id="cb1-340"><a href="#cb1-340"></a><span class="pp">|</span> STALL <span class="pp">|</span> STALL <span class="pp">|</span> add x5, x3, x4 <span class="pp">|</span></span>
-<span id="cb1-341"><a href="#cb1-341"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
-<span id="cb1-342"><a href="#cb1-342"></a>42</span>
-<span id="cb1-343"><a href="#cb1-343"></a></span>
-<span id="cb1-344"><a href="#cb1-344"></a>Cycle 4</span>
-<span id="cb1-345"><a href="#cb1-345"></a>add will write to the register file. Sub will then read the</span>
-<span id="cb1-346"><a href="#cb1-346"></a>updated value.</span>
-<span id="cb1-347"><a href="#cb1-347"></a>sub x7, x5, x2</span>
-<span id="cb1-348"><a href="#cb1-348"></a>STALL STALL add x5, x3, x4</span>
-<span id="cb1-349"><a href="#cb1-349"></a>43</span>
-<span id="cb1-350"><a href="#cb1-350"></a></span>
-<span id="cb1-351"><a href="#cb1-351"></a>Cycle 5</span>
-<span id="cb1-352"><a href="#cb1-352"></a>sub x7, x5, x2</span>
-<span id="cb1-353"><a href="#cb1-353"></a>STALL STALL</span>
-<span id="cb1-354"><a href="#cb1-354"></a>44</span>
-<span id="cb1-355"><a href="#cb1-355"></a></span>
-<span id="cb1-356"><a href="#cb1-356"></a>Cycle 6</span>
-<span id="cb1-357"><a href="#cb1-357"></a>sub x7, x5, x2</span>
-<span id="cb1-358"><a href="#cb1-358"></a>STALL</span>
-<span id="cb1-359"><a href="#cb1-359"></a>45</span>
-<span id="cb1-360"><a href="#cb1-360"></a></span>
-<span id="cb1-361"><a href="#cb1-361"></a>Cycle 7</span>
-<span id="cb1-362"><a href="#cb1-362"></a>sub x7, x5, x2</span>
-<span id="cb1-363"><a href="#cb1-363"></a>46</span>
-<span id="cb1-364"><a href="#cb1-364"></a></span>
-<span id="cb1-365"><a href="#cb1-365"></a>Pipeline Stalls</span>
-<span id="cb1-366"><a href="#cb1-366"></a>•</span>
-<span id="cb1-367"><a href="#cb1-367"></a>In this example, we inserted two stalls between the instructions to ensure that</span>
-<span id="cb1-368"><a href="#cb1-368"></a>sub would read the correct value from x5</span>
-<span id="cb1-369"><a href="#cb1-369"></a>add x5, x3, x4</span>
-<span id="cb1-370"><a href="#cb1-370"></a>STALL</span>
-<span id="cb1-371"><a href="#cb1-371"></a>STALL</span>
-<span id="cb1-372"><a href="#cb1-372"></a>sub x7, x5, x2</span>
-<span id="cb1-373"><a href="#cb1-373"></a>47</span>
-<span id="cb1-374"><a href="#cb1-374"></a></span>
-<span id="cb1-375"><a href="#cb1-375"></a>Data Hazards</span>
-<span id="cb1-376"><a href="#cb1-376"></a>What if there was an independent</span>
-<span id="cb1-377"><a href="#cb1-377"></a>instruction in between?</span>
-<span id="cb1-378"><a href="#cb1-378"></a>add x5, x3, x4</span>
-<span id="cb1-379"><a href="#cb1-379"></a>or x8, x9, x10</span>
-<span id="cb1-380"><a href="#cb1-380"></a>sub x7, x5, x2</span>
-<span id="cb1-381"><a href="#cb1-381"></a>48</span>
-<span id="cb1-382"><a href="#cb1-382"></a></span>
-<span id="cb1-383"><a href="#cb1-383"></a>Cycle 0</span>
-<span id="cb1-384"><a href="#cb1-384"></a>add x5, x3, x4</span>
-<span id="cb1-385"><a href="#cb1-385"></a>49</span>
-<span id="cb1-386"><a href="#cb1-386"></a></span>
-<span id="cb1-387"><a href="#cb1-387"></a>Cycle 1</span>
-<span id="cb1-388"><a href="#cb1-388"></a>or x8, x9, x10</span>
-<span id="cb1-389"><a href="#cb1-389"></a>add x5, x3, x4</span>
-<span id="cb1-390"><a href="#cb1-390"></a>50</span>
-<span id="cb1-391"><a href="#cb1-391"></a></span>
-<span id="cb1-392"><a href="#cb1-392"></a>Cycle 2</span>
-<span id="cb1-393"><a href="#cb1-393"></a>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</span>
-<span id="cb1-394"><a href="#cb1-394"></a>51</span>
-<span id="cb1-395"><a href="#cb1-395"></a></span>
-<span id="cb1-396"><a href="#cb1-396"></a>Cycle 3</span>
-<span id="cb1-397"><a href="#cb1-397"></a>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</span>
-<span id="cb1-398"><a href="#cb1-398"></a>52</span>
-<span id="cb1-399"><a href="#cb1-399"></a></span>
-<span id="cb1-400"><a href="#cb1-400"></a>Cycle 4</span>
-<span id="cb1-401"><a href="#cb1-401"></a>sub x7, x5, x2</span>
-<span id="cb1-402"><a href="#cb1-402"></a><span class="pp">|</span> STALL <span class="pp">|</span> or x8, x9, x10 <span class="pp">|</span> add x5, x3, x4 <span class="pp">|</span></span>
-<span id="cb1-403"><a href="#cb1-403"></a><span class="pp">| -----</span> <span class="pp">| --------------</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
-<span id="cb1-404"><a href="#cb1-404"></a>53</span>
-<span id="cb1-405"><a href="#cb1-405"></a></span>
-<span id="cb1-406"><a href="#cb1-406"></a>Cycle 5</span>
-<span id="cb1-407"><a href="#cb1-407"></a><span class="pp">|</span> sub x7, x5, x2 <span class="pp">|</span> STALL <span class="pp">|</span> or x8, x9, x10 <span class="pp">|</span></span>
-<span id="cb1-408"><a href="#cb1-408"></a><span class="pp">| --------------</span> <span class="pp">| -----</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
-<span id="cb1-409"><a href="#cb1-409"></a>54</span>
-<span id="cb1-410"><a href="#cb1-410"></a></span>
-<span id="cb1-411"><a href="#cb1-411"></a>Cycle 6</span>
-<span id="cb1-412"><a href="#cb1-412"></a>sub x7, x5, x2</span>
-<span id="cb1-413"><a href="#cb1-413"></a>STALL</span>
-<span id="cb1-414"><a href="#cb1-414"></a>55</span>
-<span id="cb1-415"><a href="#cb1-415"></a></span>
-<span id="cb1-416"><a href="#cb1-416"></a>Cycle 7</span>
-<span id="cb1-417"><a href="#cb1-417"></a>sub x7, x5, x2</span>
-<span id="cb1-418"><a href="#cb1-418"></a>56</span>
-<span id="cb1-419"><a href="#cb1-419"></a></span>
-<span id="cb1-420"><a href="#cb1-420"></a>Would we need to add any stalls for this program?</span>
-<span id="cb1-421"><a href="#cb1-421"></a>add x5, x3, x4</span>
-<span id="cb1-422"><a href="#cb1-422"></a>or x8, x9, x10</span>
-<span id="cb1-423"><a href="#cb1-423"></a>xor x14, x15, x16</span>
-<span id="cb1-424"><a href="#cb1-424"></a>sub x7, x5, x2</span>
-<span id="cb1-425"><a href="#cb1-425"></a>57</span>
-<span id="cb1-426"><a href="#cb1-426"></a></span>
-<span id="cb1-427"><a href="#cb1-427"></a>Would we need to add any stalls for this program?</span>
-<span id="cb1-428"><a href="#cb1-428"></a>add x5, x3, x4</span>
-<span id="cb1-429"><a href="#cb1-429"></a>or x8, x9, x10</span>
-<span id="cb1-430"><a href="#cb1-430"></a>xor x14, x15, x16</span>
-<span id="cb1-431"><a href="#cb1-431"></a>sub x7, x5, x2</span>
-<span id="cb1-432"><a href="#cb1-432"></a>No!</span>
-<span id="cb1-433"><a href="#cb1-433"></a>58</span>
-<span id="cb1-434"><a href="#cb1-434"></a></span>
-<span id="cb1-435"><a href="#cb1-435"></a>Pipeline Diagram</span>
-<span id="cb1-436"><a href="#cb1-436"></a>Provides a way for us to visualize instructions moving through the pipeline.</span>
-<span id="cb1-437"><a href="#cb1-437"></a>Instruction Cycle #</span>
-<span id="cb1-438"><a href="#cb1-438"></a>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</span>
-<span id="cb1-439"><a href="#cb1-439"></a>add x5, x3, x4</span>
-<span id="cb1-440"><a href="#cb1-440"></a>or x8, x9, x10</span>
-<span id="cb1-441"><a href="#cb1-441"></a>xor x14, x15, x16</span>
-<span id="cb1-442"><a href="#cb1-442"></a>sub x7, x5, x2</span>
-<span id="cb1-443"><a href="#cb1-443"></a>F = Fetch</span>
-<span id="cb1-444"><a href="#cb1-444"></a>D = Decode</span>
-<span id="cb1-445"><a href="#cb1-445"></a>X = Execute</span>
-<span id="cb1-446"><a href="#cb1-446"></a>M = Memory</span>
-<span id="cb1-447"><a href="#cb1-447"></a>W = Writeback</span>
-<span id="cb1-448"><a href="#cb1-448"></a>59</span>
+<span id="cb1-328"><a href="#cb1-328"></a>Forwarding rs1 The value to be written to x5 is at the</span>
+<span id="cb1-329"><a href="#cb1-329"></a>output of the writeback mux.</span>
+<span id="cb1-330"><a href="#cb1-330"></a>M</span>
+<span id="cb1-331"><a href="#cb1-331"></a>u</span>
+<span id="cb1-332"><a href="#cb1-332"></a>x</span>
+<span id="cb1-333"><a href="#cb1-333"></a>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</span>
+<span id="cb1-334"><a href="#cb1-334"></a>42</span>
+<span id="cb1-335"><a href="#cb1-335"></a></span>
+<span id="cb1-336"><a href="#cb1-336"></a>Forwarding rs1 Now, we can choose if the top input of</span>
+<span id="cb1-337"><a href="#cb1-337"></a>the ALU should come from</span>
+<span id="cb1-338"><a href="#cb1-338"></a><span class="ss">1. </span>The register file (no forwarding)</span>
+<span id="cb1-339"><a href="#cb1-339"></a><span class="ss">2. </span>The instruction two stages ahead</span>
+<span id="cb1-340"><a href="#cb1-340"></a><span class="ss">3. </span>The instruction one stage ahead</span>
+<span id="cb1-341"><a href="#cb1-341"></a>M</span>
+<span id="cb1-342"><a href="#cb1-342"></a>u</span>
+<span id="cb1-343"><a href="#cb1-343"></a>x</span>
+<span id="cb1-344"><a href="#cb1-344"></a>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</span>
+<span id="cb1-345"><a href="#cb1-345"></a>43</span>
+<span id="cb1-346"><a href="#cb1-346"></a></span>
+<span id="cb1-347"><a href="#cb1-347"></a>Forwarding rs2</span>
+<span id="cb1-348"><a href="#cb1-348"></a>The value to be written to x5 is here</span>
+<span id="cb1-349"><a href="#cb1-349"></a>M</span>
+<span id="cb1-350"><a href="#cb1-350"></a>u</span>
+<span id="cb1-351"><a href="#cb1-351"></a>x</span>
+<span id="cb1-352"><a href="#cb1-352"></a>sub x7, x2, x5 add x5 x3, x4</span>
+<span id="cb1-353"><a href="#cb1-353"></a>44</span>
+<span id="cb1-354"><a href="#cb1-354"></a></span>
+<span id="cb1-355"><a href="#cb1-355"></a>Forwarding rs2 We are forwarding the value to be written</span>
+<span id="cb1-356"><a href="#cb1-356"></a>to x5 to the dependent instruction.</span>
+<span id="cb1-357"><a href="#cb1-357"></a>M</span>
+<span id="cb1-358"><a href="#cb1-358"></a>u</span>
+<span id="cb1-359"><a href="#cb1-359"></a>x</span>
+<span id="cb1-360"><a href="#cb1-360"></a>M</span>
+<span id="cb1-361"><a href="#cb1-361"></a>u</span>
+<span id="cb1-362"><a href="#cb1-362"></a>x</span>
+<span id="cb1-363"><a href="#cb1-363"></a>sub x7, x2, x5 add x5 x3, x4</span>
+<span id="cb1-364"><a href="#cb1-364"></a>45</span>
+<span id="cb1-365"><a href="#cb1-365"></a></span>
+<span id="cb1-366"><a href="#cb1-366"></a>Forwarding rs2</span>
+<span id="cb1-367"><a href="#cb1-367"></a>M</span>
+<span id="cb1-368"><a href="#cb1-368"></a>u</span>
+<span id="cb1-369"><a href="#cb1-369"></a>x</span>
+<span id="cb1-370"><a href="#cb1-370"></a>What if there was one</span>
+<span id="cb1-371"><a href="#cb1-371"></a>M</span>
+<span id="cb1-372"><a href="#cb1-372"></a>instruction in between the</span>
+<span id="cb1-373"><a href="#cb1-373"></a>u</span>
+<span id="cb1-374"><a href="#cb1-374"></a>x dependent instructions?</span>
+<span id="cb1-375"><a href="#cb1-375"></a>sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4</span>
+<span id="cb1-376"><a href="#cb1-376"></a>46</span>
+<span id="cb1-377"><a href="#cb1-377"></a></span>
+<span id="cb1-378"><a href="#cb1-378"></a>Forwarding rs2 The value to be written to x5 is at the</span>
+<span id="cb1-379"><a href="#cb1-379"></a>output of the writeback mux.</span>
+<span id="cb1-380"><a href="#cb1-380"></a>M</span>
+<span id="cb1-381"><a href="#cb1-381"></a>u</span>
+<span id="cb1-382"><a href="#cb1-382"></a>x</span>
+<span id="cb1-383"><a href="#cb1-383"></a>M</span>
+<span id="cb1-384"><a href="#cb1-384"></a>u</span>
+<span id="cb1-385"><a href="#cb1-385"></a>x</span>
+<span id="cb1-386"><a href="#cb1-386"></a>sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4</span>
+<span id="cb1-387"><a href="#cb1-387"></a>47</span>
+<span id="cb1-388"><a href="#cb1-388"></a></span>
+<span id="cb1-389"><a href="#cb1-389"></a>Forwarding rs2 Now, we can choose if the bottom input</span>
+<span id="cb1-390"><a href="#cb1-390"></a>of the ALU should come from</span>
+<span id="cb1-391"><a href="#cb1-391"></a><span class="ss">1. </span>The register file (no forwarding)</span>
+<span id="cb1-392"><a href="#cb1-392"></a><span class="ss">2. </span>The instruction two stages ahead</span>
+<span id="cb1-393"><a href="#cb1-393"></a><span class="ss">3. </span>The instruction one stage ahead</span>
+<span id="cb1-394"><a href="#cb1-394"></a>M</span>
+<span id="cb1-395"><a href="#cb1-395"></a>u</span>
+<span id="cb1-396"><a href="#cb1-396"></a>x</span>
+<span id="cb1-397"><a href="#cb1-397"></a>M</span>
+<span id="cb1-398"><a href="#cb1-398"></a>u</span>
+<span id="cb1-399"><a href="#cb1-399"></a>x</span>
+<span id="cb1-400"><a href="#cb1-400"></a>sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4</span>
+<span id="cb1-401"><a href="#cb1-401"></a>48</span>
+<span id="cb1-402"><a href="#cb1-402"></a></span>
+<span id="cb1-403"><a href="#cb1-403"></a>Graphical Representation of Forwarding</span>
+<span id="cb1-404"><a href="#cb1-404"></a>Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf</span>
+<span id="cb1-405"><a href="#cb1-405"></a>49</span>
+<span id="cb1-406"><a href="#cb1-406"></a></span>
+<span id="cb1-407"><a href="#cb1-407"></a>LOAD-USE HAZARD</span>
+<span id="cb1-408"><a href="#cb1-408"></a>50</span>
+<span id="cb1-409"><a href="#cb1-409"></a></span>
+<span id="cb1-410"><a href="#cb1-410"></a>Load-Use Data Hazard</span>
+<span id="cb1-411"><a href="#cb1-411"></a>ForwardA</span>
+<span id="cb1-412"><a href="#cb1-412"></a>M</span>
+<span id="cb1-413"><a href="#cb1-413"></a>u</span>
+<span id="cb1-414"><a href="#cb1-414"></a>x</span>
+<span id="cb1-415"><a href="#cb1-415"></a>M</span>
+<span id="cb1-416"><a href="#cb1-416"></a>u</span>
+<span id="cb1-417"><a href="#cb1-417"></a>x</span>
+<span id="cb1-418"><a href="#cb1-418"></a>ForwardB</span>
+<span id="cb1-419"><a href="#cb1-419"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-420"><a href="#cb1-420"></a>51</span>
+<span id="cb1-421"><a href="#cb1-421"></a></span>
+<span id="cb1-422"><a href="#cb1-422"></a>Load-Use Data Hazard</span>
+<span id="cb1-423"><a href="#cb1-423"></a>ForwardA</span>
+<span id="cb1-424"><a href="#cb1-424"></a>M</span>
+<span id="cb1-425"><a href="#cb1-425"></a>u</span>
+<span id="cb1-426"><a href="#cb1-426"></a>x</span>
+<span id="cb1-427"><a href="#cb1-427"></a>M</span>
+<span id="cb1-428"><a href="#cb1-428"></a>u</span>
+<span id="cb1-429"><a href="#cb1-429"></a>x</span>
+<span id="cb1-430"><a href="#cb1-430"></a>ForwardB</span>
+<span id="cb1-431"><a href="#cb1-431"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-432"><a href="#cb1-432"></a>52</span>
+<span id="cb1-433"><a href="#cb1-433"></a></span>
+<span id="cb1-434"><a href="#cb1-434"></a>Load-Use Data Hazard</span>
+<span id="cb1-435"><a href="#cb1-435"></a>ForwardA</span>
+<span id="cb1-436"><a href="#cb1-436"></a>M</span>
+<span id="cb1-437"><a href="#cb1-437"></a>The updated valueu of x4 cannot be forwarded until it is</span>
+<span id="cb1-438"><a href="#cb1-438"></a>x</span>
+<span id="cb1-439"><a href="#cb1-439"></a>read from the data memory.</span>
+<span id="cb1-440"><a href="#cb1-440"></a>M</span>
+<span id="cb1-441"><a href="#cb1-441"></a>u</span>
+<span id="cb1-442"><a href="#cb1-442"></a>We need to stall the add instruction in the decode stage for</span>
+<span id="cb1-443"><a href="#cb1-443"></a>x</span>
+<span id="cb1-444"><a href="#cb1-444"></a>one cycle so that we can forward the value read from data</span>
+<span id="cb1-445"><a href="#cb1-445"></a>ForwardB</span>
+<span id="cb1-446"><a href="#cb1-446"></a>memory.</span>
+<span id="cb1-447"><a href="#cb1-447"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-448"><a href="#cb1-448"></a>53</span>
 <span id="cb1-449"><a href="#cb1-449"></a></span>
-<span id="cb1-450"><a href="#cb1-450"></a>Pipeline Diagram</span>
-<span id="cb1-451"><a href="#cb1-451"></a>Provides a way for us to visualize instructions moving through the pipeline.</span>
-<span id="cb1-452"><a href="#cb1-452"></a>Instruction Cycle #</span>
-<span id="cb1-453"><a href="#cb1-453"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 2   <span class="pp">|</span> 3 4 <span class="pp">|</span> 5   <span class="pp">|</span> 6   <span class="pp">|</span> 7 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-454"><a href="#cb1-454"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-455"><a href="#cb1-455"></a>add x5, x3, x4</span>
-<span id="cb1-456"><a href="#cb1-456"></a><span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X   <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-457"><a href="#cb1-457"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-458"><a href="#cb1-458"></a>or x8, x9, x10</span>
-<span id="cb1-459"><a href="#cb1-459"></a><span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-460"><a href="#cb1-460"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-461"><a href="#cb1-461"></a>xor x14, x15, x16</span>
-<span id="cb1-462"><a href="#cb1-462"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D X <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-463"><a href="#cb1-463"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-464"><a href="#cb1-464"></a>sub x7, x5, x2</span>
-<span id="cb1-465"><a href="#cb1-465"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F D <span class="pp">|</span> X   <span class="pp">|</span> M   <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-466"><a href="#cb1-466"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-467"><a href="#cb1-467"></a>F = Fetch</span>
-<span id="cb1-468"><a href="#cb1-468"></a>D = Decode</span>
-<span id="cb1-469"><a href="#cb1-469"></a>X = Execute</span>
-<span id="cb1-470"><a href="#cb1-470"></a>M = Memory</span>
-<span id="cb1-471"><a href="#cb1-471"></a>W = Writeback</span>
-<span id="cb1-472"><a href="#cb1-472"></a>60</span>
+<span id="cb1-450"><a href="#cb1-450"></a>Load-Use Data Hazard</span>
+<span id="cb1-451"><a href="#cb1-451"></a>ForwardA</span>
+<span id="cb1-452"><a href="#cb1-452"></a>M</span>
+<span id="cb1-453"><a href="#cb1-453"></a>u</span>
+<span id="cb1-454"><a href="#cb1-454"></a>x</span>
+<span id="cb1-455"><a href="#cb1-455"></a>M</span>
+<span id="cb1-456"><a href="#cb1-456"></a>u</span>
+<span id="cb1-457"><a href="#cb1-457"></a>x</span>
+<span id="cb1-458"><a href="#cb1-458"></a>ForwardB</span>
+<span id="cb1-459"><a href="#cb1-459"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
+<span id="cb1-460"><a href="#cb1-460"></a>54</span>
+<span id="cb1-461"><a href="#cb1-461"></a></span>
+<span id="cb1-462"><a href="#cb1-462"></a>Load-Use Data Hazard</span>
+<span id="cb1-463"><a href="#cb1-463"></a>ForwardA</span>
+<span id="cb1-464"><a href="#cb1-464"></a>M</span>
+<span id="cb1-465"><a href="#cb1-465"></a>u</span>
+<span id="cb1-466"><a href="#cb1-466"></a>x</span>
+<span id="cb1-467"><a href="#cb1-467"></a>M</span>
+<span id="cb1-468"><a href="#cb1-468"></a>u</span>
+<span id="cb1-469"><a href="#cb1-469"></a>x</span>
+<span id="cb1-470"><a href="#cb1-470"></a>ForwardB</span>
+<span id="cb1-471"><a href="#cb1-471"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
+<span id="cb1-472"><a href="#cb1-472"></a>55</span>
 <span id="cb1-473"><a href="#cb1-473"></a></span>
-<span id="cb1-474"><a href="#cb1-474"></a>Would we need to add any stalls for this program?</span>
-<span id="cb1-475"><a href="#cb1-475"></a>add x20, x21, x22</span>
-<span id="cb1-476"><a href="#cb1-476"></a>sub x28, x20, x15</span>
-<span id="cb1-477"><a href="#cb1-477"></a>and x27, x5, x18</span>
-<span id="cb1-478"><a href="#cb1-478"></a>or x9, x28, x3</span>
-<span id="cb1-479"><a href="#cb1-479"></a>61</span>
-<span id="cb1-480"><a href="#cb1-480"></a></span>
-<span id="cb1-481"><a href="#cb1-481"></a>Would we need to add any stalls for this program?</span>
-<span id="cb1-482"><a href="#cb1-482"></a>Data Hazard!</span>
-<span id="cb1-483"><a href="#cb1-483"></a>add x20, x21, x22</span>
-<span id="cb1-484"><a href="#cb1-484"></a>sub x28, x20, x15</span>
-<span id="cb1-485"><a href="#cb1-485"></a>and x27, x5, x18</span>
-<span id="cb1-486"><a href="#cb1-486"></a>or x9, x28, x3</span>
-<span id="cb1-487"><a href="#cb1-487"></a>Yes! We need to add two stalls after the add instruction!</span>
-<span id="cb1-488"><a href="#cb1-488"></a>And one stall after the and instruction!</span>
-<span id="cb1-489"><a href="#cb1-489"></a>62</span>
-<span id="cb1-490"><a href="#cb1-490"></a></span>
-<span id="cb1-491"><a href="#cb1-491"></a>Pipeline Diagram</span>
-<span id="cb1-492"><a href="#cb1-492"></a>Instruction Cycle #</span>
-<span id="cb1-493"><a href="#cb1-493"></a>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</span>
-<span id="cb1-494"><a href="#cb1-494"></a>add x20, x21, x22</span>
-<span id="cb1-495"><a href="#cb1-495"></a>sub x28, x20, x15</span>
-<span id="cb1-496"><a href="#cb1-496"></a>and x27, x5, x18</span>
-<span id="cb1-497"><a href="#cb1-497"></a>or x9, x28, x3</span>
-<span id="cb1-498"><a href="#cb1-498"></a>F = Fetch</span>
-<span id="cb1-499"><a href="#cb1-499"></a>D = Decode</span>
-<span id="cb1-500"><a href="#cb1-500"></a>X = Execute</span>
-<span id="cb1-501"><a href="#cb1-501"></a>M = Memory</span>
-<span id="cb1-502"><a href="#cb1-502"></a>W = Writeback</span>
-<span id="cb1-503"><a href="#cb1-503"></a>63</span>
-<span id="cb1-504"><a href="#cb1-504"></a></span>
-<span id="cb1-505"><a href="#cb1-505"></a>Pipeline Diagram</span>
-<span id="cb1-506"><a href="#cb1-506"></a>Instruction Cycle #</span>
-<span id="cb1-507"><a href="#cb1-507"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-508"><a href="#cb1-508"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-509"><a href="#cb1-509"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-510"><a href="#cb1-510"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-511"><a href="#cb1-511"></a>and x27, x5,  x18</span>
-<span id="cb1-512"><a href="#cb1-512"></a>or  x9,  x28, x3</span>
-<span id="cb1-513"><a href="#cb1-513"></a>sub will remain in the decode stage until add writes back</span>
-<span id="cb1-514"><a href="#cb1-514"></a>F = Fetch</span>
-<span id="cb1-515"><a href="#cb1-515"></a>D = Decode</span>
-<span id="cb1-516"><a href="#cb1-516"></a>X = Execute</span>
-<span id="cb1-517"><a href="#cb1-517"></a>M = Memory</span>
-<span id="cb1-518"><a href="#cb1-518"></a>W = Writeback</span>
-<span id="cb1-519"><a href="#cb1-519"></a>65</span>
-<span id="cb1-520"><a href="#cb1-520"></a></span>
-<span id="cb1-521"><a href="#cb1-521"></a>Pipeline Diagram</span>
-<span id="cb1-522"><a href="#cb1-522"></a>Instruction Cycle #</span>
-<span id="cb1-523"><a href="#cb1-523"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-524"><a href="#cb1-524"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-525"><a href="#cb1-525"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-526"><a href="#cb1-526"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-527"><a href="#cb1-527"></a>and x27, x5,  x18</span>
-<span id="cb1-528"><a href="#cb1-528"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-529"><a href="#cb1-529"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-530"><a href="#cb1-530"></a>or  x9,  x28, x3</span>
-<span id="cb1-531"><a href="#cb1-531"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-532"><a href="#cb1-532"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-533"><a href="#cb1-533"></a>sub will remain in the decode stage until add writes back</span>
-<span id="cb1-534"><a href="#cb1-534"></a>and will remain in the fetch stage while sub is in the decode state</span>
-<span id="cb1-535"><a href="#cb1-535"></a>F = Fetch</span>
-<span id="cb1-536"><a href="#cb1-536"></a>D = Decode</span>
-<span id="cb1-537"><a href="#cb1-537"></a>X = Execute</span>
-<span id="cb1-538"><a href="#cb1-538"></a>M = Memory</span>
-<span id="cb1-539"><a href="#cb1-539"></a>W = Writeback</span>
-<span id="cb1-540"><a href="#cb1-540"></a>66</span>
-<span id="cb1-541"><a href="#cb1-541"></a></span>
-<span id="cb1-542"><a href="#cb1-542"></a>Pipeline Diagram</span>
-<span id="cb1-543"><a href="#cb1-543"></a><span class="pp">|</span> Instruction       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Cycle # <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-544"><a href="#cb1-544"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-545"><a href="#cb1-545"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7     <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-546"><a href="#cb1-546"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-547"><a href="#cb1-547"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-548"><a href="#cb1-548"></a><span class="pp">|</span> and x27, x5,  x18 <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M     <span class="pp">|</span> W   <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-549"><a href="#cb1-549"></a>or  x9,  x28, x3</span>
-<span id="cb1-550"><a href="#cb1-550"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-551"><a href="#cb1-551"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-552"><a href="#cb1-552"></a>or will remain in the decode stage until sub writes back</span>
-<span id="cb1-553"><a href="#cb1-553"></a>F = Fetch</span>
-<span id="cb1-554"><a href="#cb1-554"></a>D = Decode</span>
-<span id="cb1-555"><a href="#cb1-555"></a>X = Execute</span>
-<span id="cb1-556"><a href="#cb1-556"></a>M = Memory</span>
-<span id="cb1-557"><a href="#cb1-557"></a>W = Writeback</span>
-<span id="cb1-558"><a href="#cb1-558"></a>67</span>
-<span id="cb1-559"><a href="#cb1-559"></a></span>
-<span id="cb1-560"><a href="#cb1-560"></a>Performance Metric: CPI (Cycles per instruction)</span>
-<span id="cb1-561"><a href="#cb1-561"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-562"><a href="#cb1-562"></a>𝐶𝑃𝐼 =</span>
-<span id="cb1-563"><a href="#cb1-563"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-564"><a href="#cb1-564"></a>68</span>
-<span id="cb1-565"><a href="#cb1-565"></a></span>
-<span id="cb1-566"><a href="#cb1-566"></a>Performance Metric: CPI (Cycles per instruction)</span>
-<span id="cb1-567"><a href="#cb1-567"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-568"><a href="#cb1-568"></a>𝐶𝑃𝐼 =</span>
-<span id="cb1-569"><a href="#cb1-569"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-570"><a href="#cb1-570"></a><span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-571"><a href="#cb1-571"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-572"><a href="#cb1-572"></a>add x20, x21, x22</span>
-<span id="cb1-573"><a href="#cb1-573"></a><span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-574"><a href="#cb1-574"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-575"><a href="#cb1-575"></a>sub x28, x20, x15</span>
-<span id="cb1-576"><a href="#cb1-576"></a><span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-577"><a href="#cb1-577"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-578"><a href="#cb1-578"></a>and x27, x5,  x18</span>
-<span id="cb1-579"><a href="#cb1-579"></a><span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-580"><a href="#cb1-580"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-581"><a href="#cb1-581"></a>or  x9,  x28, x3</span>
-<span id="cb1-582"><a href="#cb1-582"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-583"><a href="#cb1-583"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-584"><a href="#cb1-584"></a>69</span>
-<span id="cb1-585"><a href="#cb1-585"></a></span>
-<span id="cb1-586"><a href="#cb1-586"></a>Performance Metric: CPI (Cycles per instruction)</span>
-<span id="cb1-587"><a href="#cb1-587"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-588"><a href="#cb1-588"></a>𝐶𝑃𝐼 =</span>
-<span id="cb1-589"><a href="#cb1-589"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-590"><a href="#cb1-590"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4   <span class="pp">|</span> 5 6 <span class="pp">|</span> 7 8 <span class="pp">|</span> 9 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-591"><a href="#cb1-591"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-592"><a href="#cb1-592"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-593"><a href="#cb1-593"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D   <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-594"><a href="#cb1-594"></a><span class="pp">|</span> and x27, x5,  x18 <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F   <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-595"><a href="#cb1-595"></a><span class="pp">|</span> or  x9,  x28, x3  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F D <span class="pp">|</span> D X <span class="pp">|</span> M W     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-596"><a href="#cb1-596"></a>11</span>
-<span id="cb1-597"><a href="#cb1-597"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶𝑃𝐼 <span class="pp">|</span> =   <span class="pp">|</span> = 2.75 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-598"><a href="#cb1-598"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-599"><a href="#cb1-599"></a>4</span>
-<span id="cb1-600"><a href="#cb1-600"></a>70</span>
-<span id="cb1-601"><a href="#cb1-601"></a></span>
-<span id="cb1-602"><a href="#cb1-602"></a>Ideal CPI (Cycles per instruction) = 1</span>
-<span id="cb1-603"><a href="#cb1-603"></a><span class="fu"># 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</span></span>
-<span id="cb1-604"><a href="#cb1-604"></a>𝐶𝑃𝐼 =</span>
-<span id="cb1-605"><a href="#cb1-605"></a><span class="fu"># 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠</span></span>
-<span id="cb1-606"><a href="#cb1-606"></a>71</span>
-<span id="cb1-607"><a href="#cb1-607"></a></span>
-<span id="cb1-608"><a href="#cb1-608"></a>Ideal CPI (Cycles per instruction) = 1</span>
-<span id="cb1-609"><a href="#cb1-609"></a>In the ideal case, we will have one instruction finishing on every cycle.</span>
-<span id="cb1-610"><a href="#cb1-610"></a>If one instruction finishes every cycle, the total number of cycles</span>
-<span id="cb1-611"><a href="#cb1-611"></a>needed to execute the program is (4 + # of instructions).</span>
-<span id="cb1-612"><a href="#cb1-612"></a><span class="fu"># 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠</span></span>
-<span id="cb1-613"><a href="#cb1-613"></a>(this equation</span>
-<span id="cb1-614"><a href="#cb1-614"></a>𝐶𝑃𝐼 = =</span>
-<span id="cb1-615"><a href="#cb1-615"></a>assumes no stalls)</span>
-<span id="cb1-616"><a href="#cb1-616"></a><span class="fu"># 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠</span></span>
-<span id="cb1-617"><a href="#cb1-617"></a>Stalls are going to hurt our CPI. We are going to see later in the</span>
-<span id="cb1-618"><a href="#cb1-618"></a>lecture how to reduce the number of stalls.</span>
-<span id="cb1-619"><a href="#cb1-619"></a>72</span>
-<span id="cb1-620"><a href="#cb1-620"></a></span>
-<span id="cb1-621"><a href="#cb1-621"></a>Pipeline Diagram with Stalls</span>
-<span id="cb1-622"><a href="#cb1-622"></a>1.</span>
-<span id="cb1-623"><a href="#cb1-623"></a>Fill out the pipeline diagram for the following set of instructions.</span>
-<span id="cb1-624"><a href="#cb1-624"></a>2.</span>
-<span id="cb1-625"><a href="#cb1-625"></a>What is the CPI?</span>
-<span id="cb1-626"><a href="#cb1-626"></a>3.</span>
-<span id="cb1-627"><a href="#cb1-627"></a>What is the speedup compared to a single-cycle datapath?</span>
-<span id="cb1-628"><a href="#cb1-628"></a>•</span>
-<span id="cb1-629"><a href="#cb1-629"></a>Assume pipelined clock period = 220ps and single-cycle clock period = 820ps</span>
-<span id="cb1-630"><a href="#cb1-630"></a>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</span>
-<span id="cb1-631"><a href="#cb1-631"></a>add x3, x2, x2</span>
-<span id="cb1-632"><a href="#cb1-632"></a>or x4, x2, x5</span>
-<span id="cb1-633"><a href="#cb1-633"></a>and x9, x4, x10</span>
-<span id="cb1-634"><a href="#cb1-634"></a>sub x11, x4, x14</span>
-<span id="cb1-635"><a href="#cb1-635"></a>add x11, x15, x18</span>
-<span id="cb1-636"><a href="#cb1-636"></a>73</span>
-<span id="cb1-637"><a href="#cb1-637"></a></span>
-<span id="cb1-638"><a href="#cb1-638"></a>Pipeline Diagram with Stalls</span>
-<span id="cb1-639"><a href="#cb1-639"></a><span class="pp">|</span>                   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6   <span class="pp">|</span> 7 8 <span class="pp">|</span> 9 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
-<span id="cb1-640"><a href="#cb1-640"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-641"><a href="#cb1-641"></a><span class="pp">|</span> add x3,  x2,  x2  <span class="pp">|</span> F   <span class="pp">|</span> D   <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-642"><a href="#cb1-642"></a><span class="pp">|</span> or  x4,  x2,  x5  <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-643"><a href="#cb1-643"></a><span class="pp">|</span> and x9,  x4,  x10 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F D <span class="pp">|</span> D D <span class="pp">|</span> X   <span class="pp">|</span> M W <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-644"><a href="#cb1-644"></a>sub x11, x4,  x14</span>
-<span id="cb1-645"><a href="#cb1-645"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> F F <span class="pp">|</span> D   <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-646"><a href="#cb1-646"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-647"><a href="#cb1-647"></a>add x11, x15, x18</span>
-<span id="cb1-648"><a href="#cb1-648"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-649"><a href="#cb1-649"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-650"><a href="#cb1-650"></a>11</span>
-<span id="cb1-651"><a href="#cb1-651"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶𝑃𝐼 <span class="pp">|</span> =   <span class="pp">|</span> =   <span class="pp">|</span> 2.2 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-652"><a href="#cb1-652"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-653"><a href="#cb1-653"></a>5</span>
-<span id="cb1-654"><a href="#cb1-654"></a><span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span> 5   <span class="pp">|</span> ∙ 820𝑝𝑠 <span class="pp">|</span>     <span class="pp">|</span> 4100𝑝𝑠 <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-655"><a href="#cb1-655"></a><span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-656"><a href="#cb1-656"></a><span class="pp">|</span>     <span class="pp">|</span> 𝑆𝑝𝑒𝑒𝑑𝑢𝑝 <span class="pp">|</span>     <span class="pp">|</span> =   <span class="pp">|</span>         <span class="pp">|</span> =   <span class="pp">|</span>        <span class="pp">|</span> = 1.69 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-657"><a href="#cb1-657"></a><span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span> 11  <span class="pp">|</span> ∙ 220𝑝𝑠 <span class="pp">|</span>     <span class="pp">|</span> 2420𝑝𝑠 <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-658"><a href="#cb1-658"></a>74</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-474"><a href="#cb1-474"></a>Load-Use Data Hazard</span>
+<span id="cb1-475"><a href="#cb1-475"></a>(forward from two stages ahead)</span>
+<span id="cb1-476"><a href="#cb1-476"></a>ForwardA = 0b01</span>
+<span id="cb1-477"><a href="#cb1-477"></a>ForwardA</span>
+<span id="cb1-478"><a href="#cb1-478"></a>M</span>
+<span id="cb1-479"><a href="#cb1-479"></a>u</span>
+<span id="cb1-480"><a href="#cb1-480"></a>x</span>
+<span id="cb1-481"><a href="#cb1-481"></a>M</span>
+<span id="cb1-482"><a href="#cb1-482"></a>u</span>
+<span id="cb1-483"><a href="#cb1-483"></a>x</span>
+<span id="cb1-484"><a href="#cb1-484"></a>ForwardB</span>
+<span id="cb1-485"><a href="#cb1-485"></a>ForwardB = 0b00</span>
+<span id="cb1-486"><a href="#cb1-486"></a>(read from reg file)</span>
+<span id="cb1-487"><a href="#cb1-487"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
+<span id="cb1-488"><a href="#cb1-488"></a>56</span>
+<span id="cb1-489"><a href="#cb1-489"></a></span>
+<span id="cb1-490"><a href="#cb1-490"></a>Pipeline Diagram</span>
+<span id="cb1-491"><a href="#cb1-491"></a>1.</span>
+<span id="cb1-492"><a href="#cb1-492"></a>Fill out the pipeline diagram for the following set of instructions.</span>
+<span id="cb1-493"><a href="#cb1-493"></a>2.</span>
+<span id="cb1-494"><a href="#cb1-494"></a>What should ForwardA and ForwardB be set to on each cycle?</span>
+<span id="cb1-495"><a href="#cb1-495"></a>•</span>
+<span id="cb1-496"><a href="#cb1-496"></a>If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX.</span>
+<span id="cb1-497"><a href="#cb1-497"></a>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</span>
+<span id="cb1-498"><a href="#cb1-498"></a>lw x3, 0(x8)</span>
+<span id="cb1-499"><a href="#cb1-499"></a>add x11, x3, x3</span>
+<span id="cb1-500"><a href="#cb1-500"></a>lw x4, 0(x11)</span>
+<span id="cb1-501"><a href="#cb1-501"></a>add x9, x11, x9</span>
+<span id="cb1-502"><a href="#cb1-502"></a>sub x10, x4, x9</span>
+<span id="cb1-503"><a href="#cb1-503"></a>ForwardA</span>
+<span id="cb1-504"><a href="#cb1-504"></a>ForwardB</span>
+<span id="cb1-505"><a href="#cb1-505"></a>57</span>
+<span id="cb1-506"><a href="#cb1-506"></a></span>
+<span id="cb1-507"><a href="#cb1-507"></a>Performance Analysis + Pipelining</span>
+<span id="cb1-508"><a href="#cb1-508"></a>Assume a 1 GHz clock. One</span>
+<span id="cb1-509"><a href="#cb1-509"></a>clock cycle is 1 ns</span>
+<span id="cb1-510"><a href="#cb1-510"></a>Assume a pipelined implementation where:</span>
+<span id="cb1-511"><a href="#cb1-511"></a>●</span>
+<span id="cb1-512"><a href="#cb1-512"></a>Taken branches take 2 cycles.</span>
+<span id="cb1-513"><a href="#cb1-513"></a>○</span>
+<span id="cb1-514"><a href="#cb1-514"></a>Loads and stores take 2 cycles.</span>
+<span id="cb1-515"><a href="#cb1-515"></a>○</span>
+<span id="cb1-516"><a href="#cb1-516"></a>Assuming approximately 10% of instructions executed are</span>
+<span id="cb1-517"><a href="#cb1-517"></a>●</span>
+<span id="cb1-518"><a href="#cb1-518"></a>branches, and of those 80% of the time they are taken, and</span>
+<span id="cb1-519"><a href="#cb1-519"></a>15% of instructions executed are loads or stores, what sort of</span>
+<span id="cb1-520"><a href="#cb1-520"></a>real speed-up do we expect?</span>
+<span id="cb1-521"><a href="#cb1-521"></a>60</span>
+<span id="cb1-522"><a href="#cb1-522"></a></span>
+<span id="cb1-523"><a href="#cb1-523"></a>Some takeaways…</span>
+<span id="cb1-524"><a href="#cb1-524"></a>Design strategy: Focus our attention on placing pipelining</span>
+<span id="cb1-525"><a href="#cb1-525"></a>●</span>
+<span id="cb1-526"><a href="#cb1-526"></a>registers around the slowest circuit elements (bottlenecks!)</span>
+<span id="cb1-527"><a href="#cb1-527"></a>You can pipeline an RISC-V CPU even more. There exist</span>
+<span id="cb1-528"><a href="#cb1-528"></a>●</span>
+<span id="cb1-529"><a href="#cb1-529"></a>implementations with 7, 8, and 9 pipeline stages. But the</span>
+<span id="cb1-530"><a href="#cb1-530"></a>overhead of bypass paths and the number of stall cases increase</span>
+<span id="cb1-531"><a href="#cb1-531"></a>.</span>
+<span id="cb1-532"><a href="#cb1-532"></a>Memory access time is our real bottleneck!</span>
+<span id="cb1-533"><a href="#cb1-533"></a>●</span>
+<span id="cb1-534"><a href="#cb1-534"></a>62</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
