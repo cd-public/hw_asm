@@ -145,84 +145,439 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 21: Pipeline Hazards tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Update! ■ Last lab (5) will be posted today! – Optional lab 3.1 to update our API ■ Quiz Topics (Last Quiz on Wednesday!) – Advanced RISC-V Programming – Tracing and Writing Functions with RISC-V – Reading and Writing to Memory (Look at WA6) – Pipeline Hazards (Whatever we get through today!) 2</p>
-<p>RISC-V WARM UP</p>
-<p>SOME REMINDERS ☺ WE HAVE COVERED A LOT! 4</p>
-<p>Compilation vs.&nbsp;Disassembly Compilation Disassembly | | // | High-level | | (C) | | | | — | — | ———- | — | — | —— | — | | | int | add3(int | | a, | int b) | | { | | | return | | a + | b + 3; | | | — | — | —— | — | — | —— | — | } | add | a0, | a0, | a1 | # | a0 = a0 | + a1 | | —- | — | — | — | — | ——- | —- | | | | | | # | a0 = a0 | + 3 | | addi | a0, | a0, | 3 | | | | | ret | | | | # | return | | 00000000101101010000010100110011 00000000001101010 000010100010011 | 000000000000 | | | 00001000000001100111 | | | | | ———— | — | — | ——————– | — | — | — | 5</p>
-<p>6</p>
-<p>7</p>
-<p>8</p>
-<p>9</p>
-<p>10</p>
-<p>11</p>
-<p>12</p>
-<p>13</p>
-<p>14</p>
-<p>15</p>
-<p>PIPELINE HAZARDS</p>
-<p>Data Hazard Tracing Let’s say we want to execute the following two instructions sequentially add x5, x3, x4 sub x7, x5, x2 Back to 5 stages! ☺ But first a quick note about pipelining our datapath + pipeline registers 17</p>
-<p>Recall: Pipeline Register • A register placed between each stage of our pipelined datapath • Holds data being passed from one stage to the next • Controls the timing of instruction flow through the pipeline • Ensures that each stage is operating in isolation 18</p>
-<p>Each pipeline register name is based on the stages it separates Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— | 19</p>
-<p>Cycle 0 add x5, x3, x4 20</p>
-<p>Cycle 1 sub x7, x5 x2 add x5, x3, x4 21</p>
-<p>Cycle 2 sub x7, x5 x2 add x5, x3, x4 22</p>
-<p>Cycle 2 sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4 23</p>
-<p>Control Hazard: the pipeline does not know which instruction to fetch next because it is Pipeline Control Hazards waiting for the result of a branch or jump instruction to be computed. … Pipelining HAZARDS are situations where loop: add t0,t0,t0 the next instruction cannot execute in the addi t1,t1,-1 next clock cycle. blt t1,x0,loop srai t0,t0,8 Consider the instruction sequence shown: sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Fetch add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 sub t1,t0,t1 add t0,t0,t0 P i p e l Decode add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 ??? i n e Execute add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop ??? When the branch instruction reaches the execute stage the Let’s consider 3 stages again for a next 2 instructions have already been fetched! moment… 24</p>
-<p>Delay slot: an instruction slot that comes after a branch or a jump and the processor is guaranteed to execute that instruction Branch Fixes before the branch takes effect Problem: Two instructions following a branch are fetched before the branch decision is made (to take or not to take) Solutions: 1. Program around it. Define the ISA such that the branch does not take effect until after instructions in the “DELAY SLOTS” complete. This is how MIPS pipelines work. It leads to odd looking code in tight (short) loops. You could always put “NOPs” in the delay slots. 2. Detect the branch decision as early as possible, and ANNUL instructions in the delay slots. This is what RISC-V does. 25</p>
-<p>Early Detect and Annul Detect branch and jump instructions and It helps if … the ALU is make the branch decision in the decode stage. not used by loop: add t0,t0,t0 branch addi t1,t1,-1 We then annul the following instruction by instructions bne t1,x0,loop forcing it to be a NOP (addi x0, x0, 0) srai t0,t0,8 sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 P i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1 p e l i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 nop add t0,t0,t0 n e nop Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 We detect the branch in the decode stage then the instruction in the fetch stage can be ANNULLED and the next PC changed. 26</p>
-<p>Impact on the Hardware Two changes: Add H/W to test if the branch is taken during 1. annul register access. Easy for beq and bne (just NOR together the bitwise XORs). Use this zero detection from the decode stage, z , to D select the next pc (btype = 0, pcsel =1) Add a multiplexer to replace the already 2. fetched instruction with a NOP, and, thus ANNUL it. 27</p>
-<p>The cost of taken branches When an RISC-V branch is taken the branch instructions are effectively 2 cycles rather than 1 when they aren’t. In a MIPS-like instruction set, one can often fill the delay slots with useful instructions, but they are executed whether or not the branch is taken. The RISC-V approach is easier to understand, and since it does not “EXPOSE” the pipeline, it also allows for an alternative number of pipeline stages to be implemented in future designs, while conserving code compatibility. Lastly, using RISC-V, many conditional branches can be eliminated using the condition execution, which pipelines beautifully! 28</p>
-<p>The MIPS vs.&nbsp;RISC-V Approach loop: loop: add $t0, $t0, $t0 # work add t0, t0, t0 addi $t1, $t1, -1 addi t1, t1, -1 blt $t1, $zero, loop blt t1, x0, loop # resolved in Decode nop # delay slot (executes even if taken!) srai t0, t0, 8 srai $t0, $t0, 8 sub t1, t0, t1 sub $t1, $t0, $t1 One instruction after branch always Branch is resolved early and the next executes. The compiler must fill this with instruction can be “Annulled” or turned into useful work, or a NOP! a NOP if mispredicted 29</p>
-<p>Structural hazard: two instructions competing for hardware unit Structural Pipeline Hazards There’s another problem with our code fragment! … The destination register of instructions are loop: add t0,t0,t0 written at the end of the Execute stage. addi t1,t1,-1 However the following instruction might use bne t1,x0,loop srai t0,t0,8 this result as a source operand. sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 P i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1 p e l nop i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 n e Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop nop The “bne” instruction needs to access the contents of t1 before it is actually written are the end of i+3 30</p>
-<p>Data Hazard Tracing Let’s say we want to execute the following two instructions sequentially add x5, x3, x4 sub x7, x5, x2 Back to 5 stages! ☺ But first a quick note about pipelining our datapath + pipeline registers 31</p>
-<p>Recall: Pipeline Register • A register placed between each stage of our pipelined datapath • Holds data being passed from one stage to the next • Controls the timing of instruction flow through the pipeline • Ensures that each stage is operating in isolation 32</p>
-<p>Each pipeline register name is based on the stages it separates Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— | 33</p>
-<p>Cycle 0 add x5, x3, x4 34</p>
-<p>Cycle 1 sub x7, x5 x2 add x5, x3, x4 35</p>
-<p>Cycle 2 sub x7, x5 x2 add x5, x3, x4 36</p>
-<p>Cycle 2 sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4 37</p>
-<p>How can we fix this? Introducing pipeline stalls! (aka bubbles or nops) 38</p>
-<p>Pipeline Stalls • Also known as • bubbles • nops (no operation) • An instruction that does nothing • Provides time for the correct value to be written to the register file 39</p>
-<p>Cycle 2 sub x7, x5, x2 add x5, x3, x4 40</p>
-<p>Cycle 3 sub x7, x5, x2 STALL add x5, x3, x4 41</p>
-<p>Cycle 4 sub x7, x5, x2 | STALL | STALL | add x5, x3, x4 | | —– | —– | ————– | 42</p>
-<p>Cycle 4 add will write to the register file. Sub will then read the updated value. sub x7, x5, x2 STALL STALL add x5, x3, x4 43</p>
-<p>Cycle 5 sub x7, x5, x2 STALL STALL 44</p>
-<p>Cycle 6 sub x7, x5, x2 STALL 45</p>
-<p>Cycle 7 sub x7, x5, x2 46</p>
-<p>Pipeline Stalls • In this example, we inserted two stalls between the instructions to ensure that sub would read the correct value from x5 add x5, x3, x4 STALL STALL sub x7, x5, x2 47</p>
-<p>Data Hazards What if there was an independent instruction in between? add x5, x3, x4 or x8, x9, x10 sub x7, x5, x2 48</p>
-<p>Cycle 0 add x5, x3, x4 49</p>
-<p>Cycle 1 or x8, x9, x10 add x5, x3, x4 50</p>
-<p>Cycle 2 sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 51</p>
-<p>Cycle 3 sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 52</p>
-<p>Cycle 4 sub x7, x5, x2 | STALL | or x8, x9, x10 | add x5, x3, x4 | | —– | ————– | ————– | 53</p>
-<p>Cycle 5 | sub x7, x5, x2 | STALL | or x8, x9, x10 | | ————– | —– | ————– | 54</p>
-<p>Cycle 6 sub x7, x5, x2 STALL 55</p>
-<p>Cycle 7 sub x7, x5, x2 56</p>
-<p>Would we need to add any stalls for this program? add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 57</p>
-<p>Would we need to add any stalls for this program? add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 No! 58</p>
-<p>Pipeline Diagram Provides a way for us to visualize instructions moving through the pipeline. Instruction Cycle # 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 F = Fetch D = Decode X = Execute M = Memory W = Writeback 59</p>
-<p>Pipeline Diagram Provides a way for us to visualize instructions moving through the pipeline. Instruction Cycle # | 0 | 1 | 2 | 3 4 | 5 | 6 | 7 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | — | —– | —– | —– | — | add x5, x3, x4 | F | D | X | M W | | | | | | | | — | — | — | — | — | — | — | — | — | — | or x8, x9, x10 | | F | D | X M | W | | | | | | | — | — | — | — | — | — | — | — | — | — | xor x14, x15, x16 | | | F | D X | M | W | | | | | | — | — | — | — | — | — | — | — | — | — | sub x7, x5, x2 | | | | F D | X | M | W | | | | | — | — | — | — | — | — | — | — | — | — | F = Fetch D = Decode X = Execute M = Memory W = Writeback 60</p>
-<p>Would we need to add any stalls for this program? add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 61</p>
-<p>Would we need to add any stalls for this program? Data Hazard! add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 Yes! We need to add two stalls after the add instruction! And one stall after the and instruction! 62</p>
-<p>Pipeline Diagram Instruction Cycle # 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 F = Fetch D = Decode X = Execute M = Memory W = Writeback 63</p>
-<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 or x9, x28, x3 sub will remain in the decode stage until add writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 65</p>
-<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 | | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | sub will remain in the decode stage until add writes back and will remain in the fetch stage while sub is in the decode state F = Fetch D = Decode X = Execute M = Memory W = Writeback 66</p>
-<p>Pipeline Diagram | Instruction | | | | Cycle # | | | | | | —————– | — | — | — | ——- | — | —– | —– | — | | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | | and x27, x5, x18 | | F F | F D | X M | W | | | | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | or will remain in the decode stage until sub writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 67</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 68</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | —– | —– | — | add x20, x21, x22 | F D | X M | W | | | | | | | — | — | — | — | — | — | — | — | sub x28, x20, x15 | F | D D | D X | M W | | | | | | — | — | — | — | — | — | — | — | and x27, x5, x18 | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | 69</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | | 0 1 | 2 3 | 4 | 5 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | ——- | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D | X M | W | | | | | and x27, x5, x18 | | F F | F | D X | M W | | | | | or x9, x28, x3 | | | | F D | D X | M W | | | 11 | | | 𝐶𝑃𝐼 | = | = 2.75 | | | | | | — | — | — | — | —— | — | — | — | — | 4 70</p>
-<p>Ideal CPI (Cycles per instruction) = 1 # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝐶𝑃𝐼 = # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 71</p>
-<p>Ideal CPI (Cycles per instruction) = 1 In the ideal case, we will have one instruction finishing on every cycle. If one instruction finishes every cycle, the total number of cycles needed to execute the program is (4 + # of instructions). # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 (this equation 𝐶𝑃𝐼 = = assumes no stalls) # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠 Stalls are going to hurt our CPI. We are going to see later in the lecture how to reduce the number of stalls. 72</p>
-<p>Pipeline Diagram with Stalls 1. Fill out the pipeline diagram for the following set of instructions. 2. What is the CPI? 3. What is the speedup compared to a single-cycle datapath? • Assume pipelined clock period = 220ps and single-cycle clock period = 820ps 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x3, x2, x2 or x4, x2, x5 and x9, x4, x10 sub x11, x4, x14 add x11, x15, x18 73</p>
-<p>Pipeline Diagram with Stalls | | 0 | 1 | 2 3 | 4 5 | 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | — | ——- | —– | — | | add x3, x2, x2 | F | D | X M | W | | | | | | | or x4, x2, x5 | | F | D X | M W | | | | | | | and x9, x4, x10 | | | F D | D D | X | M W | | | | sub x11, x4, x14 | | | | F | F F | D | X M | W | | | | — | — | — | — | — | — | — | — | — | — | add x11, x15, x18 | | | | | | F | D X | M W | | | | — | — | — | — | — | — | — | — | — | — | 11 | | | | 𝐶𝑃𝐼 | = | = | 2.2 | | | | | — | — | — | — | — | — | — | — | — | — | 5 | | | | 5 | ∙ 820𝑝𝑠 | | 4100𝑝𝑠 | | | | | — | ——- | — | — | ——- | — | —— | —— | — | — | | | 𝑆𝑝𝑒𝑒𝑑𝑢𝑝 | | = | | = | | = 1.69 | | | | | | | 11 | ∙ 220𝑝𝑠 | | 2420𝑝𝑠 | | | | 74</p>
-
-
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 21: Pipeline Hazards tinyurl.com/comp311-sp26</p>
 </section>
+<section id="logistics-update" class="slide level2">
+<h2>Logistics Update!</h2>
+<p>■ Last lab (5) will be posted today! – Optional lab 3.1 to update our API ■ Quiz Topics (Last Quiz on Wednesday!) – Advanced RISC-V Programming – Tracing and Writing Functions with RISC-V – Reading and Writing to Memory (Look at WA6) – Pipeline Hazards (Whatever we get through today!)</p>
+</section>
+<section id="risc-v-warm-up" class="slide level2">
+<h2>RISC-V WARM UP</h2>
+<p>SOME REMINDERS ☺ WE HAVE COVERED A LOT!</p>
+</section>
+<section id="compilation-vs.-disassembly" class="slide level2">
+<h2>Compilation vs.&nbsp;Disassembly</h2>
+<p>Compilation Disassembly | | // | High-level | | (C) | | | | — | — | ———- | — | — | —— | — | | | int | add3(int | | a, | int b) | | { | | | return | | a + | b + 3; | | | — | — | —— | — | — | —— | — | } | add | a0, | a0, | a1 | # | a0 = a0 | + a1 | | —- | — | — | — | — | ——- | —- | | | | | | # | a0 = a0 | + 3 | | addi | a0, | a0, | 3 | | | | | ret | | | | # | return | | 00000000101101010000010100110011 00000000001101010 000010100010011 | 000000000000 | | | 00001000000001100111 | | | | | ———— | — | — | ——————– | — | — | — |</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2>6</h2>
+</section>
+<section id="section-2" class="slide level2">
+<h2>7</h2>
+</section>
+<section id="section-3" class="slide level2">
+<h2>8</h2>
+</section>
+<section id="section-4" class="slide level2">
+<h2>9</h2>
+</section>
+<section id="section-5" class="slide level2">
+<h2>10</h2>
+</section>
+<section id="section-6" class="slide level2">
+<h2>11</h2>
+</section>
+<section id="section-7" class="slide level2">
+<h2>12</h2>
+</section>
+<section id="section-8" class="slide level2">
+<h2>13</h2>
+</section>
+<section id="section-9" class="slide level2">
+<h2>14</h2>
+</section>
+<section id="section-10" class="slide level2">
+<h2>15</h2>
+</section>
+<section id="pipeline-hazards" class="slide level2">
+<h2>PIPELINE HAZARDS</h2>
+<p>Data Hazard Tracing Let’s say we want to execute the following two instructions sequentially add x5, x3, x4 sub x7, x5, x2 Back to 5 stages! ☺ But first a quick note about pipelining our datapath + pipeline registers</p>
+</section>
+<section id="recall-pipeline-register" class="slide level2">
+<h2>Recall: Pipeline Register</h2>
+<p>• A register placed between each stage of our pipelined datapath • Holds data being passed from one stage to the next • Controls the timing of instruction flow through the pipeline • Ensures that each stage is operating in isolation</p>
+</section>
+<section id="each-pipeline-register-name-is-based-on-the-stages-it-separates" class="slide level2">
+<h2>Each pipeline register name is based on the stages it separates</h2>
+<p>Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— |</p>
+</section>
+<section id="cycle-0" class="slide level2">
+<h2>Cycle 0</h2>
+<p>add x5, x3, x4</p>
+</section>
+<section id="cycle-1" class="slide level2">
+<h2>Cycle 1</h2>
+<p>sub x7, x5 x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-2" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub x7, x5 x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-2-1" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="control-hazard-the-pipeline-does-not-know" class="slide level2">
+<h2>Control Hazard: the pipeline does not know</h2>
+<p>which instruction to fetch next because it is Pipeline Control Hazards waiting for the result of a branch or jump instruction to be computed. … Pipelining HAZARDS are situations where loop: add t0,t0,t0 the next instruction cannot execute in the addi t1,t1,-1 next clock cycle. blt t1,x0,loop srai t0,t0,8 Consider the instruction sequence shown: sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 Fetch add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 sub t1,t0,t1 add t0,t0,t0 P i p e l Decode add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop srai t0,t0,8 ??? i n e Execute add t0,t0,t0 addi t1,t1,-1 blt t1,x0,loop ??? When the branch instruction reaches the execute stage the Let’s consider 3 stages again for a next 2 instructions have already been fetched! moment…</p>
+</section>
+<section id="delay-slot-an-instruction-slot-that-comes" class="slide level2">
+<h2>Delay slot: an instruction slot that comes</h2>
+<p>after a branch or a jump and the processor is guaranteed to execute that instruction Branch Fixes before the branch takes effect Problem: Two instructions following a branch are fetched before the branch decision is made (to take or not to take) Solutions: 1. Program around it. Define the ISA such that the branch does not take effect until after instructions in the “DELAY SLOTS” complete. This is how MIPS pipelines work. It leads to odd looking code in tight (short) loops. You could always put “NOPs” in the delay slots. 2. Detect the branch decision as early as possible, and ANNUL instructions in the delay slots. This is what RISC-V does.</p>
+</section>
+<section id="early-detect-and-annul" class="slide level2">
+<h2>Early Detect and Annul</h2>
+<p>Detect branch and jump instructions and It helps if … the ALU is make the branch decision in the decode stage. not used by loop: add t0,t0,t0 branch addi t1,t1,-1 We then annul the following instruction by instructions bne t1,x0,loop forcing it to be a NOP (addi x0, x0, 0) srai t0,t0,8 sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 P i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1 p e l i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 nop add t0,t0,t0 n e nop Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 We detect the branch in the decode stage then the instruction in the fetch stage can be ANNULLED and the next PC changed.</p>
+</section>
+<section id="impact-on-the-hardware" class="slide level2">
+<h2>Impact on the Hardware</h2>
+<p>Two changes: Add H/W to test if the branch is taken during 1. annul register access. Easy for beq and bne (just NOR together the bitwise XORs). Use this zero detection from the decode stage, z , to D select the next pc (btype = 0, pcsel =1) Add a multiplexer to replace the already 2. fetched instruction with a NOP, and, thus ANNUL it.</p>
+</section>
+<section id="the-cost-of-taken-branches" class="slide level2">
+<h2>The cost of taken branches</h2>
+<p>When an RISC-V branch is taken the branch instructions are effectively 2 cycles rather than 1 when they aren’t. In a MIPS-like instruction set, one can often fill the delay slots with useful instructions, but they are executed whether or not the branch is taken. The RISC-V approach is easier to understand, and since it does not “EXPOSE” the pipeline, it also allows for an alternative number of pipeline stages to be implemented in future designs, while conserving code compatibility. Lastly, using RISC-V, many conditional branches can be eliminated using the condition execution, which pipelines beautifully!</p>
+</section>
+<section id="the-mips-vs.-risc-v-approach" class="slide level2">
+<h2>The MIPS vs.&nbsp;RISC-V Approach</h2>
+<p>loop: loop: add $t0, $t0, $t0 # work add t0, t0, t0 addi $t1, $t1, -1 addi t1, t1, -1 blt $t1, $zero, loop blt t1, x0, loop # resolved in Decode nop # delay slot (executes even if taken!) srai t0, t0, 8 srai $t0, $t0, 8 sub t1, t0, t1 sub $t1, $t0, $t1 One instruction after branch always Branch is resolved early and the next executes. The compiler must fill this with instruction can be “Annulled” or turned into useful work, or a NOP! a NOP if mispredicted</p>
+</section>
+<section id="structural-hazard-two-instructions" class="slide level2">
+<h2>Structural hazard: two instructions</h2>
+<p>competing for hardware unit Structural Pipeline Hazards There’s another problem with our code fragment! … The destination register of instructions are loop: add t0,t0,t0 written at the end of the Execute stage. addi t1,t1,-1 However the following instruction might use bne t1,x0,loop srai t0,t0,8 this result as a source operand. sub t1,t0,t1 Time (in clock cycles) i i+1 i+2 i+3 i+4 i+5 P i Fetch add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 addi t1,t1,-1 p e l nop i Decode add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop srai t0,t0,8 add t0,t0,t0 n e Execute add t0,t0,t0 addi t1,t1,-1 bne t1,x0,loop nop The “bne” instruction needs to access the contents of t1 before it is actually written are the end of i+3</p>
+</section>
+<section id="data-hazard-tracing" class="slide level2">
+<h2>Data Hazard Tracing</h2>
+<p>Let’s say we want to execute the following two instructions sequentially add x5, x3, x4 sub x7, x5, x2 Back to 5 stages! ☺ But first a quick note about pipelining our datapath + pipeline registers</p>
+</section>
+<section id="recall-pipeline-register-1" class="slide level2">
+<h2>Recall: Pipeline Register</h2>
+<p>• A register placed between each stage of our pipelined datapath • Holds data being passed from one stage to the next • Controls the timing of instruction flow through the pipeline • Ensures that each stage is operating in isolation</p>
+</section>
+<section id="each-pipeline-register-name-is-based-on-the-stages-it-separates-1" class="slide level2">
+<h2>Each pipeline register name is based on the stages it separates</h2>
+<p>Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— |</p>
+</section>
+<section id="cycle-0-1" class="slide level2">
+<h2>Cycle 0</h2>
+<p>add x5, x3, x4</p>
+</section>
+<section id="cycle-1-1" class="slide level2">
+<h2>Cycle 1</h2>
+<p>sub x7, x5 x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-2-2" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub x7, x5 x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-2-3" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="how-can-we-fix-this" class="slide level2">
+<h2>How can we fix this?</h2>
+<p>Introducing pipeline stalls! (aka bubbles or nops)</p>
+</section>
+<section id="pipeline-stalls" class="slide level2">
+<h2>Pipeline Stalls</h2>
+<p>• Also known as • bubbles • nops (no operation) • An instruction that does nothing • Provides time for the correct value to be written to the register file</p>
+</section>
+<section id="cycle-2-4" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-3" class="slide level2">
+<h2>Cycle 3</h2>
+<p>sub x7, x5, x2 STALL add x5, x3, x4</p>
+</section>
+<section id="cycle-4" class="slide level2">
+<h2>Cycle 4</h2>
+<p>sub x7, x5, x2 | STALL | STALL | add x5, x3, x4 | | —– | —– | ————– |</p>
+</section>
+<section id="cycle-4-1" class="slide level2">
+<h2>Cycle 4</h2>
+<p>add will write to the register file. Sub will then read the updated value. sub x7, x5, x2 STALL STALL add x5, x3, x4</p>
+</section>
+<section id="cycle-5" class="slide level2">
+<h2>Cycle 5</h2>
+<p>sub x7, x5, x2 STALL STALL</p>
+</section>
+<section id="cycle-6" class="slide level2">
+<h2>Cycle 6</h2>
+<p>sub x7, x5, x2 STALL</p>
+</section>
+<section id="cycle-7" class="slide level2">
+<h2>Cycle 7</h2>
+<p>sub x7, x5, x2</p>
+</section>
+<section id="pipeline-stalls-1" class="slide level2">
+<h2>Pipeline Stalls</h2>
+<p>• In this example, we inserted two stalls between the instructions to ensure that sub would read the correct value from x5 add x5, x3, x4 STALL STALL sub x7, x5, x2</p>
+</section>
+<section id="data-hazards" class="slide level2">
+<h2>Data Hazards</h2>
+<p>What if there was an independent instruction in between? add x5, x3, x4 or x8, x9, x10 sub x7, x5, x2</p>
+</section>
+<section id="cycle-0-2" class="slide level2">
+<h2>Cycle 0</h2>
+<p>add x5, x3, x4</p>
+</section>
+<section id="cycle-1-2" class="slide level2">
+<h2>Cycle 1</h2>
+<p>or x8, x9, x10 add x5, x3, x4</p>
+</section>
+<section id="cycle-2-5" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</p>
+</section>
+<section id="cycle-3-1" class="slide level2">
+<h2>Cycle 3</h2>
+<p>sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</p>
+</section>
+<section id="cycle-4-2" class="slide level2">
+<h2>Cycle 4</h2>
+<p>sub x7, x5, x2 | STALL | or x8, x9, x10 | add x5, x3, x4 | | —– | ————– | ————– |</p>
+</section>
+<section id="cycle-5-1" class="slide level2">
+<h2>Cycle 5</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>sub x7, x5, x2</th>
+<th>STALL</th>
+<th>or x8, x9, x10</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="cycle-6-1" class="slide level2">
+<h2>Cycle 6</h2>
+<p>sub x7, x5, x2 STALL</p>
+</section>
+<section id="cycle-7-1" class="slide level2">
+<h2>Cycle 7</h2>
+<p>sub x7, x5, x2</p>
+</section>
+<section id="would-we-need-to-add-any-stalls-for-this-program" class="slide level2">
+<h2>Would we need to add any stalls for this program?</h2>
+<p>add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2</p>
+</section>
+<section id="would-we-need-to-add-any-stalls-for-this-program-1" class="slide level2">
+<h2>Would we need to add any stalls for this program?</h2>
+<p>add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 No!</p>
+</section>
+<section id="pipeline-diagram" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<p>Provides a way for us to visualize instructions moving through the pipeline. Instruction Cycle # 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x5, x3, x4 or x8, x9, x10 xor x14, x15, x16 sub x7, x5, x2 F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="pipeline-diagram-1" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<p>Provides a way for us to visualize instructions moving through the pipeline. Instruction Cycle # | 0 | 1 | 2 | 3 4 | 5 | 6 | 7 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | — | —– | —– | —– | — | add x5, x3, x4 | F | D | X | M W | | | | | | | | — | — | — | — | — | — | — | — | — | — | or x8, x9, x10 | | F | D | X M | W | | | | | | | — | — | — | — | — | — | — | — | — | — | xor x14, x15, x16 | | | F | D X | M | W | | | | | | — | — | — | — | — | — | — | — | — | — | sub x7, x5, x2 | | | | F D | X | M | W | | | | | — | — | — | — | — | — | — | — | — | — | F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="would-we-need-to-add-any-stalls-for-this-program-2" class="slide level2">
+<h2>Would we need to add any stalls for this program?</h2>
+<p>add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3</p>
+</section>
+<section id="would-we-need-to-add-any-stalls-for-this-program-3" class="slide level2">
+<h2>Would we need to add any stalls for this program?</h2>
+<p>Data Hazard! add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 Yes! We need to add two stalls after the add instruction! And one stall after the and instruction!</p>
+</section>
+<section id="pipeline-diagram-2" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<p>Instruction Cycle # 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x20, x21, x22 sub x28, x20, x15 and x27, x5, x18 or x9, x28, x3 F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="pipeline-diagram-3" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<p>Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 or x9, x28, x3 sub will remain in the decode stage until add writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="pipeline-diagram-4" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<p>Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 | | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | sub will remain in the decode stage until add writes back and will remain in the fetch stage while sub is in the decode state F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="pipeline-diagram-5" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instruction</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Cycle #</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>0 1</td>
+<td>2 3</td>
+<td>4 5</td>
+<td>6 7</td>
+<td>8 9</td>
+<td>10 11</td>
+<td>12 13</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>add x20, x21, x22</td>
+<td>F D</td>
+<td>X M</td>
+<td>W</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sub x28, x20, x15</td>
+<td>F</td>
+<td>D D</td>
+<td>D X</td>
+<td>M W</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>and x27, x5, x18</td>
+<td></td>
+<td>F F</td>
+<td>F D</td>
+<td>X M</td>
+<td>W</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | or will remain in the decode stage until sub writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="performance-metric-cpi-cycles-per-instruction" class="slide level2">
+<h2>Performance Metric: CPI (Cycles per instruction)</h2>
+<p>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</p>
+</section>
+<section id="performance-metric-cpi-cycles-per-instruction-1" class="slide level2">
+<h2>Performance Metric: CPI (Cycles per instruction)</h2>
+<p>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | —– | —– | — | add x20, x21, x22 | F D | X M | W | | | | | | | — | — | — | — | — | — | — | — | sub x28, x20, x15 | F | D D | D X | M W | | | | | | — | — | — | — | — | — | — | — | and x27, x5, x18 | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — |</p>
+</section>
+<section id="performance-metric-cpi-cycles-per-instruction-2" class="slide level2">
+<h2>Performance Metric: CPI (Cycles per instruction)</h2>
+<p>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | | 0 1 | 2 3 | 4 | 5 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | ——- | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D | X M | W | | | | | and x27, x5, x18 | | F F | F | D X | M W | | | | | or x9, x28, x3 | | | | F D | D X | M W | | | 11 | | | 𝐶𝑃𝐼 | = | = 2.75 | | | | | | — | — | — | — | —— | — | — | — | — | 4</p>
+</section>
+<section id="ideal-cpi-cycles-per-instruction-1" class="slide level2">
+<h2>Ideal CPI (Cycles per instruction) = 1</h2>
+</section></section>
+<section>
+<section id="𝑜𝑓-𝑐𝑦𝑐𝑙𝑒𝑠" class="title-slide slide level1 center">
+<h1>𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</h1>
+<p>𝐶𝑃𝐼 = # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠</p>
+</section>
+<section id="ideal-cpi-cycles-per-instruction-1-1" class="slide level2">
+<h2>Ideal CPI (Cycles per instruction) = 1</h2>
+<p>In the ideal case, we will have one instruction finishing on every cycle. If one instruction finishes every cycle, the total number of cycles needed to execute the program is (4 + # of instructions). # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 (this equation 𝐶𝑃𝐼 = = assumes no stalls) # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠 Stalls are going to hurt our CPI. We are going to see later in the lecture how to reduce the number of stalls.</p>
+</section>
+<section id="pipeline-diagram-with-stalls" class="slide level2">
+<h2>Pipeline Diagram with Stalls</h2>
+<ol type="1">
+<li>Fill out the pipeline diagram for the following set of instructions.</li>
+<li>What is the CPI?</li>
+<li>What is the speedup compared to a single-cycle datapath? • Assume pipelined clock period = 220ps and single-cycle clock period = 820ps 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x3, x2, x2 or x4, x2, x5 and x9, x4, x10 sub x11, x4, x14 add x11, x15, x18</li>
+</ol>
+</section>
+<section id="pipeline-diagram-with-stalls-1" class="slide level2">
+<h2>Pipeline Diagram with Stalls</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 13%">
+<col style="width: 9%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2 3</th>
+<th>4 5</th>
+<th>6</th>
+<th>7 8</th>
+<th>9 10 11</th>
+<th>12 13</th>
+<th>14</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>add x3, x2, x2</td>
+<td>F</td>
+<td>D</td>
+<td>X M</td>
+<td>W</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>or x4, x2, x5</td>
+<td></td>
+<td>F</td>
+<td>D X</td>
+<td>M W</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>and x9, x4, x10</td>
+<td></td>
+<td></td>
+<td>F D</td>
+<td>D D</td>
+<td>X</td>
+<td>M W</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>sub x11, x4, x14 | | | | F | F F | D | X M | W | | | | — | — | — | — | — | — | — | — | — | — | add x11, x15, x18 | | | | | | F | D X | M W | | | | — | — | — | — | — | — | — | — | — | — | 11 | | | | 𝐶𝑃𝐼 | = | = | 2.2 | | | | | — | — | — | — | — | — | — | — | — | — | 5 | | | | 5 | ∙ 820𝑝𝑠 | | 4100𝑝𝑠 | | | | | — | ——- | — | — | ——- | — | —— | —— | — | — | | | 𝑆𝑝𝑒𝑒𝑑𝑢𝑝 | | = | | = | | = 1.69 | | | | | | | 11 | ∙ 220𝑝𝑠 | | 2420𝑝𝑠 | | | |</p>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

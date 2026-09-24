@@ -145,70 +145,362 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 13: Intro to Timing Analysis tinyurl.com/comp311-sp26 1</p>
-<p>FLIP FLOPS AND REGISTERS: MORE DETAILS 2</p>
-<p>Combinational vs.&nbsp;Sequential Logic ■ Combinational logic: – All the circuits we’ve seen so far! – Every element in the circuit is <em>recomputed</em> as soon as a change is detected on an input – Result dependent only on current input (no memory) ■ Sequential logic: – Output depends on current input &amp;&amp; past state – This past state is stored in a register! – Synchronous logic: a type of sequential logic where combinational logic blocks <sub>synced</sub> with a global clock 3</p>
-<p>Clock Rising Edge Falling Edge Period 4</p>
-<p>Clock ■ The clock is a one-bit signal that oscillates (or toggles) back and forth between 0 and 1 ■ The purpose of the clock is to ensure that our circuits stay in sync ■ The period of the clock is the time between one rising edge to the next. The clock spends an equal time in low and high states. – The period determines how fast our circuit runs – The shorter the period – or in other words the higher the frequency – the faster our circuit will run 5</p>
-<p>D Flip-Flop ■ Positive-edge triggered – Stores D when the clock goes from 0 to 1 ■ Negative-edge triggered – Stores D when the clock goes from 1 to 0 Rising Edge Falling Edge 6</p>
-<p>D Flip-Flop Value to store Stored Value Inverted Clock (Determines when D is stored) Stored Value 7</p>
-<p>Registers ■ To store multi-bit values, we can combine multiple FFs together into what is known as a register clk 2-bit register 8</p>
-<p>N-bit Positive Edge Triggered Register N N clk 9</p>
-<p>N-bit Positive Edge Triggered Register N N clk Enable • If 1, the register will read D on the rising edge of the clock • If 0, the register will not read D 10</p>
-<p>Registers Store the State &amp; Results! Operations to 32 Perform A D Q 32 3 + 4 ALU D Q 5 – 2 32 Result B 9 OR 4 D Q 6 AND 8 4 5 + 9 ALUOp Assume all registers are connected to the same clock (not shown) 11</p>
-<p>ALU ■ The ALU will perform one operation per clock cycle ■ To perform an operation, we have three inputs to set: A, B, and ALUOp – (ALU Op (ALU Control line from the textbook) is also synchronized with a register, but that is abstracted away for now) Operation A B ALUOp Cycle 0 3 + 4 Cycle 1 5 - 2 Cycle 2 9 OR 4 Cycle 3 6 AND 8 Cycle 4 5 + 9 12</p>
-<p>ALU ■ The ALU will perform one operation per clock cycle ■ To perform an operation, we have three inputs to set: A, B, and ALUOp – (ALU Op is also synchronized with a register, but that is abstracted away for now) | | Operation | A | B | ALUOp | | ——- | ——— | — | — | —— | | Cycle 0 | 3 + 4 | 3 | 4 | 0b0010 | | Cycle 1 | 5 - 2 | 5 | 2 | 0b0110 | | Cycle 2 | 9 OR 4 | 9 | 4 | 0b0001 | | Cycle 3 | 6 AND 8 | 6 | 8 | 0b0000 | | Cycle 4 | 5 + 9 | 5 | 9 | 0b0010 | 13</p>
-<p>Dependent Operations Operations to 32 Perform A D Q a = 5 + 4 32 ALU D Q b = 7 + 8 32 Result B c = a + b D Q 4 ALU operation Assume all registers are connected to the same clock (not shown) 14</p>
-<p>Implementation Details on the Register File! Thus far, our building blocks units have focused on logical and arithmetic functions. We’ll also need functional units for storing intermediate results. By now, we are used to the notion of building wide registers. D Now we add a control that enables the loading of a register. | 1 0 | | D | | D | D | | D | D | | ——- | — | — | — | — | — | — | — | — | EN | | EN | | EN | | EN | … | EN | EN | | — | — | — | — | — | — | — | — | — | S | D | | Q | Q | | Q | | Q | Q | | — | — | —– | —– | — | —– | — | —– | —– | CLK Q An N-bit wide Register | | EN | D CLK | Q | Q | | | | | | — | — | —– | — | — | — | — | — | — | | Q | | | N | N+1 | | | | | with enable | | X | X 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | | | X | X 0 | 1 | 1 | | | | | | | X | X 1 | 0 | 0 | | | | | | | X | X 1 | 1 | 1 | | | | | | | | | | | | EN | D | | | | 0 | X ↑ | 0 | 0 | | | Q | | | | 0 | X ↑ | 1 | 1 | | | | | | | 1 | 0 ↑ | X | 0 | | | | | | | 1 | 1 ↑ | X | 1 | | | | |</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 13: Intro to Timing Analysis tinyurl.com/comp311-sp26</p>
+</section>
+<section id="flip-flops-and" class="slide level2">
+<h2>FLIP FLOPS AND</h2>
+<p>REGISTERS: MORE DETAILS</p>
+</section>
+<section id="combinational-vs.-sequential-logic" class="slide level2">
+<h2>Combinational vs.&nbsp;Sequential Logic</h2>
+<p>■ Combinational logic: – All the circuits we’ve seen so far! – Every element in the circuit is <em>recomputed</em> as soon as a change is detected on an input – Result dependent only on current input (no memory) ■ Sequential logic: – Output depends on current input &amp;&amp; past state – This past state is stored in a register! – Synchronous logic: a type of sequential logic where combinational logic blocks <sub>synced</sub> with a global clock</p>
+</section>
+<section id="clock" class="slide level2">
+<h2>Clock</h2>
+<p>Rising Edge Falling Edge Period</p>
+</section>
+<section id="clock-1" class="slide level2">
+<h2>Clock</h2>
+<p>■ The clock is a one-bit signal that oscillates (or toggles) back and forth between 0 and 1 ■ The purpose of the clock is to ensure that our circuits stay in sync ■ The period of the clock is the time between one rising edge to the next. The clock spends an equal time in low and high states. – The period determines how fast our circuit runs – The shorter the period – or in other words the higher the frequency – the faster our circuit will run</p>
+</section>
+<section id="d-flip-flop" class="slide level2">
+<h2>D Flip-Flop</h2>
+<p>■ Positive-edge triggered – Stores D when the clock goes from 0 to 1 ■ Negative-edge triggered – Stores D when the clock goes from 1 to 0 Rising Edge Falling Edge</p>
+</section>
+<section id="d-flip-flop-1" class="slide level2">
+<h2>D Flip-Flop</h2>
+<p>Value to store Stored Value Inverted Clock (Determines when D is stored) Stored Value</p>
+</section>
+<section id="registers" class="slide level2">
+<h2>Registers</h2>
+<p>■ To store multi-bit values, we can combine multiple FFs together into what is known as a register clk 2-bit register</p>
+</section>
+<section id="n-bit-positive-edge-triggered-register" class="slide level2">
+<h2>N-bit Positive Edge Triggered Register</h2>
+<p>N N clk</p>
+</section>
+<section id="n-bit-positive-edge-triggered-register-1" class="slide level2">
+<h2>N-bit Positive Edge Triggered Register</h2>
+<p>N N clk Enable • If 1, the register will read D on the rising edge of the clock • If 0, the register will not read D</p>
+</section>
+<section id="registers-store-the-state-results" class="slide level2">
+<h2>Registers Store the State &amp; Results!</h2>
+<p>Operations to 32 Perform A D Q 32 3 + 4 ALU D Q 5 – 2 32 Result B 9 OR 4 D Q 6 AND 8 4 5 + 9 ALUOp Assume all registers are connected to the same clock (not shown)</p>
+</section>
+<section id="alu" class="slide level2">
+<h2>ALU</h2>
+<p>■ The ALU will perform one operation per clock cycle ■ To perform an operation, we have three inputs to set: A, B, and ALUOp – (ALU Op (ALU Control line from the textbook) is also synchronized with a register, but that is abstracted away for now) Operation A B ALUOp Cycle 0 3 + 4 Cycle 1 5 - 2 Cycle 2 9 OR 4 Cycle 3 6 AND 8 Cycle 4 5 + 9</p>
+</section>
+<section id="alu-1" class="slide level2">
+<h2>ALU</h2>
+<p>■ The ALU will perform one operation per clock cycle ■ To perform an operation, we have three inputs to set: A, B, and ALUOp – (ALU Op is also synchronized with a register, but that is abstracted away for now) | | Operation | A | B | ALUOp | | ——- | ——— | — | — | —— | | Cycle 0 | 3 + 4 | 3 | 4 | 0b0010 | | Cycle 1 | 5 - 2 | 5 | 2 | 0b0110 | | Cycle 2 | 9 OR 4 | 9 | 4 | 0b0001 | | Cycle 3 | 6 AND 8 | 6 | 8 | 0b0000 | | Cycle 4 | 5 + 9 | 5 | 9 | 0b0010 |</p>
+</section>
+<section id="dependent-operations" class="slide level2">
+<h2>Dependent Operations</h2>
+<p>Operations to 32 Perform A D Q a = 5 + 4 32 ALU D Q b = 7 + 8 32 Result B c = a + b D Q 4 ALU operation Assume all registers are connected to the same clock (not shown)</p>
+</section>
+<section id="implementation-details-on-the-register-file" class="slide level2">
+<h2>Implementation Details on the Register File!</h2>
+<p>Thus far, our building blocks units have focused on logical and arithmetic functions. We’ll also need functional units for storing intermediate results. By now, we are used to the notion of building wide registers. D Now we add a control that enables the loading of a register. | 1 0 | | D | | D | D | | D | D | | ——- | — | — | — | — | — | — | — | — | EN | | EN | | EN | | EN | … | EN | EN | | — | — | — | — | — | — | — | — | — | S | D | | Q | Q | | Q | | Q | Q | | — | — | —– | —– | — | —– | — | —– | —– | CLK Q An N-bit wide Register | | EN | D CLK | Q | Q | | | | | | — | — | —– | — | — | — | — | — | — | | Q | | | N | N+1 | | | | | with enable | | X | X 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | | | X | X 0 | 1 | 1 | | | | | | | X | X 1 | 0 | 0 | | | | | | | X | X 1 | 1 | 1 | | | | | | | | | | | | EN | D | | | | 0 | X ↑ | 0 | 0 | | | Q | | | | 0 | X ↑ | 1 | 1 | | | | | | | 1 | 0 ↑ | X | 0 | | | | | | | 1 | 1 ↑ | X | 1 | | | | |</p>
 <p>A Register File We can also construct an addressable array of registers Write Addr[N:0] 0 1 … 2N-1 DataIn[B:0] Write Enable | EN | | EN | | | EN | | | — | — | — | — | — | — | — | | | D | | D | … | | D | Clk | | Q | | Q | | | Q | | — | — | — | — | — | — | — | … | | | 0 1 2N- | | | | Din[B:0] | | — | — | —————– | — | — | — | ——– | Read 1 | Addr[N:0] | | | | | | WA[N:0] | | ——— | — | — | — | — | — | ——- | RA[N:0] | | | DataOut[B:0] | | | | WE | | — | — | ———— | — | — | — | — | Dout[B:0]</p>
 <p>A Multi-Ported Register File Multiple read ports by simply adding more output MUXs Write Addr[N:0] 0 1 … 2N-1 Data in[B:0] Write Enable EN D EN D … EN D Clk Q Q Q … … 0 1 2N- 0 1 2N- Read Addr A[N:0] Read Addr B[N:0] Din[B:0] 1 1 WA[N:0] RA[N:0] Data out A[B:0] Data out B[B:0] RB[N:0] WE DA[B:0] DB[B:0]</p>
-<p>Register File | Reg 0 | Reg 1 | Reg 2 | | Reg 3 | Reg 4 | | Reg 5 | Reg 6 | Reg 7 | | | —– | —– | —– | — | —– | —– | — | —– | —– | —– | — | D | D Q | D Q | D | Q | D Q | D | Q | D Q | D Q | | Q | | —— | —— | —— | — | —— | —— | — | —— | —— | —— | — | | Reg 8 | Reg 9 | Reg 10 | | Reg 11 | Reg 12 | | Reg 13 | Reg 14 | Reg 15 | | | D | | | | | | | | | D | Q | | Q | D Q | D | Q | D Q | D | Q | D Q | D Q | | | | Reg 16 | Reg 17 | Reg 18 | | Reg 19 | Reg 20 | | Reg 21 | Reg 22 | Reg 23 | | | D Q | D Q | D | Q | D Q | D | Q | D Q | D Q | D | Q | | Reg 24 | Reg 25 | Reg 26 | | Reg 27 | Reg 28 | | Reg 29 | Reg 30 | Reg 31 | | | D Q | | | | | | | | | D | Q | | | D Q | D | Q | D Q | D | Q | D Q | D Q | | | 18</p>
-<p>Reading from the Register File 5 32 Read Read Register 1 Data 1 5 32 Read Read Register 2 Data 2 Reg File 19</p>
-<p>Ex1: Reading from the RegFile | | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | 32 | | | — | —– | —– | —– | —– | —– | —– | — | —– | — | — | 5 Reg 6 | 10 | | | | | | | | | | ?? | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 12 | | | | | Reg 12 | | | | | ?? | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | | 20</p>
-<p>Ex1: Reading from the RegFile | | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | 32 | | | — | —– | —– | —– | —– | —– | —– | — | —– | — | — | 5 Reg 6 | 10 | | | | | | | | | | 9 | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 12 | | | | | Reg 12 | | | | | 99 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | | 21</p>
-<p>Ex2: Reading from the RegFile | | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | 32 | | | — | —– | —– | —– | —– | —– | —– | — | —– | — | — | 5 Reg 6 | 1 | | | | | | | | | | ?? | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 28 | | | | | Reg 12 | | | | | ?? | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | | 22</p>
-<p>Ex2: Reading from the RegFile | | Reg 0 | Reg 1 | Reg 2 | Reg 3 | Reg 4 | Reg 5 | | Reg 7 | 32 | | | — | —– | —– | —– | —– | —– | —– | — | —– | — | — | 5 Reg 6 | 1 | | | | | | | | | | 5 | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 28 | | | | | Reg 12 | | | | | 62 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | | 23</p>
-<p>Writing to the Register File 5 32 Read Read Register 1 Data 1 5 32 Read Read Register 2 Data 2 Reg 5 File Write Register 32 Write Data We need 5 bits to encode a register number. Each register RegWrite stores 32 bits of data! 24</p>
-<p>Writing to the Register File ■ To write to a register inside of the register file, set the following signals – Write register: The number of the register you are writing to – Write data: The data you want to store inside the register – RegWrite: This is a control signal whose value needs to be 1 to write to a register ■ When we are not writing to a register, this value should be 0 25</p>
-<p>TIMING ANALYSIS Plan looking ahead: We are going to zoom in for a moment to see how to analyze timing at the gate level, before popping back up to analyze instruction-level &amp; CPU performance! 26</p>
-<p>Waveform Diagrams ■ We can represent the values of our signals over time using a waveform diagram ■ Each one-bit signal will have its own waveform ■ The waveforms are square waves where – a low value represents logic 0 – a high value represents logic 1 27</p>
-<p>Digital Signals 28</p>
-<p>Digital Signals Logic 1 Logic 0 29</p>
-<p>Digital Signals Rising Edge Falling Edge 30</p>
-<p>Digital Signals ■ Rising Edge – When a signal changes from logic low to logic high – You can think of the signal as rising from 0 to 1 ■ Falling Edge – When a signal changes from logic high to logic low – You can think of the signal as falling from 1 to 0 31</p>
-<p>Ex1: Waveform Diagram ■ We are going to analyze how the output of this circuit changes over time given the following changes to the circuit’s inputs – At time t = 0ps, we will set the input A to 0 and the input B to 1 – At time t = 40ps, we will change the input A to 1 32</p>
-<p>Ex1: Waveform Diagram Time (ps) 0 20 40 60 80 100 1 A 0 1 B 0 The waveform diagram above shows how we change the input values over time • At time t = 0ps, we will set the input A to 0 and the input B to 1 • At time t = 40ps, we will change the input A to 1 33</p>
-<p>Ex1: Waveform Diagram Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D Now, we will analyze how the intermediate 0 signals (C and D) and the output signal (Y) 1 Y change as the inputs change. 0 34</p>
-<p>Ex1: Waveform Diagram Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D 0 1 Y 0 35</p>
-<p>Ex2: Waveform Diagram Time (ps) 0 20 40 60 80 100 1 A 0 1 B 0 Let’s look at another example with the same circuit • At time t = 0ps, we will set the input A to 0 and the input B to 1 • At time t = 40ps, we will change the input A to 1 • At time t = 70ps, we will change the input B to 0 36</p>
-<p>Ex2: Waveform Diagram Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D 0 1 Y 0 37</p>
-<p>Ex2: Waveform Diagram Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D 0 1 Y 0 38</p>
-<p>Q1: Waveform Diagram Time (ps) 0 20 40 60 80 100 Point D 1 A 0 1 B 0 1 C 0 1 Point E D 0 1 E 0 1 Y 0 39</p>
-<p>Q1: Waveform Diagram Time (ps) 0 20 40 60 80 100 Point D 1 A 0 1 B 0 1 C 0 1 Point E D 0 1 E 0 1 Y 0 40</p>
-<p>DELAYS! 41</p>
-<p>Propagation Delay ■ The time taken for a signal to travel from an input to an output ■ Causes – Time for electricity to travel through a wire – Capacitors charging/discharging ■ The diagrams that we made on the previous slides were dealing with ideal circuits (i.e.&nbsp;circuits with no propagation delay) 42</p>
-<p>Propagation delay (t ) pd ■ When we change the input to this inverter, the output will not change immediately. ■ There will be a delay before the output changes 43</p>
-<p>Propagation delay (t ) pd • Let’s say the input to this inverter starts at 0. • When we change the input to 1, the output will not become 0 immediately. There will be a delay. A: 0 1 Y: 1 0 44</p>
-<p>Ex1: Computing Total Propagation Delay Gate t (ps) pd NOT 10 OR 20 45</p>
-<p>Ex1: Computing Total Propagation Delay Gate t (ps) pd Delay from A to Y = 10ps + 20ps = 30ps NOT 10 Delay from B to Y = 20ps OR 20 46</p>
-<p>Ex1: Waveform Diagram with Propagation Delay Time (ps) 0 20 40 60 80 100 Point C 1 A 0 1 B 0 1 C Gate t (ps) pd 0 NOT 10 1 Y OR 20 0 47</p>
-<p>Ex1: Waveform Diagram with Propagation Delay Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Gate t (ps) pd 0 NOT 10 1 Y OR 20 0 30 ps 48</p>
-<p>Ex2: Waveform Diagram with Propagation Delay Time (ps) 0 20 40 60 80 100 120 140 1 Point C A 0 1 B 0 1 C Gate t (ps) pd 0 NOT 10 1 Y OR 20 0 49</p>
-<p>Ex2: Waveform Diagram with Propagation Delay | | | | | 20 | | 60 | 80 | 100 | 120 | 140 | | — | — | ——— | — | — | — | — | — | — | — | — | | | | Time (ps) | 0 | | 40 | | | | | | 1 Point C A 0 1 B 0 1 C | Gate t | (ps) | | | | | | | | | | | —— | —- | — | — | — | — | — | — | — | — | — | pd 0 | NOT | 10 | | 1 | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | Y | OR | 20 | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | | 30 ps | | | 20 ps | | | | — | — | — | — | — | —– | — | — | —– | — | — | 50</p>
-<p>Waveform Diagram with Propagation Delay Time (ps) 0 20 40 60 80 100 120 140 Point D Point E 1 A 0 1 B 0 1 C 0 1 D Gate t (ps) pd 0 1 NOT 10 E 0 OR 30 1 Y 0 51</p>
-<p>Waveform Diagram with Propagation Delay Time (ps) 0 20 40 60 80 100 120 140 Point D Point E 1 A 0 1 B 0 1 C 0 1 D Gate t (ps) pd 0 1 NOT 10 E 0 OR 30 1 Y 0 52</p>
-<p>Positive Edge Triggered D Flip-Flop Waveform Diagram Time (ns) 0 4 8 12 16 20 24 clk D Q assume Q starts at 0 53</p>
-<p>Positive Edge Triggered D Flip-Flop Waveform Diagram Time (ns) 0 4 8 12 16 20 24 clk Notice that Q only gets the value of D on D the rising edge of the clock. Q assume Q starts at 0 54</p>
-<p>Clock to Q Delay ■ The amount of time it takes for D to appear on the output after the clock trigger 55</p>
-<p>Positive Edge Triggered Flip-Flop Waveform Diagram with clk-to-q Delay Time (ns) 0 4 8 12 16 20 24 clk D Q assume Q starts at 0 clk-to-q delay = 1 ns 56</p>
-<p>Positive Edge Triggered Flip-Flop Waveform Diagram with clk-to-q Delay | 0 | 4 | 8 | 12 | 16 | 20 | 24 | | — | — | — | — | — | — | — | Time (ns) clk D Q | assume Q starts at 0 | | | | clk-to-q delay = 1 ns | | | | ——————– | — | — | — | ———————- | — | — | 57</p>
-<p>Positive Edge Triggered Flip-Flop Waveform Diagram with clk-to-q Delay 0 4 8 12 16 20 24 Time (ns) clk D Q assume Q starts at 0 clk-to-q delay = 1 ns 58</p>
-<p>Positive Edge Triggered Flip-Flop Waveform Diagram with clk-to-q Delay 0 4 8 12 16 20 24 Time (ns) clk D Q assume Q starts at 0 clk-to-q delay = 1 ns 59</p>
-
-
+<p>Register File | Reg 0 | Reg 1 | Reg 2 | | Reg 3 | Reg 4 | | Reg 5 | Reg 6 | Reg 7 | | | —– | —– | —– | — | —– | —– | — | —– | —– | —– | — | D | D Q | D Q | D | Q | D Q | D | Q | D Q | D Q | | Q | | —— | —— | —— | — | —— | —— | — | —— | —— | —— | — | | Reg 8 | Reg 9 | Reg 10 | | Reg 11 | Reg 12 | | Reg 13 | Reg 14 | Reg 15 | | | D | | | | | | | | | D | Q | | Q | D Q | D | Q | D Q | D | Q | D Q | D Q | | | | Reg 16 | Reg 17 | Reg 18 | | Reg 19 | Reg 20 | | Reg 21 | Reg 22 | Reg 23 | | | D Q | D Q | D | Q | D Q | D | Q | D Q | D Q | D | Q | | Reg 24 | Reg 25 | Reg 26 | | Reg 27 | Reg 28 | | Reg 29 | Reg 30 | Reg 31 | | | D Q | | | | | | | | | D | Q | | | D Q | D | Q | D Q | D | Q | D Q | D Q | | |</p>
 </section>
+<section id="reading-from-the-register-file" class="slide level2">
+<h2>Reading from the Register File</h2>
+<p>5 32 Read Read Register 1 Data 1 5 32 Read Read Register 2 Data 2 Reg File</p>
+</section>
+<section id="ex1-reading-from-the-regfile" class="slide level2">
+<h2>Ex1: Reading from the RegFile</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Reg 0</th>
+<th>Reg 1</th>
+<th>Reg 2</th>
+<th>Reg 3</th>
+<th>Reg 4</th>
+<th>Reg 5</th>
+<th></th>
+<th>Reg 7</th>
+<th>32</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>5 Reg 6 | 10 | | | | | | | | | | ?? | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 12 | | | | | Reg 12 | | | | | ?? | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | |</p>
+</section>
+<section id="ex1-reading-from-the-regfile-1" class="slide level2">
+<h2>Ex1: Reading from the RegFile</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Reg 0</th>
+<th>Reg 1</th>
+<th>Reg 2</th>
+<th>Reg 3</th>
+<th>Reg 4</th>
+<th>Reg 5</th>
+<th></th>
+<th>Reg 7</th>
+<th>32</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>5 Reg 6 | 10 | | | | | | | | | | 9 | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 12 | | | | | Reg 12 | | | | | 99 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | |</p>
+</section>
+<section id="ex2-reading-from-the-regfile" class="slide level2">
+<h2>Ex2: Reading from the RegFile</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Reg 0</th>
+<th>Reg 1</th>
+<th>Reg 2</th>
+<th>Reg 3</th>
+<th>Reg 4</th>
+<th>Reg 5</th>
+<th></th>
+<th>Reg 7</th>
+<th>32</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>5 Reg 6 | 1 | | | | | | | | | | ?? | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 28 | | | | | Reg 12 | | | | | ?? | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | |</p>
+</section>
+<section id="ex2-reading-from-the-regfile-1" class="slide level2">
+<h2>Ex2: Reading from the RegFile</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Reg 0</th>
+<th>Reg 1</th>
+<th>Reg 2</th>
+<th>Reg 3</th>
+<th>Reg 4</th>
+<th>Reg 5</th>
+<th></th>
+<th>Reg 7</th>
+<th>32</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>5 Reg 6 | 1 | | | | | | | | | | 5 | | — | — | — | — | — | — | — | — | — | — | — | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 0 | 5 | 11 | 100 | 56 | 18 | 25 | 22 | | | 5 32 | | Reg 8 | Reg 9 | Reg 10 | Reg 11 | | Reg 13 | Reg 14 | Reg 15 | | | | — | —— | —— | —— | —— | —— | —— | —— | —— | — | — | | 28 | | | | | Reg 12 | | | | | 62 | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 3 | 10 | 9 | 112 | 99 | 98 | 85 | 0 | | | | | Reg 16 | Reg 17 | Reg 18 | | | | | Reg 23 | | | | | | | | Reg 19 | Reg 20 | Reg 21 | Reg 22 | | | | | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | | 8 | 86 | 21 | 77 | 84 | 98 | 25 | 17 | | | | | Reg 24 | Reg 25 | Reg 26 | Reg 27 | | Reg 29 | Reg 30 | Reg 31 | | | Reg 28 | | D Q | D Q | D Q | D Q | D Q | D Q | D Q | D Q | | | | — | — | — | — | — | — | — | — | — | — | — | | | 5 | 67 | 55 | 44 | 62 | 33 | 34 | 47 | | |</p>
+</section>
+<section id="writing-to-the-register-file" class="slide level2">
+<h2>Writing to the Register File</h2>
+<p>5 32 Read Read Register 1 Data 1 5 32 Read Read Register 2 Data 2 Reg 5 File Write Register 32 Write Data We need 5 bits to encode a register number. Each register RegWrite stores 32 bits of data!</p>
+</section>
+<section id="writing-to-the-register-file-1" class="slide level2">
+<h2>Writing to the Register File</h2>
+<p>■ To write to a register inside of the register file, set the following signals – Write register: The number of the register you are writing to – Write data: The data you want to store inside the register – RegWrite: This is a control signal whose value needs to be 1 to write to a register ■ When we are not writing to a register, this value should be 0</p>
+</section>
+<section id="timing-analysis" class="slide level2">
+<h2>TIMING ANALYSIS</h2>
+<p>Plan looking ahead: We are going to zoom in for a moment to see how to analyze timing at the gate level, before popping back up to analyze instruction-level &amp; CPU performance!</p>
+</section>
+<section id="waveform-diagrams" class="slide level2">
+<h2>Waveform Diagrams</h2>
+<p>■ We can represent the values of our signals over time using a waveform diagram ■ Each one-bit signal will have its own waveform ■ The waveforms are square waves where – a low value represents logic 0 – a high value represents logic 1</p>
+</section>
+<section id="digital-signals" class="slide level2">
+<h2>Digital Signals</h2>
+</section>
+<section id="digital-signals-1" class="slide level2">
+<h2>Digital Signals</h2>
+<p>Logic 1 Logic 0</p>
+</section>
+<section id="digital-signals-2" class="slide level2">
+<h2>Digital Signals</h2>
+<p>Rising Edge Falling Edge</p>
+</section>
+<section id="digital-signals-3" class="slide level2">
+<h2>Digital Signals</h2>
+<p>■ Rising Edge – When a signal changes from logic low to logic high – You can think of the signal as rising from 0 to 1 ■ Falling Edge – When a signal changes from logic high to logic low – You can think of the signal as falling from 1 to 0</p>
+</section>
+<section id="ex1-waveform-diagram" class="slide level2">
+<h2>Ex1: Waveform Diagram</h2>
+<p>■ We are going to analyze how the output of this circuit changes over time given the following changes to the circuit’s inputs – At time t = 0ps, we will set the input A to 0 and the input B to 1 – At time t = 40ps, we will change the input A to 1</p>
+</section>
+<section id="ex1-waveform-diagram-1" class="slide level2">
+<h2>Ex1: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 1 A 0 1 B 0 The waveform diagram above shows how we change the input values over time • At time t = 0ps, we will set the input A to 0 and the input B to 1 • At time t = 40ps, we will change the input A to 1</p>
+</section>
+<section id="ex1-waveform-diagram-2" class="slide level2">
+<h2>Ex1: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D Now, we will analyze how the intermediate 0 signals (C and D) and the output signal (Y) 1 Y change as the inputs change. 0</p>
+</section>
+<section id="ex1-waveform-diagram-3" class="slide level2">
+<h2>Ex1: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D 0 1 Y 0</p>
+</section>
+<section id="ex2-waveform-diagram" class="slide level2">
+<h2>Ex2: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 1 A 0 1 B 0 Let’s look at another example with the same circuit • At time t = 0ps, we will set the input A to 0 and the input B to 1 • At time t = 40ps, we will change the input A to 1 • At time t = 70ps, we will change the input B to 0</p>
+</section>
+<section id="ex2-waveform-diagram-1" class="slide level2">
+<h2>Ex2: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D 0 1 Y 0</p>
+</section>
+<section id="ex2-waveform-diagram-2" class="slide level2">
+<h2>Ex2: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Point D 0 1 D 0 1 Y 0</p>
+</section>
+<section id="q1-waveform-diagram" class="slide level2">
+<h2>Q1: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 Point D 1 A 0 1 B 0 1 C 0 1 Point E D 0 1 E 0 1 Y 0</p>
+</section>
+<section id="q1-waveform-diagram-1" class="slide level2">
+<h2>Q1: Waveform Diagram</h2>
+<p>Time (ps) 0 20 40 60 80 100 Point D 1 A 0 1 B 0 1 C 0 1 Point E D 0 1 E 0 1 Y 0</p>
+</section>
+<section id="delays" class="slide level2">
+<h2>DELAYS!</h2>
+</section>
+<section id="propagation-delay" class="slide level2">
+<h2>Propagation Delay</h2>
+<p>■ The time taken for a signal to travel from an input to an output ■ Causes – Time for electricity to travel through a wire – Capacitors charging/discharging ■ The diagrams that we made on the previous slides were dealing with ideal circuits (i.e.&nbsp;circuits with no propagation delay)</p>
+</section>
+<section id="propagation-delay-t" class="slide level2">
+<h2>Propagation delay (t )</h2>
+<p>pd ■ When we change the input to this inverter, the output will not change immediately. ■ There will be a delay before the output changes</p>
+</section>
+<section id="propagation-delay-t-1" class="slide level2">
+<h2>Propagation delay (t )</h2>
+<p>pd • Let’s say the input to this inverter starts at 0. • When we change the input to 1, the output will not become 0 immediately. There will be a delay. A: 0 1 Y: 1 0</p>
+</section>
+<section id="ex1-computing-total-propagation-delay" class="slide level2">
+<h2>Ex1: Computing Total Propagation Delay</h2>
+<p>Gate t (ps) pd NOT 10 OR 20</p>
+</section>
+<section id="ex1-computing-total-propagation-delay-1" class="slide level2">
+<h2>Ex1: Computing Total Propagation Delay</h2>
+<p>Gate t (ps) pd Delay from A to Y = 10ps + 20ps = 30ps NOT 10 Delay from B to Y = 20ps OR 20</p>
+</section>
+<section id="ex1-waveform-diagram-with-propagation" class="slide level2">
+<h2>Ex1: Waveform Diagram with Propagation</h2>
+<p>Delay Time (ps) 0 20 40 60 80 100 Point C 1 A 0 1 B 0 1 C Gate t (ps) pd 0 NOT 10 1 Y OR 20 0</p>
+</section>
+<section id="ex1-waveform-diagram-with-propagation-1" class="slide level2">
+<h2>Ex1: Waveform Diagram with Propagation</h2>
+<p>Delay Time (ps) 0 20 40 60 80 100 1 Point C A 0 1 B 0 1 C Gate t (ps) pd 0 NOT 10 1 Y OR 20 0 30 ps</p>
+</section>
+<section id="ex2-waveform-diagram-with-propagation" class="slide level2">
+<h2>Ex2: Waveform Diagram with Propagation</h2>
+<p>Delay Time (ps) 0 20 40 60 80 100 120 140 1 Point C A 0 1 B 0 1 C Gate t (ps) pd 0 NOT 10 1 Y OR 20 0</p>
+</section>
+<section id="ex2-waveform-diagram-with-propagation-1" class="slide level2">
+<h2>Ex2: Waveform Diagram with Propagation</h2>
+<p>Delay | | | | | 20 | | 60 | 80 | 100 | 120 | 140 | | — | — | ——— | — | — | — | — | — | — | — | — | | | | Time (ps) | 0 | | 40 | | | | | | 1 Point C A 0 1 B 0 1 C | Gate t | (ps) | | | | | | | | | | | —— | —- | — | — | — | — | — | — | — | — | — | pd 0 | NOT | 10 | | 1 | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | Y | OR | 20 | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | | 30 ps | | | 20 ps | | | | — | — | — | — | — | —– | — | — | —– | — | — |</p>
+</section>
+<section id="waveform-diagram-with-propagation-delay" class="slide level2">
+<h2>Waveform Diagram with Propagation Delay</h2>
+<p>Time (ps) 0 20 40 60 80 100 120 140 Point D Point E 1 A 0 1 B 0 1 C 0 1 D Gate t (ps) pd 0 1 NOT 10 E 0 OR 30 1 Y 0</p>
+</section>
+<section id="waveform-diagram-with-propagation-delay-1" class="slide level2">
+<h2>Waveform Diagram with Propagation Delay</h2>
+<p>Time (ps) 0 20 40 60 80 100 120 140 Point D Point E 1 A 0 1 B 0 1 C 0 1 D Gate t (ps) pd 0 1 NOT 10 E 0 OR 30 1 Y 0</p>
+</section>
+<section id="positive-edge-triggered-d-flip-flop-waveform-diagram" class="slide level2">
+<h2>Positive Edge Triggered D Flip-Flop Waveform Diagram</h2>
+<p>Time (ns) 0 4 8 12 16 20 24 clk D Q assume Q starts at 0</p>
+</section>
+<section id="positive-edge-triggered-d-flip-flop-waveform-diagram-1" class="slide level2">
+<h2>Positive Edge Triggered D Flip-Flop Waveform Diagram</h2>
+<p>Time (ns) 0 4 8 12 16 20 24 clk Notice that Q only gets the value of D on D the rising edge of the clock. Q assume Q starts at 0</p>
+</section>
+<section id="clock-to-q-delay" class="slide level2">
+<h2>Clock to Q Delay</h2>
+<p>■ The amount of time it takes for D to appear on the output after the clock trigger</p>
+</section>
+<section id="positive-edge-triggered-flip-flop-waveform-diagram" class="slide level2">
+<h2>Positive Edge Triggered Flip-Flop Waveform Diagram</h2>
+<p>with clk-to-q Delay Time (ns) 0 4 8 12 16 20 24 clk D Q assume Q starts at 0 clk-to-q delay = 1 ns</p>
+</section>
+<section id="positive-edge-triggered-flip-flop-waveform-diagram-with" class="slide level2">
+<h2>Positive Edge Triggered Flip-Flop Waveform Diagram with</h2>
+<p>clk-to-q Delay | 0 | 4 | 8 | 12 | 16 | 20 | 24 | | — | — | — | — | — | — | — | Time (ns) clk D Q | assume Q starts at 0 | | | | clk-to-q delay = 1 ns | | | | ——————– | — | — | — | ———————- | — | — |</p>
+</section>
+<section id="positive-edge-triggered-flip-flop-waveform-diagram-1" class="slide level2">
+<h2>Positive Edge Triggered Flip-Flop Waveform Diagram</h2>
+<p>with clk-to-q Delay 0 4 8 12 16 20 24 Time (ns) clk D Q assume Q starts at 0 clk-to-q delay = 1 ns</p>
+</section>
+<section id="positive-edge-triggered-flip-flop-waveform-diagram-2" class="slide level2">
+<h2>Positive Edge Triggered Flip-Flop Waveform Diagram</h2>
+<p>with clk-to-q Delay 0 4 8 12 16 20 24 Time (ns) clk D Q assume Q starts at 0 clk-to-q delay = 1 ns</p>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

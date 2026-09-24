@@ -156,6 +156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Transistors</span></a>
   </div>
@@ -286,6 +292,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Old</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -300,7 +323,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#logistics-check-in" id="toc-logistics-check-in" class="nav-link" data-scroll-target="#logistics-check-in">Logistics Check-in</a></li>
+  <li><a href="#memory-an" id="toc-memory-an" class="nav-link" data-scroll-target="#memory-an">MEMORY: AN</a></li>
+  <li><a href="#risc-v-datapath.-see-chapter-4-appendix" id="toc-risc-v-datapath.-see-chapter-4-appendix" class="nav-link" data-scroll-target="#risc-v-datapath.-see-chapter-4-appendix">RISC-V Datapath. See Chapter 4 &amp; Appendix</a></li>
+  <li><a href="#read-only-memory-a-lookup-table" id="toc-read-only-memory-a-lookup-table" class="nav-link" data-scroll-target="#read-only-memory-a-lookup-table">Read-Only Memory = a Lookup Table</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="B1.rjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -339,13 +369,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="section" class="level1">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 24: Caching tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Check-in ■ Lab 5 due LDOC (4/27) ■ Office hours ending LDOC ■ Final review session on the first reading day (4/28) – Time TBD ■ Monday was not Earth Day – Today is! ☺ 2</p>
-<p>MEMORY: AN OVERVIEW These slides adapted from material from Leonard McMillian &amp; Don Porter 3</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 24: Caching tinyurl.com/comp311-sp26</p>
+<section id="logistics-check-in" class="level2">
+<h2 class="anchored" data-anchor-id="logistics-check-in">Logistics Check-in</h2>
+<p>■ Lab 5 due LDOC (4/27) ■ Office hours ending LDOC ■ Final review session on the first reading day (4/28) – Time TBD ■ Monday was not Earth Day – Today is! ☺</p>
+</section>
+<section id="memory-an" class="level2">
+<h2 class="anchored" data-anchor-id="memory-an">MEMORY: AN</h2>
+<p>OVERVIEW These slides adapted from material from Leonard McMillian &amp; Don Porter 3</p>
 <p>Topics ■ Memory Arrays ■ Transparent Latches ■ Edge-Triggered Registers ■ Finite State Machines</p>
-<p>Memory in the RISC-V Datapath. See Ch. 4! 5</p>
-<p>RISC-V Datapath. See Chapter 4 &amp; Appendix In your lab, instruction memory is a ROM 6</p>
-<p>Read-Only Memory = a Lookup Table A B Read-Only | A B | F n ( A , | B ) | Memory | | —– | ——— | —– | ——- | (ROM) | 0 0 | 0 | | | | —– | — | — | — | | 0 1 | 1 | | | MUX Fn(A,B) Logic | 1 0 | 1 | | | | —– | — | — | — | | 1 1 | 0 | | |</p>
+<p>Memory in the RISC-V Datapath. See Ch. 4!</p>
+</section>
+<section id="risc-v-datapath.-see-chapter-4-appendix" class="level2">
+<h2 class="anchored" data-anchor-id="risc-v-datapath.-see-chapter-4-appendix">RISC-V Datapath. See Chapter 4 &amp; Appendix</h2>
+<p>In your lab, instruction memory is a ROM</p>
+</section>
+<section id="read-only-memory-a-lookup-table" class="level2">
+<h2 class="anchored" data-anchor-id="read-only-memory-a-lookup-table">Read-Only Memory = a Lookup Table</h2>
+<p>A B Read-Only | A B | F n ( A , | B ) | Memory | | —– | ——— | —– | ——- | (ROM) | 0 0 | 0 | | | | —– | — | — | — | | 0 1 | 1 | | | MUX Fn(A,B) Logic | 1 0 | 1 | | | | —– | — | — | — | | 1 1 | 0 | | |</p>
 <p>■ A multiplexer can implement a lookup table: – for an N-input function we need a 2N input multiplexer Takeaway: ROM → “hardcoded – simply select one row out of 2N truth table” – 2N values go into the mux, only one comes out MUX → Hardware that selects – N-bit select input is now the “address” of data being accessed correct output based on the input ■ Limitations: – mux can get really big: 10-bit address → 1024 rows! – read-only; we also would like to write!</p>
 <p>A Mux’s Guts: Decoder + Selector Decoder Selector I Multiplexers 00 A can be partitioned 0 into two sections. B I A decoder 01 generates A A DECODER that 1 all possible Y identifies the product B I terms for 10 desired input,and a set of A inputs 2 a SELECTOR that B I 11 enables that input A onto the output. 3 B Key idea behind building ROMs: by sharing the decoder part of the logic MUXs could be adapted to make lookup tables with any number of outputs</p>
 <p>Decoder D DECODER: 1 D 2 k SELECT inputs, N = 2k DATA OUTPUTs. D Selected D HIGH; One-hot signal to N j all others LOW. identify row we are K == Address working with k NOW, we are well on our way to building a general purpose table-lookup device. We can build a 2-dimensional ARRAY of decoders and selectors as follows by arranging them in a grid…</p>
@@ -363,8 +404,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Implementing an FSM ■ Use flipflops to represent state (i.e., memory) ■ Use combinational logic to compute: – output as a function of inputs + state – next state as a function of inputs + state Outputs Inputs Function (comb. logic) State (flipflops) Clock</p>
 <p>Example: Traffic Light Controller ■ 4 states G E/W – each corresponding to a circle R N/S – represent states using 2 bits ■ 00, 01, 10, 11 Y E/W R N/S ■ 4 bits of output – 2 bits for east/west light R E/W – 2 bits for north/south light G N/S ■ Red (00) ■ Yellow (01) ■ Green (10) R E/W Y N/S</p>
 <p>Example: Traffic Light Controller ■ 4 states G E/W ■ 00, 01, 10, 11 R N/S ■ need 2 flipflops to represent state ■ 4 bits of output Y E/W ■ R (00), Y (01), G (10) R N/S ■ Truth table: ■ this defines the combinational logic R E/W part of the FSM G N/S | Input (State) | Output | Next State | | ————- | —— | ———- | | 00 | 10 00 | 01 | | 01 | 01 00 | 10 | R E/W | 10 | 00 10 | 11 | | — | —– | — | Y N/S | 11 | 00 01 | 00 | | — | —– | — |</p>
-<p>FSMs in the CPU The complete finite-state machine control for the RISC-V datapath 27</p>
-<p>Summary ■ Regular Arrays can be used to implement arbitrary logic functions ■ Memories – ROMs are HARDWIRED memories – RAMs include storage elements that are read-write ■ dynamic memory: compact, only reliable short-term ■ static memory: controlled use of positive feedback ■ For static storage: – Some timing constraints: setup and hold times ■ Finite State Machines: – Implement using flip-flops for memory, and combinational logic to compute output, next state</p>
+<p>FSMs in the CPU The complete finite-state machine control for the RISC-V datapath</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>■ Regular Arrays can be used to implement arbitrary logic functions ■ Memories – ROMs are HARDWIRED memories – RAMs include storage elements that are read-write ■ dynamic memory: compact, only reliable short-term ■ static memory: controlled use of positive feedback ■ For static storage: – Some timing constraints: setup and hold times ■ Finite State Machines: – Implement using flip-flops for memory, and combinational logic to compute output, next state</p>
 <p>MEMORY HIERARCHY … INTRO TO CACHING!)</p>
 <p>Topics ■ Memory Flavors ■ Principle of Locality ■ What is Caching ■ Associativity</p>
 <p>What Do We Want in a Memory? Observation: As capacity goes up and cost does down, latency gets worse. | | PC | ADDR | | | — | —- | —- | — | | | INST | DOUT | | miniRISC-V MEMORY | | MADDR | ADDR | | | ———- | ————- | ———- | —— | | | MDATA | DATA | | | | Wr | R/W | | | | Capacity | Latency | Cost | | Register | 1000s of bits | 10 ps | $$$$ | | SRAM | 1-8 MBytes | 0.5-1 ns | $2K/GB | | DRAM | 1-8 GBytes | 50 ns | $20/GB | | Hard disk* | 100s GBytes | 10 ms | 20¢/GB | | Want? | Huge | Low (fast) | Cheap! | *non-volatile: Typically magnetic disk drive, but also SSD/flash now</p>
@@ -391,11 +435,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Miss Penalty and Rate ■ How much time do you lose on a Miss? – MISS PENALTY is the time it takes to read the main memory if data was not found in the cache ■ 50 to 100 clock cycles is common – MISS RATE is the fraction of accesses which MISS – HIT RATE is the fraction of accesses which HIT – MISS RATE + HIT RATE = 1</p>
 <p>Miss Penalty and Rate Example Suppose a particular cache has a MISS PENALTY of 100 cycles and a HIT RATE of 95%. The CPI for load on HIT is 5 but on a MISS it is 105. What is the average CPI for load? What if MISS PENALTY = 120 cycles?</p>
 <p>Miss Penalty and Rate Example Suppose a particular cache has a MISS PENALTY of 100 cycles and a HIT RATE of 95%. The CPI for load on HIT is 5 but on a MISS it is 105. What is the average CPI for load? Average CPI = 5 * 0.95 + 105 * 0.05 = 10 What if MISS PENALTY = 120 cycles? Average CPI = 5 * 0.95 + (120+5) * 0.05 = 11</p>
-<p>Continuum of Associativity | Fully associative | N-way set associative | Direct-mapped | | —————– | ——————— | ————- | | | address address | | address N Compares addr with ALL Compares addr with N tags Compare addr with only tags simultaneously location simultaneously. Data can be ONE tag. Location A can be A can be stored in any cache stored in any of the N cache stored in exactly one cache lines belonging to a “set” | line. | | line. | | —– | — | —– | like N direct-mapped caches. What happens on a MISS?</p>
+<p>Continuum of Associativity | Fully associative | N-way set associative | Direct-mapped | | —————– | ——————— | ————- | | | address address | | address N Compares addr with ALL Compares addr with N tags Compare addr with only tags simultaneously location simultaneously. Data can be ONE tag. Location A can be A can be stored in any cache stored in any of the N cache stored in exactly one cache lines belonging to a “set” | line. | | line. | | —– | — | —– | like N direct-mapped caches.</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -880,18 +925,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16"></a>COMPUTER ORGANIZATION!</span>
 <span id="cb1-17"><a href="#cb1-17"></a>Lecture 24: Caching</span>
 <span id="cb1-18"><a href="#cb1-18"></a>tinyurl.com/comp311-sp26</span>
-<span id="cb1-19"><a href="#cb1-19"></a>1</span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a>Logistics Check-in</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">## Logistics Check-in</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
 <span id="cb1-22"><a href="#cb1-22"></a>■ Lab 5 due LDOC (4/27)</span>
 <span id="cb1-23"><a href="#cb1-23"></a>■ Office hours ending LDOC</span>
 <span id="cb1-24"><a href="#cb1-24"></a>■ Final review session on the first reading day (4/28)</span>
 <span id="cb1-25"><a href="#cb1-25"></a>– Time TBD</span>
 <span id="cb1-26"><a href="#cb1-26"></a>■ Monday was not Earth Day</span>
 <span id="cb1-27"><a href="#cb1-27"></a>– Today is! ☺</span>
-<span id="cb1-28"><a href="#cb1-28"></a>2</span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a>MEMORY: AN</span>
+<span id="cb1-28"><a href="#cb1-28"></a></span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="fu">## MEMORY: AN</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a></span>
 <span id="cb1-31"><a href="#cb1-31"></a>OVERVIEW</span>
 <span id="cb1-32"><a href="#cb1-32"></a>These slides adapted from material from Leonard McMillian &amp; Don Porter 3</span>
 <span id="cb1-33"><a href="#cb1-33"></a></span>
@@ -902,14 +947,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-38"><a href="#cb1-38"></a>■ Finite State Machines</span>
 <span id="cb1-39"><a href="#cb1-39"></a></span>
 <span id="cb1-40"><a href="#cb1-40"></a>Memory in the RISC-V Datapath. See Ch. 4!</span>
-<span id="cb1-41"><a href="#cb1-41"></a>5</span>
-<span id="cb1-42"><a href="#cb1-42"></a></span>
-<span id="cb1-43"><a href="#cb1-43"></a>RISC-V Datapath. See Chapter 4 &amp; Appendix</span>
+<span id="cb1-41"><a href="#cb1-41"></a></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="fu">## RISC-V Datapath. See Chapter 4 &amp; Appendix</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
 <span id="cb1-44"><a href="#cb1-44"></a>In your lab, instruction</span>
 <span id="cb1-45"><a href="#cb1-45"></a>memory is a ROM</span>
-<span id="cb1-46"><a href="#cb1-46"></a>6</span>
-<span id="cb1-47"><a href="#cb1-47"></a></span>
-<span id="cb1-48"><a href="#cb1-48"></a>Read-Only Memory = a Lookup Table</span>
+<span id="cb1-46"><a href="#cb1-46"></a></span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="fu">## Read-Only Memory = a Lookup Table</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a></span>
 <span id="cb1-49"><a href="#cb1-49"></a>A B</span>
 <span id="cb1-50"><a href="#cb1-50"></a>Read-Only</span>
 <span id="cb1-51"><a href="#cb1-51"></a><span class="pp">|</span> A B   <span class="pp">|</span> F n ( A , <span class="pp">|</span> B )   <span class="pp">|</span> Memory  <span class="pp">|</span></span>
@@ -1233,9 +1278,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-369"><a href="#cb1-369"></a>The complete finite-state</span>
 <span id="cb1-370"><a href="#cb1-370"></a>machine control for the</span>
 <span id="cb1-371"><a href="#cb1-371"></a>RISC-V datapath</span>
-<span id="cb1-372"><a href="#cb1-372"></a>27</span>
-<span id="cb1-373"><a href="#cb1-373"></a></span>
-<span id="cb1-374"><a href="#cb1-374"></a>Summary</span>
+<span id="cb1-372"><a href="#cb1-372"></a></span>
+<span id="cb1-373"><a href="#cb1-373"></a><span class="fu">## Summary</span></span>
+<span id="cb1-374"><a href="#cb1-374"></a></span>
 <span id="cb1-375"><a href="#cb1-375"></a>■ Regular Arrays can be used to implement arbitrary logic functions</span>
 <span id="cb1-376"><a href="#cb1-376"></a>■ Memories</span>
 <span id="cb1-377"><a href="#cb1-377"></a>– ROMs are HARDWIRED memories</span>
@@ -1768,8 +1813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-904"><a href="#cb1-904"></a>lines belonging to a “set”</span>
 <span id="cb1-905"><a href="#cb1-905"></a><span class="pp">|</span> line. <span class="pp">|</span>     <span class="pp">|</span> line. <span class="pp">|</span></span>
 <span id="cb1-906"><a href="#cb1-906"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
-<span id="cb1-907"><a href="#cb1-907"></a>like N direct-mapped caches.</span>
-<span id="cb1-908"><a href="#cb1-908"></a>What happens on a MISS?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-907"><a href="#cb1-907"></a>like N direct-mapped caches.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

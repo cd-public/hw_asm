@@ -145,99 +145,1441 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 9: Priority Encoders, Simple Adders tinyurl.com/comp311-sp26 1</p>
-<p>KARNAUGH MAPS 2</p>
-<p>Recall: Boolean Algebra simplification | | | | | ҧ | | | | | | | ഥ ഥ | | ҧ | ҧ | | — | — | —– | — | — | — | — | — | — | — | — | — | — | ——- | — | | 𝐴𝐵𝐶 | | + 𝐴𝐵𝐶 | | + | 𝐴𝐶𝐵 | + | 𝐴𝐶𝐵 | | + | 𝐴𝐵𝐶 | 𝐷 | + | 𝐴𝐵 + | 𝐶 | | | | | ҧ | | | | | | | | | | | ҧ | | 𝐴𝐵 | 𝐶 | + 𝐶 | + | 𝐵 | 𝐴𝐶 | + | 𝐴𝐶 | + | 𝐴𝐵 | + | 𝐶 + | 𝐷 | + (𝐴𝐵)𝐶 | | ത | | 𝐴𝐵 | 1 | + | 𝐵 | 1 | + 𝐴𝐵 | | + 𝐶 | + | 𝐷 | + (𝐴 | + | 𝐵)𝐶 | | | — | — | — | — | — | — | —- | — | — | — | — | —- | — | — | — | ത | | | 𝐴𝐵 | + | 𝐵 | + | 𝐴𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | + | 𝐵𝐶 | | | | — | — | — | — | — | — | — | — | — | — | —- | — | — | — | — | ത | | | | 𝐴𝐵 | + | 𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | | + 𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | — | —- | — | —- | — | — | — | ത | | | | 𝐵 | 𝐴 + | 1 | + | 𝐶 | 1 + | 𝐴 | + | 𝐵𝐶 | + | 𝐷 | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ത | | | | | 𝐵 | 1 | + 𝐶 | 1 | + | 𝐵𝐶 | | + 𝐷 | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶 | + | 𝐵𝐶 | + | 𝐷 | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶(1 | | + 𝐵) | | + 𝐷 | | | | | | — | — | — | — | — | — | —– | —— | —- | — | — | — | — | — | — | | | | | | | | 𝐵 | + 𝐶(1) | | + | 𝐷 | | | | | | | | | | | | 𝐵 | + 𝐶 | + | 𝐷 | | | | | | 3</p>
-<p>Let’s use a K-Map Instead 1. Put the equation in SOP form. 2. Fill out the K-Map. 3. Find the simplified equation. 4</p>
-<p>Using a K-Map to Simplify a Boolean Equation CD 1. Put the equation in AB 00 01 11 10 SOP form 00 2. Fill out the K-Map 3. Find the simplified 01 equation 11 ҧ ഥ ഥ ҧ ҧ 𝐴𝐵𝐶 + 𝐴𝐵𝐶 + 𝐴𝐶𝐵 + 𝐴𝐶𝐵 + 𝐴𝐵𝐶 𝐷 + 𝐴𝐵 + 𝐶 10 5</p>
-<p>Using a K-Map to Simplify a Boolean Equation | | 𝐴𝐵𝐶 + | 𝐴𝐵𝐶 ҧ | + 𝐴𝐶𝐵 | + 𝐴𝐶𝐵 | + 𝐴𝐵𝐶 | ഥ 𝐷 ഥ + | 𝐴𝐵 ҧ + | 𝐶 ҧ | | — | —– | —– | —– | —– | —– | ——- | —— | — | 1. Put the equation in SOP form | | | ҧ ҧ | ҧ | | | | | ത | | — | —– | —- | —- | —– | —- | —– | —— | —- | | 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵 | + 𝐴𝐶 | + 𝐴𝐶𝐵 | + 𝐴𝐵 | + 𝐶 + | 𝐷 + 𝐴𝐶 | + 𝐵𝐶 | 6</p>
-<p>Using a K-Map to Simplify a Boolean Equation CD AB | | | | | | | | | 00 01 | 11 10 | | — | — | — | — | — | — | — | — | —– | —– | 1. Put the equation in SOP form | | | | | | | | 00 | 0 1 | 1 1 | | — | — | — | — | — | — | — | — | — | — | 2. Fill out the K-Map | | | | | | | | 01 | 1 1 | 1 1 | | — | —– | —- | —- | —– | —- | —– | —— | —- | — | | | | | | | | | 11 | 1 1 | 1 1 | | | | | | | | | 10 | 0 1 | 1 1 | | | | ҧ ҧ | ҧ | | | | | ത | | | 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵 | + 𝐴𝐶 | + 𝐴𝐶𝐵 | + 𝐴𝐵 | + 𝐶 + | 𝐷 + 𝐴𝐶 | + 𝐵𝐶 | | 7</p>
-<p>Using a K-Map to Simplify a Boolean Equation CD AB | | | | | 00 01 | 11 10 | | — | — | — | — | —– | —– | 1. Put the equation in SOP form | | | | 00 | 0 1 | 1 1 | | — | — | — | — | — | — | 2. Fill out the K-Map | | | | 01 | 1 1 | 1 1 | | — | — | — | — | — | — | 3. Find the simplified equation | | | | 11 | 1 1 | 1 1 | | — | — | — | — | — | — | | | | | 10 | 0 1 | 1 1 | | 𝑩 + | 𝑪 + | 𝑫 | | | | 8</p>
-<p>Reminder of where we are going! 9</p>
-<p>PRIORIT Y ENCODERS 11</p>
-<p>Multiple Output Circuits | A | B | C | Y | Y | | — | — | — | — | — | | | | | 1 | 0 | | 0 | 0 | 0 | 1 | 1 | | 0 | 0 | 1 | 1 | 0 | | 0 | 1 | 0 | 1 | 0 | | 0 | 1 | 1 | 1 | 0 | | 1 | 0 | 0 | 0 | 1 | | 1 | 0 | 1 | 0 | 0 | | 1 | 1 | 0 | 0 | 0 | | 1 | 1 | 1 | 0 | 1 | 12</p>
-<p>Multiple Output Circuits | | | | | | | ҧ ത | ҧ ҧ ത | ҧ | ҧ ҧ | | — | — | — | — | — | — | — | —– | —– | —– | | | | | | | 𝑌 = | 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | 1 | A | B | C | Y | Y | | ҧ | | | | | — | — | — | — | — | — | — | — | — | — | | | | | | | 𝑌 = | 𝐴 | | | | | | | | 1 | 0 | | | | | | 1 | 0 | 0 | 0 | 1 | 1 | | | | | | | — | — | — | — | — | — | — | —– | —– | — | | 0 | 0 | 1 | 1 | 0 | | ҧ ത | ҧ ത | ҧ | | | | | | | | 𝑌 = | 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | | 0 ത ҧ | 0 | 1 | 0 | 1 | 0 | 𝑌 = | 𝐵𝐶 | + 𝐴𝐵𝐶 | | | | — | — | — | — | — | — | — | —– | — | — | 0 | 0 | 1 | 1 | 1 | 0 | | | | | | | — | — | — | — | — | — | — | — | — | — | | 1 | 0 | 0 | 0 | 1 | | | | | | | 1 | 0 | 1 | 0 | 0 | | | | | | | 1 | 1 | 0 | 0 | 0 | | | | | | | 1 | 1 | 1 | 0 | 1 | | | | | | 13</p>
-<p>Wire Crossing Notation | Not connected | Connected | Connected | | ————- | ——— | ——— | 14</p>
-<p>Priority Circuit I want to design a circuit that will determine who can reserve a classroom space. Anyone who wants to reserve the room will assert their input (set their input to 1). The order of priority for room reservations is the chancellor, professors, TAs, and students. Assume that only one person from each category will submit a request at a given time. The requestor with the highest priority will get the room reservation. Chancellor | | A | Y | | | — | — | — | — | | | 3 | 3 | | The output that is 1 will tell Professor | | A | Y | | | — | — | — | ——————— | | | 2 | 2 | us who gets the room | Priority reservation (only one output Circuit | TA | A | Y | | | — | — | — | — | will be 1 at any time) | | 1 | 1 | | | ——- | — | — | — | | Student | A | Y | | | | 0 | 0 | | 15</p>
-<p>Circuit Design Activity | A | A | A | A | Y | Y | Y | Y | | | — | — | — | — | — | — | — | — | — | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | | 0 | 0 | 0 | 0 | | | | | | | 0 | 0 | 0 | 1 | | | | | | 1. Fill in the truth table | 0 | 0 | 1 | 0 | | | | | | | — | — | — | — | — | — | — | — | —————— | | 0 | 0 | 1 | 1 | | | | | 2. Write down the | | 0 | 1 | 0 | 0 | | | | | | simplified SOP | 0 | 1 | 0 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | equation | 0 | 1 | 1 | 0 | | | | | | | — | — | — | — | — | — | — | — | — | 3. Draw the circuit | 0 | 1 | 1 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 0 | 0 | | | | | | diagram | 1 | 0 | 0 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 0 | | | | | | | 1 | 0 | 1 | 1 | | | | | | | 1 | 1 | 0 | 0 | | | | | | | 1 | 1 | 0 | 1 | | | | | | | 1 | 1 | 1 | 0 | | | | | | | 1 | 1 | 1 | 1 | | | | | | 16</p>
-<p>Create the truth table for this circuit | A | A | A | A | Y | Y | Y | Y | | — | — | — | — | — | — | — | — | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | | 1 | 0 | 0 | 1 | 1 | 0 | 0 | 0 | | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | | 1 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | | 1 | 1 | 1 | 0 | 1 | 0 | 0 | 0 | | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 17</p>
-<p>Find the simplified SOP equation for each output | A | A | A | A | Y | Y | Y | Y | | | — | — | — | — | — | — | — | — | —– | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 𝑌 = 𝐴 | 3 3 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | | — | — | — | — | — | — | — | — | — | 𝑌 = 𝐴 𝐴 2 3 2 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | | — | — | — | — | — | — | — | — | — | 𝑌 = 𝐴 𝐴 𝐴 1 3 2 1 | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | | — | — | — | — | — | — | — | — | — | 𝑌 = 𝐴 𝐴 𝐴 𝐴 0 3 2 1 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | | | — | — | — | — | — | — | — | — | — | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | | | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | | | 1 | 0 | 0 | 1 | 1 | 0 | 0 | 0 | | | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | | | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | | | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | | | 1 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | | | 1 | 1 | 1 | 0 | 1 | 0 | 0 | 0 | | | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | | 18</p>
-<p>The schematic 𝑌 = 𝐴 3 3 𝑌 = 𝐴 𝐴 2 3 2 𝑌 = 𝐴 𝐴 𝐴 1 3 2 1 𝑌 = 𝐴 𝐴 𝐴 𝐴 0 3 2 1 0 19</p>
-<p>Don’t Cares in the Priority Circuit | | | | A | A | A | A | Y | Y | Y | Y | | — | — | — | — | — | — | — | — | — | — | — | | | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | Whenever A = 1… 3 | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | — | — | ——————————————- | — | — | — | — | — | — | — | — | | • Y | = 1 | | | | | | | | | | | | 3 | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | • Y | = 0 | | | | | | | | | | | | 2 | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | • Y | = 0 | Don’t-cares can be used to simplify logic! | | | | | | | | | | | 1 | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | • Y | = 0 | | | | | | | | | | | | | | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 It does not matter what A , A , | | | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | For i2npu1t combinations that never occur, the | and A | are! | | | | | | | | | | | —– | —- | — | — | — | — | — | — | — | — | — | | | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 designer may assume either 1 or 0, | | | | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | whichever is more useful to achieving a | | | | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | | — | — | ——————————— | — | — | — | — | — | — | — | — | | | | minimum-cost1 impl0eme0ntati1on. | | | | | 1 | 0 | 0 | 0 | We can say that we “don’t | | | | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | care” about the values of | | | | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | A , A , and A | | | | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | 2 1 0 | | | | 1 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | | | | | 1 | 1 | 1 | 0 | 1 | 0 | 0 | 0 | | | | | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 20</p>
-<p>Don’t Cares in the Priority Circuit Whenever A = 1… 3 • Y = 1 3 | | A | A | A | A | Y | Y | Y | Y | | — | — | — | — | — | — | — | — | — | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | • Y = 0 2 | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | • Y = 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | — | — | — | — | — | — | — | — | — | • Y = 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | It does not matter what A , A , | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | 2 1 and A are! | | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | 0 | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | ————————– | — | — | — | — | — | — | — | — | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | | We can say that we “don’t | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | | 1 | X | X | X | 1 | 0 | 0 | 0 | care” about the values of A , A , and A 2 1 0 21</p>
-<p>Don’t Cares in the Priority Circuit | Whenever A | = 0 and A | = 1 | | | | | | | | | | ———- | ——— | — | — | — | — | — | — | — | — | — | | | 3 | 2 | | | | | | | | | • Y = 0 3 | | | | A | A | A | A | Y | Y | Y | Y | | — | — | — | — | — | — | — | — | — | — | — | | | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | • Y = 1 2 | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | • Y = 0 | 1 | | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | — | — | — | — | — | — | — | — | — | — | — | • Y = 0 | 0 | | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | ————————- | — | —— | — | — | — | — | — | — | — | — | | It does not matter what A | | , and | | | | | | | | | | | | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 A are | | | | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | ————————– | — | — | — | — | — | — | — | — | — | — | | | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | | We can say that we “don’t | | | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | care” about the values of A and A 1 0 22</p>
-<p>Don’t Cares in the Priority Circuit | Whenever A | | = 0 and A | = 1 | | | | | | | | | | ———- | — | ——— | — | — | — | — | — | — | — | — | — | | | | 3 | 2 | | | | | | | | | | • Y | = 0 | | | | | | | | | | | 3 | • Y | = 1 | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | 2 | • Y | = 0 | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | A | A | A | A | Y | Y | Y | Y | | | 1 | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | • Y | = 0 | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | It does not matter what A | | | , and | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | ————————- | — | — | —— | — | — | — | — | — | — | — | — | 1 | A are | | | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | —– | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | 0 | 1 | X | X | 0 | 1 | 0 | 0 | | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | We can say that we “don’t care” about the values of A and A 1 0 23</p>
-<p>Don’t Cares in the Priority Circuit | Whenever A | | = 0, A | = 0, and A | | = 1 | | | | | | | | | | ———- | — | —— | ———- | — | — | — | — | — | — | — | — | — | — | | | | 3 | 2 | | 1 | | | | | | | | | | • Y | = 0 | | | | | | | | | | | | | 3 | • Y | = 0 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 2 | • Y | = 1 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | A | A | A | A | Y | Y | Y | Y | | | 1 | | | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | • Y | = 0 | | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | It does not matter what A | | | | is | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | ————————- | — | — | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | | | | | | | 0 | 1 | X | X | 0 | 1 | 0 | 0 | | | | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | We can say that we “don’t care” about the value A 0 24</p>
-<p>Don’t Cares in the Priority Circuit | Whenever A | | = 0, A | = 0, and A | | = 1 | | | | | | | | | | ———- | — | —— | ———- | — | — | — | — | — | — | — | — | — | — | | | | 3 | 2 | | 1 | | | | | | | | | | • Y | = 0 | | | | | | | | | | | | | 3 | • Y | = 0 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 2 | • Y | = 1 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | A | A | A | A | Y | Y | Y | Y | | | 1 | | | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | • Y | = 0 | | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | It does not matter what A | | | | is | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | ————————- | — | — | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | | | 0 | 0 | 1 | X | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | 0 | 1 | X | X | 0 | 1 | 0 | 0 | | | | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | We can say that we “don’t care” about the value A 0 25</p>
-<p>Boolean Equations from Don’t Cares | A | A | A | A | Y | Y | Y | Y | | | | | — | — | — | — | — | — | — | — | — | — | —– | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | | | | | | | | | | | | 𝑌 = | 𝐴 | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | | | | | | | | | | | | 3 | 3 | | | | | | | | | | | 𝑌 = | 𝐴 𝐴 | | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | | | 2 | 3 | 2 | | 0 | 0 | 1 | X | 0 | 0 | 1 | 0 | 𝑌 = | 𝐴 𝐴 | 𝐴 | | | | | | | | | | 1 | 3 | 2 1 | | 0 | 1 | X | X | 0 | 1 | 0 | 0 | | | | | | | | | | | | | 𝑌 = | 𝐴 𝐴 | 𝐴 𝐴 | | | | | | | | | | 0 | 3 | 2 1 0 | | 1 | X | X | X | 1 | 0 | 0 | 0 | | | | Transforming the inputs to don’t cares makes finding the simplified SOP equations much easier! 26</p>
-<p>Output Values Can Also Be Don’t Care! | A | B | Y | | — | — | — | | 0 | 0 | 1 | When A is 0 and and B | 0 | 1 | X | | — | — | — | is 1, the output can be | 1 | 0 | 0 | | — | — | — | 0 or 1! | 1 | 1 | 0 | | — | — | — | 27</p>
-<p>Output Values Can Also Be Don’t Care! There are two possible implementations of this truth table | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | X | | 1 | 0 | 0 | | 1 | 1 | 0 | 28</p>
-<p>Output Values Can Also Be Don’t Care! There are two possible implementations of this truth table Since the output of row1 can be either a 0 or 1, let’s see what happens if we treat the output as 0. | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | 29</p>
-<p>Output Values Can Also Be Don’t Care! There are two possible implementations of this truth table If we treat the X as a 0, then we get the following circuit: | A | B | Y | | — | — | — | ҧ ത 𝑌 = 𝐴𝐵 | 0 | 0 | 1 | | — | — | — | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 | 30</p>
-<p>Output Values Can Also Be Don’t Care! There are two possible implementations of this truth table Since the output of row1 can be either a 0 or 1, let’s see what happens if we treat the output as 1. | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 0 | | 1 | 1 | 0 | 31</p>
-<p>Output Values Can Also Be Don’t Care! There are two possible implementations of this truth table If we treat the X as a 1, then we get the following circuit: | A | B | Y | | — | — | — | | 0 | 0 | 1 | ҧ 𝑌 = 𝐴 | 0 | 1 | 1 | | — | — | — | | 1 | 0 | 0 | | 1 | 1 | 0 | 32</p>
-<p>Which circuit should I choose for my design? ҧ ത 𝑌 = 𝐴𝐵 ҧ 𝑌 = 𝐴 33</p>
-<p>Which circuit should I choose for my design? ҧ ത 𝑌 = 𝐴𝐵 ҧ 𝑌 = 𝐴 This circuit is better because it contains fewer transistors 34</p>
-<p>Don’t Care Outputs ■ When designing our circuits, we will treat X as a 0 or a 1 depending on which decision yields the fewest number of transistors. ■ How do we know which decision is better? – In a K-map, if treating the X as a 1 yields fewer or larger circles, then treat it as a 1. – If not, treat the X as a 0. – If there are multiple X’s in a truth table, handle them individually ■ i.e.&nbsp;you can treat some X’s as 1s and some X’s as 0s 35</p>
-<p>Don’t Cares in K-Maps CD AB | | 00 | 01 | 11 | 10 | | — | — | — | — | — | | 00 | 0 | 0 | 0 | 0 | | 01 | 0 | 1 | X | 0 | | 11 | 0 | 1 | X | 0 | | 10 | 0 | 0 | 0 | 0 | 36</p>
-<p>Don’t Cares in K-Maps ■ There are four ways we can interpret these don’t cares. Which way yields the design with the fewest transistors? CD CD AB | | | | 00 | 01 11 | 10 | | | | AB | | | | | — | — | — | —- | —– | — | — | — | — | — | —- | —– | — | | | | | | | | | | | | 00 | 01 11 | 10 | | | | | 00 0 | 0 0 | 0 | | | | | | | | | | | | | | | | | | | 00 0 | 0 0 | 0 | | | | | 01 0 | 1 0 | 0 | | | | | | | | | | | | | | | | | | | 01 0 | 1 1 | 0 | | | | | 11 0 | 1 1 | 0 | | | | | | | | | | | | | | | | | | | 11 0 | 1 1 | 0 | | | | | 10 0 | 0 0 | 0 | CD | | | | 10 0 | 0 0 | 0 | CD | | | | | | AB | | 00 | 01 11 | 10 | | | | | — | — | — | —– | — | — | — | — | —– | — | — | — | — | | AB | 00 | 01 | 11 10 | | | | | | | | | | | | | | | | | 00 | 0 | 0 0 | 0 | | | | | 00 | 0 | 0 | 0 0 | | | | | | | | | | | | | | | | | 01 | 0 | 1 1 | 0 | | | | | 01 | 0 | 1 | 0 0 | | | | | | | | | | | | | | | | | 11 | 0 | 1 0 | 0 | | | | | 11 | 0 | 1 | 0 0 | | | | | | | | | | | | | | | | | 10 | 0 | 0 0 | 0 | | | | | 10 | 0 | 0 | 0 0 | | | | | | | | | | 37</p>
-<p>Don’t Cares in K-Maps ■ There are four ways we can interpret these don’t cares. Which way yields the design with the fewest transistors? CD CD AB | | | | | 00 | 01 11 | 10 | | | | AB | | | | | — | — | — | — | — | —– | — | — | — | — | — | —- | —– | — | | | | | | | | | | | | | 00 | 01 11 | 10 | | | | | 00 | 0 | 0 0 | 0 | | | | | | | | | | | | | | | | | | | | 00 0 | 0 0 | 0 | | | | | 01 | 0 | 1 0 | 0 | | | | | | | | | | | | | | | | | | | | 01 0 | 1 1 | 0 | | | | | 11 | 0 | 1 1 | 0 | | | | | | | | | | | | | | | | | | | | 11 0 | 1 1 | 0 | | | | | 10 | 0 | 0 0 | 0 | CD | | | | 10 0 | 0 0 | 0 | CD | | | | | | | AB | | 00 | 01 11 | 10 | | | | | — | — | —– | — | — | — | — | — | — | —– | — | — | — | — | | AB | | 00 01 | 11 | 10 | | | | | | | | | | | | | | | | | | 00 | 0 | 0 0 | 0 | | | | | | 00 | 0 0 | 0 | 0 | | | | | | | | | | | | | | | | | | 01 | 0 | 1 1 | 0 | | | | | | 01 | 0 1 | 0 | 0 | | | | | | | | | | | | | | | | | | 11 | 0 | 1 0 | 0 | | | | | | 11 | 0 1 | 0 | 0 | | | | | | | | | | | | | | | | | | 10 | 0 | 0 0 | 0 | | | | | | 10 | 0 0 | 0 | 0 | | | | | | | | | | ҧ | | | 𝑌 = 𝐵𝐶 | 𝐷 | | | | | | | | | | 38 | | — | — | —— | — | — | — | — | — | — | — | — | — | — | — |</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 9: Priority Encoders, Simple Adders tinyurl.com/comp311-sp26</p>
+</section>
+<section id="karnaugh-maps" class="slide level2">
+<h2>KARNAUGH MAPS</h2>
+</section>
+<section id="recall-boolean-algebra-simplification" class="slide level2">
+<h2>Recall: Boolean Algebra simplification</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 13%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>ҧ</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>ഥ ഥ</th>
+<th></th>
+<th>ҧ</th>
+<th>ҧ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>𝐴𝐵𝐶</td>
+<td></td>
+<td>+ 𝐴𝐵𝐶</td>
+<td></td>
+<td>+</td>
+<td>𝐴𝐶𝐵</td>
+<td>+</td>
+<td>𝐴𝐶𝐵</td>
+<td></td>
+<td>+</td>
+<td>𝐴𝐵𝐶</td>
+<td>𝐷</td>
+<td>+</td>
+<td>𝐴𝐵 +</td>
+<td>𝐶</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td>ҧ</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>ҧ</td>
+</tr>
+<tr class="odd">
+<td>𝐴𝐵</td>
+<td>𝐶</td>
+<td>+ 𝐶</td>
+<td>+</td>
+<td>𝐵</td>
+<td>𝐴𝐶</td>
+<td>+</td>
+<td>𝐴𝐶</td>
+<td>+</td>
+<td>𝐴𝐵</td>
+<td>+</td>
+<td>𝐶 +</td>
+<td>𝐷</td>
+<td>+ (𝐴𝐵)𝐶</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>ത | | 𝐴𝐵 | 1 | + | 𝐵 | 1 | + 𝐴𝐵 | | + 𝐶 | + | 𝐷 | + (𝐴 | + | 𝐵)𝐶 | | | — | — | — | — | — | — | —- | — | — | — | — | —- | — | — | — | ത | | | 𝐴𝐵 | + | 𝐵 | + | 𝐴𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | + | 𝐵𝐶 | | | | — | — | — | — | — | — | — | — | — | — | —- | — | — | — | — | ത | | | | 𝐴𝐵 | + | 𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | | + 𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | — | —- | — | —- | — | — | — | ത | | | | 𝐵 | 𝐴 + | 1 | + | 𝐶 | 1 + | 𝐴 | + | 𝐵𝐶 | + | 𝐷 | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ത | | | | | 𝐵 | 1 | + 𝐶 | 1 | + | 𝐵𝐶 | | + 𝐷 | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶 | + | 𝐵𝐶 | + | 𝐷 | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶(1 | | + 𝐵) | | + 𝐷 | | | | | | — | — | — | — | — | — | —– | —— | —- | — | — | — | — | — | — | | | | | | | | 𝐵 | + 𝐶(1) | | + | 𝐷 | | | | | | | | | | | | 𝐵 | + 𝐶 | + | 𝐷 | | | | | |</p>
+</section>
+<section id="lets-use-a-k-map-instead" class="slide level2">
+<h2>Let’s use a K-Map Instead</h2>
+<ol type="1">
+<li>Put the equation in SOP form.</li>
+<li>Fill out the K-Map.</li>
+<li>Find the simplified equation.</li>
+</ol>
+</section>
+<section id="using-a-k-map-to-simplify-a-boolean-equation" class="slide level2">
+<h2>Using a K-Map to Simplify a Boolean Equation</h2>
+<p>CD 1. Put the equation in AB 00 01 11 10 SOP form 00 2. Fill out the K-Map 3. Find the simplified 01 equation 11 ҧ ഥ ഥ ҧ ҧ 𝐴𝐵𝐶 + 𝐴𝐵𝐶 + 𝐴𝐶𝐵 + 𝐴𝐶𝐵 + 𝐴𝐵𝐶 𝐷 + 𝐴𝐵 + 𝐶 10</p>
+</section>
+<section id="using-a-k-map-to-simplify-a-boolean" class="slide level2">
+<h2>Using a K-Map to Simplify a Boolean</h2>
+<p>Equation | | 𝐴𝐵𝐶 + | 𝐴𝐵𝐶 ҧ | + 𝐴𝐶𝐵 | + 𝐴𝐶𝐵 | + 𝐴𝐵𝐶 | ഥ 𝐷 ഥ + | 𝐴𝐵 ҧ + | 𝐶 ҧ | | — | —– | —– | —– | —– | —– | ——- | —— | — | 1. Put the equation in SOP form | | | ҧ ҧ | ҧ | | | | | ത | | — | —– | —- | —- | —– | —- | —– | —— | —- | | 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵 | + 𝐴𝐶 | + 𝐴𝐶𝐵 | + 𝐴𝐵 | + 𝐶 + | 𝐷 + 𝐴𝐶 | + 𝐵𝐶 |</p>
+</section>
+<section id="using-a-k-map-to-simplify-a-boolean-1" class="slide level2">
+<h2>Using a K-Map to Simplify a Boolean</h2>
+<p>Equation CD AB | | | | | | | | | 00 01 | 11 10 | | — | — | — | — | — | — | — | — | —– | —– | 1. Put the equation in SOP form | | | | | | | | 00 | 0 1 | 1 1 | | — | — | — | — | — | — | — | — | — | — | 2. Fill out the K-Map | | | | | | | | 01 | 1 1 | 1 1 | | — | —– | —- | —- | —– | —- | —– | —— | —- | — | | | | | | | | | 11 | 1 1 | 1 1 | | | | | | | | | 10 | 0 1 | 1 1 | | | | ҧ ҧ | ҧ | | | | | ത | | | 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵 | + 𝐴𝐶 | + 𝐴𝐶𝐵 | + 𝐴𝐵 | + 𝐶 + | 𝐷 + 𝐴𝐶 | + 𝐵𝐶 | |</p>
+</section>
+<section id="using-a-k-map-to-simplify-a-boolean-2" class="slide level2">
+<h2>Using a K-Map to Simplify a Boolean</h2>
+<p>Equation CD AB | | | | | 00 01 | 11 10 | | — | — | — | — | —– | —– | 1. Put the equation in SOP form | | | | 00 | 0 1 | 1 1 | | — | — | — | — | — | — | 2. Fill out the K-Map | | | | 01 | 1 1 | 1 1 | | — | — | — | — | — | — | 3. Find the simplified equation | | | | 11 | 1 1 | 1 1 | | — | — | — | — | — | — | | | | | 10 | 0 1 | 1 1 | | 𝑩 + | 𝑪 + | 𝑫 | | | |</p>
+</section>
+<section id="reminder-of-where-we-are-going" class="slide level2">
+<h2>Reminder of where we are going!</h2>
+</section>
+<section id="priorit-y" class="slide level2">
+<h2>PRIORIT Y</h2>
+<p>ENCODERS</p>
+</section>
+<section id="multiple-output-circuits" class="slide level2">
+<h2>Multiple Output Circuits</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>Y</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multiple-output-circuits-1" class="slide level2">
+<h2>Multiple Output Circuits</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>ҧ ത</th>
+<th>ҧ ҧ ത</th>
+<th>ҧ</th>
+<th>ҧ ҧ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>𝑌 =</td>
+<td>𝐴𝐵𝐶</td>
+<td>+ 𝐴𝐵𝐶</td>
+<td>+ 𝐴𝐵𝐶</td>
+<td>+ 𝐴𝐵𝐶</td>
+</tr>
+</tbody>
+</table>
+<p>1 | A | B | C | Y | Y | | ҧ | | | | | — | — | — | — | — | — | — | — | — | — | | | | | | | 𝑌 = | 𝐴 | | | | | | | | 1 | 0 | | | | | | 1 | 0 | 0 | 0 | 1 | 1 | | | | | | | — | — | — | — | — | — | — | —– | —– | — | | 0 | 0 | 1 | 1 | 0 | | ҧ ത | ҧ ത | ҧ | | | | | | | | 𝑌 = | 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | + 𝐴𝐵𝐶 | | 0 ത ҧ | 0 | 1 | 0 | 1 | 0 | 𝑌 = | 𝐵𝐶 | + 𝐴𝐵𝐶 | | | | — | — | — | — | — | — | — | —– | — | — | 0 | 0 | 1 | 1 | 1 | 0 | | | | | | | — | — | — | — | — | — | — | — | — | — | | 1 | 0 | 0 | 0 | 1 | | | | | | | 1 | 0 | 1 | 0 | 0 | | | | | | | 1 | 1 | 0 | 0 | 0 | | | | | | | 1 | 1 | 1 | 0 | 1 | | | | | |</p>
+</section>
+<section id="wire-crossing-notation" class="slide level2">
+<h2>Wire Crossing Notation</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Not connected</th>
+<th>Connected</th>
+<th>Connected</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="priority-circuit" class="slide level2">
+<h2>Priority Circuit</h2>
+<p>I want to design a circuit that will determine who can reserve a classroom space. Anyone who wants to reserve the room will assert their input (set their input to 1). The order of priority for room reservations is the chancellor, professors, TAs, and students. Assume that only one person from each category will submit a request at a given time. The requestor with the highest priority will get the room reservation. Chancellor | | A | Y | | | — | — | — | — | | | 3 | 3 | | The output that is 1 will tell Professor | | A | Y | | | — | — | — | ——————— | | | 2 | 2 | us who gets the room | Priority reservation (only one output Circuit | TA | A | Y | | | — | — | — | — | will be 1 at any time) | | 1 | 1 | | | ——- | — | — | — | | Student | A | Y | | | | 0 | 0 | |</p>
+</section>
+<section id="circuit-design-activity" class="slide level2">
+<h2>Circuit Design Activity</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Fill in the truth table | 0 | 0 | 1 | 0 | | | | | | | — | — | — | — | — | — | — | — | —————— | | 0 | 0 | 1 | 1 | | | | | 2. Write down the | | 0 | 1 | 0 | 0 | | | | | | simplified SOP | 0 | 1 | 0 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | equation | 0 | 1 | 1 | 0 | | | | | | | — | — | — | — | — | — | — | — | — |</li>
+<li>Draw the circuit | 0 | 1 | 1 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 0 | 0 | | | | | | diagram | 1 | 0 | 0 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 0 | | | | | | | 1 | 0 | 1 | 1 | | | | | | | 1 | 1 | 0 | 0 | | | | | | | 1 | 1 | 0 | 1 | | | | | | | 1 | 1 | 1 | 0 | | | | | | | 1 | 1 | 1 | 1 | | | | | |</li>
+</ol>
+</section>
+<section id="create-the-truth-table-for-this-circuit" class="slide level2">
+<h2>Create the truth table for this circuit</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="find-the-simplified-sop-equation-for-each-output" class="slide level2">
+<h2>Find the simplified SOP equation for each output</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>𝑌 = 𝐴</td>
+</tr>
+</tbody>
+</table>
+<p>3 3 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | | — | — | — | — | — | — | — | — | — | 𝑌 = 𝐴 𝐴 2 3 2 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | | — | — | — | — | — | — | — | — | — | 𝑌 = 𝐴 𝐴 𝐴 1 3 2 1 | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | | — | — | — | — | — | — | — | — | — | 𝑌 = 𝐴 𝐴 𝐴 𝐴 0 3 2 1 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | | | — | — | — | — | — | — | — | — | — | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | | | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | | | 1 | 0 | 0 | 1 | 1 | 0 | 0 | 0 | | | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | | | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | | | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | | | 1 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | | | 1 | 1 | 1 | 0 | 1 | 0 | 0 | 0 | | | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | |</p>
+</section>
+<section id="the-schematic" class="slide level2">
+<h2>The schematic</h2>
+<p>𝑌 = 𝐴 3 3 𝑌 = 𝐴 𝐴 2 3 2 𝑌 = 𝐴 𝐴 𝐴 1 3 2 1 𝑌 = 𝐴 𝐴 𝐴 𝐴 0 3 2 1 0</p>
+</section>
+<section id="dont-cares-in-the-priority-circuit" class="slide level2">
+<h2>Don’t Cares in the Priority Circuit</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Whenever A = 1… 3 | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | — | — | ——————————————- | — | — | — | — | — | — | — | — | | • Y | = 1 | | | | | | | | | | | | 3 | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | • Y | = 0 | | | | | | | | | | | | 2 | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | • Y | = 0 | Don’t-cares can be used to simplify logic! | | | | | | | | | | | 1 | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | • Y | = 0 | | | | | | | | | | | | | | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 It does not matter what A , A , | | | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | For i2npu1t combinations that never occur, the | and A | are! | | | | | | | | | | | —– | —- | — | — | — | — | — | — | — | — | — | | | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 designer may assume either 1 or 0, | | | | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | whichever is more useful to achieving a | | | | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | | — | — | ——————————— | — | — | — | — | — | — | — | — | | | | minimum-cost1 impl0eme0ntati1on. | | | | | 1 | 0 | 0 | 0 | We can say that we “don’t | | | | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | care” about the values of | | | | 1 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | A , A , and A | | | | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | 2 1 0 | | | | 1 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | | | | | 1 | 1 | 1 | 0 | 1 | 0 | 0 | 0 | | | | | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 |</p>
+</section>
+<section id="dont-cares-in-the-priority-circuit-1" class="slide level2">
+<h2>Don’t Cares in the Priority Circuit</h2>
+<p>Whenever A = 1… 3 • Y = 1 3 | | A | A | A | A | Y | Y | Y | Y | | — | — | — | — | — | — | — | — | — | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | • Y = 0 2 | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | • Y = 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | — | — | — | — | — | — | — | — | — | • Y = 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | It does not matter what A , A , | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | 2 1 and A are! | | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | 0 | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | ————————– | — | — | — | — | — | — | — | — | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | | We can say that we “don’t | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | | 1 | X | X | X | 1 | 0 | 0 | 0 | care” about the values of A , A , and A 2 1 0</p>
+</section>
+<section id="dont-cares-in-the-priority-circuit-2" class="slide level2">
+<h2>Don’t Cares in the Priority Circuit</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 19%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Whenever A</th>
+<th>= 0 and A</th>
+<th>= 1</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>3</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>• Y = 0 3 | | | | A | A | A | A | Y | Y | Y | Y | | — | — | — | — | — | — | — | — | — | — | — | | | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | • Y = 1 2 | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | • Y = 0 | 1 | | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | — | — | — | — | — | — | — | — | — | — | — | • Y = 0 | 0 | | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | ————————- | — | —— | — | — | — | — | — | — | — | — | | It does not matter what A | | , and | | | | | | | | | | | | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 A are | | | | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | | ————————– | — | — | — | — | — | — | — | — | — | — | | | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | | We can say that we “don’t | | | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 0 | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | care” about the values of A and A 1 0</p>
+</section>
+<section id="dont-cares-in-the-priority-circuit-3" class="slide level2">
+<h2>Don’t Cares in the Priority Circuit</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 6%">
+<col style="width: 18%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Whenever A</th>
+<th></th>
+<th>= 0 and A</th>
+<th>= 1</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>3</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>• Y</td>
+<td>= 0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>3 | • Y | = 1 | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | 2 | • Y | = 0 | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | A | A | A | A | Y | Y | Y | Y | | | 1 | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | • Y | = 0 | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | It does not matter what A | | | , and | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | ————————- | — | — | —— | — | — | — | — | — | — | — | — | 1 | A are | | | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | —– | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | 0 | 1 | X | X | 0 | 1 | 0 | 0 | | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | We can say that we “don’t care” about the values of A and A 1 0</p>
+</section>
+<section id="dont-cares-in-the-priority-circuit-4" class="slide level2">
+<h2>Don’t Cares in the Priority Circuit</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Whenever A</th>
+<th></th>
+<th>= 0, A</th>
+<th>= 0, and A</th>
+<th></th>
+<th>= 1</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>3</td>
+<td>2</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>• Y</td>
+<td>= 0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>3 | • Y | = 0 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 2 | • Y | = 1 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | A | A | A | A | Y | Y | Y | Y | | | 1 | | | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | • Y | = 0 | | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | It does not matter what A | | | | is | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | ————————- | — | — | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | | | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | | | | | | | | 0 | 1 | X | X | 0 | 1 | 0 | 0 | | | | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | We can say that we “don’t care” about the value A 0</p>
+</section>
+<section id="dont-cares-in-the-priority-circuit-5" class="slide level2">
+<h2>Don’t Cares in the Priority Circuit</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Whenever A</th>
+<th></th>
+<th>= 0, A</th>
+<th>= 0, and A</th>
+<th></th>
+<th>= 1</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>3</td>
+<td>2</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>• Y</td>
+<td>= 0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>3 | • Y | = 0 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 2 | • Y | = 1 | | | | | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | A | A | A | A | Y | Y | Y | Y | | | 1 | | | | | 3 | 2 | 1 | 0 | 3 | 2 | 1 | 0 | | • Y | = 0 | | | | | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | It does not matter what A | | | | is | | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | | ————————- | — | — | — | — | — | — | — | — | — | — | — | — | — | 0 | | | | | | | 0 | 0 | 1 | X | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | | | | | | | 0 | 1 | X | X | 0 | 1 | 0 | 0 | | | | | | | | 1 | X | X | X | 1 | 0 | 0 | 0 | We can say that we “don’t care” about the value A 0</p>
+</section>
+<section id="boolean-equations-from-dont-cares" class="slide level2">
+<h2>Boolean Equations from Don’t Cares</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th>Y</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>𝑌 =</td>
+<td>𝐴</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>3</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>𝑌 =</td>
+<td>𝐴 𝐴</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>X</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>𝑌 =</td>
+<td>𝐴 𝐴</td>
+<td>𝐴</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>3</td>
+<td>2 1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>X</td>
+<td>X</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>𝑌 =</td>
+<td>𝐴 𝐴</td>
+<td>𝐴 𝐴</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>3</td>
+<td>2 1 0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Transforming the inputs to don’t cares makes finding the simplified SOP equations much easier!</p>
+</section>
+<section id="output-values-can-also-be-dont-care" class="slide level2">
+<h2>Output Values Can Also Be Don’t Care!</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>When A is 0 and and B | 0 | 1 | X | | — | — | — | is 1, the output can be | 1 | 0 | 0 | | — | — | — | 0 or 1! | 1 | 1 | 0 | | — | — | — |</p>
+</section>
+<section id="output-values-can-also-be-dont-care-1" class="slide level2">
+<h2>Output Values Can Also Be Don’t Care!</h2>
+<p>There are two possible implementations of this truth table | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | X | | 1 | 0 | 0 | | 1 | 1 | 0 |</p>
+</section>
+<section id="output-values-can-also-be-dont-care-2" class="slide level2">
+<h2>Output Values Can Also Be Don’t Care!</h2>
+<p>There are two possible implementations of this truth table Since the output of row1 can be either a 0 or 1, let’s see what happens if we treat the output as 0. | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 |</p>
+</section>
+<section id="output-values-can-also-be-dont-care-3" class="slide level2">
+<h2>Output Values Can Also Be Don’t Care!</h2>
+<p>There are two possible implementations of this truth table If we treat the X as a 0, then we get the following circuit: | A | B | Y | | — | — | — | ҧ ത 𝑌 = 𝐴𝐵 | 0 | 0 | 1 | | — | — | — | | 0 | 1 | 0 | | 1 | 0 | 0 | | 1 | 1 | 0 |</p>
+</section>
+<section id="output-values-can-also-be-dont-care-4" class="slide level2">
+<h2>Output Values Can Also Be Don’t Care!</h2>
+<p>There are two possible implementations of this truth table Since the output of row1 can be either a 0 or 1, let’s see what happens if we treat the output as 1. | A | B | Y | | — | — | — | | 0 | 0 | 1 | | 0 | 1 | 1 | | 1 | 0 | 0 | | 1 | 1 | 0 |</p>
+</section>
+<section id="output-values-can-also-be-dont-care-5" class="slide level2">
+<h2>Output Values Can Also Be Don’t Care!</h2>
+<p>There are two possible implementations of this truth table If we treat the X as a 1, then we get the following circuit: | A | B | Y | | — | — | — | | 0 | 0 | 1 | ҧ 𝑌 = 𝐴 | 0 | 1 | 1 | | — | — | — | | 1 | 0 | 0 | | 1 | 1 | 0 |</p>
+</section>
+<section id="which-circuit-should-i-choose-for-my" class="slide level2">
+<h2>Which circuit should I choose for my</h2>
+<p>design? ҧ ത 𝑌 = 𝐴𝐵 ҧ 𝑌 = 𝐴</p>
+</section>
+<section id="which-circuit-should-i-choose-for-my-1" class="slide level2">
+<h2>Which circuit should I choose for my</h2>
+<p>design? ҧ ത 𝑌 = 𝐴𝐵 ҧ 𝑌 = 𝐴 This circuit is better because it contains fewer transistors</p>
+</section>
+<section id="dont-care-outputs" class="slide level2">
+<h2>Don’t Care Outputs</h2>
+<p>■ When designing our circuits, we will treat X as a 0 or a 1 depending on which decision yields the fewest number of transistors. ■ How do we know which decision is better? – In a K-map, if treating the X as a 1 yields fewer or larger circles, then treat it as a 1. – If not, treat the X as a 0. – If there are multiple X’s in a truth table, handle them individually ■ i.e.&nbsp;you can treat some X’s as 1s and some X’s as 0s</p>
+</section>
+<section id="dont-cares-in-k-maps" class="slide level2">
+<h2>Don’t Cares in K-Maps</h2>
+<p>CD AB | | 00 | 01 | 11 | 10 | | — | — | — | — | — | | 00 | 0 | 0 | 0 | 0 | | 01 | 0 | 1 | X | 0 | | 11 | 0 | 1 | X | 0 | | 10 | 0 | 0 | 0 | 0 |</p>
+</section>
+<section id="dont-cares-in-k-maps-1" class="slide level2">
+<h2>Don’t Cares in K-Maps</h2>
+<p>■ There are four ways we can interpret these don’t cares. Which way yields the design with the fewest transistors? CD CD AB | | | | 00 | 01 11 | 10 | | | | AB | | | | | — | — | — | —- | —– | — | — | — | — | — | —- | —– | — | | | | | | | | | | | | 00 | 01 11 | 10 | | | | | 00 0 | 0 0 | 0 | | | | | | | | | | | | | | | | | | | 00 0 | 0 0 | 0 | | | | | 01 0 | 1 0 | 0 | | | | | | | | | | | | | | | | | | | 01 0 | 1 1 | 0 | | | | | 11 0 | 1 1 | 0 | | | | | | | | | | | | | | | | | | | 11 0 | 1 1 | 0 | | | | | 10 0 | 0 0 | 0 | CD | | | | 10 0 | 0 0 | 0 | CD | | | | | | AB | | 00 | 01 11 | 10 | | | | | — | — | — | —– | — | — | — | — | —– | — | — | — | — | | AB | 00 | 01 | 11 10 | | | | | | | | | | | | | | | | | 00 | 0 | 0 0 | 0 | | | | | 00 | 0 | 0 | 0 0 | | | | | | | | | | | | | | | | | 01 | 0 | 1 1 | 0 | | | | | 01 | 0 | 1 | 0 0 | | | | | | | | | | | | | | | | | 11 | 0 | 1 0 | 0 | | | | | 11 | 0 | 1 | 0 0 | | | | | | | | | | | | | | | | | 10 | 0 | 0 0 | 0 | | | | | 10 | 0 | 0 | 0 0 | | | | | | | | | |</p>
+</section>
+<section id="dont-cares-in-k-maps-2" class="slide level2">
+<h2>Don’t Cares in K-Maps</h2>
+<p>■ There are four ways we can interpret these don’t cares. Which way yields the design with the fewest transistors? CD CD AB | | | | | 00 | 01 11 | 10 | | | | AB | | | | | — | — | — | — | — | —– | — | — | — | — | — | —- | —– | — | | | | | | | | | | | | | 00 | 01 11 | 10 | | | | | 00 | 0 | 0 0 | 0 | | | | | | | | | | | | | | | | | | | | 00 0 | 0 0 | 0 | | | | | 01 | 0 | 1 0 | 0 | | | | | | | | | | | | | | | | | | | | 01 0 | 1 1 | 0 | | | | | 11 | 0 | 1 1 | 0 | | | | | | | | | | | | | | | | | | | | 11 0 | 1 1 | 0 | | | | | 10 | 0 | 0 0 | 0 | CD | | | | 10 0 | 0 0 | 0 | CD | | | | | | | AB | | 00 | 01 11 | 10 | | | | | — | — | —– | — | — | — | — | — | — | —– | — | — | — | — | | AB | | 00 01 | 11 | 10 | | | | | | | | | | | | | | | | | | 00 | 0 | 0 0 | 0 | | | | | | 00 | 0 0 | 0 | 0 | | | | | | | | | | | | | | | | | | 01 | 0 | 1 1 | 0 | | | | | | 01 | 0 1 | 0 | 0 | | | | | | | | | | | | | | | | | | 11 | 0 | 1 0 | 0 | | | | | | 11 | 0 1 | 0 | 0 | | | | | | | | | | | | | | | | | | 10 | 0 | 0 0 | 0 | | | | | | 10 | 0 0 | 0 | 0 | | | | | | | | | | ҧ | | | 𝑌 = 𝐵𝐶 | 𝐷 | | | | | | | | | | 38 | | — | — | —— | — | — | — | — | — | — | — | — | — | — | — |</p>
 <p>Don’t Cares in K-Maps ■ There are four ways we can interpret these don’t cares. Which way yields the design with the fewest transistors? CD CD AB | | | | | 00 | 01 11 | 10 | | | | AB | | | | | — | — | — | — | — | —– | — | —– | — | — | — | —- | —– | — | | | | | | | | | | | | | 00 | 01 11 | 10 | | | | | 00 | 0 | 0 0 | 0 | | | | | | | | | | | | | | | | | ҧ | | | 00 0 | 0 0 | 0 | | | | | | | | 𝑌 | = 𝐵𝐶𝐷 | + | 𝐴𝐵𝐷 | | | | | | | | | 01 | 0 | 1 0 | 0 | | | | | | | | | | | | | | | | | | | | 01 0 | 1 1 | 0 | | | | | 11 | 0 | 1 1 | 0 | | | | | | | | | | | | | | | | | | | | 11 0 | 1 1 | 0 | | | | | 10 | 0 | 0 0 | 0 | CD | | | | 10 0 | 0 0 | 0 | CD | | | | | | | AB | | 00 | 01 11 | 10 | | | | | — | — | —– | — | — | — | — | — | — | —– | — | — | — | — | | AB | | 00 01 | 11 | 10 | | | | | | | | | | | | | | | | | | 00 | 0 | 0 0 | 0 | | | | | | 00 | 0 0 | 0 | 0 | | | | | | | | | | | | | | | | | | 01 | 0 | 1 1 | 0 | | | | | | 01 | 0 1 | 0 | 0 | | | | | | | | | | | | | | | | | | 11 | 0 | 1 0 | 0 | | | | | | 11 | 0 1 | 0 | 0 | | | | | | | | | | | | | | | | | | 10 | 0 | 0 0 | 0 | | | | | | 10 | 0 0 | 0 | 0 | | | | | | | | | | ҧ | | | 𝑌 = 𝐵𝐶 | 𝐷 | | | | | | | | | | 39 | | — | — | —— | — | — | — | — | — | — | — | — | — | — | — |</p>
 <p>Don’t Cares in K-Maps ■ There are four ways we can interpret these don’t cares. Which way yields the design with the fewest transistors? CD CD AB | | | | | | 00 | 01 11 | 10 | | | | AB | | | | | — | — | — | — | — | — | —– | — | —– | — | — | — | —- | —– | — | | | | | | | | | | | | | | 00 | 01 11 | 10 | | | | | | 00 | 0 | 0 0 | 0 | | | | | | | | | | | | | | | | | | ҧ | | | 00 0 | 0 0 | 0 | | | | | | | | | 𝑌 | = 𝐵𝐶𝐷 | + | 𝐴𝐵𝐷 | | | | | | | | | | 01 | 0 | 1 0 | 0 | | | | | | | | | | | | | | | | | | | | | 01 0 | 1 1 | 0 | | | | | | 11 | 0 | 1 1 | 0 | | | | | | | | | | | | | | | | | | | | | 11 0 | 1 1 | 0 | | | | | | 10 | 0 | 0 0 | 0 | CD | | | | 10 0 | 0 0 | 0 | CD | | | | | | | | AB | | 00 | 01 11 | 10 | | | | | — | — | — | —- | — | — | — | — | — | — | —— | — | —- | — | — | | AB | | 00 | 01 | 11 | 10 | | | | | | | | | | | | | | | | | | | 00 | 0 | 0 0 | 0 | | | | | | 00 | 0 | 0 | 0 | 0 | | | | | | | | | | | | | | | | | | | 01 | 0 | 1 1 | 0 | | | | | | 01 | 0 | 1 | 0 | 0 | | | | | | | | | | | | | | | | | | | 11 | 0 | 1 0 | 0 | | | | | | 11 | 0 | 1 | 0 | 0 | | | | | | | | | | | | | | | | | | | 10 | 0 | 0 0 | 0 | | | | | | 10 | 0 | 0 | 0 | 0 | | | | | | | | | | | | | | | ҧ | | | | | | | ҧ | ҧ | | | | | | 𝑌 | = 𝐵𝐶 | 𝐷 | | | | | | 𝑌 = 𝐵𝐶 | 𝐷 + | 𝐴 𝐵𝐷 | | 40 |</p>
 <p>Don’t Cares in K-Maps ■ There are four ways we can interpret these don’t cares. Which way yields the design with the fewest transistors? CD CD AB | | | | | | 00 | 01 11 | 10 | | | | AB | | | | | | — | — | — | — | — | — | —– | — | —– | — | — | — | —- | —– | — | — | | | | | | | | | | | | | | 00 | 01 11 | 10 | | | | | | | 00 | 0 | 0 0 | 0 | | | | | | | | | | | | | | | | | | | ҧ | | | 00 0 | 0 | 0 0 | | | | | | | | | | 𝑌 | = 𝐵𝐶𝐷 | + | 𝐴𝐵𝐷 | | | | | | | | | | | 01 | 0 | 1 0 | 0 | | | | | | | | | | | | | | | | | | | | | | 01 0 | 1 | 1 0 | | 𝑌 = 𝐵𝐷 | | | | | 11 | 0 | 1 1 | 0 | | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | —- | — | — | — | | | | | | | | | | | | | | 11 0 | 1 | 1 0 | | | | | | | 10 | 0 | 0 0 | 0 | CD | | | | 10 0 | 0 | 0 0 | | CD | | | | | | | | AB | | 00 | 01 11 | 10 | | | | | | — | — | — | — | — | — | — | — | — | — | —– | — | — | — | — | — | | AB | | 00 | 01 | 11 | 10 | | | | | | | | | | | This implementation | | | | | | | | | 00 | 0 | 0 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ——————– | — | | | 00 | 0 | 0 | 0 | 0 | | | | | | | | | contains the fewest | | number of transistors | | | | | | | | | 01 | 0 | 1 1 | 0 | | | | | | — | — | — | —- | — | — | — | — | — | — | —— | — | —- | — | — | — | | | 01 | 0 | 1 | 0 | 0 | | | | | | | | | | | | | | | | | | | | 11 | 0 | 1 0 | 0 | | | | | | | 11 | 0 | 1 | 0 | 0 | | | | | | | | | | | | | | | | | | | | 10 | 0 | 0 0 | 0 | | | | | | | 10 | 0 | 0 | 0 | 0 | | | | | | | | | | | | | | | | ҧ | | | | | | | ҧ | ҧ | | | | | | | 𝑌 | = 𝐵𝐶 | 𝐷 | | | | | | 𝑌 = 𝐵𝐶 | 𝐷 + | 𝐴 𝐵𝐷 | | | 41 |</p>
-<p>MULTIPLEXERS REVIEW 48</p>
-<p>2:1 Multiplexer (2:1 mux) | A | | A | | | — | — | — | — | | | 0 | | 1 | Y Y | B | 1 | B | 0 | | —————– | —————– | — | — | | | S | | S | | When S = 0, Y = A | When S = 0, Y = B | | | | When S = 1, Y = B | When S = 1, Y = A | | | 49</p>
-<p>4:1 Multiplexer (4:1 mux) ■ A circuit that chooses an output from among four inputs based on the value of a select signal | A | 00 | | | — | — | — | When S = 0b00, Y = A | B | 01 | When S = 0b01, Y = B | | — | — | ——————– | Y When S = 0b10, Y = C | C | 10 | | | — | — | — | When S = 0b11, Y = D | D | 11 | | | — | — | — | 2 two-bit wire S 1:0 S[1] S[0] 50</p>
-<p>Create the gate-level implementation of a 4:1 Multiplexer (4:1 mux) 1. Fill in truth table 2. Find the equation 3. Draw the schematic 51</p>
-<p>Create the gate-level implementation of a 4:1 Multiplexer (4:1 mux) | S1 S0 | A B | C D | Y | | —– | — | — | — | 52</p>
-<p>Create the gate-level implementation of a 4:1 Multiplexer (4:1 mux) | S1 S0 | A | B C | D Y | | | | | | | | | —– | — | — | — | — | —- | —- | — | —- | — | — | | 0 0 | 0 | X X | X 0 | | | | | | | | | 0 0 | 1 | X X | X 1 | | | | | | | | | 0 1 | X | 0 X | X 0 | | | | | | | | | | | | | | ഥ ഥ | | ഥ | ഥ | | | | | | | | 𝑌 = | 𝐴𝑆 𝑆 | + 𝐵𝑆 | 𝑆 + | 𝐶𝑆 𝑆 | + 𝐷 | 𝑆 𝑆 | | 0 1 | X | 1 X | X 1 | | 1 | 0 | 1 0 | 1 | 0 | 1 0 | | 1 0 | X | X 0 | X 0 | | | | | | | | | 1 0 | X | X 1 | X 1 | | | | | | | | | 1 1 | X | X X | 0 0 | | | | | | | | | 1 1 | X | X X | 1 1 | | | | | | | | 53</p>
-<p>4:1 Multiplexer (4:1 mux) Equation | | ഥ ഥ | | ഥ | ഥ | | | | — | —- | —- | — | —- | — | — | | 𝑌 = | 𝐴𝑆 𝑆 | + 𝐵𝑆 | 𝑆 + | 𝐶𝑆 𝑆 | + 𝐷 | 𝑆 𝑆 | | | 1 | 0 | 1 0 | 1 | 0 | 1 0 | Diagram 54</p>
-<p>4:1 Multiplexer (4:1 mux) Equation | | ഥ ഥ | | ഥ | ഥ | | | | — | —- | —- | — | —- | — | — | | 𝑌 = | 𝐴𝑆 𝑆 | + 𝐵𝑆 | 𝑆 + | 𝐶𝑆 𝑆 | + 𝐷 | 𝑆 𝑆 | | | 1 | 0 | 1 0 | 1 | 0 | 1 0 | Diagram 55</p>
+<p>MULTIPLEXERS REVIEW</p>
+</section>
+<section id="multiplexer-21-mux" class="slide level2">
+<h2>2:1 Multiplexer (2:1 mux)</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>S1</th>
-<th>S0</th>
-<th>Y</th>
+<th>A</th>
+<th></th>
+<th>A</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
-</tbody>
-</table>
-<p>Multiplexers | 0 | 0 | A | | — | — | — | | 0 | 1 | B | ■ Create a 4:1 multiplexer out of 2:1 multiplexers. | 1 | 0 | C | | — | — | — | A | 1 | 1 | D | | — | — | — | B C Y D S 1 S 0 56</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>S1</th>
-<th>S0</th>
-<th>Y</th>
+<tr class="odd">
+<td></td>
+<td>0</td>
+<td></td>
+<td>1</td>
 </tr>
-</thead>
-<tbody>
 </tbody>
 </table>
-<p>Multiplexers | 0 | 0 | A | | — | — | — | | 0 | 1 | B | ■ Create a 4:1 multiplexer out of 2:1 multiplexers. | 1 | 0 | C | | — | — | — | | 1 | 1 | D | 57</p>
-<p>ADDER CIRCUITS! 58</p>
-<p>Recall: Binary Addition 101 + 111 59</p>
-<p>Recall: Binary Addition Carry-out from column 1 (C ) O, 1 Carry-in to column 2 (C ) in, 2 Carry-out from column 2 (C ) 111 Carry-out from column 0 (C ) O, 2 O, 0 Carry-in to column 1 (C ) in, 1 101 + column 0 111 100 Column 2 sum (S ) Column 0 sum (S ) 2 0 Column 1 sum (S ) 1 60</p>
-<p>Half Adder ■ We’ll start off by building a circuit that can add together two one-bit values ■ This circuit will be able to add together the two bits in column 0 111 101 + 111 100 61</p>
-<p>Half Adder ■ We’ll start off by building a circuit that can add together two one- bit values ■ This circuit will be able to add together the two bits in column 0 A B 111 Output: Co 101 Input: A + Half 111 Input : B C Adder O 100 Output: S Circuit S 62</p>
-<p>Half Adder | A | B | C | S | | | | | | — | — | — | — | — | — | — | — | O | 0 | 0 | | | | | | | | — | — | — | — | — | — | — | — | | | | | | | 0 | 1 | 1 | 0 | 0 | 1 | | | | | | | | — | — | — | — | — | — | — | — | | | | | | + | + | + | + | | | | | | 0 | 1 | 0 | 1 | | 1 | 0 | | | | | | | | 1 | 1 | | | | | | | 63</p>
-<p>Half Adder | | | | | | | Row 1 | Row 2 | Row 3 | | — | — | — | — | — | — | —– | —– | —– | Row 0 | A | B | C | S | | | | | | | — | — | — | — | — | — | — | — | — | O | | | | | | | 0 | 0 | 1 | | — | — | — | — | — | — | — | — | — | 0 | 0 | 0 | 0 | 0 | carry bit | | | | | | — | — | — | — | ——— | — | — | — | — | | | | | | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | | | | | | | + | + | + | + | | | | | | | 0 | 1 | 0 | 1 | | 1 | 0 | 0 | 1 | | | | | | | | | | | | 0 | 1 | 1 | 0 | | 1 | 1 | 1 | 0 | | | | | | sum bit 64</p>
-<p>Half Adder | A | B | C | S | | | — | — | — | — | — | O | 0 | 0 | 0 | 0 | | | — | — | — | — | — | 𝑆 = 𝐴 + 𝐵 | 0 | 1 | 0 | 1 | | | — | — | — | — | — | 𝐶 = 𝐴𝐵 | 1 | 0 | 0 | 1 | 𝑂 | | — | — | — | — | — | | 1 | 1 | 1 | 0 | | 65</p>
-<p>Full Adder ■ We need to build a circuit that can add together three one-bit values 111 101 + 111 100 66</p>
-<p>Full Adder ■ This circuit will be able to add together the three bits in column 1 Output: C o A B 111 Input: C i Full 101 Input: A + C C Adder O i 111 Input : B Circuit 100 Output: S S 67</p>
+<p>Y Y | B | 1 | B | 0 | | —————– | —————– | — | — | | | S | | S | | When S = 0, Y = A | When S = 0, Y = B | | | | When S = 1, Y = B | When S = 1, Y = A | | |</p>
+</section>
+<section id="multiplexer-41-mux" class="slide level2">
+<h2>4:1 Multiplexer (4:1 mux)</h2>
+<p>■ A circuit that chooses an output from among four inputs based on the value of a select signal | A | 00 | | | — | — | — | When S = 0b00, Y = A | B | 01 | When S = 0b01, Y = B | | — | — | ——————– | Y When S = 0b10, Y = C | C | 10 | | | — | — | — | When S = 0b11, Y = D | D | 11 | | | — | — | — | 2 two-bit wire S 1:0 S[1] S[0]</p>
+</section>
+<section id="create-the-gate-level-implementation-of-a-41-multiplexer-41-mux" class="slide level2">
+<h2>Create the gate-level implementation of a 4:1 Multiplexer (4:1 mux)</h2>
 <ol type="1">
 <li>Fill in truth table</li>
+<li>Find the equation</li>
+<li>Draw the schematic</li>
+</ol>
+</section>
+<section id="create-the-gate-level-implementation-of-a-41-multiplexer-41-mux-1" class="slide level2">
+<h2>Create the gate-level implementation of a 4:1 Multiplexer (4:1 mux)</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>S1 S0</th>
+<th>A B</th>
+<th>C D</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="create-the-gate-level-implementation-of-a-41-multiplexer-41-mux-2" class="slide level2">
+<h2>Create the gate-level implementation of a 4:1 Multiplexer (4:1 mux)</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>S1 S0</th>
+<th>A</th>
+<th>B C</th>
+<th>D Y</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0 0</td>
+<td>0</td>
+<td>X X</td>
+<td>X 0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>0 0</td>
+<td>1</td>
+<td>X X</td>
+<td>X 1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0 1</td>
+<td>X</td>
+<td>0 X</td>
+<td>X 0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>ഥ ഥ</td>
+<td></td>
+<td>ഥ</td>
+<td>ഥ</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>𝑌 =</td>
+<td>𝐴𝑆 𝑆</td>
+<td>+ 𝐵𝑆</td>
+<td>𝑆 +</td>
+<td>𝐶𝑆 𝑆</td>
+<td>+ 𝐷</td>
+<td>𝑆 𝑆</td>
+</tr>
+<tr class="even">
+<td>0 1</td>
+<td>X</td>
+<td>1 X</td>
+<td>X 1</td>
+<td></td>
+<td>1</td>
+<td>0</td>
+<td>1 0</td>
+<td>1</td>
+<td>0</td>
+<td>1 0</td>
+</tr>
+<tr class="odd">
+<td>1 0</td>
+<td>X</td>
+<td>X 0</td>
+<td>X 0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1 0</td>
+<td>X</td>
+<td>X 1</td>
+<td>X 1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>1 1</td>
+<td>X</td>
+<td>X X</td>
+<td>0 0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1 1</td>
+<td>X</td>
+<td>X X</td>
+<td>1 1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multiplexer-41-mux-1" class="slide level2">
+<h2>4:1 Multiplexer (4:1 mux)</h2>
+<p>Equation | | ഥ ഥ | | ഥ | ഥ | | | | — | —- | —- | — | —- | — | — | | 𝑌 = | 𝐴𝑆 𝑆 | + 𝐵𝑆 | 𝑆 + | 𝐶𝑆 𝑆 | + 𝐷 | 𝑆 𝑆 | | | 1 | 0 | 1 0 | 1 | 0 | 1 0 | Diagram</p>
+</section>
+<section id="multiplexer-41-mux-2" class="slide level2">
+<h2>4:1 Multiplexer (4:1 mux)</h2>
+<p>Equation | | ഥ ഥ | | ഥ | ഥ | | | | — | —- | —- | — | —- | — | — | | 𝑌 = | 𝐴𝑆 𝑆 | + 𝐵𝑆 | 𝑆 + | 𝐶𝑆 𝑆 | + 𝐷 | 𝑆 𝑆 | | | 1 | 0 | 1 0 | 1 | 0 | 1 0 | Diagram</p>
+</section>
+<section id="s1-s0-y" class="slide level2">
+<h2>| S1 | S0 | Y |</h2>
+<div class="line-block">— | — | — |</div>
+<p>Multiplexers | 0 | 0 | A | | — | — | — | | 0 | 1 | B | ■ Create a 4:1 multiplexer out of 2:1 multiplexers. | 1 | 0 | C | | — | — | — | A | 1 | 1 | D | | — | — | — | B C Y D S 1 S 0</p>
+</section>
+<section id="s1-s0-y-1" class="slide level2">
+<h2>| S1 | S0 | Y |</h2>
+<div class="line-block">— | — | — |</div>
+<p>Multiplexers | 0 | 0 | A | | — | — | — | | 0 | 1 | B | ■ Create a 4:1 multiplexer out of 2:1 multiplexers. | 1 | 0 | C | | — | — | — | | 1 | 1 | D |</p>
+</section>
+<section id="adder-circuits" class="slide level2">
+<h2>ADDER CIRCUITS!</h2>
+</section>
+<section id="recall-binary-addition" class="slide level2">
+<h2>Recall: Binary Addition</h2>
+<p>101 + 111</p>
+</section>
+<section id="recall-binary-addition-1" class="slide level2">
+<h2>Recall: Binary Addition</h2>
+<p>Carry-out from column 1 (C ) O, 1 Carry-in to column 2 (C ) in, 2 Carry-out from column 2 (C ) 111 Carry-out from column 0 (C ) O, 2 O, 0 Carry-in to column 1 (C ) in, 1 101 + column 0 111 100 Column 2 sum (S ) Column 0 sum (S ) 2 0 Column 1 sum (S ) 1</p>
+</section>
+<section id="half-adder" class="slide level2">
+<h2>Half Adder</h2>
+<p>■ We’ll start off by building a circuit that can add together two one-bit values ■ This circuit will be able to add together the two bits in column 0 111 101 + 111 100</p>
+</section>
+<section id="half-adder-1" class="slide level2">
+<h2>Half Adder</h2>
+<p>■ We’ll start off by building a circuit that can add together two one- bit values ■ This circuit will be able to add together the two bits in column 0 A B 111 Output: Co 101 Input: A + Half 111 Input : B C Adder O 100 Output: S Circuit S</p>
+</section>
+<section id="half-adder-2" class="slide level2">
+<h2>Half Adder</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>S</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>O | 0 | 0 | | | | | | | | — | — | — | — | — | — | — | — | | | | | | | 0 | 1 | 1 | 0 | 0 | 1 | | | | | | | | — | — | — | — | — | — | — | — | | | | | | + | + | + | + | | | | | | 0 | 1 | 0 | 1 | | 1 | 0 | | | | | | | | 1 | 1 | | | | | | |</p>
+</section>
+<section id="half-adder-3" class="slide level2">
+<h2>Half Adder</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>Row 1</th>
+<th>Row 2</th>
+<th>Row 3</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Row 0 | A | B | C | S | | | | | | | — | — | — | — | — | — | — | — | — | O | | | | | | | 0 | 0 | 1 | | — | — | — | — | — | — | — | — | — | 0 | 0 | 0 | 0 | 0 | carry bit | | | | | | — | — | — | — | ——— | — | — | — | — | | | | | | | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 | | | | | | | — | — | — | — | — | — | — | — | — | | | | | | | + | + | + | + | | | | | | | 0 | 1 | 0 | 1 | | 1 | 0 | 0 | 1 | | | | | | | | | | | | 0 | 1 | 1 | 0 | | 1 | 1 | 1 | 0 | | | | | | sum bit</p>
+</section>
+<section id="half-adder-4" class="slide level2">
+<h2>Half Adder</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>S</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>O | 0 | 0 | 0 | 0 | | | — | — | — | — | — | 𝑆 = 𝐴 + 𝐵 | 0 | 1 | 0 | 1 | | | — | — | — | — | — | 𝐶 = 𝐴𝐵 | 1 | 0 | 0 | 1 | 𝑂 | | — | — | — | — | — | | 1 | 1 | 1 | 0 | |</p>
+</section>
+<section id="full-adder" class="slide level2">
+<h2>Full Adder</h2>
+<p>■ We need to build a circuit that can add together three one-bit values 111 101 + 111 100</p>
+</section>
+<section id="full-adder-1" class="slide level2">
+<h2>Full Adder</h2>
+<p>■ This circuit will be able to add together the three bits in column 1 Output: C o A B 111 Input: C i Full 101 Input: A + C C Adder O i 111 Input : B Circuit 100 Output: S S</p>
+</section>
+<section id="fill-in-truth-table" class="slide level2">
+<h2>1. Fill in truth table</h2>
+<ol start="2" type="1">
 <li>Find the equations Full Adder</li>
 <li>Draw the schematic</li>
-<li>Count the transistors in | A | B | C C | S | | — | — | — | — | i O your design | 0 | 0 | 0 | | | — | — | — | — | | 0 | 0 | 1 | | BC i | 0 | 1 | 0 | | | — | — | — | — | A 00 01 11 10 | 0 | 1 | 1 | | | — | — | — | — | 0 | 1 | 0 | 0 | | | — | — | — | — | 1 | 1 | 0 | 1 | | | — | — | — | — | | 1 | 1 | 0 | | Hint: Maybe a K-Map would | 1 | 1 | 1 | | | — | — | — | — | help for C O 68</li>
+<li>Count the transistors in | A | B | C C | S | | — | — | — | — | i O your design | 0 | 0 | 0 | | | — | — | — | — | | 0 | 0 | 1 | | BC i | 0 | 1 | 0 | | | — | — | — | — | A 00 01 11 10 | 0 | 1 | 1 | | | — | — | — | — | 0 | 1 | 0 | 0 | | | — | — | — | — | 1 | 1 | 0 | 1 | | | — | — | — | — | | 1 | 1 | 0 | | Hint: Maybe a K-Map would | 1 | 1 | 1 | | | — | — | — | — | help for C O</li>
 </ol>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

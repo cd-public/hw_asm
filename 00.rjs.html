@@ -27,6 +27,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-1d86d68c35eb7061f9efcb6a994936f6.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -127,7 +193,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Introduction</h1>
-  <p class="subtitle">w1d0</p>
+  <p class="subtitle">w0d0</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -144,56 +210,334 @@
 <li><strong>Welcome</strong> to HW/<code>asm</code></li>
 <li><strong>Action Items</strong> discussion</li>
 </ul>
+</section>
+<section id="credit" class="slide level2">
+<h2>Credit</h2>
+<ul>
+<li>I stole this course from <a href="https://www.cs.unc.edu/~kakiryan/">Kaki Ryan</a>.</li>
+<li>Kaki and I overlapped a few years in Cynthia Sturton’s hardware security group</li>
+<li>Kaki actually understood what we were doing in the group.</li>
+</ul>
+</section>
+<section id="target-audience" class="slide level2">
+<h2>Target Audience</h2>
+<ul>
+<li>Tough-to-impossible without CS 271: Systems in ???</li>
+<li>Good for:
+<ul>
+<li>CS people with engineering interest</li>
+<li>Physics/engineering people with hardware interest</li>
+<li>Math people with applications interest</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-is-the-course-about" class="slide level2">
+<h2>What is the course about?</h2>
+<ul>
+<li>In prior work, you probably only worked with computers at the software level.
+<ul>
+<li>True even in the case of e.g.&nbsp;an systems programming class, where final projects (blockchain or version control) were ultimately “software”</li>
+<li>Just implemented <em>as one would</em> implement a system like an OS, server, or compiler.</li>
+</ul></li>
+</ul>
+</section>
+<section id="perspective" class="slide level2">
+<h2>Perspective</h2>
+<ul>
+<li>First consider what we now term a <em>high-level programming language</em> because it does not correspond directly to hardware.</li>
+<li>C</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="co">// High-level (C)</span></span>
+<span id="cb1-2"><a></a><span class="dt">int</span> add3<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span></span>
+<span id="cb1-3"><a></a><span class="op">{</span></span>
+<span id="cb1-4"><a></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">+</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb1-5"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="perspective-1" class="slide level2">
+<h2>Perspective</h2>
+<ul>
+<li>This is similar to, but distinct from, “assembly”, which is specific to particular case of hardware.</li>
+<li>RISC-V</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb2-1"><a></a># Matching RISC-V assembly</span>
+<span id="cb2-2"><a></a># a0 = a, a1 = b; return in a0</span>
+<span id="cb2-3"><a></a>add a0, a0, a1 # a0 = a0 + a1</span>
+<span id="cb2-4"><a></a>addi a0, a0, 3 # a0 = a0 + 3</span>
+<span id="cb2-5"><a></a>ret # return</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="perspective-2" class="slide level2">
+<h2>Perspective</h2>
+<ul>
+<li>Both a wildly distinct from machine code, which might as well be expressed in binary (is not human readable)</li>
+<li>Not a language at all!</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb3-1"><a></a>0000000 01011 01010</span>
+<span id="cb3-2"><a></a>000 01010 0110011</span>
+<span id="cb3-3"><a></a>000000000011 01010</span>
+<span id="cb3-4"><a></a>000 01010 0010011</span>
+<span id="cb3-5"><a></a>000000000000 00001</span>
+<span id="cb3-6"><a></a>000 00000 1100111</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="why-should-we-care" class="slide level2">
+<h2>Why should we care?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Intel Core i7</p>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Intel_Core_i7_13700K.jpg"></p>
+</div><div class="column" style="width:50%;">
+<p>Apple M1</p>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/d/df/Mac_Mini_M1_chip.jpg"></p>
+</div></div>
+</section>
+<section id="artificial-intelligence" class="slide level2">
+<h2>Artificial Intelligence</h2>
+<ul>
+<li>We all love AI here.</li>
+<li>Specific hardware (NVIDIA) matters a lot to AI.</li>
+<li>Moving on…</li>
+</ul>
+</section>
+<section id="goals-of-this-course" class="slide level2">
+<h2>Goals of this Course</h2>
+<ul>
+<li>How does a computer work?</li>
+<li>How is data represented in a computer?
+<ul>
+<li>Numbers, strings, arrays, photos, music</li>
+</ul></li>
+<li>How is a program represented in a computer?</li>
+<li>What does a computer do with my program?</li>
+<li>How is data stored? How is data processed?</li>
+<li>Are there any limits to what a computer can do?</li>
+</ul>
+</section>
+<section id="digital-logic" class="slide level2">
+<h2>Digital Logic</h2>
+<ul>
+<li>Logic circuits are used to build computer hardware, as well as many other types of systems (microwave, car).
+<ul>
+<li>All such systems are broadly classified as digital hardware.</li>
+</ul></li>
+<li>Digital derives from how information is represented as discrete ranges of electrical signals.
+<ul>
+<li>Using discrete ranges provides robustness and scalability.</li>
+</ul></li>
+</ul>
+</section>
+<section id="its-new" class="slide level2">
+<h2>Its “New”</h2>
+<ul>
+<li>Digital hardware technology has evolved dramatically over the past 75 years!
+<ul>
+<li>As old as e.g.&nbsp;<em>Brown v. Board</em></li>
+</ul></li>
+<li>In the 1960s logic was built with discrete components, transistors and resistors.</li>
+<li>Integrated circuits (ICs) made it possible to place a number of transistors on a single chip.</li>
+</ul>
+</section>
+<section id="moores-law" class="slide level2">
+<h2>Moore’s Law!</h2>
+<ul>
+<li>Ask me about “Dennard” or “Mosfet” Scaling.</li>
+</ul>
+
+<img data-src="https://i0.wp.com/semiengineering.com/wp-content/uploads/Picture1-2.png" class="r-stretch"></section></section>
+<section>
+<section id="themes" class="title-slide slide level1 center">
+<h1>Themes</h1>
+
+</section>
+<section id="theme-1" class="slide level2">
+<h2>Theme 1</h2>
+<ul>
+<li>Demystify Computers!
+<ul>
+<li>I am persistently annoyed by claims that computers are “thinking”</li>
+<li>Separately, little annoyances creep up from lower levels (hardware) to higher levels (software).
+<ul>
+<li>As a “complete” computer scientist, this would be your problem.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="theme-2" class="slide level2">
+<h2>Theme 2</h2>
+<ul>
+<li>The Power of Abstraction!
+<ul>
+<li>Define a function,</li>
+<li>Develop an implementation, and then</li>
+<li>Put a box around it, and then</li>
+<li>Reuse it (over and over!).</li>
+</ul></li>
+<li>Good example: big numbers.</li>
+</ul>
+</section>
+<section id="theme-3" class="slide level2">
+<h2>Theme 3</h2>
+<ul>
+<li>Computational structures!
+<ul>
+<li>What are the fundamental elements of computation?</li>
+<li>Can we define computation independent of implementation or the technology that it is implemented with?
+<ul>
+<li>In this course, argued from the physical side (vs.&nbsp;an automata class from the mathematical side).</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="recall-goals" class="slide level2">
+<h2>Recall: Goals</h2>
+<ul>
+<li>How does a computer work?</li>
+<li>How is data represented in a computer?
+<ul>
+<li>Numbers, strings, arrays, photos, music</li>
+</ul></li>
+<li>How is a program represented in a computer?</li>
+<li>What does a computer do with my program?</li>
+<li>How is data stored? How is data processed?</li>
+<li>Are there any limits to what a computer can do?</li>
+</ul>
 </section></section>
-<section id="section" class="title-slide slide level1 center">
-<h1></h1>
-<p>COMPUTER ORGANIZATION! Lecture 1: Introduction tinyurl.com/comp311-sp26 1</p>
-<p>Welcome! ☺ ■ Target audience: COMP majors ■ Pre-reqs: 210, 211 2</p>
-<p>What is the course about? High-level programming Assembly Machine code languages Low-level languages 0000000 01011 01010 000 01010 0110011 // High-level (C) # Matching RISC-V assembly int add3(int a, int b) # a0 = a, a1 = b; return in a0 000000000011 01010 { return a + b + 3; 000 01010 0010011 add a0, a0, a1 # a0 = a0 + a1 } addi a0, a0, 3 # a0 = a0 + 3 000000000000 00001 ret # return 000 00000 1100111 Easy for humans to Human readable Machine-readable read/write 3</p>
-<p>Why should we care? Intel Core i9-13900K Apple M1 Pro 4</p>
-<p>Artificial Intelligence Advancements in computer architecture have been a driving force behind the advancement of AI technologies 5</p>
-<p>Goals of this Course ■ How does a computer work? ■ How is data represented in a computer? – Numbers, strings, arrays, photos, music ■ How is a program represented in a computer? ■ What does a computer do with my program? ■ How is data stored? How is data processed? ■ Are there any limits to what a computer can do? 6</p>
-<p>Logic Circuits and Digital Hardware ■ Logic circuits are used to build computer hardware, as well as many other types of systems. All such systems are broadly classified as digital hardware. ■ Digital derives from how information is represented as discrete ranges of electrical signals. Using discrete ranges provides robustness and scalability. 7</p>
-<p>Digital Logic is Relatively New + Revolutionary! ■ Digital hardware technology has evolved dramatically over the past 75 years! – In the 1960s logic was built with discrete components, transistors and resistors. – Integrated circuits (ICs) made it possible to place a number of transistors on a single chip. – By 1970 it was possible to implement all circuitry needed to realize a microprocessor on a single chip. – Complexity has exploded! 8</p>
-<p>Moore’s Law! 9</p>
-<p>Course Theme #1: Demystify Computers! Strangely, most people seem to be afraid of computers. People only fear things they do not understand! | | “I do not fear computers, I fear the lack of them.” | | | | | | | — | ————————————————— | — | — | — | — | —————————- | | | | | | | | - Isaac Asimov (1920 - 1992) | “Fear is the main source of superstition, and one of the main Sources of cruelty. To conquer fear is the beginning of wisdom.” | | | | | | | - Bertrand Russell (1872 -1970) | | — | — | — | — | — | — | ——————————- | “Nobody knows exactly what’s going on because of computers!” | | | | | | | - Donald Trump | | — | — | — | — | — | — | ————– | 10</p>
-<p>Course Theme #2: The Power of Abstraction! Define a function, develop a roust implementation, and then put a box around it, and then reuse it (over and over!). Abstraction enables us to create unfathomable systems, including computer hardware and software. 11</p>
-<p>Course Theme #2: The Power of Abstraction! (transistors) 12</p>
-<p>Computational structures! ■ What are the fundamental elements of computation? ■ Can we define computation independent of implementation or the technology that it is implemented with? 13</p>
-<p>Recall: Goals of this Course ■ How does a computer work? ■ How is data represented in a computer? – Numbers, strings, arrays, photos, music ■ How is a program represented in a computer? ■ What does a computer do with my program? ■ How is data stored? How is data processed? ■ Are there any limits to what a computer can do? 14</p>
-<p>What does Digital Logic do? It processes bits: 1s and 0s ■ It implements abstract logic functions ■ It is robust, stable, and repeatable ■ It doubles every two years. ■ It represents, transforms, and stores information ■ 15</p>
-<p>What is “Information”? information, n.&nbsp;Knowledge “5 problem sets, a midterm and a final! Any questions?” communicated or received concerning a particular fact or circumstance. A Computer Engineer’s definition: Information resolves uncertainty. Information is simply that “stuff” which cannot be predicted. The less likely a message is, the more information it conveys. 16</p>
-<p>Quantifying Information Suppose you’re faced with N equally probable choices, and I give you a fact that narrows it down to M possibilities. Then you’ve been given: log (N/M) bits of information 2 Examples: Outcome of a coin flip: log (2/1) = 1 bit ● 2 The roll of one die? ● Someone tells you that their 8-digit ● Information is the theoretical underpinning of why digital phone number is a palindrome? computers use bits! ☺ 17</p>
-<p>An exercise: How many bits? With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 18</p>
-<p>An exercise: How many bits? With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 1.1 bits=⌈log (N)⌉, where N is the number of students in the class. 2 if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits! 2 1.2 N/M 19</p>
-<p>What do programs really do? At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) 20</p>
-<p>What do programs really do? At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) This is computing the square root 21</p>
-<p>How does a computer do it? What would a computer do with this program specification? f: mv t0,a0 int f(int x) { li t1,1 int r; li a0,0 int odd = 1; blt t0,t1,return for (r = 0; x &gt;= odd; r++) { loop: sub t0,t0,t1 x -= odd; addi t1,t1,2 odd += 2; addi a0,a0,1 } bge t0,t1,loop return r; return: ret } It translates it into a series of simple instructions! 22</p>
-<p>Are there limits to computation? ■ Will some new instruction be invented that fundamentally changes how fast computers solve problems? ■ Can computers solve <em>any</em> well- specified problem? – COMP455 ■ Can we predict how long it will take for a computer to solve a given problem? – COMP210, COMP550 ■ Does there exist a new model of computation? 23</p>
-<p>ADMINISTRATIVE DETAILS</p>
-<p>Syllabus! Course site: https://www.cs.unc.edu/~kakiryan/teaching/311- sp26/311-sp26.html Or https://tinyurl.com/comp311-sp26 25</p>
-<p>Course Structure ■ Assessment (65%): – 6x Quizzes (QZ): 50% Your final can replace up to two of your lowest quiz scores. – Final Exam (FN): 15% ■ Practice and Preparation (30%): – 6x Written Assignments (WA): 15% – 5x Labs (LAB): 15% ■ In-Class Participation (5%): – 1x Submission to Gradescope per class. ■ 4 can be dropped, no questions asked. 26</p>
-<p>Extensions + Late Days ■ You have 8 days to use on any assignment in the course, with no explanation needed. ■ You may request extensions for illness or personal life events so you don’t have to use up your late days. – Extension form is linked in the syllabus ■ If you are not sure if something qualifies for an extension, just fill out the form anyway, and we will get back to you. ■ You will not be penalized for submitting the assignment within the provided grace period if you receive an extension! 27</p>
-<p>Gradescope ■ Make sure you are enrolled! – For the correct section! 28</p>
-<p>The Team! ■ LAs: – Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain, Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil Dickerson, Gabrielle Stewart, Kiara Smith, Nathan Santiago, Betsy George, Matthew Thornton, Celine Keles, Rachit Pajbai, Joaquim D’Silva, Joseph Zhen, Sven Reyes, Chenghe Kong, Wai Phyo, Danny Xia, Issa Masumbuko ■ LA office hours will be held in CSXL RM SN143. Time TBD! – I will send out an announcement once we schedule them! ■ My office hours are Tuesdays 1-3pm in FB114.</p>
+<section>
+<section id="information" class="title-slide slide level1 center">
+<h1>Information</h1>
+
+</section>
+<section id="what-does-digital-logic-do" class="slide level2">
+<h2>What does Digital Logic do?</h2>
+<ul>
+<li>It processes bits: 1s and 0s</li>
+<li>It implements abstract logic functions</li>
+<li>It is robust, stable, and repeatable</li>
+<li>It doubles every two years.</li>
+<li>It represents, transforms, and stores information</li>
+</ul>
+</section>
+<section id="what-is-information" class="slide level2">
+<h2>What is “Information”?</h2>
+<ul>
+<li>We go live to Wikitionary.</li>
+</ul>
+<iframe width="1080" height="720" src="https://en.wiktionary.org/wiki/information#Noun" title="description">
+</iframe>
+</section>
+<section id="working-definition" class="slide level2">
+<h2>Working Definition</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>A Computer Engineer’s Definition</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Information resolves uncertainty.</strong></p>
+<ul>
+<li>Information is simply that “stuff” which cannot be predicted.</li>
+<li>The less likely a message is, the more information it conveys.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="quantifying-information" class="slide level2">
+<h2>Quantifying Information</h2>
+<p>Suppose you’re faced with N equally probable choices, and I give you a fact that narrows it down to M possibilities. Then you’ve been given: log (N/M) bits of information 2 Examples: Outcome of a coin flip: log (2/1) = 1 bit ● 2 The roll of one die? ● Someone tells you that their 8-digit ● Information is the theoretical underpinning of why digital phone number is a palindrome? computers use bits! ☺</p>
+</section>
+<section id="an-exercise-how-many-bits" class="slide level2">
+<h2>An exercise: How many bits?</h2>
+<p>With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan.</p>
+</section>
+<section id="an-exercise-how-many-bits-1" class="slide level2">
+<h2>An exercise: How many bits?</h2>
+<p>With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 1.1 bits=⌈log (N)⌉, where N is the number of students in the class. 2 if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits! 2 1.2 N/M</p>
+</section>
+<section id="what-do-programs-really-do" class="slide level2">
+<h2>What do programs really do?</h2>
+<p>At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100)</p>
+</section>
+<section id="what-do-programs-really-do-1" class="slide level2">
+<h2>What do programs really do?</h2>
+<p>At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) This is computing the square root</p>
+</section>
+<section id="how-does-a-computer-do-it" class="slide level2">
+<h2>How does a computer do it?</h2>
+<p>What would a computer do with this program specification? f: mv t0,a0 int f(int x) { li t1,1 int r; li a0,0 int odd = 1; blt t0,t1,return for (r = 0; x &gt;= odd; r++) { loop: sub t0,t0,t1 x -= odd; addi t1,t1,2 odd += 2; addi a0,a0,1 } bge t0,t1,loop return r; return: ret } It translates it into a series of simple instructions!</p>
+</section>
+<section id="are-there-limits-to-computation" class="slide level2">
+<h2>Are there limits to computation?</h2>
+<p>■ Will some new instruction be invented that fundamentally changes how fast computers solve problems? ■ Can computers solve <em>any</em> well- specified problem? – COMP455 ■ Can we predict how long it will take for a computer to solve a given problem? – COMP210, COMP550 ■ Does there exist a new model of computation?</p>
+</section>
+<section id="administrative" class="slide level2">
+<h2>ADMINISTRATIVE</h2>
+<p>DETAILS</p>
+<p>Syllabus! Course site: https://www.cs.unc.edu/~kakiryan/teaching/311- sp26/311-sp26.html Or https://tinyurl.com/comp311-sp26</p>
+</section>
+<section id="course-structure" class="slide level2">
+<h2>Course Structure</h2>
+<p>■ Assessment (65%): – 6x Quizzes (QZ): 50% Your final can replace up to two of your lowest quiz scores. – Final Exam (FN): 15% ■ Practice and Preparation (30%): – 6x Written Assignments (WA): 15% – 5x Labs (LAB): 15% ■ In-Class Participation (5%): – 1x Submission to Gradescope per class. ■ 4 can be dropped, no questions asked.</p>
+</section>
+<section id="extensions-late-days" class="slide level2">
+<h2>Extensions + Late Days</h2>
+<p>■ You have 8 days to use on any assignment in the course, with no explanation needed. ■ You may request extensions for illness or personal life events so you don’t have to use up your late days. – Extension form is linked in the syllabus ■ If you are not sure if something qualifies for an extension, just fill out the form anyway, and we will get back to you. ■ You will not be penalized for submitting the assignment within the provided grace period if you receive an extension!</p>
+</section>
+<section id="gradescope" class="slide level2">
+<h2>Gradescope</h2>
+<p>■ Make sure you are enrolled! – For the correct section!</p>
+</section>
+<section id="the-team" class="slide level2">
+<h2>The Team!</h2>
+<p>■ LAs: – Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain, Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil Dickerson, Gabrielle Stewart, Kiara Smith, Nathan Santiago, Betsy George, Matthew Thornton, Celine Keles, Rachit Pajbai, Joaquim D’Silva, Joseph Zhen, Sven Reyes, Chenghe Kong, Wai Phyo, Danny Xia, Issa Masumbuko ■ LA office hours will be held in CSXL RM SN143. Time TBD! – I will send out an announcement once we schedule them! ■ My office hours are Tuesdays 1-3pm in FB114.</p>
 <p>Classroom Community ■ Let’s all work together to create a supportive and welcoming learning environment for everyone in this room! ■ I expect all of you to be present, respectful &amp; engaged in class, every day! ■ We will transition between groupwork &amp; lecture frequently. – During group work: the more conversation the better! – During lecture: Please lock in! Sound carries more than you think. ■ Ask questions! Utilize the TAs and office hours! – Come to office hours for conceptual help, too! We love talking to you all! ■ I am always open to feedback!</p>
 <p>HEALTH &amp; SAFETY</p>
 <p>Face Masks ■ Optional ■ Use a mask often!</p>
 <p>Emergency Procedures ■ Evacuate (fire, chemical hazard) ■ Shelter in place (weather related) ■ Secure in place (armed and dangerous assailant) – run, hide (secure in place), fight</p>
-<p>Acknowledgements ■ Optional Textbook 1: Computer Organization and Design RISC-V Edition: The Hardware Software Interface by David Patterson and John Hennessey ■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by David Patterson and Andrew Waterman. ■ Connor McMahon, Leonard McMillan, Montek Singh 34</p>
-<p>211 REVIEW ☺ 35</p>
-<p>Base ■ A base is the number of different digits that a system can use to represent numbers ■ Binary is base 2 because it has the digits 0 and 1 ■ Decimal base 10 because it has the digits 0-9 ■ Hex is base 16 because it has the digits 0-F 36</p>
-<p>Binary Notation ■ Always prepend binary numbers with “0b” or add a subscript of 2 – Ex: 0b 1001 or 1001 2 ■ Place binary numbers in groups of four to make it easier to read – Ex: 0b 1010 1111 0101 or 0b1010_1111_0101 – If you cannot evenly break up the number into groups of four, start making the groups from the right ■ Ex: 0b10_1010_0011 37</p>
-<p>Hex Notation ■ Always prepend hex numbers with “0x” or add a subscript of 16 – Ex: 0xE2A or E2A 16 38</p>
-<p>Decimal Notation ■ You can indicate that a number is a decimal value by adding a subscript of 10 – Ex: 54 10 ■ If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value 39</p>
-<p>Overflow ■ Overflow occurs when the result of the operation cannot be represented with the given number of bits ■ When adding two unsigned numbers, overflow occurs when the carry-out of the operation is 1 40</p>
-<p>Binary Addition and Overflow Take 5 minutes to answer question 3 on your worksheets! 41</p>
-<p>Review: Binary Addition and Overflow 1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no 42</p>
-<p>Two’s Complement Take 5 minutes to answer question 4 on your worksheets! 43</p>
-<p>Two’s Complement 4.2: What is the minimum number of 4.1: Represent -15 in two’s complement with 7 bits needed to represent 20 in two’s bits complement Unsigned: 0b 000 1111 Flip bits: 0b 111 0000 0b 010100 Add one: 0b 111 0001 6 bits 4.3: Convert the following two’s 4.4: Convert the following two’s complement number to decimal: complement number to decimal: 0b 1111 1110 0b 0011 1000 Flip bits: 0b 0000 0001 Positive, so no need to flip bits 56 Add one: 0b 0000 0010 → -2 44</p>
-
-
+<p>Acknowledgements ■ Optional Textbook 1: Computer Organization and Design RISC-V Edition: The Hardware Software Interface by David Patterson and John Hennessey ■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by David Patterson and Andrew Waterman. ■ Connor McMahon, Leonard McMillan, Montek Singh</p>
 </section>
+<section id="review" class="slide level2">
+<h2>211 REVIEW ☺</h2>
+</section>
+<section id="base" class="slide level2">
+<h2>Base</h2>
+<p>■ A base is the number of different digits that a system can use to represent numbers ■ Binary is base 2 because it has the digits 0 and 1 ■ Decimal base 10 because it has the digits 0-9 ■ Hex is base 16 because it has the digits 0-F</p>
+</section>
+<section id="binary-notation" class="slide level2">
+<h2>Binary Notation</h2>
+<p>■ Always prepend binary numbers with “0b” or add a subscript of 2 – Ex: 0b 1001 or 1001 2 ■ Place binary numbers in groups of four to make it easier to read – Ex: 0b 1010 1111 0101 or 0b1010_1111_0101 – If you cannot evenly break up the number into groups of four, start making the groups from the right ■ Ex: 0b10_1010_0011</p>
+</section>
+<section id="hex-notation" class="slide level2">
+<h2>Hex Notation</h2>
+<p>■ Always prepend hex numbers with “0x” or add a subscript of 16 – Ex: 0xE2A or E2A 16</p>
+</section>
+<section id="decimal-notation" class="slide level2">
+<h2>Decimal Notation</h2>
+<p>■ You can indicate that a number is a decimal value by adding a subscript of 10 – Ex: 54 10 ■ If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value</p>
+</section>
+<section id="overflow" class="slide level2">
+<h2>Overflow</h2>
+<p>■ Overflow occurs when the result of the operation cannot be represented with the given number of bits ■ When adding two unsigned numbers, overflow occurs when the carry-out of the operation is 1</p>
+</section>
+<section id="binary-addition-and-overflow" class="slide level2">
+<h2>Binary Addition and Overflow</h2>
+<p>Take 5 minutes to answer question 3 on your worksheets!</p>
+</section>
+<section id="review-binary-addition-and-overflow" class="slide level2">
+<h2>Review: Binary Addition and Overflow</h2>
+<p>1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no</p>
+</section>
+<section id="twos-complement" class="slide level2">
+<h2>Two’s Complement</h2>
+<p>Take 5 minutes to answer question 4 on your worksheets!</p>
+</section>
+<section id="twos-complement-1" class="slide level2">
+<h2>Two’s Complement</h2>
+<p>4.2: What is the minimum number of 4.1: Represent -15 in two’s complement with 7 bits needed to represent 20 in two’s bits complement Unsigned: 0b 000 1111 Flip bits: 0b 111 0000 0b 010100 Add one: 0b 111 0001 6 bits 4.3: Convert the following two’s 4.4: Convert the following two’s complement number to decimal: complement number to decimal: 0b 1111 1110 0b 0011 1000 Flip bits: 0b 0000 0001 Positive, so no need to flip bits 56 Add one: 0b 0000 0010 → -2</p>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

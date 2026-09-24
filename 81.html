@@ -156,6 +156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Transistors</span></a>
   </div>
@@ -286,6 +292,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Old</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -300,7 +323,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#stage-risc-v-cpu" id="toc-stage-risc-v-cpu" class="nav-link" data-scroll-target="#stage-risc-v-cpu">5 STAGE RISC-V CPU!</a></li>
+  <li><a href="#splitting-our-cpu-datapath-into-5-stages" id="toc-splitting-our-cpu-datapath-into-5-stages" class="nav-link" data-scroll-target="#splitting-our-cpu-datapath-into-5-stages">Splitting our CPU Datapath into 5 Stages</a></li>
+  <li><a href="#behavior-of-instructions-starts-to-diverge" id="toc-behavior-of-instructions-starts-to-diverge" class="nav-link" data-scroll-target="#behavior-of-instructions-starts-to-diverge">Behavior of instructions starts to diverge</a></li>
+  <li><a href="#datapath-split-into-5-stages" id="toc-datapath-split-into-5-stages" class="nav-link" data-scroll-target="#datapath-split-into-5-stages">Datapath Split into 5 Stages</a></li>
+  <li><a href="#instruction-fetch" id="toc-instruction-fetch" class="nav-link" data-scroll-target="#instruction-fetch">Instruction Fetch</a></li>
+  <li><a href="#instruction-decode" id="toc-instruction-decode" class="nav-link" data-scroll-target="#instruction-decode">Instruction Decode</a></li>
+  <li><a href="#execute" id="toc-execute" class="nav-link" data-scroll-target="#execute">Execute</a></li>
+  <li><a href="#memory" id="toc-memory" class="nav-link" data-scroll-target="#memory">Memory</a></li>
+  <li><a href="#writeback" id="toc-writeback" class="nav-link" data-scroll-target="#writeback">Writeback</a></li>
+  <li><a href="#stage-pipeline" id="toc-stage-pipeline" class="nav-link" data-scroll-target="#stage-pipeline">5-Stage Pipeline</a></li>
+  <li><a href="#stages-used-by-each-instruction" id="toc-stages-used-by-each-instruction" class="nav-link" data-scroll-target="#stages-used-by-each-instruction">Stages Used by Each Instruction</a></li>
+  <li><a href="#stages-used-by-each-instruction-1" id="toc-stages-used-by-each-instruction-1" class="nav-link" data-scroll-target="#stages-used-by-each-instruction-1">Stages Used by Each Instruction</a></li>
+  <li><a href="#time-needed-for-each-stage" id="toc-time-needed-for-each-stage" class="nav-link" data-scroll-target="#time-needed-for-each-stage">Time Needed for Each Stage</a></li>
+  <li><a href="#time-needed-for-each-instruction" id="toc-time-needed-for-each-instruction" class="nav-link" data-scroll-target="#time-needed-for-each-instruction">Time Needed for Each Instruction</a></li>
+  <li><a href="#time-needed-for-each-instruction-1" id="toc-time-needed-for-each-instruction-1" class="nav-link" data-scroll-target="#time-needed-for-each-instruction-1">Time Needed for Each Instruction</a></li>
+  <li><a href="#min-clock-period" id="toc-min-clock-period" class="nav-link" data-scroll-target="#min-clock-period">Min Clock Period</a></li>
+  <li><a href="#single-cycle-datapath-timing" id="toc-single-cycle-datapath-timing" class="nav-link" data-scroll-target="#single-cycle-datapath-timing">Single Cycle Datapath Timing</a></li>
+  <li><a href="#executing-instructions-on-our-pipelined-datapath" id="toc-executing-instructions-on-our-pipelined-datapath" class="nav-link" data-scroll-target="#executing-instructions-on-our-pipelined-datapath">Executing Instructions on Our Pipelined Datapath</a></li>
+  <li><a href="#cycle-0" id="toc-cycle-0" class="nav-link" data-scroll-target="#cycle-0">Cycle 0</a></li>
+  <li><a href="#cycle-1" id="toc-cycle-1" class="nav-link" data-scroll-target="#cycle-1">Cycle 1</a></li>
+  <li><a href="#cycle-2" id="toc-cycle-2" class="nav-link" data-scroll-target="#cycle-2">Cycle 2</a></li>
+  <li><a href="#cycle-3" id="toc-cycle-3" class="nav-link" data-scroll-target="#cycle-3">Cycle 3</a></li>
+  <li><a href="#cycle-4" id="toc-cycle-4" class="nav-link" data-scroll-target="#cycle-4">Cycle 4</a></li>
+  <li><a href="#cycle-5" id="toc-cycle-5" class="nav-link" data-scroll-target="#cycle-5">Cycle 5</a></li>
+  <li><a href="#cycle-6" id="toc-cycle-6" class="nav-link" data-scroll-target="#cycle-6">Cycle 6</a></li>
+  <li><a href="#cycle-7" id="toc-cycle-7" class="nav-link" data-scroll-target="#cycle-7">Cycle 7</a></li>
+  <li><a href="#cycle-8" id="toc-cycle-8" class="nav-link" data-scroll-target="#cycle-8">Cycle 8</a></li>
+  <li><a href="#the-clock-to-q-delay-of-a-pipeline" id="toc-the-clock-to-q-delay-of-a-pipeline" class="nav-link" data-scroll-target="#the-clock-to-q-delay-of-a-pipeline">The clock-to-q delay of a pipeline</a></li>
+  <li><a href="#latency" id="toc-latency" class="nav-link" data-scroll-target="#latency">Latency</a></li>
+  <li><a href="#speedup" id="toc-speedup" class="nav-link" data-scroll-target="#speedup">Speedup</a></li>
+  <li><a href="#some-remaining" id="toc-some-remaining" class="nav-link" data-scroll-target="#some-remaining">SOME REMAINING</a></li>
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#generating-the-branch-immediate" id="toc-generating-the-branch-immediate" class="nav-link" data-scroll-target="#generating-the-branch-immediate">Generating the Branch Immediate</a></li>
+  <li><a href="#branching-instructions-changing-the-pc" id="toc-branching-instructions-changing-the-pc" class="nav-link" data-scroll-target="#branching-instructions-changing-the-pc">Branching Instructions: Changing the PC</a></li>
+  <li><a href="#branch-examples" id="toc-branch-examples" class="nav-link" data-scroll-target="#branch-examples">Branch Examples</a></li>
+  <li><a href="#branch-immediate" id="toc-branch-immediate" class="nav-link" data-scroll-target="#branch-immediate">Branch Immediate</a></li>
+  <li><a href="#branch-immediate-1" id="toc-branch-immediate-1" class="nav-link" data-scroll-target="#branch-immediate-1">Branch Immediate</a></li>
+  <li><a href="#pc-relative-make-the-code" id="toc-pc-relative-make-the-code" class="nav-link" data-scroll-target="#pc-relative-make-the-code">PC relative: make the code</a></li>
+  <li><a href="#a-simple-program" id="toc-a-simple-program" class="nav-link" data-scroll-target="#a-simple-program">A simple Program</a></li>
+  <li><a href="#a-simple-program-1" id="toc-a-simple-program-1" class="nav-link" data-scroll-target="#a-simple-program-1">A simple Program</a></li>
+  <li><a href="#jal-move-the-pc-and-record" id="toc-jal-move-the-pc-and-record" class="nav-link" data-scroll-target="#jal-move-the-pc-and-record">JAL: move the PC and record</a></li>
+  <li><a href="#jumping-long-distances" id="toc-jumping-long-distances" class="nav-link" data-scroll-target="#jumping-long-distances">Jumping long distances</a></li>
+  <li><a href="#why-store-pc-4" id="toc-why-store-pc-4" class="nav-link" data-scroll-target="#why-store-pc-4">Why store PC + 4?</a></li>
+  <li><a href="#missing-math-instructions" id="toc-missing-math-instructions" class="nav-link" data-scroll-target="#missing-math-instructions">Missing Math instructions</a></li>
+  <li><a href="#multiply" id="toc-multiply" class="nav-link" data-scroll-target="#multiply">Multiply</a></li>
+  <li><a href="#divide" id="toc-divide" class="nav-link" data-scroll-target="#divide">Divide</a></li>
+  <li><a href="#remainder" id="toc-remainder" class="nav-link" data-scroll-target="#remainder">Remainder</a></li>
+  <li><a href="#another-instruction-auipc" id="toc-another-instruction-auipc" class="nav-link" data-scroll-target="#another-instruction-auipc">Another instruction: AUIPC</a></li>
+  <li><a href="#auipc-details" id="toc-auipc-details" class="nav-link" data-scroll-target="#auipc-details">AUIPC details</a></li>
+  <li><a href="#branch-jump-lui-and-auipc" id="toc-branch-jump-lui-and-auipc" class="nav-link" data-scroll-target="#branch-jump-lui-and-auipc">Branch, Jump, lui and auipc</a></li>
+  <li><a href="#the-application" id="toc-the-application" class="nav-link" data-scroll-target="#the-application">THE APPLICATION</a></li>
+  <li><a href="#more-procedure-power" id="toc-more-procedure-power" class="nav-link" data-scroll-target="#more-procedure-power">More Procedure Power</a></li>
+  <li><a href="#functions-and-procedure-calls" id="toc-functions-and-procedure-calls" class="nav-link" data-scroll-target="#functions-and-procedure-calls">Functions and procedure Calls</a></li>
+  <li><a href="#supporting-procedure-calls" id="toc-supporting-procedure-calls" class="nav-link" data-scroll-target="#supporting-procedure-calls">Supporting procedure Calls</a></li>
+  <li><a href="#register-use-conventions" id="toc-register-use-conventions" class="nav-link" data-scroll-target="#register-use-conventions">Register use conventions</a></li>
+  <li><a href="#these-conventions-for" id="toc-these-conventions-for" class="nav-link" data-scroll-target="#these-conventions-for">These conventions for</a></li>
+  <li><a href="#stack-management-policies" id="toc-stack-management-policies" class="nav-link" data-scroll-target="#stack-management-policies">Stack Management Policies</a></li>
+  <li><a href="#basics-of-procedure-calling" id="toc-basics-of-procedure-calling" class="nav-link" data-scroll-target="#basics-of-procedure-calling">Basics of Procedure Calling</a></li>
+  <li><a href="#basics-of-procedure-calling-1" id="toc-basics-of-procedure-calling-1" class="nav-link" data-scroll-target="#basics-of-procedure-calling-1">Basics of Procedure Calling</a></li>
+  <li><a href="#this-time-things-are-really-messed-up." id="toc-this-time-things-are-really-messed-up." class="nav-link" data-scroll-target="#this-time-things-are-really-messed-up.">This time, things are really messed up.</a></li>
+  <li><a href="#incorporating-a-stack" id="toc-incorporating-a-stack" class="nav-link" data-scroll-target="#incorporating-a-stack">Incorporating A Stack</a></li>
+  <li><a href="#the-risc-v-was-designed-so-every-instruction-keeps-the-same" id="toc-the-risc-v-was-designed-so-every-instruction-keeps-the-same" class="nav-link" data-scroll-target="#the-risc-v-was-designed-so-every-instruction-keeps-the-same">The RISC-V was designed so every instruction keeps the same</a></li>
+  <li><a href="#immediate-encodings" id="toc-immediate-encodings" class="nav-link" data-scroll-target="#immediate-encodings">Immediate Encodings</a></li>
+  <li><a href="#luis-immediate-value" id="toc-luis-immediate-value" class="nav-link" data-scroll-target="#luis-immediate-value">LUI’s Immediate Value</a></li>
+  <li><a href="#immediate-offsets-for-stores" id="toc-immediate-offsets-for-stores" class="nav-link" data-scroll-target="#immediate-offsets-for-stores">Immediate Offsets for Stores</a></li>
+  <li><a href="#immediate-offsets-for-branches" id="toc-immediate-offsets-for-branches" class="nav-link" data-scroll-target="#immediate-offsets-for-branches">Immediate Offsets for Branches</a></li>
+  <li><a href="#crazy-jump-offsets" id="toc-crazy-jump-offsets" class="nav-link" data-scroll-target="#crazy-jump-offsets">Crazy Jump offsets</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="81.rjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -339,84 +431,374 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="section" class="level1">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 18: The 5 Stage RISC-V CPU tinyurl.com/comp311-sp26 1</p>
-<p>5 STAGE RISC-V CPU! 2</p>
-<p>Splitting our CPU Datapath into 5 Stages ● Instruction Fetch ○ Reading the instruction from memory ● Instruction Decode ○ Splitting up the instruction, generating control signals, and reading the register file ○ Jump address calculation ● Execute ○ ALU Operation Instructions pass through all 5 stages, ○ Branch address calculation but different work happens in each stage ● Memory depending on the instruction type. ○ Reading/writing data memory ● Writeback ○ Writing the result to the register file 3</p>
-<p>Behavior of instructions starts to diverge Summary Table Instruction | | IF | ID | EX | MEM | WB | | — | — | — | — | — | — | Type | Arithmetic | | | ALU | — | Write result | | ———- | — | — | ——— | ——— | ———— | | LW | | | Addr calc | Read mem | Write result | | SW | | | Addr calc | Write mem | — | Compare + | Branch | | | | — | — | | —— | — | — | — | — | — | branch Jump | | | | Jump target* | — | — | | — | — | — | ———— | — | — | EX: Figure out what to MEM: Only matters for WB: Only matters if we do/action to take for specific loads/stores produce a value instruction type 4</p>
-<p>Datapath Split into 5 Stages Challenge Q: What This version of the HW would need to be full data path has added to support some details JALR? Other types of abstracted away for branches? Offset readability/tracing Scale (the full ALU control purposes. unit also missing…) 1 2 This datapath has support for: • R-type arithmetic • I-type arithmetic Immediate generator • Loads • Stores • BEQ • JAL 5</p>
-<p>Instruction Fetch Reading the Offset Scale instruction from memory 1 2 Immediate generator 6</p>
-<p>Instruction Decode • Splitting up the instruction fields • Generating control Offset Scale signals • Reading the 1 register file 2 • Jump address calculation Immediate generator 7</p>
-<p>Execute • ALU Operation • Branch address Offset Scale calculation 1 2 Immediate generator 8</p>
-<p>Memory Reading/writing data Offset Scale memory 1 2 Immediate generator 9</p>
-<p>Writeback Offset Scale Writing the result to the register file 1 2 Immediate generator 10</p>
-<p>5-Stage Pipeline Offset Scale 1 2 Immediate generator We add in pipeline registers to separate each stage 11</p>
-<p>Stages Used by Each Instruction Instruction Fetch Decode Execute Memory Writeback arithmetic and logical (add, addi, or, etc) sw lw branch j 12</p>
-<p>Stages Used by Each Instruction | Instruction | Fetch | Decode | Execute | Memory | Writeback | | ———– | —– | —— | ——- | —— | ——— | arithmetic and | logical (add, addi, | X | X | X | | X | | ——————– | — | — | — | — | — | or, etc) sw lw branch j 13</p>
-<p>Time Needed for Each Stage | | Fetch | Decode | Execute | Memory | Writeback | | —- | —– | —— | ——- | —— | ——— | | Time | 200ps | 100ps | 200ps | 200ps | 100ps | 15</p>
-<p>Time Needed for Each Instruction | | Fetch | Decode | Execute | Memory | Writeback | | | — | —– | —— | ——- | —— | ——— | — | Time | | 200ps | 100ps | 200ps | 200ps | 100ps | | | ———– | —– | —— | ——- | —— | ——— | ———- | | Instruction | Fetch | Decode | Execute | Memory | Writeback | Total Time | arithmetic 200ps + 100ps + 200ps + 100ps = 600ps and logical | | X | X | X | | X | | | — | — | — | — | — | — | — | (add, addi, or, etc) sw lw branch j 16</p>
-<p>Time Needed for Each Instruction | | Fetch | Decode | Execute | Memory | Writeback | | | | — | —– | —— | ——- | —— | ——— | — | — | Time | | 200ps | 100ps | 200ps | 200ps | 100ps | | | | ———– | —– | —— | ——- | —— | ——— | ————————————- | ———- | | Instruction | Fetch | Decode | Execute | Memory | Writeback | | Total Time | | arithmetic | | | | | | 200ps + 100ps + 200ps + 100ps = 600ps | | and logical | | X | X | X | | X | | | | — | — | — | — | — | — | — | — | (add, addi, or, etc) | sw | X | X | X | X | | 200 + 100 + 200 + 200 = 700ps | | | — | — | — | — | — | — | ———————————– | — | | lw | X | X | X | X | X | 200 + 100 + 200 + 200 + 100 = 800ps | | branch 200 + 100 + 200 = 500ps | | X | X | X | | | | | | — | — | — | — | — | — | —————– | — | | j | | | | | | 200 + 100 = 300ps | | | | X | X | | | | | | 17</p>
-<p>Min Clock Period ● What is the minimum clock period that will work for all instructions? ○ Assuming a clock-to-q delay of 20ps Even though instructions conceptually pass through all stages in a pipeline, for this question assume a single- cycle datapath where only the required components contribute to delay 18</p>
-<p>Single Cycle Datapath Timing ● It takes one clock cycle to execute one instruction ● If we need to execute 100 instructions, it will take 100 clock cycles ● If we set our clock period to 820ps, it will take ○ 820ps to execute one instruction ○ 82,000ps to execute 100 instructions 20</p>
-<p>Executing Instructions on Our Pipelined Datapath add x8, x6, x7 lw x9, 100(x0) sub x8, x9, x20 sw x10, 0(x20) or x21, x11, x12 21</p>
-<p>Cycle 0 add x8, x6, x7 22</p>
-<p>Cycle 1 lw x9, 100(x0) add x8, x6, x7 23</p>
-<p>Cycle 2 | sub x8, x9, x20 | lw x9, 100(x0) | add x8, x6, x7 | | —————- | ————— | ————– | 24</p>
-<p>Cycle 3 sw x10, 0(x20) lw x9, 100(x0) add x8, x6, x7 sub x8, x9, x20 25</p>
-<p>Cycle 4 add x8, x6, x7 | or x21, x11, x12 | sw x10, 0(x20) | lw x9, 100(x0) | | —————- | ————– | ————— | sub x8, x9, x20 26</p>
-<p>Cycle 5 sw x10, 0(x20) lw x9, 100(x0) or x21, x11, x12 sub x8, x9, x20 27</p>
-<p>Cycle 6 or x21, x11, x12 sw x10, 0(x20) sub x8, x9, x20 28</p>
-<p>Cycle 7 or x21, x11, x12 sw x10, 0(x20) 29</p>
-<p>Cycle 8 or x21, x11, x12 30</p>
-<p>The clock-to-q delay of a pipeline Determine the Min Clock Period register is 20ps | 200ps | 100ps | 200ps | 200ps | 100ps | | —– | —– | —– | —– | —– | 31</p>
-<p>Latency ■ What is the latency of executing a single instruction on – The single cycle datapath with a clock period of 820ps? – The 5-stage pipelined datapath with a clock period of 220ps? 33</p>
-<p>Speedup ■ What is the speedup of executing the following set of instructions on a single-cycle vs pipelined datapath assuming – single-cycle clock period = 820 ps add x8, x6, x7 – pipelined clock period = 220 ps lw x9, 100(x0) sub x8, x9, x20 𝑠𝑖𝑛𝑔𝑙𝑒 𝑐𝑦𝑙𝑒 𝑒𝑥𝑒𝑐𝑢𝑡𝑖𝑜𝑛 𝑡𝑖𝑚𝑒 𝑠𝑝𝑒𝑒𝑑𝑢𝑝 = sw x10, 0(x20) 𝑝𝑖𝑝𝑒𝑙𝑖𝑛𝑒𝑑 𝑒𝑥𝑒𝑐𝑢𝑡𝑖𝑜𝑛 𝑡𝑖𝑚𝑒 or x21, x11, x12 35</p>
-<p>SOME REMAINING RISC-V DETAILS…</p>
-<p>Branch Encoding ■ Target instruction – The instruction the program will go to if the branch is taken ■ Byte offset to target instruction – The distance, in bytes, between the current branch instruction and the instruction it would go to if the branch is taken 38</p>
-<p>Fill in the blanks ■ The byte offset will always be a multiple of ________, which means that the last ________ bits of the byte offset will always be 0. 39</p>
-<p>Generating the Branch Immediate 1. Compute the byte offset relative to PC + 4 (the next instruction) 2. Remove the bottom two bits (these will always be 0) 41</p>
-<p>Branching Instructions: Changing the PC The Program Counter, or PC, is a special register that points to the address of the next instruction to be fetched. There are special instructions for changing the PC. One type is Branching Instructions. Branches are to nearby place within +/- 512 instructions away. 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 B-type: imm7 rs2 rs1 func3 imm5 1 1 0 0 0 1 1 There are six types of branching 000 - BEQ instructions. All compare the the 001 - BNE contents of two registers. If the 100 - BLT comparison is true then the next 101 - BGE instruction will be from PC + imm12, if 110 - BLTU false PC+4 111 - BGEU 42</p>
-<p>Branch Examples If the contents of x10 is not equal to 0 then branch to the nearby address bne x10,x0,else with the label “else” If the contents of x10 is less than 0 then branch to the nearby address with blt x10,x0,neg the label “neg” An infinite loop. loop: beq x0,x0,loop 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 1 beq x0,x0,’s encoding. 43</p>
-<p>Branch Immediate ■ For each of the branch instructions below, what is the byte offset of the target instruction? beq x4, x5, elseIf add x7, x8, x9 add x7, x8, x20 jal x0, exit elseIf: bne x4, x6, else add x7, x10, x11 add x7, x7, x12 add x7, x7, x8 jal x0, exit else: add x7, x8, x11 exit: 44</p>
-<p>Branch Immediate ■ For each of the branch instructions below, what is the byte offset of the target instruction? beq x4, x5, elseIf add x7, x8, x9 4 instructions = 16 bytes add x7, x8, x20 jal x0, exit elseIf: bne x4, x6, else add x7, x10, x11 add x7, x7, x12 add x7, x7, x8 5 instructions = 20 bytes jal x0, exit else: add x7, x8, x11 exit: 45</p>
-<p>PC relative: make the code PC Relative offsets relocatable ☺ All branch offsets in RISC-V are added to the PC to determine the target address of the next instruction in the case of a valid condition. Earlier ISAs would instead specify the “absolute” target address. What are the advantages of “relative” vs “absolute”? ● Does not implicitly limit the address space ● Requires fewer instruction bits, supports the most common cases -4096 ︙ ● Allows for “relocatable” code pc → ︙ 4094 46</p>
-<p>A simple Program addi x7,x0,11 # x7 is 10 + 1 addi x5,x0,0 # x5 is i addi x6,x0,0 # x6 is sum loop: add x6,x6,x5 # sum = sum + i addi x5,x5,1 # i++ blt x5,x7,loop halt: beq x0,x0,halt 47</p>
-<p>A simple Program addi x7,x0,11 # x7 is 10 + 1 addi x5,x0,0 # x5 is i addi x6,x0,0 # x6 is sum loop: add x6,x6,x5 # sum = sum + i addi x5,x5,1 # i++ blt x5,x7,loop halt: beq x0,x0,halt # Assembly code for # sum = 0; # for (i = 0; i &lt;= 10; i++) # sum = sum + i; 48</p>
-<p>JAL: move the PC and record Jumping long distances where to come back to! There are two more instructions for jumping long distances. Both are “unconditional”, meaning that the branch is always taken, but they have another interesting feature 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 U-type: 0 0 0 0 0 0 0 0 0Im0m0200 0 0 0 0 0 0 0 0 0 0r0d0 0 1 1 0 1 1 1 1 JAL: jump and link jalr can be used to jump to an absolute location by Syntax: jal rd,imm20 first loading the address into a register Description: The link step (saving PC + Reg[d] ← PC + 4 4 in a register) is how we PC ← PC + sign_extended(imm20) can support fn call returns Write the address of the following instruction, PC + 4, into Reg[d], then jump to the instruction that is found by adding the current PC to the signed immediate offset. In practice this is usually specified by a label. 49</p>
-<p>Jumping long distances JALR: jump anywhere by computing addr in register first. There are two more instructions for jumping long distances. Both are “unconditional”, meaning that the branch is always taken, but they have another interesting feature 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 I-type: 0 0 0 0 0Im0m0120 0 0 0 0 0 0r0s0 0 0 0 0 0 0r0d0 0 1 1 0 0 1 1 1 JALR: jump and link register Syntax: jalr rd,imm12(rs) jalr rd,(rs) Description: Reg[d] ← PC + 4 PC ← Reg[s] + sign_extended(imm12) Jump to the instruction given by the contents of Reg[s], and save the location of the next instruction in Reg[s]. 50</p>
-<p>Why store PC + 4? These long-distance “jump” instructions also save the address of the following instruction in a register specified by Rd. Often, this register will be x0, and therefore is ignored. But in other cases it is useful to get back to where we jumped from. 51</p>
-<p>Missing Math instructions The RISC-V ISA includes integer multiplication and division as an extension to the RV32I minimal ISA called RV32M. This is because multiply and divide require significant additional H/W. These instructions can always be emulated, and cost is a consideration for embedded systems. Our miniRISCV simulator includes a subset of RV32M, the subset necessary to implement C. 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 R-type: 0 0 0 0 0 0 1 rs2 rs1 func3 rd 0 1 1 0 0 1 1 000 - MUL 100 - DIV This opcode is the same as the all other R- 110 - REM type instructions. It is the setting of the “func7” field that indicates the optional multiply/divide instructions 52</p>
-<p>Multiply MUL: multiply registers | Syntax: | | mul rd,rs,rt | | | | ———- | — | ————————————— | — | — | | Encoding: | | 0000 001t tttt ssss s000 dddd d011 0011 | | | Description: Reg[d] ← Reg[s] * Reg[t] Multiply the contents of Reg[s] and Reg[t], and place the lower 32- bits of the product in Reg[d]. Overflows are ignored. MUL is binary and semantically compliant with the RV32M mul instruction. | Example: | mul x5,x6,x7 | | | # Encoded as: 0x027302B3 | | ——— | ————- | — | — | ———————— | 53</p>
-<p>Divide DIV: divide registers Syntax: div rd,rs,rt Encoding: 0000 001t tttt ssss s100 dddd d011 0011 Description: Reg[d] ← Reg[s] / Reg[t] Divide the contents of Reg[s] by Reg[t], and place the quotient in Reg[d]. A divisor of 0 does not generate an overflow, and the destination register rd is set to all ones. DIV is binary and semantically compliant with the RV32M div instruction. Example: div x7,x5,x6 # Encoded as: 0x0262C3B3 54</p>
-<p>Remainder REM: remainder of a register quotient Syntax: rem rd,rs,rt Encoding: 0000 001t tttt ssss s110 dddd d011 0011 Description: Reg[d] ← Reg[s] % Reg[t] | Divide | the | contents | | of Reg[s] | | by Reg[t], | | and place | the | | ———- | —- | ———— | ——— | ———– | — | —————– | —- | ———– | ——- | | remainder | | in Reg[d]. | | A divisor | | of 0 does | not | generate | an | | overflow | | and the | contents | | of | the destination | | register | rd is | set to the dividend, Reg[s]. REM is binary and semantically compliant with the RV32M rem instruction. Example: | rem x7,x5,x6 | | | | | | # Encoded as: 0x0262E3B3 | | | | | ————- | — | — | — | — | — | ———————— | — | — | — | 55</p>
-<p>Another instruction: AUIPC PC-relative branch + jump instructions allow for relocatable code. However, what about relocatable “data”? Ex: you might want to place a data structure in a code section and be able to relocate it without the need for keeping track of the absolute addresses. RISCV fixes this problem with a PC-relative lui-like instruction called auipc 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 U-type: Imm20 rd 0 0 1 0 1 1 1 auipc x10,next # encoded as 0x00000517 56</p>
-<p>AUIPC details This instruction gives you a PC-relative base address. Once you have it in a register (rd), you can use a load AUIPC: Add Upper Immediate to PC instruction with it to read memory Syntax: auipc rd,imm20 Encoding: iiii iiii iiii iiii iiii dddd d011 0011 Description: Reg[d] ← PC + sign_extend(imm20 &lt;&lt; 12) Adds the sign-extended 20-bit immediate value, left-shifted by 12 bits, to the program counter, and writes the result to Reg[d]. Example: auipc x31,1024 # Encoded as: 0x00400F97 Also, the combination of an auipc instruction and a jalr can transfer control (jump) to any memory location. Both branch and jump instructions have limited ranges. Load/Store offsets are only 12 bits, we can’t encode large addresses directly. AUIC shifts a 20 bit immediate by 12 to get the upper 20 bits of an address near our target. AUIPC + load offset = full 32 bit address computation 57</p>
-<p>Branch, Jump, lui and auipc Branches add a 12-bit “sign-extended” immediate value (multiplied by 2) to the current PC if taken. Jumps always add a 20-bit sign-extended immediate value and support saving PC+4. We also need to be able to compute the PC-relative offsets used by the AUIPC instruction, and large immediates of LUI and store them into the register file. 58</p>
-<p>THE APPLICATION BINARY INTERFACE (ABI) AND PROCEDURE CALLS!</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 18: The 5 Stage RISC-V CPU tinyurl.com/comp311-sp26</p>
+<section id="stage-risc-v-cpu" class="level2">
+<h2 class="anchored" data-anchor-id="stage-risc-v-cpu">5 STAGE RISC-V CPU!</h2>
+</section>
+<section id="splitting-our-cpu-datapath-into-5-stages" class="level2">
+<h2 class="anchored" data-anchor-id="splitting-our-cpu-datapath-into-5-stages">Splitting our CPU Datapath into 5 Stages</h2>
+<p>● Instruction Fetch ○ Reading the instruction from memory ● Instruction Decode ○ Splitting up the instruction, generating control signals, and reading the register file ○ Jump address calculation ● Execute ○ ALU Operation Instructions pass through all 5 stages, ○ Branch address calculation but different work happens in each stage ● Memory depending on the instruction type. ○ Reading/writing data memory ● Writeback ○ Writing the result to the register file</p>
+</section>
+<section id="behavior-of-instructions-starts-to-diverge" class="level2">
+<h2 class="anchored" data-anchor-id="behavior-of-instructions-starts-to-diverge">Behavior of instructions starts to diverge</h2>
+<p>Summary Table Instruction | | IF | ID | EX | MEM | WB | | — | — | — | — | — | — | Type | Arithmetic | | | ALU | — | Write result | | ———- | — | — | ——— | ——— | ———— | | LW | | | Addr calc | Read mem | Write result | | SW | | | Addr calc | Write mem | — | Compare + | Branch | | | | — | — | | —— | — | — | — | — | — | branch Jump | | | | Jump target* | — | — | | — | — | — | ———— | — | — | EX: Figure out what to MEM: Only matters for WB: Only matters if we do/action to take for specific loads/stores produce a value instruction type</p>
+</section>
+<section id="datapath-split-into-5-stages" class="level2">
+<h2 class="anchored" data-anchor-id="datapath-split-into-5-stages">Datapath Split into 5 Stages</h2>
+<p>Challenge Q: What This version of the HW would need to be full data path has added to support some details JALR? Other types of abstracted away for branches? Offset readability/tracing Scale (the full ALU control purposes. unit also missing…) 1 2 This datapath has support for: • R-type arithmetic • I-type arithmetic Immediate generator • Loads • Stores • BEQ • JAL</p>
+</section>
+<section id="instruction-fetch" class="level2">
+<h2 class="anchored" data-anchor-id="instruction-fetch">Instruction Fetch</h2>
+<p>Reading the Offset Scale instruction from memory 1 2 Immediate generator</p>
+</section>
+<section id="instruction-decode" class="level2">
+<h2 class="anchored" data-anchor-id="instruction-decode">Instruction Decode</h2>
+<p>• Splitting up the instruction fields • Generating control Offset Scale signals • Reading the 1 register file 2 • Jump address calculation Immediate generator</p>
+</section>
+<section id="execute" class="level2">
+<h2 class="anchored" data-anchor-id="execute">Execute</h2>
+<p>• ALU Operation • Branch address Offset Scale calculation 1 2 Immediate generator</p>
+</section>
+<section id="memory" class="level2">
+<h2 class="anchored" data-anchor-id="memory">Memory</h2>
+<p>Reading/writing data Offset Scale memory 1 2 Immediate generator</p>
+</section>
+<section id="writeback" class="level2">
+<h2 class="anchored" data-anchor-id="writeback">Writeback</h2>
+<p>Offset Scale Writing the result to the register file 1 2 Immediate generator</p>
+</section>
+<section id="stage-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="stage-pipeline">5-Stage Pipeline</h2>
+<p>Offset Scale 1 2 Immediate generator We add in pipeline registers to separate each stage</p>
+</section>
+<section id="stages-used-by-each-instruction" class="level2">
+<h2 class="anchored" data-anchor-id="stages-used-by-each-instruction">Stages Used by Each Instruction</h2>
+<p>Instruction Fetch Decode Execute Memory Writeback arithmetic and logical (add, addi, or, etc) sw lw branch j</p>
+</section>
+<section id="stages-used-by-each-instruction-1" class="level2">
+<h2 class="anchored" data-anchor-id="stages-used-by-each-instruction-1">Stages Used by Each Instruction</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Instruction</th>
+<th>Fetch</th>
+<th>Decode</th>
+<th>Execute</th>
+<th>Memory</th>
+<th>Writeback</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>arithmetic and | logical (add, addi, | X | X | X | | X | | ——————– | — | — | — | — | — | or, etc) sw lw branch j</p>
+</section>
+<section id="time-needed-for-each-stage" class="level2">
+<h2 class="anchored" data-anchor-id="time-needed-for-each-stage">Time Needed for Each Stage</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Fetch</th>
+<th>Decode</th>
+<th>Execute</th>
+<th>Memory</th>
+<th>Writeback</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time</td>
+<td>200ps</td>
+<td>100ps</td>
+<td>200ps</td>
+<td>200ps</td>
+<td>100ps</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="time-needed-for-each-instruction" class="level2">
+<h2 class="anchored" data-anchor-id="time-needed-for-each-instruction">Time Needed for Each Instruction</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Fetch</th>
+<th>Decode</th>
+<th>Execute</th>
+<th>Memory</th>
+<th>Writeback</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Time | | 200ps | 100ps | 200ps | 200ps | 100ps | | | ———– | —– | —— | ——- | —— | ——— | ———- | | Instruction | Fetch | Decode | Execute | Memory | Writeback | Total Time | arithmetic 200ps + 100ps + 200ps + 100ps = 600ps and logical | | X | X | X | | X | | | — | — | — | — | — | — | — | (add, addi, or, etc) sw lw branch j</p>
+</section>
+<section id="time-needed-for-each-instruction-1" class="level2">
+<h2 class="anchored" data-anchor-id="time-needed-for-each-instruction-1">Time Needed for Each Instruction</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Fetch</th>
+<th>Decode</th>
+<th>Execute</th>
+<th>Memory</th>
+<th>Writeback</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Time | | 200ps | 100ps | 200ps | 200ps | 100ps | | | | ———– | —– | —— | ——- | —— | ——— | ————————————- | ———- | | Instruction | Fetch | Decode | Execute | Memory | Writeback | | Total Time | | arithmetic | | | | | | 200ps + 100ps + 200ps + 100ps = 600ps | | and logical | | X | X | X | | X | | | | — | — | — | — | — | — | — | — | (add, addi, or, etc) | sw | X | X | X | X | | 200 + 100 + 200 + 200 = 700ps | | | — | — | — | — | — | — | ———————————– | — | | lw | X | X | X | X | X | 200 + 100 + 200 + 200 + 100 = 800ps | | branch 200 + 100 + 200 = 500ps | | X | X | X | | | | | | — | — | — | — | — | — | —————– | — | | j | | | | | | 200 + 100 = 300ps | | | | X | X | | | | | |</p>
+</section>
+<section id="min-clock-period" class="level2">
+<h2 class="anchored" data-anchor-id="min-clock-period">Min Clock Period</h2>
+<p>● What is the minimum clock period that will work for all instructions? ○ Assuming a clock-to-q delay of 20ps Even though instructions conceptually pass through all stages in a pipeline, for this question assume a single- cycle datapath where only the required components contribute to delay</p>
+</section>
+<section id="single-cycle-datapath-timing" class="level2">
+<h2 class="anchored" data-anchor-id="single-cycle-datapath-timing">Single Cycle Datapath Timing</h2>
+<p>● It takes one clock cycle to execute one instruction ● If we need to execute 100 instructions, it will take 100 clock cycles ● If we set our clock period to 820ps, it will take ○ 820ps to execute one instruction ○ 82,000ps to execute 100 instructions</p>
+</section>
+<section id="executing-instructions-on-our-pipelined-datapath" class="level2">
+<h2 class="anchored" data-anchor-id="executing-instructions-on-our-pipelined-datapath">Executing Instructions on Our Pipelined Datapath</h2>
+<p>add x8, x6, x7 lw x9, 100(x0) sub x8, x9, x20 sw x10, 0(x20) or x21, x11, x12</p>
+</section>
+<section id="cycle-0" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-0">Cycle 0</h2>
+<p>add x8, x6, x7</p>
+</section>
+<section id="cycle-1" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-1">Cycle 1</h2>
+<p>lw x9, 100(x0) add x8, x6, x7</p>
+</section>
+<section id="cycle-2" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-2">Cycle 2</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>sub x8, x9, x20</th>
+<th>lw x9, 100(x0)</th>
+<th>add x8, x6, x7</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="cycle-3" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-3">Cycle 3</h2>
+<p>sw x10, 0(x20) lw x9, 100(x0) add x8, x6, x7 sub x8, x9, x20</p>
+</section>
+<section id="cycle-4" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-4">Cycle 4</h2>
+<p>add x8, x6, x7 | or x21, x11, x12 | sw x10, 0(x20) | lw x9, 100(x0) | | —————- | ————– | ————— | sub x8, x9, x20</p>
+</section>
+<section id="cycle-5" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-5">Cycle 5</h2>
+<p>sw x10, 0(x20) lw x9, 100(x0) or x21, x11, x12 sub x8, x9, x20</p>
+</section>
+<section id="cycle-6" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-6">Cycle 6</h2>
+<p>or x21, x11, x12 sw x10, 0(x20) sub x8, x9, x20</p>
+</section>
+<section id="cycle-7" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-7">Cycle 7</h2>
+<p>or x21, x11, x12 sw x10, 0(x20)</p>
+</section>
+<section id="cycle-8" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-8">Cycle 8</h2>
+<p>or x21, x11, x12</p>
+</section>
+<section id="the-clock-to-q-delay-of-a-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="the-clock-to-q-delay-of-a-pipeline">The clock-to-q delay of a pipeline</h2>
+<p>Determine the Min Clock Period register is 20ps | 200ps | 100ps | 200ps | 200ps | 100ps | | —– | —– | —– | —– | —– |</p>
+</section>
+<section id="latency" class="level2">
+<h2 class="anchored" data-anchor-id="latency">Latency</h2>
+<p>■ What is the latency of executing a single instruction on – The single cycle datapath with a clock period of 820ps? – The 5-stage pipelined datapath with a clock period of 220ps?</p>
+</section>
+<section id="speedup" class="level2">
+<h2 class="anchored" data-anchor-id="speedup">Speedup</h2>
+<p>■ What is the speedup of executing the following set of instructions on a single-cycle vs pipelined datapath assuming – single-cycle clock period = 820 ps add x8, x6, x7 – pipelined clock period = 220 ps lw x9, 100(x0) sub x8, x9, x20 𝑠𝑖𝑛𝑔𝑙𝑒 𝑐𝑦𝑙𝑒 𝑒𝑥𝑒𝑐𝑢𝑡𝑖𝑜𝑛 𝑡𝑖𝑚𝑒 𝑠𝑝𝑒𝑒𝑑𝑢𝑝 = sw x10, 0(x20) 𝑝𝑖𝑝𝑒𝑙𝑖𝑛𝑒𝑑 𝑒𝑥𝑒𝑐𝑢𝑡𝑖𝑜𝑛 𝑡𝑖𝑚𝑒 or x21, x11, x12</p>
+</section>
+<section id="some-remaining" class="level2">
+<h2 class="anchored" data-anchor-id="some-remaining">SOME REMAINING</h2>
+<p>RISC-V DETAILS…</p>
+<p>Branch Encoding ■ Target instruction – The instruction the program will go to if the branch is taken ■ Byte offset to target instruction – The distance, in bytes, between the current branch instruction and the instruction it would go to if the branch is taken</p>
+</section>
+<section id="fill-in-the-blanks" class="level2">
+<h2 class="anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h2>
+<p>■ The byte offset will always be a multiple of ________, which means that the last ________ bits of the byte offset will always be 0.</p>
+</section>
+<section id="generating-the-branch-immediate" class="level2">
+<h2 class="anchored" data-anchor-id="generating-the-branch-immediate">Generating the Branch Immediate</h2>
+<ol type="1">
+<li>Compute the byte offset relative to PC + 4 (the next instruction)</li>
+<li>Remove the bottom two bits (these will always be 0)</li>
+</ol>
+</section>
+<section id="branching-instructions-changing-the-pc" class="level2">
+<h2 class="anchored" data-anchor-id="branching-instructions-changing-the-pc">Branching Instructions: Changing the PC</h2>
+<p>The Program Counter, or PC, is a special register that points to the address of the next instruction to be fetched. There are special instructions for changing the PC. One type is Branching Instructions. Branches are to nearby place within +/- 512 instructions away. 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 B-type: imm7 rs2 rs1 func3 imm5 1 1 0 0 0 1 1 There are six types of branching 000 - BEQ instructions. All compare the the 001 - BNE contents of two registers. If the 100 - BLT comparison is true then the next 101 - BGE instruction will be from PC + imm12, if 110 - BLTU false PC+4 111 - BGEU</p>
+</section>
+<section id="branch-examples" class="level2">
+<h2 class="anchored" data-anchor-id="branch-examples">Branch Examples</h2>
+<p>If the contents of x10 is not equal to 0 then branch to the nearby address bne x10,x0,else with the label “else” If the contents of x10 is less than 0 then branch to the nearby address with blt x10,x0,neg the label “neg” An infinite loop. loop: beq x0,x0,loop 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 1 beq x0,x0,’s encoding.</p>
+</section>
+<section id="branch-immediate" class="level2">
+<h2 class="anchored" data-anchor-id="branch-immediate">Branch Immediate</h2>
+<p>■ For each of the branch instructions below, what is the byte offset of the target instruction? beq x4, x5, elseIf add x7, x8, x9 add x7, x8, x20 jal x0, exit elseIf: bne x4, x6, else add x7, x10, x11 add x7, x7, x12 add x7, x7, x8 jal x0, exit else: add x7, x8, x11 exit:</p>
+</section>
+<section id="branch-immediate-1" class="level2">
+<h2 class="anchored" data-anchor-id="branch-immediate-1">Branch Immediate</h2>
+<p>■ For each of the branch instructions below, what is the byte offset of the target instruction? beq x4, x5, elseIf add x7, x8, x9 4 instructions = 16 bytes add x7, x8, x20 jal x0, exit elseIf: bne x4, x6, else add x7, x10, x11 add x7, x7, x12 add x7, x7, x8 5 instructions = 20 bytes jal x0, exit else: add x7, x8, x11 exit:</p>
+</section>
+<section id="pc-relative-make-the-code" class="level2">
+<h2 class="anchored" data-anchor-id="pc-relative-make-the-code">PC relative: make the code</h2>
+<p>PC Relative offsets relocatable ☺ All branch offsets in RISC-V are added to the PC to determine the target address of the next instruction in the case of a valid condition. Earlier ISAs would instead specify the “absolute” target address. What are the advantages of “relative” vs “absolute”? ● Does not implicitly limit the address space ● Requires fewer instruction bits, supports the most common cases -4096 ︙ ● Allows for “relocatable” code pc → ︙ 4094</p>
+</section>
+<section id="a-simple-program" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-program">A simple Program</h2>
+<p>addi x7,x0,11 # x7 is 10 + 1 addi x5,x0,0 # x5 is i addi x6,x0,0 # x6 is sum loop: add x6,x6,x5 # sum = sum + i addi x5,x5,1 # i++ blt x5,x7,loop halt: beq x0,x0,halt</p>
+</section>
+<section id="a-simple-program-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-program-1">A simple Program</h2>
+<p>addi x7,x0,11 # x7 is 10 + 1 addi x5,x0,0 # x5 is i addi x6,x0,0 # x6 is sum loop: add x6,x6,x5 # sum = sum + i addi x5,x5,1 # i++ blt x5,x7,loop halt: beq x0,x0,halt # Assembly code for # sum = 0; # for (i = 0; i &lt;= 10; i++) # sum = sum + i;</p>
+</section>
+<section id="jal-move-the-pc-and-record" class="level2">
+<h2 class="anchored" data-anchor-id="jal-move-the-pc-and-record">JAL: move the PC and record</h2>
+<p>Jumping long distances where to come back to! There are two more instructions for jumping long distances. Both are “unconditional”, meaning that the branch is always taken, but they have another interesting feature 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 U-type: 0 0 0 0 0 0 0 0 0Im0m0200 0 0 0 0 0 0 0 0 0 0r0d0 0 1 1 0 1 1 1 1 JAL: jump and link jalr can be used to jump to an absolute location by Syntax: jal rd,imm20 first loading the address into a register Description: The link step (saving PC + Reg[d] ← PC + 4 4 in a register) is how we PC ← PC + sign_extended(imm20) can support fn call returns Write the address of the following instruction, PC + 4, into Reg[d], then jump to the instruction that is found by adding the current PC to the signed immediate offset. In practice this is usually specified by a label.</p>
+</section>
+<section id="jumping-long-distances" class="level2">
+<h2 class="anchored" data-anchor-id="jumping-long-distances">Jumping long distances</h2>
+<p>JALR: jump anywhere by computing addr in register first. There are two more instructions for jumping long distances. Both are “unconditional”, meaning that the branch is always taken, but they have another interesting feature 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 I-type: 0 0 0 0 0Im0m0120 0 0 0 0 0 0r0s0 0 0 0 0 0 0r0d0 0 1 1 0 0 1 1 1 JALR: jump and link register Syntax: jalr rd,imm12(rs) jalr rd,(rs) Description: Reg[d] ← PC + 4 PC ← Reg[s] + sign_extended(imm12) Jump to the instruction given by the contents of Reg[s], and save the location of the next instruction in Reg[s].</p>
+</section>
+<section id="why-store-pc-4" class="level2">
+<h2 class="anchored" data-anchor-id="why-store-pc-4">Why store PC + 4?</h2>
+<p>These long-distance “jump” instructions also save the address of the following instruction in a register specified by Rd. Often, this register will be x0, and therefore is ignored. But in other cases it is useful to get back to where we jumped from.</p>
+</section>
+<section id="missing-math-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="missing-math-instructions">Missing Math instructions</h2>
+<p>The RISC-V ISA includes integer multiplication and division as an extension to the RV32I minimal ISA called RV32M. This is because multiply and divide require significant additional H/W. These instructions can always be emulated, and cost is a consideration for embedded systems. Our miniRISCV simulator includes a subset of RV32M, the subset necessary to implement C. 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 R-type: 0 0 0 0 0 0 1 rs2 rs1 func3 rd 0 1 1 0 0 1 1 000 - MUL 100 - DIV This opcode is the same as the all other R- 110 - REM type instructions. It is the setting of the “func7” field that indicates the optional multiply/divide instructions</p>
+</section>
+<section id="multiply" class="level2">
+<h2 class="anchored" data-anchor-id="multiply">Multiply</h2>
+<p>MUL: multiply registers | Syntax: | | mul rd,rs,rt | | | | ———- | — | ————————————— | — | — | | Encoding: | | 0000 001t tttt ssss s000 dddd d011 0011 | | | Description: Reg[d] ← Reg[s] * Reg[t] Multiply the contents of Reg[s] and Reg[t], and place the lower 32- bits of the product in Reg[d]. Overflows are ignored. MUL is binary and semantically compliant with the RV32M mul instruction. | Example: | mul x5,x6,x7 | | | # Encoded as: 0x027302B3 | | ——— | ————- | — | — | ———————— |</p>
+</section>
+<section id="divide" class="level2">
+<h2 class="anchored" data-anchor-id="divide">Divide</h2>
+<p>DIV: divide registers Syntax: div rd,rs,rt Encoding: 0000 001t tttt ssss s100 dddd d011 0011 Description: Reg[d] ← Reg[s] / Reg[t] Divide the contents of Reg[s] by Reg[t], and place the quotient in Reg[d]. A divisor of 0 does not generate an overflow, and the destination register rd is set to all ones. DIV is binary and semantically compliant with the RV32M div instruction. Example: div x7,x5,x6 # Encoded as: 0x0262C3B3</p>
+</section>
+<section id="remainder" class="level2">
+<h2 class="anchored" data-anchor-id="remainder">Remainder</h2>
+<p>REM: remainder of a register quotient Syntax: rem rd,rs,rt Encoding: 0000 001t tttt ssss s110 dddd d011 0011 Description: Reg[d] ← Reg[s] % Reg[t] | Divide | the | contents | | of Reg[s] | | by Reg[t], | | and place | the | | ———- | —- | ———— | ——— | ———– | — | —————– | —- | ———– | ——- | | remainder | | in Reg[d]. | | A divisor | | of 0 does | not | generate | an | | overflow | | and the | contents | | of | the destination | | register | rd is | set to the dividend, Reg[s]. REM is binary and semantically compliant with the RV32M rem instruction. Example: | rem x7,x5,x6 | | | | | | # Encoded as: 0x0262E3B3 | | | | | ————- | — | — | — | — | — | ———————— | — | — | — |</p>
+</section>
+<section id="another-instruction-auipc" class="level2">
+<h2 class="anchored" data-anchor-id="another-instruction-auipc">Another instruction: AUIPC</h2>
+<p>PC-relative branch + jump instructions allow for relocatable code. However, what about relocatable “data”? Ex: you might want to place a data structure in a code section and be able to relocate it without the need for keeping track of the absolute addresses. RISCV fixes this problem with a PC-relative lui-like instruction called auipc 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 U-type: Imm20 rd 0 0 1 0 1 1 1 auipc x10,next # encoded as 0x00000517</p>
+</section>
+<section id="auipc-details" class="level2">
+<h2 class="anchored" data-anchor-id="auipc-details">AUIPC details</h2>
+<p>This instruction gives you a PC-relative base address. Once you have it in a register (rd), you can use a load AUIPC: Add Upper Immediate to PC instruction with it to read memory Syntax: auipc rd,imm20 Encoding: iiii iiii iiii iiii iiii dddd d011 0011 Description: Reg[d] ← PC + sign_extend(imm20 &lt;&lt; 12) Adds the sign-extended 20-bit immediate value, left-shifted by 12 bits, to the program counter, and writes the result to Reg[d]. Example: auipc x31,1024 # Encoded as: 0x00400F97 Also, the combination of an auipc instruction and a jalr can transfer control (jump) to any memory location. Both branch and jump instructions have limited ranges. Load/Store offsets are only 12 bits, we can’t encode large addresses directly. AUIC shifts a 20 bit immediate by 12 to get the upper 20 bits of an address near our target. AUIPC + load offset = full 32 bit address computation</p>
+</section>
+<section id="branch-jump-lui-and-auipc" class="level2">
+<h2 class="anchored" data-anchor-id="branch-jump-lui-and-auipc">Branch, Jump, lui and auipc</h2>
+<p>Branches add a 12-bit “sign-extended” immediate value (multiplied by 2) to the current PC if taken. Jumps always add a 20-bit sign-extended immediate value and support saving PC+4. We also need to be able to compute the PC-relative offsets used by the AUIPC instruction, and large immediates of LUI and store them into the register file.</p>
+</section>
+<section id="the-application" class="level2">
+<h2 class="anchored" data-anchor-id="the-application">THE APPLICATION</h2>
+<p>BINARY INTERFACE (ABI) AND PROCEDURE CALLS!</p>
 <p>The Beauty and Power of Procedures | ● Reusable code fragments (modular design) | | | | —————————————— | — | — |</p>
 <p>clear_screen(); // code to draw a bunch of lines | | clear_screen(); | | | — | ————— | — | | | | … | Parameterized procedures (variable behaviors) ●</p>
 <p>line(x1,y1,x2,y2,color); for (int i = 0; i &lt; N-1; i++) | | line(x2,y2,x3,y3,color); | | | — | ———————— | — | line(x[i],y[i],x[i+1],y[i+1],color); | | | … | | — | — | — | line(x[i],y[i],x[0],y[0],color); Functions (procedures that return values) ●</p>
-<p>xMax = max(max(x1,x2),x3); | | yMax = max(max(y1,y2),y3); | | | — | ————————– | — | 60</p>
-<p>More Procedure Power Global vs.&nbsp;Local scope (Name Independence) How do we int x = 9; These are different keep track of int fee(int x) { “x”s return x+x-1; all these } variables? int foo(int i) { This is yet another “x” int x = 0; while (i &gt; 0) { x = x + fee(i); i = i - 1; } That “fee( )” seems odd to me? return x; And, foo( )’s a little square. } main() { fee(foo(x)); } 61</p>
-<p>Functions and procedure Calls Functions and procedures are essential components of code reuse. The also allow code to be organized into modules. A key components of procedures are they: ● can be called from anywhere by a caller, and, when finished, they return back to where they were called from ● can have their only local variables ● clean up behind themselves, they avoid creating unintended side-effects ● can call themselves to implement Recursive methods/functions 62</p>
-<p>Supporting procedure Calls Reusable code also requires agreed upon conventions, such as where a caller’s arguments can be found by the callee. These are actually not part of the ISA, they are part of a standard called the processor’s “Application Binary Interface” or ABI. Basics of procedure calling: 1. Put parameters where the called procedure can find them 2. Transfer control to the procedure 3. Acquire the needed storage for procedure variables 4. Perform the expected calculation 5. Put the result where the caller can find them 6. Return control to the point just after where it was called 63</p>
-<p>Register use conventions | | x0/zero (always zero) | x16/a6 (argument) | | — | ——————— | —————– | By convention, the RISC-V | | x1/ra (return address) | x17/a7 (argument) | | — | ———————- | —————– | registers are assigned to x2/sp (stack pointer) x18/s2 (saved) | | x3/gp (global pointer) | x19/s3 (saved) | | — | ———————- | ————– | specific uses and names | | x4/tp (thread pointer) | x20/s4 (saved) | | ————————— | ———————- | ————– | | used in the ABI. These are | x5/t0 (temporary) | x21/s5 (saved) | x6/t1 (temporary) x22 (saved) supported by the assembler, x7/t2 (temporary) x23 (saved) | | x8/fp (frame pointer) | x24 (saved) | | — | ——————— | ———– | and high-level languages. x9/s1 (saved) x25 (saved) | | x10/a0 (argument/return value 1) | x26 (saved) | | — | ——————————– | ———– | | | x11/a1 (argument/return value 2) | x27 (saved) | We’ll use these names | | x12/a2 (argument) | x28 (temporary) | | — | —————– | ————— | | | x13/a3 (argument) | x29 (temporary) | increasingly. | | x14/a4 (argument) | X30 (temporary) | | — | —————– | ————— | | | x15/a5 (argument) | X31 (temporary) | Why have such conventions? Prevents functions from Allows independently Separately written fns can accidentally overwriting each compiled code to co-execute safely share CPU without | other’s values | correctly! | corrupting each other’s data | | ————– | ———- | —————————- | 64</p>
-<p>These conventions for allocating variables when RISC-V Stack Convention calling fns → part of the ABI CONVENTIONS: Higher • Assign a register as addresses the Stack Pointer BFFF FFF0 16 “stack” segment (sp = x2). SP • Stack grows DOWN (towards ?kcats eht fo lower addresses) on pushes and POT eht taht si allocates yhW …mmuH • sp points to the last or Dynamic data (Heap) TOP <em>used</em> location. “text” segment (Program) • Stack is placed far away 0001 0000 16 Reserved from the program Lower addresses and its data. 65</p>
-<p>Stack Management Policies ALLOCATE k: reserve k WORDS of stack addi sp,sp,-4<em>k SP = SP - 4</em>k DEALLOCATE k: release k WORDS of stack addi sp,sp,4<em>k SP = SP + 4</em>k PUSH x: push Reg[x] onto stack addi sp,sp,-4 Mem[SP - 4] = Rx sw rx,(sp) SP = SP - 4 lw rx,(sp) POP x: pop the top of the stack into Reg[x] addi sp,sp,4 Rx = Mem[SP] SP = SP + 4 66</p>
-<p>Basics of Procedure Calling int x = 35; int y = 55; int z; void main() { z = gcd(x, y); } int gcd(a,b) { while (a != b) { if (a &gt; b) { a = a - b; } else { b = b - a; } } return a; } 67</p>
-<p>Basics of Procedure Calling main: lw a0,x int x = 35; lw a1,y int y = 55; jal ra,gcd int z; sw a0,z void main() { *halt: j halt z = gcd(x, y); } x: .word 35 y: .word 55 z: .word 0 int gcd(a,b) { while (a != b) { if (a &gt; b) { gcd: beq a0,a1,return a = a - b; blt a0,a1,else } else { sub a0,a0,a1 b = b - a; beq x0,x0,gcd } else: sub a1,a1,a0 } beq x0,x0,gcd return a; return: jalr zero,(ra) } 68</p>
-<p>This time, things are really messed up. That was a little too easy… The recursive call to fact( ) overwrites the saved value of x in t0. To make a bad thing worse, the ra is also int x = 5; main: lw a0,x overwritten. int y; jal ra,fact I knew there was a sw a0,y reason that I avoid <em>halt: j halt recursion. void main() { y = fact(x); x: .word 2 } y: .word 0 int fact(x) { fact: addi t0,x0,1 if (x &lt;= 1) bge t0,a0,return return x; addi t0,x0,a0 else addi a0,a0,-1 return x</em>fact(x-1); jal ra,fact } mul a0,a0,t0 return: jalr x0,ra 69</p>
-<p>Incorporating A Stack int sqr(int x) { sqr: addi sp,sp,-8 function sw ra,4(sp) if (x &gt; 1) sw s0,0(sp) prologue x = sqr(x-1)+x+x-1; slti t0,a0,2 return x; bne t0,x0,return } add s0,x0,a0 addi a0,a0,-1 jal ra,sqr add a0,a0,s0 main() add a0,a0,s0 { addi a0,a0,-1 sqr(10); return: lw s0,0(sp) function } lw ra,4(sp) addi sp,sp,8 epilogue jalr x0,ra main: addi sp,sp,-4 sw ra,(sp) addi a0,x0,10 Every call pushes a frame (prologue) and jal ra,sqr lw ra,(sp) pops it (epilogue), so nested/recursive addi sp,sp,4 calls don’t overwrite each other’s saved jalr x0,ra ra or saved registers 70</p>
-<p>The RISC-V was designed so every instruction keeps the same few fields (opcode, rs1, rs2, rd) in the same positions, and the immediates have to bend around that fixed layout. FUN IMMEDIATE ENCODING DETAILS ☺ The immediates are complicated/confusing in some cases b/c RISC-V prioritizes a consistent instruction layout over simple immediate encoding! (design tradeoff…)</p>
-<p>Immediate Encodings Many RISC-V instructions encode a constant value as part of the instruction. Unlike other ISAs, the encoding of constants is not uniform. The I-type instructions encode their immediate operand as follows: Examples: | | | | | | addi | | lb | | —– | —– | —– | ——- | — | ——– | ——- | — | | | | | | | andi | | lbu | | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 | | | | | | | | | | | ori | lh | | | | | | | | slti | | lhu | | | | | | | sltui | | lw | xori | | imm12 | | | rs1 | func3 | rd | opcode | | — | —– | — | — | — | —– | — | —— | I-type: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 72</p>
-<p>Immediate Encodings Many RISC-V instructions encode a constant value as part of the instruction. Unlike other ISAs, the encoding of constants is not uniform. The I-type instructions encode their immediate operand as follows: Examples: 4 3 2 1 0 slli srli srai 0 0 0 0 0 0 0 imm5 rs1 func3 rd opcode I-type: 1 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 But there are exceptions! 73</p>
-<p>LUI’s Immediate Value The immediate-field encoding of lui and auipc also seems straightforward, but, the immediate values might not be what you expect due to the sign- extension of its companion addi instruction. if bit 11 of the large Examples: 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 constant is set, then you lui add 1 to the LUI/AUIPC immediate value. auipc imm20 rd opcode U-type: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 74</p>
-<p>Immediate Offsets for Stores RISC-V store instructions include an offset, but it is not encoded in an obvious way. Note that there is no need for a rd register in a store, but both rs1 and rs2 are needed if the encodings are used consistently. | | | | | | | | Examples: | | | The assembler will take care | | — | — | — | — | — | — | — | ——— | — | — | —————————– | of filling in the immediate | | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 | | | | | | | | — | —– | —– | —– | ——- | — | — | — | — | — | — | sb fields, of the instruction. It has some impact on the sh H/W design sw | | | | | | | | | 0 1 | 0 0 0 | 1 1 | | ——- | — | —- | — | — | — | —– | —- | — | —– | — | | | | | | rs2 | rs1 | func3 | | | | | | S-type: | | imm7 | | | | | imm5 | | | | 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 75</p>
-<p>Immediate Offsets for Branches The offsets of RISC-V branch instructions use the same format as a stores, but the offset encoding is non-obvious. Again, there is no need for a rd register; only rs1 and rs2 are used. Branch offsets can only be even. In fact, all instructions must be aligned to half-word boundaries. Examples: | 12 11 10 | 9 8 | 7 6 5 | 4 3 2 | 1 0 | | | | | | | ——– | — | —– | —– | — | — | — | — | — | — | 0 | | | | | | | beq | | bne | | | — | —- | — | — | — | —– | ——- | — | —– | — | | | | | | | | blt | | bltu | | | | | | | | | bge | | bgeu | | | | | | | | | | 1 1 | 0 0 0 | 1 1 | | | imm7 | | rs2 | rs1 | func3 | imm5 | | | | S -type: B 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 76</p>
-<p>Crazy Jump offsets The offsets of RISC-V jump instructions use the same U-format as lui/auipc, but the offset encoding is even stranger. Jump offsets, like branch offsets can only be even. 2019 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 Example: 0 jal 77 U -type: imm20 rd opcode J 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</p>
+<p>xMax = max(max(x1,x2),x3); | | yMax = max(max(y1,y2),y3); | | | — | ————————– | — |</p>
+</section>
+<section id="more-procedure-power" class="level2">
+<h2 class="anchored" data-anchor-id="more-procedure-power">More Procedure Power</h2>
+<p>Global vs.&nbsp;Local scope (Name Independence) How do we int x = 9; These are different keep track of int fee(int x) { “x”s return x+x-1; all these } variables? int foo(int i) { This is yet another “x” int x = 0; while (i &gt; 0) { x = x + fee(i); i = i - 1; } That “fee( )” seems odd to me? return x; And, foo( )’s a little square. } main() { fee(foo(x)); }</p>
+</section>
+<section id="functions-and-procedure-calls" class="level2">
+<h2 class="anchored" data-anchor-id="functions-and-procedure-calls">Functions and procedure Calls</h2>
+<p>Functions and procedures are essential components of code reuse. The also allow code to be organized into modules. A key components of procedures are they: ● can be called from anywhere by a caller, and, when finished, they return back to where they were called from ● can have their only local variables ● clean up behind themselves, they avoid creating unintended side-effects ● can call themselves to implement Recursive methods/functions</p>
+</section>
+<section id="supporting-procedure-calls" class="level2">
+<h2 class="anchored" data-anchor-id="supporting-procedure-calls">Supporting procedure Calls</h2>
+<p>Reusable code also requires agreed upon conventions, such as where a caller’s arguments can be found by the callee. These are actually not part of the ISA, they are part of a standard called the processor’s “Application Binary Interface” or ABI. Basics of procedure calling: 1. Put parameters where the called procedure can find them 2. Transfer control to the procedure 3. Acquire the needed storage for procedure variables 4. Perform the expected calculation 5. Put the result where the caller can find them 6. Return control to the point just after where it was called</p>
+</section>
+<section id="register-use-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="register-use-conventions">Register use conventions</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>x0/zero (always zero)</th>
+<th>x16/a6 (argument)</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>By convention, the RISC-V | | x1/ra (return address) | x17/a7 (argument) | | — | ———————- | —————– | registers are assigned to x2/sp (stack pointer) x18/s2 (saved) | | x3/gp (global pointer) | x19/s3 (saved) | | — | ———————- | ————– | specific uses and names | | x4/tp (thread pointer) | x20/s4 (saved) | | ————————— | ———————- | ————– | | used in the ABI. These are | x5/t0 (temporary) | x21/s5 (saved) | x6/t1 (temporary) x22 (saved) supported by the assembler, x7/t2 (temporary) x23 (saved) | | x8/fp (frame pointer) | x24 (saved) | | — | ——————— | ———– | and high-level languages. x9/s1 (saved) x25 (saved) | | x10/a0 (argument/return value 1) | x26 (saved) | | — | ——————————– | ———– | | | x11/a1 (argument/return value 2) | x27 (saved) | We’ll use these names | | x12/a2 (argument) | x28 (temporary) | | — | —————– | ————— | | | x13/a3 (argument) | x29 (temporary) | increasingly. | | x14/a4 (argument) | X30 (temporary) | | — | —————– | ————— | | | x15/a5 (argument) | X31 (temporary) | Why have such conventions? Prevents functions from Allows independently Separately written fns can accidentally overwriting each compiled code to co-execute safely share CPU without | other’s values | correctly! | corrupting each other’s data | | ————– | ———- | —————————- |</p>
+</section>
+<section id="these-conventions-for" class="level2">
+<h2 class="anchored" data-anchor-id="these-conventions-for">These conventions for</h2>
+<p>allocating variables when RISC-V Stack Convention calling fns → part of the ABI CONVENTIONS: Higher • Assign a register as addresses the Stack Pointer BFFF FFF0 16 “stack” segment (sp = x2). SP • Stack grows DOWN (towards ?kcats eht fo lower addresses) on pushes and POT eht taht si allocates yhW …mmuH • sp points to the last or Dynamic data (Heap) TOP <em>used</em> location. “text” segment (Program) • Stack is placed far away 0001 0000 16 Reserved from the program Lower addresses and its data.</p>
+</section>
+<section id="stack-management-policies" class="level2">
+<h2 class="anchored" data-anchor-id="stack-management-policies">Stack Management Policies</h2>
+<p>ALLOCATE k: reserve k WORDS of stack addi sp,sp,-4<em>k SP = SP - 4</em>k DEALLOCATE k: release k WORDS of stack addi sp,sp,4<em>k SP = SP + 4</em>k PUSH x: push Reg[x] onto stack addi sp,sp,-4 Mem[SP - 4] = Rx sw rx,(sp) SP = SP - 4 lw rx,(sp) POP x: pop the top of the stack into Reg[x] addi sp,sp,4 Rx = Mem[SP] SP = SP + 4</p>
+</section>
+<section id="basics-of-procedure-calling" class="level2">
+<h2 class="anchored" data-anchor-id="basics-of-procedure-calling">Basics of Procedure Calling</h2>
+<p>int x = 35; int y = 55; int z; void main() { z = gcd(x, y); } int gcd(a,b) { while (a != b) { if (a &gt; b) { a = a - b; } else { b = b - a; } } return a; }</p>
+</section>
+<section id="basics-of-procedure-calling-1" class="level2">
+<h2 class="anchored" data-anchor-id="basics-of-procedure-calling-1">Basics of Procedure Calling</h2>
+<p>main: lw a0,x int x = 35; lw a1,y int y = 55; jal ra,gcd int z; sw a0,z void main() { *halt: j halt z = gcd(x, y); } x: .word 35 y: .word 55 z: .word 0 int gcd(a,b) { while (a != b) { if (a &gt; b) { gcd: beq a0,a1,return a = a - b; blt a0,a1,else } else { sub a0,a0,a1 b = b - a; beq x0,x0,gcd } else: sub a1,a1,a0 } beq x0,x0,gcd return a; return: jalr zero,(ra) }</p>
+</section>
+<section id="this-time-things-are-really-messed-up." class="level2">
+<h2 class="anchored" data-anchor-id="this-time-things-are-really-messed-up.">This time, things are really messed up.</h2>
+<p>That was a little too easy… The recursive call to fact( ) overwrites the saved value of x in t0. To make a bad thing worse, the ra is also int x = 5; main: lw a0,x overwritten. int y; jal ra,fact I knew there was a sw a0,y reason that I avoid <em>halt: j halt recursion. void main() { y = fact(x); x: .word 2 } y: .word 0 int fact(x) { fact: addi t0,x0,1 if (x &lt;= 1) bge t0,a0,return return x; addi t0,x0,a0 else addi a0,a0,-1 return x</em>fact(x-1); jal ra,fact } mul a0,a0,t0 return: jalr x0,ra</p>
+</section>
+<section id="incorporating-a-stack" class="level2">
+<h2 class="anchored" data-anchor-id="incorporating-a-stack">Incorporating A Stack</h2>
+<p>int sqr(int x) { sqr: addi sp,sp,-8 function sw ra,4(sp) if (x &gt; 1) sw s0,0(sp) prologue x = sqr(x-1)+x+x-1; slti t0,a0,2 return x; bne t0,x0,return } add s0,x0,a0 addi a0,a0,-1 jal ra,sqr add a0,a0,s0 main() add a0,a0,s0 { addi a0,a0,-1 sqr(10); return: lw s0,0(sp) function } lw ra,4(sp) addi sp,sp,8 epilogue jalr x0,ra main: addi sp,sp,-4 sw ra,(sp) addi a0,x0,10 Every call pushes a frame (prologue) and jal ra,sqr lw ra,(sp) pops it (epilogue), so nested/recursive addi sp,sp,4 calls don’t overwrite each other’s saved jalr x0,ra ra or saved registers</p>
+</section>
+<section id="the-risc-v-was-designed-so-every-instruction-keeps-the-same" class="level2">
+<h2 class="anchored" data-anchor-id="the-risc-v-was-designed-so-every-instruction-keeps-the-same">The RISC-V was designed so every instruction keeps the same</h2>
+<p>few fields (opcode, rs1, rs2, rd) in the same positions, and the immediates have to bend around that fixed layout. FUN IMMEDIATE ENCODING DETAILS ☺ The immediates are complicated/confusing in some cases b/c RISC-V prioritizes a consistent instruction layout over simple immediate encoding! (design tradeoff…)</p>
+<p>Immediate Encodings Many RISC-V instructions encode a constant value as part of the instruction. Unlike other ISAs, the encoding of constants is not uniform. The I-type instructions encode their immediate operand as follows: Examples: | | | | | | addi | | lb | | —– | —– | —– | ——- | — | ——– | ——- | — | | | | | | | andi | | lbu | | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 | | | | | | | | | | | ori | lh | | | | | | | | slti | | lhu | | | | | | | sltui | | lw | xori | | imm12 | | | rs1 | func3 | rd | opcode | | — | —– | — | — | — | —– | — | —— | I-type: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</p>
+</section>
+<section id="immediate-encodings" class="level2">
+<h2 class="anchored" data-anchor-id="immediate-encodings">Immediate Encodings</h2>
+<p>Many RISC-V instructions encode a constant value as part of the instruction. Unlike other ISAs, the encoding of constants is not uniform. The I-type instructions encode their immediate operand as follows: Examples: 4 3 2 1 0 slli srli srai 0 0 0 0 0 0 0 imm5 rs1 func3 rd opcode I-type: 1 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 But there are exceptions!</p>
+</section>
+<section id="luis-immediate-value" class="level2">
+<h2 class="anchored" data-anchor-id="luis-immediate-value">LUI’s Immediate Value</h2>
+<p>The immediate-field encoding of lui and auipc also seems straightforward, but, the immediate values might not be what you expect due to the sign- extension of its companion addi instruction. if bit 11 of the large Examples: 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 constant is set, then you lui add 1 to the LUI/AUIPC immediate value. auipc imm20 rd opcode U-type: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</p>
+</section>
+<section id="immediate-offsets-for-stores" class="level2">
+<h2 class="anchored" data-anchor-id="immediate-offsets-for-stores">Immediate Offsets for Stores</h2>
+<p>RISC-V store instructions include an offset, but it is not encoded in an obvious way. Note that there is no need for a rd register in a store, but both rs1 and rs2 are needed if the encodings are used consistently. | | | | | | | | Examples: | | | The assembler will take care | | — | — | — | — | — | — | — | ——— | — | — | —————————– | of filling in the immediate | | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 | | | | | | | | — | —– | —– | —– | ——- | — | — | — | — | — | — | sb fields, of the instruction. It has some impact on the sh H/W design sw | | | | | | | | | 0 1 | 0 0 0 | 1 1 | | ——- | — | —- | — | — | — | —– | —- | — | —– | — | | | | | | rs2 | rs1 | func3 | | | | | | S-type: | | imm7 | | | | | imm5 | | | | 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</p>
+</section>
+<section id="immediate-offsets-for-branches" class="level2">
+<h2 class="anchored" data-anchor-id="immediate-offsets-for-branches">Immediate Offsets for Branches</h2>
+<p>The offsets of RISC-V branch instructions use the same format as a stores, but the offset encoding is non-obvious. Again, there is no need for a rd register; only rs1 and rs2 are used. Branch offsets can only be even. In fact, all instructions must be aligned to half-word boundaries. Examples: | 12 11 10 | 9 8 | 7 6 5 | 4 3 2 | 1 0 | | | | | | | ——– | — | —– | —– | — | — | — | — | — | — | 0 | | | | | | | beq | | bne | | | — | —- | — | — | — | —– | ——- | — | —– | — | | | | | | | | blt | | bltu | | | | | | | | | bge | | bgeu | | | | | | | | | | 1 1 | 0 0 0 | 1 1 | | | imm7 | | rs2 | rs1 | func3 | imm5 | | | | S -type: B 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</p>
+</section>
+<section id="crazy-jump-offsets" class="level2">
+<h2 class="anchored" data-anchor-id="crazy-jump-offsets">Crazy Jump offsets</h2>
+<p>The offsets of RISC-V jump instructions use the same U-format as lui/auipc, but the offset encoding is even stranger. Jump offsets, like branch offsets can only be even. 2019 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 Example: 0 jal 77 U -type: imm20 rd opcode J</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -901,12 +1283,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16"></a>COMPUTER ORGANIZATION!</span>
 <span id="cb1-17"><a href="#cb1-17"></a>Lecture 18: The 5 Stage RISC-V CPU</span>
 <span id="cb1-18"><a href="#cb1-18"></a>tinyurl.com/comp311-sp26</span>
-<span id="cb1-19"><a href="#cb1-19"></a>1</span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a>5 STAGE RISC-V CPU!</span>
-<span id="cb1-22"><a href="#cb1-22"></a>2</span>
-<span id="cb1-23"><a href="#cb1-23"></a></span>
-<span id="cb1-24"><a href="#cb1-24"></a>Splitting our CPU Datapath into 5 Stages</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">## 5 STAGE RISC-V CPU!</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="fu">## Splitting our CPU Datapath into 5 Stages</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
 <span id="cb1-25"><a href="#cb1-25"></a>● Instruction Fetch</span>
 <span id="cb1-26"><a href="#cb1-26"></a>○ Reading the instruction from memory</span>
 <span id="cb1-27"><a href="#cb1-27"></a>● Instruction Decode</span>
@@ -922,9 +1304,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-37"><a href="#cb1-37"></a>○ Reading/writing data memory</span>
 <span id="cb1-38"><a href="#cb1-38"></a>● Writeback</span>
 <span id="cb1-39"><a href="#cb1-39"></a>○ Writing the result to the register file</span>
-<span id="cb1-40"><a href="#cb1-40"></a>3</span>
-<span id="cb1-41"><a href="#cb1-41"></a></span>
-<span id="cb1-42"><a href="#cb1-42"></a>Behavior of instructions starts to diverge</span>
+<span id="cb1-40"><a href="#cb1-40"></a></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="fu">## Behavior of instructions starts to diverge</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a></span>
 <span id="cb1-43"><a href="#cb1-43"></a>Summary Table</span>
 <span id="cb1-44"><a href="#cb1-44"></a>Instruction</span>
 <span id="cb1-45"><a href="#cb1-45"></a><span class="pp">|</span>     <span class="pp">|</span> IF  <span class="pp">|</span> ID  <span class="pp">|</span> EX  <span class="pp">|</span> MEM <span class="pp">|</span> WB  <span class="pp">|</span></span>
@@ -946,9 +1328,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-61"><a href="#cb1-61"></a>do/action to take for specific</span>
 <span id="cb1-62"><a href="#cb1-62"></a>loads/stores produce a value</span>
 <span id="cb1-63"><a href="#cb1-63"></a>instruction type</span>
-<span id="cb1-64"><a href="#cb1-64"></a>4</span>
-<span id="cb1-65"><a href="#cb1-65"></a></span>
-<span id="cb1-66"><a href="#cb1-66"></a>Datapath Split into 5 Stages</span>
+<span id="cb1-64"><a href="#cb1-64"></a></span>
+<span id="cb1-65"><a href="#cb1-65"></a><span class="fu">## Datapath Split into 5 Stages</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a></span>
 <span id="cb1-67"><a href="#cb1-67"></a>Challenge Q: What</span>
 <span id="cb1-68"><a href="#cb1-68"></a>This version of the</span>
 <span id="cb1-69"><a href="#cb1-69"></a>HW would need to be</span>
@@ -974,9 +1356,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-89"><a href="#cb1-89"></a>• Stores</span>
 <span id="cb1-90"><a href="#cb1-90"></a>• BEQ</span>
 <span id="cb1-91"><a href="#cb1-91"></a>• JAL</span>
-<span id="cb1-92"><a href="#cb1-92"></a>5</span>
-<span id="cb1-93"><a href="#cb1-93"></a></span>
-<span id="cb1-94"><a href="#cb1-94"></a>Instruction Fetch</span>
+<span id="cb1-92"><a href="#cb1-92"></a></span>
+<span id="cb1-93"><a href="#cb1-93"></a><span class="fu">## Instruction Fetch</span></span>
+<span id="cb1-94"><a href="#cb1-94"></a></span>
 <span id="cb1-95"><a href="#cb1-95"></a>Reading the Offset</span>
 <span id="cb1-96"><a href="#cb1-96"></a>Scale</span>
 <span id="cb1-97"><a href="#cb1-97"></a>instruction from</span>
@@ -984,9 +1366,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-99"><a href="#cb1-99"></a>2</span>
 <span id="cb1-100"><a href="#cb1-100"></a>Immediate</span>
 <span id="cb1-101"><a href="#cb1-101"></a>generator</span>
-<span id="cb1-102"><a href="#cb1-102"></a>6</span>
-<span id="cb1-103"><a href="#cb1-103"></a></span>
-<span id="cb1-104"><a href="#cb1-104"></a>Instruction Decode</span>
+<span id="cb1-102"><a href="#cb1-102"></a></span>
+<span id="cb1-103"><a href="#cb1-103"></a><span class="fu">## Instruction Decode</span></span>
+<span id="cb1-104"><a href="#cb1-104"></a></span>
 <span id="cb1-105"><a href="#cb1-105"></a>• Splitting up the</span>
 <span id="cb1-106"><a href="#cb1-106"></a>instruction fields</span>
 <span id="cb1-107"><a href="#cb1-107"></a>• Generating control</span>
@@ -1001,9 +1383,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-116"><a href="#cb1-116"></a>calculation</span>
 <span id="cb1-117"><a href="#cb1-117"></a>Immediate</span>
 <span id="cb1-118"><a href="#cb1-118"></a>generator</span>
-<span id="cb1-119"><a href="#cb1-119"></a>7</span>
-<span id="cb1-120"><a href="#cb1-120"></a></span>
-<span id="cb1-121"><a href="#cb1-121"></a>Execute</span>
+<span id="cb1-119"><a href="#cb1-119"></a></span>
+<span id="cb1-120"><a href="#cb1-120"></a><span class="fu">## Execute</span></span>
+<span id="cb1-121"><a href="#cb1-121"></a></span>
 <span id="cb1-122"><a href="#cb1-122"></a>• ALU Operation</span>
 <span id="cb1-123"><a href="#cb1-123"></a>• Branch address</span>
 <span id="cb1-124"><a href="#cb1-124"></a>Offset</span>
@@ -1013,9 +1395,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-128"><a href="#cb1-128"></a>2</span>
 <span id="cb1-129"><a href="#cb1-129"></a>Immediate</span>
 <span id="cb1-130"><a href="#cb1-130"></a>generator</span>
-<span id="cb1-131"><a href="#cb1-131"></a>8</span>
-<span id="cb1-132"><a href="#cb1-132"></a></span>
-<span id="cb1-133"><a href="#cb1-133"></a>Memory</span>
+<span id="cb1-131"><a href="#cb1-131"></a></span>
+<span id="cb1-132"><a href="#cb1-132"></a><span class="fu">## Memory</span></span>
+<span id="cb1-133"><a href="#cb1-133"></a></span>
 <span id="cb1-134"><a href="#cb1-134"></a>Reading/writing data Offset</span>
 <span id="cb1-135"><a href="#cb1-135"></a>Scale</span>
 <span id="cb1-136"><a href="#cb1-136"></a>memory</span>
@@ -1023,9 +1405,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-138"><a href="#cb1-138"></a>2</span>
 <span id="cb1-139"><a href="#cb1-139"></a>Immediate</span>
 <span id="cb1-140"><a href="#cb1-140"></a>generator</span>
-<span id="cb1-141"><a href="#cb1-141"></a>9</span>
-<span id="cb1-142"><a href="#cb1-142"></a></span>
-<span id="cb1-143"><a href="#cb1-143"></a>Writeback</span>
+<span id="cb1-141"><a href="#cb1-141"></a></span>
+<span id="cb1-142"><a href="#cb1-142"></a><span class="fu">## Writeback</span></span>
+<span id="cb1-143"><a href="#cb1-143"></a></span>
 <span id="cb1-144"><a href="#cb1-144"></a>Offset</span>
 <span id="cb1-145"><a href="#cb1-145"></a>Scale</span>
 <span id="cb1-146"><a href="#cb1-146"></a>Writing the result to</span>
@@ -1034,9 +1416,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-149"><a href="#cb1-149"></a>2</span>
 <span id="cb1-150"><a href="#cb1-150"></a>Immediate</span>
 <span id="cb1-151"><a href="#cb1-151"></a>generator</span>
-<span id="cb1-152"><a href="#cb1-152"></a>10</span>
-<span id="cb1-153"><a href="#cb1-153"></a></span>
-<span id="cb1-154"><a href="#cb1-154"></a>5-Stage Pipeline</span>
+<span id="cb1-152"><a href="#cb1-152"></a></span>
+<span id="cb1-153"><a href="#cb1-153"></a><span class="fu">## 5-Stage Pipeline</span></span>
+<span id="cb1-154"><a href="#cb1-154"></a></span>
 <span id="cb1-155"><a href="#cb1-155"></a>Offset</span>
 <span id="cb1-156"><a href="#cb1-156"></a>Scale</span>
 <span id="cb1-157"><a href="#cb1-157"></a>1</span>
@@ -1044,9 +1426,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-159"><a href="#cb1-159"></a>Immediate</span>
 <span id="cb1-160"><a href="#cb1-160"></a>generator</span>
 <span id="cb1-161"><a href="#cb1-161"></a>We add in pipeline registers to separate each stage</span>
-<span id="cb1-162"><a href="#cb1-162"></a>11</span>
-<span id="cb1-163"><a href="#cb1-163"></a></span>
-<span id="cb1-164"><a href="#cb1-164"></a>Stages Used by Each Instruction</span>
+<span id="cb1-162"><a href="#cb1-162"></a></span>
+<span id="cb1-163"><a href="#cb1-163"></a><span class="fu">## Stages Used by Each Instruction</span></span>
+<span id="cb1-164"><a href="#cb1-164"></a></span>
 <span id="cb1-165"><a href="#cb1-165"></a>Instruction Fetch Decode Execute Memory Writeback</span>
 <span id="cb1-166"><a href="#cb1-166"></a>arithmetic and</span>
 <span id="cb1-167"><a href="#cb1-167"></a>logical (add, addi,</span>
@@ -1055,9 +1437,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-170"><a href="#cb1-170"></a>lw</span>
 <span id="cb1-171"><a href="#cb1-171"></a>branch</span>
 <span id="cb1-172"><a href="#cb1-172"></a>j</span>
-<span id="cb1-173"><a href="#cb1-173"></a>12</span>
-<span id="cb1-174"><a href="#cb1-174"></a></span>
-<span id="cb1-175"><a href="#cb1-175"></a>Stages Used by Each Instruction</span>
+<span id="cb1-173"><a href="#cb1-173"></a></span>
+<span id="cb1-174"><a href="#cb1-174"></a><span class="fu">## Stages Used by Each Instruction</span></span>
+<span id="cb1-175"><a href="#cb1-175"></a></span>
 <span id="cb1-176"><a href="#cb1-176"></a><span class="pp">|</span> Instruction <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span></span>
 <span id="cb1-177"><a href="#cb1-177"></a><span class="pp">| -----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
 <span id="cb1-178"><a href="#cb1-178"></a>arithmetic and</span>
@@ -1068,15 +1450,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-183"><a href="#cb1-183"></a>lw</span>
 <span id="cb1-184"><a href="#cb1-184"></a>branch</span>
 <span id="cb1-185"><a href="#cb1-185"></a>j</span>
-<span id="cb1-186"><a href="#cb1-186"></a>13</span>
-<span id="cb1-187"><a href="#cb1-187"></a></span>
-<span id="cb1-188"><a href="#cb1-188"></a>Time Needed for Each Stage</span>
+<span id="cb1-186"><a href="#cb1-186"></a></span>
+<span id="cb1-187"><a href="#cb1-187"></a><span class="fu">## Time Needed for Each Stage</span></span>
+<span id="cb1-188"><a href="#cb1-188"></a></span>
 <span id="cb1-189"><a href="#cb1-189"></a><span class="pp">|</span>      <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span></span>
 <span id="cb1-190"><a href="#cb1-190"></a><span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
 <span id="cb1-191"><a href="#cb1-191"></a><span class="pp">|</span> Time <span class="pp">|</span> 200ps <span class="pp">|</span> 100ps  <span class="pp">|</span> 200ps   <span class="pp">|</span> 200ps  <span class="pp">|</span> 100ps     <span class="pp">|</span></span>
-<span id="cb1-192"><a href="#cb1-192"></a>15</span>
-<span id="cb1-193"><a href="#cb1-193"></a></span>
-<span id="cb1-194"><a href="#cb1-194"></a>Time Needed for Each Instruction</span>
+<span id="cb1-192"><a href="#cb1-192"></a></span>
+<span id="cb1-193"><a href="#cb1-193"></a><span class="fu">## Time Needed for Each Instruction</span></span>
+<span id="cb1-194"><a href="#cb1-194"></a></span>
 <span id="cb1-195"><a href="#cb1-195"></a><span class="pp">|</span>     <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-196"><a href="#cb1-196"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-197"><a href="#cb1-197"></a>Time</span>
@@ -1093,9 +1475,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-208"><a href="#cb1-208"></a>lw</span>
 <span id="cb1-209"><a href="#cb1-209"></a>branch</span>
 <span id="cb1-210"><a href="#cb1-210"></a>j</span>
-<span id="cb1-211"><a href="#cb1-211"></a>16</span>
-<span id="cb1-212"><a href="#cb1-212"></a></span>
-<span id="cb1-213"><a href="#cb1-213"></a>Time Needed for Each Instruction</span>
+<span id="cb1-211"><a href="#cb1-211"></a></span>
+<span id="cb1-212"><a href="#cb1-212"></a><span class="fu">## Time Needed for Each Instruction</span></span>
+<span id="cb1-213"><a href="#cb1-213"></a></span>
 <span id="cb1-214"><a href="#cb1-214"></a><span class="pp">|</span>     <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-215"><a href="#cb1-215"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-216"><a href="#cb1-216"></a>Time</span>
@@ -1116,90 +1498,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-231"><a href="#cb1-231"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-232"><a href="#cb1-232"></a><span class="pp">|</span> j   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 200 + 100 = 300ps <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-233"><a href="#cb1-233"></a><span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>                   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-234"><a href="#cb1-234"></a>17</span>
-<span id="cb1-235"><a href="#cb1-235"></a></span>
-<span id="cb1-236"><a href="#cb1-236"></a>Min Clock Period</span>
+<span id="cb1-234"><a href="#cb1-234"></a></span>
+<span id="cb1-235"><a href="#cb1-235"></a><span class="fu">## Min Clock Period</span></span>
+<span id="cb1-236"><a href="#cb1-236"></a></span>
 <span id="cb1-237"><a href="#cb1-237"></a>● What is the minimum clock period that will work for all instructions?</span>
 <span id="cb1-238"><a href="#cb1-238"></a>○ Assuming a clock-to-q delay of 20ps</span>
 <span id="cb1-239"><a href="#cb1-239"></a>Even though instructions conceptually pass through all</span>
 <span id="cb1-240"><a href="#cb1-240"></a>stages in a pipeline, for this question assume a single-</span>
 <span id="cb1-241"><a href="#cb1-241"></a>cycle datapath where only the required components</span>
 <span id="cb1-242"><a href="#cb1-242"></a>contribute to delay</span>
-<span id="cb1-243"><a href="#cb1-243"></a>18</span>
-<span id="cb1-244"><a href="#cb1-244"></a></span>
-<span id="cb1-245"><a href="#cb1-245"></a>Single Cycle Datapath Timing</span>
+<span id="cb1-243"><a href="#cb1-243"></a></span>
+<span id="cb1-244"><a href="#cb1-244"></a><span class="fu">## Single Cycle Datapath Timing</span></span>
+<span id="cb1-245"><a href="#cb1-245"></a></span>
 <span id="cb1-246"><a href="#cb1-246"></a>● It takes one clock cycle to execute one instruction</span>
 <span id="cb1-247"><a href="#cb1-247"></a>● If we need to execute 100 instructions, it will take 100 clock cycles</span>
 <span id="cb1-248"><a href="#cb1-248"></a>● If we set our clock period to 820ps, it will take</span>
 <span id="cb1-249"><a href="#cb1-249"></a>○ 820ps to execute one instruction</span>
 <span id="cb1-250"><a href="#cb1-250"></a>○ 82,000ps to execute 100 instructions</span>
-<span id="cb1-251"><a href="#cb1-251"></a>20</span>
-<span id="cb1-252"><a href="#cb1-252"></a></span>
-<span id="cb1-253"><a href="#cb1-253"></a>Executing Instructions on Our Pipelined Datapath</span>
+<span id="cb1-251"><a href="#cb1-251"></a></span>
+<span id="cb1-252"><a href="#cb1-252"></a><span class="fu">## Executing Instructions on Our Pipelined Datapath</span></span>
+<span id="cb1-253"><a href="#cb1-253"></a></span>
 <span id="cb1-254"><a href="#cb1-254"></a>add x8, x6, x7</span>
 <span id="cb1-255"><a href="#cb1-255"></a>lw x9, 100(x0)</span>
 <span id="cb1-256"><a href="#cb1-256"></a>sub x8, x9, x20</span>
 <span id="cb1-257"><a href="#cb1-257"></a>sw x10, 0(x20)</span>
 <span id="cb1-258"><a href="#cb1-258"></a>or x21, x11, x12</span>
-<span id="cb1-259"><a href="#cb1-259"></a>21</span>
-<span id="cb1-260"><a href="#cb1-260"></a></span>
-<span id="cb1-261"><a href="#cb1-261"></a>Cycle 0</span>
+<span id="cb1-259"><a href="#cb1-259"></a></span>
+<span id="cb1-260"><a href="#cb1-260"></a><span class="fu">## Cycle 0</span></span>
+<span id="cb1-261"><a href="#cb1-261"></a></span>
 <span id="cb1-262"><a href="#cb1-262"></a>add x8, x6, x7</span>
-<span id="cb1-263"><a href="#cb1-263"></a>22</span>
-<span id="cb1-264"><a href="#cb1-264"></a></span>
-<span id="cb1-265"><a href="#cb1-265"></a>Cycle 1</span>
+<span id="cb1-263"><a href="#cb1-263"></a></span>
+<span id="cb1-264"><a href="#cb1-264"></a><span class="fu">## Cycle 1</span></span>
+<span id="cb1-265"><a href="#cb1-265"></a></span>
 <span id="cb1-266"><a href="#cb1-266"></a>lw x9, 100(x0) add x8, x6, x7</span>
-<span id="cb1-267"><a href="#cb1-267"></a>23</span>
-<span id="cb1-268"><a href="#cb1-268"></a></span>
-<span id="cb1-269"><a href="#cb1-269"></a>Cycle 2</span>
+<span id="cb1-267"><a href="#cb1-267"></a></span>
+<span id="cb1-268"><a href="#cb1-268"></a><span class="fu">## Cycle 2</span></span>
+<span id="cb1-269"><a href="#cb1-269"></a></span>
 <span id="cb1-270"><a href="#cb1-270"></a><span class="pp">|</span> sub x8, x9, x20  <span class="pp">|</span> lw x9, 100(x0)  <span class="pp">|</span> add x8, x6, x7 <span class="pp">|</span></span>
 <span id="cb1-271"><a href="#cb1-271"></a><span class="pp">| ----------------</span> <span class="pp">| ---------------</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
-<span id="cb1-272"><a href="#cb1-272"></a>24</span>
-<span id="cb1-273"><a href="#cb1-273"></a></span>
-<span id="cb1-274"><a href="#cb1-274"></a>Cycle 3</span>
+<span id="cb1-272"><a href="#cb1-272"></a></span>
+<span id="cb1-273"><a href="#cb1-273"></a><span class="fu">## Cycle 3</span></span>
+<span id="cb1-274"><a href="#cb1-274"></a></span>
 <span id="cb1-275"><a href="#cb1-275"></a>sw x10, 0(x20) lw x9, 100(x0) add x8, x6, x7</span>
 <span id="cb1-276"><a href="#cb1-276"></a>sub x8, x9, x20</span>
-<span id="cb1-277"><a href="#cb1-277"></a>25</span>
-<span id="cb1-278"><a href="#cb1-278"></a></span>
-<span id="cb1-279"><a href="#cb1-279"></a>Cycle 4</span>
+<span id="cb1-277"><a href="#cb1-277"></a></span>
+<span id="cb1-278"><a href="#cb1-278"></a><span class="fu">## Cycle 4</span></span>
+<span id="cb1-279"><a href="#cb1-279"></a></span>
 <span id="cb1-280"><a href="#cb1-280"></a>add x8, x6, x7</span>
 <span id="cb1-281"><a href="#cb1-281"></a><span class="pp">|</span> or x21, x11, x12 <span class="pp">|</span> sw x10, 0(x20) <span class="pp">|</span> lw x9, 100(x0)  <span class="pp">|</span></span>
 <span id="cb1-282"><a href="#cb1-282"></a><span class="pp">| ----------------</span> <span class="pp">| --------------</span> <span class="pp">| ---------------</span> <span class="pp">|</span></span>
 <span id="cb1-283"><a href="#cb1-283"></a>sub x8, x9, x20</span>
-<span id="cb1-284"><a href="#cb1-284"></a>26</span>
-<span id="cb1-285"><a href="#cb1-285"></a></span>
-<span id="cb1-286"><a href="#cb1-286"></a>Cycle 5</span>
+<span id="cb1-284"><a href="#cb1-284"></a></span>
+<span id="cb1-285"><a href="#cb1-285"></a><span class="fu">## Cycle 5</span></span>
+<span id="cb1-286"><a href="#cb1-286"></a></span>
 <span id="cb1-287"><a href="#cb1-287"></a>sw x10, 0(x20) lw x9, 100(x0)</span>
 <span id="cb1-288"><a href="#cb1-288"></a>or x21, x11, x12 sub x8, x9, x20</span>
-<span id="cb1-289"><a href="#cb1-289"></a>27</span>
-<span id="cb1-290"><a href="#cb1-290"></a></span>
-<span id="cb1-291"><a href="#cb1-291"></a>Cycle 6</span>
+<span id="cb1-289"><a href="#cb1-289"></a></span>
+<span id="cb1-290"><a href="#cb1-290"></a><span class="fu">## Cycle 6</span></span>
+<span id="cb1-291"><a href="#cb1-291"></a></span>
 <span id="cb1-292"><a href="#cb1-292"></a>or x21, x11, x12 sw x10, 0(x20)</span>
 <span id="cb1-293"><a href="#cb1-293"></a>sub x8, x9, x20</span>
-<span id="cb1-294"><a href="#cb1-294"></a>28</span>
-<span id="cb1-295"><a href="#cb1-295"></a></span>
-<span id="cb1-296"><a href="#cb1-296"></a>Cycle 7</span>
+<span id="cb1-294"><a href="#cb1-294"></a></span>
+<span id="cb1-295"><a href="#cb1-295"></a><span class="fu">## Cycle 7</span></span>
+<span id="cb1-296"><a href="#cb1-296"></a></span>
 <span id="cb1-297"><a href="#cb1-297"></a>or x21, x11, x12 sw x10, 0(x20)</span>
-<span id="cb1-298"><a href="#cb1-298"></a>29</span>
-<span id="cb1-299"><a href="#cb1-299"></a></span>
-<span id="cb1-300"><a href="#cb1-300"></a>Cycle 8</span>
+<span id="cb1-298"><a href="#cb1-298"></a></span>
+<span id="cb1-299"><a href="#cb1-299"></a><span class="fu">## Cycle 8</span></span>
+<span id="cb1-300"><a href="#cb1-300"></a></span>
 <span id="cb1-301"><a href="#cb1-301"></a>or x21, x11, x12</span>
-<span id="cb1-302"><a href="#cb1-302"></a>30</span>
-<span id="cb1-303"><a href="#cb1-303"></a></span>
-<span id="cb1-304"><a href="#cb1-304"></a>The clock-to-q delay of a pipeline</span>
+<span id="cb1-302"><a href="#cb1-302"></a></span>
+<span id="cb1-303"><a href="#cb1-303"></a><span class="fu">## The clock-to-q delay of a pipeline</span></span>
+<span id="cb1-304"><a href="#cb1-304"></a></span>
 <span id="cb1-305"><a href="#cb1-305"></a>Determine the Min Clock Period</span>
 <span id="cb1-306"><a href="#cb1-306"></a>register is 20ps</span>
 <span id="cb1-307"><a href="#cb1-307"></a><span class="pp">|</span> 200ps <span class="pp">|</span> 100ps <span class="pp">|</span> 200ps <span class="pp">|</span> 200ps <span class="pp">|</span> 100ps <span class="pp">|</span></span>
 <span id="cb1-308"><a href="#cb1-308"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
-<span id="cb1-309"><a href="#cb1-309"></a>31</span>
-<span id="cb1-310"><a href="#cb1-310"></a></span>
-<span id="cb1-311"><a href="#cb1-311"></a>Latency</span>
+<span id="cb1-309"><a href="#cb1-309"></a></span>
+<span id="cb1-310"><a href="#cb1-310"></a><span class="fu">## Latency</span></span>
+<span id="cb1-311"><a href="#cb1-311"></a></span>
 <span id="cb1-312"><a href="#cb1-312"></a>■ What is the latency of executing a single instruction on</span>
 <span id="cb1-313"><a href="#cb1-313"></a>– The single cycle datapath with a clock period of 820ps?</span>
 <span id="cb1-314"><a href="#cb1-314"></a>– The 5-stage pipelined datapath with a clock period of 220ps?</span>
-<span id="cb1-315"><a href="#cb1-315"></a>33</span>
-<span id="cb1-316"><a href="#cb1-316"></a></span>
-<span id="cb1-317"><a href="#cb1-317"></a>Speedup</span>
+<span id="cb1-315"><a href="#cb1-315"></a></span>
+<span id="cb1-316"><a href="#cb1-316"></a><span class="fu">## Speedup</span></span>
+<span id="cb1-317"><a href="#cb1-317"></a></span>
 <span id="cb1-318"><a href="#cb1-318"></a>■ What is the speedup of executing the following set of instructions on a single-cycle</span>
 <span id="cb1-319"><a href="#cb1-319"></a>vs pipelined datapath assuming</span>
 <span id="cb1-320"><a href="#cb1-320"></a>– single-cycle clock period = 820 ps</span>
@@ -1212,9 +1594,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-327"><a href="#cb1-327"></a>sw x10, 0(x20)</span>
 <span id="cb1-328"><a href="#cb1-328"></a>𝑝𝑖𝑝𝑒𝑙𝑖𝑛𝑒𝑑 𝑒𝑥𝑒𝑐𝑢𝑡𝑖𝑜𝑛 𝑡𝑖𝑚𝑒</span>
 <span id="cb1-329"><a href="#cb1-329"></a>or x21, x11, x12</span>
-<span id="cb1-330"><a href="#cb1-330"></a>35</span>
-<span id="cb1-331"><a href="#cb1-331"></a></span>
-<span id="cb1-332"><a href="#cb1-332"></a>SOME REMAINING</span>
+<span id="cb1-330"><a href="#cb1-330"></a></span>
+<span id="cb1-331"><a href="#cb1-331"></a><span class="fu">## SOME REMAINING</span></span>
+<span id="cb1-332"><a href="#cb1-332"></a></span>
 <span id="cb1-333"><a href="#cb1-333"></a>RISC-V DETAILS…</span>
 <span id="cb1-334"><a href="#cb1-334"></a></span>
 <span id="cb1-335"><a href="#cb1-335"></a>Branch Encoding</span>
@@ -1223,20 +1605,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-338"><a href="#cb1-338"></a>■ Byte offset to target instruction</span>
 <span id="cb1-339"><a href="#cb1-339"></a>– The distance, in bytes, between the current branch instruction</span>
 <span id="cb1-340"><a href="#cb1-340"></a>and the instruction it would go to if the branch is taken</span>
-<span id="cb1-341"><a href="#cb1-341"></a>38</span>
-<span id="cb1-342"><a href="#cb1-342"></a></span>
-<span id="cb1-343"><a href="#cb1-343"></a>Fill in the blanks</span>
+<span id="cb1-341"><a href="#cb1-341"></a></span>
+<span id="cb1-342"><a href="#cb1-342"></a><span class="fu">## Fill in the blanks</span></span>
+<span id="cb1-343"><a href="#cb1-343"></a></span>
 <span id="cb1-344"><a href="#cb1-344"></a>■ The byte offset will always be a multiple of ________,</span>
 <span id="cb1-345"><a href="#cb1-345"></a>which means that the last ________ bits of the byte</span>
 <span id="cb1-346"><a href="#cb1-346"></a>offset will always be 0.</span>
-<span id="cb1-347"><a href="#cb1-347"></a>39</span>
-<span id="cb1-348"><a href="#cb1-348"></a></span>
-<span id="cb1-349"><a href="#cb1-349"></a>Generating the Branch Immediate</span>
+<span id="cb1-347"><a href="#cb1-347"></a></span>
+<span id="cb1-348"><a href="#cb1-348"></a><span class="fu">## Generating the Branch Immediate</span></span>
+<span id="cb1-349"><a href="#cb1-349"></a></span>
 <span id="cb1-350"><a href="#cb1-350"></a><span class="ss">1. </span>Compute the byte offset relative to PC + 4 (the next instruction)</span>
 <span id="cb1-351"><a href="#cb1-351"></a><span class="ss">2. </span>Remove the bottom two bits (these will always be 0)</span>
-<span id="cb1-352"><a href="#cb1-352"></a>41</span>
-<span id="cb1-353"><a href="#cb1-353"></a></span>
-<span id="cb1-354"><a href="#cb1-354"></a>Branching Instructions: Changing the PC</span>
+<span id="cb1-352"><a href="#cb1-352"></a></span>
+<span id="cb1-353"><a href="#cb1-353"></a><span class="fu">## Branching Instructions: Changing the PC</span></span>
+<span id="cb1-354"><a href="#cb1-354"></a></span>
 <span id="cb1-355"><a href="#cb1-355"></a>The Program Counter, or PC, is a special register that points</span>
 <span id="cb1-356"><a href="#cb1-356"></a>to the address of the next instruction to be fetched. There</span>
 <span id="cb1-357"><a href="#cb1-357"></a>are special instructions for changing the PC. One type is</span>
@@ -1256,9 +1638,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-371"><a href="#cb1-371"></a>110 - BLTU</span>
 <span id="cb1-372"><a href="#cb1-372"></a>false PC+4</span>
 <span id="cb1-373"><a href="#cb1-373"></a>111 - BGEU</span>
-<span id="cb1-374"><a href="#cb1-374"></a>42</span>
-<span id="cb1-375"><a href="#cb1-375"></a></span>
-<span id="cb1-376"><a href="#cb1-376"></a>Branch Examples</span>
+<span id="cb1-374"><a href="#cb1-374"></a></span>
+<span id="cb1-375"><a href="#cb1-375"></a><span class="fu">## Branch Examples</span></span>
+<span id="cb1-376"><a href="#cb1-376"></a></span>
 <span id="cb1-377"><a href="#cb1-377"></a>If the contents of x10 is not equal to 0 then branch to the nearby address</span>
 <span id="cb1-378"><a href="#cb1-378"></a>bne x10,x0,else</span>
 <span id="cb1-379"><a href="#cb1-379"></a>with the label "else"</span>
@@ -1271,9 +1653,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-386"><a href="#cb1-386"></a>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 1</span>
 <span id="cb1-387"><a href="#cb1-387"></a>beq x0,x0,'s</span>
 <span id="cb1-388"><a href="#cb1-388"></a>encoding.</span>
-<span id="cb1-389"><a href="#cb1-389"></a>43</span>
-<span id="cb1-390"><a href="#cb1-390"></a></span>
-<span id="cb1-391"><a href="#cb1-391"></a>Branch Immediate</span>
+<span id="cb1-389"><a href="#cb1-389"></a></span>
+<span id="cb1-390"><a href="#cb1-390"></a><span class="fu">## Branch Immediate</span></span>
+<span id="cb1-391"><a href="#cb1-391"></a></span>
 <span id="cb1-392"><a href="#cb1-392"></a>■ For each of the branch instructions below, what is the byte offset of the target</span>
 <span id="cb1-393"><a href="#cb1-393"></a>instruction?</span>
 <span id="cb1-394"><a href="#cb1-394"></a>beq x4, x5, elseIf</span>
@@ -1289,9 +1671,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-404"><a href="#cb1-404"></a>else:</span>
 <span id="cb1-405"><a href="#cb1-405"></a>add x7, x8, x11</span>
 <span id="cb1-406"><a href="#cb1-406"></a>exit:</span>
-<span id="cb1-407"><a href="#cb1-407"></a>44</span>
-<span id="cb1-408"><a href="#cb1-408"></a></span>
-<span id="cb1-409"><a href="#cb1-409"></a>Branch Immediate</span>
+<span id="cb1-407"><a href="#cb1-407"></a></span>
+<span id="cb1-408"><a href="#cb1-408"></a><span class="fu">## Branch Immediate</span></span>
+<span id="cb1-409"><a href="#cb1-409"></a></span>
 <span id="cb1-410"><a href="#cb1-410"></a>■ For each of the branch instructions below, what is the byte offset of the target</span>
 <span id="cb1-411"><a href="#cb1-411"></a>instruction?</span>
 <span id="cb1-412"><a href="#cb1-412"></a>beq x4, x5, elseIf</span>
@@ -1308,9 +1690,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-423"><a href="#cb1-423"></a>else:</span>
 <span id="cb1-424"><a href="#cb1-424"></a>add x7, x8, x11</span>
 <span id="cb1-425"><a href="#cb1-425"></a>exit:</span>
-<span id="cb1-426"><a href="#cb1-426"></a>45</span>
-<span id="cb1-427"><a href="#cb1-427"></a></span>
-<span id="cb1-428"><a href="#cb1-428"></a>PC relative: make the code</span>
+<span id="cb1-426"><a href="#cb1-426"></a></span>
+<span id="cb1-427"><a href="#cb1-427"></a><span class="fu">## PC relative: make the code</span></span>
+<span id="cb1-428"><a href="#cb1-428"></a></span>
 <span id="cb1-429"><a href="#cb1-429"></a>PC Relative offsets</span>
 <span id="cb1-430"><a href="#cb1-430"></a>relocatable ☺</span>
 <span id="cb1-431"><a href="#cb1-431"></a>All branch offsets in RISC-V are added to the PC to</span>
@@ -1327,9 +1709,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-442"><a href="#cb1-442"></a>pc →</span>
 <span id="cb1-443"><a href="#cb1-443"></a>︙</span>
 <span id="cb1-444"><a href="#cb1-444"></a>4094</span>
-<span id="cb1-445"><a href="#cb1-445"></a>46</span>
-<span id="cb1-446"><a href="#cb1-446"></a></span>
-<span id="cb1-447"><a href="#cb1-447"></a>A simple Program</span>
+<span id="cb1-445"><a href="#cb1-445"></a></span>
+<span id="cb1-446"><a href="#cb1-446"></a><span class="fu">## A simple Program</span></span>
+<span id="cb1-447"><a href="#cb1-447"></a></span>
 <span id="cb1-448"><a href="#cb1-448"></a>addi x7,x0,11 # x7 is 10 + 1</span>
 <span id="cb1-449"><a href="#cb1-449"></a>addi x5,x0,0 # x5 is i</span>
 <span id="cb1-450"><a href="#cb1-450"></a>addi x6,x0,0 # x6 is sum</span>
@@ -1337,9 +1719,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-452"><a href="#cb1-452"></a>addi x5,x5,1 # i++</span>
 <span id="cb1-453"><a href="#cb1-453"></a>blt x5,x7,loop</span>
 <span id="cb1-454"><a href="#cb1-454"></a>halt: beq x0,x0,halt</span>
-<span id="cb1-455"><a href="#cb1-455"></a>47</span>
-<span id="cb1-456"><a href="#cb1-456"></a></span>
-<span id="cb1-457"><a href="#cb1-457"></a>A simple Program</span>
+<span id="cb1-455"><a href="#cb1-455"></a></span>
+<span id="cb1-456"><a href="#cb1-456"></a><span class="fu">## A simple Program</span></span>
+<span id="cb1-457"><a href="#cb1-457"></a></span>
 <span id="cb1-458"><a href="#cb1-458"></a>addi x7,x0,11 # x7 is 10 + 1</span>
 <span id="cb1-459"><a href="#cb1-459"></a>addi x5,x0,0 # x5 is i</span>
 <span id="cb1-460"><a href="#cb1-460"></a>addi x6,x0,0 # x6 is sum</span>
@@ -1351,9 +1733,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-466"><a href="#cb1-466"></a><span class="fu"># sum = 0;</span></span>
 <span id="cb1-467"><a href="#cb1-467"></a><span class="fu"># for (i = 0; i &lt;= 10; i++)</span></span>
 <span id="cb1-468"><a href="#cb1-468"></a><span class="fu"># sum = sum + i;</span></span>
-<span id="cb1-469"><a href="#cb1-469"></a>48</span>
-<span id="cb1-470"><a href="#cb1-470"></a></span>
-<span id="cb1-471"><a href="#cb1-471"></a>JAL: move the PC and record</span>
+<span id="cb1-469"><a href="#cb1-469"></a></span>
+<span id="cb1-470"><a href="#cb1-470"></a><span class="fu">## JAL: move the PC and record</span></span>
+<span id="cb1-471"><a href="#cb1-471"></a></span>
 <span id="cb1-472"><a href="#cb1-472"></a>Jumping long distances</span>
 <span id="cb1-473"><a href="#cb1-473"></a>where to come back to!</span>
 <span id="cb1-474"><a href="#cb1-474"></a>There are two more instructions for jumping long</span>
@@ -1375,9 +1757,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-490"><a href="#cb1-490"></a>Write the address of the following instruction, PC + 4, into Reg<span class="co">[</span><span class="ot">d</span><span class="co">]</span>, then jump to</span>
 <span id="cb1-491"><a href="#cb1-491"></a>the instruction that is found by adding the current PC to the signed immediate</span>
 <span id="cb1-492"><a href="#cb1-492"></a>offset. In practice this is usually specified by a label.</span>
-<span id="cb1-493"><a href="#cb1-493"></a>49</span>
-<span id="cb1-494"><a href="#cb1-494"></a></span>
-<span id="cb1-495"><a href="#cb1-495"></a>Jumping long distances</span>
+<span id="cb1-493"><a href="#cb1-493"></a></span>
+<span id="cb1-494"><a href="#cb1-494"></a><span class="fu">## Jumping long distances</span></span>
+<span id="cb1-495"><a href="#cb1-495"></a></span>
 <span id="cb1-496"><a href="#cb1-496"></a>JALR: jump anywhere by</span>
 <span id="cb1-497"><a href="#cb1-497"></a>computing addr in register first.</span>
 <span id="cb1-498"><a href="#cb1-498"></a>There are two more instructions for jumping long</span>
@@ -1395,17 +1777,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-510"><a href="#cb1-510"></a>PC ← Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span> + sign_extended(imm12)</span>
 <span id="cb1-511"><a href="#cb1-511"></a>Jump to the instruction given by the contents of Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span>, and save the location</span>
 <span id="cb1-512"><a href="#cb1-512"></a>of the next instruction in Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span>.</span>
-<span id="cb1-513"><a href="#cb1-513"></a>50</span>
-<span id="cb1-514"><a href="#cb1-514"></a></span>
-<span id="cb1-515"><a href="#cb1-515"></a>Why store PC + 4?</span>
+<span id="cb1-513"><a href="#cb1-513"></a></span>
+<span id="cb1-514"><a href="#cb1-514"></a><span class="fu">## Why store PC + 4?</span></span>
+<span id="cb1-515"><a href="#cb1-515"></a></span>
 <span id="cb1-516"><a href="#cb1-516"></a>These long-distance "jump" instructions also save the</span>
 <span id="cb1-517"><a href="#cb1-517"></a>address of the following instruction in a register specified</span>
 <span id="cb1-518"><a href="#cb1-518"></a>by Rd. Often, this register will be x0, and therefore is</span>
 <span id="cb1-519"><a href="#cb1-519"></a>ignored. But in other cases it is useful to get back to</span>
 <span id="cb1-520"><a href="#cb1-520"></a>where we jumped from.</span>
-<span id="cb1-521"><a href="#cb1-521"></a>51</span>
-<span id="cb1-522"><a href="#cb1-522"></a></span>
-<span id="cb1-523"><a href="#cb1-523"></a>Missing Math instructions</span>
+<span id="cb1-521"><a href="#cb1-521"></a></span>
+<span id="cb1-522"><a href="#cb1-522"></a><span class="fu">## Missing Math instructions</span></span>
+<span id="cb1-523"><a href="#cb1-523"></a></span>
 <span id="cb1-524"><a href="#cb1-524"></a>The RISC-V ISA includes integer multiplication and division as an extension to</span>
 <span id="cb1-525"><a href="#cb1-525"></a>the RV32I minimal ISA called RV32M. This is because multiply and divide</span>
 <span id="cb1-526"><a href="#cb1-526"></a>require significant additional H/W. These instructions can always be</span>
@@ -1420,9 +1802,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-535"><a href="#cb1-535"></a>type instructions. It is the setting of the</span>
 <span id="cb1-536"><a href="#cb1-536"></a>"func7" field that indicates the optional</span>
 <span id="cb1-537"><a href="#cb1-537"></a>multiply/divide instructions</span>
-<span id="cb1-538"><a href="#cb1-538"></a>52</span>
-<span id="cb1-539"><a href="#cb1-539"></a></span>
-<span id="cb1-540"><a href="#cb1-540"></a>Multiply</span>
+<span id="cb1-538"><a href="#cb1-538"></a></span>
+<span id="cb1-539"><a href="#cb1-539"></a><span class="fu">## Multiply</span></span>
+<span id="cb1-540"><a href="#cb1-540"></a></span>
 <span id="cb1-541"><a href="#cb1-541"></a>MUL: multiply registers</span>
 <span id="cb1-542"><a href="#cb1-542"></a><span class="pp">|</span> Syntax:    <span class="pp">|</span>     <span class="pp">|</span> mul rd,rs,rt                            <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-543"><a href="#cb1-543"></a><span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---------------------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
@@ -1434,9 +1816,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-549"><a href="#cb1-549"></a>and semantically compliant with the RV32M mul instruction.</span>
 <span id="cb1-550"><a href="#cb1-550"></a><span class="pp">|</span> Example:  <span class="pp">|</span> mul x5,x6,x7  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> # Encoded as: 0x027302B3 <span class="pp">|</span></span>
 <span id="cb1-551"><a href="#cb1-551"></a><span class="pp">| ---------</span> <span class="pp">| -------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------------------</span> <span class="pp">|</span></span>
-<span id="cb1-552"><a href="#cb1-552"></a>53</span>
-<span id="cb1-553"><a href="#cb1-553"></a></span>
-<span id="cb1-554"><a href="#cb1-554"></a>Divide</span>
+<span id="cb1-552"><a href="#cb1-552"></a></span>
+<span id="cb1-553"><a href="#cb1-553"></a><span class="fu">## Divide</span></span>
+<span id="cb1-554"><a href="#cb1-554"></a></span>
 <span id="cb1-555"><a href="#cb1-555"></a>DIV: divide registers</span>
 <span id="cb1-556"><a href="#cb1-556"></a>Syntax: div rd,rs,rt</span>
 <span id="cb1-557"><a href="#cb1-557"></a>Encoding: 0000 001t tttt ssss s100 dddd d011 0011</span>
@@ -1448,9 +1830,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-563"><a href="#cb1-563"></a>DIV is binary and semantically compliant with the RV32M</span>
 <span id="cb1-564"><a href="#cb1-564"></a>div instruction.</span>
 <span id="cb1-565"><a href="#cb1-565"></a>Example: div x7,x5,x6 # Encoded as: 0x0262C3B3</span>
-<span id="cb1-566"><a href="#cb1-566"></a>54</span>
-<span id="cb1-567"><a href="#cb1-567"></a></span>
-<span id="cb1-568"><a href="#cb1-568"></a>Remainder</span>
+<span id="cb1-566"><a href="#cb1-566"></a></span>
+<span id="cb1-567"><a href="#cb1-567"></a><span class="fu">## Remainder</span></span>
+<span id="cb1-568"><a href="#cb1-568"></a></span>
 <span id="cb1-569"><a href="#cb1-569"></a>REM: remainder of a register quotient</span>
 <span id="cb1-570"><a href="#cb1-570"></a>Syntax:  rem rd,rs,rt</span>
 <span id="cb1-571"><a href="#cb1-571"></a>Encoding:  0000 001t tttt ssss s110 dddd d011 0011</span>
@@ -1465,9 +1847,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-580"><a href="#cb1-580"></a>Example:</span>
 <span id="cb1-581"><a href="#cb1-581"></a><span class="pp">|</span> rem x7,x5,x6  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> # Encoded as: 0x0262E3B3 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-582"><a href="#cb1-582"></a><span class="pp">| -------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-583"><a href="#cb1-583"></a>55</span>
-<span id="cb1-584"><a href="#cb1-584"></a></span>
-<span id="cb1-585"><a href="#cb1-585"></a>Another instruction: AUIPC</span>
+<span id="cb1-583"><a href="#cb1-583"></a></span>
+<span id="cb1-584"><a href="#cb1-584"></a><span class="fu">## Another instruction: AUIPC</span></span>
+<span id="cb1-585"><a href="#cb1-585"></a></span>
 <span id="cb1-586"><a href="#cb1-586"></a>PC-relative branch + jump instructions allow for relocatable code.</span>
 <span id="cb1-587"><a href="#cb1-587"></a>However, what about relocatable “data”?</span>
 <span id="cb1-588"><a href="#cb1-588"></a>Ex: you might want to place a data structure in a code section and be</span>
@@ -1478,9 +1860,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-593"><a href="#cb1-593"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
 <span id="cb1-594"><a href="#cb1-594"></a>U-type: Imm20 rd 0 0 1 0 1 1 1</span>
 <span id="cb1-595"><a href="#cb1-595"></a>auipc x10,next # encoded as 0x00000517</span>
-<span id="cb1-596"><a href="#cb1-596"></a>56</span>
-<span id="cb1-597"><a href="#cb1-597"></a></span>
-<span id="cb1-598"><a href="#cb1-598"></a>AUIPC details</span>
+<span id="cb1-596"><a href="#cb1-596"></a></span>
+<span id="cb1-597"><a href="#cb1-597"></a><span class="fu">## AUIPC details</span></span>
+<span id="cb1-598"><a href="#cb1-598"></a></span>
 <span id="cb1-599"><a href="#cb1-599"></a>This instruction gives you a PC-relative</span>
 <span id="cb1-600"><a href="#cb1-600"></a>base address. Once you have it in a</span>
 <span id="cb1-601"><a href="#cb1-601"></a>register (rd), you can use a load</span>
@@ -1499,9 +1881,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-614"><a href="#cb1-614"></a>addresses directly. AUIC shifts a 20 bit immediate by 12 to</span>
 <span id="cb1-615"><a href="#cb1-615"></a>get the upper 20 bits of an address near our target.</span>
 <span id="cb1-616"><a href="#cb1-616"></a>AUIPC + load offset = full 32 bit address computation</span>
-<span id="cb1-617"><a href="#cb1-617"></a>57</span>
-<span id="cb1-618"><a href="#cb1-618"></a></span>
-<span id="cb1-619"><a href="#cb1-619"></a>Branch, Jump, lui and auipc</span>
+<span id="cb1-617"><a href="#cb1-617"></a></span>
+<span id="cb1-618"><a href="#cb1-618"></a><span class="fu">## Branch, Jump, lui and auipc</span></span>
+<span id="cb1-619"><a href="#cb1-619"></a></span>
 <span id="cb1-620"><a href="#cb1-620"></a>Branches add a 12-bit “sign-extended”</span>
 <span id="cb1-621"><a href="#cb1-621"></a>immediate value (multiplied by 2) to the</span>
 <span id="cb1-622"><a href="#cb1-622"></a>current PC if taken.</span>
@@ -1512,9 +1894,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-627"><a href="#cb1-627"></a>PC-relative offsets used by the AUIPC</span>
 <span id="cb1-628"><a href="#cb1-628"></a>instruction, and large immediates of LUI</span>
 <span id="cb1-629"><a href="#cb1-629"></a>and store them into the register file.</span>
-<span id="cb1-630"><a href="#cb1-630"></a>58</span>
-<span id="cb1-631"><a href="#cb1-631"></a></span>
-<span id="cb1-632"><a href="#cb1-632"></a>THE APPLICATION</span>
+<span id="cb1-630"><a href="#cb1-630"></a></span>
+<span id="cb1-631"><a href="#cb1-631"></a><span class="fu">## THE APPLICATION</span></span>
+<span id="cb1-632"><a href="#cb1-632"></a></span>
 <span id="cb1-633"><a href="#cb1-633"></a>BINARY INTERFACE</span>
 <span id="cb1-634"><a href="#cb1-634"></a>(ABI) AND PROCEDURE</span>
 <span id="cb1-635"><a href="#cb1-635"></a>CALLS!</span>
@@ -1545,9 +1927,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-660"><a href="#cb1-660"></a>xMax = max(max(x1,x2),x3);</span>
 <span id="cb1-661"><a href="#cb1-661"></a><span class="pp">|</span>     <span class="pp">|</span> yMax = max(max(y1,y2),y3); <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-662"><a href="#cb1-662"></a><span class="pp">| ---</span> <span class="pp">| --------------------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-663"><a href="#cb1-663"></a>60</span>
-<span id="cb1-664"><a href="#cb1-664"></a></span>
-<span id="cb1-665"><a href="#cb1-665"></a>More Procedure Power</span>
+<span id="cb1-663"><a href="#cb1-663"></a></span>
+<span id="cb1-664"><a href="#cb1-664"></a><span class="fu">## More Procedure Power</span></span>
+<span id="cb1-665"><a href="#cb1-665"></a></span>
 <span id="cb1-666"><a href="#cb1-666"></a>Global vs. Local scope (Name Independence)</span>
 <span id="cb1-667"><a href="#cb1-667"></a>How do we</span>
 <span id="cb1-668"><a href="#cb1-668"></a>int x = 9;</span>
@@ -1570,9 +1952,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-685"><a href="#cb1-685"></a>main() {</span>
 <span id="cb1-686"><a href="#cb1-686"></a>fee(foo(x));</span>
 <span id="cb1-687"><a href="#cb1-687"></a>}</span>
-<span id="cb1-688"><a href="#cb1-688"></a>61</span>
-<span id="cb1-689"><a href="#cb1-689"></a></span>
-<span id="cb1-690"><a href="#cb1-690"></a>Functions and procedure Calls</span>
+<span id="cb1-688"><a href="#cb1-688"></a></span>
+<span id="cb1-689"><a href="#cb1-689"></a><span class="fu">## Functions and procedure Calls</span></span>
+<span id="cb1-690"><a href="#cb1-690"></a></span>
 <span id="cb1-691"><a href="#cb1-691"></a>Functions and procedures are essential components of code reuse. The also</span>
 <span id="cb1-692"><a href="#cb1-692"></a>allow code to be organized into modules. A key components of procedures are</span>
 <span id="cb1-693"><a href="#cb1-693"></a>they:</span>
@@ -1582,9 +1964,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-697"><a href="#cb1-697"></a>● clean up behind themselves, they avoid creating unintended side-effects</span>
 <span id="cb1-698"><a href="#cb1-698"></a>● can call themselves to implement</span>
 <span id="cb1-699"><a href="#cb1-699"></a>Recursive methods/functions</span>
-<span id="cb1-700"><a href="#cb1-700"></a>62</span>
-<span id="cb1-701"><a href="#cb1-701"></a></span>
-<span id="cb1-702"><a href="#cb1-702"></a>Supporting procedure Calls</span>
+<span id="cb1-700"><a href="#cb1-700"></a></span>
+<span id="cb1-701"><a href="#cb1-701"></a><span class="fu">## Supporting procedure Calls</span></span>
+<span id="cb1-702"><a href="#cb1-702"></a></span>
 <span id="cb1-703"><a href="#cb1-703"></a>Reusable code also requires agreed upon conventions, such as where a</span>
 <span id="cb1-704"><a href="#cb1-704"></a>caller's arguments can be found by the callee. These are actually not part of</span>
 <span id="cb1-705"><a href="#cb1-705"></a>the ISA, they are part of a standard called the processor's "Application Binary</span>
@@ -1597,9 +1979,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-712"><a href="#cb1-712"></a><span class="ss">4. </span>Perform the expected calculation</span>
 <span id="cb1-713"><a href="#cb1-713"></a><span class="ss">5. </span>Put the result where the caller can find them</span>
 <span id="cb1-714"><a href="#cb1-714"></a><span class="ss">6. </span>Return control to the point just after where it was called</span>
-<span id="cb1-715"><a href="#cb1-715"></a>63</span>
-<span id="cb1-716"><a href="#cb1-716"></a></span>
-<span id="cb1-717"><a href="#cb1-717"></a>Register use conventions</span>
+<span id="cb1-715"><a href="#cb1-715"></a></span>
+<span id="cb1-716"><a href="#cb1-716"></a><span class="fu">## Register use conventions</span></span>
+<span id="cb1-717"><a href="#cb1-717"></a></span>
 <span id="cb1-718"><a href="#cb1-718"></a><span class="pp">|</span>     <span class="pp">|</span> x0/zero (always zero) <span class="pp">|</span> x16/a6 (argument) <span class="pp">|</span></span>
 <span id="cb1-719"><a href="#cb1-719"></a><span class="pp">| ---</span> <span class="pp">| ---------------------</span> <span class="pp">| -----------------</span> <span class="pp">|</span></span>
 <span id="cb1-720"><a href="#cb1-720"></a>By convention, the RISC-V</span>
@@ -1635,9 +2017,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-750"><a href="#cb1-750"></a>accidentally overwriting each  compiled code to co-execute  safely share CPU without</span>
 <span id="cb1-751"><a href="#cb1-751"></a><span class="pp">|</span> other’s values <span class="pp">|</span> correctly! <span class="pp">|</span> corrupting each other’s data <span class="pp">|</span></span>
 <span id="cb1-752"><a href="#cb1-752"></a><span class="pp">| --------------</span> <span class="pp">| ----------</span> <span class="pp">| ----------------------------</span> <span class="pp">|</span></span>
-<span id="cb1-753"><a href="#cb1-753"></a>64</span>
-<span id="cb1-754"><a href="#cb1-754"></a></span>
-<span id="cb1-755"><a href="#cb1-755"></a>These conventions for</span>
+<span id="cb1-753"><a href="#cb1-753"></a></span>
+<span id="cb1-754"><a href="#cb1-754"></a><span class="fu">## These conventions for</span></span>
+<span id="cb1-755"><a href="#cb1-755"></a></span>
 <span id="cb1-756"><a href="#cb1-756"></a>allocating variables when</span>
 <span id="cb1-757"><a href="#cb1-757"></a>RISC-V Stack Convention</span>
 <span id="cb1-758"><a href="#cb1-758"></a>calling fns → part of the ABI</span>
@@ -1667,9 +2049,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-782"><a href="#cb1-782"></a>from the program Lower</span>
 <span id="cb1-783"><a href="#cb1-783"></a>addresses</span>
 <span id="cb1-784"><a href="#cb1-784"></a>and its data.</span>
-<span id="cb1-785"><a href="#cb1-785"></a>65</span>
-<span id="cb1-786"><a href="#cb1-786"></a></span>
-<span id="cb1-787"><a href="#cb1-787"></a>Stack Management Policies</span>
+<span id="cb1-785"><a href="#cb1-785"></a></span>
+<span id="cb1-786"><a href="#cb1-786"></a><span class="fu">## Stack Management Policies</span></span>
+<span id="cb1-787"><a href="#cb1-787"></a></span>
 <span id="cb1-788"><a href="#cb1-788"></a>ALLOCATE k: reserve k WORDS of stack</span>
 <span id="cb1-789"><a href="#cb1-789"></a>addi sp,sp,-4*k</span>
 <span id="cb1-790"><a href="#cb1-790"></a>SP = SP - 4*k</span>
@@ -1686,9 +2068,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-801"><a href="#cb1-801"></a>addi sp,sp,4</span>
 <span id="cb1-802"><a href="#cb1-802"></a>Rx = Mem<span class="co">[</span><span class="ot">SP</span><span class="co">]</span></span>
 <span id="cb1-803"><a href="#cb1-803"></a>SP = SP + 4</span>
-<span id="cb1-804"><a href="#cb1-804"></a>66</span>
-<span id="cb1-805"><a href="#cb1-805"></a></span>
-<span id="cb1-806"><a href="#cb1-806"></a>Basics of Procedure Calling</span>
+<span id="cb1-804"><a href="#cb1-804"></a></span>
+<span id="cb1-805"><a href="#cb1-805"></a><span class="fu">## Basics of Procedure Calling</span></span>
+<span id="cb1-806"><a href="#cb1-806"></a></span>
 <span id="cb1-807"><a href="#cb1-807"></a>int x = 35;</span>
 <span id="cb1-808"><a href="#cb1-808"></a>int y = 55;</span>
 <span id="cb1-809"><a href="#cb1-809"></a>int z;</span>
@@ -1705,9 +2087,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-820"><a href="#cb1-820"></a>}</span>
 <span id="cb1-821"><a href="#cb1-821"></a>return a;</span>
 <span id="cb1-822"><a href="#cb1-822"></a>}</span>
-<span id="cb1-823"><a href="#cb1-823"></a>67</span>
-<span id="cb1-824"><a href="#cb1-824"></a></span>
-<span id="cb1-825"><a href="#cb1-825"></a>Basics of Procedure Calling</span>
+<span id="cb1-823"><a href="#cb1-823"></a></span>
+<span id="cb1-824"><a href="#cb1-824"></a><span class="fu">## Basics of Procedure Calling</span></span>
+<span id="cb1-825"><a href="#cb1-825"></a></span>
 <span id="cb1-826"><a href="#cb1-826"></a>main: lw a0,x</span>
 <span id="cb1-827"><a href="#cb1-827"></a>int x = 35;</span>
 <span id="cb1-828"><a href="#cb1-828"></a>lw a1,y</span>
@@ -1738,9 +2120,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-853"><a href="#cb1-853"></a>return a;</span>
 <span id="cb1-854"><a href="#cb1-854"></a>return: jalr zero,(ra)</span>
 <span id="cb1-855"><a href="#cb1-855"></a>}</span>
-<span id="cb1-856"><a href="#cb1-856"></a>68</span>
-<span id="cb1-857"><a href="#cb1-857"></a></span>
-<span id="cb1-858"><a href="#cb1-858"></a>This time, things are really messed up.</span>
+<span id="cb1-856"><a href="#cb1-856"></a></span>
+<span id="cb1-857"><a href="#cb1-857"></a><span class="fu">## This time, things are really messed up.</span></span>
+<span id="cb1-858"><a href="#cb1-858"></a></span>
 <span id="cb1-859"><a href="#cb1-859"></a>That was a little too easy…</span>
 <span id="cb1-860"><a href="#cb1-860"></a>The recursive call to fact( ) overwrites the</span>
 <span id="cb1-861"><a href="#cb1-861"></a>saved value of x in t0.</span>
@@ -1770,9 +2152,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-885"><a href="#cb1-885"></a>}</span>
 <span id="cb1-886"><a href="#cb1-886"></a>mul a0,a0,t0</span>
 <span id="cb1-887"><a href="#cb1-887"></a>return: jalr x0,ra</span>
-<span id="cb1-888"><a href="#cb1-888"></a>69</span>
-<span id="cb1-889"><a href="#cb1-889"></a></span>
-<span id="cb1-890"><a href="#cb1-890"></a>Incorporating A Stack</span>
+<span id="cb1-888"><a href="#cb1-888"></a></span>
+<span id="cb1-889"><a href="#cb1-889"></a><span class="fu">## Incorporating A Stack</span></span>
+<span id="cb1-890"><a href="#cb1-890"></a></span>
 <span id="cb1-891"><a href="#cb1-891"></a>int sqr(int x) { sqr: addi sp,sp,-8</span>
 <span id="cb1-892"><a href="#cb1-892"></a>function</span>
 <span id="cb1-893"><a href="#cb1-893"></a>sw ra,4(sp)</span>
@@ -1807,9 +2189,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-922"><a href="#cb1-922"></a>calls don’t overwrite each other’s saved</span>
 <span id="cb1-923"><a href="#cb1-923"></a>jalr x0,ra</span>
 <span id="cb1-924"><a href="#cb1-924"></a>ra or saved registers</span>
-<span id="cb1-925"><a href="#cb1-925"></a>70</span>
-<span id="cb1-926"><a href="#cb1-926"></a></span>
-<span id="cb1-927"><a href="#cb1-927"></a>The RISC-V was designed so every instruction keeps the same</span>
+<span id="cb1-925"><a href="#cb1-925"></a></span>
+<span id="cb1-926"><a href="#cb1-926"></a><span class="fu">## The RISC-V was designed so every instruction keeps the same</span></span>
+<span id="cb1-927"><a href="#cb1-927"></a></span>
 <span id="cb1-928"><a href="#cb1-928"></a>few fields (opcode, rs1, rs2, rd) in the same positions, and the</span>
 <span id="cb1-929"><a href="#cb1-929"></a>immediates have to bend around that fixed layout.</span>
 <span id="cb1-930"><a href="#cb1-930"></a>FUN IMMEDIATE</span>
@@ -1836,9 +2218,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-951"><a href="#cb1-951"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
 <span id="cb1-952"><a href="#cb1-952"></a>I-type:</span>
 <span id="cb1-953"><a href="#cb1-953"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
-<span id="cb1-954"><a href="#cb1-954"></a>72</span>
-<span id="cb1-955"><a href="#cb1-955"></a></span>
-<span id="cb1-956"><a href="#cb1-956"></a>Immediate Encodings</span>
+<span id="cb1-954"><a href="#cb1-954"></a></span>
+<span id="cb1-955"><a href="#cb1-955"></a><span class="fu">## Immediate Encodings</span></span>
+<span id="cb1-956"><a href="#cb1-956"></a></span>
 <span id="cb1-957"><a href="#cb1-957"></a>Many RISC-V instructions encode a constant value as part of the</span>
 <span id="cb1-958"><a href="#cb1-958"></a>instruction. Unlike other ISAs, the encoding of constants is not uniform.</span>
 <span id="cb1-959"><a href="#cb1-959"></a>The I-type instructions encode their immediate operand as follows:</span>
@@ -1853,9 +2235,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-968"><a href="#cb1-968"></a>1</span>
 <span id="cb1-969"><a href="#cb1-969"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
 <span id="cb1-970"><a href="#cb1-970"></a>But there are exceptions!</span>
-<span id="cb1-971"><a href="#cb1-971"></a>73</span>
-<span id="cb1-972"><a href="#cb1-972"></a></span>
-<span id="cb1-973"><a href="#cb1-973"></a>LUI's Immediate Value</span>
+<span id="cb1-971"><a href="#cb1-971"></a></span>
+<span id="cb1-972"><a href="#cb1-972"></a><span class="fu">## LUI's Immediate Value</span></span>
+<span id="cb1-973"><a href="#cb1-973"></a></span>
 <span id="cb1-974"><a href="#cb1-974"></a>The immediate-field encoding of lui and auipc also seems straightforward,</span>
 <span id="cb1-975"><a href="#cb1-975"></a>but, the immediate values might not be what you expect due to the sign-</span>
 <span id="cb1-976"><a href="#cb1-976"></a>extension of its companion addi instruction.</span>
@@ -1868,9 +2250,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-983"><a href="#cb1-983"></a>imm20 rd opcode</span>
 <span id="cb1-984"><a href="#cb1-984"></a>U-type:</span>
 <span id="cb1-985"><a href="#cb1-985"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
-<span id="cb1-986"><a href="#cb1-986"></a>74</span>
-<span id="cb1-987"><a href="#cb1-987"></a></span>
-<span id="cb1-988"><a href="#cb1-988"></a>Immediate Offsets for Stores</span>
+<span id="cb1-986"><a href="#cb1-986"></a></span>
+<span id="cb1-987"><a href="#cb1-987"></a><span class="fu">## Immediate Offsets for Stores</span></span>
+<span id="cb1-988"><a href="#cb1-988"></a></span>
 <span id="cb1-989"><a href="#cb1-989"></a>RISC-V store instructions include an offset, but it is not encoded in an obvious</span>
 <span id="cb1-990"><a href="#cb1-990"></a>way. Note that there is no need for a rd register in a store, but both rs1 and</span>
 <span id="cb1-991"><a href="#cb1-991"></a>rs2 are needed if the encodings are used consistently.</span>
@@ -1890,9 +2272,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-1005"><a href="#cb1-1005"></a><span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> rs2 <span class="pp">|</span> rs1 <span class="pp">|</span> func3 <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-1006"><a href="#cb1-1006"></a><span class="pp">|</span> S-type: <span class="pp">|</span>     <span class="pp">|</span> imm7 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> imm5 <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-1007"><a href="#cb1-1007"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
-<span id="cb1-1008"><a href="#cb1-1008"></a>75</span>
-<span id="cb1-1009"><a href="#cb1-1009"></a></span>
-<span id="cb1-1010"><a href="#cb1-1010"></a>Immediate Offsets for Branches</span>
+<span id="cb1-1008"><a href="#cb1-1008"></a></span>
+<span id="cb1-1009"><a href="#cb1-1009"></a><span class="fu">## Immediate Offsets for Branches</span></span>
+<span id="cb1-1010"><a href="#cb1-1010"></a></span>
 <span id="cb1-1011"><a href="#cb1-1011"></a>The offsets of RISC-V branch instructions use the same format as a</span>
 <span id="cb1-1012"><a href="#cb1-1012"></a>stores, but the offset encoding is non-obvious. Again, there is no need for</span>
 <span id="cb1-1013"><a href="#cb1-1013"></a>a rd register; only rs1 and rs2 are used. Branch offsets can only be even.</span>
@@ -1910,9 +2292,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-1025"><a href="#cb1-1025"></a>S -type:</span>
 <span id="cb1-1026"><a href="#cb1-1026"></a>B</span>
 <span id="cb1-1027"><a href="#cb1-1027"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
-<span id="cb1-1028"><a href="#cb1-1028"></a>76</span>
-<span id="cb1-1029"><a href="#cb1-1029"></a></span>
-<span id="cb1-1030"><a href="#cb1-1030"></a>Crazy Jump offsets</span>
+<span id="cb1-1028"><a href="#cb1-1028"></a></span>
+<span id="cb1-1029"><a href="#cb1-1029"></a><span class="fu">## Crazy Jump offsets</span></span>
+<span id="cb1-1030"><a href="#cb1-1030"></a></span>
 <span id="cb1-1031"><a href="#cb1-1031"></a>The offsets of RISC-V jump instructions use the same U-format as</span>
 <span id="cb1-1032"><a href="#cb1-1032"></a>lui/auipc, but the offset encoding is even stranger. Jump offsets,</span>
 <span id="cb1-1033"><a href="#cb1-1033"></a>like branch offsets can only be even.</span>
@@ -1921,8 +2303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-1036"><a href="#cb1-1036"></a>jal</span>
 <span id="cb1-1037"><a href="#cb1-1037"></a>77</span>
 <span id="cb1-1038"><a href="#cb1-1038"></a>U -type: imm20 rd opcode</span>
-<span id="cb1-1039"><a href="#cb1-1039"></a>J</span>
-<span id="cb1-1040"><a href="#cb1-1040"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-1039"><a href="#cb1-1039"></a>J</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

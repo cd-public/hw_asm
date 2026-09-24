@@ -156,6 +156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Transistors</span></a>
   </div>
@@ -286,6 +292,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Old</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -300,7 +323,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#plan-for-today." id="toc-plan-for-today." class="nav-link" data-scroll-target="#plan-for-today.">Plan for today….</a></li>
+  <li><a href="#risc-v-resources.-we-are-getting-into-the-thick-of-it-now" id="toc-risc-v-resources.-we-are-getting-into-the-thick-of-it-now" class="nav-link" data-scroll-target="#risc-v-resources.-we-are-getting-into-the-thick-of-it-now">RISC-V Resources. We are getting into the thick of it now!</a></li>
+  <li><a href="#quick-review-and-some-details-i-type-data-processing" id="toc-quick-review-and-some-details-i-type-data-processing" class="nav-link" data-scroll-target="#quick-review-and-some-details-i-type-data-processing">Quick Review and Some Details: I-type Data Processing</a></li>
+  <li><a href="#why-built-in-constant-operands" id="toc-why-built-in-constant-operands" class="nav-link" data-scroll-target="#why-built-in-constant-operands">Why Built-in Constant operands?</a></li>
+  <li><a href="#if-you-use-only-addi-and" id="toc-if-you-use-only-addi-and" class="nav-link" data-scroll-target="#if-you-use-only-addi-and">If you use only addi and</a></li>
+  <li><a href="#the-minirisc-v-isa" id="toc-the-minirisc-v-isa" class="nav-link" data-scroll-target="#the-minirisc-v-isa">The miniRISC-V ISA</a></li>
+  <li><a href="#load-and-store-instructions" id="toc-load-and-store-instructions" class="nav-link" data-scroll-target="#load-and-store-instructions">Load and Store Instructions</a></li>
+  <li><a href="#store-word-sw" id="toc-store-word-sw" class="nav-link" data-scroll-target="#store-word-sw">Store Word (sw)</a></li>
+  <li><a href="#load-word-vs-store-word" id="toc-load-word-vs-store-word" class="nav-link" data-scroll-target="#load-word-vs-store-word">Load Word vs Store Word</a></li>
+  <li><a href="#to-access-memory-we-need" id="toc-to-access-memory-we-need" class="nav-link" data-scroll-target="#to-access-memory-we-need">To access memory, we need</a></li>
+  <li><a href="#for-a-store-rs1-is-still-the" id="toc-for-a-store-rs1-is-still-the" class="nav-link" data-scroll-target="#for-a-store-rs1-is-still-the">For a store, rs1 is still the</a></li>
+  <li><a href="#the-sign-extended-immediate" id="toc-the-sign-extended-immediate" class="nav-link" data-scroll-target="#the-sign-extended-immediate">The (sign-extended) immediate</a></li>
+  <li><a href="#for-a-load-the-computed" id="toc-for-a-load-the-computed" class="nav-link" data-scroll-target="#for-a-load-the-computed">For a load, the computed</a></li>
+  <li><a href="#instead-of-sending-memorys" id="toc-instead-of-sending-memorys" class="nav-link" data-scroll-target="#instead-of-sending-memorys">Instead of sending memory’s</a></li>
+  <li><a href="#this-datapath-diagram" id="toc-this-datapath-diagram" class="nav-link" data-scroll-target="#this-datapath-diagram">This datapath diagram</a></li>
+  <li><a href="#load-and-store-options" id="toc-load-and-store-options" class="nav-link" data-scroll-target="#load-and-store-options">Load and Store Options</a></li>
+  <li><a href="#load-word-encoding" id="toc-load-word-encoding" class="nav-link" data-scroll-target="#load-word-encoding">Load Word Encoding</a></li>
+  <li><a href="#store-word-encoding" id="toc-store-word-encoding" class="nav-link" data-scroll-target="#store-word-encoding">Store Word Encoding</a></li>
+  <li><a href="#translate-the-following-instructions-into-machine-code" id="toc-translate-the-following-instructions-into-machine-code" class="nav-link" data-scroll-target="#translate-the-following-instructions-into-machine-code">Translate the following instructions into machine code</a></li>
+  <li><a href="#translate-the-following-instructions-into-machine-code-1" id="toc-translate-the-following-instructions-into-machine-code-1" class="nav-link" data-scroll-target="#translate-the-following-instructions-into-machine-code-1">Translate the following instructions into machine code</a></li>
+  <li><a href="#accessing-memory" id="toc-accessing-memory" class="nav-link" data-scroll-target="#accessing-memory">ACCESSING MEMORY</a></li>
+  <li><a href="#risc-v-memory-model" id="toc-risc-v-memory-model" class="nav-link" data-scroll-target="#risc-v-memory-model">RISC-V Memory Model</a></li>
+  <li><a href="#only-reaches-out-to-memory" id="toc-only-reaches-out-to-memory" class="nav-link" data-scroll-target="#only-reaches-out-to-memory">Only reaches out to memory</a></li>
+  <li><a href="#memory-vs.-register-file" id="toc-memory-vs.-register-file" class="nav-link" data-scroll-target="#memory-vs.-register-file">Memory vs.&nbsp;Register File</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">| 5 | 90 | 100 | 40 | 11 |</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">5 90 100 40 11</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">| 5 | 90 | 100 | 40 | 11 |</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5 90 100 40 11</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">5 90 100 40 11</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">5 90 100 40 11</a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">| 5 | 90 | 100 | 40 | 11 |</a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8">| 5 | 90 | 100 | 40 | 11 |</a></li>
+  <li><a href="#storing-arrays-in-memory" id="toc-storing-arrays-in-memory" class="nav-link" data-scroll-target="#storing-arrays-in-memory">Storing Arrays in Memory</a></li>
+  <li><a href="#load-address" id="toc-load-address" class="nav-link" data-scroll-target="#load-address">Load Address</a></li>
+  <li><a href="#load-address-auipc-is-an-instruction-we-will-talk" id="toc-load-address-auipc-is-an-instruction-we-will-talk" class="nav-link" data-scroll-target="#load-address-auipc-is-an-instruction-we-will-talk">Load Address AUIPC is an instruction we will talk</a></li>
+  <li><a href="#program-counter-pc" id="toc-program-counter-pc" class="nav-link" data-scroll-target="#program-counter-pc">Program Counter (PC)</a></li>
+  <li><a href="#program-counter-pc-1" id="toc-program-counter-pc-1" class="nav-link" data-scroll-target="#program-counter-pc-1">Program Counter (PC)</a></li>
+  <li><a href="#program-counter-pc-2" id="toc-program-counter-pc-2" class="nav-link" data-scroll-target="#program-counter-pc-2">Program Counter (PC)</a></li>
+  <li><a href="#program-counter-pc-3" id="toc-program-counter-pc-3" class="nav-link" data-scroll-target="#program-counter-pc-3">Program Counter (PC)</a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9">32</a></li>
+  <li><a href="#storing-code-in-memory" id="toc-storing-code-in-memory" class="nav-link" data-scroll-target="#storing-code-in-memory">Storing Code in Memory</a></li>
+  <li><a href="#pipelining" id="toc-pipelining" class="nav-link" data-scroll-target="#pipelining">PIPELINING</a></li>
+  <li><a href="#recall-pipeline-registers" id="toc-recall-pipeline-registers" class="nav-link" data-scroll-target="#recall-pipeline-registers">Recall: Pipeline Registers</a></li>
+  <li><a href="#recall-pipeline-registers-1" id="toc-recall-pipeline-registers-1" class="nav-link" data-scroll-target="#recall-pipeline-registers-1">Recall: Pipeline Registers</a></li>
+  <li><a href="#y-a-b-c-d-ef" id="toc-y-a-b-c-d-ef" class="nav-link" data-scroll-target="#y-a-b-c-d-ef">Y = A + B + C + D + EF</a></li>
+  <li><a href="#two-stage-pipeline" id="toc-two-stage-pipeline" class="nav-link" data-scroll-target="#two-stage-pipeline">Two Stage Pipeline</a></li>
+  <li><a href="#three-stage-pipeline" id="toc-three-stage-pipeline" class="nav-link" data-scroll-target="#three-stage-pipeline">Three Stage Pipeline</a></li>
+  <li><a href="#review-performance-metrics" id="toc-review-performance-metrics" class="nav-link" data-scroll-target="#review-performance-metrics">Review: Performance Metrics</a></li>
+  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics">Performance Metrics</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="71.rjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -339,156 +413,456 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="section" class="level1">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 16: Loads, Stores, Memory tinyurl.com/comp311-sp26 1</p>
-<p>Plan for today…. Last class, we introduced pipelining basic circuits / toy examples. ● Our goal is to be able to design a pipelined RISC-V CPU. ● Things we still need to learn: ● The assembly instructions required for reading/writing to memory ○ The RISC-V memory model ○ How programs are stored in memory and executed ○ How to break the execution of a single instruction into stages ○ 2</p>
-<p>RISC-V Resources. We are getting into the thick of it now! Kaki posted a “reading”. Please do this before next class! ● Chapter 2 of the RISC-V reader/”Mona Lisa Book” ● I will give you p.&nbsp;15-16 of this book on the next quizzes and on the final as a ○ reference sheet (on the next slides, too) Play around with the simulator!! Leonard built this! ● The best way to learn is by doing in this setting. (Think of other times you ○ have learned a programming language ☺) If you want even more details, you can read Andrew Waterman’s ● PhD dissertation https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf ○ 3</p>
-<p>Quick Review and Some Details: I-type Data Processing ALU instructions with a register and an immediate operand Rd - register file write address Rs1 - register source operand Imm12 - 12-bit immediate operand Adds a mux to the B input of the ALU - 12-bit immediate value is sign-extended 20-bits 4</p>
-<p>Why Built-in Constant operands? (Immediates) | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——- | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | rs1 | func3 | rd | | | ● Alternatives? Why not? Do we have a choice? Supporting immediates ○ put constants in memory (was common in older ISAs) directly avoids a huge number of memory ● SMALL constants are used frequently (50% of operands) accesses! ○ In a C compiler (gcc) 52% of ALU operations involve a constant ○ In a circuit simulator (spice) 69% involve constants ○ e.g., B = B + 1; C = W &amp; 0xff; A = B - 1; How large of constants | ● ISA Design Principle: | | | | | | | | should we allow for? If | | ———————— | — | — | — | — | — | — | — | ———————— | they are too big, we won’t | Make the common case easy | | | | | | | | have enough bits leftover | | ————————- | — | — | — | — | — | — | — | ————————– | for the instructions or | Make the common case fast | | | | | | | | operands. | | ————————- | — | — | — | — | — | — | — | ——— | 5</p>
-<p>If you use only addi and | Bigger Constants | | | | | | | | | | shifts, you can technically | | —————- | — | — | — | — | — | — | — | — | — | —————————- | build any 32-bit constant. We can load any 32-bit constant using a series of instructions Load a small chunk, shift | addi | x10,x0,0x123 | | | | | | | | | | | —– | ————– | — | — | — | — | — | — | — | — | — | it up, add another chunk, | slli | x10,x10,12 | | | | | | | | | shift again, add again… | | ——- | ———— | — | — | — | — | — | — | — | — | ———————– | Five instructions, is there a better way? | addi | x10,x10,0x456 | | | | | | | | | | | ——- | ————— | — | — | — | — | — | — | — | — | — | | slli | x10,x10,12 | | | | | | | | | | | addi | x10,x10,0x78 | | | | | | | | | | But there there is a special instruction for constructing large constants., called “Load Upper Immediate” or lui. lui uses a new instruction format call the U-type. lui can be used as part of a two-instruction sequence to construct any 32-bit constant | | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 | 0 | | — | — | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——- | — | U-type: | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 | 1 | | — | —- | ———————————— | — | —– | — | — | — | — | ——- | — | | | lui | x10,0x12345 # encoded as 0x12345537 | | | | | | | | | Key idea: ISA designers realized this pattern was common so it d eserved HW support! 6</p>
-<p>The miniRISC-V ISA | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——— | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 1 | 1 0 0 1 1 | | R-type: | | func7 | rs2 | rs1 | func3 | rd | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | | rs1 | | rd | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | | func3 | | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | rs2 | rs1 | | | 0 1 | 0 0 0 1 1 | | B/S-type: | | imm7 | | | func3 | imm5 | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 1 | U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand. (LOADS HAVE DIFF OPCODE!) 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC) 7</p>
-<p>Load and Store Instructions RISC-V is a “Load/Store architecture”. That means that only a specific class of instructions are used to reference data in memory. As a rule, data is loaded into registers first, then processed, and the results are written back using stores. Load and Store instructions have their own format: | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm12 | | rs1 | func3 | rd | 0 0 | 0 0 0 1 1 | I-type: | | | | 000 - LB | | | | There are five types of loads | | — | — | — | ——– | — | — | — | —————————— | 001 - LH from memory. Load a word, a | | | | 010 - LW | | | | half-word, or a byte. Bytes | | — | — | — | ——— | — | — | — | —————————– | | | | | 100 - LBU | | | | and half-words can be either | 101 - LHU signed or unsigned | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm7 | rs2 | rs1 | func3 | imm5 | 0 1 | 0 0 0 1 1 | S-type: There are three types of 000 - SB | | | | 001 - SH | | | | stores to memory. Store a | | — | — | — | ——– | — | — | — | ————————– | word, a half-word, or a byte. 010 - SW There is no need to distinguish signed and unsigned.</p>
-<p>Load Word (lw) ■ Used to read 4 bytes (one word) of data from memory ■ lw rd, offset(rs1) – rs1 is a register that holds a memory address – offset is a 12 bit immediate value – The loaded word will be stored in rd R[rd] = M[R[rs1] + offset] 9</p>
-<p>Store Word (sw) ■ Used to store 4 bytes (one word) of data to memory ■ sw rs2 offset(rs1) – rs1 is a register that holds a memory address – offset is a signed 12-bit immediate value – rs2 is the value that will be written at this address M[R[rs1] + offset] = R[rs2] 10</p>
-<p>Load Word vs Store Word ■ Load Word – Reads 4 bytes (one word) from memory ■ Store word – Writes 4 bytes (one word) to memory 11</p>
-<p>To access memory, we need Loads and stores are the only two pieces of info: a base instructions that touch address coming from a reg &amp; memory in RISC-V (everything Data Transfer small offset encode in the else in registers) instruction Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits Note: opcode shown is just first 5 bits (6-2 on previous slide) 12</p>
-<p>For a store, rs1 is still the For a load, rs1 is the base base register, but now rs2 register and rd is where the provides the value being Data Transfer loaded value will go. written. Stores split their immediate across 2 fields Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 13</p>
-<p>The (sign-extended) immediate The ALU is now going to be needs to be routed to the ALU, adding the base register and so the mux feeding the ALU’s B Data Transfer the offset to compute the input has to widen. Earlier, only memory address reg values went in Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 14</p>
-<p>For a load, the computed address from ALU goes to Write back mux selects it so it data memory, returns a 32 bit Data Transfer goes in Rd word. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 15</p>
-<p>Instead of sending memory’s For a store, the address still output back to registers, we comes from the ALU. Data Transfer send rs2’s value into memory at that address. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 16</p>
-<p>This datapath diagram Funct3 encodes the type of doesn’t show all masking and access: byte, halfword, word. Data Transfer sign-extension logic for clarity of high-level flow Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 17</p>
-<p>Load and Store Options RISC-V’s load and store instructions are versatile. They provide a wide range of addressing modes. Only a subset is shown here. Rd ← Memory[Rs + imm12] lw rd,imm12(rs) Rd is loaded with the contents of memory at the address found by adding the contents of the base register, Rs, to the supplied constant Rd ← sign_extend(Memory[Rs - 4]) lb rd,-4(rs) Offsets can be either added or subtracted, as indicated by a negative sign. The byte is signed-extend to fill the 32 bits of lw rd,(rs) If no offset is specified it is assumed to be zero sw rd,12(rs) The contents of a register hold the address of the either the data value or a base address for a composite type (structure, object, sh rd,(rs) array, or a stack) 18</p>
-<p>Load Word Encoding I-Type, but slightly different opcode! destination source register immediate funct3 opcode (rs1) register (rd) 0000011 31 20 19 15 14 12 11 7 6 0 lw rd, imm12(rs1) 1. Compute address 2. Load data from memory R[rd]  M[R[rs1] + SignExt(imm12) 3. Store data into register file 19</p>
-<p>Store Word Encoding S-type | | source register | source register | | | | | | | | | —- | —————- | —————- | — | —— | — | —- | — | —— | — | | imm7 | | | | funct3 | | imm5 | | opcode | | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 19 | 15 14 | | 12 11 | | 7 6 | | 0 | | — | —– | —– | —– | — | —– | — | — | — | — | sw rs2, imm(rs1) M[R[rs1] + SignExt(Imm)] = R[rs2] opcode = 0b0100011 20</p>
-<p>Translate the following instructions into machine code lw x5, 0x20(x7) | | | source register | | | destination | | | | | | — | — | —————- | — | — | ———— | — | — | — | — | immediate | | | | | funct3 | | | | opcode | | | — | — | — | — | —— | — | — | — | —— | — | (rs1) register (rd) | 31 | | | 15 | | | | | | | | — | — | —– | — | — | —– | — | — | — | — | | | | 20 19 | 14 | | 12 11 | | 7 6 | | 0 | sw x20, -12(x9) source register source register | imm7 | | | | funct3 | | imm5 | | opcode | | | —- | — | — | — | —— | — | —- | — | —— | — | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 | | | | | | | | | — | —– | — | —– | — | —– | — | — | — | — | | | | 19 | 15 14 | | 12 11 | | 7 6 | | 0 | 21</p>
-<p>Translate the following instructions into machine code | | | | | lw x5, 0x20(x7) | | | | 0x0203A283 | | | | | — | — | — | —————- | ————— | — | — | — | ———— | — | — | — | | | | | source register | | | | | destination | | | | immediate | | | | | | | funct3 | | | | opcode | | | — | — | — | — | —– | — | —— | — | ————- | ——- | —— | — | | | | | | (rs1) | | | | register (rd) | | | | | | | | | 00111 | | 010 | | 00101 | 0000011 | | | 000000100000 | 31 | | | | | 15 | | | | | | | | ——- | —————- | ——- | —– | —————- | —– | —— | ———- | —– | — | ——- | — | | | | | 20 19 | | 14 | | 12 11 | | 7 6 | | 0 | | | | | | sw x20, -12(x9) | | | 0xFF44AA23 | | | | | | | source register | | | source register | | | | | | | | | imm7 | | | | | | funct3 | | imm5 | | opcode | | | | | 2 (rs2) | | 1 (rs1) | | | | | | | | | | | 10100 | | 01001 | | | | 10100 | | | | | 1111111 | | | | | | 010 | | | | 0100011 | | | 31 | 25 24 | | 20 | | | | | | | | | | | | | | 19 | 15 14 | | 12 | 11 | 7 6 | | 0 | 22</p>
-<p>ACCESSING MEMORY</p>
-<p>Memory ■ The register file only contains 32, 32-bit registers – We saw pipeline registers last time, but the programmer doesn’t have access to these! ■ We can’t store all of our data in the register file. So where does it all go? ■ In the main memory 24</p>
-<p>RISC-V Memory Model Used to manage function calls and local variables Used for dynamic memory allocation Variables allocated at compile-time Programs Reserved for the OS 25</p>
-<p>Only reaches out to memory when a load or a store happens! RISC-V Datapath Memory Register File 26</p>
-<p>Memory vs.&nbsp;Register File ■ So what’s the point of the register file? ■ It is MUCH, much..! faster to access the register file ■ We’ll store the values that we are currently working with in the register file Memory Register File 1. large 1. small 2. takes longer to 2. quick access access 3. part of the CPU 3. not part of the CPU 27</p>
-<table class="caption-top table">
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 16: Loads, Stores, Memory tinyurl.com/comp311-sp26</p>
+<section id="plan-for-today." class="level2">
+<h2 class="anchored" data-anchor-id="plan-for-today.">Plan for today….</h2>
+<p>Last class, we introduced pipelining basic circuits / toy examples. ● Our goal is to be able to design a pipelined RISC-V CPU. ● Things we still need to learn: ● The assembly instructions required for reading/writing to memory ○ The RISC-V memory model ○ How programs are stored in memory and executed ○ How to break the execution of a single instruction into stages ○</p>
+</section>
+<section id="risc-v-resources.-we-are-getting-into-the-thick-of-it-now" class="level2">
+<h2 class="anchored" data-anchor-id="risc-v-resources.-we-are-getting-into-the-thick-of-it-now">RISC-V Resources. We are getting into the thick of it now!</h2>
+<p>Kaki posted a “reading”. Please do this before next class! ● Chapter 2 of the RISC-V reader/”Mona Lisa Book” ● I will give you p.&nbsp;15-16 of this book on the next quizzes and on the final as a ○ reference sheet (on the next slides, too) Play around with the simulator!! Leonard built this! ● The best way to learn is by doing in this setting. (Think of other times you ○ have learned a programming language ☺) If you want even more details, you can read Andrew Waterman’s ● PhD dissertation https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf ○</p>
+</section>
+<section id="quick-review-and-some-details-i-type-data-processing" class="level2">
+<h2 class="anchored" data-anchor-id="quick-review-and-some-details-i-type-data-processing">Quick Review and Some Details: I-type Data Processing</h2>
+<p>ALU instructions with a register and an immediate operand Rd - register file write address Rs1 - register source operand Imm12 - 12-bit immediate operand Adds a mux to the B input of the ALU - 12-bit immediate value is sign-extended 20-bits</p>
+</section>
+<section id="why-built-in-constant-operands" class="level2">
+<h2 class="anchored" data-anchor-id="why-built-in-constant-operands">Why Built-in Constant operands?</h2>
+<p>(Immediates) | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——- | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | rs1 | func3 | rd | | | ● Alternatives? Why not? Do we have a choice? Supporting immediates ○ put constants in memory (was common in older ISAs) directly avoids a huge number of memory ● SMALL constants are used frequently (50% of operands) accesses! ○ In a C compiler (gcc) 52% of ALU operations involve a constant ○ In a circuit simulator (spice) 69% involve constants ○ e.g., B = B + 1; C = W &amp; 0xff; A = B - 1; How large of constants | ● ISA Design Principle: | | | | | | | | should we allow for? If | | ———————— | — | — | — | — | — | — | — | ———————— | they are too big, we won’t | Make the common case easy | | | | | | | | have enough bits leftover | | ————————- | — | — | — | — | — | — | — | ————————– | for the instructions or | Make the common case fast | | | | | | | | operands. | | ————————- | — | — | — | — | — | — | — | ——— |</p>
+</section>
+<section id="if-you-use-only-addi-and" class="level2">
+<h2 class="anchored" data-anchor-id="if-you-use-only-addi-and">If you use only addi and</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 39%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
+<th>Bigger Constants</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>shifts, you can technically</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
 </tbody>
 </table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x11 after executing the following instruction? • lw x11, 0(x10) 28</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x11 after executing the following instruction? lw x11 0(x10) 5 29</p>
+<p>build any 32-bit constant. We can load any 32-bit constant using a series of instructions Load a small chunk, shift | addi | x10,x0,0x123 | | | | | | | | | | | —– | ————– | — | — | — | — | — | — | — | — | — | it up, add another chunk, | slli | x10,x10,12 | | | | | | | | | shift again, add again… | | ——- | ———— | — | — | — | — | — | — | — | — | ———————– | Five instructions, is there a better way? | addi | x10,x10,0x456 | | | | | | | | | | | ——- | ————— | — | — | — | — | — | — | — | — | — | | slli | x10,x10,12 | | | | | | | | | | | addi | x10,x10,0x78 | | | | | | | | | | But there there is a special instruction for constructing large constants., called “Load Upper Immediate” or lui. lui uses a new instruction format call the U-type. lui can be used as part of a two-instruction sequence to construct any 32-bit constant | | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 | 0 | | — | — | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——- | — | U-type: | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 | 1 | | — | —- | ———————————— | — | —– | — | — | — | — | ——- | — | | | lui | x10,0x12345 # encoded as 0x12345537 | | | | | | | | | Key idea: ISA designers realized this pattern was common so it d eserved HW support!</p>
+</section>
+<section id="the-minirisc-v-isa" class="level2">
+<h2 class="anchored" data-anchor-id="the-minirisc-v-isa">The miniRISC-V ISA</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 10%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x12 after executing the following instruction? • lw x12, 4(x10) 30</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instruction? lw x12 4(x10) 90 31</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi x10, x10, 4 lw x12, 8(x10) 32</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi 10 x10 4 lw x12 8(x10) 40 33</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
+<th></th>
+<th>31 30</th>
+<th>29 28 27 26 25</th>
+<th>24 23 22 21</th>
+<th>20 19 18 17</th>
+<th>16 15 14 13</th>
+<th>12 11 10 9</th>
+<th>8 7 6 5</th>
+<th>4 3 2 1 0</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td></td>
 <td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0 1</td>
+<td>1 0 0 1 1</td>
 </tr>
 <tr class="even">
-<td>0</td>
-<td>1</td>
+<td>R-type:</td>
+<td></td>
+<td>func7</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>func3</td>
+<td>rd</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>31 30</td>
+<td>29 28 27 26 25</td>
+<td>24 23 22 21</td>
+<td>20 19 18 17</td>
+<td>16 15 14 13</td>
+<td>12 11 10 9</td>
+<td>8 7 6 5</td>
+<td>4 3 2 1 0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>rs1</td>
+<td></td>
+<td>rd</td>
+<td>0 0</td>
+<td>1 0 0 1 1</td>
+</tr>
+<tr class="odd">
+<td>I-type:</td>
+<td></td>
+<td>imm12</td>
+<td></td>
+<td></td>
+<td>func3</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
+<tr class="even">
+<td></td>
+<td>31 30</td>
+<td>29 28 27 26 25</td>
+<td>24 23 22 21</td>
+<td>20 19 18 17</td>
+<td>16 15 14 13</td>
+<td>12 11 10 9</td>
+<td>8 7 6 5</td>
+<td>4 3 2 1 0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>rs2</td>
+<td>rs1</td>
+<td></td>
+<td></td>
+<td>0 1</td>
+<td>0 0 0 1 1</td>
+</tr>
+<tr class="even">
+<td>B/S-type:</td>
+<td></td>
+<td>imm7</td>
+<td></td>
+<td></td>
+<td>func3</td>
+<td>imm5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>31 30</td>
+<td>29 28 27 26 25</td>
+<td>24 23 22 21</td>
+<td>20 19 18 17</td>
+<td>16 15 14 13</td>
+<td>12 11 10 9</td>
+<td>8 7 6 5</td>
+<td>4 3 2 1 0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td>Imm20</td>
+<td></td>
+<td></td>
+<td>rd</td>
+<td>0 1</td>
+<td>1 0 1 1 1</td>
+</tr>
 </tbody>
 </table>
-<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10) 34</p>
+<p>U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand. (LOADS HAVE DIFF OPCODE!) 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC)</p>
+</section>
+<section id="load-and-store-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="load-and-store-instructions">Load and Store Instructions</h2>
+<p>RISC-V is a “Load/Store architecture”. That means that only a specific class of instructions are used to reference data in memory. As a rule, data is loaded into registers first, then processed, and the results are written back using stores. Load and Store instructions have their own format: | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm12 | | rs1 | func3 | rd | 0 0 | 0 0 0 1 1 | I-type: | | | | 000 - LB | | | | There are five types of loads | | — | — | — | ——– | — | — | — | —————————— | 001 - LH from memory. Load a word, a | | | | 010 - LW | | | | half-word, or a byte. Bytes | | — | — | — | ——— | — | — | — | —————————– | | | | | 100 - LBU | | | | and half-words can be either | 101 - LHU signed or unsigned | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm7 | rs2 | rs1 | func3 | imm5 | 0 1 | 0 0 0 1 1 | S-type: There are three types of 000 - SB | | | | 001 - SH | | | | stores to memory. Store a | | — | — | — | ——– | — | — | — | ————————– | word, a half-word, or a byte. 010 - SW There is no need to distinguish signed and unsigned.</p>
+<p>Load Word (lw) ■ Used to read 4 bytes (one word) of data from memory ■ lw rd, offset(rs1) – rs1 is a register that holds a memory address – offset is a 12 bit immediate value – The loaded word will be stored in rd R[rd] = M[R[rs1] + offset]</p>
+</section>
+<section id="store-word-sw" class="level2">
+<h2 class="anchored" data-anchor-id="store-word-sw">Store Word (sw)</h2>
+<p>■ Used to store 4 bytes (one word) of data to memory ■ sw rs2 offset(rs1) – rs1 is a register that holds a memory address – offset is a signed 12-bit immediate value – rs2 is the value that will be written at this address M[R[rs1] + offset] = R[rs2]</p>
+</section>
+<section id="load-word-vs-store-word" class="level2">
+<h2 class="anchored" data-anchor-id="load-word-vs-store-word">Load Word vs Store Word</h2>
+<p>■ Load Word – Reads 4 bytes (one word) from memory ■ Store word – Writes 4 bytes (one word) to memory</p>
+</section>
+<section id="to-access-memory-we-need" class="level2">
+<h2 class="anchored" data-anchor-id="to-access-memory-we-need">To access memory, we need</h2>
+<p>Loads and stores are the only two pieces of info: a base instructions that touch address coming from a reg &amp; memory in RISC-V (everything Data Transfer small offset encode in the else in registers) instruction Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits Note: opcode shown is just first 5 bits (6-2 on previous slide)</p>
+</section>
+<section id="for-a-store-rs1-is-still-the" class="level2">
+<h2 class="anchored" data-anchor-id="for-a-store-rs1-is-still-the">For a store, rs1 is still the</h2>
+<p>For a load, rs1 is the base base register, but now rs2 register and rd is where the provides the value being Data Transfer loaded value will go. written. Stores split their immediate across 2 fields Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="the-sign-extended-immediate" class="level2">
+<h2 class="anchored" data-anchor-id="the-sign-extended-immediate">The (sign-extended) immediate</h2>
+<p>The ALU is now going to be needs to be routed to the ALU, adding the base register and so the mux feeding the ALU’s B Data Transfer the offset to compute the input has to widen. Earlier, only memory address reg values went in Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="for-a-load-the-computed" class="level2">
+<h2 class="anchored" data-anchor-id="for-a-load-the-computed">For a load, the computed</h2>
+<p>address from ALU goes to Write back mux selects it so it data memory, returns a 32 bit Data Transfer goes in Rd word. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="instead-of-sending-memorys" class="level2">
+<h2 class="anchored" data-anchor-id="instead-of-sending-memorys">Instead of sending memory’s</h2>
+<p>For a store, the address still output back to registers, we comes from the ALU. Data Transfer send rs2’s value into memory at that address. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="this-datapath-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="this-datapath-diagram">This datapath diagram</h2>
+<p>Funct3 encodes the type of doesn’t show all masking and access: byte, halfword, word. Data Transfer sign-extension logic for clarity of high-level flow Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="load-and-store-options" class="level2">
+<h2 class="anchored" data-anchor-id="load-and-store-options">Load and Store Options</h2>
+<p>RISC-V’s load and store instructions are versatile. They provide a wide range of addressing modes. Only a subset is shown here. Rd ← Memory[Rs + imm12] lw rd,imm12(rs) Rd is loaded with the contents of memory at the address found by adding the contents of the base register, Rs, to the supplied constant Rd ← sign_extend(Memory[Rs - 4]) lb rd,-4(rs) Offsets can be either added or subtracted, as indicated by a negative sign. The byte is signed-extend to fill the 32 bits of lw rd,(rs) If no offset is specified it is assumed to be zero sw rd,12(rs) The contents of a register hold the address of the either the data value or a base address for a composite type (structure, object, sh rd,(rs) array, or a stack)</p>
+</section>
+<section id="load-word-encoding" class="level2">
+<h2 class="anchored" data-anchor-id="load-word-encoding">Load Word Encoding</h2>
+<p>I-Type, but slightly different opcode! destination source register immediate funct3 opcode (rs1) register (rd) 0000011 31 20 19 15 14 12 11 7 6 0 lw rd, imm12(rs1) 1. Compute address 2. Load data from memory R[rd]  M[R[rs1] + SignExt(imm12) 3. Store data into register file</p>
+</section>
+<section id="store-word-encoding" class="level2">
+<h2 class="anchored" data-anchor-id="store-word-encoding">Store Word Encoding</h2>
+<p>S-type | | source register | source register | | | | | | | | | —- | —————- | —————- | — | —— | — | —- | — | —— | — | | imm7 | | | | funct3 | | imm5 | | opcode | | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 19 | 15 14 | | 12 11 | | 7 6 | | 0 | | — | —– | —– | —– | — | —– | — | — | — | — | sw rs2, imm(rs1) M[R[rs1] + SignExt(Imm)] = R[rs2] opcode = 0b0100011</p>
+</section>
+<section id="translate-the-following-instructions-into-machine-code" class="level2">
+<h2 class="anchored" data-anchor-id="translate-the-following-instructions-into-machine-code">Translate the following instructions into machine code</h2>
+<p>lw x5, 0x20(x7) | | | source register | | | destination | | | | | | — | — | —————- | — | — | ———— | — | — | — | — | immediate | | | | | funct3 | | | | opcode | | | — | — | — | — | —— | — | — | — | —— | — | (rs1) register (rd) | 31 | | | 15 | | | | | | | | — | — | —– | — | — | —– | — | — | — | — | | | | 20 19 | 14 | | 12 11 | | 7 6 | | 0 | sw x20, -12(x9) source register source register | imm7 | | | | funct3 | | imm5 | | opcode | | | —- | — | — | — | —— | — | —- | — | —— | — | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 | | | | | | | | | — | —– | — | —– | — | —– | — | — | — | — | | | | 19 | 15 14 | | 12 11 | | 7 6 | | 0 |</p>
+</section>
+<section id="translate-the-following-instructions-into-machine-code-1" class="level2">
+<h2 class="anchored" data-anchor-id="translate-the-following-instructions-into-machine-code-1">Translate the following instructions into machine code</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 17%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>lw x5, 0x20(x7)</th>
+<th></th>
+<th></th>
+<th></th>
+<th>0x0203A283</th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td></td>
 <td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td>1</td>
+<td></td>
+<td>source register</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>destination</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10) | 5 | 90 | 100 | 8 | 11 | | — | — | — | — | — | | | | 2 | 3 | 4 | | 0 | 1 | | | | 35</p>
-<p>Storing Arrays in Memory ■ We will store our statically allocated arrays in the static data segment ■ To store data in the static data segment, we use an assembler directive. – The miniRISCV assembler and simulator provides a set of directives for allocating space for data and initializing variables 36</p>
-<p>Load Address ■ How do you get the address of the array into a register? – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions! 37</p>
-<p>Load Address AUIPC is an instruction we will talk about more in a bit… it adds an immediate to the PC. Let’s review what the PC is / related to program ■ How do you get the address of the array into a register? execution. – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions! 38</p>
-<p>Program Counter (PC) ■ The Program Counter (PC) is a 32-bit register ■ The PC is not inside of the register file!!! ■ The datapath executes one instruction per clock cycle ■ On every clock cycle, PC is incremented by 4 to fetch the next instruction Program Counter 39</p>
-<p>Program Counter (PC) 32 4 32 Adder PC 32 Increment the PC by 4 on every clock cycle 40</p>
-<p>Program Counter (PC) Example: Current PC = 0x00004010 32 4 32 Adder PC 32 41</p>
-<p>Program Counter (PC) Example: Current PC = 0x00004010 32 4 32 0x00004014 Adder 0x00004010 PC 32 0x00004014 On the next rising edge of the clock, PC will become 0x00004014 42</p>
-<p>32 4 32 Adder Address PC 32 Instruction Instruction 32 Instruction PC holds the address of the Memory instruction currently being executed 43</p>
-<p>Storing Code in Memory ■ Code is stored in the text segment ■ To store code in the text segment, we use the .text directive 44</p>
-<p>PIPELINING 46</p>
-<p>Recall: Pipeline Registers ■ Inserted between stages of execution to hold intermediate values. – Ex: ALU operands that were decoded! ■ These registers are not visible / programmable by the user – Not part of the 32 general purpose registers ■ Allow the synchronization of execution of multiple operations (AKA: instructions) – Different stages operate on different instructions in each clock cycle 47</p>
-<p>Recall: Pipeline Registers | COMB | COMB | COMB | | —– | —– | —– | REG REG REG | LOGIC | LOGIC | LOGIC | | —— | —— | —— | #1 #2 #3 | BLOCK #1 | BLOCK #2 | BLOCK #3 | | ——– | ——– | ——– | CLOCK 48</p>
-<p>Y = A + B + C + D + EF ■ Let’s compare two circuits that perform the operation Y = A + B + C + D + EF Stage X Stage Y Stage X Stage Y Stage Z 2-stage Pipeline 3-stage Pipeline 49</p>
-<p>Two Stage Pipeline 1. What is the longest combinational path? – Multiplier – 1200ps 2. What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps 3. If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – two 4. If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+1) = 13420ps 50</p>
-<p>Three Stage Pipeline 1. What is the longest combinational path? – Multiplier – 1200ps 2. What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps 3. If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – three 4. If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+2) = 14640ps 51</p>
-<p>Review: Performance Metrics ■ What is the latency of an operation in the 2-stage pipeline? ■ What is the latency of an operation in the 3-stage pipeline? ■ Is the throughput higher in the 2-stage or 3-stage pipeline? ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 2-stage pipeline? 52</p>
-<p>Performance Metrics ■ What is the latency of an operation in the 2-stage pipeline? – (1220ps)(2) = 2440ps ■ What is the latency of an operation in the 3-stage pipeline? – (1220ps)(3) = 3660ps ■ Is the throughput higher in the 2-stage or 3-stage pipeline? – 2 stage pipeline ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 3-stage pipeline? – 13420ps/14640ps = .9167 ■ The two-stage pipeline is faster 53</p>
+<p>immediate | | | | | | | funct3 | | | | opcode | | | — | — | — | — | —– | — | —— | — | ————- | ——- | —— | — | | | | | | (rs1) | | | | register (rd) | | | | | | | | | 00111 | | 010 | | 00101 | 0000011 | | | 000000100000 | 31 | | | | | 15 | | | | | | | | ——- | —————- | ——- | —– | —————- | —– | —— | ———- | —– | — | ——- | — | | | | | 20 19 | | 14 | | 12 11 | | 7 6 | | 0 | | | | | | sw x20, -12(x9) | | | 0xFF44AA23 | | | | | | | source register | | | source register | | | | | | | | | imm7 | | | | | | funct3 | | imm5 | | opcode | | | | | 2 (rs2) | | 1 (rs1) | | | | | | | | | | | 10100 | | 01001 | | | | 10100 | | | | | 1111111 | | | | | | 010 | | | | 0100011 | | | 31 | 25 24 | | 20 | | | | | | | | | | | | | | 19 | 15 14 | | 12 | 11 | 7 6 | | 0 |</p>
+</section>
+<section id="accessing-memory" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-memory">ACCESSING MEMORY</h2>
+<p>Memory ■ The register file only contains 32, 32-bit registers – We saw pipeline registers last time, but the programmer doesn’t have access to these! ■ We can’t store all of our data in the register file. So where does it all go? ■ In the main memory</p>
+</section>
+<section id="risc-v-memory-model" class="level2">
+<h2 class="anchored" data-anchor-id="risc-v-memory-model">RISC-V Memory Model</h2>
+<p>Used to manage function calls and local variables Used for dynamic memory allocation Variables allocated at compile-time Programs Reserved for the OS</p>
+</section>
+<section id="only-reaches-out-to-memory" class="level2">
+<h2 class="anchored" data-anchor-id="only-reaches-out-to-memory">Only reaches out to memory</h2>
+<p>when a load or a store happens! RISC-V Datapath Memory Register File</p>
+</section>
+<section id="memory-vs.-register-file" class="level2">
+<h2 class="anchored" data-anchor-id="memory-vs.-register-file">Memory vs.&nbsp;Register File</h2>
+<p>■ So what’s the point of the register file? ■ It is MUCH, much..! faster to access the register file ■ We’ll store the values that we are currently working with in the register file Memory Register File 1. large 1. small 2. takes longer to 2. quick access access 3. part of the CPU 3. not part of the CPU</p>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+0 | | 2 | 3 | 4 |</div>
+<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x11 after executing the following instruction? • lw x11, 0(x10)</p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x11 after executing the following instruction? lw x11 0(x10) 5</p>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+0 | | 2 | 3 | 4 |</div>
+<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x12 after executing the following instruction? • lw x12, 4(x10)</p>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instruction? lw x12 4(x10) 90</p>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5">5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi x10, x10, 4 lw x12, 8(x10)</p>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6">5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi 10 x10 4 lw x12 8(x10) 40</p>
+</section>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7">| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | 3 | 4 |<br>
+0 | 1 | | | |</div>
+<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10)</p>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8">| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | 3 | 4 |<br>
+0 | 1 | | | |</div>
+<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10) | 5 | 90 | 100 | 8 | 11 | | — | — | — | — | — | | | | 2 | 3 | 4 | | 0 | 1 | | | |</p>
+</section>
+<section id="storing-arrays-in-memory" class="level2">
+<h2 class="anchored" data-anchor-id="storing-arrays-in-memory">Storing Arrays in Memory</h2>
+<p>■ We will store our statically allocated arrays in the static data segment ■ To store data in the static data segment, we use an assembler directive. – The miniRISCV assembler and simulator provides a set of directives for allocating space for data and initializing variables</p>
+</section>
+<section id="load-address" class="level2">
+<h2 class="anchored" data-anchor-id="load-address">Load Address</h2>
+<p>■ How do you get the address of the array into a register? – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions!</p>
+</section>
+<section id="load-address-auipc-is-an-instruction-we-will-talk" class="level2">
+<h2 class="anchored" data-anchor-id="load-address-auipc-is-an-instruction-we-will-talk">Load Address AUIPC is an instruction we will talk</h2>
+<p>about more in a bit… it adds an immediate to the PC. Let’s review what the PC is / related to program ■ How do you get the address of the array into a register? execution. – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions!</p>
+</section>
+<section id="program-counter-pc" class="level2">
+<h2 class="anchored" data-anchor-id="program-counter-pc">Program Counter (PC)</h2>
+<p>■ The Program Counter (PC) is a 32-bit register ■ The PC is not inside of the register file!!! ■ The datapath executes one instruction per clock cycle ■ On every clock cycle, PC is incremented by 4 to fetch the next instruction Program Counter</p>
+</section>
+<section id="program-counter-pc-1" class="level2">
+<h2 class="anchored" data-anchor-id="program-counter-pc-1">Program Counter (PC)</h2>
+<p>32 4 32 Adder PC 32 Increment the PC by 4 on every clock cycle</p>
+</section>
+<section id="program-counter-pc-2" class="level2">
+<h2 class="anchored" data-anchor-id="program-counter-pc-2">Program Counter (PC)</h2>
+<p>Example: Current PC = 0x00004010 32 4 32 Adder PC 32</p>
+</section>
+<section id="program-counter-pc-3" class="level2">
+<h2 class="anchored" data-anchor-id="program-counter-pc-3">Program Counter (PC)</h2>
+<p>Example: Current PC = 0x00004010 32 4 32 0x00004014 Adder 0x00004010 PC 32 0x00004014 On the next rising edge of the clock, PC will become 0x00004014</p>
+</section>
+<section id="section-9" class="level2">
+<h2 class="anchored" data-anchor-id="section-9">32</h2>
+<p>4 32 Adder Address PC 32 Instruction Instruction 32 Instruction PC holds the address of the Memory instruction currently being executed</p>
+</section>
+<section id="storing-code-in-memory" class="level2">
+<h2 class="anchored" data-anchor-id="storing-code-in-memory">Storing Code in Memory</h2>
+<p>■ Code is stored in the text segment ■ To store code in the text segment, we use the .text directive</p>
+</section>
+<section id="pipelining" class="level2">
+<h2 class="anchored" data-anchor-id="pipelining">PIPELINING</h2>
+</section>
+<section id="recall-pipeline-registers" class="level2">
+<h2 class="anchored" data-anchor-id="recall-pipeline-registers">Recall: Pipeline Registers</h2>
+<p>■ Inserted between stages of execution to hold intermediate values. – Ex: ALU operands that were decoded! ■ These registers are not visible / programmable by the user – Not part of the 32 general purpose registers ■ Allow the synchronization of execution of multiple operations (AKA: instructions) – Different stages operate on different instructions in each clock cycle</p>
+</section>
+<section id="recall-pipeline-registers-1" class="level2">
+<h2 class="anchored" data-anchor-id="recall-pipeline-registers-1">Recall: Pipeline Registers</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>COMB</th>
+<th>COMB</th>
+<th>COMB</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>REG REG REG | LOGIC | LOGIC | LOGIC | | —— | —— | —— | #1 #2 #3 | BLOCK #1 | BLOCK #2 | BLOCK #3 | | ——– | ——– | ——– | CLOCK</p>
+</section>
+<section id="y-a-b-c-d-ef" class="level2">
+<h2 class="anchored" data-anchor-id="y-a-b-c-d-ef">Y = A + B + C + D + EF</h2>
+<p>■ Let’s compare two circuits that perform the operation Y = A + B + C + D + EF Stage X Stage Y Stage X Stage Y Stage Z 2-stage Pipeline 3-stage Pipeline</p>
+</section>
+<section id="two-stage-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="two-stage-pipeline">Two Stage Pipeline</h2>
+<ol type="1">
+<li>What is the longest combinational path? – Multiplier – 1200ps</li>
+<li>What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps</li>
+<li>If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – two</li>
+<li>If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+1) = 13420ps</li>
+</ol>
+</section>
+<section id="three-stage-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="three-stage-pipeline">Three Stage Pipeline</h2>
+<ol type="1">
+<li>What is the longest combinational path? – Multiplier – 1200ps</li>
+<li>What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps</li>
+<li>If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – three</li>
+<li>If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+2) = 14640ps</li>
+</ol>
+</section>
+<section id="review-performance-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="review-performance-metrics">Review: Performance Metrics</h2>
+<p>■ What is the latency of an operation in the 2-stage pipeline? ■ What is the latency of an operation in the 3-stage pipeline? ■ Is the throughput higher in the 2-stage or 3-stage pipeline? ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 2-stage pipeline?</p>
+</section>
+<section id="performance-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="performance-metrics">Performance Metrics</h2>
+<p>■ What is the latency of an operation in the 2-stage pipeline? – (1220ps)(2) = 2440ps ■ What is the latency of an operation in the 3-stage pipeline? – (1220ps)(3) = 3660ps ■ Is the throughput higher in the 2-stage or 3-stage pipeline? – 2 stage pipeline ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 3-stage pipeline? – 13420ps/14640ps = .9167 ■ The two-stage pipeline is faster</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -973,9 +1347,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16"></a>COMPUTER ORGANIZATION!</span>
 <span id="cb1-17"><a href="#cb1-17"></a>Lecture 16: Loads, Stores, Memory</span>
 <span id="cb1-18"><a href="#cb1-18"></a>tinyurl.com/comp311-sp26</span>
-<span id="cb1-19"><a href="#cb1-19"></a>1</span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a>Plan for today….</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">## Plan for today….</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
 <span id="cb1-22"><a href="#cb1-22"></a>Last class, we introduced pipelining basic circuits / toy examples.</span>
 <span id="cb1-23"><a href="#cb1-23"></a>●</span>
 <span id="cb1-24"><a href="#cb1-24"></a>Our goal is to be able to design a pipelined RISC-V CPU.</span>
@@ -990,9 +1364,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-33"><a href="#cb1-33"></a>○</span>
 <span id="cb1-34"><a href="#cb1-34"></a>How to break the execution of a single instruction into stages</span>
 <span id="cb1-35"><a href="#cb1-35"></a>○</span>
-<span id="cb1-36"><a href="#cb1-36"></a>2</span>
-<span id="cb1-37"><a href="#cb1-37"></a></span>
-<span id="cb1-38"><a href="#cb1-38"></a>RISC-V Resources. We are getting into the thick of it now!</span>
+<span id="cb1-36"><a href="#cb1-36"></a></span>
+<span id="cb1-37"><a href="#cb1-37"></a><span class="fu">## RISC-V Resources. We are getting into the thick of it now!</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a></span>
 <span id="cb1-39"><a href="#cb1-39"></a>Kaki posted a “reading”. Please do this before next class!</span>
 <span id="cb1-40"><a href="#cb1-40"></a>●</span>
 <span id="cb1-41"><a href="#cb1-41"></a>Chapter 2 of the RISC-V reader/”Mona Lisa Book”</span>
@@ -1010,9 +1384,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-53"><a href="#cb1-53"></a>PhD dissertation</span>
 <span id="cb1-54"><a href="#cb1-54"></a>https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf</span>
 <span id="cb1-55"><a href="#cb1-55"></a>○</span>
-<span id="cb1-56"><a href="#cb1-56"></a>3</span>
-<span id="cb1-57"><a href="#cb1-57"></a></span>
-<span id="cb1-58"><a href="#cb1-58"></a>Quick Review and Some Details: I-type Data Processing</span>
+<span id="cb1-56"><a href="#cb1-56"></a></span>
+<span id="cb1-57"><a href="#cb1-57"></a><span class="fu">## Quick Review and Some Details: I-type Data Processing</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a></span>
 <span id="cb1-59"><a href="#cb1-59"></a>ALU instructions with a register and an</span>
 <span id="cb1-60"><a href="#cb1-60"></a>immediate operand</span>
 <span id="cb1-61"><a href="#cb1-61"></a>Rd - register file write address</span>
@@ -1021,9 +1395,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-64"><a href="#cb1-64"></a>Adds a mux to the B input of the ALU</span>
 <span id="cb1-65"><a href="#cb1-65"></a><span class="ss">- </span>12-bit immediate value is</span>
 <span id="cb1-66"><a href="#cb1-66"></a>sign-extended 20-bits</span>
-<span id="cb1-67"><a href="#cb1-67"></a>4</span>
-<span id="cb1-68"><a href="#cb1-68"></a></span>
-<span id="cb1-69"><a href="#cb1-69"></a>Why Built-in Constant operands?</span>
+<span id="cb1-67"><a href="#cb1-67"></a></span>
+<span id="cb1-68"><a href="#cb1-68"></a><span class="fu">## Why Built-in Constant operands?</span></span>
+<span id="cb1-69"><a href="#cb1-69"></a></span>
 <span id="cb1-70"><a href="#cb1-70"></a>(Immediates)</span>
 <span id="cb1-71"><a href="#cb1-71"></a><span class="pp">|</span>         <span class="pp">|</span> 31 30 29 <span class="pp">|</span> 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
 <span id="cb1-72"><a href="#cb1-72"></a><span class="pp">| -------</span> <span class="pp">| --------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
@@ -1049,9 +1423,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-92"><a href="#cb1-92"></a>for the instructions or</span>
 <span id="cb1-93"><a href="#cb1-93"></a><span class="pp">|</span> Make the common case fast <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> operands. <span class="pp">|</span></span>
 <span id="cb1-94"><a href="#cb1-94"></a><span class="pp">| -------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
-<span id="cb1-95"><a href="#cb1-95"></a>5</span>
-<span id="cb1-96"><a href="#cb1-96"></a></span>
-<span id="cb1-97"><a href="#cb1-97"></a>If you use only addi and</span>
+<span id="cb1-95"><a href="#cb1-95"></a></span>
+<span id="cb1-96"><a href="#cb1-96"></a><span class="fu">## If you use only addi and</span></span>
+<span id="cb1-97"><a href="#cb1-97"></a></span>
 <span id="cb1-98"><a href="#cb1-98"></a><span class="pp">|</span> Bigger Constants <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> shifts, you can technically  <span class="pp">|</span></span>
 <span id="cb1-99"><a href="#cb1-99"></a><span class="pp">| ----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----------------------------</span> <span class="pp">|</span></span>
 <span id="cb1-100"><a href="#cb1-100"></a>build any 32-bit constant.</span>
@@ -1079,9 +1453,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-122"><a href="#cb1-122"></a><span class="pp">|</span>     <span class="pp">|</span> lui  <span class="pp">|</span> x10,0x12345  # encoded as 0x12345537 <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-123"><a href="#cb1-123"></a>Key idea: ISA designers realized this pattern</span>
 <span id="cb1-124"><a href="#cb1-124"></a>was common so  it  d eserved HW support!</span>
-<span id="cb1-125"><a href="#cb1-125"></a>6</span>
-<span id="cb1-126"><a href="#cb1-126"></a></span>
-<span id="cb1-127"><a href="#cb1-127"></a>The miniRISC-V ISA</span>
+<span id="cb1-125"><a href="#cb1-125"></a></span>
+<span id="cb1-126"><a href="#cb1-126"></a><span class="fu">## The miniRISC-V ISA</span></span>
+<span id="cb1-127"><a href="#cb1-127"></a></span>
 <span id="cb1-128"><a href="#cb1-128"></a><span class="pp">|</span>           <span class="pp">|</span> 31 30 <span class="pp">|</span> 29 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
 <span id="cb1-129"><a href="#cb1-129"></a><span class="pp">| ---------</span> <span class="pp">| -----</span> <span class="pp">| --------------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
 <span id="cb1-130"><a href="#cb1-130"></a><span class="pp">|</span>           <span class="pp">|</span>       <span class="pp">|</span>                <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span>            <span class="pp">|</span> 0 1     <span class="pp">|</span> 1 0 0 1 1 <span class="pp">|</span></span>
@@ -1100,9 +1474,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-143"><a href="#cb1-143"></a>2 ) ALU with a register and an immediate operand. (LOADS HAVE DIFF OPCODE!)</span>
 <span id="cb1-144"><a href="#cb1-144"></a>3) Stores and Branches</span>
 <span id="cb1-145"><a href="#cb1-145"></a>4) Jumps and large constants (LUI, AUIPC)</span>
-<span id="cb1-146"><a href="#cb1-146"></a>7</span>
-<span id="cb1-147"><a href="#cb1-147"></a></span>
-<span id="cb1-148"><a href="#cb1-148"></a>Load and Store Instructions</span>
+<span id="cb1-146"><a href="#cb1-146"></a></span>
+<span id="cb1-147"><a href="#cb1-147"></a><span class="fu">## Load and Store Instructions</span></span>
+<span id="cb1-148"><a href="#cb1-148"></a></span>
 <span id="cb1-149"><a href="#cb1-149"></a>RISC-V is a “Load/Store architecture”. That means that only a specific class of</span>
 <span id="cb1-150"><a href="#cb1-150"></a>instructions are used to reference data in memory. As a rule, data is loaded</span>
 <span id="cb1-151"><a href="#cb1-151"></a>into registers first, then processed, and the results are written back using</span>
@@ -1140,25 +1514,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-183"><a href="#cb1-183"></a>– offset is a 12 bit immediate value</span>
 <span id="cb1-184"><a href="#cb1-184"></a>– The loaded word will be stored in rd</span>
 <span id="cb1-185"><a href="#cb1-185"></a>R<span class="co">[</span><span class="ot">rd</span><span class="co">]</span> = M<span class="co">[</span><span class="ot">R[rs1] + offset</span><span class="co">]</span></span>
-<span id="cb1-186"><a href="#cb1-186"></a>9</span>
-<span id="cb1-187"><a href="#cb1-187"></a></span>
-<span id="cb1-188"><a href="#cb1-188"></a>Store Word (sw)</span>
+<span id="cb1-186"><a href="#cb1-186"></a></span>
+<span id="cb1-187"><a href="#cb1-187"></a><span class="fu">## Store Word (sw)</span></span>
+<span id="cb1-188"><a href="#cb1-188"></a></span>
 <span id="cb1-189"><a href="#cb1-189"></a>■ Used to store 4 bytes (one word) of data to memory</span>
 <span id="cb1-190"><a href="#cb1-190"></a>■ sw rs2 offset(rs1)</span>
 <span id="cb1-191"><a href="#cb1-191"></a>– rs1 is a register that holds a memory address</span>
 <span id="cb1-192"><a href="#cb1-192"></a>– offset is a signed 12-bit immediate value</span>
 <span id="cb1-193"><a href="#cb1-193"></a>– rs2 is the value that will be written at this address</span>
 <span id="cb1-194"><a href="#cb1-194"></a>M<span class="co">[</span><span class="ot">R[rs1] + offset</span><span class="co">]</span> = R<span class="co">[</span><span class="ot">rs2</span><span class="co">]</span></span>
-<span id="cb1-195"><a href="#cb1-195"></a>10</span>
-<span id="cb1-196"><a href="#cb1-196"></a></span>
-<span id="cb1-197"><a href="#cb1-197"></a>Load Word vs Store Word</span>
+<span id="cb1-195"><a href="#cb1-195"></a></span>
+<span id="cb1-196"><a href="#cb1-196"></a><span class="fu">## Load Word vs Store Word</span></span>
+<span id="cb1-197"><a href="#cb1-197"></a></span>
 <span id="cb1-198"><a href="#cb1-198"></a>■ Load Word</span>
 <span id="cb1-199"><a href="#cb1-199"></a>– Reads 4 bytes (one word) from memory</span>
 <span id="cb1-200"><a href="#cb1-200"></a>■ Store word</span>
 <span id="cb1-201"><a href="#cb1-201"></a>– Writes 4 bytes (one word) to memory</span>
-<span id="cb1-202"><a href="#cb1-202"></a>11</span>
-<span id="cb1-203"><a href="#cb1-203"></a></span>
-<span id="cb1-204"><a href="#cb1-204"></a>To access memory, we need</span>
+<span id="cb1-202"><a href="#cb1-202"></a></span>
+<span id="cb1-203"><a href="#cb1-203"></a><span class="fu">## To access memory, we need</span></span>
+<span id="cb1-204"><a href="#cb1-204"></a></span>
 <span id="cb1-205"><a href="#cb1-205"></a>Loads and stores are the only</span>
 <span id="cb1-206"><a href="#cb1-206"></a>two pieces of info: a base</span>
 <span id="cb1-207"><a href="#cb1-207"></a>instructions that touch</span>
@@ -1181,9 +1555,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-224"><a href="#cb1-224"></a>zero-extended 20-bits</span>
 <span id="cb1-225"><a href="#cb1-225"></a>Note: opcode shown is just first</span>
 <span id="cb1-226"><a href="#cb1-226"></a>5 bits (6-2 on previous slide)</span>
-<span id="cb1-227"><a href="#cb1-227"></a>12</span>
-<span id="cb1-228"><a href="#cb1-228"></a></span>
-<span id="cb1-229"><a href="#cb1-229"></a>For a store, rs1 is still the</span>
+<span id="cb1-227"><a href="#cb1-227"></a></span>
+<span id="cb1-228"><a href="#cb1-228"></a><span class="fu">## For a store, rs1 is still the</span></span>
+<span id="cb1-229"><a href="#cb1-229"></a></span>
 <span id="cb1-230"><a href="#cb1-230"></a>For a load, rs1 is the base</span>
 <span id="cb1-231"><a href="#cb1-231"></a>base register, but now rs2</span>
 <span id="cb1-232"><a href="#cb1-232"></a>register and rd is where the</span>
@@ -1203,9 +1577,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-246"><a href="#cb1-246"></a>Widens mux to the ALU’s B input</span>
 <span id="cb1-247"><a href="#cb1-247"></a><span class="ss">- </span>12-bit immediate value is</span>
 <span id="cb1-248"><a href="#cb1-248"></a>zero-extended 20-bits</span>
-<span id="cb1-249"><a href="#cb1-249"></a>13</span>
-<span id="cb1-250"><a href="#cb1-250"></a></span>
-<span id="cb1-251"><a href="#cb1-251"></a>The (sign-extended) immediate</span>
+<span id="cb1-249"><a href="#cb1-249"></a></span>
+<span id="cb1-250"><a href="#cb1-250"></a><span class="fu">## The (sign-extended) immediate</span></span>
+<span id="cb1-251"><a href="#cb1-251"></a></span>
 <span id="cb1-252"><a href="#cb1-252"></a>The ALU is now going to be</span>
 <span id="cb1-253"><a href="#cb1-253"></a>needs to be routed to the ALU,</span>
 <span id="cb1-254"><a href="#cb1-254"></a>adding the base register and</span>
@@ -1225,9 +1599,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-268"><a href="#cb1-268"></a>Widens mux to the ALU’s B input</span>
 <span id="cb1-269"><a href="#cb1-269"></a><span class="ss">- </span>12-bit immediate value is</span>
 <span id="cb1-270"><a href="#cb1-270"></a>zero-extended 20-bits</span>
-<span id="cb1-271"><a href="#cb1-271"></a>14</span>
-<span id="cb1-272"><a href="#cb1-272"></a></span>
-<span id="cb1-273"><a href="#cb1-273"></a>For a load, the computed</span>
+<span id="cb1-271"><a href="#cb1-271"></a></span>
+<span id="cb1-272"><a href="#cb1-272"></a><span class="fu">## For a load, the computed</span></span>
+<span id="cb1-273"><a href="#cb1-273"></a></span>
 <span id="cb1-274"><a href="#cb1-274"></a>address from ALU goes to</span>
 <span id="cb1-275"><a href="#cb1-275"></a>Write back mux selects it so it</span>
 <span id="cb1-276"><a href="#cb1-276"></a>data memory, returns a 32 bit</span>
@@ -1244,9 +1618,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-287"><a href="#cb1-287"></a>Widens mux to the ALU’s B input</span>
 <span id="cb1-288"><a href="#cb1-288"></a><span class="ss">- </span>12-bit immediate value is</span>
 <span id="cb1-289"><a href="#cb1-289"></a>zero-extended 20-bits</span>
-<span id="cb1-290"><a href="#cb1-290"></a>15</span>
-<span id="cb1-291"><a href="#cb1-291"></a></span>
-<span id="cb1-292"><a href="#cb1-292"></a>Instead of sending memory’s</span>
+<span id="cb1-290"><a href="#cb1-290"></a></span>
+<span id="cb1-291"><a href="#cb1-291"></a><span class="fu">## Instead of sending memory’s</span></span>
+<span id="cb1-292"><a href="#cb1-292"></a></span>
 <span id="cb1-293"><a href="#cb1-293"></a>For a store, the address still</span>
 <span id="cb1-294"><a href="#cb1-294"></a>output back to registers, we</span>
 <span id="cb1-295"><a href="#cb1-295"></a>comes from the ALU.</span>
@@ -1263,9 +1637,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-306"><a href="#cb1-306"></a>Widens mux to the ALU’s B input</span>
 <span id="cb1-307"><a href="#cb1-307"></a><span class="ss">- </span>12-bit immediate value is</span>
 <span id="cb1-308"><a href="#cb1-308"></a>zero-extended 20-bits</span>
-<span id="cb1-309"><a href="#cb1-309"></a>16</span>
-<span id="cb1-310"><a href="#cb1-310"></a></span>
-<span id="cb1-311"><a href="#cb1-311"></a>This datapath diagram</span>
+<span id="cb1-309"><a href="#cb1-309"></a></span>
+<span id="cb1-310"><a href="#cb1-310"></a><span class="fu">## This datapath diagram</span></span>
+<span id="cb1-311"><a href="#cb1-311"></a></span>
 <span id="cb1-312"><a href="#cb1-312"></a>Funct3 encodes the type of</span>
 <span id="cb1-313"><a href="#cb1-313"></a>doesn’t show all masking and</span>
 <span id="cb1-314"><a href="#cb1-314"></a>access: byte, halfword, word.</span>
@@ -1282,9 +1656,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-325"><a href="#cb1-325"></a>Widens mux to the ALU’s B input</span>
 <span id="cb1-326"><a href="#cb1-326"></a><span class="ss">- </span>12-bit immediate value is</span>
 <span id="cb1-327"><a href="#cb1-327"></a>zero-extended 20-bits</span>
-<span id="cb1-328"><a href="#cb1-328"></a>17</span>
-<span id="cb1-329"><a href="#cb1-329"></a></span>
-<span id="cb1-330"><a href="#cb1-330"></a>Load and Store Options</span>
+<span id="cb1-328"><a href="#cb1-328"></a></span>
+<span id="cb1-329"><a href="#cb1-329"></a><span class="fu">## Load and Store Options</span></span>
+<span id="cb1-330"><a href="#cb1-330"></a></span>
 <span id="cb1-331"><a href="#cb1-331"></a>RISC-V's load and store instructions are versatile. They provide a wide range of</span>
 <span id="cb1-332"><a href="#cb1-332"></a>addressing modes. Only a subset is shown here.</span>
 <span id="cb1-333"><a href="#cb1-333"></a>Rd ← Memory<span class="co">[</span><span class="ot">Rs + imm12</span><span class="co">]</span></span>
@@ -1302,9 +1676,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-345"><a href="#cb1-345"></a>value or a base address for a composite type (structure, object,</span>
 <span id="cb1-346"><a href="#cb1-346"></a>sh rd,(rs)</span>
 <span id="cb1-347"><a href="#cb1-347"></a>array, or a stack)</span>
-<span id="cb1-348"><a href="#cb1-348"></a>18</span>
-<span id="cb1-349"><a href="#cb1-349"></a></span>
-<span id="cb1-350"><a href="#cb1-350"></a>Load Word Encoding</span>
+<span id="cb1-348"><a href="#cb1-348"></a></span>
+<span id="cb1-349"><a href="#cb1-349"></a><span class="fu">## Load Word Encoding</span></span>
+<span id="cb1-350"><a href="#cb1-350"></a></span>
 <span id="cb1-351"><a href="#cb1-351"></a>I-Type, but slightly different opcode!</span>
 <span id="cb1-352"><a href="#cb1-352"></a>destination</span>
 <span id="cb1-353"><a href="#cb1-353"></a>source register</span>
@@ -1318,9 +1692,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-361"><a href="#cb1-361"></a><span class="ss">2. </span>Load data from memory</span>
 <span id="cb1-362"><a href="#cb1-362"></a>R<span class="co">[</span><span class="ot">rd</span><span class="co">]</span>  M<span class="co">[</span><span class="ot">R[rs1</span><span class="co">]</span> + SignExt(imm12)</span>
 <span id="cb1-363"><a href="#cb1-363"></a><span class="ss">3. </span>Store data into register file</span>
-<span id="cb1-364"><a href="#cb1-364"></a>19</span>
-<span id="cb1-365"><a href="#cb1-365"></a></span>
-<span id="cb1-366"><a href="#cb1-366"></a>Store Word Encoding</span>
+<span id="cb1-364"><a href="#cb1-364"></a></span>
+<span id="cb1-365"><a href="#cb1-365"></a><span class="fu">## Store Word Encoding</span></span>
+<span id="cb1-366"><a href="#cb1-366"></a></span>
 <span id="cb1-367"><a href="#cb1-367"></a>S-type</span>
 <span id="cb1-368"><a href="#cb1-368"></a><span class="pp">|</span>      <span class="pp">|</span> source register  <span class="pp">|</span> source register  <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-369"><a href="#cb1-369"></a><span class="pp">| ----</span> <span class="pp">| ----------------</span> <span class="pp">| ----------------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
@@ -1331,9 +1705,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-374"><a href="#cb1-374"></a>sw rs2, imm(rs1)</span>
 <span id="cb1-375"><a href="#cb1-375"></a>M<span class="co">[</span><span class="ot">R[rs1] + SignExt(Imm)</span><span class="co">]</span> = R<span class="co">[</span><span class="ot">rs2</span><span class="co">]</span></span>
 <span id="cb1-376"><a href="#cb1-376"></a>opcode = 0b0100011</span>
-<span id="cb1-377"><a href="#cb1-377"></a>20</span>
-<span id="cb1-378"><a href="#cb1-378"></a></span>
-<span id="cb1-379"><a href="#cb1-379"></a>Translate the following instructions into machine code</span>
+<span id="cb1-377"><a href="#cb1-377"></a></span>
+<span id="cb1-378"><a href="#cb1-378"></a><span class="fu">## Translate the following instructions into machine code</span></span>
+<span id="cb1-379"><a href="#cb1-379"></a></span>
 <span id="cb1-380"><a href="#cb1-380"></a>lw x5, 0x20(x7)</span>
 <span id="cb1-381"><a href="#cb1-381"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> source register  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-382"><a href="#cb1-382"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
@@ -1352,9 +1726,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-395"><a href="#cb1-395"></a><span class="pp">|</span> 31  <span class="pp">|</span> 25 24 <span class="pp">|</span> 20  <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-396"><a href="#cb1-396"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-397"><a href="#cb1-397"></a><span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 19  <span class="pp">|</span> 15 14 <span class="pp">|</span>     <span class="pp">|</span> 12 11 <span class="pp">|</span>     <span class="pp">|</span> 7 6 <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-398"><a href="#cb1-398"></a>21</span>
-<span id="cb1-399"><a href="#cb1-399"></a></span>
-<span id="cb1-400"><a href="#cb1-400"></a>Translate the following instructions into machine code</span>
+<span id="cb1-398"><a href="#cb1-398"></a></span>
+<span id="cb1-399"><a href="#cb1-399"></a><span class="fu">## Translate the following instructions into machine code</span></span>
+<span id="cb1-400"><a href="#cb1-400"></a></span>
 <span id="cb1-401"><a href="#cb1-401"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>                  <span class="pp">|</span> lw x5, 0x20(x7) <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0x0203A283   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-402"><a href="#cb1-402"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----------------</span> <span class="pp">| ---------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-403"><a href="#cb1-403"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> source register  <span class="pp">|</span>                 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
@@ -1375,9 +1749,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-418"><a href="#cb1-418"></a><span class="pp">|</span> 1111111 <span class="pp">|</span>                  <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>                  <span class="pp">|</span>       <span class="pp">|</span> 010    <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span> 0100011 <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-419"><a href="#cb1-419"></a><span class="pp">|</span> 31      <span class="pp">|</span> 25 24            <span class="pp">|</span>         <span class="pp">|</span> 20    <span class="pp">|</span>                  <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-420"><a href="#cb1-420"></a><span class="pp">|</span>         <span class="pp">|</span>                  <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> 19               <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12         <span class="pp">|</span> 11    <span class="pp">|</span> 7 6 <span class="pp">|</span>         <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-421"><a href="#cb1-421"></a>22</span>
-<span id="cb1-422"><a href="#cb1-422"></a></span>
-<span id="cb1-423"><a href="#cb1-423"></a>ACCESSING MEMORY</span>
+<span id="cb1-421"><a href="#cb1-421"></a></span>
+<span id="cb1-422"><a href="#cb1-422"></a><span class="fu">## ACCESSING MEMORY</span></span>
+<span id="cb1-423"><a href="#cb1-423"></a></span>
 <span id="cb1-424"><a href="#cb1-424"></a></span>
 <span id="cb1-425"><a href="#cb1-425"></a>Memory</span>
 <span id="cb1-426"><a href="#cb1-426"></a>■ The register file only contains 32, 32-bit registers</span>
@@ -1385,9 +1759,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-428"><a href="#cb1-428"></a>to these!</span>
 <span id="cb1-429"><a href="#cb1-429"></a>■ We can’t store all of our data in the register file. So where does it all go?</span>
 <span id="cb1-430"><a href="#cb1-430"></a>■ In the main memory</span>
-<span id="cb1-431"><a href="#cb1-431"></a>24</span>
-<span id="cb1-432"><a href="#cb1-432"></a></span>
-<span id="cb1-433"><a href="#cb1-433"></a>RISC-V Memory Model</span>
+<span id="cb1-431"><a href="#cb1-431"></a></span>
+<span id="cb1-432"><a href="#cb1-432"></a><span class="fu">## RISC-V Memory Model</span></span>
+<span id="cb1-433"><a href="#cb1-433"></a></span>
 <span id="cb1-434"><a href="#cb1-434"></a>Used to manage function</span>
 <span id="cb1-435"><a href="#cb1-435"></a>calls and local variables</span>
 <span id="cb1-436"><a href="#cb1-436"></a>Used for dynamic memory</span>
@@ -1396,18 +1770,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-439"><a href="#cb1-439"></a>compile-time</span>
 <span id="cb1-440"><a href="#cb1-440"></a>Programs</span>
 <span id="cb1-441"><a href="#cb1-441"></a>Reserved for the OS</span>
-<span id="cb1-442"><a href="#cb1-442"></a>25</span>
-<span id="cb1-443"><a href="#cb1-443"></a></span>
-<span id="cb1-444"><a href="#cb1-444"></a>Only reaches out to memory</span>
+<span id="cb1-442"><a href="#cb1-442"></a></span>
+<span id="cb1-443"><a href="#cb1-443"></a><span class="fu">## Only reaches out to memory</span></span>
+<span id="cb1-444"><a href="#cb1-444"></a></span>
 <span id="cb1-445"><a href="#cb1-445"></a>when a load or a store</span>
 <span id="cb1-446"><a href="#cb1-446"></a>happens!</span>
 <span id="cb1-447"><a href="#cb1-447"></a>RISC-V Datapath</span>
 <span id="cb1-448"><a href="#cb1-448"></a>Memory</span>
 <span id="cb1-449"><a href="#cb1-449"></a>Register</span>
 <span id="cb1-450"><a href="#cb1-450"></a>File</span>
-<span id="cb1-451"><a href="#cb1-451"></a>26</span>
-<span id="cb1-452"><a href="#cb1-452"></a></span>
-<span id="cb1-453"><a href="#cb1-453"></a>Memory vs. Register File</span>
+<span id="cb1-451"><a href="#cb1-451"></a></span>
+<span id="cb1-452"><a href="#cb1-452"></a><span class="fu">## Memory vs. Register File</span></span>
+<span id="cb1-453"><a href="#cb1-453"></a></span>
 <span id="cb1-454"><a href="#cb1-454"></a>■ So what’s the point of the register file?</span>
 <span id="cb1-455"><a href="#cb1-455"></a>■ It is MUCH, much..! faster to access the register file</span>
 <span id="cb1-456"><a href="#cb1-456"></a>■ We’ll store the values that we are currently working with in the register file</span>
@@ -1420,9 +1794,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-463"><a href="#cb1-463"></a>access</span>
 <span id="cb1-464"><a href="#cb1-464"></a><span class="ss">3. </span>part of the CPU</span>
 <span id="cb1-465"><a href="#cb1-465"></a><span class="ss">3. </span>not part of the CPU</span>
-<span id="cb1-466"><a href="#cb1-466"></a>27</span>
-<span id="cb1-467"><a href="#cb1-467"></a></span>
-<span id="cb1-468"><a href="#cb1-468"></a><span class="pp">|</span> 5   <span class="pp">|</span> 90  <span class="pp">|</span> 100 <span class="pp">|</span> 40  <span class="pp">|</span> 11  <span class="pp">|</span></span>
+<span id="cb1-466"><a href="#cb1-466"></a></span>
+<span id="cb1-467"><a href="#cb1-467"></a><span class="fu">## | 5   | 90  | 100 | 40  | 11  |</span></span>
+<span id="cb1-468"><a href="#cb1-468"></a></span>
 <span id="cb1-469"><a href="#cb1-469"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-470"><a href="#cb1-470"></a><span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 3   <span class="pp">|</span> 4   <span class="pp">|</span></span>
 <span id="cb1-471"><a href="#cb1-471"></a>1</span>
@@ -1432,9 +1806,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-475"><a href="#cb1-475"></a>What is the value of x11 after executing the following instruction?</span>
 <span id="cb1-476"><a href="#cb1-476"></a>•</span>
 <span id="cb1-477"><a href="#cb1-477"></a>lw x11, 0(x10)</span>
-<span id="cb1-478"><a href="#cb1-478"></a>28</span>
-<span id="cb1-479"><a href="#cb1-479"></a></span>
-<span id="cb1-480"><a href="#cb1-480"></a>5 90 100 40 11</span>
+<span id="cb1-478"><a href="#cb1-478"></a></span>
+<span id="cb1-479"><a href="#cb1-479"></a><span class="fu">## 5 90 100 40 11</span></span>
+<span id="cb1-480"><a href="#cb1-480"></a></span>
 <span id="cb1-481"><a href="#cb1-481"></a>0 1 2 3 4</span>
 <span id="cb1-482"><a href="#cb1-482"></a>• Above is an integer array whose base address is 0x00004000.</span>
 <span id="cb1-483"><a href="#cb1-483"></a>• The size of an int is 4 bytes.</span>
@@ -1442,9 +1816,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-485"><a href="#cb1-485"></a>• What is the value of x11 after executing the following instruction?</span>
 <span id="cb1-486"><a href="#cb1-486"></a>lw x11 0(x10)</span>
 <span id="cb1-487"><a href="#cb1-487"></a>5</span>
-<span id="cb1-488"><a href="#cb1-488"></a>29</span>
-<span id="cb1-489"><a href="#cb1-489"></a></span>
-<span id="cb1-490"><a href="#cb1-490"></a><span class="pp">|</span> 5   <span class="pp">|</span> 90  <span class="pp">|</span> 100 <span class="pp">|</span> 40  <span class="pp">|</span> 11  <span class="pp">|</span></span>
+<span id="cb1-488"><a href="#cb1-488"></a></span>
+<span id="cb1-489"><a href="#cb1-489"></a><span class="fu">## | 5   | 90  | 100 | 40  | 11  |</span></span>
+<span id="cb1-490"><a href="#cb1-490"></a></span>
 <span id="cb1-491"><a href="#cb1-491"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-492"><a href="#cb1-492"></a><span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 3   <span class="pp">|</span> 4   <span class="pp">|</span></span>
 <span id="cb1-493"><a href="#cb1-493"></a>1</span>
@@ -1454,9 +1828,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-497"><a href="#cb1-497"></a>What is the value of x12 after executing the following instruction?</span>
 <span id="cb1-498"><a href="#cb1-498"></a>•</span>
 <span id="cb1-499"><a href="#cb1-499"></a>lw x12, 4(x10)</span>
-<span id="cb1-500"><a href="#cb1-500"></a>30</span>
-<span id="cb1-501"><a href="#cb1-501"></a></span>
-<span id="cb1-502"><a href="#cb1-502"></a>5 90 100 40 11</span>
+<span id="cb1-500"><a href="#cb1-500"></a></span>
+<span id="cb1-501"><a href="#cb1-501"></a><span class="fu">## 5 90 100 40 11</span></span>
+<span id="cb1-502"><a href="#cb1-502"></a></span>
 <span id="cb1-503"><a href="#cb1-503"></a>0 1 2 3 4</span>
 <span id="cb1-504"><a href="#cb1-504"></a>• Above is an integer array whose base address is 0x00004000.</span>
 <span id="cb1-505"><a href="#cb1-505"></a>• The size of an int is 4 bytes.</span>
@@ -1464,9 +1838,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-507"><a href="#cb1-507"></a>• What is the value of x12 after executing the following instruction?</span>
 <span id="cb1-508"><a href="#cb1-508"></a>lw x12 4(x10)</span>
 <span id="cb1-509"><a href="#cb1-509"></a>90</span>
-<span id="cb1-510"><a href="#cb1-510"></a>31</span>
-<span id="cb1-511"><a href="#cb1-511"></a></span>
-<span id="cb1-512"><a href="#cb1-512"></a>5 90 100 40 11</span>
+<span id="cb1-510"><a href="#cb1-510"></a></span>
+<span id="cb1-511"><a href="#cb1-511"></a><span class="fu">## 5 90 100 40 11</span></span>
+<span id="cb1-512"><a href="#cb1-512"></a></span>
 <span id="cb1-513"><a href="#cb1-513"></a>0 1 2 3 4</span>
 <span id="cb1-514"><a href="#cb1-514"></a>• Above is an integer array whose base address is 0x00004000.</span>
 <span id="cb1-515"><a href="#cb1-515"></a>• The size of an int is 4 bytes.</span>
@@ -1474,9 +1848,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-517"><a href="#cb1-517"></a>• What is the value of x12 after executing the following instructions?</span>
 <span id="cb1-518"><a href="#cb1-518"></a>addi x10, x10, 4</span>
 <span id="cb1-519"><a href="#cb1-519"></a>lw x12, 8(x10)</span>
-<span id="cb1-520"><a href="#cb1-520"></a>32</span>
-<span id="cb1-521"><a href="#cb1-521"></a></span>
-<span id="cb1-522"><a href="#cb1-522"></a>5 90 100 40 11</span>
+<span id="cb1-520"><a href="#cb1-520"></a></span>
+<span id="cb1-521"><a href="#cb1-521"></a><span class="fu">## 5 90 100 40 11</span></span>
+<span id="cb1-522"><a href="#cb1-522"></a></span>
 <span id="cb1-523"><a href="#cb1-523"></a>0 1 2 3 4</span>
 <span id="cb1-524"><a href="#cb1-524"></a>• Above is an integer array whose base address is 0x00004000.</span>
 <span id="cb1-525"><a href="#cb1-525"></a>• The size of an int is 4 bytes.</span>
@@ -1485,9 +1859,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-528"><a href="#cb1-528"></a>addi 10 x10 4</span>
 <span id="cb1-529"><a href="#cb1-529"></a>lw x12 8(x10)</span>
 <span id="cb1-530"><a href="#cb1-530"></a>40</span>
-<span id="cb1-531"><a href="#cb1-531"></a>33</span>
-<span id="cb1-532"><a href="#cb1-532"></a></span>
-<span id="cb1-533"><a href="#cb1-533"></a><span class="pp">|</span> 5   <span class="pp">|</span> 90  <span class="pp">|</span> 100 <span class="pp">|</span> 40  <span class="pp">|</span> 11  <span class="pp">|</span></span>
+<span id="cb1-531"><a href="#cb1-531"></a></span>
+<span id="cb1-532"><a href="#cb1-532"></a><span class="fu">## | 5   | 90  | 100 | 40  | 11  |</span></span>
+<span id="cb1-533"><a href="#cb1-533"></a></span>
 <span id="cb1-534"><a href="#cb1-534"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-535"><a href="#cb1-535"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 3   <span class="pp">|</span> 4   <span class="pp">|</span></span>
 <span id="cb1-536"><a href="#cb1-536"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
@@ -1497,9 +1871,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-540"><a href="#cb1-540"></a>• What are the contents of the array after executing the following</span>
 <span id="cb1-541"><a href="#cb1-541"></a>instruction?</span>
 <span id="cb1-542"><a href="#cb1-542"></a>sw x7, 12(x10)</span>
-<span id="cb1-543"><a href="#cb1-543"></a>34</span>
-<span id="cb1-544"><a href="#cb1-544"></a></span>
-<span id="cb1-545"><a href="#cb1-545"></a><span class="pp">|</span> 5   <span class="pp">|</span> 90  <span class="pp">|</span> 100 <span class="pp">|</span> 40  <span class="pp">|</span> 11  <span class="pp">|</span></span>
+<span id="cb1-543"><a href="#cb1-543"></a></span>
+<span id="cb1-544"><a href="#cb1-544"></a><span class="fu">## | 5   | 90  | 100 | 40  | 11  |</span></span>
+<span id="cb1-545"><a href="#cb1-545"></a></span>
 <span id="cb1-546"><a href="#cb1-546"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-547"><a href="#cb1-547"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 3   <span class="pp">|</span> 4   <span class="pp">|</span></span>
 <span id="cb1-548"><a href="#cb1-548"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
@@ -1513,9 +1887,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-556"><a href="#cb1-556"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-557"><a href="#cb1-557"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 3   <span class="pp">|</span> 4   <span class="pp">|</span></span>
 <span id="cb1-558"><a href="#cb1-558"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-559"><a href="#cb1-559"></a>35</span>
-<span id="cb1-560"><a href="#cb1-560"></a></span>
-<span id="cb1-561"><a href="#cb1-561"></a>Storing Arrays in Memory</span>
+<span id="cb1-559"><a href="#cb1-559"></a></span>
+<span id="cb1-560"><a href="#cb1-560"></a><span class="fu">## Storing Arrays in Memory</span></span>
+<span id="cb1-561"><a href="#cb1-561"></a></span>
 <span id="cb1-562"><a href="#cb1-562"></a>■ We will store our statically allocated arrays in</span>
 <span id="cb1-563"><a href="#cb1-563"></a>the static data segment</span>
 <span id="cb1-564"><a href="#cb1-564"></a>■ To store data in the static data segment, we</span>
@@ -1524,9 +1898,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-567"><a href="#cb1-567"></a>simulator provides a set of directives for</span>
 <span id="cb1-568"><a href="#cb1-568"></a>allocating space for data and initializing</span>
 <span id="cb1-569"><a href="#cb1-569"></a>variables</span>
-<span id="cb1-570"><a href="#cb1-570"></a>36</span>
-<span id="cb1-571"><a href="#cb1-571"></a></span>
-<span id="cb1-572"><a href="#cb1-572"></a>Load Address</span>
+<span id="cb1-570"><a href="#cb1-570"></a></span>
+<span id="cb1-571"><a href="#cb1-571"></a><span class="fu">## Load Address</span></span>
+<span id="cb1-572"><a href="#cb1-572"></a></span>
 <span id="cb1-573"><a href="#cb1-573"></a>■ How do you get the address of the array into a register?</span>
 <span id="cb1-574"><a href="#cb1-574"></a>– with an instruction called load address (la)</span>
 <span id="cb1-575"><a href="#cb1-575"></a>■ la rd Label</span>
@@ -1537,9 +1911,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-580"><a href="#cb1-580"></a>exist in HW, but assembler expands</span>
 <span id="cb1-581"><a href="#cb1-581"></a>into one or more real RISC-V</span>
 <span id="cb1-582"><a href="#cb1-582"></a>instructions!</span>
-<span id="cb1-583"><a href="#cb1-583"></a>37</span>
-<span id="cb1-584"><a href="#cb1-584"></a></span>
-<span id="cb1-585"><a href="#cb1-585"></a>Load Address AUIPC is an instruction we will talk</span>
+<span id="cb1-583"><a href="#cb1-583"></a></span>
+<span id="cb1-584"><a href="#cb1-584"></a><span class="fu">## Load Address AUIPC is an instruction we will talk</span></span>
+<span id="cb1-585"><a href="#cb1-585"></a></span>
 <span id="cb1-586"><a href="#cb1-586"></a>about more in a bit… it adds an</span>
 <span id="cb1-587"><a href="#cb1-587"></a>immediate to the PC. Let’s review</span>
 <span id="cb1-588"><a href="#cb1-588"></a>what the PC is / related to program</span>
@@ -1554,18 +1928,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-597"><a href="#cb1-597"></a>exist in HW, but assembler expands</span>
 <span id="cb1-598"><a href="#cb1-598"></a>into one or more real RISC-V</span>
 <span id="cb1-599"><a href="#cb1-599"></a>instructions!</span>
-<span id="cb1-600"><a href="#cb1-600"></a>38</span>
-<span id="cb1-601"><a href="#cb1-601"></a></span>
-<span id="cb1-602"><a href="#cb1-602"></a>Program Counter (PC)</span>
+<span id="cb1-600"><a href="#cb1-600"></a></span>
+<span id="cb1-601"><a href="#cb1-601"></a><span class="fu">## Program Counter (PC)</span></span>
+<span id="cb1-602"><a href="#cb1-602"></a></span>
 <span id="cb1-603"><a href="#cb1-603"></a>■ The Program Counter (PC) is a 32-bit register</span>
 <span id="cb1-604"><a href="#cb1-604"></a>■ The PC is not inside of the register file!!!</span>
 <span id="cb1-605"><a href="#cb1-605"></a>■ The datapath executes one instruction per clock cycle</span>
 <span id="cb1-606"><a href="#cb1-606"></a>■ On every clock cycle, PC is incremented by 4 to fetch the next instruction</span>
 <span id="cb1-607"><a href="#cb1-607"></a>Program</span>
 <span id="cb1-608"><a href="#cb1-608"></a>Counter</span>
-<span id="cb1-609"><a href="#cb1-609"></a>39</span>
-<span id="cb1-610"><a href="#cb1-610"></a></span>
-<span id="cb1-611"><a href="#cb1-611"></a>Program Counter (PC)</span>
+<span id="cb1-609"><a href="#cb1-609"></a></span>
+<span id="cb1-610"><a href="#cb1-610"></a><span class="fu">## Program Counter (PC)</span></span>
+<span id="cb1-611"><a href="#cb1-611"></a></span>
 <span id="cb1-612"><a href="#cb1-612"></a>32</span>
 <span id="cb1-613"><a href="#cb1-613"></a>4</span>
 <span id="cb1-614"><a href="#cb1-614"></a>32</span>
@@ -1573,9 +1947,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-616"><a href="#cb1-616"></a>PC</span>
 <span id="cb1-617"><a href="#cb1-617"></a>32</span>
 <span id="cb1-618"><a href="#cb1-618"></a>Increment the PC by 4 on every clock cycle</span>
-<span id="cb1-619"><a href="#cb1-619"></a>40</span>
-<span id="cb1-620"><a href="#cb1-620"></a></span>
-<span id="cb1-621"><a href="#cb1-621"></a>Program Counter (PC)</span>
+<span id="cb1-619"><a href="#cb1-619"></a></span>
+<span id="cb1-620"><a href="#cb1-620"></a><span class="fu">## Program Counter (PC)</span></span>
+<span id="cb1-621"><a href="#cb1-621"></a></span>
 <span id="cb1-622"><a href="#cb1-622"></a>Example: Current PC = 0x00004010</span>
 <span id="cb1-623"><a href="#cb1-623"></a>32</span>
 <span id="cb1-624"><a href="#cb1-624"></a>4</span>
@@ -1583,9 +1957,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-626"><a href="#cb1-626"></a>Adder</span>
 <span id="cb1-627"><a href="#cb1-627"></a>PC</span>
 <span id="cb1-628"><a href="#cb1-628"></a>32</span>
-<span id="cb1-629"><a href="#cb1-629"></a>41</span>
-<span id="cb1-630"><a href="#cb1-630"></a></span>
-<span id="cb1-631"><a href="#cb1-631"></a>Program Counter (PC)</span>
+<span id="cb1-629"><a href="#cb1-629"></a></span>
+<span id="cb1-630"><a href="#cb1-630"></a><span class="fu">## Program Counter (PC)</span></span>
+<span id="cb1-631"><a href="#cb1-631"></a></span>
 <span id="cb1-632"><a href="#cb1-632"></a>Example: Current PC = 0x00004010</span>
 <span id="cb1-633"><a href="#cb1-633"></a>32</span>
 <span id="cb1-634"><a href="#cb1-634"></a>4</span>
@@ -1597,9 +1971,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-640"><a href="#cb1-640"></a>32</span>
 <span id="cb1-641"><a href="#cb1-641"></a>0x00004014</span>
 <span id="cb1-642"><a href="#cb1-642"></a>On the next rising edge of the clock, PC will become 0x00004014</span>
-<span id="cb1-643"><a href="#cb1-643"></a>42</span>
-<span id="cb1-644"><a href="#cb1-644"></a></span>
-<span id="cb1-645"><a href="#cb1-645"></a>32</span>
+<span id="cb1-643"><a href="#cb1-643"></a></span>
+<span id="cb1-644"><a href="#cb1-644"></a><span class="fu">## 32</span></span>
+<span id="cb1-645"><a href="#cb1-645"></a></span>
 <span id="cb1-646"><a href="#cb1-646"></a>4</span>
 <span id="cb1-647"><a href="#cb1-647"></a>32</span>
 <span id="cb1-648"><a href="#cb1-648"></a>Adder</span>
@@ -1613,18 +1987,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-656"><a href="#cb1-656"></a>Memory</span>
 <span id="cb1-657"><a href="#cb1-657"></a>instruction currently being</span>
 <span id="cb1-658"><a href="#cb1-658"></a>executed</span>
-<span id="cb1-659"><a href="#cb1-659"></a>43</span>
-<span id="cb1-660"><a href="#cb1-660"></a></span>
-<span id="cb1-661"><a href="#cb1-661"></a>Storing Code in Memory</span>
+<span id="cb1-659"><a href="#cb1-659"></a></span>
+<span id="cb1-660"><a href="#cb1-660"></a><span class="fu">## Storing Code in Memory</span></span>
+<span id="cb1-661"><a href="#cb1-661"></a></span>
 <span id="cb1-662"><a href="#cb1-662"></a>■ Code is stored in the text segment</span>
 <span id="cb1-663"><a href="#cb1-663"></a>■ To store code in the text segment, we use the</span>
 <span id="cb1-664"><a href="#cb1-664"></a>.text directive</span>
-<span id="cb1-665"><a href="#cb1-665"></a>44</span>
-<span id="cb1-666"><a href="#cb1-666"></a></span>
-<span id="cb1-667"><a href="#cb1-667"></a>PIPELINING</span>
-<span id="cb1-668"><a href="#cb1-668"></a>46</span>
-<span id="cb1-669"><a href="#cb1-669"></a></span>
-<span id="cb1-670"><a href="#cb1-670"></a>Recall: Pipeline Registers</span>
+<span id="cb1-665"><a href="#cb1-665"></a></span>
+<span id="cb1-666"><a href="#cb1-666"></a><span class="fu">## PIPELINING</span></span>
+<span id="cb1-667"><a href="#cb1-667"></a></span>
+<span id="cb1-668"><a href="#cb1-668"></a></span>
+<span id="cb1-669"><a href="#cb1-669"></a><span class="fu">## Recall: Pipeline Registers</span></span>
+<span id="cb1-670"><a href="#cb1-670"></a></span>
 <span id="cb1-671"><a href="#cb1-671"></a>■ Inserted between stages of execution to hold intermediate</span>
 <span id="cb1-672"><a href="#cb1-672"></a>values.</span>
 <span id="cb1-673"><a href="#cb1-673"></a>– Ex: ALU operands that were decoded!</span>
@@ -1634,9 +2008,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-677"><a href="#cb1-677"></a>operations (AKA: instructions)</span>
 <span id="cb1-678"><a href="#cb1-678"></a>– Different stages operate on different instructions in</span>
 <span id="cb1-679"><a href="#cb1-679"></a>each clock cycle</span>
-<span id="cb1-680"><a href="#cb1-680"></a>47</span>
-<span id="cb1-681"><a href="#cb1-681"></a></span>
-<span id="cb1-682"><a href="#cb1-682"></a>Recall: Pipeline Registers</span>
+<span id="cb1-680"><a href="#cb1-680"></a></span>
+<span id="cb1-681"><a href="#cb1-681"></a><span class="fu">## Recall: Pipeline Registers</span></span>
+<span id="cb1-682"><a href="#cb1-682"></a></span>
 <span id="cb1-683"><a href="#cb1-683"></a><span class="pp">|</span> COMB  <span class="pp">|</span> COMB  <span class="pp">|</span> COMB  <span class="pp">|</span></span>
 <span id="cb1-684"><a href="#cb1-684"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
 <span id="cb1-685"><a href="#cb1-685"></a>REG</span>
@@ -1649,16 +2023,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-692"><a href="#cb1-692"></a><span class="pp">|</span> BLOCK #1 <span class="pp">|</span> BLOCK #2 <span class="pp">|</span> BLOCK #3 <span class="pp">|</span></span>
 <span id="cb1-693"><a href="#cb1-693"></a><span class="pp">| --------</span> <span class="pp">| --------</span> <span class="pp">| --------</span> <span class="pp">|</span></span>
 <span id="cb1-694"><a href="#cb1-694"></a>CLOCK</span>
-<span id="cb1-695"><a href="#cb1-695"></a>48</span>
-<span id="cb1-696"><a href="#cb1-696"></a></span>
-<span id="cb1-697"><a href="#cb1-697"></a>Y = A + B + C + D + EF</span>
+<span id="cb1-695"><a href="#cb1-695"></a></span>
+<span id="cb1-696"><a href="#cb1-696"></a><span class="fu">## Y = A + B + C + D + EF</span></span>
+<span id="cb1-697"><a href="#cb1-697"></a></span>
 <span id="cb1-698"><a href="#cb1-698"></a>■ Let’s compare two circuits that perform the operation Y = A + B + C + D + EF</span>
 <span id="cb1-699"><a href="#cb1-699"></a>Stage X Stage Y</span>
 <span id="cb1-700"><a href="#cb1-700"></a>Stage X Stage Y Stage Z</span>
 <span id="cb1-701"><a href="#cb1-701"></a>2-stage Pipeline 3-stage Pipeline</span>
-<span id="cb1-702"><a href="#cb1-702"></a>49</span>
-<span id="cb1-703"><a href="#cb1-703"></a></span>
-<span id="cb1-704"><a href="#cb1-704"></a>Two Stage Pipeline</span>
+<span id="cb1-702"><a href="#cb1-702"></a></span>
+<span id="cb1-703"><a href="#cb1-703"></a><span class="fu">## Two Stage Pipeline</span></span>
+<span id="cb1-704"><a href="#cb1-704"></a></span>
 <span id="cb1-705"><a href="#cb1-705"></a><span class="ss">1. </span>What is the longest combinational path?</span>
 <span id="cb1-706"><a href="#cb1-706"></a>– Multiplier</span>
 <span id="cb1-707"><a href="#cb1-707"></a>– 1200ps</span>
@@ -1671,9 +2045,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-714"><a href="#cb1-714"></a><span class="ss">4. </span>If we run this circuit at the minimum clock period, how long will it take to</span>
 <span id="cb1-715"><a href="#cb1-715"></a>complete 10 operations?</span>
 <span id="cb1-716"><a href="#cb1-716"></a>– Final result is available at t = (1220ps)(10+1) = 13420ps</span>
-<span id="cb1-717"><a href="#cb1-717"></a>50</span>
-<span id="cb1-718"><a href="#cb1-718"></a></span>
-<span id="cb1-719"><a href="#cb1-719"></a>Three Stage Pipeline</span>
+<span id="cb1-717"><a href="#cb1-717"></a></span>
+<span id="cb1-718"><a href="#cb1-718"></a><span class="fu">## Three Stage Pipeline</span></span>
+<span id="cb1-719"><a href="#cb1-719"></a></span>
 <span id="cb1-720"><a href="#cb1-720"></a><span class="ss">1. </span>What is the longest combinational path?</span>
 <span id="cb1-721"><a href="#cb1-721"></a>– Multiplier</span>
 <span id="cb1-722"><a href="#cb1-722"></a>– 1200ps</span>
@@ -1686,17 +2060,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-729"><a href="#cb1-729"></a><span class="ss">4. </span>If we run this circuit at the minimum clock period, how long will it take to</span>
 <span id="cb1-730"><a href="#cb1-730"></a>complete 10 operations?</span>
 <span id="cb1-731"><a href="#cb1-731"></a>– Final result is available at t = (1220ps)(10+2) = 14640ps</span>
-<span id="cb1-732"><a href="#cb1-732"></a>51</span>
-<span id="cb1-733"><a href="#cb1-733"></a></span>
-<span id="cb1-734"><a href="#cb1-734"></a>Review: Performance Metrics</span>
+<span id="cb1-732"><a href="#cb1-732"></a></span>
+<span id="cb1-733"><a href="#cb1-733"></a><span class="fu">## Review: Performance Metrics</span></span>
+<span id="cb1-734"><a href="#cb1-734"></a></span>
 <span id="cb1-735"><a href="#cb1-735"></a>■ What is the latency of an operation in the 2-stage pipeline?</span>
 <span id="cb1-736"><a href="#cb1-736"></a>■ What is the latency of an operation in the 3-stage pipeline?</span>
 <span id="cb1-737"><a href="#cb1-737"></a>■ Is the throughput higher in the 2-stage or 3-stage pipeline?</span>
 <span id="cb1-738"><a href="#cb1-738"></a>■ What is the speedup of completing 10 operations on the 2-stage pipeline vs</span>
 <span id="cb1-739"><a href="#cb1-739"></a>2-stage pipeline?</span>
-<span id="cb1-740"><a href="#cb1-740"></a>52</span>
-<span id="cb1-741"><a href="#cb1-741"></a></span>
-<span id="cb1-742"><a href="#cb1-742"></a>Performance Metrics</span>
+<span id="cb1-740"><a href="#cb1-740"></a></span>
+<span id="cb1-741"><a href="#cb1-741"></a><span class="fu">## Performance Metrics</span></span>
+<span id="cb1-742"><a href="#cb1-742"></a></span>
 <span id="cb1-743"><a href="#cb1-743"></a>■ What is the latency of an operation in the 2-stage pipeline?</span>
 <span id="cb1-744"><a href="#cb1-744"></a>– (1220ps)(2) = 2440ps</span>
 <span id="cb1-745"><a href="#cb1-745"></a>■ What is the latency of an operation in the 3-stage pipeline?</span>
@@ -1706,8 +2080,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-749"><a href="#cb1-749"></a>■ What is the speedup of completing 10 operations on the 2-stage</span>
 <span id="cb1-750"><a href="#cb1-750"></a>pipeline vs 3-stage pipeline?</span>
 <span id="cb1-751"><a href="#cb1-751"></a>– 13420ps/14640ps = .9167</span>
-<span id="cb1-752"><a href="#cb1-752"></a>■ The two-stage pipeline is faster</span>
-<span id="cb1-753"><a href="#cb1-753"></a>53</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-752"><a href="#cb1-752"></a>■ The two-stage pipeline is faster</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

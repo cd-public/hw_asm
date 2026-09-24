@@ -156,6 +156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Transistors</span></a>
   </div>
@@ -286,6 +292,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Old</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -300,7 +323,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#logistics-update" id="toc-logistics-update" class="nav-link" data-scroll-target="#logistics-update">Logistics Update!</a></li>
+  <li><a href="#review-source" id="toc-review-source" class="nav-link" data-scroll-target="#review-source">REVIEW: SOURCE</a></li>
+  <li><a href="#source-bypass-muxes" id="toc-source-bypass-muxes" class="nav-link" data-scroll-target="#source-bypass-muxes">Source Bypass Muxes:</a></li>
+  <li><a href="#graphical-representation-of-forwarding" id="toc-graphical-representation-of-forwarding" class="nav-link" data-scroll-target="#graphical-representation-of-forwarding">Graphical Representation of Forwarding</a></li>
+  <li><a href="#load-use-hazard" id="toc-load-use-hazard" class="nav-link" data-scroll-target="#load-use-hazard">LOAD-USE HAZARD</a></li>
+  <li><a href="#load-use-data-hazard" id="toc-load-use-data-hazard" class="nav-link" data-scroll-target="#load-use-data-hazard">Load-Use Data Hazard</a></li>
+  <li><a href="#load-use-data-hazard-1" id="toc-load-use-data-hazard-1" class="nav-link" data-scroll-target="#load-use-data-hazard-1">Load-Use Data Hazard</a></li>
+  <li><a href="#load-use-data-hazard-2" id="toc-load-use-data-hazard-2" class="nav-link" data-scroll-target="#load-use-data-hazard-2">Load-Use Data Hazard</a></li>
+  <li><a href="#load-use-data-hazard-3" id="toc-load-use-data-hazard-3" class="nav-link" data-scroll-target="#load-use-data-hazard-3">Load-Use Data Hazard</a></li>
+  <li><a href="#load-use-data-hazard-4" id="toc-load-use-data-hazard-4" class="nav-link" data-scroll-target="#load-use-data-hazard-4">Load-Use Data Hazard</a></li>
+  <li><a href="#how-do-our-forwarding-muxes-come-into-play" id="toc-how-do-our-forwarding-muxes-come-into-play" class="nav-link" data-scroll-target="#how-do-our-forwarding-muxes-come-into-play">How do our forwarding muxes come into play?</a></li>
+  <li><a href="#how-do-our-forwarding-muxes-come-into-play-1" id="toc-how-do-our-forwarding-muxes-come-into-play-1" class="nav-link" data-scroll-target="#how-do-our-forwarding-muxes-come-into-play-1">How do our forwarding muxes come into play?</a></li>
+  <li><a href="#pipeline-diagram-hint-the-only-stalls-should-be" id="toc-pipeline-diagram-hint-the-only-stalls-should-be" class="nav-link" data-scroll-target="#pipeline-diagram-hint-the-only-stalls-should-be">Pipeline Diagram Hint: the only stalls should be</a></li>
+  <li><a href="#forwarding-explanation" id="toc-forwarding-explanation" class="nav-link" data-scroll-target="#forwarding-explanation">Forwarding Explanation</a></li>
+  <li><a href="#pipeline-diagram" id="toc-pipeline-diagram" class="nav-link" data-scroll-target="#pipeline-diagram">Pipeline Diagram</a></li>
+  <li><a href="#performance-analysis-pipelining" id="toc-performance-analysis-pipelining" class="nav-link" data-scroll-target="#performance-analysis-pipelining">Performance Analysis + Pipelining</a></li>
+  <li><a href="#performance-analysis-pipelining-1" id="toc-performance-analysis-pipelining-1" class="nav-link" data-scroll-target="#performance-analysis-pipelining-1">Performance Analysis + Pipelining</a></li>
+  <li><a href="#performance-analysis-pipelining-2" id="toc-performance-analysis-pipelining-2" class="nav-link" data-scroll-target="#performance-analysis-pipelining-2">Performance Analysis + Pipelining</a></li>
+  <li><a href="#some-takeaways" id="toc-some-takeaways" class="nav-link" data-scroll-target="#some-takeaways">Some takeaways…</a></li>
+  <li><a href="#memory-an" id="toc-memory-an" class="nav-link" data-scroll-target="#memory-an">MEMORY: AN</a></li>
+  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="B0.rjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -339,29 +385,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="section" class="level1">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 23: Intro to Memory Hierachy tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Update! ■ Written Assignment 6 – Due tomorrow ■ Lab 5 due LDOC (4/27) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day 2</p>
-<p>REVIEW: SOURCE BYPASSING 3</p>
-<p>Source Bypass Muxes: Now, we can choose if the bottom input of 3 case each the ALU should come from 1. The register file (no forwarding) – 00 ForwardA 2. The instruction two stages ahead – 01 3. The instruction one stage ahead – 10 M u x M u x ForwardB 4</p>
-<p>Graphical Representation of Forwarding Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf 5</p>
-<p>LOAD-USE HAZARD 6</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 7</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 8</p>
-<p>Load-Use Data Hazard ForwardA M The updated valueu of x4 cannot be forwarded until it is x read from the data memory. M u We need to stall the add instruction in the decode stage for x one cycle so that we can forward the value read from data ForwardB memory. add x5, x4, x3 lw x4 , 0(x9) 9</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 10</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9) 11</p>
-<p>How do our forwarding muxes come into play? ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9) 12</p>
-<p>How do our forwarding muxes come into play? (forward from two stages ahead) ForwardA = 0b01 ForwardA M u x M u x ForwardB ForwardB = 0b00 (read from reg file) add x5, x4, x3 stall lw x4 , 0(x9) 13</p>
-<p>Pipeline Diagram Hint: the only stalls should be because of Load-Use hazards! 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 lw x3, 0(x8) add x11, x3, x3 lw x4, 0(x11) add x9, x11, x9 sub x10, x4, x9 ForwardA ForwardB 14</p>
-<p>Forwarding Explanation Cycle 0-1: No instruction in EX. Cycle 6: add x9, x11, x9 in EX (ForwardA, ForwardB) = (XX, XX) Needs x11 from previous add. At start of cycle, value is in EX/MEM. Cycle 2: lw x3, 0(x8) in EX Forward from EX/MEM for operand A. Load computes address only. Operand B from register file. Operands come from register file. (10, 00) (00, 00) Cycle 7: sub x10, x4, x9 in EX Cycle 3: Stall (load-use hazard) Two dependencies: No real instruction in EX. x4 from lw → value in MEM/WB → forward (01) (XX, XX) x9 from add → value in EX/MEM → forward (10) (01, 10) Cycle 4: add x11, x3, x3 in EX Needs x3 from lw. Forwarding Codes: Load result is in MEM/WB at start of cycle. 00 = register file Forward both operands from MEM/WB. 10 = EX/MEM (1 stage ahead) (01, 01) 01 = MEM/WB (2 stages ahead) XX = don’t care (no instruction in EX) Cycle 5: lw x4, 0(x11) in EX Key Rule: Load computes address only. Forward based on where the value is at the start of the Operands come from register file. cycle, not the end. 15 (00, 00)</p>
-<p>Another Explanation of Previous Slide ● Cycle 0-1: Nothing to be executed yet ○ (XX, XX) ● Cycle 2: Instruction_1: LW in the execution stage → A load in EX only computes an address and does not need forwarded ALU operands. Both ALU inputs come from the register file through the ID/EX register. ○ (00, 00) ● Cycle 3: Stall bc of Load-Use hazard! ○ (XX, XX) ● Cycle 4: Instruction_2: Add in the execution stage. The add instruction needs x3, which was loaded by Instruction 1. Load results are available at the end of the MEM stage. At this moment, Instruction 1 is in MEM and its loaded value will be placed in MEM/WB this cycle. Instruction 2 needs the value now in EX, so it must forward from the MEM/WB pipeline register. This is considered two stages ahead. ○ (01, 01) ● Cycle 5: Instruction_3: LW in execution stage → use ALU operands, so both inputs should come from the regfile. ○ (00, 00) ● Cycle 6: Instruction_4: Add in execution stage → This instruction needs x11, which was produced by Instruction 2. At the start of this cycle, Instruction 2’s ALU result is sitting in the EX/MEM pipeline register, because it completed EX one cycle earlier. Forwarding from EX/MEM corresponds to “one stage ahead.” The other operand (x9) comes from the register file. ○ (10, 00) ● Cycle 7: instruction_5: Sub in execution stage → This instruction has two dependencies. x4 was produced by Instruction 3 (a load). Load values become available at the end of MEM. At the start of cycle 7, Instruction 3 is in WB and its load result is sitting in MEM/WB. That requires forwarding from two stages ahead. x9 was produced by Instruction 4 (an ALU instruction). At the start of this cycle, Instruction 4 is in MEM, so its ALU result is in EX/MEM. That requires forwarding from one stage ahead. ○ (01, 10) 16</p>
-<p>Pipeline Diagram 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. | | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | — | — | — | — | — | —– | —– | — | lw x3, 0(x8) | | F | D | X | M | W | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | add x11, x3, x3 | | | F | D | D | X | M | W | | | | | | | ————— | — | — | — | — | — | — | — | — | — | — | — | — | | lw x4, 0(x11) | | | F | F | D | X | M | W | | | | | | add x9, x11, x9 | | | | | F | D | X | M | W | | | | sub x10, x4, x9 | | | | | | | F | D | X | M W | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | ForwardA | | XX | XX | 00 | XX | 01 | 00 | 10 | 01 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — | ForwardB | | XX | XX | 00 | XX | 01 | 00 | 00 | 10 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — | 17</p>
-<p>Performance Analysis + Pipelining Assume a 1 GHz clock. One clock cycle is 1 ns Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect? 18</p>
-<p>Performance Analysis + Pipelining Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect? 19</p>
-<p>Performance Analysis + Pipelining 20</p>
-<p>Some takeaways… Design strategy: Focus our attention on placing pipelining ● registers around the slowest circuit elements (bottlenecks!) You can pipeline an RISC-V CPU even more. There exist ● implementations with 7, 8, and 9 pipeline stages. But the overhead of bypass paths and the number of stall cases increase . Memory access time is our real bottleneck! ● 21</p>
-<p>MEMORY: AN OVERVIEW 22</p>
-<p>Topics ■ Memory Arrays ■ Transparent Latches ■ Edge-Triggered Registers ■ Finite State Machines</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 23: Intro to Memory Hierachy tinyurl.com/comp311-sp26</p>
+<section id="logistics-update" class="level2">
+<h2 class="anchored" data-anchor-id="logistics-update">Logistics Update!</h2>
+<p>■ Written Assignment 6 – Due tomorrow ■ Lab 5 due LDOC (4/27) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day</p>
+</section>
+<section id="review-source" class="level2">
+<h2 class="anchored" data-anchor-id="review-source">REVIEW: SOURCE</h2>
+<p>BYPASSING</p>
+</section>
+<section id="source-bypass-muxes" class="level2">
+<h2 class="anchored" data-anchor-id="source-bypass-muxes">Source Bypass Muxes:</h2>
+<p>Now, we can choose if the bottom input of 3 case each the ALU should come from 1. The register file (no forwarding) – 00 ForwardA 2. The instruction two stages ahead – 01 3. The instruction one stage ahead – 10 M u x M u x ForwardB</p>
+</section>
+<section id="graphical-representation-of-forwarding" class="level2">
+<h2 class="anchored" data-anchor-id="graphical-representation-of-forwarding">Graphical Representation of Forwarding</h2>
+<p>Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf</p>
+</section>
+<section id="load-use-hazard" class="level2">
+<h2 class="anchored" data-anchor-id="load-use-hazard">LOAD-USE HAZARD</h2>
+</section>
+<section id="load-use-data-hazard" class="level2">
+<h2 class="anchored" data-anchor-id="load-use-data-hazard">Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-1" class="level2">
+<h2 class="anchored" data-anchor-id="load-use-data-hazard-1">Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-2" class="level2">
+<h2 class="anchored" data-anchor-id="load-use-data-hazard-2">Load-Use Data Hazard</h2>
+<p>ForwardA M The updated valueu of x4 cannot be forwarded until it is x read from the data memory. M u We need to stall the add instruction in the decode stage for x one cycle so that we can forward the value read from data ForwardB memory. add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-3" class="level2">
+<h2 class="anchored" data-anchor-id="load-use-data-hazard-3">Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-4" class="level2">
+<h2 class="anchored" data-anchor-id="load-use-data-hazard-4">Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="how-do-our-forwarding-muxes-come-into-play" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-our-forwarding-muxes-come-into-play">How do our forwarding muxes come into play?</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="how-do-our-forwarding-muxes-come-into-play-1" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-our-forwarding-muxes-come-into-play-1">How do our forwarding muxes come into play?</h2>
+<p>(forward from two stages ahead) ForwardA = 0b01 ForwardA M u x M u x ForwardB ForwardB = 0b00 (read from reg file) add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="pipeline-diagram-hint-the-only-stalls-should-be" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-diagram-hint-the-only-stalls-should-be">Pipeline Diagram Hint: the only stalls should be</h2>
+<p>because of Load-Use hazards! 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 lw x3, 0(x8) add x11, x3, x3 lw x4, 0(x11) add x9, x11, x9 sub x10, x4, x9 ForwardA ForwardB</p>
+</section>
+<section id="forwarding-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="forwarding-explanation">Forwarding Explanation</h2>
+<p>Cycle 0-1: No instruction in EX. Cycle 6: add x9, x11, x9 in EX (ForwardA, ForwardB) = (XX, XX) Needs x11 from previous add. At start of cycle, value is in EX/MEM. Cycle 2: lw x3, 0(x8) in EX Forward from EX/MEM for operand A. Load computes address only. Operand B from register file. Operands come from register file. (10, 00) (00, 00) Cycle 7: sub x10, x4, x9 in EX Cycle 3: Stall (load-use hazard) Two dependencies: No real instruction in EX. x4 from lw → value in MEM/WB → forward (01) (XX, XX) x9 from add → value in EX/MEM → forward (10) (01, 10) Cycle 4: add x11, x3, x3 in EX Needs x3 from lw. Forwarding Codes: Load result is in MEM/WB at start of cycle. 00 = register file Forward both operands from MEM/WB. 10 = EX/MEM (1 stage ahead) (01, 01) 01 = MEM/WB (2 stages ahead) XX = don’t care (no instruction in EX) Cycle 5: lw x4, 0(x11) in EX Key Rule: Load computes address only. Forward based on where the value is at the start of the Operands come from register file. cycle, not the end. 15 (00, 00)</p>
+<p>Another Explanation of Previous Slide ● Cycle 0-1: Nothing to be executed yet ○ (XX, XX) ● Cycle 2: Instruction_1: LW in the execution stage → A load in EX only computes an address and does not need forwarded ALU operands. Both ALU inputs come from the register file through the ID/EX register. ○ (00, 00) ● Cycle 3: Stall bc of Load-Use hazard! ○ (XX, XX) ● Cycle 4: Instruction_2: Add in the execution stage. The add instruction needs x3, which was loaded by Instruction 1. Load results are available at the end of the MEM stage. At this moment, Instruction 1 is in MEM and its loaded value will be placed in MEM/WB this cycle. Instruction 2 needs the value now in EX, so it must forward from the MEM/WB pipeline register. This is considered two stages ahead. ○ (01, 01) ● Cycle 5: Instruction_3: LW in execution stage → use ALU operands, so both inputs should come from the regfile. ○ (00, 00) ● Cycle 6: Instruction_4: Add in execution stage → This instruction needs x11, which was produced by Instruction 2. At the start of this cycle, Instruction 2’s ALU result is sitting in the EX/MEM pipeline register, because it completed EX one cycle earlier. Forwarding from EX/MEM corresponds to “one stage ahead.” The other operand (x9) comes from the register file. ○ (10, 00) ● Cycle 7: instruction_5: Sub in execution stage → This instruction has two dependencies. x4 was produced by Instruction 3 (a load). Load values become available at the end of MEM. At the start of cycle 7, Instruction 3 is in WB and its load result is sitting in MEM/WB. That requires forwarding from two stages ahead. x9 was produced by Instruction 4 (an ALU instruction). At the start of this cycle, Instruction 4 is in MEM, so its ALU result is in EX/MEM. That requires forwarding from one stage ahead. ○ (01, 10)</p>
+</section>
+<section id="pipeline-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-diagram">Pipeline Diagram</h2>
+<ol type="1">
+<li>Fill out the pipeline diagram for the following set of instructions.</li>
+<li>What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. | | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | — | — | — | — | — | —– | —– | — | lw x3, 0(x8) | | F | D | X | M | W | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | add x11, x3, x3 | | | F | D | D | X | M | W | | | | | | | ————— | — | — | — | — | — | — | — | — | — | — | — | — | | lw x4, 0(x11) | | | F | F | D | X | M | W | | | | | | add x9, x11, x9 | | | | | F | D | X | M | W | | | | sub x10, x4, x9 | | | | | | | F | D | X | M W | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | ForwardA | | XX | XX | 00 | XX | 01 | 00 | 10 | 01 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — | ForwardB | | XX | XX | 00 | XX | 01 | 00 | 00 | 10 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — |</li>
+</ol>
+</section>
+<section id="performance-analysis-pipelining" class="level2">
+<h2 class="anchored" data-anchor-id="performance-analysis-pipelining">Performance Analysis + Pipelining</h2>
+<p>Assume a 1 GHz clock. One clock cycle is 1 ns Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect?</p>
+</section>
+<section id="performance-analysis-pipelining-1" class="level2">
+<h2 class="anchored" data-anchor-id="performance-analysis-pipelining-1">Performance Analysis + Pipelining</h2>
+<p>Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect?</p>
+</section>
+<section id="performance-analysis-pipelining-2" class="level2">
+<h2 class="anchored" data-anchor-id="performance-analysis-pipelining-2">Performance Analysis + Pipelining</h2>
+</section>
+<section id="some-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="some-takeaways">Some takeaways…</h2>
+<p>Design strategy: Focus our attention on placing pipelining ● registers around the slowest circuit elements (bottlenecks!) You can pipeline an RISC-V CPU even more. There exist ● implementations with 7, 8, and 9 pipeline stages. But the overhead of bypass paths and the number of stall cases increase . Memory access time is our real bottleneck! ●</p>
+</section>
+<section id="memory-an" class="level2">
+<h2 class="anchored" data-anchor-id="memory-an">MEMORY: AN</h2>
+<p>OVERVIEW</p>
+</section>
+<section id="topics" class="level2">
+<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<p>■ Memory Arrays ■ Transparent Latches ■ Edge-Triggered Registers ■ Finite State Machines</p>
 <p>Read-Only Memory = a Lookup Table A B Read-Only | A B | F n ( A , | B ) | Memory | | —– | ——— | —– | ——- | (ROM) | 0 0 | 0 | | | | —– | — | — | — | | 0 1 | 1 | | | MUX Fn(A,B) Logic | 1 0 | 1 | | | | —– | — | — | — | | 1 1 | 0 | | |</p>
 <p>■ A multiplexer can implement a lookup table: – for an N-input function we need a 2N input multiplexer Takeaway: ROM → “hardcoded – simply select one row out of 2N truth table” – 2N values go into the mux, only one comes out MUX → Hardware that selects – N-bit select input is now the “address” of data being accessed correct output based on the input ■ Limitations: – mux can get really big: 10-bit address → 1024 rows! – read-only; we also would like to write!</p>
 <p>A Mux’s Guts: Decoder + Selector Decoder Selector I Multiplexers 00 A can be partitioned 0 into two sections. B I A decoder 01 generates A A DECODER that 1 all possible Y identifies the product B I terms for 10 desired input,and a set of A inputs 2 a SELECTOR that B I 11 enables that input A onto the output. 3 B Key idea behind building ROMs: by sharing the decoder part of the logic MUXs could be adapted to make lookup tables with any number of outputs</p>
@@ -369,11 +478,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This structure is exactly what a ROM does: the decoder selects a row (the address), and Shared Decoding Logic each output corresponds to a column that determines whether that row produces a 1 or 0. We can build a general purpose “table-lookup” device called a Read-Only Memory (ROM), from which we can implement any truth table and, thus, any combinational device</p>
 <p>Logic According to ROMs ■ Different ROM implementation technologies – Mask (old) → ROM ■ read-only memory – Fuses (old) → PROM ■ programmable read-only memory – Erasable → EPROM ■ erasable programmable read-only memory – Electrically erasable → EEPROM ■ electrically-erasable programmable read-only memory ➔ today called FLASH! Used everywhere! ■ Model: LOOK UP value of function in truth table… – Inputs: “ADDRESS” of a truth table entry – ROM SIZE = # truth table entries… 2N x #outputs ■ … for an N-input boolean function, size = ____________</p>
 <p>Read-Write Memories (RAM) ■ Read-Write often called random-access memories (RAM) ■ Dynamic RAM uses analog storage: word N-transistor line – encode information using voltages serves bit line – from physics: we can “store” a as an voltage as “charge” on a capacitor access switch V REF To write: Drive bit line, turn on access transistor, force storage cap to new voltage To read: precharge bit line, turn on access trans., detect (small) change in bit line voltage</p>
-<p>Read-Write Memories (RAM) ■ Dynamic RAM uses analog storage: – encode information using voltages word – from physics: we can “store” a N-transistor line voltage as “charge” on a capacitor serves bit line – Pros: as an ■ compact! access – Cons: switch ■ it leaks! -&gt; refresh ■ complex interface V REF ■ reading a bit, destroys it To write: – (you have to rewrite the Drive bit line, turn on access transistor, value after each read) force storage cap to new voltage ■ it’s NOT a digital circuit To read: precharge bit line, turn on access trans., This storage circuit is the basis detect (small) change in bit line voltage for commodity DRAMs</p>
+<p>Read-Write Memories (RAM) ■ Dynamic RAM uses analog storage: – encode information using voltages word – from physics: we can “store” a N-transistor line voltage as “charge” on a capacitor serves bit line – Pros: as an ■ compact! access – Cons: switch ■ it leaks! -&gt; refresh ■ complex interface V REF ■ reading a bit, destroys it To write: – (you have to rewrite the Drive bit line, turn on access transistor, value after each read) force storage cap to new voltage ■ it’s NOT a digital circuit To read: precharge bit line, turn on access trans., This storage circuit is the basis detect (small) change in bit line voltage</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -858,21 +968,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16"></a>COMPUTER ORGANIZATION!</span>
 <span id="cb1-17"><a href="#cb1-17"></a>Lecture 23: Intro to Memory Hierachy</span>
 <span id="cb1-18"><a href="#cb1-18"></a>tinyurl.com/comp311-sp26</span>
-<span id="cb1-19"><a href="#cb1-19"></a>1</span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a>Logistics Update!</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">## Logistics Update!</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
 <span id="cb1-22"><a href="#cb1-22"></a>■ Written Assignment 6</span>
 <span id="cb1-23"><a href="#cb1-23"></a>– Due tomorrow</span>
 <span id="cb1-24"><a href="#cb1-24"></a>■ Lab 5 due LDOC (4/27)</span>
 <span id="cb1-25"><a href="#cb1-25"></a>■ Office Hours Ending LDOC</span>
 <span id="cb1-26"><a href="#cb1-26"></a>■ Final Review Session on First Reading Day</span>
-<span id="cb1-27"><a href="#cb1-27"></a>2</span>
-<span id="cb1-28"><a href="#cb1-28"></a></span>
-<span id="cb1-29"><a href="#cb1-29"></a>REVIEW: SOURCE</span>
+<span id="cb1-27"><a href="#cb1-27"></a></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="fu">## REVIEW: SOURCE</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
 <span id="cb1-30"><a href="#cb1-30"></a>BYPASSING</span>
-<span id="cb1-31"><a href="#cb1-31"></a>3</span>
-<span id="cb1-32"><a href="#cb1-32"></a></span>
-<span id="cb1-33"><a href="#cb1-33"></a>Source Bypass Muxes:</span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="fu">## Source Bypass Muxes:</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
 <span id="cb1-34"><a href="#cb1-34"></a>Now, we can choose if the bottom input of</span>
 <span id="cb1-35"><a href="#cb1-35"></a>3 case each</span>
 <span id="cb1-36"><a href="#cb1-36"></a>the ALU should come from</span>
@@ -887,16 +997,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-45"><a href="#cb1-45"></a>u</span>
 <span id="cb1-46"><a href="#cb1-46"></a>x</span>
 <span id="cb1-47"><a href="#cb1-47"></a>ForwardB</span>
-<span id="cb1-48"><a href="#cb1-48"></a>4</span>
-<span id="cb1-49"><a href="#cb1-49"></a></span>
-<span id="cb1-50"><a href="#cb1-50"></a>Graphical Representation of Forwarding</span>
+<span id="cb1-48"><a href="#cb1-48"></a></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="fu">## Graphical Representation of Forwarding</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a></span>
 <span id="cb1-51"><a href="#cb1-51"></a>Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf</span>
-<span id="cb1-52"><a href="#cb1-52"></a>5</span>
-<span id="cb1-53"><a href="#cb1-53"></a></span>
-<span id="cb1-54"><a href="#cb1-54"></a>LOAD-USE HAZARD</span>
-<span id="cb1-55"><a href="#cb1-55"></a>6</span>
-<span id="cb1-56"><a href="#cb1-56"></a></span>
-<span id="cb1-57"><a href="#cb1-57"></a>Load-Use Data Hazard</span>
+<span id="cb1-52"><a href="#cb1-52"></a></span>
+<span id="cb1-53"><a href="#cb1-53"></a><span class="fu">## LOAD-USE HAZARD</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a></span>
+<span id="cb1-55"><a href="#cb1-55"></a></span>
+<span id="cb1-56"><a href="#cb1-56"></a><span class="fu">## Load-Use Data Hazard</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
 <span id="cb1-58"><a href="#cb1-58"></a>ForwardA</span>
 <span id="cb1-59"><a href="#cb1-59"></a>M</span>
 <span id="cb1-60"><a href="#cb1-60"></a>u</span>
@@ -906,9 +1016,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-64"><a href="#cb1-64"></a>x</span>
 <span id="cb1-65"><a href="#cb1-65"></a>ForwardB</span>
 <span id="cb1-66"><a href="#cb1-66"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-67"><a href="#cb1-67"></a>7</span>
-<span id="cb1-68"><a href="#cb1-68"></a></span>
-<span id="cb1-69"><a href="#cb1-69"></a>Load-Use Data Hazard</span>
+<span id="cb1-67"><a href="#cb1-67"></a></span>
+<span id="cb1-68"><a href="#cb1-68"></a><span class="fu">## Load-Use Data Hazard</span></span>
+<span id="cb1-69"><a href="#cb1-69"></a></span>
 <span id="cb1-70"><a href="#cb1-70"></a>ForwardA</span>
 <span id="cb1-71"><a href="#cb1-71"></a>M</span>
 <span id="cb1-72"><a href="#cb1-72"></a>u</span>
@@ -918,9 +1028,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-76"><a href="#cb1-76"></a>x</span>
 <span id="cb1-77"><a href="#cb1-77"></a>ForwardB</span>
 <span id="cb1-78"><a href="#cb1-78"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-79"><a href="#cb1-79"></a>8</span>
-<span id="cb1-80"><a href="#cb1-80"></a></span>
-<span id="cb1-81"><a href="#cb1-81"></a>Load-Use Data Hazard</span>
+<span id="cb1-79"><a href="#cb1-79"></a></span>
+<span id="cb1-80"><a href="#cb1-80"></a><span class="fu">## Load-Use Data Hazard</span></span>
+<span id="cb1-81"><a href="#cb1-81"></a></span>
 <span id="cb1-82"><a href="#cb1-82"></a>ForwardA</span>
 <span id="cb1-83"><a href="#cb1-83"></a>M</span>
 <span id="cb1-84"><a href="#cb1-84"></a>The updated valueu of x4 cannot be forwarded until it is</span>
@@ -934,9 +1044,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-92"><a href="#cb1-92"></a>ForwardB</span>
 <span id="cb1-93"><a href="#cb1-93"></a>memory.</span>
 <span id="cb1-94"><a href="#cb1-94"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-95"><a href="#cb1-95"></a>9</span>
-<span id="cb1-96"><a href="#cb1-96"></a></span>
-<span id="cb1-97"><a href="#cb1-97"></a>Load-Use Data Hazard</span>
+<span id="cb1-95"><a href="#cb1-95"></a></span>
+<span id="cb1-96"><a href="#cb1-96"></a><span class="fu">## Load-Use Data Hazard</span></span>
+<span id="cb1-97"><a href="#cb1-97"></a></span>
 <span id="cb1-98"><a href="#cb1-98"></a>ForwardA</span>
 <span id="cb1-99"><a href="#cb1-99"></a>M</span>
 <span id="cb1-100"><a href="#cb1-100"></a>u</span>
@@ -946,9 +1056,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-104"><a href="#cb1-104"></a>x</span>
 <span id="cb1-105"><a href="#cb1-105"></a>ForwardB</span>
 <span id="cb1-106"><a href="#cb1-106"></a>add x5, x4, x3 lw x4 , 0(x9)</span>
-<span id="cb1-107"><a href="#cb1-107"></a>10</span>
-<span id="cb1-108"><a href="#cb1-108"></a></span>
-<span id="cb1-109"><a href="#cb1-109"></a>Load-Use Data Hazard</span>
+<span id="cb1-107"><a href="#cb1-107"></a></span>
+<span id="cb1-108"><a href="#cb1-108"></a><span class="fu">## Load-Use Data Hazard</span></span>
+<span id="cb1-109"><a href="#cb1-109"></a></span>
 <span id="cb1-110"><a href="#cb1-110"></a>ForwardA</span>
 <span id="cb1-111"><a href="#cb1-111"></a>M</span>
 <span id="cb1-112"><a href="#cb1-112"></a>u</span>
@@ -958,9 +1068,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-116"><a href="#cb1-116"></a>x</span>
 <span id="cb1-117"><a href="#cb1-117"></a>ForwardB</span>
 <span id="cb1-118"><a href="#cb1-118"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
-<span id="cb1-119"><a href="#cb1-119"></a>11</span>
-<span id="cb1-120"><a href="#cb1-120"></a></span>
-<span id="cb1-121"><a href="#cb1-121"></a>How do our forwarding muxes come into play?</span>
+<span id="cb1-119"><a href="#cb1-119"></a></span>
+<span id="cb1-120"><a href="#cb1-120"></a><span class="fu">## How do our forwarding muxes come into play?</span></span>
+<span id="cb1-121"><a href="#cb1-121"></a></span>
 <span id="cb1-122"><a href="#cb1-122"></a>ForwardA</span>
 <span id="cb1-123"><a href="#cb1-123"></a>M</span>
 <span id="cb1-124"><a href="#cb1-124"></a>u</span>
@@ -970,9 +1080,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-128"><a href="#cb1-128"></a>x</span>
 <span id="cb1-129"><a href="#cb1-129"></a>ForwardB</span>
 <span id="cb1-130"><a href="#cb1-130"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
-<span id="cb1-131"><a href="#cb1-131"></a>12</span>
-<span id="cb1-132"><a href="#cb1-132"></a></span>
-<span id="cb1-133"><a href="#cb1-133"></a>How do our forwarding muxes come into play?</span>
+<span id="cb1-131"><a href="#cb1-131"></a></span>
+<span id="cb1-132"><a href="#cb1-132"></a><span class="fu">## How do our forwarding muxes come into play?</span></span>
+<span id="cb1-133"><a href="#cb1-133"></a></span>
 <span id="cb1-134"><a href="#cb1-134"></a>(forward from two stages ahead)</span>
 <span id="cb1-135"><a href="#cb1-135"></a>ForwardA = 0b01</span>
 <span id="cb1-136"><a href="#cb1-136"></a>ForwardA</span>
@@ -986,9 +1096,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-144"><a href="#cb1-144"></a>ForwardB = 0b00</span>
 <span id="cb1-145"><a href="#cb1-145"></a>(read from reg file)</span>
 <span id="cb1-146"><a href="#cb1-146"></a>add x5, x4, x3 stall lw x4 , 0(x9)</span>
-<span id="cb1-147"><a href="#cb1-147"></a>13</span>
-<span id="cb1-148"><a href="#cb1-148"></a></span>
-<span id="cb1-149"><a href="#cb1-149"></a>Pipeline Diagram Hint: the only stalls should be</span>
+<span id="cb1-147"><a href="#cb1-147"></a></span>
+<span id="cb1-148"><a href="#cb1-148"></a><span class="fu">## Pipeline Diagram Hint: the only stalls should be</span></span>
+<span id="cb1-149"><a href="#cb1-149"></a></span>
 <span id="cb1-150"><a href="#cb1-150"></a>because of Load-Use hazards!</span>
 <span id="cb1-151"><a href="#cb1-151"></a>1.</span>
 <span id="cb1-152"><a href="#cb1-152"></a>Fill out the pipeline diagram for the following set of instructions.</span>
@@ -1004,9 +1114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-162"><a href="#cb1-162"></a>sub x10, x4, x9</span>
 <span id="cb1-163"><a href="#cb1-163"></a>ForwardA</span>
 <span id="cb1-164"><a href="#cb1-164"></a>ForwardB</span>
-<span id="cb1-165"><a href="#cb1-165"></a>14</span>
-<span id="cb1-166"><a href="#cb1-166"></a></span>
-<span id="cb1-167"><a href="#cb1-167"></a>Forwarding Explanation</span>
+<span id="cb1-165"><a href="#cb1-165"></a></span>
+<span id="cb1-166"><a href="#cb1-166"></a><span class="fu">## Forwarding Explanation</span></span>
+<span id="cb1-167"><a href="#cb1-167"></a></span>
 <span id="cb1-168"><a href="#cb1-168"></a>Cycle 0-1:</span>
 <span id="cb1-169"><a href="#cb1-169"></a>No instruction in EX.</span>
 <span id="cb1-170"><a href="#cb1-170"></a>Cycle 6: add x9, x11, x9 in EX</span>
@@ -1079,9 +1189,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-237"><a href="#cb1-237"></a>x9 was produced by Instruction 4 (an ALU instruction). At the start of this cycle, Instruction 4 is in MEM, so its ALU result is in EX/MEM.</span>
 <span id="cb1-238"><a href="#cb1-238"></a>That requires forwarding from one stage ahead.</span>
 <span id="cb1-239"><a href="#cb1-239"></a>○ (01, 10)</span>
-<span id="cb1-240"><a href="#cb1-240"></a>16</span>
-<span id="cb1-241"><a href="#cb1-241"></a></span>
-<span id="cb1-242"><a href="#cb1-242"></a>Pipeline Diagram</span>
+<span id="cb1-240"><a href="#cb1-240"></a></span>
+<span id="cb1-241"><a href="#cb1-241"></a><span class="fu">## Pipeline Diagram</span></span>
+<span id="cb1-242"><a href="#cb1-242"></a></span>
 <span id="cb1-243"><a href="#cb1-243"></a>1.</span>
 <span id="cb1-244"><a href="#cb1-244"></a>Fill out the pipeline diagram for the following set of instructions.</span>
 <span id="cb1-245"><a href="#cb1-245"></a>2.</span>
@@ -1107,9 +1217,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-265"><a href="#cb1-265"></a>ForwardB</span>
 <span id="cb1-266"><a href="#cb1-266"></a><span class="pp">|</span>     <span class="pp">|</span> XX  <span class="pp">|</span> XX  <span class="pp">|</span> 00  <span class="pp">|</span> XX  <span class="pp">|</span> 01  <span class="pp">|</span> 00  <span class="pp">|</span> 00  <span class="pp">|</span> 10  <span class="pp">|</span> XX XX <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-267"><a href="#cb1-267"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-268"><a href="#cb1-268"></a>17</span>
-<span id="cb1-269"><a href="#cb1-269"></a></span>
-<span id="cb1-270"><a href="#cb1-270"></a>Performance Analysis + Pipelining</span>
+<span id="cb1-268"><a href="#cb1-268"></a></span>
+<span id="cb1-269"><a href="#cb1-269"></a><span class="fu">## Performance Analysis + Pipelining</span></span>
+<span id="cb1-270"><a href="#cb1-270"></a></span>
 <span id="cb1-271"><a href="#cb1-271"></a>Assume a 1 GHz clock. One</span>
 <span id="cb1-272"><a href="#cb1-272"></a>clock cycle is 1 ns</span>
 <span id="cb1-273"><a href="#cb1-273"></a>Assume a pipelined implementation where:</span>
@@ -1123,9 +1233,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-281"><a href="#cb1-281"></a>branches, and of those 80% of the time they are taken, and</span>
 <span id="cb1-282"><a href="#cb1-282"></a>15% of instructions executed are loads or stores, what sort of</span>
 <span id="cb1-283"><a href="#cb1-283"></a>speed-up do we expect?</span>
-<span id="cb1-284"><a href="#cb1-284"></a>18</span>
-<span id="cb1-285"><a href="#cb1-285"></a></span>
-<span id="cb1-286"><a href="#cb1-286"></a>Performance Analysis + Pipelining</span>
+<span id="cb1-284"><a href="#cb1-284"></a></span>
+<span id="cb1-285"><a href="#cb1-285"></a><span class="fu">## Performance Analysis + Pipelining</span></span>
+<span id="cb1-286"><a href="#cb1-286"></a></span>
 <span id="cb1-287"><a href="#cb1-287"></a>Assume a pipelined implementation where:</span>
 <span id="cb1-288"><a href="#cb1-288"></a>●</span>
 <span id="cb1-289"><a href="#cb1-289"></a>Taken branches take 2 cycles.</span>
@@ -1137,12 +1247,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-295"><a href="#cb1-295"></a>branches, and of those 80% of the time they are taken, and</span>
 <span id="cb1-296"><a href="#cb1-296"></a>15% of instructions executed are loads or stores, what sort of</span>
 <span id="cb1-297"><a href="#cb1-297"></a>speed-up do we expect?</span>
-<span id="cb1-298"><a href="#cb1-298"></a>19</span>
-<span id="cb1-299"><a href="#cb1-299"></a></span>
-<span id="cb1-300"><a href="#cb1-300"></a>Performance Analysis + Pipelining</span>
-<span id="cb1-301"><a href="#cb1-301"></a>20</span>
-<span id="cb1-302"><a href="#cb1-302"></a></span>
-<span id="cb1-303"><a href="#cb1-303"></a>Some takeaways…</span>
+<span id="cb1-298"><a href="#cb1-298"></a></span>
+<span id="cb1-299"><a href="#cb1-299"></a><span class="fu">## Performance Analysis + Pipelining</span></span>
+<span id="cb1-300"><a href="#cb1-300"></a></span>
+<span id="cb1-301"><a href="#cb1-301"></a></span>
+<span id="cb1-302"><a href="#cb1-302"></a><span class="fu">## Some takeaways…</span></span>
+<span id="cb1-303"><a href="#cb1-303"></a></span>
 <span id="cb1-304"><a href="#cb1-304"></a>Design strategy: Focus our attention on placing pipelining</span>
 <span id="cb1-305"><a href="#cb1-305"></a>●</span>
 <span id="cb1-306"><a href="#cb1-306"></a>registers around the slowest circuit elements (bottlenecks!)</span>
@@ -1153,13 +1263,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-311"><a href="#cb1-311"></a>.</span>
 <span id="cb1-312"><a href="#cb1-312"></a>Memory access time is our real bottleneck!</span>
 <span id="cb1-313"><a href="#cb1-313"></a>●</span>
-<span id="cb1-314"><a href="#cb1-314"></a>21</span>
-<span id="cb1-315"><a href="#cb1-315"></a></span>
-<span id="cb1-316"><a href="#cb1-316"></a>MEMORY: AN</span>
+<span id="cb1-314"><a href="#cb1-314"></a></span>
+<span id="cb1-315"><a href="#cb1-315"></a><span class="fu">## MEMORY: AN</span></span>
+<span id="cb1-316"><a href="#cb1-316"></a></span>
 <span id="cb1-317"><a href="#cb1-317"></a>OVERVIEW</span>
-<span id="cb1-318"><a href="#cb1-318"></a>22</span>
-<span id="cb1-319"><a href="#cb1-319"></a></span>
-<span id="cb1-320"><a href="#cb1-320"></a>Topics</span>
+<span id="cb1-318"><a href="#cb1-318"></a></span>
+<span id="cb1-319"><a href="#cb1-319"></a><span class="fu">## Topics</span></span>
+<span id="cb1-320"><a href="#cb1-320"></a></span>
 <span id="cb1-321"><a href="#cb1-321"></a>■ Memory Arrays</span>
 <span id="cb1-322"><a href="#cb1-322"></a>■ Transparent Latches</span>
 <span id="cb1-323"><a href="#cb1-323"></a>■ Edge-Triggered Registers</span>
@@ -1317,8 +1427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-475"><a href="#cb1-475"></a>■ it’s NOT a digital circuit</span>
 <span id="cb1-476"><a href="#cb1-476"></a>To read:</span>
 <span id="cb1-477"><a href="#cb1-477"></a>precharge bit line, turn on access trans.,</span>
-<span id="cb1-478"><a href="#cb1-478"></a>This storage circuit is the basis detect (small) change in bit line voltage</span>
-<span id="cb1-479"><a href="#cb1-479"></a>for commodity DRAMs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-478"><a href="#cb1-478"></a>This storage circuit is the basis detect (small) change in bit line voltage</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

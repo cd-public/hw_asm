@@ -145,157 +145,458 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 16: Loads, Stores, Memory tinyurl.com/comp311-sp26 1</p>
-<p>Plan for today…. Last class, we introduced pipelining basic circuits / toy examples. ● Our goal is to be able to design a pipelined RISC-V CPU. ● Things we still need to learn: ● The assembly instructions required for reading/writing to memory ○ The RISC-V memory model ○ How programs are stored in memory and executed ○ How to break the execution of a single instruction into stages ○ 2</p>
-<p>RISC-V Resources. We are getting into the thick of it now! Kaki posted a “reading”. Please do this before next class! ● Chapter 2 of the RISC-V reader/”Mona Lisa Book” ● I will give you p.&nbsp;15-16 of this book on the next quizzes and on the final as a ○ reference sheet (on the next slides, too) Play around with the simulator!! Leonard built this! ● The best way to learn is by doing in this setting. (Think of other times you ○ have learned a programming language ☺) If you want even more details, you can read Andrew Waterman’s ● PhD dissertation https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf ○ 3</p>
-<p>Quick Review and Some Details: I-type Data Processing ALU instructions with a register and an immediate operand Rd - register file write address Rs1 - register source operand Imm12 - 12-bit immediate operand Adds a mux to the B input of the ALU - 12-bit immediate value is sign-extended 20-bits 4</p>
-<p>Why Built-in Constant operands? (Immediates) | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——- | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | rs1 | func3 | rd | | | ● Alternatives? Why not? Do we have a choice? Supporting immediates ○ put constants in memory (was common in older ISAs) directly avoids a huge number of memory ● SMALL constants are used frequently (50% of operands) accesses! ○ In a C compiler (gcc) 52% of ALU operations involve a constant ○ In a circuit simulator (spice) 69% involve constants ○ e.g., B = B + 1; C = W &amp; 0xff; A = B - 1; How large of constants | ● ISA Design Principle: | | | | | | | | should we allow for? If | | ———————— | — | — | — | — | — | — | — | ———————— | they are too big, we won’t | Make the common case easy | | | | | | | | have enough bits leftover | | ————————- | — | — | — | — | — | — | — | ————————– | for the instructions or | Make the common case fast | | | | | | | | operands. | | ————————- | — | — | — | — | — | — | — | ——— | 5</p>
-<p>If you use only addi and | Bigger Constants | | | | | | | | | | shifts, you can technically | | —————- | — | — | — | — | — | — | — | — | — | —————————- | build any 32-bit constant. We can load any 32-bit constant using a series of instructions Load a small chunk, shift | addi | x10,x0,0x123 | | | | | | | | | | | —– | ————– | — | — | — | — | — | — | — | — | — | it up, add another chunk, | slli | x10,x10,12 | | | | | | | | | shift again, add again… | | ——- | ———— | — | — | — | — | — | — | — | — | ———————– | Five instructions, is there a better way? | addi | x10,x10,0x456 | | | | | | | | | | | ——- | ————— | — | — | — | — | — | — | — | — | — | | slli | x10,x10,12 | | | | | | | | | | | addi | x10,x10,0x78 | | | | | | | | | | But there there is a special instruction for constructing large constants., called “Load Upper Immediate” or lui. lui uses a new instruction format call the U-type. lui can be used as part of a two-instruction sequence to construct any 32-bit constant | | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 | 0 | | — | — | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——- | — | U-type: | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 | 1 | | — | —- | ———————————— | — | —– | — | — | — | — | ——- | — | | | lui | x10,0x12345 # encoded as 0x12345537 | | | | | | | | | Key idea: ISA designers realized this pattern was common so it d eserved HW support! 6</p>
-<p>The miniRISC-V ISA | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——— | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 1 | 1 0 0 1 1 | | R-type: | | func7 | rs2 | rs1 | func3 | rd | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | | rs1 | | rd | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | | func3 | | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | rs2 | rs1 | | | 0 1 | 0 0 0 1 1 | | B/S-type: | | imm7 | | | func3 | imm5 | | | | | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 1 | U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand. (LOADS HAVE DIFF OPCODE!) 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC) 7</p>
-<p>Load and Store Instructions RISC-V is a “Load/Store architecture”. That means that only a specific class of instructions are used to reference data in memory. As a rule, data is loaded into registers first, then processed, and the results are written back using stores. Load and Store instructions have their own format: | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm12 | | rs1 | func3 | rd | 0 0 | 0 0 0 1 1 | I-type: | | | | 000 - LB | | | | There are five types of loads | | — | — | — | ——– | — | — | — | —————————— | 001 - LH from memory. Load a word, a | | | | 010 - LW | | | | half-word, or a byte. Bytes | | — | — | — | ——— | — | — | — | —————————– | | | | | 100 - LBU | | | | and half-words can be either | 101 - LHU signed or unsigned | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm7 | rs2 | rs1 | func3 | imm5 | 0 1 | 0 0 0 1 1 | S-type: There are three types of 000 - SB | | | | 001 - SH | | | | stores to memory. Store a | | — | — | — | ——– | — | — | — | ————————– | word, a half-word, or a byte. 010 - SW There is no need to distinguish signed and unsigned.</p>
-<p>Load Word (lw) ■ Used to read 4 bytes (one word) of data from memory ■ lw rd, offset(rs1) – rs1 is a register that holds a memory address – offset is a 12 bit immediate value – The loaded word will be stored in rd R[rd] = M[R[rs1] + offset] 9</p>
-<p>Store Word (sw) ■ Used to store 4 bytes (one word) of data to memory ■ sw rs2 offset(rs1) – rs1 is a register that holds a memory address – offset is a signed 12-bit immediate value – rs2 is the value that will be written at this address M[R[rs1] + offset] = R[rs2] 10</p>
-<p>Load Word vs Store Word ■ Load Word – Reads 4 bytes (one word) from memory ■ Store word – Writes 4 bytes (one word) to memory 11</p>
-<p>To access memory, we need Loads and stores are the only two pieces of info: a base instructions that touch address coming from a reg &amp; memory in RISC-V (everything Data Transfer small offset encode in the else in registers) instruction Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits Note: opcode shown is just first 5 bits (6-2 on previous slide) 12</p>
-<p>For a store, rs1 is still the For a load, rs1 is the base base register, but now rs2 register and rd is where the provides the value being Data Transfer loaded value will go. written. Stores split their immediate across 2 fields Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 13</p>
-<p>The (sign-extended) immediate The ALU is now going to be needs to be routed to the ALU, adding the base register and so the mux feeding the ALU’s B Data Transfer the offset to compute the input has to widen. Earlier, only memory address reg values went in Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 14</p>
-<p>For a load, the computed address from ALU goes to Write back mux selects it so it data memory, returns a 32 bit Data Transfer goes in Rd word. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 15</p>
-<p>Instead of sending memory’s For a store, the address still output back to registers, we comes from the ALU. Data Transfer send rs2’s value into memory at that address. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 16</p>
-<p>This datapath diagram Funct3 encodes the type of doesn’t show all masking and access: byte, halfword, word. Data Transfer sign-extension logic for clarity of high-level flow Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits 17</p>
-<p>Load and Store Options RISC-V’s load and store instructions are versatile. They provide a wide range of addressing modes. Only a subset is shown here. Rd ← Memory[Rs + imm12] lw rd,imm12(rs) Rd is loaded with the contents of memory at the address found by adding the contents of the base register, Rs, to the supplied constant Rd ← sign_extend(Memory[Rs - 4]) lb rd,-4(rs) Offsets can be either added or subtracted, as indicated by a negative sign. The byte is signed-extend to fill the 32 bits of lw rd,(rs) If no offset is specified it is assumed to be zero sw rd,12(rs) The contents of a register hold the address of the either the data value or a base address for a composite type (structure, object, sh rd,(rs) array, or a stack) 18</p>
-<p>Load Word Encoding I-Type, but slightly different opcode! destination source register immediate funct3 opcode (rs1) register (rd) 0000011 31 20 19 15 14 12 11 7 6 0 lw rd, imm12(rs1) 1. Compute address 2. Load data from memory R[rd]  M[R[rs1] + SignExt(imm12) 3. Store data into register file 19</p>
-<p>Store Word Encoding S-type | | source register | source register | | | | | | | | | —- | —————- | —————- | — | —— | — | —- | — | —— | — | | imm7 | | | | funct3 | | imm5 | | opcode | | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 19 | 15 14 | | 12 11 | | 7 6 | | 0 | | — | —– | —– | —– | — | —– | — | — | — | — | sw rs2, imm(rs1) M[R[rs1] + SignExt(Imm)] = R[rs2] opcode = 0b0100011 20</p>
-<p>Translate the following instructions into machine code lw x5, 0x20(x7) | | | source register | | | destination | | | | | | — | — | —————- | — | — | ———— | — | — | — | — | immediate | | | | | funct3 | | | | opcode | | | — | — | — | — | —— | — | — | — | —— | — | (rs1) register (rd) | 31 | | | 15 | | | | | | | | — | — | —– | — | — | —– | — | — | — | — | | | | 20 19 | 14 | | 12 11 | | 7 6 | | 0 | sw x20, -12(x9) source register source register | imm7 | | | | funct3 | | imm5 | | opcode | | | —- | — | — | — | —— | — | —- | — | —— | — | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 | | | | | | | | | — | —– | — | —– | — | —– | — | — | — | — | | | | 19 | 15 14 | | 12 11 | | 7 6 | | 0 | 21</p>
-<p>Translate the following instructions into machine code | | | | | lw x5, 0x20(x7) | | | | 0x0203A283 | | | | | — | — | — | —————- | ————— | — | — | — | ———— | — | — | — | | | | | source register | | | | | destination | | | | immediate | | | | | | | funct3 | | | | opcode | | | — | — | — | — | —– | — | —— | — | ————- | ——- | —— | — | | | | | | (rs1) | | | | register (rd) | | | | | | | | | 00111 | | 010 | | 00101 | 0000011 | | | 000000100000 | 31 | | | | | 15 | | | | | | | | ——- | —————- | ——- | —– | —————- | —– | —— | ———- | —– | — | ——- | — | | | | | 20 19 | | 14 | | 12 11 | | 7 6 | | 0 | | | | | | sw x20, -12(x9) | | | 0xFF44AA23 | | | | | | | source register | | | source register | | | | | | | | | imm7 | | | | | | funct3 | | imm5 | | opcode | | | | | 2 (rs2) | | 1 (rs1) | | | | | | | | | | | 10100 | | 01001 | | | | 10100 | | | | | 1111111 | | | | | | 010 | | | | 0100011 | | | 31 | 25 24 | | 20 | | | | | | | | | | | | | | 19 | 15 14 | | 12 | 11 | 7 6 | | 0 | 22</p>
-<p>ACCESSING MEMORY</p>
-<p>Memory ■ The register file only contains 32, 32-bit registers – We saw pipeline registers last time, but the programmer doesn’t have access to these! ■ We can’t store all of our data in the register file. So where does it all go? ■ In the main memory 24</p>
-<p>RISC-V Memory Model Used to manage function calls and local variables Used for dynamic memory allocation Variables allocated at compile-time Programs Reserved for the OS 25</p>
-<p>Only reaches out to memory when a load or a store happens! RISC-V Datapath Memory Register File 26</p>
-<p>Memory vs.&nbsp;Register File ■ So what’s the point of the register file? ■ It is MUCH, much..! faster to access the register file ■ We’ll store the values that we are currently working with in the register file Memory Register File 1. large 1. small 2. takes longer to 2. quick access access 3. part of the CPU 3. not part of the CPU 27</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x11 after executing the following instruction? • lw x11, 0(x10) 28</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x11 after executing the following instruction? lw x11 0(x10) 5 29</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x12 after executing the following instruction? • lw x12, 4(x10) 30</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instruction? lw x12 4(x10) 90 31</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi x10, x10, 4 lw x12, 8(x10) 32</p>
-<p>5 90 100 40 11 0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi 10 x10 4 lw x12 8(x10) 40 33</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10) 34</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>5</th>
-<th>90</th>
-<th>100</th>
-<th>40</th>
-<th>11</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10) | 5 | 90 | 100 | 8 | 11 | | — | — | — | — | — | | | | 2 | 3 | 4 | | 0 | 1 | | | | 35</p>
-<p>Storing Arrays in Memory ■ We will store our statically allocated arrays in the static data segment ■ To store data in the static data segment, we use an assembler directive. – The miniRISCV assembler and simulator provides a set of directives for allocating space for data and initializing variables 36</p>
-<p>Load Address ■ How do you get the address of the array into a register? – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions! 37</p>
-<p>Load Address AUIPC is an instruction we will talk about more in a bit… it adds an immediate to the PC. Let’s review what the PC is / related to program ■ How do you get the address of the array into a register? execution. – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions! 38</p>
-<p>Program Counter (PC) ■ The Program Counter (PC) is a 32-bit register ■ The PC is not inside of the register file!!! ■ The datapath executes one instruction per clock cycle ■ On every clock cycle, PC is incremented by 4 to fetch the next instruction Program Counter 39</p>
-<p>Program Counter (PC) 32 4 32 Adder PC 32 Increment the PC by 4 on every clock cycle 40</p>
-<p>Program Counter (PC) Example: Current PC = 0x00004010 32 4 32 Adder PC 32 41</p>
-<p>Program Counter (PC) Example: Current PC = 0x00004010 32 4 32 0x00004014 Adder 0x00004010 PC 32 0x00004014 On the next rising edge of the clock, PC will become 0x00004014 42</p>
-<p>32 4 32 Adder Address PC 32 Instruction Instruction 32 Instruction PC holds the address of the Memory instruction currently being executed 43</p>
-<p>Storing Code in Memory ■ Code is stored in the text segment ■ To store code in the text segment, we use the .text directive 44</p>
-<p>PIPELINING 46</p>
-<p>Recall: Pipeline Registers ■ Inserted between stages of execution to hold intermediate values. – Ex: ALU operands that were decoded! ■ These registers are not visible / programmable by the user – Not part of the 32 general purpose registers ■ Allow the synchronization of execution of multiple operations (AKA: instructions) – Different stages operate on different instructions in each clock cycle 47</p>
-<p>Recall: Pipeline Registers | COMB | COMB | COMB | | —– | —– | —– | REG REG REG | LOGIC | LOGIC | LOGIC | | —— | —— | —— | #1 #2 #3 | BLOCK #1 | BLOCK #2 | BLOCK #3 | | ——– | ——– | ——– | CLOCK 48</p>
-<p>Y = A + B + C + D + EF ■ Let’s compare two circuits that perform the operation Y = A + B + C + D + EF Stage X Stage Y Stage X Stage Y Stage Z 2-stage Pipeline 3-stage Pipeline 49</p>
-<p>Two Stage Pipeline 1. What is the longest combinational path? – Multiplier – 1200ps 2. What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps 3. If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – two 4. If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+1) = 13420ps 50</p>
-<p>Three Stage Pipeline 1. What is the longest combinational path? – Multiplier – 1200ps 2. What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps 3. If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – three 4. If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+2) = 14640ps 51</p>
-<p>Review: Performance Metrics ■ What is the latency of an operation in the 2-stage pipeline? ■ What is the latency of an operation in the 3-stage pipeline? ■ Is the throughput higher in the 2-stage or 3-stage pipeline? ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 2-stage pipeline? 52</p>
-<p>Performance Metrics ■ What is the latency of an operation in the 2-stage pipeline? – (1220ps)(2) = 2440ps ■ What is the latency of an operation in the 3-stage pipeline? – (1220ps)(3) = 3660ps ■ Is the throughput higher in the 2-stage or 3-stage pipeline? – 2 stage pipeline ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 3-stage pipeline? – 13420ps/14640ps = .9167 ■ The two-stage pipeline is faster 53</p>
-
-
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 16: Loads, Stores, Memory tinyurl.com/comp311-sp26</p>
 </section>
+<section id="plan-for-today." class="slide level2">
+<h2>Plan for today….</h2>
+<p>Last class, we introduced pipelining basic circuits / toy examples. ● Our goal is to be able to design a pipelined RISC-V CPU. ● Things we still need to learn: ● The assembly instructions required for reading/writing to memory ○ The RISC-V memory model ○ How programs are stored in memory and executed ○ How to break the execution of a single instruction into stages ○</p>
+</section>
+<section id="risc-v-resources.-we-are-getting-into-the-thick-of-it-now" class="slide level2">
+<h2>RISC-V Resources. We are getting into the thick of it now!</h2>
+<p>Kaki posted a “reading”. Please do this before next class! ● Chapter 2 of the RISC-V reader/”Mona Lisa Book” ● I will give you p.&nbsp;15-16 of this book on the next quizzes and on the final as a ○ reference sheet (on the next slides, too) Play around with the simulator!! Leonard built this! ● The best way to learn is by doing in this setting. (Think of other times you ○ have learned a programming language ☺) If you want even more details, you can read Andrew Waterman’s ● PhD dissertation https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf ○</p>
+</section>
+<section id="quick-review-and-some-details-i-type-data-processing" class="slide level2">
+<h2>Quick Review and Some Details: I-type Data Processing</h2>
+<p>ALU instructions with a register and an immediate operand Rd - register file write address Rs1 - register source operand Imm12 - 12-bit immediate operand Adds a mux to the B input of the ALU - 12-bit immediate value is sign-extended 20-bits</p>
+</section>
+<section id="why-built-in-constant-operands" class="slide level2">
+<h2>Why Built-in Constant operands?</h2>
+<p>(Immediates) | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——- | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——— | | | | | | | | | 0 0 | 1 0 0 1 1 | | I-type: | | imm12 | | rs1 | func3 | rd | | | ● Alternatives? Why not? Do we have a choice? Supporting immediates ○ put constants in memory (was common in older ISAs) directly avoids a huge number of memory ● SMALL constants are used frequently (50% of operands) accesses! ○ In a C compiler (gcc) 52% of ALU operations involve a constant ○ In a circuit simulator (spice) 69% involve constants ○ e.g., B = B + 1; C = W &amp; 0xff; A = B - 1; How large of constants | ● ISA Design Principle: | | | | | | | | should we allow for? If | | ———————— | — | — | — | — | — | — | — | ———————— | they are too big, we won’t | Make the common case easy | | | | | | | | have enough bits leftover | | ————————- | — | — | — | — | — | — | — | ————————– | for the instructions or | Make the common case fast | | | | | | | | operands. | | ————————- | — | — | — | — | — | — | — | ——— |</p>
+</section>
+<section id="if-you-use-only-addi-and" class="slide level2">
+<h2>If you use only addi and</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bigger Constants</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>shifts, you can technically</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>build any 32-bit constant. We can load any 32-bit constant using a series of instructions Load a small chunk, shift | addi | x10,x0,0x123 | | | | | | | | | | | —– | ————– | — | — | — | — | — | — | — | — | — | it up, add another chunk, | slli | x10,x10,12 | | | | | | | | | shift again, add again… | | ——- | ———— | — | — | — | — | — | — | — | — | ———————– | Five instructions, is there a better way? | addi | x10,x10,0x456 | | | | | | | | | | | ——- | ————— | — | — | — | — | — | — | — | — | — | | slli | x10,x10,12 | | | | | | | | | | | addi | x10,x10,0x78 | | | | | | | | | | But there there is a special instruction for constructing large constants., called “Load Upper Immediate” or lui. lui uses a new instruction format call the U-type. lui can be used as part of a two-instruction sequence to construct any 32-bit constant | | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 | 0 | | — | — | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——- | — | U-type: | | | | | Imm20 | | | rd | 0 1 | 1 0 1 1 | 1 | | — | —- | ———————————— | — | —– | — | — | — | — | ——- | — | | | lui | x10,0x12345 # encoded as 0x12345537 | | | | | | | | | Key idea: ISA designers realized this pattern was common so it d eserved HW support!</p>
+</section>
+<section id="the-minirisc-v-isa" class="slide level2">
+<h2>The miniRISC-V ISA</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>31 30</th>
+<th>29 28 27 26 25</th>
+<th>24 23 22 21</th>
+<th>20 19 18 17</th>
+<th>16 15 14 13</th>
+<th>12 11 10 9</th>
+<th>8 7 6 5</th>
+<th>4 3 2 1 0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0 1</td>
+<td>1 0 0 1 1</td>
+</tr>
+<tr class="even">
+<td>R-type:</td>
+<td></td>
+<td>func7</td>
+<td>rs2</td>
+<td>rs1</td>
+<td>func3</td>
+<td>rd</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>31 30</td>
+<td>29 28 27 26 25</td>
+<td>24 23 22 21</td>
+<td>20 19 18 17</td>
+<td>16 15 14 13</td>
+<td>12 11 10 9</td>
+<td>8 7 6 5</td>
+<td>4 3 2 1 0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>rs1</td>
+<td></td>
+<td>rd</td>
+<td>0 0</td>
+<td>1 0 0 1 1</td>
+</tr>
+<tr class="odd">
+<td>I-type:</td>
+<td></td>
+<td>imm12</td>
+<td></td>
+<td></td>
+<td>func3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>31 30</td>
+<td>29 28 27 26 25</td>
+<td>24 23 22 21</td>
+<td>20 19 18 17</td>
+<td>16 15 14 13</td>
+<td>12 11 10 9</td>
+<td>8 7 6 5</td>
+<td>4 3 2 1 0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>rs2</td>
+<td>rs1</td>
+<td></td>
+<td></td>
+<td>0 1</td>
+<td>0 0 0 1 1</td>
+</tr>
+<tr class="even">
+<td>B/S-type:</td>
+<td></td>
+<td>imm7</td>
+<td></td>
+<td></td>
+<td>func3</td>
+<td>imm5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>31 30</td>
+<td>29 28 27 26 25</td>
+<td>24 23 22 21</td>
+<td>20 19 18 17</td>
+<td>16 15 14 13</td>
+<td>12 11 10 9</td>
+<td>8 7 6 5</td>
+<td>4 3 2 1 0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td>Imm20</td>
+<td></td>
+<td></td>
+<td>rd</td>
+<td>0 1</td>
+<td>1 0 1 1 1</td>
+</tr>
+</tbody>
+</table>
+<p>U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand. (LOADS HAVE DIFF OPCODE!) 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC)</p>
+</section>
+<section id="load-and-store-instructions" class="slide level2">
+<h2>Load and Store Instructions</h2>
+<p>RISC-V is a “Load/Store architecture”. That means that only a specific class of instructions are used to reference data in memory. As a rule, data is loaded into registers first, then processed, and the results are written back using stores. Load and Store instructions have their own format: | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm12 | | rs1 | func3 | rd | 0 0 | 0 0 0 1 1 | I-type: | | | | 000 - LB | | | | There are five types of loads | | — | — | — | ——– | — | — | — | —————————— | 001 - LH from memory. Load a word, a | | | | 010 - LW | | | | half-word, or a byte. Bytes | | — | — | — | ——— | — | — | — | —————————– | | | | | 100 - LBU | | | | and half-words can be either | 101 - LHU signed or unsigned | 31 30 | 29 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | —– | ————– | ———– | ———– | ———– | ———- | ——- | ——— | | | imm7 | rs2 | rs1 | func3 | imm5 | 0 1 | 0 0 0 1 1 | S-type: There are three types of 000 - SB | | | | 001 - SH | | | | stores to memory. Store a | | — | — | — | ——– | — | — | — | ————————– | word, a half-word, or a byte. 010 - SW There is no need to distinguish signed and unsigned.</p>
+<p>Load Word (lw) ■ Used to read 4 bytes (one word) of data from memory ■ lw rd, offset(rs1) – rs1 is a register that holds a memory address – offset is a 12 bit immediate value – The loaded word will be stored in rd R[rd] = M[R[rs1] + offset]</p>
+</section>
+<section id="store-word-sw" class="slide level2">
+<h2>Store Word (sw)</h2>
+<p>■ Used to store 4 bytes (one word) of data to memory ■ sw rs2 offset(rs1) – rs1 is a register that holds a memory address – offset is a signed 12-bit immediate value – rs2 is the value that will be written at this address M[R[rs1] + offset] = R[rs2]</p>
+</section>
+<section id="load-word-vs-store-word" class="slide level2">
+<h2>Load Word vs Store Word</h2>
+<p>■ Load Word – Reads 4 bytes (one word) from memory ■ Store word – Writes 4 bytes (one word) to memory</p>
+</section>
+<section id="to-access-memory-we-need" class="slide level2">
+<h2>To access memory, we need</h2>
+<p>Loads and stores are the only two pieces of info: a base instructions that touch address coming from a reg &amp; memory in RISC-V (everything Data Transfer small offset encode in the else in registers) instruction Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits Note: opcode shown is just first 5 bits (6-2 on previous slide)</p>
+</section>
+<section id="for-a-store-rs1-is-still-the" class="slide level2">
+<h2>For a store, rs1 is still the</h2>
+<p>For a load, rs1 is the base base register, but now rs2 register and rd is where the provides the value being Data Transfer loaded value will go. written. Stores split their immediate across 2 fields Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="the-sign-extended-immediate" class="slide level2">
+<h2>The (sign-extended) immediate</h2>
+<p>The ALU is now going to be needs to be routed to the ALU, adding the base register and so the mux feeding the ALU’s B Data Transfer the offset to compute the input has to widen. Earlier, only memory address reg values went in Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="for-a-load-the-computed" class="slide level2">
+<h2>For a load, the computed</h2>
+<p>address from ALU goes to Write back mux selects it so it data memory, returns a 32 bit Data Transfer goes in Rd word. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="instead-of-sending-memorys" class="slide level2">
+<h2>Instead of sending memory’s</h2>
+<p>For a store, the address still output back to registers, we comes from the ALU. Data Transfer send rs2’s value into memory at that address. Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="this-datapath-diagram" class="slide level2">
+<h2>This datapath diagram</h2>
+<p>Funct3 encodes the type of doesn’t show all masking and access: byte, halfword, word. Data Transfer sign-extension logic for clarity of high-level flow Load/Store instructions using a base register and an immediate offset Rd - loaded register Rs1 - stored register Rs2 - base register Imm12 - 12-bit immediate load offset Imm7:Imm5 - 12-bit immediate store offset Widens mux to the ALU’s B input - 12-bit immediate value is zero-extended 20-bits</p>
+</section>
+<section id="load-and-store-options" class="slide level2">
+<h2>Load and Store Options</h2>
+<p>RISC-V’s load and store instructions are versatile. They provide a wide range of addressing modes. Only a subset is shown here. Rd ← Memory[Rs + imm12] lw rd,imm12(rs) Rd is loaded with the contents of memory at the address found by adding the contents of the base register, Rs, to the supplied constant Rd ← sign_extend(Memory[Rs - 4]) lb rd,-4(rs) Offsets can be either added or subtracted, as indicated by a negative sign. The byte is signed-extend to fill the 32 bits of lw rd,(rs) If no offset is specified it is assumed to be zero sw rd,12(rs) The contents of a register hold the address of the either the data value or a base address for a composite type (structure, object, sh rd,(rs) array, or a stack)</p>
+</section>
+<section id="load-word-encoding" class="slide level2">
+<h2>Load Word Encoding</h2>
+<p>I-Type, but slightly different opcode! destination source register immediate funct3 opcode (rs1) register (rd) 0000011 31 20 19 15 14 12 11 7 6 0 lw rd, imm12(rs1) 1. Compute address 2. Load data from memory R[rd]  M[R[rs1] + SignExt(imm12) 3. Store data into register file</p>
+</section>
+<section id="store-word-encoding" class="slide level2">
+<h2>Store Word Encoding</h2>
+<p>S-type | | source register | source register | | | | | | | | | —- | —————- | —————- | — | —— | — | —- | — | —— | — | | imm7 | | | | funct3 | | imm5 | | opcode | | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 19 | 15 14 | | 12 11 | | 7 6 | | 0 | | — | —– | —– | —– | — | —– | — | — | — | — | sw rs2, imm(rs1) M[R[rs1] + SignExt(Imm)] = R[rs2] opcode = 0b0100011</p>
+</section>
+<section id="translate-the-following-instructions-into-machine-code" class="slide level2">
+<h2>Translate the following instructions into machine code</h2>
+<p>lw x5, 0x20(x7) | | | source register | | | destination | | | | | | — | — | —————- | — | — | ———— | — | — | — | — | immediate | | | | | funct3 | | | | opcode | | | — | — | — | — | —— | — | — | — | —— | — | (rs1) register (rd) | 31 | | | 15 | | | | | | | | — | — | —– | — | — | —– | — | — | — | — | | | | 20 19 | 14 | | 12 11 | | 7 6 | | 0 | sw x20, -12(x9) source register source register | imm7 | | | | funct3 | | imm5 | | opcode | | | —- | — | — | — | —— | — | —- | — | —— | — | 2 (rs2) 1 (rs1) | 31 | 25 24 | 20 | | | | | | | | | — | —– | — | —– | — | —– | — | — | — | — | | | | 19 | 15 14 | | 12 11 | | 7 6 | | 0 |</p>
+</section>
+<section id="translate-the-following-instructions-into-machine-code-1" class="slide level2">
+<h2>Translate the following instructions into machine code</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 17%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>lw x5, 0x20(x7)</th>
+<th></th>
+<th></th>
+<th></th>
+<th>0x0203A283</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>source register</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>destination</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>immediate | | | | | | | funct3 | | | | opcode | | | — | — | — | — | —– | — | —— | — | ————- | ——- | —— | — | | | | | | (rs1) | | | | register (rd) | | | | | | | | | 00111 | | 010 | | 00101 | 0000011 | | | 000000100000 | 31 | | | | | 15 | | | | | | | | ——- | —————- | ——- | —– | —————- | —– | —— | ———- | —– | — | ——- | — | | | | | 20 19 | | 14 | | 12 11 | | 7 6 | | 0 | | | | | | sw x20, -12(x9) | | | 0xFF44AA23 | | | | | | | source register | | | source register | | | | | | | | | imm7 | | | | | | funct3 | | imm5 | | opcode | | | | | 2 (rs2) | | 1 (rs1) | | | | | | | | | | | 10100 | | 01001 | | | | 10100 | | | | | 1111111 | | | | | | 010 | | | | 0100011 | | | 31 | 25 24 | | 20 | | | | | | | | | | | | | | 19 | 15 14 | | 12 | 11 | 7 6 | | 0 |</p>
+</section>
+<section id="accessing-memory" class="slide level2">
+<h2>ACCESSING MEMORY</h2>
+<p>Memory ■ The register file only contains 32, 32-bit registers – We saw pipeline registers last time, but the programmer doesn’t have access to these! ■ We can’t store all of our data in the register file. So where does it all go? ■ In the main memory</p>
+</section>
+<section id="risc-v-memory-model" class="slide level2">
+<h2>RISC-V Memory Model</h2>
+<p>Used to manage function calls and local variables Used for dynamic memory allocation Variables allocated at compile-time Programs Reserved for the OS</p>
+</section>
+<section id="only-reaches-out-to-memory" class="slide level2">
+<h2>Only reaches out to memory</h2>
+<p>when a load or a store happens! RISC-V Datapath Memory Register File</p>
+</section>
+<section id="memory-vs.-register-file" class="slide level2">
+<h2>Memory vs.&nbsp;Register File</h2>
+<p>■ So what’s the point of the register file? ■ It is MUCH, much..! faster to access the register file ■ We’ll store the values that we are currently working with in the register file Memory Register File 1. large 1. small 2. takes longer to 2. quick access access 3. part of the CPU 3. not part of the CPU</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2>| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+0 | | 2 | 3 | 4 |</div>
+<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x11 after executing the following instruction? • lw x11, 0(x10)</p>
+</section>
+<section id="section-2" class="slide level2">
+<h2>5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x11 after executing the following instruction? lw x11 0(x10) 5</p>
+</section>
+<section id="section-3" class="slide level2">
+<h2>| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+0 | | 2 | 3 | 4 |</div>
+<p>1 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. What is the value of x12 after executing the following instruction? • lw x12, 4(x10)</p>
+</section>
+<section id="section-4" class="slide level2">
+<h2>5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instruction? lw x12 4(x10) 90</p>
+</section>
+<section id="section-5" class="slide level2">
+<h2>5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi x10, x10, 4 lw x12, 8(x10)</p>
+</section>
+<section id="section-6" class="slide level2">
+<h2>5 90 100 40 11</h2>
+<p>0 1 2 3 4 • Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000. • What is the value of x12 after executing the following instructions? addi 10 x10 4 lw x12 8(x10) 40</p>
+</section>
+<section id="section-7" class="slide level2">
+<h2>| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | 3 | 4 |<br>
+0 | 1 | | | |</div>
+<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10)</p>
+</section>
+<section id="section-8" class="slide level2">
+<h2>| 5 | 90 | 100 | 40 | 11 |</h2>
+<div class="line-block">— | — | — | — | — |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | 3 | 4 |<br>
+0 | 1 | | | |</div>
+<p>• Above is an integer array whose base address is 0x00004000. • The size of an int is 4 bytes. • Assume x10 = 0x00004000 and x7 = 8. • What are the contents of the array after executing the following instruction? sw x7, 12(x10) | 5 | 90 | 100 | 8 | 11 | | — | — | — | — | — | | | | 2 | 3 | 4 | | 0 | 1 | | | |</p>
+</section>
+<section id="storing-arrays-in-memory" class="slide level2">
+<h2>Storing Arrays in Memory</h2>
+<p>■ We will store our statically allocated arrays in the static data segment ■ To store data in the static data segment, we use an assembler directive. – The miniRISCV assembler and simulator provides a set of directives for allocating space for data and initializing variables</p>
+</section>
+<section id="load-address" class="slide level2">
+<h2>Load Address</h2>
+<p>■ How do you get the address of the array into a register? – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions!</p>
+</section>
+<section id="load-address-auipc-is-an-instruction-we-will-talk" class="slide level2">
+<h2>Load Address AUIPC is an instruction we will talk</h2>
+<p>about more in a bit… it adds an immediate to the PC. Let’s review what the PC is / related to program ■ How do you get the address of the array into a register? execution. – with an instruction called load address (la) ■ la rd Label – places the address of Label in rd ■ This is actually a pseudoinstruction A pseudoinstruction is a “fake” assembly instruction that doesn’t exist in HW, but assembler expands into one or more real RISC-V instructions!</p>
+</section>
+<section id="program-counter-pc" class="slide level2">
+<h2>Program Counter (PC)</h2>
+<p>■ The Program Counter (PC) is a 32-bit register ■ The PC is not inside of the register file!!! ■ The datapath executes one instruction per clock cycle ■ On every clock cycle, PC is incremented by 4 to fetch the next instruction Program Counter</p>
+</section>
+<section id="program-counter-pc-1" class="slide level2">
+<h2>Program Counter (PC)</h2>
+<p>32 4 32 Adder PC 32 Increment the PC by 4 on every clock cycle</p>
+</section>
+<section id="program-counter-pc-2" class="slide level2">
+<h2>Program Counter (PC)</h2>
+<p>Example: Current PC = 0x00004010 32 4 32 Adder PC 32</p>
+</section>
+<section id="program-counter-pc-3" class="slide level2">
+<h2>Program Counter (PC)</h2>
+<p>Example: Current PC = 0x00004010 32 4 32 0x00004014 Adder 0x00004010 PC 32 0x00004014 On the next rising edge of the clock, PC will become 0x00004014</p>
+</section>
+<section id="section-9" class="slide level2">
+<h2>32</h2>
+<p>4 32 Adder Address PC 32 Instruction Instruction 32 Instruction PC holds the address of the Memory instruction currently being executed</p>
+</section>
+<section id="storing-code-in-memory" class="slide level2">
+<h2>Storing Code in Memory</h2>
+<p>■ Code is stored in the text segment ■ To store code in the text segment, we use the .text directive</p>
+</section>
+<section id="pipelining" class="slide level2">
+<h2>PIPELINING</h2>
+</section>
+<section id="recall-pipeline-registers" class="slide level2">
+<h2>Recall: Pipeline Registers</h2>
+<p>■ Inserted between stages of execution to hold intermediate values. – Ex: ALU operands that were decoded! ■ These registers are not visible / programmable by the user – Not part of the 32 general purpose registers ■ Allow the synchronization of execution of multiple operations (AKA: instructions) – Different stages operate on different instructions in each clock cycle</p>
+</section>
+<section id="recall-pipeline-registers-1" class="slide level2">
+<h2>Recall: Pipeline Registers</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>COMB</th>
+<th>COMB</th>
+<th>COMB</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>REG REG REG | LOGIC | LOGIC | LOGIC | | —— | —— | —— | #1 #2 #3 | BLOCK #1 | BLOCK #2 | BLOCK #3 | | ——– | ——– | ——– | CLOCK</p>
+</section>
+<section id="y-a-b-c-d-ef" class="slide level2">
+<h2>Y = A + B + C + D + EF</h2>
+<p>■ Let’s compare two circuits that perform the operation Y = A + B + C + D + EF Stage X Stage Y Stage X Stage Y Stage Z 2-stage Pipeline 3-stage Pipeline</p>
+</section>
+<section id="two-stage-pipeline" class="slide level2">
+<h2>Two Stage Pipeline</h2>
+<ol type="1">
+<li>What is the longest combinational path? – Multiplier – 1200ps</li>
+<li>What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps</li>
+<li>If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – two</li>
+<li>If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+1) = 13420ps</li>
+</ol>
+</section>
+<section id="three-stage-pipeline" class="slide level2">
+<h2>Three Stage Pipeline</h2>
+<ol type="1">
+<li>What is the longest combinational path? – Multiplier – 1200ps</li>
+<li>What is the min clock period? • Clock-to-q delay + longest combinational delay • 20ps + 1200ps = 1220ps</li>
+<li>If the clock period is at least the min period, how many clock cycles does it take to perform one operation? – three</li>
+<li>If we run this circuit at the minimum clock period, how long will it take to complete 10 operations? – Final result is available at t = (1220ps)(10+2) = 14640ps</li>
+</ol>
+</section>
+<section id="review-performance-metrics" class="slide level2">
+<h2>Review: Performance Metrics</h2>
+<p>■ What is the latency of an operation in the 2-stage pipeline? ■ What is the latency of an operation in the 3-stage pipeline? ■ Is the throughput higher in the 2-stage or 3-stage pipeline? ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 2-stage pipeline?</p>
+</section>
+<section id="performance-metrics" class="slide level2">
+<h2>Performance Metrics</h2>
+<p>■ What is the latency of an operation in the 2-stage pipeline? – (1220ps)(2) = 2440ps ■ What is the latency of an operation in the 3-stage pipeline? – (1220ps)(3) = 3660ps ■ Is the throughput higher in the 2-stage or 3-stage pipeline? – 2 stage pipeline ■ What is the speedup of completing 10 operations on the 2-stage pipeline vs 3-stage pipeline? – 13420ps/14640ps = .9167 ■ The two-stage pipeline is faster</p>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

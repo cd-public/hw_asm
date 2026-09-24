@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/tabby.min.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Systems in C – ALU</title>
+  <title>Systems in C – Introduction</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -28,11 +28,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-1d86d68c35eb7061f9efcb6a994936f6.css">
-  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-1d86d68c35eb7061f9efcb6a994936f6.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -126,8 +126,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">ALU</h1>
-  <p class="subtitle">w5d0</p>
+  <h1 class="title">Introduction</h1>
+  <p class="subtitle">w1d0</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -145,292 +145,55 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
-<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 11: R-Type vs I-Type, Intro to the ALU tinyurl.com/comp311-sp26</p>
-</section>
-<section id="r-t-ype-vs.-i-t-ype" class="slide level2">
-<h2>| R-T | YPE VS. I-T | YPE |</h2>
-<div class="line-block">— | ———– | —- |</div>
-<p>INSTRUCTIONS</p>
-</section>
-<section id="reminder-how-are-programs-turned-into" class="slide level2">
-<h2>Reminder: How are programs turned into</h2>
-<p>machine code? High-level language c = a + b Assembly add x5, x4, x3 Machine Code 00000000001100100000001010110011</p>
-</section>
-<section id="the-minirisc-v-isa" class="slide level2">
-<h2>The miniRISC-V ISA</h2>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 5%">
-<col style="width: 16%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 11%">
-<col style="width: 8%">
-<col style="width: 10%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>31 30</th>
-<th>29 28 27 26 25</th>
-<th>24 23 22 21</th>
-<th>20 19 18 17</th>
-<th>16 15 14 13</th>
-<th>12 11 10 9</th>
-<th>8 7 6 5</th>
-<th>4 3 2 1 0</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>0 1</td>
-<td>1 0 0 1 1</td>
-</tr>
-<tr class="even">
-<td>R-type:</td>
-<td></td>
-<td>func7</td>
-<td>rs2</td>
-<td>rs1</td>
-<td>func3</td>
-<td>rd</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>31 30</td>
-<td>29 28 27 26 25</td>
-<td>24 23 22 21</td>
-<td>20 19 18 17</td>
-<td>16 15 14 13</td>
-<td>12 11 10 9</td>
-<td>8 7 6 5</td>
-<td>4 3 2 1 0</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>rs1</td>
-<td></td>
-<td>rd</td>
-<td>0 0</td>
-<td>1 0 0 1 1</td>
-</tr>
-<tr class="odd">
-<td>I-type:</td>
-<td></td>
-<td>imm12</td>
-<td></td>
-<td></td>
-<td>func3</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>31 30</td>
-<td>29 28 27 26 25</td>
-<td>24 23 22 21</td>
-<td>20 19 18 17</td>
-<td>16 15 14 13</td>
-<td>12 11 10 9</td>
-<td>8 7 6 5</td>
-<td>4 3 2 1 0</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td>rs2</td>
-<td>rs1</td>
-<td></td>
-<td></td>
-<td>0 1</td>
-<td>0 0 0 1 1</td>
-</tr>
-<tr class="even">
-<td>B/S-type:</td>
-<td></td>
-<td>imm7</td>
-<td></td>
-<td></td>
-<td>func3</td>
-<td>imm5</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>31 30</td>
-<td>29 28 27 26 25</td>
-<td>24 23 22 21</td>
-<td>20 19 18 17</td>
-<td>16 15 14 13</td>
-<td>12 11 10 9</td>
-<td>8 7 6 5</td>
-<td>4 3 2 1 0</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td>Imm20</td>
-<td></td>
-<td></td>
-<td>rd</td>
-<td>0 1</td>
-<td>1 0 1 1 1</td>
-</tr>
-</tbody>
-</table>
-<p>U-type: Four key instruction formats (each one has a corresponding opcode!): 1) ALU with two register operands 2 ) ALU with a register and an immediate operand 3) Stores and Branches 4) Jumps and large constants (LUI, AUIPC)</p>
-</section>
-<section id="syntax" class="slide level2">
-<h2>Syntax</h2>
-<p>register 5 = register 4 + register 3 add x5, x4, x3 | destination | source | source | | ————- | ———– | ———– | | register (rd) | register 1 | register 2 | | | (rs1) | (rs2) |</p>
-</section>
-<section id="r-format-syntax" class="slide level2">
-<h2>R-Format Syntax</h2>
-<p>add x5, x4, x3 | | | destination | | | source | | source | | | | | | ——- | —– | ————- | —– | ———- | ———– | —— | ———– | ———— | — | ——- | — | | | | register (rd) | | | register 1 | | register 2 | | | | | | | | | | | (rs1) | | | (rs2) | | | | | | | source | | source | | | | destination | | | | | funct7 | | | | | | funct3 | | | | opcode | | | | | register 2 | | register 1 | | | | register | | | | | 0000000 | | 00011 | | 00100 | | 000 | | 00101 | | 0110011 | | | 31 | 25 24 | | 20 19 | | 15 14 | | 12 11 | | 7 6 | | 0 |</p>
-</section>
-<section id="r-format-operations" class="slide level2">
-<h2>R-Format Operations</h2>
-<p>■ add ■ sub ■ AND ■ OR ■ SLT (set on less than) ■ SLTU (Unsigned) ■ SLL (shift left logical) ■ SRL (shift right logical) ■ SRA (shift right arithmetic)</p>
-</section>
-<section id="subtract-instruction" class="slide level2">
-<h2>Subtract Instruction</h2>
-<p>sub rd, rs1, rs2 R[rd] = R[rs1] - R[rs2] | value of the | value of the | value of the | | ————- | ————- | ————- | | register rd | register rs1 | register rs2 |</p>
-</section>
-<section id="translating-from-c-to-risc-v" class="slide level2">
-<h2>Translating from C to RISC-V</h2>
-<p>c = a + b; | x5 | x8 | x9 | | — | — | — | add x5, x8, x9</p>
-</section>
-<section id="translate-this-line-from-c-to-risc-v" class="slide level2">
-<h2>Translate this line from C to RISC-V</h2>
-<p>a = b + c + d – e; | x14 | x15 | x16 | x17 | x18 | | — | — | — | — | — | You may use additional registers in your solution</p>
-</section>
-<section id="translate-this-line-from-c-to-risc-v-1" class="slide level2">
-<h2>Translate this line from C to RISC-V</h2>
-<p>a = b + c + d – e; | x14 | x15 | x16 | x17 | x18 | | — | — | — | — | — | add x14, x15, x16 add x5, x15, x16 | add x14, x14, x17 | | or sub x6, x17, x18 | | | | —————– | — | ——————- | — | — | sub x14, x14, x18 add x14, x5, x6</p>
-</section>
-<section id="r-format-vs-i-format-instructions" class="slide level2">
-<h2>R-format vs I-format Instructions</h2>
-<p>■ R-format – Used for operations between two registers ■ I-format – Used for operations between a register and an immediate value ■ in other words, if you want to use a constant that is not in a register</p>
-</section>
-<section id="i-type-data-processing" class="slide level2">
-<h2>I-type Data Processing</h2>
-<p>Instructions that process one register and a constant: | | 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 | | ——- | ——– | ———– | ———– | ———– | ———– | ———- | ——- | ——— | | I-type: | | imm12 | | rs1 | func3 | rd | 0 0 | 1 0 0 1 1 | 000 - ADDI Notice there is no SUBI | instruction. Why? | | | | 001 - SLLI | | | | | | —————— | — | — | — | ———- | — | — | — | — | 010 - SLTI 011 - SLTUI 100 - XORI 101 - SRLI/SRAI 110 - ORI 111 - ANDI | | | | | | | andi | x5,x10,255 | | | — | — | — | — | — | — | —– | ———- | — | I-type instructions | have the following template: | | | | | Is encoded as: | | | | | —————————- | — | — | — | — | ————– | — | — | — | 0000 1111 1111 0101 0111 0010 1001 0011 | OPfunc3 | | rd,rs1,imm12 | | | | | | | | ——– | — | ———— | — | — | — | — | — | — | 0x0ff57293</p>
-</section>
-<section id="i-format-syntax" class="slide level2">
-<h2>I-Format Syntax</h2>
-<p>op rd, rs1, immediate12 this is where we will store the result of the operation</p>
-</section>
-<section id="i-format-syntax-1" class="slide level2">
-<h2>I-Format Syntax</h2>
-<p>x5 = x4 + 12 addi x5, x4, 12 | destination | source | immediate | | ————- | ——— | ———- | | register (rd) | register | | value (rs1)</p>
-</section>
-<section id="r-format-vs-i-format-syntax" class="slide level2">
-<h2>R-Format vs I-Format Syntax</h2>
-<p>I-Format R-Format op rd, rs1, immediate op rd, rs1, rs2 R[rd] = R[rs1] op R[rs2] R[rd] = R[rs1] op immediate writes to rd writes to rd</p>
-</section>
-<section id="register-0" class="slide level2">
-<h2>Register 0</h2>
-<p>■ Register 0 always holds the value 0 ■ This is very useful when we want to write a constant value to a register</p>
-</section>
-<section id="i-format-syntax-2" class="slide level2">
-<h2>I-Format Syntax</h2>
-<p>addi x5, x0, 12 source destination immediate funct3 opcode register register 31 20 19 15 14 12 11 7 6 0</p>
-</section>
-<section id="i-format-syntax-3" class="slide level2">
-<h2>I-Format Syntax</h2>
-<p>addi x5, x0, 12 | | | source | | | | destination | | | | — | — | ——- | — | — | — | ———— | — | — | immediate funct3 opcode | | | register | | | | register | | | | ————– | —– | ——— | —– | — | —– | ——– | ——- | — | | 0000 0000 1100 | | 00000 | | 000 | | 00101 | 0010011 | | | 31 | 20 19 | | 15 14 | | 12 11 | | 7 6 | 0 |</p>
-</section>
-<section id="arithmetic-logic" class="slide level2">
-<h2>ARITHMETIC LOGIC</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>UNIT</th>
-<th>(ALU)</th>
-<th>☺</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</section>
-<section id="a-b" class="slide level2">
-<h2>A B</h2>
-<p>n Arithmetic Logic Unit n Add/ Bidirectional Boolean Sub Shifter Unit The “math center” of a computer! ☺ n Result</p>
-</section>
-<section id="an-example-boolean-unit" class="slide level2">
-<h2>An Example Boolean Unit</h2>
-<p>n n n | Operation | Expression | Bool | | ——— | ———- | —- | | AND | A x B | 0b00 | | OR | A + B | 0b01 | | XOR | A + B | 0b10 | | NOR | A + B | 0b11 | 2</p>
-</section>
-<section id="lets-say-n-4.-i-want-to-perform-y-a-and-b-where-a-is-5-and-b-is-4." class="slide level2">
-<h2>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4.</h2>
-<p>4 4 4 | Operation | Expression | Bool | | ——— | ———- | —- | | AND | A x B | 0b00 | | OR | A + B | 0b01 | | XOR | A + B | 0b10 | | NOR | A + B | 0b11 | 2</p>
-</section>
-<section id="lets-say-n-4.-i-want-to-perform-y-a-and-b-where-a-is-5-and-b-is-4.-1" class="slide level2">
-<h2>Let’s say n = 4. I want to perform Y = A AND B where A is 5 and B is 4.</h2>
-<p>0b0101 0b0100 4 0b0100 4 4 0b0100 0b0101 | | Operation | Expression | Bool | | —— | ——— | ———- | —- | | 0b0001 | AND | A x B | 0b00 | | | OR | A + B | 0b01 | | 0b1010 | XOR | A + B | 0b10 | | | NOR | A + B | 0b11 | 2 0b00</p>
-</section>
-<section id="what-are-the-values-on-each-signal-when-we-want-to-perform-y-a-xor-b-where-a" class="slide level2">
-<h2>What are the values on each signal when we want to perform Y = A XOR B where A</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>is 0b1010</th>
-<th>and</th>
-<th>B is 0b0001?</th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p>4 4 4 | | | | Operation | Expression | Bool | | — | — | — | ——— | ———- | —- | | | | | AND | A x B | 0b00 | | | | | OR | A + B | 0b01 | | | | | XOR | A + B | 0b10 | | | | | NOR | A + B | 0b11 | 2</p>
-</section>
-<section id="what-are-the-values-on-each-signal-when-we-want-to-perform-y-a-xor-b" class="slide level2">
-<h2>What are the values on each signal when we want to perform Y = A XOR B</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>where</th>
-<th>A is 0b1010</th>
-<th>and B</th>
-<th>is 0b0001?</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p>0b1010 0b0000 4 0b1011 4 4 0b0001 0b1011 | | | | | | Operation | Expression | Bool | | — | — | — | — | —— | ——— | ———- | —- | | | | | | 0b1011 | AND | A x B | 0b00 | | | | | | | OR | A + B | 0b01 | | | | | | 0b0100 | XOR | A + B | 0b10 | | | | | | | NOR | A + B | 0b11 | 2 0b10</p>
+<p>COMPUTER ORGANIZATION! Lecture 1: Introduction tinyurl.com/comp311-sp26 1</p>
+<p>Welcome! ☺ ■ Target audience: COMP majors ■ Pre-reqs: 210, 211 2</p>
+<p>What is the course about? High-level programming Assembly Machine code languages Low-level languages 0000000 01011 01010 000 01010 0110011 // High-level (C) # Matching RISC-V assembly int add3(int a, int b) # a0 = a, a1 = b; return in a0 000000000011 01010 { return a + b + 3; 000 01010 0010011 add a0, a0, a1 # a0 = a0 + a1 } addi a0, a0, 3 # a0 = a0 + 3 000000000000 00001 ret # return 000 00000 1100111 Easy for humans to Human readable Machine-readable read/write 3</p>
+<p>Why should we care? Intel Core i9-13900K Apple M1 Pro 4</p>
+<p>Artificial Intelligence Advancements in computer architecture have been a driving force behind the advancement of AI technologies 5</p>
+<p>Goals of this Course ■ How does a computer work? ■ How is data represented in a computer? – Numbers, strings, arrays, photos, music ■ How is a program represented in a computer? ■ What does a computer do with my program? ■ How is data stored? How is data processed? ■ Are there any limits to what a computer can do? 6</p>
+<p>Logic Circuits and Digital Hardware ■ Logic circuits are used to build computer hardware, as well as many other types of systems. All such systems are broadly classified as digital hardware. ■ Digital derives from how information is represented as discrete ranges of electrical signals. Using discrete ranges provides robustness and scalability. 7</p>
+<p>Digital Logic is Relatively New + Revolutionary! ■ Digital hardware technology has evolved dramatically over the past 75 years! – In the 1960s logic was built with discrete components, transistors and resistors. – Integrated circuits (ICs) made it possible to place a number of transistors on a single chip. – By 1970 it was possible to implement all circuitry needed to realize a microprocessor on a single chip. – Complexity has exploded! 8</p>
+<p>Moore’s Law! 9</p>
+<p>Course Theme #1: Demystify Computers! Strangely, most people seem to be afraid of computers. People only fear things they do not understand! | | “I do not fear computers, I fear the lack of them.” | | | | | | | — | ————————————————— | — | — | — | — | —————————- | | | | | | | | - Isaac Asimov (1920 - 1992) | “Fear is the main source of superstition, and one of the main Sources of cruelty. To conquer fear is the beginning of wisdom.” | | | | | | | - Bertrand Russell (1872 -1970) | | — | — | — | — | — | — | ——————————- | “Nobody knows exactly what’s going on because of computers!” | | | | | | | - Donald Trump | | — | — | — | — | — | — | ————– | 10</p>
+<p>Course Theme #2: The Power of Abstraction! Define a function, develop a roust implementation, and then put a box around it, and then reuse it (over and over!). Abstraction enables us to create unfathomable systems, including computer hardware and software. 11</p>
+<p>Course Theme #2: The Power of Abstraction! (transistors) 12</p>
+<p>Computational structures! ■ What are the fundamental elements of computation? ■ Can we define computation independent of implementation or the technology that it is implemented with? 13</p>
+<p>Recall: Goals of this Course ■ How does a computer work? ■ How is data represented in a computer? – Numbers, strings, arrays, photos, music ■ How is a program represented in a computer? ■ What does a computer do with my program? ■ How is data stored? How is data processed? ■ Are there any limits to what a computer can do? 14</p>
+<p>What does Digital Logic do? It processes bits: 1s and 0s ■ It implements abstract logic functions ■ It is robust, stable, and repeatable ■ It doubles every two years. ■ It represents, transforms, and stores information ■ 15</p>
+<p>What is “Information”? information, n.&nbsp;Knowledge “5 problem sets, a midterm and a final! Any questions?” communicated or received concerning a particular fact or circumstance. A Computer Engineer’s definition: Information resolves uncertainty. Information is simply that “stuff” which cannot be predicted. The less likely a message is, the more information it conveys. 16</p>
+<p>Quantifying Information Suppose you’re faced with N equally probable choices, and I give you a fact that narrows it down to M possibilities. Then you’ve been given: log (N/M) bits of information 2 Examples: Outcome of a coin flip: log (2/1) = 1 bit ● 2 The roll of one die? ● Someone tells you that their 8-digit ● Information is the theoretical underpinning of why digital phone number is a palindrome? computers use bits! ☺ 17</p>
+<p>An exercise: How many bits? With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 18</p>
+<p>An exercise: How many bits? With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 1.1 bits=⌈log (N)⌉, where N is the number of students in the class. 2 if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits! 2 1.2 N/M 19</p>
+<p>What do programs really do? At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) 20</p>
+<p>What do programs really do? At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) This is computing the square root 21</p>
+<p>How does a computer do it? What would a computer do with this program specification? f: mv t0,a0 int f(int x) { li t1,1 int r; li a0,0 int odd = 1; blt t0,t1,return for (r = 0; x &gt;= odd; r++) { loop: sub t0,t0,t1 x -= odd; addi t1,t1,2 odd += 2; addi a0,a0,1 } bge t0,t1,loop return r; return: ret } It translates it into a series of simple instructions! 22</p>
+<p>Are there limits to computation? ■ Will some new instruction be invented that fundamentally changes how fast computers solve problems? ■ Can computers solve <em>any</em> well- specified problem? – COMP455 ■ Can we predict how long it will take for a computer to solve a given problem? – COMP210, COMP550 ■ Does there exist a new model of computation? 23</p>
+<p>ADMINISTRATIVE DETAILS</p>
+<p>Syllabus! Course site: https://www.cs.unc.edu/~kakiryan/teaching/311- sp26/311-sp26.html Or https://tinyurl.com/comp311-sp26 25</p>
+<p>Course Structure ■ Assessment (65%): – 6x Quizzes (QZ): 50% Your final can replace up to two of your lowest quiz scores. – Final Exam (FN): 15% ■ Practice and Preparation (30%): – 6x Written Assignments (WA): 15% – 5x Labs (LAB): 15% ■ In-Class Participation (5%): – 1x Submission to Gradescope per class. ■ 4 can be dropped, no questions asked. 26</p>
+<p>Extensions + Late Days ■ You have 8 days to use on any assignment in the course, with no explanation needed. ■ You may request extensions for illness or personal life events so you don’t have to use up your late days. – Extension form is linked in the syllabus ■ If you are not sure if something qualifies for an extension, just fill out the form anyway, and we will get back to you. ■ You will not be penalized for submitting the assignment within the provided grace period if you receive an extension! 27</p>
+<p>Gradescope ■ Make sure you are enrolled! – For the correct section! 28</p>
+<p>The Team! ■ LAs: – Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain, Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil Dickerson, Gabrielle Stewart, Kiara Smith, Nathan Santiago, Betsy George, Matthew Thornton, Celine Keles, Rachit Pajbai, Joaquim D’Silva, Joseph Zhen, Sven Reyes, Chenghe Kong, Wai Phyo, Danny Xia, Issa Masumbuko ■ LA office hours will be held in CSXL RM SN143. Time TBD! – I will send out an announcement once we schedule them! ■ My office hours are Tuesdays 1-3pm in FB114.</p>
+<p>Classroom Community ■ Let’s all work together to create a supportive and welcoming learning environment for everyone in this room! ■ I expect all of you to be present, respectful &amp; engaged in class, every day! ■ We will transition between groupwork &amp; lecture frequently. – During group work: the more conversation the better! – During lecture: Please lock in! Sound carries more than you think. ■ Ask questions! Utilize the TAs and office hours! – Come to office hours for conceptual help, too! We love talking to you all! ■ I am always open to feedback!</p>
+<p>HEALTH &amp; SAFETY</p>
+<p>Face Masks ■ Optional ■ Use a mask often!</p>
+<p>Emergency Procedures ■ Evacuate (fire, chemical hazard) ■ Shelter in place (weather related) ■ Secure in place (armed and dangerous assailant) – run, hide (secure in place), fight</p>
+<p>Acknowledgements ■ Optional Textbook 1: Computer Organization and Design RISC-V Edition: The Hardware Software Interface by David Patterson and John Hennessey ■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by David Patterson and Andrew Waterman. ■ Connor McMahon, Leonard McMillan, Montek Singh 34</p>
+<p>211 REVIEW ☺ 35</p>
+<p>Base ■ A base is the number of different digits that a system can use to represent numbers ■ Binary is base 2 because it has the digits 0 and 1 ■ Decimal base 10 because it has the digits 0-9 ■ Hex is base 16 because it has the digits 0-F 36</p>
+<p>Binary Notation ■ Always prepend binary numbers with “0b” or add a subscript of 2 – Ex: 0b 1001 or 1001 2 ■ Place binary numbers in groups of four to make it easier to read – Ex: 0b 1010 1111 0101 or 0b1010_1111_0101 – If you cannot evenly break up the number into groups of four, start making the groups from the right ■ Ex: 0b10_1010_0011 37</p>
+<p>Hex Notation ■ Always prepend hex numbers with “0x” or add a subscript of 16 – Ex: 0xE2A or E2A 16 38</p>
+<p>Decimal Notation ■ You can indicate that a number is a decimal value by adding a subscript of 10 – Ex: 54 10 ■ If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value 39</p>
+<p>Overflow ■ Overflow occurs when the result of the operation cannot be represented with the given number of bits ■ When adding two unsigned numbers, overflow occurs when the carry-out of the operation is 1 40</p>
+<p>Binary Addition and Overflow Take 5 minutes to answer question 3 on your worksheets! 41</p>
+<p>Review: Binary Addition and Overflow 1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no 42</p>
+<p>Two’s Complement Take 5 minutes to answer question 4 on your worksheets! 43</p>
+<p>Two’s Complement 4.2: What is the minimum number of 4.1: Represent -15 in two’s complement with 7 bits needed to represent 20 in two’s bits complement Unsigned: 0b 000 1111 Flip bits: 0b 111 0000 0b 010100 Add one: 0b 111 0001 6 bits 4.3: Convert the following two’s 4.4: Convert the following two’s complement number to decimal: complement number to decimal: 0b 1111 1110 0b 0011 1000 Flip bits: 0b 0000 0001 Positive, so no need to flip bits 56 Add one: 0b 0000 0010 → -2 44</p>
 
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -439,19 +202,19 @@
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

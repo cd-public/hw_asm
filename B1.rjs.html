@@ -145,15 +145,28 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 24: Caching tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Check-in ■ Lab 5 due LDOC (4/27) ■ Office hours ending LDOC ■ Final review session on the first reading day (4/28) – Time TBD ■ Monday was not Earth Day – Today is! ☺ 2</p>
-<p>MEMORY: AN OVERVIEW These slides adapted from material from Leonard McMillian &amp; Don Porter 3</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 24: Caching tinyurl.com/comp311-sp26</p>
+</section>
+<section id="logistics-check-in" class="slide level2">
+<h2>Logistics Check-in</h2>
+<p>■ Lab 5 due LDOC (4/27) ■ Office hours ending LDOC ■ Final review session on the first reading day (4/28) – Time TBD ■ Monday was not Earth Day – Today is! ☺</p>
+</section>
+<section id="memory-an" class="slide level2">
+<h2>MEMORY: AN</h2>
+<p>OVERVIEW These slides adapted from material from Leonard McMillian &amp; Don Porter 3</p>
 <p>Topics ■ Memory Arrays ■ Transparent Latches ■ Edge-Triggered Registers ■ Finite State Machines</p>
-<p>Memory in the RISC-V Datapath. See Ch. 4! 5</p>
-<p>RISC-V Datapath. See Chapter 4 &amp; Appendix In your lab, instruction memory is a ROM 6</p>
-<p>Read-Only Memory = a Lookup Table A B Read-Only | A B | F n ( A , | B ) | Memory | | —– | ——— | —– | ——- | (ROM) | 0 0 | 0 | | | | —– | — | — | — | | 0 1 | 1 | | | MUX Fn(A,B) Logic | 1 0 | 1 | | | | —– | — | — | — | | 1 1 | 0 | | |</p>
+<p>Memory in the RISC-V Datapath. See Ch. 4!</p>
+</section>
+<section id="risc-v-datapath.-see-chapter-4-appendix" class="slide level2">
+<h2>RISC-V Datapath. See Chapter 4 &amp; Appendix</h2>
+<p>In your lab, instruction memory is a ROM</p>
+</section>
+<section id="read-only-memory-a-lookup-table" class="slide level2">
+<h2>Read-Only Memory = a Lookup Table</h2>
+<p>A B Read-Only | A B | F n ( A , | B ) | Memory | | —– | ——— | —– | ——- | (ROM) | 0 0 | 0 | | | | —– | — | — | — | | 0 1 | 1 | | | MUX Fn(A,B) Logic | 1 0 | 1 | | | | —– | — | — | — | | 1 1 | 0 | | |</p>
 <p>■ A multiplexer can implement a lookup table: – for an N-input function we need a 2N input multiplexer Takeaway: ROM → “hardcoded – simply select one row out of 2N truth table” – 2N values go into the mux, only one comes out MUX → Hardware that selects – N-bit select input is now the “address” of data being accessed correct output based on the input ■ Limitations: – mux can get really big: 10-bit address → 1024 rows! – read-only; we also would like to write!</p>
 <p>A Mux’s Guts: Decoder + Selector Decoder Selector I Multiplexers 00 A can be partitioned 0 into two sections. B I A decoder 01 generates A A DECODER that 1 all possible Y identifies the product B I terms for 10 desired input,and a set of A inputs 2 a SELECTOR that B I 11 enables that input A onto the output. 3 B Key idea behind building ROMs: by sharing the decoder part of the logic MUXs could be adapted to make lookup tables with any number of outputs</p>
 <p>Decoder D DECODER: 1 D 2 k SELECT inputs, N = 2k DATA OUTPUTs. D Selected D HIGH; One-hot signal to N j all others LOW. identify row we are K == Address working with k NOW, we are well on our way to building a general purpose table-lookup device. We can build a 2-dimensional ARRAY of decoders and selectors as follows by arranging them in a grid…</p>
@@ -171,8 +184,11 @@
 <p>Implementing an FSM ■ Use flipflops to represent state (i.e., memory) ■ Use combinational logic to compute: – output as a function of inputs + state – next state as a function of inputs + state Outputs Inputs Function (comb. logic) State (flipflops) Clock</p>
 <p>Example: Traffic Light Controller ■ 4 states G E/W – each corresponding to a circle R N/S – represent states using 2 bits ■ 00, 01, 10, 11 Y E/W R N/S ■ 4 bits of output – 2 bits for east/west light R E/W – 2 bits for north/south light G N/S ■ Red (00) ■ Yellow (01) ■ Green (10) R E/W Y N/S</p>
 <p>Example: Traffic Light Controller ■ 4 states G E/W ■ 00, 01, 10, 11 R N/S ■ need 2 flipflops to represent state ■ 4 bits of output Y E/W ■ R (00), Y (01), G (10) R N/S ■ Truth table: ■ this defines the combinational logic R E/W part of the FSM G N/S | Input (State) | Output | Next State | | ————- | —— | ———- | | 00 | 10 00 | 01 | | 01 | 01 00 | 10 | R E/W | 10 | 00 10 | 11 | | — | —– | — | Y N/S | 11 | 00 01 | 00 | | — | —– | — |</p>
-<p>FSMs in the CPU The complete finite-state machine control for the RISC-V datapath 27</p>
-<p>Summary ■ Regular Arrays can be used to implement arbitrary logic functions ■ Memories – ROMs are HARDWIRED memories – RAMs include storage elements that are read-write ■ dynamic memory: compact, only reliable short-term ■ static memory: controlled use of positive feedback ■ For static storage: – Some timing constraints: setup and hold times ■ Finite State Machines: – Implement using flip-flops for memory, and combinational logic to compute output, next state</p>
+<p>FSMs in the CPU The complete finite-state machine control for the RISC-V datapath</p>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<p>■ Regular Arrays can be used to implement arbitrary logic functions ■ Memories – ROMs are HARDWIRED memories – RAMs include storage elements that are read-write ■ dynamic memory: compact, only reliable short-term ■ static memory: controlled use of positive feedback ■ For static storage: – Some timing constraints: setup and hold times ■ Finite State Machines: – Implement using flip-flops for memory, and combinational logic to compute output, next state</p>
 <p>MEMORY HIERARCHY … INTRO TO CACHING!)</p>
 <p>Topics ■ Memory Flavors ■ Principle of Locality ■ What is Caching ■ Associativity</p>
 <p>What Do We Want in a Memory? Observation: As capacity goes up and cost does down, latency gets worse. | | PC | ADDR | | | — | —- | —- | — | | | INST | DOUT | | miniRISC-V MEMORY | | MADDR | ADDR | | | ———- | ————- | ———- | —— | | | MDATA | DATA | | | | Wr | R/W | | | | Capacity | Latency | Cost | | Register | 1000s of bits | 10 ps | $$$$ | | SRAM | 1-8 MBytes | 0.5-1 ns | $2K/GB | | DRAM | 1-8 GBytes | 50 ns | $20/GB | | Hard disk* | 100s GBytes | 10 ms | 20¢/GB | | Want? | Huge | Low (fast) | Cheap! | *non-volatile: Typically magnetic disk drive, but also SSD/flash now</p>
@@ -199,10 +215,10 @@
 <p>Miss Penalty and Rate ■ How much time do you lose on a Miss? – MISS PENALTY is the time it takes to read the main memory if data was not found in the cache ■ 50 to 100 clock cycles is common – MISS RATE is the fraction of accesses which MISS – HIT RATE is the fraction of accesses which HIT – MISS RATE + HIT RATE = 1</p>
 <p>Miss Penalty and Rate Example Suppose a particular cache has a MISS PENALTY of 100 cycles and a HIT RATE of 95%. The CPI for load on HIT is 5 but on a MISS it is 105. What is the average CPI for load? What if MISS PENALTY = 120 cycles?</p>
 <p>Miss Penalty and Rate Example Suppose a particular cache has a MISS PENALTY of 100 cycles and a HIT RATE of 95%. The CPI for load on HIT is 5 but on a MISS it is 105. What is the average CPI for load? Average CPI = 5 * 0.95 + 105 * 0.05 = 10 What if MISS PENALTY = 120 cycles? Average CPI = 5 * 0.95 + (120+5) * 0.05 = 11</p>
-<p>Continuum of Associativity | Fully associative | N-way set associative | Direct-mapped | | —————– | ——————— | ————- | | | address address | | address N Compares addr with ALL Compares addr with N tags Compare addr with only tags simultaneously location simultaneously. Data can be ONE tag. Location A can be A can be stored in any cache stored in any of the N cache stored in exactly one cache lines belonging to a “set” | line. | | line. | | —– | — | —– | like N direct-mapped caches. What happens on a MISS?</p>
+<p>Continuum of Associativity | Fully associative | N-way set associative | Direct-mapped | | —————– | ——————— | ————- | | | address address | | address N Compares addr with ALL Compares addr with N tags Compare addr with only tags simultaneously location simultaneously. Data can be ONE tag. Location A can be A can be stored in any cache stored in any of the N cache stored in exactly one cache lines belonging to a “set” | line. | | line. | | —– | — | —– | like N direct-mapped caches.</p>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

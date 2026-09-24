@@ -145,31 +145,96 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 23: Intro to Memory Hierachy tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Update! ■ Written Assignment 6 – Due tomorrow ■ Lab 5 due LDOC (4/27) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day 2</p>
-<p>REVIEW: SOURCE BYPASSING 3</p>
-<p>Source Bypass Muxes: Now, we can choose if the bottom input of 3 case each the ALU should come from 1. The register file (no forwarding) – 00 ForwardA 2. The instruction two stages ahead – 01 3. The instruction one stage ahead – 10 M u x M u x ForwardB 4</p>
-<p>Graphical Representation of Forwarding Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf 5</p>
-<p>LOAD-USE HAZARD 6</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 7</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 8</p>
-<p>Load-Use Data Hazard ForwardA M The updated valueu of x4 cannot be forwarded until it is x read from the data memory. M u We need to stall the add instruction in the decode stage for x one cycle so that we can forward the value read from data ForwardB memory. add x5, x4, x3 lw x4 , 0(x9) 9</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 10</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9) 11</p>
-<p>How do our forwarding muxes come into play? ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9) 12</p>
-<p>How do our forwarding muxes come into play? (forward from two stages ahead) ForwardA = 0b01 ForwardA M u x M u x ForwardB ForwardB = 0b00 (read from reg file) add x5, x4, x3 stall lw x4 , 0(x9) 13</p>
-<p>Pipeline Diagram Hint: the only stalls should be because of Load-Use hazards! 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 lw x3, 0(x8) add x11, x3, x3 lw x4, 0(x11) add x9, x11, x9 sub x10, x4, x9 ForwardA ForwardB 14</p>
-<p>Forwarding Explanation Cycle 0-1: No instruction in EX. Cycle 6: add x9, x11, x9 in EX (ForwardA, ForwardB) = (XX, XX) Needs x11 from previous add. At start of cycle, value is in EX/MEM. Cycle 2: lw x3, 0(x8) in EX Forward from EX/MEM for operand A. Load computes address only. Operand B from register file. Operands come from register file. (10, 00) (00, 00) Cycle 7: sub x10, x4, x9 in EX Cycle 3: Stall (load-use hazard) Two dependencies: No real instruction in EX. x4 from lw → value in MEM/WB → forward (01) (XX, XX) x9 from add → value in EX/MEM → forward (10) (01, 10) Cycle 4: add x11, x3, x3 in EX Needs x3 from lw. Forwarding Codes: Load result is in MEM/WB at start of cycle. 00 = register file Forward both operands from MEM/WB. 10 = EX/MEM (1 stage ahead) (01, 01) 01 = MEM/WB (2 stages ahead) XX = don’t care (no instruction in EX) Cycle 5: lw x4, 0(x11) in EX Key Rule: Load computes address only. Forward based on where the value is at the start of the Operands come from register file. cycle, not the end. 15 (00, 00)</p>
-<p>Another Explanation of Previous Slide ● Cycle 0-1: Nothing to be executed yet ○ (XX, XX) ● Cycle 2: Instruction_1: LW in the execution stage → A load in EX only computes an address and does not need forwarded ALU operands. Both ALU inputs come from the register file through the ID/EX register. ○ (00, 00) ● Cycle 3: Stall bc of Load-Use hazard! ○ (XX, XX) ● Cycle 4: Instruction_2: Add in the execution stage. The add instruction needs x3, which was loaded by Instruction 1. Load results are available at the end of the MEM stage. At this moment, Instruction 1 is in MEM and its loaded value will be placed in MEM/WB this cycle. Instruction 2 needs the value now in EX, so it must forward from the MEM/WB pipeline register. This is considered two stages ahead. ○ (01, 01) ● Cycle 5: Instruction_3: LW in execution stage → use ALU operands, so both inputs should come from the regfile. ○ (00, 00) ● Cycle 6: Instruction_4: Add in execution stage → This instruction needs x11, which was produced by Instruction 2. At the start of this cycle, Instruction 2’s ALU result is sitting in the EX/MEM pipeline register, because it completed EX one cycle earlier. Forwarding from EX/MEM corresponds to “one stage ahead.” The other operand (x9) comes from the register file. ○ (10, 00) ● Cycle 7: instruction_5: Sub in execution stage → This instruction has two dependencies. x4 was produced by Instruction 3 (a load). Load values become available at the end of MEM. At the start of cycle 7, Instruction 3 is in WB and its load result is sitting in MEM/WB. That requires forwarding from two stages ahead. x9 was produced by Instruction 4 (an ALU instruction). At the start of this cycle, Instruction 4 is in MEM, so its ALU result is in EX/MEM. That requires forwarding from one stage ahead. ○ (01, 10) 16</p>
-<p>Pipeline Diagram 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. | | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | — | — | — | — | — | —– | —– | — | lw x3, 0(x8) | | F | D | X | M | W | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | add x11, x3, x3 | | | F | D | D | X | M | W | | | | | | | ————— | — | — | — | — | — | — | — | — | — | — | — | — | | lw x4, 0(x11) | | | F | F | D | X | M | W | | | | | | add x9, x11, x9 | | | | | F | D | X | M | W | | | | sub x10, x4, x9 | | | | | | | F | D | X | M W | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | ForwardA | | XX | XX | 00 | XX | 01 | 00 | 10 | 01 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — | ForwardB | | XX | XX | 00 | XX | 01 | 00 | 00 | 10 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — | 17</p>
-<p>Performance Analysis + Pipelining Assume a 1 GHz clock. One clock cycle is 1 ns Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect? 18</p>
-<p>Performance Analysis + Pipelining Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect? 19</p>
-<p>Performance Analysis + Pipelining 20</p>
-<p>Some takeaways… Design strategy: Focus our attention on placing pipelining ● registers around the slowest circuit elements (bottlenecks!) You can pipeline an RISC-V CPU even more. There exist ● implementations with 7, 8, and 9 pipeline stages. But the overhead of bypass paths and the number of stall cases increase . Memory access time is our real bottleneck! ● 21</p>
-<p>MEMORY: AN OVERVIEW 22</p>
-<p>Topics ■ Memory Arrays ■ Transparent Latches ■ Edge-Triggered Registers ■ Finite State Machines</p>
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 23: Intro to Memory Hierachy tinyurl.com/comp311-sp26</p>
+</section>
+<section id="logistics-update" class="slide level2">
+<h2>Logistics Update!</h2>
+<p>■ Written Assignment 6 – Due tomorrow ■ Lab 5 due LDOC (4/27) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day</p>
+</section>
+<section id="review-source" class="slide level2">
+<h2>REVIEW: SOURCE</h2>
+<p>BYPASSING</p>
+</section>
+<section id="source-bypass-muxes" class="slide level2">
+<h2>Source Bypass Muxes:</h2>
+<p>Now, we can choose if the bottom input of 3 case each the ALU should come from 1. The register file (no forwarding) – 00 ForwardA 2. The instruction two stages ahead – 01 3. The instruction one stage ahead – 10 M u x M u x ForwardB</p>
+</section>
+<section id="graphical-representation-of-forwarding" class="slide level2">
+<h2>Graphical Representation of Forwarding</h2>
+<p>Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf</p>
+</section>
+<section id="load-use-hazard" class="slide level2">
+<h2>LOAD-USE HAZARD</h2>
+</section>
+<section id="load-use-data-hazard" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-1" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-2" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M The updated valueu of x4 cannot be forwarded until it is x read from the data memory. M u We need to stall the add instruction in the decode stage for x one cycle so that we can forward the value read from data ForwardB memory. add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-3" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-4" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="how-do-our-forwarding-muxes-come-into-play" class="slide level2">
+<h2>How do our forwarding muxes come into play?</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="how-do-our-forwarding-muxes-come-into-play-1" class="slide level2">
+<h2>How do our forwarding muxes come into play?</h2>
+<p>(forward from two stages ahead) ForwardA = 0b01 ForwardA M u x M u x ForwardB ForwardB = 0b00 (read from reg file) add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="pipeline-diagram-hint-the-only-stalls-should-be" class="slide level2">
+<h2>Pipeline Diagram Hint: the only stalls should be</h2>
+<p>because of Load-Use hazards! 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 lw x3, 0(x8) add x11, x3, x3 lw x4, 0(x11) add x9, x11, x9 sub x10, x4, x9 ForwardA ForwardB</p>
+</section>
+<section id="forwarding-explanation" class="slide level2">
+<h2>Forwarding Explanation</h2>
+<p>Cycle 0-1: No instruction in EX. Cycle 6: add x9, x11, x9 in EX (ForwardA, ForwardB) = (XX, XX) Needs x11 from previous add. At start of cycle, value is in EX/MEM. Cycle 2: lw x3, 0(x8) in EX Forward from EX/MEM for operand A. Load computes address only. Operand B from register file. Operands come from register file. (10, 00) (00, 00) Cycle 7: sub x10, x4, x9 in EX Cycle 3: Stall (load-use hazard) Two dependencies: No real instruction in EX. x4 from lw → value in MEM/WB → forward (01) (XX, XX) x9 from add → value in EX/MEM → forward (10) (01, 10) Cycle 4: add x11, x3, x3 in EX Needs x3 from lw. Forwarding Codes: Load result is in MEM/WB at start of cycle. 00 = register file Forward both operands from MEM/WB. 10 = EX/MEM (1 stage ahead) (01, 01) 01 = MEM/WB (2 stages ahead) XX = don’t care (no instruction in EX) Cycle 5: lw x4, 0(x11) in EX Key Rule: Load computes address only. Forward based on where the value is at the start of the Operands come from register file. cycle, not the end. 15 (00, 00)</p>
+<p>Another Explanation of Previous Slide ● Cycle 0-1: Nothing to be executed yet ○ (XX, XX) ● Cycle 2: Instruction_1: LW in the execution stage → A load in EX only computes an address and does not need forwarded ALU operands. Both ALU inputs come from the register file through the ID/EX register. ○ (00, 00) ● Cycle 3: Stall bc of Load-Use hazard! ○ (XX, XX) ● Cycle 4: Instruction_2: Add in the execution stage. The add instruction needs x3, which was loaded by Instruction 1. Load results are available at the end of the MEM stage. At this moment, Instruction 1 is in MEM and its loaded value will be placed in MEM/WB this cycle. Instruction 2 needs the value now in EX, so it must forward from the MEM/WB pipeline register. This is considered two stages ahead. ○ (01, 01) ● Cycle 5: Instruction_3: LW in execution stage → use ALU operands, so both inputs should come from the regfile. ○ (00, 00) ● Cycle 6: Instruction_4: Add in execution stage → This instruction needs x11, which was produced by Instruction 2. At the start of this cycle, Instruction 2’s ALU result is sitting in the EX/MEM pipeline register, because it completed EX one cycle earlier. Forwarding from EX/MEM corresponds to “one stage ahead.” The other operand (x9) comes from the register file. ○ (10, 00) ● Cycle 7: instruction_5: Sub in execution stage → This instruction has two dependencies. x4 was produced by Instruction 3 (a load). Load values become available at the end of MEM. At the start of cycle 7, Instruction 3 is in WB and its load result is sitting in MEM/WB. That requires forwarding from two stages ahead. x9 was produced by Instruction 4 (an ALU instruction). At the start of this cycle, Instruction 4 is in MEM, so its ALU result is in EX/MEM. That requires forwarding from one stage ahead. ○ (01, 10)</p>
+</section>
+<section id="pipeline-diagram" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<ol type="1">
+<li>Fill out the pipeline diagram for the following set of instructions.</li>
+<li>What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. | | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | — | — | — | — | — | —– | —– | — | lw x3, 0(x8) | | F | D | X | M | W | | | | | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | add x11, x3, x3 | | | F | D | D | X | M | W | | | | | | | ————— | — | — | — | — | — | — | — | — | — | — | — | — | | lw x4, 0(x11) | | | F | F | D | X | M | W | | | | | | add x9, x11, x9 | | | | | F | D | X | M | W | | | | sub x10, x4, x9 | | | | | | | F | D | X | M W | | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | ForwardA | | XX | XX | 00 | XX | 01 | 00 | 10 | 01 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — | ForwardB | | XX | XX | 00 | XX | 01 | 00 | 00 | 10 | XX XX | | | | | — | — | — | — | — | — | — | — | — | —– | — | — | — |</li>
+</ol>
+</section>
+<section id="performance-analysis-pipelining" class="slide level2">
+<h2>Performance Analysis + Pipelining</h2>
+<p>Assume a 1 GHz clock. One clock cycle is 1 ns Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect?</p>
+</section>
+<section id="performance-analysis-pipelining-1" class="slide level2">
+<h2>Performance Analysis + Pipelining</h2>
+<p>Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of speed-up do we expect?</p>
+</section>
+<section id="performance-analysis-pipelining-2" class="slide level2">
+<h2>Performance Analysis + Pipelining</h2>
+</section>
+<section id="some-takeaways" class="slide level2">
+<h2>Some takeaways…</h2>
+<p>Design strategy: Focus our attention on placing pipelining ● registers around the slowest circuit elements (bottlenecks!) You can pipeline an RISC-V CPU even more. There exist ● implementations with 7, 8, and 9 pipeline stages. But the overhead of bypass paths and the number of stall cases increase . Memory access time is our real bottleneck! ●</p>
+</section>
+<section id="memory-an" class="slide level2">
+<h2>MEMORY: AN</h2>
+<p>OVERVIEW</p>
+</section>
+<section id="topics" class="slide level2">
+<h2>Topics</h2>
+<p>■ Memory Arrays ■ Transparent Latches ■ Edge-Triggered Registers ■ Finite State Machines</p>
 <p>Read-Only Memory = a Lookup Table A B Read-Only | A B | F n ( A , | B ) | Memory | | —– | ——— | —– | ——- | (ROM) | 0 0 | 0 | | | | —– | — | — | — | | 0 1 | 1 | | | MUX Fn(A,B) Logic | 1 0 | 1 | | | | —– | — | — | — | | 1 1 | 0 | | |</p>
 <p>■ A multiplexer can implement a lookup table: – for an N-input function we need a 2N input multiplexer Takeaway: ROM → “hardcoded – simply select one row out of 2N truth table” – 2N values go into the mux, only one comes out MUX → Hardware that selects – N-bit select input is now the “address” of data being accessed correct output based on the input ■ Limitations: – mux can get really big: 10-bit address → 1024 rows! – read-only; we also would like to write!</p>
 <p>A Mux’s Guts: Decoder + Selector Decoder Selector I Multiplexers 00 A can be partitioned 0 into two sections. B I A decoder 01 generates A A DECODER that 1 all possible Y identifies the product B I terms for 10 desired input,and a set of A inputs 2 a SELECTOR that B I 11 enables that input A onto the output. 3 B Key idea behind building ROMs: by sharing the decoder part of the logic MUXs could be adapted to make lookup tables with any number of outputs</p>
@@ -177,10 +242,10 @@
 <p>This structure is exactly what a ROM does: the decoder selects a row (the address), and Shared Decoding Logic each output corresponds to a column that determines whether that row produces a 1 or 0. We can build a general purpose “table-lookup” device called a Read-Only Memory (ROM), from which we can implement any truth table and, thus, any combinational device</p>
 <p>Logic According to ROMs ■ Different ROM implementation technologies – Mask (old) → ROM ■ read-only memory – Fuses (old) → PROM ■ programmable read-only memory – Erasable → EPROM ■ erasable programmable read-only memory – Electrically erasable → EEPROM ■ electrically-erasable programmable read-only memory ➔ today called FLASH! Used everywhere! ■ Model: LOOK UP value of function in truth table… – Inputs: “ADDRESS” of a truth table entry – ROM SIZE = # truth table entries… 2N x #outputs ■ … for an N-input boolean function, size = ____________</p>
 <p>Read-Write Memories (RAM) ■ Read-Write often called random-access memories (RAM) ■ Dynamic RAM uses analog storage: word N-transistor line – encode information using voltages serves bit line – from physics: we can “store” a as an voltage as “charge” on a capacitor access switch V REF To write: Drive bit line, turn on access transistor, force storage cap to new voltage To read: precharge bit line, turn on access trans., detect (small) change in bit line voltage</p>
-<p>Read-Write Memories (RAM) ■ Dynamic RAM uses analog storage: – encode information using voltages word – from physics: we can “store” a N-transistor line voltage as “charge” on a capacitor serves bit line – Pros: as an ■ compact! access – Cons: switch ■ it leaks! -&gt; refresh ■ complex interface V REF ■ reading a bit, destroys it To write: – (you have to rewrite the Drive bit line, turn on access transistor, value after each read) force storage cap to new voltage ■ it’s NOT a digital circuit To read: precharge bit line, turn on access trans., This storage circuit is the basis detect (small) change in bit line voltage for commodity DRAMs</p>
+<p>Read-Write Memories (RAM) ■ Dynamic RAM uses analog storage: – encode information using voltages word – from physics: we can “store” a N-transistor line voltage as “charge” on a capacitor serves bit line – Pros: as an ■ compact! access – Cons: switch ■ it leaks! -&gt; refresh ■ complex interface V REF ■ reading a bit, destroys it To write: – (you have to rewrite the Drive bit line, turn on access transistor, value after each read) force storage cap to new voltage ■ it’s NOT a digital circuit To read: precharge bit line, turn on access trans., This storage circuit is the basis detect (small) change in bit line voltage</p>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

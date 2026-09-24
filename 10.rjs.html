@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Systems in C – Circuits</title>
+  <title>Systems in C – Introduction</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -27,6 +27,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-1d86d68c35eb7061f9efcb6a994936f6.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -126,8 +192,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Circuits</h1>
-  <p class="subtitle">w1d0</p>
+  <h1 class="title">Introduction</h1>
+  <p class="subtitle">w0d0</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -144,127 +210,1362 @@
 <li><strong>Welcome</strong> to HW/<code>asm</code></li>
 <li><strong>Action Items</strong> discussion</li>
 </ul>
+</section>
+<section id="today" class="slide level2">
+<h2>Today</h2>
+<ul>
+<li>Encoding
+<ul>
+<li>Endianness</li>
+<li>Casts</li>
+<li>Two’s Complement</li>
+</ul></li>
+</ul>
 </section></section>
-<section id="section" class="title-slide slide level1 center">
-<h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 3: Memory Review, Basic Circuits tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Updates ■ First quiz on Wednesday! – If you have ARS accommodations, please make arrangements! ■ First written assignment posted today, due in a week! ■ Quiz review session next Tuesday. Time TBD. ■ Regular LA office hours will start soon. I will post announcement once our schedule is sorted. ■ Systems reading group will actually start <em>next</em> week ☺ – 5pm in FB141! 2</p>
-<p>Logistics Updates Quiz Topics: ■ – 211 Review – Conceptual topics from first two days ■ Going between decimal, binary, hex ■ Tracing a simple assembly instruction ■ Two’s complement (add, subtract) (addition, subtraction) Basic circuits, switches, – ■ Overflow transistors Basic memory questions – ■ Whatever we get through ■ Similar to in-class &amp; WS today! questions 3</p>
-<p>MORE 211 REVIEW: MEMORY 4</p>
-<p>Storing Data in Memory 1 byte = 8 bits Each of these rows can store one byte of data 5</p>
-<p>Storing Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 6</p>
-<p>Byte Addresses 1 byte = 8 bits Byte Address 0 0b0000 0101 1 0b0000 0100 2 0b1111 1110 To reference each of these 3 locations, we use something called a byte address. 4 5 6 Note that these addresses 7 are not stored anywhere! 8 9 10 11 7</p>
-<p>Storing Larger Data ■ What if I want to store an integer? – sizeof(int) = 4 bytes Variables whose types are larger than one byte span multiple addresses in memory! 8</p>
-<p>Storing Larger Data 1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101 9</p>
-<p>Storing Larger Data 1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101 Byte Data Address 0 What order 1 should we store the bits? 2 3 10</p>
-<p>MSB and LSB 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) 11</p>
-<p>Little Endian Ordering ■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3 12</p>
-<p>Little Endian Ordering ■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3 13</p>
-<p>Big Endian Ordering ■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3 14</p>
-<p>Big Endian Ordering ■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 0000 0000 1 0000 0101 2 0000 0110 1100 1101 3 15</p>
-<p>Little Endian Ordering ■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Little Endian Ordering is dominant in processor architectures and is what we will be using in this class! Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3 16</p>
-<p>Working with memory ■ How do you know if an individual row should be interpreted as a one-byte value or if it is part of a larger number? – You cannot tell from looking at the memory – you’ll have this information stored somewhere else! – When you send memory requests, you specify the address and the size of data you want to read. Memory request → assembly instruction! ☺ lw x5, 8(x10) 17</p>
-<p>Byte Data Address Integer Array 0 1 0 1 2 3 4 2 3 5 90 100 40 11 4 5 6 7 8 sizeof(int) = 4 bytes 9 10 11 12 13 14 15 16 17 18 19 18</p>
-<p>Byte Byte Data | | Data Address | | | — | ———— | — | Address 0 0 | 1 | 5 | 1 | | — | — | — | 2 2 | 3 | | 3 | | — | — | — | 4 4 5 | 5 | 90 | | | — | — | — | 6 6 | 7 | | 7 | | — | — | — | 8 8 | 9 | | 9 | | — | — | — | 100 10 10 11 11 | 12 | | 12 | | — | — | — | 13 13 40 | 14 | | 14 | | — | — | — | 15 15 | 16 | | 16 | | — | — | — | | 17 | 11 | 17 | | 18 | | 18 | 19 19 19</p>
-<p>Byte Byte Data | | Data Address | | | | — | ———— | — | — | Address 0 | 0 | | | 0b 0000 0101 | | — | — | — | ———— | | 1 | 5 | 1 | 0b 0000 0000 | 2 | 2 | | | 0b 0000 0000 | | — | — | — | ———— | | 3 | | 3 | 0b 0000 0000 | 4 | 4 | | | 0b 0101 1010 | | — | — | — | ———— | | | | 5 | 0b 0000 0000 | | 5 | 90 | | | 6 | 6 | | | 0b 0000 0000 | | — | — | — | ———— | | 7 | | 7 | | 0b 0000 0000 8 | 8 | | | 0b 0110 0100 | | — | — | — | ———— | | 9 | | 9 | | | | 100 | | 0b 0000 0000 | 10 | 10 | | | 0b 0000 0000 | | — | — | — | ———— | 11 | 11 | | | 0b 0000 0000 | | — | — | — | ———— | | 12 | | 12 | | 0b 0010 1000 13 | 13 | | | 0b 0000 0000 | | — | — | — | ———— | 40 | 14 | | 14 | | | — | — | — | — | 0b 0000 0000 15 | 15 | | | 0b 0000 0000 | | — | — | — | ———— | | 16 | | 16 | | 0b 0000 1011 | 17 | 11 | 17 | 0b 0000 0000 | | — | — | — | ———— | | 18 | | 18 | | 0b 0000 0000 19 | 19 | | | 0b 0000 0000 | | — | — | — | ———— | 20</p>
-<p>Byte Data Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 sizeof(int) = 4 bytes 9 100 10 11 12 13 Assuming this array starts at 40 14 address 0, this is how it is stored in 15 memory 16 17 11 18 19 21</p>
-<p>Byte Data Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 The address of each element in the array corresponds to its starting byte in memory. 9 100 10 11 Since the size of each element in this array is 12 4 bytes, we can compute the address of any 13 40 element by taking its index and multiplying it 14 by 4. 15 16 17 11 Base address = address of the start of the array 18 19 22</p>
-<p>Address Calculation ■ I have a 10-element integer array whose base address is 20. What is the address of index 9? 23</p>
-<p>Address Calculation ■ I have a 10-element integer array whose base address is 20. What is the address of index 9? – array’s base address + index * size of integer – 20 + 9 * 4 = 56 24</p>
-<p>Diagram Configurations ■ Sometimes memory diagrams will show 4 bytes per row instead of 1 byte per row – See side-by-side comparison on the next slide ■ This provides a more compact way to visualize the data ■ Much of the data that we are working with is 4 bytes, so this structure makes it easier to see what is stored in memory 25</p>
-<p>Byte Byte Data Data Address Address 0 0 1 4 2 8 3 12 4 16 5 20 6 24 7 28 8 32 9 36 10 40 11 44 12 48 13 52 14 56 15 60 16 64 17 68 18 72 19 76 26</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Byte</th>
-<th></th>
-<th>Byte</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>Data</td>
-<td></td>
-<td>Data</td>
-</tr>
-<tr class="even">
-<td>Address</td>
-<td></td>
-<td>Address</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>0</td>
-<td></td>
-<td>0</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>5 | 1 | 5 | | | | — | — | — | — | | | | 4 | 90 | | 2 | | 8 | 100 | 3 | | | 12 | 40 | | — | — | — | — | | 4 | | 16 | 11 | | 5 | 90 | 20 | | | 6 | | 24 | | 7 28 8 32 9 | | 100 | 36 | | | — | — | — | — | | 10 | | 40 | | | 11 | | 44 | | 12 48 13 | | 40 | 52 | | | — | — | — | — | 14 56 | 15 | | 60 | | | — | — | — | — | 16 64 | 17 | 11 | | | | — | — | — | — | 68 18 72 | 19 | | 76 | | | — | — | — | — | 27</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Byte</th>
-<th></th>
-<th>Byte</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p>Data Data Address Address | 0 | 0b 0000 0101 | 0 | | | — | ———— | — | — | 0b 0000 0000 0000 0000 0000 0000 0000 0101 1 | | 0b 0000 0000 | 4 | 0b 0000 0000 0000 0000 0000 0000 0101 1010 | | — | ———— | — | —————————————— | | 2 | 0b 0000 0000 | 8 | 0b 0000 0000 0000 0000 0000 0000 0110 0100 | 3 | | 0b 0000 0000 | 12 | 0b 0000 0000 0000 0000 0000 0000 0010 1000 | | — | ———— | — | —————————————— | | 4 | 0b 0101 1010 | 16 | 0b 0000 0000 0000 0000 0000 0000 0000 1011 | | 5 | 0b 0000 0000 | 20 | | | 6 | | 24 | | 0b 0000 0000 7 | | 0b 0000 0000 | 28 | | | — | ———— | — | — | 8 | | 0b 0110 0100 | 32 | | | — | ———— | — | — | 9 | | 0b 0000 0000 | 36 | | | — | ———— | — | — | | 10 | | 40 | | 0b 0000 0000 | 11 | | 44 | | | — | — | — | — | 0b 0000 0000 12 48 0b 0010 1000 13 | | 0b 0000 0000 | 52 | | | — | ———— | — | — | 14 | | 0b 0000 0000 | 56 | | | — | ———— | — | — | | 15 | | 60 | | 0b 0000 0000 16 | | 0b 0000 1011 | 64 | | | — | ———— | — | — | 17 | | 0b 0000 0000 | 68 | | | — | ———— | — | — | 18 | | 0b 0000 0000 | 72 | | | — | ———— | — | — | | 19 | | 76 | | 0b 0000 0000 28</p>
-<p>Addresses in Hex ■ Addresses are normally written in hex, not decimal ■ In this class, we are working in a 32-bit address space, meaning that addresses are 4 bytes ■ The rest of the memory diagrams you see in class will look the diagrams on the next slide ■ Notice that the compactness of the right diagram allows us to display more data at once than the left diagram 29</p>
-<p>Byte Byte Data Data Address Address 0x00000000 0x00000000 0x00000001 0x00000004 0x00000002 0x00000008 0x00000003 0x0000000C 0x00000004 0x00000010 0x00000005 0x00000014 0x00000006 0x00000018 0x00000007 0x0000001C 0x00000008 0x00000020 0x00000009 0x00000024 0x0000000A 0x00000028 0x0000000B 0x0000002C Each row stores one byte of data Each row stores four bytes of data 30</p>
-<p>Size of Memory Address Byte Data Address ■ The size of our memory 0b000 determines the number of 0b001 bits we need to address it 0b010 ■ For example, if our memory 0b011 can only hold 8 bytes, we 0b100 will need log (8) = 3 bits to 2 address the memory 0b101 0b110 0b111 31</p>
-<p>Size of Memory Address ■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes) 32</p>
-<p>Size of Memory Address ■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes) log (4 GB) 2 log (22 * 230) 2 log (232) 2 32 33</p>
-<p>BASIC CIRCUITS 34</p>
-<p>A Substrate for Computation ■ We can build devices for processing and representing bits using almost any physical phenomenon - magnetic flux Wait! Some of those might have potential… - trained elephants - falling water - turning gears - DNA sequences - polarization of a photon 1 1 0 1 0 0 1 1 0 1 0 0 35</p>
-<p>Using Electromagnetic Phenomena ▪ Some EM things we could encode bits with: ▪ voltages, phase, currents, frequency ▪ With today’s technologies voltages are most often used. ▪ Voltage pros: ▪ easy generation, detection ▪ voltage changes can be very fast ▪ lots of engineering knowledge ▪ Voltage cons: ▪ easily affected by environment ▪ DC connectivity required? ▪ R &amp; C effects slow things down 36</p>
-<p>Voltage and Current ■ Voltage – The force that makes electrons flow – Measured in Volts (V) ■ Current – The rate of flow of electrons – Measured in Amperes (A) 37</p>
-<p>Representing Information with Voltages Representation of each point (x, y) in a B&amp;W Picture: 0 volts: BLACK 1 volt: WHITE 0.37 volts: 37% Gray etc. Representation of a picture: Scan points in some prescribed raster order… generate voltage waveform How much information at each point? 38</p>
-<p>Information Processing = Computation First, let’s consider some processing blocks: | v | Copy | v | | — | —- | — | | v | INV | | 1-v 39</p>
-<p>Let’s Build a System! Copy INV Copy INV input (In Theory) (Reality) Copy INV ? Copy INV output 40</p>
-<p>Contracts: Key to System Design A SYSTEM is a structure that is “guaranteed” to exhibit a specified behavior, assuming all of its components obey their specified behaviors. How is this achieved? Through Contracts Every system component will have clear obligations and responsibilities. If these are maintained we have every right to expect the system to behave as planned. If contracts are violated all bets are off. 41</p>
-<p>Digital Contracts Why DIGITAL? … because it keeps the contracts SIMPLE! It’s the price we pay for this robustness? 0 or 1 All the information that we transfer between components is only one bit! But, in exchange, we get reliable, modular, and reproducible systems. 42</p>
-<p>The Digital Abstraction “Ideal” Abstract World Real World 0/ Manufacturing 1 Variations Bits Noise Volts or Electrons or Ergs or Gallons Keep in mind, the real world is not digital, we engineer it to behave that way. We coerce real physical phenomena to implement digital designs! 43</p>
-<p>A Digital Processing Element • A combinational device is a digital element that has – one or more digital inputs – one or more digital outputs – a functional specification that details the value of each output for every possible combination of valid input values – a timing specification consisting (at a minimum) an upper bound propagation delay, t , on the required time for the device to compute the pd specified valid output values from an arbitrary set of stable, valid input values Output a “1” if at least 2 out of 3 of input A my inputs are a “1”. Otherwise, output “0”. input B output Y I will generate a valid input C output in no more than 2 minutes after seeing valid inputs 44</p>
-<p>A Combinational Digital System A system of interconnected elements is combinational if: ▪ Each circuit element is combinational ▪ Every input is connected to exactly one output or directly to some source of 0’s or 1’s ▪ The circuit contains no directed cycles ▪ But, in order to realize digital processing, elements we have one more requirement! 45</p>
-<p>Nose Margins ■ Key idea: Don’t allow “0” to be mistaken for a “1” or vice versa ■ Use the same “uniform bit-representation convention”, for every component in our digital system ■ To implement devices with high reliability, we outlaw “close calls” via a representation convention which forbids a range of voltages between “0” and “1”. ■ Ensure the valid input range is more tolerant (larger) than the valid output range Our definition of valid does not preclude inputs and outputs from passing through invalid values. In fact, they must, but only during transitions. Our specifications allow for this (i.e. outputs are specified sometime (T ) after after inputs become valid). pd 46</p>
-<p>Digital Processing Elements (Gates) Some digital processing elements occur so frequently that we give them special names and symbols I will copy and I will output the A Y restore my input A Y complement of to my output buffer my input inverter A A I will output a I will output a Y Y ‘1’ AifN aDll my ‘1’ if aOnRy of my B B inputs are ‘1’ inputs are ‘1’ Q: What is the point of a buffer? A Doesn’t a wire do the same thing? I will only output a Y A: A buffer restores marginal digital ‘1’ if an XodOd Rnumber signals, because the output is as good B of my inputs are ‘1’ or “better” than the input (i.e.&nbsp;it solves that bad image problem from slide 7). 47</p>
-<p>Digital Processing Elements (Gates) Some digital processing elements occur so frequently that we give them special names and symbols A Y A Y buffer inverter A A Y Y AND OR B B A Y XOR B 48</p>
-<p>How do we make gates? ■ A controllable switch is the common This symbol link of all computing technologies indicates a “high” potential, or the voltage of the ■ Switches control voltages by creating power supply L and opening paths between higher and o a d lower potentials ■ Closed circuit: – fully connected, allows electricity to flow uninterrupted ■ Open circuit – A circuit that contains a broken This symbol indicates a connection “low” or ground – Electricity stops flowing at the point potential where the connection was lost 49</p>
-<p>Switches Open (off) Closed (on) Electricity can flow through a closed switch, it cannot flow through an open switch 50</p>
-<p>Switches Open (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 5V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 5V 51</p>
-<p>Switches Open (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 0V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 0V 52</p>
-<p>Switches in Series switch0 switch1 switch0 switch1 switch0 switch1 switch0 switch1 Current can only flow between the two ends if both switches are closed current_flow = switch AND switch 0 1 53</p>
-<p>Switches in Parallel switch0 switch0 switch1 switch1 switch0 switch0 switch1 switch1 Current can flow between the two ends if either of the switches is closed current_flow = switch OR switch 0 1 54</p>
-<p>Digital Variables and Functions ■ A binary variable, 0 or 1, can represent the state of switch – on or off, open or closed ■ The setting of switches can be used to turn on and off other switches to compose more complicated functions. 55</p>
-<p>A Simple Function: Turning on a Light ■ By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. ■ This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON 56</p>
-<p>Functions with Two Switches ■ Two switches can be connected either in series or in parallel ■ Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions ■ · is logical AND 57</p>
-<p>Functions with Two Switches ■ With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. ■ “+” is logical OR Two basic two-input logic functions 58</p>
-<p>A Three-Switch Function ■ Three switches can be used to control the light in more complex ways. This series- parallel connection of switches realizes the logic function: – L(x1, x2, x3) = (x1 + x2) · x3 ■ The light is on if x3 = 1 and, at the same time, at least one of the x1 or x2 are 1. 59</p>
-<p>A Three-Switch Function 60</p>
-<p>Truth Tables ■ Every logical function over a finite set of inputs can be described in a tabular fashion that enumerates all possible input combinations and provides the associated output. ■ Functions expressed this way are called truth tables. 61</p>
-<p>Pondering Truth Tables 62</p>
-<p>TRANSISTORS 63</p>
-<p>Transistors are the physical building blocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s. You can think of it as an electrically controlled switch that turns current on or off. 64</p>
-<p>Transistors are like switches Off On Switches are controlled by physical contact Transistors are controlled by a voltage 65</p>
-<p>Two States: Binary! ■ Transistors can be in two distinct states: on or off ■ This is why our machines communicate in binary (1s and 0s)! On Off 66</p>
-<p>Logic Levels ■ Instead of specifying the exact voltage level (e.g.&nbsp;3V or 5V), we’ll simply use binary terms when discussing transistors. ■ We’ll either have a high voltage or a low voltage. ■ There are a few different terms for these voltage levels. – High voltage ■ logic high = logic 1 = 1 – Low voltage ■ logic low = logic 0 = 0 67</p>
-<p>Transistors ■ We will be working with two types of transistors – nMOS transistors – pMOS transistors ■ There are three terminals – Gate: controls whether the transistor is on or off – Source and Drain: endpoints 68</p>
-<p>Transistor Symbol Transistor Switch (n-channel MOSFET) The terminal labeled with the blue dot determines whether current can flow between the terminals labeled with the red dot. 69</p>
-<p>NMOS Transistor ■ There are three terminals V (drain voltage) D – Gate: controls whether the transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (source voltage) S 70</p>
-<p>NMOS Transistor ■ If the gate voltage is high (logic 1), V (drain voltage) D current can flow between source and drain – The source and drain will be connected and will have the V (gate voltage) G same voltage ■ If the gate voltage is low, current cannot flow between source and drain V (source voltage) S – The source and drain are not connected 71</p>
-<p>NMOS Transistor Let’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | D | | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? V | | V | | V | | | | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | | | D | | D | | | | D | | D | | V | | V | | | V | | | V | | | G | | G | | | G | | | G | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | V | | V | | | | V | | V | | | S | | S | | | | S | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 | 72</p>
-<p>NMOS Transistor V V V V D D D D Logic 0 Logic 1 unknown unknown V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are connected V is low, so source and drain are not connected G G 73</p>
-
+<section>
+<section id="endianness" class="title-slide slide level1 center">
+<h1>Endianness</h1>
 
 </section>
+<section id="good-at" class="slide level2">
+<h2>“Good at”</h2>
+<ul>
+<li>Computers “are good at” storing numerical data.
+<ul>
+<li>At a high level <em>numerical computing</em>
+<ul>
+<li>NumPy</li>
+<li>R</li>
+<li>Julia</li>
+<li>Stata</li>
+<li>SAS</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="why" class="slide level2">
+<h2>Why?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Imagine thinking in digits.</li>
+<li>To store a ~3 digit number, need <span class="math inline">\(3 \times 10 = 30\)</span> “things” that can hold a number.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-fig-width="400px" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="400" height="480" viewbox="0.00 0.00 206.00 330.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 326)">
+<title>finite_automata</title>
+<polygon fill="#191919" stroke="transparent" points="-4,4 -4,-326 202,-326 202,4 -4,4"></polygon>
+<!-- struct -->
+<g id="node1" class="node">
+<title>struct</title>
+<polygon fill="none" stroke="#ffffff" points="33.65,-285.5 33.65,-321.5 164.35,-321.5 164.35,-285.5 33.65,-285.5"></polygon>
+<text text-anchor="middle" x="55.43" y="-299.4" font-family="Times,serif" font-size="14.00" fill="#ffffff">10^0</text>
+<polyline fill="none" stroke="#ffffff" points="77.22,-285.7 77.22,-321.5 "></polyline>
+<text text-anchor="middle" x="99" y="-299.4" font-family="Times,serif" font-size="14.00" fill="#ffffff">10^1</text>
+<polyline fill="none" stroke="#ffffff" points="120.78,-285.7 120.78,-321.5 "></polyline>
+<text text-anchor="middle" x="142.57" y="-299.4" font-family="Times,serif" font-size="14.00" fill="#ffffff">10^2</text>
+</g>
+<!-- struct0 -->
+<g id="node2" class="node">
+<title>struct0</title>
+<polygon fill="none" stroke="#ffffff" points="0,-0.5 0,-248.5 54,-248.5 54,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="27" y="-231.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="0,-223.7 54,-223.7 "></polyline>
+<text text-anchor="middle" x="27" y="-207.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="0,-198.9 54,-198.9 "></polyline>
+<text text-anchor="middle" x="27" y="-182.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2</text>
+<polyline fill="none" stroke="#ffffff" points="0,-174.1 54,-174.1 "></polyline>
+<text text-anchor="middle" x="27" y="-157.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">3</text>
+<polyline fill="none" stroke="#ffffff" points="0,-149.3 54,-149.3 "></polyline>
+<text text-anchor="middle" x="27" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">4</text>
+<polyline fill="none" stroke="#ffffff" points="0,-124.5 54,-124.5 "></polyline>
+<text text-anchor="middle" x="27" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">5</text>
+<polyline fill="none" stroke="#ffffff" points="0,-99.7 54,-99.7 "></polyline>
+<text text-anchor="middle" x="27" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">6</text>
+<polyline fill="none" stroke="#ffffff" points="0,-74.9 54,-74.9 "></polyline>
+<text text-anchor="middle" x="27" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">7</text>
+<polyline fill="none" stroke="#ffffff" points="0,-50.1 54,-50.1 "></polyline>
+<text text-anchor="middle" x="27" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">8</text>
+<polyline fill="none" stroke="#ffffff" points="0,-25.3 54,-25.3 "></polyline>
+<text text-anchor="middle" x="27" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">9</text>
+</g>
+<!-- struct&#45;&gt;struct0 -->
+<g id="edge1" class="edge">
+<title>struct:0-&gt;struct0</title>
+<path fill="none" stroke="#ffffff" d="M55,-285C55,-276.42 54.6,-267.62 53.9,-258.77"></path>
+<polygon fill="#ffffff" stroke="#ffffff" points="57.38,-258.41 52.99,-248.78 50.41,-259.05 57.38,-258.41"></polygon>
+</g>
+<!-- struct1 -->
+<g id="node3" class="node">
+<title>struct1</title>
+<polygon fill="none" stroke="#ffffff" points="72,-0.5 72,-248.5 126,-248.5 126,-0.5 72,-0.5"></polygon>
+<text text-anchor="middle" x="99" y="-231.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="72,-223.7 126,-223.7 "></polyline>
+<text text-anchor="middle" x="99" y="-207.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="72,-198.9 126,-198.9 "></polyline>
+<text text-anchor="middle" x="99" y="-182.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2</text>
+<polyline fill="none" stroke="#ffffff" points="72,-174.1 126,-174.1 "></polyline>
+<text text-anchor="middle" x="99" y="-157.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">3</text>
+<polyline fill="none" stroke="#ffffff" points="72,-149.3 126,-149.3 "></polyline>
+<text text-anchor="middle" x="99" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">4</text>
+<polyline fill="none" stroke="#ffffff" points="72,-124.5 126,-124.5 "></polyline>
+<text text-anchor="middle" x="99" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">5</text>
+<polyline fill="none" stroke="#ffffff" points="72,-99.7 126,-99.7 "></polyline>
+<text text-anchor="middle" x="99" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">6</text>
+<polyline fill="none" stroke="#ffffff" points="72,-74.9 126,-74.9 "></polyline>
+<text text-anchor="middle" x="99" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">7</text>
+<polyline fill="none" stroke="#ffffff" points="72,-50.1 126,-50.1 "></polyline>
+<text text-anchor="middle" x="99" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">8</text>
+<polyline fill="none" stroke="#ffffff" points="72,-25.3 126,-25.3 "></polyline>
+<text text-anchor="middle" x="99" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">9</text>
+</g>
+<!-- struct&#45;&gt;struct1 -->
+<g id="edge2" class="edge">
+<title>struct:1-&gt;struct1</title>
+<path fill="none" stroke="#ffffff" d="M99,-285C99,-276.45 99,-267.64 99,-258.76"></path>
+<polygon fill="#ffffff" stroke="#ffffff" points="102.5,-258.72 99,-248.72 95.5,-258.72 102.5,-258.72"></polygon>
+</g>
+<!-- struct2 -->
+<g id="node4" class="node">
+<title>struct2</title>
+<polygon fill="none" stroke="#ffffff" points="144,-0.5 144,-248.5 198,-248.5 198,-0.5 144,-0.5"></polygon>
+<text text-anchor="middle" x="171" y="-231.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="144,-223.7 198,-223.7 "></polyline>
+<text text-anchor="middle" x="171" y="-207.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="144,-198.9 198,-198.9 "></polyline>
+<text text-anchor="middle" x="171" y="-182.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2</text>
+<polyline fill="none" stroke="#ffffff" points="144,-174.1 198,-174.1 "></polyline>
+<text text-anchor="middle" x="171" y="-157.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">3</text>
+<polyline fill="none" stroke="#ffffff" points="144,-149.3 198,-149.3 "></polyline>
+<text text-anchor="middle" x="171" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">4</text>
+<polyline fill="none" stroke="#ffffff" points="144,-124.5 198,-124.5 "></polyline>
+<text text-anchor="middle" x="171" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">5</text>
+<polyline fill="none" stroke="#ffffff" points="144,-99.7 198,-99.7 "></polyline>
+<text text-anchor="middle" x="171" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">6</text>
+<polyline fill="none" stroke="#ffffff" points="144,-74.9 198,-74.9 "></polyline>
+<text text-anchor="middle" x="171" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">7</text>
+<polyline fill="none" stroke="#ffffff" points="144,-50.1 198,-50.1 "></polyline>
+<text text-anchor="middle" x="171" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">8</text>
+<polyline fill="none" stroke="#ffffff" points="144,-25.3 198,-25.3 "></polyline>
+<text text-anchor="middle" x="171" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">9</text>
+</g>
+<!-- struct&#45;&gt;struct2 -->
+<g id="edge3" class="edge">
+<title>struct:2-&gt;struct2</title>
+<path fill="none" stroke="#ffffff" d="M143,-285C143,-276.42 143.4,-267.62 144.1,-258.77"></path>
+<polygon fill="#ffffff" stroke="#ffffff" points="147.59,-259.05 145.01,-248.78 140.62,-258.41 147.59,-259.05"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="binary" class="slide level2">
+<h2>Binary</h2>
+<ul>
+<li>We are familiar with binary encoding.</li>
+<li>We note: <span class="math inline">\(\log_2(999) \lt 10\)</span></li>
+<li><em>Decimal encoding <strong>squanders</strong> <span class="math inline">\(\dfrac{2}{3}\)</span> of it’s storage space.</em></li>
+<li>So we store in binary.</li>
+</ul>
+<div class="cell" data-fig-width="800px" data-fig-height="200px" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="800" height="200" viewbox="0.00 0.00 373.69 83.40" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 79.4)">
+<title>finite_automata</title>
+<polygon fill="#191919" stroke="transparent" points="-4,4 -4,-79.4 369.69,-79.4 369.69,4 -4,4"></polygon>
+<!-- struct -->
+<g id="node1" class="node">
+<title>struct</title>
+<polygon fill="none" stroke="#ffffff" points="0,-0.5 0,-74.9 365.69,-74.9 365.69,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="18.28" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^0</text>
+<polyline fill="none" stroke="#ffffff" points="36.57,-50.1 36.57,-74.9 "></polyline>
+<text text-anchor="middle" x="54.85" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^1</text>
+<polyline fill="none" stroke="#ffffff" points="73.14,-50.1 73.14,-74.9 "></polyline>
+<text text-anchor="middle" x="91.42" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^2</text>
+<polyline fill="none" stroke="#ffffff" points="109.71,-50.1 109.71,-74.9 "></polyline>
+<text text-anchor="middle" x="127.99" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^3</text>
+<polyline fill="none" stroke="#ffffff" points="146.28,-50.1 146.28,-74.9 "></polyline>
+<text text-anchor="middle" x="164.56" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^4</text>
+<polyline fill="none" stroke="#ffffff" points="182.85,-50.1 182.85,-74.9 "></polyline>
+<text text-anchor="middle" x="201.13" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^5</text>
+<polyline fill="none" stroke="#ffffff" points="219.42,-50.1 219.42,-74.9 "></polyline>
+<text text-anchor="middle" x="237.7" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^6</text>
+<polyline fill="none" stroke="#ffffff" points="255.99,-50.1 255.99,-74.9 "></polyline>
+<text text-anchor="middle" x="274.27" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^7</text>
+<polyline fill="none" stroke="#ffffff" points="292.55,-50.1 292.55,-74.9 "></polyline>
+<text text-anchor="middle" x="310.84" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^8</text>
+<polyline fill="none" stroke="#ffffff" points="329.12,-50.1 329.12,-74.9 "></polyline>
+<text text-anchor="middle" x="347.41" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^9</text>
+<polyline fill="none" stroke="#ffffff" points="0,-50.1 365.69,-50.1 "></polyline>
+<text text-anchor="middle" x="18" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="36,-25.3 36,-50.1 "></polyline>
+<text text-anchor="middle" x="54.5" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="73,-25.3 73,-50.1 "></polyline>
+<text text-anchor="middle" x="91" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="109,-25.3 109,-50.1 "></polyline>
+<text text-anchor="middle" x="127.5" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="146,-25.3 146,-50.1 "></polyline>
+<text text-anchor="middle" x="164" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="182,-25.3 182,-50.1 "></polyline>
+<text text-anchor="middle" x="200.5" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="219,-25.3 219,-50.1 "></polyline>
+<text text-anchor="middle" x="237" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="255,-25.3 255,-50.1 "></polyline>
+<text text-anchor="middle" x="273.5" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="292,-25.3 292,-50.1 "></polyline>
+<text text-anchor="middle" x="310.5" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="329,-25.3 329,-50.1 "></polyline>
+<text text-anchor="middle" x="347" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="0,-25.3 365.69,-25.3 "></polyline>
+<text text-anchor="middle" x="18" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="36,-0.5 36,-25.3 "></polyline>
+<text text-anchor="middle" x="54.5" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="73,-0.5 73,-25.3 "></polyline>
+<text text-anchor="middle" x="91" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="109,-0.5 109,-25.3 "></polyline>
+<text text-anchor="middle" x="127.5" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="146,-0.5 146,-25.3 "></polyline>
+<text text-anchor="middle" x="164" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="182,-0.5 182,-25.3 "></polyline>
+<text text-anchor="middle" x="200.5" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="219,-0.5 219,-25.3 "></polyline>
+<text text-anchor="middle" x="237" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="255,-0.5 255,-25.3 "></polyline>
+<text text-anchor="middle" x="273.5" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="292,-0.5 292,-25.3 "></polyline>
+<text text-anchor="middle" x="310.5" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="329,-0.5 329,-25.3 "></polyline>
+<text text-anchor="middle" x="347" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="binary-1" class="slide level2">
+<h2>Binary</h2>
+<ul>
+<li>The benefit here is that is sufficient to note the presence or absence of a digit (<code>1</code>)</li>
+<li>Versus the specific digit <span class="math inline">\(\in [1,9]\)</span> and presence of absense (<code>0</code>)</li>
+</ul>
+<div class="cell" data-fig-width="800px" data-fig-height="200px" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="800" height="200" viewbox="0.00 0.00 373.69 58.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 54.6)">
+<title>finite_automata</title>
+<polygon fill="#191919" stroke="transparent" points="-4,4 -4,-54.6 369.69,-54.6 369.69,4 -4,4"></polygon>
+<!-- struct -->
+<g id="node1" class="node">
+<title>struct</title>
+<polygon fill="none" stroke="#ffffff" points="0,-0.5 0,-50.1 365.69,-50.1 365.69,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="18.28" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^0</text>
+<polyline fill="none" stroke="#ffffff" points="36.57,-25.3 36.57,-50.1 "></polyline>
+<text text-anchor="middle" x="54.85" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^1</text>
+<polyline fill="none" stroke="#ffffff" points="73.14,-25.3 73.14,-50.1 "></polyline>
+<text text-anchor="middle" x="91.42" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^2</text>
+<polyline fill="none" stroke="#ffffff" points="109.71,-25.3 109.71,-50.1 "></polyline>
+<text text-anchor="middle" x="127.99" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^3</text>
+<polyline fill="none" stroke="#ffffff" points="146.28,-25.3 146.28,-50.1 "></polyline>
+<text text-anchor="middle" x="164.56" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^4</text>
+<polyline fill="none" stroke="#ffffff" points="182.85,-25.3 182.85,-50.1 "></polyline>
+<text text-anchor="middle" x="201.13" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^5</text>
+<polyline fill="none" stroke="#ffffff" points="219.42,-25.3 219.42,-50.1 "></polyline>
+<text text-anchor="middle" x="237.7" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^6</text>
+<polyline fill="none" stroke="#ffffff" points="255.99,-25.3 255.99,-50.1 "></polyline>
+<text text-anchor="middle" x="274.27" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^7</text>
+<polyline fill="none" stroke="#ffffff" points="292.55,-25.3 292.55,-50.1 "></polyline>
+<text text-anchor="middle" x="310.84" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^8</text>
+<polyline fill="none" stroke="#ffffff" points="329.12,-25.3 329.12,-50.1 "></polyline>
+<text text-anchor="middle" x="347.41" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^9</text>
+<polyline fill="none" stroke="#ffffff" points="0,-25.3 365.69,-25.3 "></polyline>
+<text text-anchor="middle" x="17.25" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="34.5,-0.5 34.5,-25.3 "></polyline>
+<text text-anchor="middle" x="54" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="73.5,-0.5 73.5,-25.3 "></polyline>
+<text text-anchor="middle" x="91.25" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="109,-0.5 109,-25.3 "></polyline>
+<text text-anchor="middle" x="126.25" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="143.5,-0.5 143.5,-25.3 "></polyline>
+<text text-anchor="middle" x="163" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="182.5,-0.5 182.5,-25.3 "></polyline>
+<text text-anchor="middle" x="202" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="221.5,-0.5 221.5,-25.3 "></polyline>
+<text text-anchor="middle" x="238.75" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="256,-0.5 256,-25.3 "></polyline>
+<text text-anchor="middle" x="273.75" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="291.5,-0.5 291.5,-25.3 "></polyline>
+<text text-anchor="middle" x="311" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="330.5,-0.5 330.5,-25.3 "></polyline>
+<text text-anchor="middle" x="347.75" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="wait-a-minute." class="slide level2">
+<h2>Wait a minute.</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Why is the ones digit (<span class="math inline">\(n^0\)</span>) leftmost ?
+<ul>
+<li>The “least significant bit” or “lsb”</li>
+</ul></li>
+<li>In e.g.&nbsp;English place the “lsb” last.
+<ul>
+<li>CS 276 ⇒</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-fig-width="400px" data-fig-height="400px" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="400" height="400" viewbox="0.00 0.00 206.00 330.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 326)">
+<title>finite_automata</title>
+<polygon fill="#191919" stroke="transparent" points="-4,4 -4,-326 202,-326 202,4 -4,4"></polygon>
+<!-- struct -->
+<g id="node1" class="node">
+<title>struct</title>
+<polygon fill="none" stroke="#ffffff" points="33.65,-285.5 33.65,-321.5 164.35,-321.5 164.35,-285.5 33.65,-285.5"></polygon>
+<text text-anchor="middle" x="55.43" y="-299.4" font-family="Times,serif" font-size="14.00" fill="#ffffff">10^0</text>
+<polyline fill="none" stroke="#ffffff" points="77.22,-285.7 77.22,-321.5 "></polyline>
+<text text-anchor="middle" x="99" y="-299.4" font-family="Times,serif" font-size="14.00" fill="#ffffff">10^1</text>
+<polyline fill="none" stroke="#ffffff" points="120.78,-285.7 120.78,-321.5 "></polyline>
+<text text-anchor="middle" x="142.57" y="-299.4" font-family="Times,serif" font-size="14.00" fill="#ffffff">10^2</text>
+</g>
+<!-- struct0 -->
+<g id="node2" class="node">
+<title>struct0</title>
+<polygon fill="none" stroke="#ffffff" points="0,-0.5 0,-248.5 54,-248.5 54,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="27" y="-231.9" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-223.7 54,-223.7 "></polyline>
+<text text-anchor="middle" x="27" y="-207.1" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-198.9 54,-198.9 "></polyline>
+<text text-anchor="middle" x="27" y="-182.3" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-174.1 54,-174.1 "></polyline>
+<text text-anchor="middle" x="27" y="-157.5" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-149.3 54,-149.3 "></polyline>
+<text text-anchor="middle" x="27" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-124.5 54,-124.5 "></polyline>
+<text text-anchor="middle" x="27" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-99.7 54,-99.7 "></polyline>
+<text text-anchor="middle" x="27" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">6</text>
+<polyline fill="none" stroke="#ffffff" points="0,-74.9 54,-74.9 "></polyline>
+<text text-anchor="middle" x="27" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-50.1 54,-50.1 "></polyline>
+<text text-anchor="middle" x="27" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-25.3 54,-25.3 "></polyline>
+<text text-anchor="middle" x="27" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+</g>
+<!-- struct&#45;&gt;struct0 -->
+<g id="edge1" class="edge">
+<title>struct:0-&gt;struct0</title>
+<path fill="none" stroke="#ffffff" d="M55,-285C55,-276.42 54.6,-267.62 53.9,-258.77"></path>
+<polygon fill="#ffffff" stroke="#ffffff" points="57.38,-258.41 52.99,-248.78 50.41,-259.05 57.38,-258.41"></polygon>
+</g>
+<!-- struct1 -->
+<g id="node3" class="node">
+<title>struct1</title>
+<polygon fill="none" stroke="#ffffff" points="72,-0.5 72,-248.5 126,-248.5 126,-0.5 72,-0.5"></polygon>
+<text text-anchor="middle" x="99" y="-231.9" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-223.7 126,-223.7 "></polyline>
+<text text-anchor="middle" x="99" y="-207.1" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-198.9 126,-198.9 "></polyline>
+<text text-anchor="middle" x="99" y="-182.3" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-174.1 126,-174.1 "></polyline>
+<text text-anchor="middle" x="99" y="-157.5" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-149.3 126,-149.3 "></polyline>
+<text text-anchor="middle" x="99" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-124.5 126,-124.5 "></polyline>
+<text text-anchor="middle" x="99" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-99.7 126,-99.7 "></polyline>
+<text text-anchor="middle" x="99" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-74.9 126,-74.9 "></polyline>
+<text text-anchor="middle" x="99" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">7</text>
+<polyline fill="none" stroke="#ffffff" points="72,-50.1 126,-50.1 "></polyline>
+<text text-anchor="middle" x="99" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="72,-25.3 126,-25.3 "></polyline>
+<text text-anchor="middle" x="99" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+</g>
+<!-- struct&#45;&gt;struct1 -->
+<g id="edge2" class="edge">
+<title>struct:1-&gt;struct1</title>
+<path fill="none" stroke="#ffffff" d="M99,-285C99,-276.45 99,-267.64 99,-258.76"></path>
+<polygon fill="#ffffff" stroke="#ffffff" points="102.5,-258.72 99,-248.72 95.5,-258.72 102.5,-258.72"></polygon>
+</g>
+<!-- struct2 -->
+<g id="node4" class="node">
+<title>struct2</title>
+<polygon fill="none" stroke="#ffffff" points="144,-0.5 144,-248.5 198,-248.5 198,-0.5 144,-0.5"></polygon>
+<text text-anchor="middle" x="171" y="-231.9" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-223.7 198,-223.7 "></polyline>
+<text text-anchor="middle" x="171" y="-207.1" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-198.9 198,-198.9 "></polyline>
+<text text-anchor="middle" x="171" y="-182.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">2</text>
+<polyline fill="none" stroke="#ffffff" points="144,-174.1 198,-174.1 "></polyline>
+<text text-anchor="middle" x="171" y="-157.5" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-149.3 198,-149.3 "></polyline>
+<text text-anchor="middle" x="171" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-124.5 198,-124.5 "></polyline>
+<text text-anchor="middle" x="171" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-99.7 198,-99.7 "></polyline>
+<text text-anchor="middle" x="171" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-74.9 198,-74.9 "></polyline>
+<text text-anchor="middle" x="171" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-50.1 198,-50.1 "></polyline>
+<text text-anchor="middle" x="171" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="144,-25.3 198,-25.3 "></polyline>
+<text text-anchor="middle" x="171" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+</g>
+<!-- struct&#45;&gt;struct2 -->
+<g id="edge3" class="edge">
+<title>struct:2-&gt;struct2</title>
+<path fill="none" stroke="#ffffff" d="M143,-285C143,-276.42 143.4,-267.62 144.1,-258.77"></path>
+<polygon fill="#ffffff" stroke="#ffffff" points="147.59,-259.05 145.01,-248.78 140.62,-258.41 147.59,-259.05"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="languages" class="slide level2">
+<h2>Languages</h2>
+<ul>
+<li>In e.g.&nbsp;spoken word, makes sense to lead with the biggest value.
+<ul>
+<li>200 of something is closer to 299 of something than 0 of something is to 9 of something.</li>
+</ul></li>
+<li>In e.g.&nbsp;programming, we often lead with lowest numerical index.
+<ul>
+<li>We look at the <code>arr[0]</code> or something before the <code>arr[1]</code> of something.</li>
+</ul></li>
+</ul>
+</section>
+<section id="in-practice" class="slide level2">
+<h2>In Practice</h2>
+<ul>
+<li>We end up with</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co">"276"</span>[<span class="dv">0</span>] <span class="op">==</span> <span class="st">'2'</span> <span class="kw">and</span> <span class="dv">276</span> <span class="op">%</span> (<span class="dv">10</span> <span class="op">**</span> <span class="dv">1</span>) <span class="op">==</span> <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Confusing!</li>
+</ul>
+</section>
+<section id="annoyance" class="slide level2">
+<h2>Annoyance</h2>
+<ul>
+<li>This gets <em>very annoying</em> when trying to move numbers around that don’t quite fit in some number of bits.
+<ul>
+<li>Say I have 123,456 followers on Instagram📷</li>
+<li>Boycott Meta etc etc.</li>
+<li>And/or follow me <a href="https://www.instagram.com/calvinallegedly/"><span class="citation" data-cites="calvinallegedly">@calvinallegedly</span></a></li>
+</ul></li>
+<li>Also imagine it is 1969 and you only have 8 bit integers.</li>
+</ul>
+</section>
+<section id="scanf" class="slide level2">
+<h2>Scanf</h2>
+<ul>
+<li>We can use <code>scanf</code> - the inverse of <code>printf</code>
+<ul>
+<li>We give <code>scanf</code> a format string, like:
+<ul>
+<li><code>%d,%d</code></li>
+<li>Two comma-separated decimal values.</li>
+<li>Astute observers will realize where .csv’s come from
+<ul>
+<li>From whence .csv’s hail</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="test" class="slide level2">
+<h2>Test</h2>
+<ul>
+<li>Test it</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scanf.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-4"><a></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb3-5"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-6"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="warning" class="slide level2">
+<h2>Warning</h2>
+<ul>
+<li>We draw a warning for missing <em>arguments</em> for each <em>format code</em></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb4-1"><a></a>scanf.c: In function ‘main’:</span>
+<span id="cb4-2"><a></a>scanf.c:4:13: warning: format ‘%d’ expects a matching ‘int *’ argument [-Wformat=]</span>
+<span id="cb4-3"><a></a>    4 |     scanf("%d,%d");</span>
+<span id="cb4-4"><a></a>      |            ~^</span>
+<span id="cb4-5"><a></a>      |             |</span>
+<span id="cb4-6"><a></a>      |             int *</span>
+<span id="cb4-7"><a></a>scanf.c:4:16: warning: format ‘%d’ expects a matching ‘int *’ argument [-Wformat=]</span>
+<span id="cb4-8"><a></a>    4 |     scanf("%d,%d");</span>
+<span id="cb4-9"><a></a>      |               ~^</span>
+<span id="cb4-10"><a></a>      |                |</span>
+<span id="cb4-11"><a></a>      |                int *</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="arguments" class="slide level2">
+<h2>Arguments</h2>
+<ul>
+<li>We need integers.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a>    <span class="dt">int</span> a<span class="op">,</span>b<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Well actually, were asked to provided an <code>int *</code> for each integer format code.</li>
+</ul>
+<blockquote>
+<p>format ‘%d’ expects a matching ’int *’</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span> <span class="co">/* Think of these as arrays of one element. */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Regard <code>int *n</code> is just an <code>int n[m]</code> for which we don’t say what <code>m</code> is.</li>
+</ul>
+</section>
+<section id="section" class="slide level2">
+<h2>[]</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>Some of you used arrays of unspecified length on <code>enigma</code> which was not part of the C89 standard..</li>
+<li>This is a security issue and that stuff matters.</li>
+<li><a href="https://xkcd.com/1354/">See more</a></li>
+<li><a href="https://heartbleed.com/">Read more</a></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img data-src="https://imgs.xkcd.com/comics/heartbleed_explanation.png"></p>
+</div></div>
+</section>
+<section id="use-small-arrays" class="slide level2">
+<h2>Use small arrays</h2>
+<ul>
+<li>Just like the Python <code>x = [0]</code> example.</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scanf.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-4"><a></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb7-5"><a></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb7-6"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-7"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Use as follows:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb8-1"><a></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<span id="cb8-2"><a></a>123,456</span>
+<span id="cb8-3"><a></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Clean exit!</li>
+</ul>
+</section>
+<section id="use-small-arrays-1" class="slide level2">
+<h2>Use small arrays</h2>
+<ul>
+<li>Print the value commaless.</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scanf.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb9-4"><a></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb9-5"><a></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb9-6"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-7"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Use as follows:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb10-1"><a></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<span id="cb10-2"><a></a>123,456</span>
+<span id="cb10-3"><a></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Clean exit!</li>
+</ul>
+</section>
+<section id="printing" class="slide level2">
+<h2>Printing</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scanf.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-4"><a></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb11-5"><a></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb11-6"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb11-7"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-8"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Can we print values back?</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb12-1"><a></a>scanf.c: In function ‘main’:</span>
+<span id="cb12-2"><a></a>scanf.c:6:14: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘int *’ [-Wformat=]</span>
+<span id="cb12-3"><a></a>    6 |     printf("%d%d\n", a, b);</span>
+<span id="cb12-4"><a></a>      |             ~^       ~</span>
+<span id="cb12-5"><a></a>      |              |       |</span>
+<span id="cb12-6"><a></a>      |              int     int *</span>
+<span id="cb12-7"><a></a>      |             %ls</span>
+<span id="cb12-8"><a></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="printing-1" class="slide level2">
+<h2>Printing</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scanf.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb13-4"><a></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb13-5"><a></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb13-6"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">[</span><span class="dv">0</span><span class="op">],</span> b<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb13-7"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb13-8"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Print needs values, not references.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb14-1"><a></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<span id="cb14-2"><a></a>123,456</span>
+<span id="cb14-3"><a></a>123456</span>
+<span id="cb14-4"><a></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="double-it" class="slide level2">
+<h2>Double it</h2>
+<ul>
+<li>Let’s say we want to double our input value.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scanf.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb15-4"><a></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb15-5"><a></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb15-6"><a></a>    a<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">*=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb15-7"><a></a>    b<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">*=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb15-8"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">[</span><span class="dv">0</span><span class="op">],</span> b<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb15-9"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb15-10"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb16-1"><a></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<span id="cb16-2"><a></a>123,456</span>
+<span id="cb16-3"><a></a>246912</span>
+<span id="cb16-4"><a></a>$ ./a.out</span>
+<span id="cb16-5"><a></a>123,567</span>
+<span id="cb16-6"><a></a>2461134</span>
+<span id="cb16-7"><a></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Uh oh.</li>
+</ul>
+</div></div>
+</section>
+<section id="carries" class="slide level2">
+<h2>Carries</h2>
+<ul>
+<li>One reason to put the one’s place first is for carries.</li>
+</ul>
+<div class="cell" data-fig-width="800px" data-fig-height="200px" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="800" height="200" viewbox="0.00 0.00 129.57 108.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 104.2)">
+<title>finite_automata</title>
+<polygon fill="#191919" stroke="transparent" points="-4,4 -4,-104.2 125.57,-104.2 125.57,4 -4,4"></polygon>
+<!-- struct -->
+<g id="node1" class="node">
+<title>struct</title>
+<polygon fill="none" stroke="#ffffff" points="0,-0.5 0,-99.7 121.57,-99.7 121.57,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="14.78" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^</text>
+<polyline fill="none" stroke="#ffffff" points="0,-74.9 29.57,-74.9 "></polyline>
+<text text-anchor="middle" x="14.78" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-50.1 29.57,-50.1 "></polyline>
+<text text-anchor="middle" x="14.78" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">+</text>
+<polyline fill="none" stroke="#ffffff" points="0,-25.3 29.57,-25.3 "></polyline>
+<text text-anchor="middle" x="14.78" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">=</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-0.5 29.57,-99.7 "></polyline>
+<text text-anchor="middle" x="41.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-74.9 52.57,-74.9 "></polyline>
+<text text-anchor="middle" x="41.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-50.1 52.57,-50.1 "></polyline>
+<text text-anchor="middle" x="41.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-25.3 52.57,-25.3 "></polyline>
+<text text-anchor="middle" x="41.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-0.5 52.57,-99.7 "></polyline>
+<text text-anchor="middle" x="64.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-74.9 75.57,-74.9 "></polyline>
+<text text-anchor="middle" x="64.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-50.1 75.57,-50.1 "></polyline>
+<text text-anchor="middle" x="64.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-25.3 75.57,-25.3 "></polyline>
+<text text-anchor="middle" x="64.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-0.5 75.57,-99.7 "></polyline>
+<text text-anchor="middle" x="87.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">2</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-74.9 98.57,-74.9 "></polyline>
+<text text-anchor="middle" x="87.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-50.1 98.57,-50.1 "></polyline>
+<text text-anchor="middle" x="87.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-25.3 98.57,-25.3 "></polyline>
+<text text-anchor="middle" x="87.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-0.5 98.57,-99.7 "></polyline>
+<text text-anchor="middle" x="110.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">3</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-74.9 121.57,-74.9 "></polyline>
+<text text-anchor="middle" x="110.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-50.1 121.57,-50.1 "></polyline>
+<text text-anchor="middle" x="110.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-25.3 121.57,-25.3 "></polyline>
+<text text-anchor="middle" x="110.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">?</text>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>As we add across a value, we want to carry over a bit to a higher power.</li>
+<li>Same with multiply!</li>
+</ul>
+</section>
+<section id="carries-1" class="slide level2">
+<h2>Carries</h2>
+<ul>
+<li>One reason to put the one’s place first is for carries.</li>
+</ul>
+<div class="cell" data-fig-width="800px" data-fig-height="200px" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="800" height="200" viewbox="0.00 0.00 129.57 133.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 129)">
+<title>finite_automata</title>
+<polygon fill="#191919" stroke="transparent" points="-4,4 -4,-129 125.57,-129 125.57,4 -4,4"></polygon>
+<!-- struct -->
+<g id="node1" class="node">
+<title>struct</title>
+<polygon fill="none" stroke="#ffffff" points="0,-0.5 0,-124.5 121.57,-124.5 121.57,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="14.78" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^</text>
+<polyline fill="none" stroke="#ffffff" points="0,-99.7 29.57,-99.7 "></polyline>
+<text text-anchor="middle" x="14.78" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-74.9 29.57,-74.9 "></polyline>
+<text text-anchor="middle" x="14.78" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">+</text>
+<polyline fill="none" stroke="#ffffff" points="0,-50.1 29.57,-50.1 "></polyline>
+<text text-anchor="middle" x="14.78" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">c</text>
+<polyline fill="none" stroke="#ffffff" points="0,-25.3 29.57,-25.3 "></polyline>
+<text text-anchor="middle" x="14.78" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">=</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-0.5 29.57,-124.5 "></polyline>
+<text text-anchor="middle" x="41.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-99.7 52.57,-99.7 "></polyline>
+<text text-anchor="middle" x="41.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-74.9 52.57,-74.9 "></polyline>
+<text text-anchor="middle" x="41.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-50.1 52.57,-50.1 "></polyline>
+<text text-anchor="middle" x="41.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-25.3 52.57,-25.3 "></polyline>
+<text text-anchor="middle" x="41.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-0.5 52.57,-124.5 "></polyline>
+<text text-anchor="middle" x="64.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-99.7 75.57,-99.7 "></polyline>
+<text text-anchor="middle" x="64.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-74.9 75.57,-74.9 "></polyline>
+<text text-anchor="middle" x="64.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-50.1 75.57,-50.1 "></polyline>
+<text text-anchor="middle" x="64.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-25.3 75.57,-25.3 "></polyline>
+<text text-anchor="middle" x="64.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-0.5 75.57,-124.5 "></polyline>
+<text text-anchor="middle" x="87.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">2</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-99.7 98.57,-99.7 "></polyline>
+<text text-anchor="middle" x="87.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-74.9 98.57,-74.9 "></polyline>
+<text text-anchor="middle" x="87.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-50.1 98.57,-50.1 "></polyline>
+<text text-anchor="middle" x="87.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-25.3 98.57,-25.3 "></polyline>
+<text text-anchor="middle" x="87.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-0.5 98.57,-124.5 "></polyline>
+<text text-anchor="middle" x="110.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">3</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-99.7 121.57,-99.7 "></polyline>
+<text text-anchor="middle" x="110.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-74.9 121.57,-74.9 "></polyline>
+<text text-anchor="middle" x="110.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-50.1 121.57,-50.1 "></polyline>
+<text text-anchor="middle" x="110.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-25.3 121.57,-25.3 "></polyline>
+<text text-anchor="middle" x="110.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="carries-2" class="slide level2">
+<h2>Carries</h2>
+<ul>
+<li>Addition is easier least-to-most</li>
+</ul>
+<div class="cell" data-fig-width="800px" data-fig-height="200px" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="800" height="200" viewbox="0.00 0.00 152.57 133.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 129)">
+<title>finite_automata</title>
+<polygon fill="#191919" stroke="transparent" points="-4,4 -4,-129 148.57,-129 148.57,4 -4,4"></polygon>
+<!-- struct -->
+<g id="node1" class="node">
+<title>struct</title>
+<polygon fill="none" stroke="#ffffff" points="0,-0.5 0,-124.5 144.57,-124.5 144.57,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="14.78" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">2^</text>
+<polyline fill="none" stroke="#ffffff" points="0,-99.7 29.57,-99.7 "></polyline>
+<text text-anchor="middle" x="14.78" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff"> </text>
+<polyline fill="none" stroke="#ffffff" points="0,-74.9 29.57,-74.9 "></polyline>
+<text text-anchor="middle" x="14.78" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">+</text>
+<polyline fill="none" stroke="#ffffff" points="0,-50.1 29.57,-50.1 "></polyline>
+<text text-anchor="middle" x="14.78" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">c</text>
+<polyline fill="none" stroke="#ffffff" points="0,-25.3 29.57,-25.3 "></polyline>
+<text text-anchor="middle" x="14.78" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">=</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-0.5 29.57,-124.5 "></polyline>
+<text text-anchor="middle" x="41.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-99.7 52.57,-99.7 "></polyline>
+<text text-anchor="middle" x="41.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-74.9 52.57,-74.9 "></polyline>
+<text text-anchor="middle" x="41.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-50.1 52.57,-50.1 "></polyline>
+<text text-anchor="middle" x="41.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="29.57,-25.3 52.57,-25.3 "></polyline>
+<text text-anchor="middle" x="41.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-0.5 52.57,-124.5 "></polyline>
+<text text-anchor="middle" x="64.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-99.7 75.57,-99.7 "></polyline>
+<text text-anchor="middle" x="64.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-74.9 75.57,-74.9 "></polyline>
+<text text-anchor="middle" x="64.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-50.1 75.57,-50.1 "></polyline>
+<text text-anchor="middle" x="64.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="52.57,-25.3 75.57,-25.3 "></polyline>
+<text text-anchor="middle" x="64.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-0.5 75.57,-124.5 "></polyline>
+<text text-anchor="middle" x="87.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">2</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-99.7 98.57,-99.7 "></polyline>
+<text text-anchor="middle" x="87.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-74.9 98.57,-74.9 "></polyline>
+<text text-anchor="middle" x="87.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-50.1 98.57,-50.1 "></polyline>
+<text text-anchor="middle" x="87.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="75.57,-25.3 98.57,-25.3 "></polyline>
+<text text-anchor="middle" x="87.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-0.5 98.57,-124.5 "></polyline>
+<text text-anchor="middle" x="110.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">3</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-99.7 121.57,-99.7 "></polyline>
+<text text-anchor="middle" x="110.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-74.9 121.57,-74.9 "></polyline>
+<text text-anchor="middle" x="110.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-50.1 121.57,-50.1 "></polyline>
+<text text-anchor="middle" x="110.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="98.57,-25.3 121.57,-25.3 "></polyline>
+<text text-anchor="middle" x="110.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="121.57,-0.5 121.57,-124.5 "></polyline>
+<text text-anchor="middle" x="133.07" y="-107.9" font-family="Times,serif" font-size="14.00" fill="#ffffff">4</text>
+<polyline fill="none" stroke="#ffffff" points="121.57,-99.7 144.57,-99.7 "></polyline>
+<text text-anchor="middle" x="133.07" y="-83.1" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="121.57,-74.9 144.57,-74.9 "></polyline>
+<text text-anchor="middle" x="133.07" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#ffffff">0</text>
+<polyline fill="none" stroke="#ffffff" points="121.57,-50.1 144.57,-50.1 "></polyline>
+<text text-anchor="middle" x="133.07" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+<polyline fill="none" stroke="#ffffff" points="121.57,-25.3 144.57,-25.3 "></polyline>
+<text text-anchor="middle" x="133.07" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#ffffff">1</text>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it" class="slide level2">
+<h2>Check it</h2>
+<ul>
+<li>Can use a numerical computing technology (Python) to validate.</li>
+<li>A add of <code>0b01001</code> to <code>0b01010</code> equals <code>0b10011</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)</span>
+<span id="cb17-2"><a></a><span class="co">'0b10011'</span></span>
+<span id="cb17-3"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[<span class="dv">2</span>::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb17-4"><a></a><span class="co">'1b0'</span></span>
+<span id="cb17-5"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[:<span class="dv">2</span>:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb17-6"><a></a><span class="co">'1100'</span></span>
+<span id="cb17-7"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[:<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb17-8"><a></a><span class="co">'11001'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="does-it-matter" class="slide level2">
+<h2>Does it matter?</h2>
+<ul>
+<li>Kinda.</li>
+<li>Endianness matters!</li>
+<li>It mostly matters when we rearrange numbers around.
+<ul>
+<li>SHA256 works with chunks of various sizes - 8, 32, 256, 512.</li>
+<li>In which order do we place values from 4 8-bit fields into 1 32-bit field.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="casts" class="title-slide slide level1 center">
+<h1>Casts</h1>
+
+</section>
+<section id="section-1" class="slide level2">
+<h2>32 -&gt; 64</h2>
+<ul>
+<li>It is common to find 32 bit code that is running on 64 bit devices.
+<ul>
+<li>Say e.g.&nbsp;“World of Warcraft: Classic”
+<ul>
+<li>Released in 2004 for 32 bit devices.</li>
+<li>Repopularized in 2019 then 2024</li>
+<li>Literal trillion dollar company (MS)</li>
+</ul></li>
+</ul></li>
+<li>Need a <em>very good</em> way to go between 32 and 64 bits.</li>
+</ul>
+</section>
+<section id="casts-1" class="slide level2">
+<h2>Casts</h2>
+<ul>
+<li>That way is <em>casts</em></li>
+<li>In C, we prefix a value by a type (in parens) when assigning it to a variable.
+<ul>
+<li><code>1</code> is a value.</li>
+<li><code>long</code> is a type (usually the 64 bit type)</li>
+<li><code>(long)1</code> is the value of <code>1</code> as a 64 bit type</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a></a><span class="dt">long</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-2"><a></a><span class="dt">int</span> y <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb18-3"><a></a>x <span class="op">=</span> <span class="op">(</span><span class="dt">long</span><span class="op">)</span>y<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="arrays" class="slide level2">
+<h2>Arrays</h2>
+<ul>
+<li>We regarded in some cases C integers as akin to arrays of booleans.</li>
+<li>C integers can also be regarded as arrays of bytes.</li>
+<li>For example, an <code>int</code> is commonly 4 bytes, or <code>char</code> values.</li>
+<li>We can achieve this with a cast.</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Create a variable <code>x</code></li>
+<li>It <em>can</em> refer to an <code>int</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>x : <span class="bu">list</span>[<span class="bu">int</span>] <span class="co"># not x = [None]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Can’t use yet.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>x[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># this would error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-code-line-numbers="4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb21-4"><a></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
+<span id="cb21-5"><a></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
+<span id="cb21-6"><a></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
+<span id="cb21-7"><a></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
+<span id="cb21-8"><a></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
+<span id="cb21-9"><a></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
+<span id="cb21-10"><a></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
+<span id="cb21-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb21-12"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-13"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Create variable <code>buf</code></li>
+<li>Array of 4 <code>char</code>.</li>
+<li>Versus a <code>char *</code>:
+<ul>
+<li>The value <code>buf</code> holds <em>some</em> reference.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>buf <span class="op">=</span>  <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-code-line-numbers="5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb23-2"><a></a></span>
+<span id="cb23-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb23-4"><a></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
+<span id="cb23-5"><a></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
+<span id="cb23-6"><a></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
+<span id="cb23-7"><a></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
+<span id="cb23-8"><a></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
+<span id="cb23-9"><a></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
+<span id="cb23-10"><a></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
+<span id="cb23-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb23-12"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb23-13"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Easy-to-recognize values.
+<ul>
+<li>Can assign <span class="math inline">\(n\)</span> at once but</li>
+<li>But only for declares.</li>
+<li>(The array could be the wrong size)</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-code-line-numbers="6-9"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb24-2"><a></a></span>
+<span id="cb24-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb24-4"><a></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
+<span id="cb24-5"><a></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
+<span id="cb24-6"><a></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
+<span id="cb24-7"><a></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
+<span id="cb24-8"><a></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
+<span id="cb24-9"><a></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
+<span id="cb24-10"><a></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
+<span id="cb24-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb24-12"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb24-13"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb25-1"><a></a><span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="bn">0xA</span><span class="op">,</span> OxB<span class="op">,</span> <span class="bn">0xC</span><span class="op">,</span> <span class="bn">0xD</span> <span class="op">};</span> <span class="co">/* okay */</span></span>
+<span id="cb25-2"><a></a><span class="co">/* say, char notbuf[2]; buf = notbuf; */</span></span>
+<span id="cb25-3"><a></a>buf <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">};</span> <span class="co">/* banned - it isn't safe */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="i-lied" class="slide level2">
+<h2>I lied</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Tell <code>gcc</code> that no, really, buf is actually an array of integers.</li>
+<li>It will believe you.</li>
+<li>If you omit the cast, you will get a warning or error</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-code-line-numbers="10"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb26-2"><a></a></span>
+<span id="cb26-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb26-4"><a></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
+<span id="cb26-5"><a></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
+<span id="cb26-6"><a></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
+<span id="cb26-7"><a></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
+<span id="cb26-8"><a></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
+<span id="cb26-9"><a></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
+<span id="cb26-10"><a></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
+<span id="cb26-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb26-12"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb26-13"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+</section>
+<section id="ordering" class="slide level2">
+<h2>Ordering</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Let’s see the output.</li>
+<li>What order is that?
+<ul>
+<li><em>Same order</em> within bytes
+<ul>
+<li><code>0x0</code> before <code>0xa</code></li>
+</ul></li>
+<li><em>Reverse order</em> within a number
+<ul>
+<li><code>0x0b</code> before <code>0x0a</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-code-line-numbers="11"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb27-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb27-2"><a></a></span>
+<span id="cb27-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb27-4"><a></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
+<span id="cb27-5"><a></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
+<span id="cb27-6"><a></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
+<span id="cb27-7"><a></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
+<span id="cb27-8"><a></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
+<span id="cb27-9"><a></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
+<span id="cb27-10"><a></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
+<span id="cb27-11"><a></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb27-12"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb27-13"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>I got no warnings/errors.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb28-1"><a></a>d0c0b0a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+</section>
+<section id="takeaway" class="slide level2">
+<h2>Takeaway:</h2>
+<ul>
+<li>The way integers are printed and the way they are stored in the computer aren’t necessarily related.</li>
+<li>This mattered a lot on SHA-256.</li>
+</ul>
+</section></section>
+<section>
+<section id="twos-complement" class="title-slide slide level1 center">
+<h1>Two’s Complement</h1>
+
+</section>
+<section id="negative-values" class="slide level2">
+<h2>Negative values</h2>
+<ul>
+<li>From time to time we like to use a negative value.</li>
+<li>I know, I was disappointed too.</li>
+<li>We build them using subtraction.</li>
+</ul>
+</section>
+<section id="int-vs-uint" class="slide level2">
+<h2>int vs uint</h2>
+<ul>
+<li>It is a simply enough matter to establish the ranges for potentially negative (signed, or default) values and necessarily positive (unsigned) values.</li>
+<li>We work with <code>char</code> and <code>unsigned char</code></li>
+</ul>
+</section>
+<section id="script" class="slide level2">
+<h2>Script</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>tester.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb29-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb29-2"><a></a></span>
+<span id="cb29-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb29-4"><a></a>        <span class="dt">char</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb29-5"><a></a>        <span class="dt">unsigned</span> <span class="dt">char</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb29-6"><a></a>        <span class="dt">char</span> buf<span class="op">[</span><span class="bn">0x10</span><span class="op">];</span></span>
+<span id="cb29-7"><a></a>        <span class="cf">while</span> <span class="op">(</span>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span> buf<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb29-8"><a></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%u\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">);</span></span>
+<span id="cb29-9"><a></a>                x <span class="op">+=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb29-10"><a></a>                y <span class="op">+=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb29-11"><a></a>        <span class="op">}</span></span>
+<span id="cb29-12"><a></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb29-13"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Simply type any string then press ENTER.</li>
+</ul>
+</section>
+<section id="output" class="slide level2">
+<h2>Output</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb30-1"><a></a>a</span>
+<span id="cb30-2"><a></a>0, 0</span>
+<span id="cb30-3"><a></a>...</span>
+<span id="cb30-4"><a></a>a</span>
+<span id="cb30-5"><a></a>120, 120</span>
+<span id="cb30-6"><a></a>a</span>
+<span id="cb30-7"><a></a>-126, 130</span>
+<span id="cb30-8"><a></a>a</span>
+<span id="cb30-9"><a></a>-116, 140</span>
+<span id="cb30-10"><a></a>...</span>
+<span id="cb30-11"><a></a>a</span>
+<span id="cb30-12"><a></a>-16, 240</span>
+<span id="cb30-13"><a></a>a</span>
+<span id="cb30-14"><a></a>-6, 250</span>
+<span id="cb30-15"><a></a>a</span>
+<span id="cb30-16"><a></a>4, 4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Unsigned values have roughly double the maximum of signed values.</li>
+<li>Unsigned values have similar maximum and minimum values by absolute values.</li>
+</ul>
+</div></div>
+</section>
+<section id="more-tests" class="slide level2">
+<h2>More tests</h2>
+<ul>
+<li>Create somewhere to store an integer.</li>
+<li>Scan input into said integer.</li>
+<li>Cast integer to:
+<ul>
+<li>a (signed) char and print</li>
+<li>an unsigned char and print.</li>
+</ul></li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>tester.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb31-1"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb31-2"><a></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb31-3"><a></a>        <span class="cf">while</span> <span class="op">(</span>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> x<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb31-4"><a></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%hhd</span><span class="st">, </span><span class="sc">%u\n</span><span class="st">"</span><span class="op">,</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span>x<span class="op">[</span><span class="dv">0</span><span class="op">],</span> <span class="op">(</span><span class="dt">unsigned</span> <span class="dt">char</span><span class="op">)</span>x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb31-5"><a></a>        <span class="op">}</span></span>
+<span id="cb31-6"><a></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb31-7"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="output-1" class="slide level2">
+<h2>Output</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb32-1"><a></a>10</span>
+<span id="cb32-2"><a></a>10, 10</span>
+<span id="cb32-3"><a></a>126</span>
+<span id="cb32-4"><a></a>126, 126</span>
+<span id="cb32-5"><a></a>127</span>
+<span id="cb32-6"><a></a>127, 127</span>
+<span id="cb32-7"><a></a>128</span>
+<span id="cb32-8"><a></a>-128, 128</span>
+<span id="cb32-9"><a></a>255</span>
+<span id="cb32-10"><a></a>-1, 255</span>
+<span id="cb32-11"><a></a>256</span>
+<span id="cb32-12"><a></a>0, 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Signed values in <span class="math inline">\(n\)</span> bit integers loop at <span class="math inline">\(2^{n-1}\)</span>
+<ul>
+<li>Or do they? Test it on ints!</li>
+</ul></li>
+<li>Unsigned values are maximal when signed values are -1</li>
+<li>max + 1 and -1 + 1 both equal to zero.</li>
+</ul>
+</div></div>
+</section>
+<section id="look-at-ints" class="slide level2">
+<h2>Look at ints</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>tester.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb33-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb33-2"><a></a></span>
+<span id="cb33-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb33-4"><a></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb33-5"><a></a>        <span class="cf">while</span> <span class="op">(</span>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> x<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb33-6"><a></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%u</span><span class="st">, </span><span class="sc">%032b\n</span><span class="st">"</span><span class="op">,</span> </span>
+<span id="cb33-7"><a></a>                <span class="op">*</span>x<span class="op">,</span> <span class="op">(</span><span class="dt">unsigned</span><span class="op">)*</span>x<span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb33-8"><a></a>        <span class="op">}</span></span>
+<span id="cb33-9"><a></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb33-10"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="some-things-to-try" class="slide level2">
+<h2>Some things to try</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb34-1"><a></a>65536</span>
+<span id="cb34-2"><a></a>65536, 65536, 00000000000000010000000000000000</span>
+<span id="cb34-3"><a></a>-1</span>
+<span id="cb34-4"><a></a>-1, 4294967295, 11111111111111111111111111111111</span>
+<span id="cb34-5"><a></a>4294967295</span>
+<span id="cb34-6"><a></a>-1, 4294967295, 11111111111111111111111111111111</span>
+<span id="cb34-7"><a></a>4294967296</span>
+<span id="cb34-8"><a></a>0, 0, 00000000000000000000000000000000</span>
+<span id="cb34-9"><a></a>255</span>
+<span id="cb34-10"><a></a>255, 255, 00000000000000000000000011111111</span>
+<span id="cb34-11"><a></a>256</span>
+<span id="cb34-12"><a></a>256, 256, 00000000000000000000000100000000</span>
+<span id="cb34-13"><a></a>-255</span>
+<span id="cb34-14"><a></a>-255, 4294967041, 11111111111111111111111100000001</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="takeaways" class="slide level2">
+<h2>Takeaways</h2>
+<ul>
+<li>The algorithm is simply…
+<ul>
+<li>For unsigned values, simple binary</li>
+<li>For signed values, negatives are 1-prefixed not 0-prefixed.</li>
+</ul></li>
+<li>The only difference is in printing.</li>
+<li>Arithmetic operations proceed smoothly without consideration of signage.</li>
+<li>Call this “two’s complement” - negatives by binary (0-&gt;1) complement.</li>
+</ul>
+</section>
+<section id="stinger" class="slide level2">
+<h2>Stinger</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb35-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb35-2"><a></a></span>
+<span id="cb35-3"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb35-4"><a></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">],</span> y<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb35-5"><a></a>        <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb35-6"><a></a>                scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">);</span></span>
+<span id="cb35-7"><a></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%u</span><span class="st">, </span><span class="sc">%032b\n</span><span class="st">"</span><span class="op">,</span></span>
+<span id="cb35-8"><a></a>                                x<span class="op">[</span><span class="dv">0</span><span class="op">]/</span>y<span class="op">[</span><span class="dv">0</span><span class="op">],</span></span>
+<span id="cb35-9"><a></a>                                <span class="op">(</span><span class="dt">unsigned</span><span class="op">)</span>x<span class="op">[</span><span class="dv">0</span><span class="op">]/</span>y<span class="op">[</span><span class="dv">0</span><span class="op">],</span></span>
+<span id="cb35-10"><a></a>                                x<span class="op">[</span><span class="dv">0</span><span class="op">]/</span>y<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb35-11"><a></a>        <span class="op">}</span></span>
+<span id="cb35-12"><a></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb35-13"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

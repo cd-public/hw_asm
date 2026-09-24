@@ -145,67 +145,313 @@
 <li><strong>Action Items</strong> discussion</li>
 </ul>
 </section></section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 22: Source Bypassing tinyurl.com/comp311-sp26 1</p>
-<p>Logistics Update! ■ Lab 5 Starter Code Updated if you pulled early – Due 4/27 (LDOC) ■ Written Assignment 6 – Due Tuesday (4/21) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day 2</p>
-<p>QUICK REVIEW: PIPELINE HAZARDS 3</p>
-<p>Each pipeline register name is based on the stages it separates Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— | 4</p>
-<p>Cycle 0 add x5, x3, x4 5</p>
-<p>Cycle 1 sub x7, x5 x2 add x5, x3, x4 6</p>
-<p>Cycle 2 sub x7, x5 x2 add x5, x3, x4 7</p>
-<p>Cycle 2 sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4 8</p>
-<p>Pipeline Stalls • Also known as • bubbles • nops (no operation) • An instruction that does nothing • Provides time for the correct value to be written to the register file 9</p>
-<p>Cycle 2 sub x7, x5, x2 add x5, x3, x4 10</p>
-<p>Cycle 3 sub x7, x5, x2 STALL add x5, x3, x4 11</p>
-<p>Cycle 4 sub x7, x5, x2 | STALL | STALL | add x5, x3, x4 | | —– | —– | ————– | 12</p>
-<p>Cycle 4 add will write to the register file. Sub will then read the updated value. sub x7, x5, x2 STALL STALL add x5, x3, x4 13</p>
-<p>Cycle 5 sub x7, x5, x2 STALL STALL 14</p>
-<p>Cycle 6 sub x7, x5, x2 STALL 15</p>
-<p>Cycle 7 sub x7, x5, x2 16</p>
-<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 or x9, x28, x3 sub will remain in the decode stage until add writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 17</p>
-<p>Question from last time: Why can Decode &amp; WriteBack happen in the same clock cycle? The bold/dark parts are | | | | | | | showing | when the stage is actively | | | — | — | — | — | — | — | ——- | ————————— | — | using its inputs / producing outputs within the cycle. add x20, x21, x22 Light parts are when we access memory. Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | 2 stalls RISC-V design: Register file writes in the first half of the cycle. Allows for reads in second half 18</p>
-<p>Pipeline Diagram Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 | | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | sub will remain in the decode stage until add writes back and will remain in the fetch stage while sub is in the decode state F = Fetch D = Decode X = Execute M = Memory W = Writeback 19</p>
-<p>Pipeline Diagram | Instruction | | | | Cycle # | | | | | | —————– | — | — | — | ——- | — | —– | —– | — | | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | | and x27, x5, x18 | | F F | F D | X M | W | | | | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | or will remain in the decode stage until sub writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback 20</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 21</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | —– | —– | — | add x20, x21, x22 | F D | X M | W | | | | | | | — | — | — | — | — | — | — | — | sub x28, x20, x15 | F | D D | D X | M W | | | | | | — | — | — | — | — | — | — | — | and x27, x5, x18 | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | 22</p>
-<p>Performance Metric: CPI (Cycles per instruction) 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | | 0 1 | 2 3 | 4 | 5 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | ——- | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D | X M | W | | | | | and x27, x5, x18 | | F F | F | D X | M W | | | | | or x9, x28, x3 | | | | F D | D X | M W | | | 11 | | | 𝐶𝑃𝐼 | = | = 2.75 | | | | | | — | — | — | — | —— | — | — | — | — | 4 23</p>
-<p>Ideal CPI (Cycles per instruction) = 1 # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝐶𝑃𝐼 = # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 24</p>
-<p>Ideal CPI (Cycles per instruction) = 1 In the ideal case, we will have one instruction finishing on every cycle. If one instruction finishes every cycle, the total number of cycles needed to execute the program is (4 + # of instructions). # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 (this equation 𝐶𝑃𝐼 = = assumes no stalls) # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠 Stalls are going to hurt our CPI. We are going to see later in the lecture how to reduce the number of stalls. 25</p>
-<p>Pipeline Diagram with Stalls 1. Fill out the pipeline diagram for the following set of instructions. 2. What is the CPI? 3. What is the speedup compared to a single-cycle datapath? • Assume pipelined clock period = 220ps and single-cycle clock period = 820ps 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x3, x2, x2 or x4, x2, x5 and x9, x4, x10 sub x11, x4, x14 add x11, x15, x18 26</p>
-<p>Recall: Data Hazards Data hazard: instruction depends on previous result that is still in the pipeline Problem: When a register source is needed from a later stage of the pipeline before it is written. Solutions: 1. Program around it. One could document the weird semantics– “You can’t reference the destination register of an instruction in the immediately following instruction.” Would make make assembly language even harder to understand. Would expose the pipeline, once again making future improvements difficult to implement while maintaining code compatibility. 2. Hardware bypass multiplexers. 29</p>
-<p>SOURCE BYPASSING 31</p>
-<p>Simplified datapath to focus on forwarding for r-format 32</p>
-<p>Forwarding rs1 sub x7, x5, x2 add x5, x3, x4 33</p>
-<p>Forwarding rs1 There is a data hazard between these two instructions! We can resolve this hazard by inserting two stalls. Or we can use a technique called forwarding! sub x7, x5, x2 add x5, x3, x4 34</p>
-<p>The value that is to be written to x5 is available at the ALU output sub x7, x5, x2 add x5, x3, x4 35</p>
-<p>Instead of waiting for this value to be written back to the register file, we can send it back to the sub instruction! sub x7, x5, x2 add x5, x3, x4 36</p>
-<p>Instead of waiting for this value to be written back to the register file, we can send it back to the sub instruction! We will send this value to the sub instruction when it moves into the execute stage. sub x7, x5, x2 add x5, x3, x4 37</p>
-<p>Forwarding rs1 The value to be written to x5 is here sub x7,x5, x2 add x5, x3, x4 38</p>
-<p>Forwarding rs1 We are forwarding the value to be written to x5 to the dependent instruction. M u x sub x7, x5, x2 add x5, x3, x4 39</p>
-<p>Forwarding rs1 M u x What if there was one instruction in between the dependent instructions? sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 40</p>
-<p>Forwarding rs1 The value to be written to x5 is at the output of the writeback mux. M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 41</p>
-<p>Forwarding rs1 The value to be written to x5 is at the output of the writeback mux. M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 42</p>
-<p>Forwarding rs1 Now, we can choose if the top input of the ALU should come from 1. The register file (no forwarding) 2. The instruction two stages ahead 3. The instruction one stage ahead M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4 43</p>
-<p>Forwarding rs2 The value to be written to x5 is here M u x sub x7, x2, x5 add x5 x3, x4 44</p>
-<p>Forwarding rs2 We are forwarding the value to be written to x5 to the dependent instruction. M u x M u x sub x7, x2, x5 add x5 x3, x4 45</p>
-<p>Forwarding rs2 M u x What if there was one M instruction in between the u x dependent instructions? sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4 46</p>
-<p>Forwarding rs2 The value to be written to x5 is at the output of the writeback mux. M u x M u x sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4 47</p>
-<p>Forwarding rs2 Now, we can choose if the bottom input of the ALU should come from 1. The register file (no forwarding) 2. The instruction two stages ahead 3. The instruction one stage ahead M u x M u x sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4 48</p>
-<p>Graphical Representation of Forwarding Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf 49</p>
-<p>LOAD-USE HAZARD 50</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 51</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 52</p>
-<p>Load-Use Data Hazard ForwardA M The updated valueu of x4 cannot be forwarded until it is x read from the data memory. M u We need to stall the add instruction in the decode stage for x one cycle so that we can forward the value read from data ForwardB memory. add x5, x4, x3 lw x4 , 0(x9) 53</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9) 54</p>
-<p>Load-Use Data Hazard ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9) 55</p>
-<p>Load-Use Data Hazard (forward from two stages ahead) ForwardA = 0b01 ForwardA M u x M u x ForwardB ForwardB = 0b00 (read from reg file) add x5, x4, x3 stall lw x4 , 0(x9) 56</p>
-<p>Pipeline Diagram 1. Fill out the pipeline diagram for the following set of instructions. 2. What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 lw x3, 0(x8) add x11, x3, x3 lw x4, 0(x11) add x9, x11, x9 sub x10, x4, x9 ForwardA ForwardB 57</p>
-<p>Performance Analysis + Pipelining Assume a 1 GHz clock. One clock cycle is 1 ns Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of real speed-up do we expect? 60</p>
-<p>Some takeaways… Design strategy: Focus our attention on placing pipelining ● registers around the slowest circuit elements (bottlenecks!) You can pipeline an RISC-V CPU even more. There exist ● implementations with 7, 8, and 9 pipeline stages. But the overhead of bypass paths and the number of stall cases increase . Memory access time is our real bottleneck! ● 62</p>
-
-
+<p>COMP311: COMPUTER ORGANIZATION! Lecture 22: Source Bypassing tinyurl.com/comp311-sp26</p>
 </section>
+<section id="logistics-update" class="slide level2">
+<h2>Logistics Update!</h2>
+<p>■ Lab 5 Starter Code Updated if you pulled early – Due 4/27 (LDOC) ■ Written Assignment 6 – Due Tuesday (4/21) ■ Office Hours Ending LDOC ■ Final Review Session on First Reading Day</p>
+</section>
+<section id="quick-review" class="slide level2">
+<h2>QUICK REVIEW:</h2>
+<p>PIPELINE HAZARDS</p>
+</section>
+<section id="each-pipeline-register-name-is-based-on-the-stages-it-separates" class="slide level2">
+<h2>Each pipeline register name is based on the stages it separates</h2>
+<p>Cycle 0 | Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB | | ————– | —– | —– | —— | —— |</p>
+</section>
+<section id="cycle-0" class="slide level2">
+<h2>Cycle 0</h2>
+<p>add x5, x3, x4</p>
+</section>
+<section id="cycle-1" class="slide level2">
+<h2>Cycle 1</h2>
+<p>sub x7, x5 x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-2" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub x7, x5 x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-2-1" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub is going to read the wrong value from the register file! This is known as a data hazard. sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="pipeline-stalls" class="slide level2">
+<h2>Pipeline Stalls</h2>
+<p>• Also known as • bubbles • nops (no operation) • An instruction that does nothing • Provides time for the correct value to be written to the register file</p>
+</section>
+<section id="cycle-2-2" class="slide level2">
+<h2>Cycle 2</h2>
+<p>sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="cycle-3" class="slide level2">
+<h2>Cycle 3</h2>
+<p>sub x7, x5, x2 STALL add x5, x3, x4</p>
+</section>
+<section id="cycle-4" class="slide level2">
+<h2>Cycle 4</h2>
+<p>sub x7, x5, x2 | STALL | STALL | add x5, x3, x4 | | —– | —– | ————– |</p>
+</section>
+<section id="cycle-4-1" class="slide level2">
+<h2>Cycle 4</h2>
+<p>add will write to the register file. Sub will then read the updated value. sub x7, x5, x2 STALL STALL add x5, x3, x4</p>
+</section>
+<section id="cycle-5" class="slide level2">
+<h2>Cycle 5</h2>
+<p>sub x7, x5, x2 STALL STALL</p>
+</section>
+<section id="cycle-6" class="slide level2">
+<h2>Cycle 6</h2>
+<p>sub x7, x5, x2 STALL</p>
+</section>
+<section id="cycle-7" class="slide level2">
+<h2>Cycle 7</h2>
+<p>sub x7, x5, x2</p>
+</section>
+<section id="pipeline-diagram" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<p>Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 or x9, x28, x3 sub will remain in the decode stage until add writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="question-from-last-time-why-can-decode-writeback" class="slide level2">
+<h2>Question from last time: Why can Decode &amp; WriteBack</h2>
+<p>happen in the same clock cycle? The bold/dark parts are | | | | | | | showing | when the stage is actively | | | — | — | — | — | — | — | ——- | ————————— | — | using its inputs / producing outputs within the cycle. add x20, x21, x22 Light parts are when we access memory. Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | 2 stalls RISC-V design: Register file writes in the first half of the cycle. Allows for reads in second half</p>
+</section>
+<section id="pipeline-diagram-1" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<p>Instruction Cycle # | | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | —– | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D X | M W | | | | | and x27, x5, x18 | | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | sub will remain in the decode stage until add writes back and will remain in the fetch stage while sub is in the decode state F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="pipeline-diagram-2" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instruction</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Cycle #</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>0 1</td>
+<td>2 3</td>
+<td>4 5</td>
+<td>6 7</td>
+<td>8 9</td>
+<td>10 11</td>
+<td>12 13</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>add x20, x21, x22</td>
+<td>F D</td>
+<td>X M</td>
+<td>W</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sub x28, x20, x15</td>
+<td>F</td>
+<td>D D</td>
+<td>D X</td>
+<td>M W</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>and x27, x5, x18</td>
+<td></td>
+<td>F F</td>
+<td>F D</td>
+<td>X M</td>
+<td>W</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>or x9, x28, x3 | | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — | — | or will remain in the decode stage until sub writes back F = Fetch D = Decode X = Execute M = Memory W = Writeback</p>
+</section>
+<section id="performance-metric-cpi-cycles-per-instruction" class="slide level2">
+<h2>Performance Metric: CPI (Cycles per instruction)</h2>
+<p>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</p>
+</section>
+<section id="performance-metric-cpi-cycles-per-instruction-1" class="slide level2">
+<h2>Performance Metric: CPI (Cycles per instruction)</h2>
+<p>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14 | | — | — | — | — | — | —– | —– | — | add x20, x21, x22 | F D | X M | W | | | | | | | — | — | — | — | — | — | — | — | sub x28, x20, x15 | F | D D | D X | M W | | | | | | — | — | — | — | — | — | — | — | and x27, x5, x18 | | F F | F D | X M | W | | | | | — | — | — | — | — | — | — | — | or x9, x28, x3 | | | F | D D | X M | W | | | | — | — | — | — | — | — | — | — |</p>
+</section>
+<section id="performance-metric-cpi-cycles-per-instruction-2" class="slide level2">
+<h2>Performance Metric: CPI (Cycles per instruction)</h2>
+<p>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 𝐶𝑃𝐼 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚 | | 0 1 | 2 3 | 4 | 5 6 | 7 8 | 9 10 11 | 12 13 | 14 | | —————– | — | — | — | — | — | ——- | —– | — | | add x20, x21, x22 | F D | X M | W | | | | | | | sub x28, x20, x15 | F | D D | D | X M | W | | | | | and x27, x5, x18 | | F F | F | D X | M W | | | | | or x9, x28, x3 | | | | F D | D X | M W | | | 11 | | | 𝐶𝑃𝐼 | = | = 2.75 | | | | | | — | — | — | — | —— | — | — | — | — | 4</p>
+</section>
+<section id="ideal-cpi-cycles-per-instruction-1" class="slide level2">
+<h2>Ideal CPI (Cycles per instruction) = 1</h2>
+</section></section>
+<section>
+<section id="𝑜𝑓-𝑐𝑦𝑐𝑙𝑒𝑠" class="title-slide slide level1 center">
+<h1>𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠</h1>
+<p>𝐶𝑃𝐼 = # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠</p>
+</section>
+<section id="ideal-cpi-cycles-per-instruction-1-1" class="slide level2">
+<h2>Ideal CPI (Cycles per instruction) = 1</h2>
+<p>In the ideal case, we will have one instruction finishing on every cycle. If one instruction finishes every cycle, the total number of cycles needed to execute the program is (4 + # of instructions). # 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 4+# 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 (this equation 𝐶𝑃𝐼 = = assumes no stalls) # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 # 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑖𝑜𝑡𝑛𝑠 Stalls are going to hurt our CPI. We are going to see later in the lecture how to reduce the number of stalls.</p>
+</section>
+<section id="pipeline-diagram-with-stalls" class="slide level2">
+<h2>Pipeline Diagram with Stalls</h2>
+<ol type="1">
+<li>Fill out the pipeline diagram for the following set of instructions.</li>
+<li>What is the CPI?</li>
+<li>What is the speedup compared to a single-cycle datapath? • Assume pipelined clock period = 220ps and single-cycle clock period = 820ps 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 add x3, x2, x2 or x4, x2, x5 and x9, x4, x10 sub x11, x4, x14 add x11, x15, x18</li>
+</ol>
+</section>
+<section id="recall-data-hazards-data-hazard-instruction-depends-on" class="slide level2">
+<h2>Recall: Data Hazards Data hazard: instruction depends on</h2>
+<p>previous result that is still in the pipeline Problem: When a register source is needed from a later stage of the pipeline before it is written. Solutions: 1. Program around it. One could document the weird semantics– “You can’t reference the destination register of an instruction in the immediately following instruction.” Would make make assembly language even harder to understand. Would expose the pipeline, once again making future improvements difficult to implement while maintaining code compatibility. 2. Hardware bypass multiplexers.</p>
+</section>
+<section id="source-bypassing" class="slide level2">
+<h2>SOURCE BYPASSING</h2>
+</section>
+<section id="simplified-datapath-to-focus-on-forwarding-for-r-format" class="slide level2">
+<h2>Simplified datapath to focus on forwarding for r-format</h2>
+</section>
+<section id="forwarding-rs1" class="slide level2">
+<h2>Forwarding rs1</h2>
+<p>sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs1-1" class="slide level2">
+<h2>Forwarding rs1</h2>
+<p>There is a data hazard between these two instructions! We can resolve this hazard by inserting two stalls. Or we can use a technique called forwarding! sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="the-value-that-is-to-be-written-to-x5-is-available-at-the-alu-output" class="slide level2">
+<h2>The value that is to be written to x5 is available at the ALU output</h2>
+<p>sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="instead-of-waiting-for-this-value-to-be-written-back-to-the-register" class="slide level2">
+<h2>Instead of waiting for this value to be written back to the register</h2>
+<p>file, we can send it back to the sub instruction! sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="instead-of-waiting-for-this-value-to-be-written-back-to-the-register-1" class="slide level2">
+<h2>Instead of waiting for this value to be written back to the register</h2>
+<p>file, we can send it back to the sub instruction! We will send this value to the sub instruction when it moves into the execute stage. sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs1-2" class="slide level2">
+<h2>Forwarding rs1</h2>
+<p>The value to be written to x5 is here sub x7,x5, x2 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs1-we-are-forwarding-the-value-to-be-written" class="slide level2">
+<h2>Forwarding rs1 We are forwarding the value to be written</h2>
+<p>to x5 to the dependent instruction. M u x sub x7, x5, x2 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs1-3" class="slide level2">
+<h2>Forwarding rs1</h2>
+<p>M u x What if there was one instruction in between the dependent instructions? sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs1-the-value-to-be-written-to-x5-is-at-the" class="slide level2">
+<h2>Forwarding rs1 The value to be written to x5 is at the</h2>
+<p>output of the writeback mux. M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs1-the-value-to-be-written-to-x5-is-at-the-1" class="slide level2">
+<h2>Forwarding rs1 The value to be written to x5 is at the</h2>
+<p>output of the writeback mux. M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs1-now-we-can-choose-if-the-top-input-of" class="slide level2">
+<h2>Forwarding rs1 Now, we can choose if the top input of</h2>
+<p>the ALU should come from 1. The register file (no forwarding) 2. The instruction two stages ahead 3. The instruction one stage ahead M u x sub x7, x5, x2 or x8, x9, x10 add x5, x3, x4</p>
+</section>
+<section id="forwarding-rs2" class="slide level2">
+<h2>Forwarding rs2</h2>
+<p>The value to be written to x5 is here M u x sub x7, x2, x5 add x5 x3, x4</p>
+</section>
+<section id="forwarding-rs2-we-are-forwarding-the-value-to-be-written" class="slide level2">
+<h2>Forwarding rs2 We are forwarding the value to be written</h2>
+<p>to x5 to the dependent instruction. M u x M u x sub x7, x2, x5 add x5 x3, x4</p>
+</section>
+<section id="forwarding-rs2-1" class="slide level2">
+<h2>Forwarding rs2</h2>
+<p>M u x What if there was one M instruction in between the u x dependent instructions? sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4</p>
+</section>
+<section id="forwarding-rs2-the-value-to-be-written-to-x5-is-at-the" class="slide level2">
+<h2>Forwarding rs2 The value to be written to x5 is at the</h2>
+<p>output of the writeback mux. M u x M u x sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4</p>
+</section>
+<section id="forwarding-rs2-now-we-can-choose-if-the-bottom-input" class="slide level2">
+<h2>Forwarding rs2 Now, we can choose if the bottom input</h2>
+<p>of the ALU should come from 1. The register file (no forwarding) 2. The instruction two stages ahead 3. The instruction one stage ahead M u x M u x sub x7, x2, x5 or x8, x9,x10 add x5 ,x3, x4</p>
+</section>
+<section id="graphical-representation-of-forwarding" class="slide level2">
+<h2>Graphical Representation of Forwarding</h2>
+<p>Source: https://csweb.wooster.edu/jmusgrave/cs210/Chapter_04.pdf</p>
+</section>
+<section id="load-use-hazard" class="slide level2">
+<h2>LOAD-USE HAZARD</h2>
+</section>
+<section id="load-use-data-hazard" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-1" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-2" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M The updated valueu of x4 cannot be forwarded until it is x read from the data memory. M u We need to stall the add instruction in the decode stage for x one cycle so that we can forward the value read from data ForwardB memory. add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-3" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-4" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>ForwardA M u x M u x ForwardB add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="load-use-data-hazard-5" class="slide level2">
+<h2>Load-Use Data Hazard</h2>
+<p>(forward from two stages ahead) ForwardA = 0b01 ForwardA M u x M u x ForwardB ForwardB = 0b00 (read from reg file) add x5, x4, x3 stall lw x4 , 0(x9)</p>
+</section>
+<section id="pipeline-diagram-3" class="slide level2">
+<h2>Pipeline Diagram</h2>
+<ol type="1">
+<li>Fill out the pipeline diagram for the following set of instructions.</li>
+<li>What should ForwardA and ForwardB be set to on each cycle? • If the instruction in the execute stage is a stall, set ForwardA and ForwardB to XX. 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 lw x3, 0(x8) add x11, x3, x3 lw x4, 0(x11) add x9, x11, x9 sub x10, x4, x9 ForwardA ForwardB</li>
+</ol>
+</section>
+<section id="performance-analysis-pipelining" class="slide level2">
+<h2>Performance Analysis + Pipelining</h2>
+<p>Assume a 1 GHz clock. One clock cycle is 1 ns Assume a pipelined implementation where: ● Taken branches take 2 cycles. ○ Loads and stores take 2 cycles. ○ Assuming approximately 10% of instructions executed are ● branches, and of those 80% of the time they are taken, and 15% of instructions executed are loads or stores, what sort of real speed-up do we expect?</p>
+</section>
+<section id="some-takeaways" class="slide level2">
+<h2>Some takeaways…</h2>
+<p>Design strategy: Focus our attention on placing pipelining ● registers around the slowest circuit elements (bottlenecks!) You can pipeline an RISC-V CPU even more. There exist ● implementations with 7, 8, and 9 pipeline stages. But the overhead of bypass paths and the number of stall cases increase . Memory access time is our real bottleneck! ●</p>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
