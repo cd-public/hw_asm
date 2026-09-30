@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -347,25 +376,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-is-information" id="toc-what-is-information" class="nav-link" data-scroll-target="#what-is-information">What is “Information”?</a></li>
   <li><a href="#working-definition" id="toc-working-definition" class="nav-link" data-scroll-target="#working-definition">Working Definition</a></li>
   <li><a href="#quantifying-information" id="toc-quantifying-information" class="nav-link" data-scroll-target="#quantifying-information">Quantifying Information</a></li>
-  <li><a href="#an-exercise-how-many-bits" id="toc-an-exercise-how-many-bits" class="nav-link" data-scroll-target="#an-exercise-how-many-bits">An exercise: How many bits?</a></li>
-  <li><a href="#an-exercise-how-many-bits-1" id="toc-an-exercise-how-many-bits-1" class="nav-link" data-scroll-target="#an-exercise-how-many-bits-1">An exercise: How many bits?</a></li>
+  <li><a href="#counting-bits" id="toc-counting-bits" class="nav-link" data-scroll-target="#counting-bits">Counting Bits</a></li>
+  <li><a href="#a-mapping" id="toc-a-mapping" class="nav-link" data-scroll-target="#a-mapping">A Mapping</a></li>
+  <li><a href="#counting-bit" id="toc-counting-bit" class="nav-link" data-scroll-target="#counting-bit">Counting Bit</a></li>
+  <li><a href="#a-mapping-1" id="toc-a-mapping-1" class="nav-link" data-scroll-target="#a-mapping-1">A Mapping</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
   <li><a href="#what-do-programs-really-do" id="toc-what-do-programs-really-do" class="nav-link" data-scroll-target="#what-do-programs-really-do">What do programs really do?</a></li>
-  <li><a href="#what-do-programs-really-do-1" id="toc-what-do-programs-really-do-1" class="nav-link" data-scroll-target="#what-do-programs-really-do-1">What do programs really do?</a></li>
   <li><a href="#how-does-a-computer-do-it" id="toc-how-does-a-computer-do-it" class="nav-link" data-scroll-target="#how-does-a-computer-do-it">How does a computer do it?</a></li>
-  <li><a href="#are-there-limits-to-computation" id="toc-are-there-limits-to-computation" class="nav-link" data-scroll-target="#are-there-limits-to-computation">Are there limits to computation?</a></li>
-  <li><a href="#administrative" id="toc-administrative" class="nav-link" data-scroll-target="#administrative">ADMINISTRATIVE</a></li>
-  <li><a href="#course-structure" id="toc-course-structure" class="nav-link" data-scroll-target="#course-structure">Course Structure</a></li>
-  <li><a href="#extensions-late-days" id="toc-extensions-late-days" class="nav-link" data-scroll-target="#extensions-late-days">Extensions + Late Days</a></li>
-  <li><a href="#gradescope" id="toc-gradescope" class="nav-link" data-scroll-target="#gradescope">Gradescope</a></li>
-  <li><a href="#the-team" id="toc-the-team" class="nav-link" data-scroll-target="#the-team">The Team!</a></li>
-  <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">211 REVIEW ☺</a></li>
+  <li><a href="#what-do-we-see" id="toc-what-do-we-see" class="nav-link" data-scroll-target="#what-do-we-see">What do we see?</a></li>
+  </ul></li>
+  <li><a href="#logistics-1" id="toc-logistics-1" class="nav-link" data-scroll-target="#logistics-1">Logistics</a>
+  <ul class="collapse">
+  <li><a href="#it-me" id="toc-it-me" class="nav-link" data-scroll-target="#it-me">It me</a></li>
+  <li><a href="#the-great-work" id="toc-the-great-work" class="nav-link" data-scroll-target="#the-great-work">The Great Work</a></li>
+  <li><a href="#course-format" id="toc-course-format" class="nav-link" data-scroll-target="#course-format">Course Format</a></li>
+  <li><a href="#grade-policy" id="toc-grade-policy" class="nav-link" data-scroll-target="#grade-policy">Grade Policy</a></li>
+  <li><a href="#specification-grading" id="toc-specification-grading" class="nav-link" data-scroll-target="#specification-grading">Specification Grading</a></li>
+  <li><a href="#it-pays-to-get-as" id="toc-it-pays-to-get-as" class="nav-link" data-scroll-target="#it-pays-to-get-as">It pays to get A’s</a></li>
+  <li><a href="#but-bs-are-the-knees" id="toc-but-bs-are-the-knees" class="nav-link" data-scroll-target="#but-bs-are-the-knees">But B’s are the Knees</a></li>
+  <li><a href="#these-may-earn-degrees" id="toc-these-may-earn-degrees" class="nav-link" data-scroll-target="#these-may-earn-degrees">These may (???) earn degrees</a></li>
+  <li><a href="#lab-grading" id="toc-lab-grading" class="nav-link" data-scroll-target="#lab-grading">Lab Grading</a></li>
+  <li><a href="#midterm" id="toc-midterm" class="nav-link" data-scroll-target="#midterm">Midterm</a></li>
+  <li><a href="#late-work-policy" id="toc-late-work-policy" class="nav-link" data-scroll-target="#late-work-policy">Late Work Policy</a></li>
+  <li><a href="#ai-policy" id="toc-ai-policy" class="nav-link" data-scroll-target="#ai-policy">AI Policy</a></li>
+  <li><a href="#collaboration-policy" id="toc-collaboration-policy" class="nav-link" data-scroll-target="#collaboration-policy">Collaboration Policy</a></li>
+  </ul></li>
+  <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">271 Review ☺</a>
+  <ul class="collapse">
   <li><a href="#base" id="toc-base" class="nav-link" data-scroll-target="#base">Base</a></li>
   <li><a href="#binary-notation" id="toc-binary-notation" class="nav-link" data-scroll-target="#binary-notation">Binary Notation</a></li>
   <li><a href="#hex-notation" id="toc-hex-notation" class="nav-link" data-scroll-target="#hex-notation">Hex Notation</a></li>
   <li><a href="#decimal-notation" id="toc-decimal-notation" class="nav-link" data-scroll-target="#decimal-notation">Decimal Notation</a></li>
   <li><a href="#overflow" id="toc-overflow" class="nav-link" data-scroll-target="#overflow">Overflow</a></li>
-  <li><a href="#binary-addition-and-overflow" id="toc-binary-addition-and-overflow" class="nav-link" data-scroll-target="#binary-addition-and-overflow">Binary Addition and Overflow</a></li>
-  <li><a href="#review-binary-addition-and-overflow" id="toc-review-binary-addition-and-overflow" class="nav-link" data-scroll-target="#review-binary-addition-and-overflow">Review: Binary Addition and Overflow</a></li>
+  <li><a href="#carryoverflow" id="toc-carryoverflow" class="nav-link" data-scroll-target="#carryoverflow">Carry/Overflow</a></li>
+  <li><a href="#carryoverflow-1" id="toc-carryoverflow-1" class="nav-link" data-scroll-target="#carryoverflow-1">Carry/Overflow</a></li>
+  <li><a href="#carryoverflow-2" id="toc-carryoverflow-2" class="nav-link" data-scroll-target="#carryoverflow-2">Carry/Overflow</a></li>
   <li><a href="#twos-complement" id="toc-twos-complement" class="nav-link" data-scroll-target="#twos-complement">Two’s Complement</a></li>
   <li><a href="#twos-complement-1" id="toc-twos-complement-1" class="nav-link" data-scroll-target="#twos-complement-1">Two’s Complement</a></li>
   </ul></li>
@@ -635,96 +682,660 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="quantifying-information" class="level2">
 <h2 class="anchored" data-anchor-id="quantifying-information">Quantifying Information</h2>
-<p>Suppose you’re faced with N equally probable choices, and I give you a fact that narrows it down to M possibilities. Then you’ve been given: log (N/M) bits of information 2 Examples: Outcome of a coin flip: log (2/1) = 1 bit ● 2 The roll of one die? ● Someone tells you that their 8-digit ● Information is the theoretical underpinning of why digital phone number is a palindrome? computers use bits! ☺</p>
+<ul>
+<li>Suppose you’re faced with <span class="math inline">\(N\)</span> equally probable choices,
+<ul>
+<li>E.g. Diet Coke, Coke Zero, Cherry Coke, Vanilla Coke</li>
+</ul></li>
+<li>And I give you a fact that narrows it down to M possibilities.
+<ul>
+<li>It’s flavored, so Cherry or Vanilla</li>
+</ul></li>
+<li>This is worth <span class="math inline">\(\log_2(\frac{M}{N})\)</span> information.
+<ul>
+<li>The unit for information is <em>bits</em></li>
+</ul></li>
+</ul>
 </section>
-<section id="an-exercise-how-many-bits" class="level2">
-<h2 class="anchored" data-anchor-id="an-exercise-how-many-bits">An exercise: How many bits?</h2>
-<p>With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan.</p>
+<section id="counting-bits" class="level2">
+<h2 class="anchored" data-anchor-id="counting-bits">Counting Bits</h2>
+<ul>
+<li>Imagine bits are expensive.</li>
+<li>How many bits would it take to store a designation from the following choices?</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource py number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>options <span class="op">=</span> [<span class="st">"Diet"</span>, <span class="st">"Zero"</span>, <span class="st">"Cherry"</span>, <span class="st">"Vanilla"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Indices are in <code>range(4)</code> and <span class="math inline">\(log_2(4) = 2\)</span></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource py number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> numpy <span class="im">import</span> log2</span>
+<span id="cb5-2"><a href="#cb5-2"></a>log2(<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="an-exercise-how-many-bits-1" class="level2">
-<h2 class="anchored" data-anchor-id="an-exercise-how-many-bits-1">An exercise: How many bits?</h2>
-<p>With 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 1.1 bits=⌈log (N)⌉, where N is the number of students in the class. 2 if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits! 2 1.2 N/M</p>
+<section id="a-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="a-mapping">A Mapping</h2>
+<ul>
+<li>Perhaps the map is as follows.</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0b00</code></td>
+<td><code>"Diet"</code></td>
+</tr>
+<tr class="even">
+<td><code>0b01</code></td>
+<td><code>"Zero"</code></td>
+</tr>
+<tr class="odd">
+<td><code>0b10</code></td>
+<td><code>"Cherry"</code></td>
+</tr>
+<tr class="even">
+<td><code>0b11</code></td>
+<td><code>"Vanilla"</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="counting-bit" class="level2">
+<h2 class="anchored" data-anchor-id="counting-bit">Counting Bit</h2>
+<ul>
+<li>Restrict to flavor.</li>
+<li>How many bits would it take to store a designation from the following choices?</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource py number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>options <span class="op">=</span> [<span class="st">"Cherry"</span>, <span class="st">"Vanilla"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Indices are in <code>range(2)</code> and <span class="math inline">\(\log_2(2) = 1\)</span></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource py number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> numpy <span class="im">import</span> log2</span>
+<span id="cb7-2"><a href="#cb7-2"></a>log2(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="a-mapping-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-mapping-1">A Mapping</h2>
+<ul>
+<li>We imagine this restricts the more significant binary digit to <code>1</code>.</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0b10</code></td>
+<td><code>"Cherry"</code></td>
+</tr>
+<tr class="even">
+<td><code>0b11</code></td>
+<td><code>"Vanilla"</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Disclosing “flavor” reveals one bit worth of information.</li>
+</ul>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<ul>
+<li>Outcome of a coin flip: <span class="math inline">\(\log_2(2/1)\)</span> = 1</li>
+<li>Roll of one die: <span class="math inline">\(\log_2(6/1)\)</span> ≅ 2.6</li>
+<li>Roll of one die is odd: <span class="math inline">\(\log_2(6/3)\)</span> ≅ 1</li>
+</ul>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<ul>
+<li>A 7-digit phone number is a palindrome.</li>
+<li>Proceed manually.
+<ul>
+<li>Get an approximate solution absent any tools, or</li>
+<li>Express the solution in <span class="math inline">\(\LaTeX\)</span>, or</li>
+<li>Express the solution in a <code>python</code> script.</li>
+</ul></li>
+</ul>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<ul>
+<li>Each (decimal) digit stores <span class="math inline">\(\log_2(10)\)</span></li>
+<li>7 independent digits stores up to <span class="math inline">\(\log_2(10^7)\)</span></li>
+<li>A palindrome causes the final 3 to be determined by the first 3.</li>
+<li>4 independent digits stores up to <span class="math inline">\(\log_2(10^4)\)</span></li>
+<li>Discloses <span class="math inline">\(\log_2(10^7/10^4) = \log_2(10^3)\)</span>
+<ul>
+<li><span class="math inline">\(10^3\)</span> ≅ <span class="math inline">\(2^10\)</span> so approx. 10 bits.</li>
+</ul></li>
+</ul>
 </section>
 <section id="what-do-programs-really-do" class="level2">
 <h2 class="anchored" data-anchor-id="what-do-programs-really-do">What do programs really do?</h2>
-<p>At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100)</p>
-</section>
-<section id="what-do-programs-really-do-1" class="level2">
-<h2 class="anchored" data-anchor-id="what-do-programs-really-do-1">What do programs really do?</h2>
-<p>At this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) This is computing the square root</p>
+<p>Quoth Kaki:</p>
+<blockquote class="blockquote">
+<p>At this point in your CS career, you look at a program specification and figure out what it does!</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">int</span> f<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="dt">int</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="cf">while</span> <span class="op">(++</span>r <span class="op">*</span> r <span class="op">&lt;=</span> x<span class="op">)</span> <span class="op">{}</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="cf">return</span> r <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="how-does-a-computer-do-it" class="level2">
 <h2 class="anchored" data-anchor-id="how-does-a-computer-do-it">How does a computer do it?</h2>
-<p>What would a computer do with this program specification? f: mv t0,a0 int f(int x) { li t1,1 int r; li a0,0 int odd = 1; blt t0,t1,return for (r = 0; x &gt;= odd; r++) { loop: sub t0,t0,t1 x -= odd; addi t1,t1,2 odd += 2; addi a0,a0,1 } bge t0,t1,loop return r; return: ret } It translates it into a series of simple instructions!</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>cat f.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="cat f.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1"></a><span class="dt">int</span> f<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="dt">int</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="cf">while</span> <span class="op">(++</span>r <span class="op">*</span> r <span class="op">&lt;=</span> x<span class="op">)</span> <span class="op">{}</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="cf">return</span> r <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>gcc f.c -S &amp;&amp; cat f.s</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-filename="gcc f.c -S &amp;&amp; cat f.s"><pre class="sourceCode numberSource s number-lines code-with-copy"><code class="sourceCode gnuassembler"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">f:</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">.LFB0:</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>    endbr64</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="kw">pushq</span>   <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="kw">movq</span>    <span class="op">%</span><span class="kw">rsp</span><span class="op">,</span> <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="kw">movl</span>    <span class="op">%</span><span class="kw">edi</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>    <span class="kw">movl</span>    <span class="dv">$0</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="kw">nop</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="fu">.L2:</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="kw">addl</span>    <span class="dv">$1</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="kw">imull</span>   <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="kw">cmpl</span>    <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="cf">jge</span> .L2</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="kw">subl</span>    <span class="dv">$1</span><span class="op">,</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="kw">popq</span>    <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="kw">ret</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </section>
-<section id="are-there-limits-to-computation" class="level2">
-<h2 class="anchored" data-anchor-id="are-there-limits-to-computation">Are there limits to computation?</h2>
-<p>■ Will some new instruction be invented that fundamentally changes how fast computers solve problems? ■ Can computers solve <em>any</em> well- specified problem? – COMP455 ■ Can we predict how long it will take for a computer to solve a given problem? – COMP210, COMP550 ■ Does there exist a new model of computation?</p>
+<section id="what-do-we-see" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-we-see">What do we see?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Four operations, one each of:
+<ul>
+<li><span class="math inline">\(+\)</span>, <span class="math inline">\(\times\)</span>, <span class="math inline">\(-\)</span>, <span class="math inline">\(\geq\)</span></li>
+</ul></li>
+<li>Many moves
+<ul>
+<li>Including push, pop</li>
+</ul></li>
+<li>Some control
+<ul>
+<li>“Jump”, return, “nop”</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>gcc f.c -S &amp;&amp; cat f.s</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="gcc f.c -S &amp;&amp; cat f.s"><pre class="sourceCode numberSource s number-lines code-with-copy"><code class="sourceCode gnuassembler"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">f:</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">.LFB0:</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    endbr64</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="kw">pushq</span>   <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="kw">movq</span>    <span class="op">%</span><span class="kw">rsp</span><span class="op">,</span> <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="kw">movl</span>    <span class="op">%</span><span class="kw">edi</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="kw">movl</span>    <span class="dv">$0</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="kw">nop</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="fu">.L2:</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>    <span class="kw">addl</span>    <span class="dv">$1</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>    <span class="kw">imull</span>   <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>    <span class="kw">cmpl</span>    <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>    <span class="cf">jge</span> .L2</span>
+<span id="cb11-15"><a href="#cb11-15"></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a>    <span class="kw">subl</span>    <span class="dv">$1</span><span class="op">,</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a>    <span class="kw">popq</span>    <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>    <span class="kw">ret</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </section>
-<section id="administrative" class="level2">
-<h2 class="anchored" data-anchor-id="administrative">ADMINISTRATIVE</h2>
-<p>DETAILS</p>
-<p>Syllabus! Course site: https://www.cs.unc.edu/~kakiryan/teaching/311- sp26/311-sp26.html Or https://tinyurl.com/comp311-sp26</p>
 </section>
-<section id="course-structure" class="level2">
-<h2 class="anchored" data-anchor-id="course-structure">Course Structure</h2>
-<p>■ Assessment (65%): – 6x Quizzes (QZ): 50% Your final can replace up to two of your lowest quiz scores. – Final Exam (FN): 15% ■ Practice and Preparation (30%): – 6x Written Assignments (WA): 15% – 5x Labs (LAB): 15% ■ In-Class Participation (5%): – 1x Submission to Gradescope per class. ■ 4 can be dropped, no questions asked.</p>
+<section id="logistics-1" class="level1">
+<h1>Logistics</h1>
+<section id="it-me" class="level2">
+<h2 class="anchored" data-anchor-id="it-me">It me</h2>
+<ul>
+<li><strong>Name</strong>
+<ul>
+<li>(Prof.&nbsp;)?Calvin</li>
+</ul></li>
+<li><strong>Credentials</strong>
+<ul>
+<li>B.A. Mathematics</li>
+<li>B.S., M.S., Ph.D.&nbsp;Computer Science</li>
+</ul></li>
+<li><strong>Pronouns</strong>
+<ul>
+<li>they/them</li>
+</ul></li>
+</ul>
 </section>
-<section id="extensions-late-days" class="level2">
-<h2 class="anchored" data-anchor-id="extensions-late-days">Extensions + Late Days</h2>
-<p>■ You have 8 days to use on any assignment in the course, with no explanation needed. ■ You may request extensions for illness or personal life events so you don’t have to use up your late days. – Extension form is linked in the syllabus ■ If you are not sure if something qualifies for an extension, just fill out the form anyway, and we will get back to you. ■ You will not be penalized for submitting the assignment within the provided grace period if you receive an extension!</p>
+<section id="the-great-work" class="level2">
+<h2 class="anchored" data-anchor-id="the-great-work">The Great Work</h2>
+<ul>
+<li>Thesis Title
+<ul>
+<li>Mining Secure Behavior of Hardware Designs</li>
+</ul></li>
+<li>Plain English
+<ul>
+<li>Just as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs.</li>
+</ul></li>
+</ul>
 </section>
-<section id="gradescope" class="level2">
-<h2 class="anchored" data-anchor-id="gradescope">Gradescope</h2>
-<p>■ Make sure you are enrolled! – For the correct section!</p>
+<section id="course-format" class="level2">
+<h2 class="anchored" data-anchor-id="course-format">Course Format</h2>
+<ul>
+<li>Lectures in class</li>
+<li>6 labs/homeworks</li>
+<li>In person midterm</li>
+<li>Was not clever enough to design a final, so none.</li>
+</ul>
 </section>
-<section id="the-team" class="level2">
-<h2 class="anchored" data-anchor-id="the-team">The Team!</h2>
-<p>■ LAs: – Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain, Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil Dickerson, Gabrielle Stewart, Kiara Smith, Nathan Santiago, Betsy George, Matthew Thornton, Celine Keles, Rachit Pajbai, Joaquim D’Silva, Joseph Zhen, Sven Reyes, Chenghe Kong, Wai Phyo, Danny Xia, Issa Masumbuko ■ LA office hours will be held in CSXL RM SN143. Time TBD! – I will send out an announcement once we schedule them! ■ My office hours are Tuesdays 1-3pm in FB114.</p>
-<p>Classroom Community ■ Let’s all work together to create a supportive and welcoming learning environment for everyone in this room! ■ I expect all of you to be present, respectful &amp; engaged in class, every day! ■ We will transition between groupwork &amp; lecture frequently. – During group work: the more conversation the better! – During lecture: Please lock in! Sound carries more than you think. ■ Ask questions! Utilize the TAs and office hours! – Come to office hours for conceptual help, too! We love talking to you all! ■ I am always open to feedback!</p>
-<p>HEALTH &amp; SAFETY</p>
-<p>Face Masks ■ Optional ■ Use a mask often!</p>
-<p>Emergency Procedures ■ Evacuate (fire, chemical hazard) ■ Shelter in place (weather related) ■ Secure in place (armed and dangerous assailant) – run, hide (secure in place), fight</p>
-<p>Acknowledgements ■ Optional Textbook 1: Computer Organization and Design RISC-V Edition: The Hardware Software Interface by David Patterson and John Hennessey ■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by David Patterson and Andrew Waterman. ■ Connor McMahon, Leonard McMillan, Montek Singh</p>
+<section id="grade-policy" class="level2">
+<h2 class="anchored" data-anchor-id="grade-policy">Grade Policy</h2>
+<ul>
+<li>Your voices have been heard:</li>
+</ul>
+<blockquote class="blockquote">
+<p>I think failing my systems class was the best thing that happened to me.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>This course demanded strong self-motivation… Thus, I didn’t learn as much as I might’ve if grading mattered more.</p>
+</blockquote>
 </section>
-<section id="review" class="level2">
-<h2 class="anchored" data-anchor-id="review">211 REVIEW ☺</h2>
+<section id="specification-grading" class="level2">
+<h2 class="anchored" data-anchor-id="specification-grading">Specification Grading</h2>
+<ul>
+<li>Basically, I will assign some stuff but you don’t have to do all of it perfectly.
+<ul>
+<li>No partial credit, everything is boolean grading.</li>
+</ul></li>
+<li>I took distributions over final, midterm, and Lab/HW</li>
+</ul>
 </section>
+<section id="it-pays-to-get-as" class="level2">
+<h2 class="anchored" data-anchor-id="it-pays-to-get-as">It pays to get A’s</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Grade</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A</td>
+<td>Complete all but one labs, midterm passing grade</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">A-</td>
+<td>Complete half or more labs, midterm passing grade</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">A-</td>
+<td>Complete all labs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="but-bs-are-the-knees" class="level2">
+<h2 class="anchored" data-anchor-id="but-bs-are-the-knees">But B’s are the Knees</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Grade</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">B</td>
+<td>Half or more labs</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B</td>
+<td>Midterm passing grade</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="these-may-earn-degrees" class="level2">
+<h2 class="anchored" data-anchor-id="these-may-earn-degrees">These may (???) earn degrees</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Grade</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">C</td>
+<td>Nonzero labs</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">F</td>
+<td>Anything else</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-grading" class="level2">
+<h2 class="anchored" data-anchor-id="lab-grading">Lab Grading</h2>
+<ul>
+<li>“Perfect” (counts for spec grading)
+<ul>
+<li>Complete</li>
+<li>On time</li>
+<li>Correct</li>
+</ul></li>
+<li>“Passing” (counts for spec grading)
+<ul>
+<li>Complete</li>
+<li>On time</li>
+</ul></li>
+<li>“Doesn’t count” (=0%)
+<ul>
+<li>Anything else</li>
+</ul></li>
+</ul>
+</section>
+<section id="midterm" class="level2">
+<h2 class="anchored" data-anchor-id="midterm">Midterm</h2>
+<ul>
+<li>Midterm
+<ul>
+<li>In person</li>
+<li>Written</li>
+<li>With notes</li>
+<li>Without computer</li>
+</ul></li>
+<li>May have two (I’ll count higher of two)</li>
+</ul>
+</section>
+<section id="late-work-policy" class="level2">
+<h2 class="anchored" data-anchor-id="late-work-policy">Late Work Policy</h2>
+<ul>
+<li>Late work is not accepted.
+<ul>
+<li>No exceptions.</li>
+<li>The specification grading framework incorpates tolerances.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ai-policy" class="level2">
+<h2 class="anchored" data-anchor-id="ai-policy">AI Policy</h2>
+<ul>
+<li>I have no idea if this will be useful.</li>
+<li>Let me know.</li>
+</ul>
+</section>
+<section id="collaboration-policy" class="level2">
+<h2 class="anchored" data-anchor-id="collaboration-policy">Collaboration Policy</h2>
+<ul>
+<li>You should chat with each other.</li>
+<li>You should write your own solution.</li>
+<li>If someone shows you something and you don’t understand it <em>as well as something you write yourself</em>, it is a waste of your time to use the solution.
+<ul>
+<li>But <em>not</em> a waste as a way to learn.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="review" class="level1">
+<h1>271 Review ☺</h1>
 <section id="base" class="level2">
 <h2 class="anchored" data-anchor-id="base">Base</h2>
-<p>■ A base is the number of different digits that a system can use to represent numbers ■ Binary is base 2 because it has the digits 0 and 1 ■ Decimal base 10 because it has the digits 0-9 ■ Hex is base 16 because it has the digits 0-F</p>
+<ul>
+<li>A base is the number of different digits that a system can use to represent numbers</li>
+<li>Binary is base 2 because it has the digits 0 and 1</li>
+<li>Decimal base 10 because it has the digits 0-9</li>
+<li>Hex is base 16 because it has the digits 0-F</li>
+</ul>
 </section>
 <section id="binary-notation" class="level2">
 <h2 class="anchored" data-anchor-id="binary-notation">Binary Notation</h2>
-<p>■ Always prepend binary numbers with “0b” or add a subscript of 2 – Ex: 0b 1001 or 1001 2 ■ Place binary numbers in groups of four to make it easier to read – Ex: 0b 1010 1111 0101 or 0b1010_1111_0101 – If you cannot evenly break up the number into groups of four, start making the groups from the right ■ Ex: 0b10_1010_0011</p>
+<ul>
+<li>Always prepend binary numbers with “0b” or add a subscript of 2
+<ul>
+<li>Ex: <code>0b1001</code> or <span class="math inline">\(1001_2\)</span></li>
+</ul></li>
+<li>Place binary numbers in groups of four to make it easier to read
+<ul>
+<li>Ex: <code>0b 1010 1111 0101</code> or <code>0b1010_1111_0101</code></li>
+<li>If you cannot evenly break up the number into groups of four, start making the groups from the right
+<ul>
+<li>Ex: <code>0b10_1010_0011</code></li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
 <section id="hex-notation" class="level2">
 <h2 class="anchored" data-anchor-id="hex-notation">Hex Notation</h2>
-<p>■ Always prepend hex numbers with “0x” or add a subscript of 16 – Ex: 0xE2A or E2A 16</p>
+<ul>
+<li>Always prepend hex numbers with “0x” or add a subscript of 16
+<ul>
+<li>Ex: <code>0xE2A</code> or <span class="math inline">\(E2A_{16}\)</span></li>
+</ul></li>
+</ul>
 </section>
 <section id="decimal-notation" class="level2">
 <h2 class="anchored" data-anchor-id="decimal-notation">Decimal Notation</h2>
-<p>■ You can indicate that a number is a decimal value by adding a subscript of 10 – Ex: 54 10 ■ If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value</p>
+<ul>
+<li>You can indicate that a number is a decimal value by adding a subscript of 10
+<ul>
+<li>Ex: <span class="math inline">\(54_{10}\)</span></li>
+<li>I will sometimes use <code>0d54</code></li>
+</ul></li>
+<li>If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value</li>
+</ul>
 </section>
 <section id="overflow" class="level2">
 <h2 class="anchored" data-anchor-id="overflow">Overflow</h2>
-<p>■ Overflow occurs when the result of the operation cannot be represented with the given number of bits ■ When adding two unsigned numbers, overflow occurs when the carry-out of the operation is 1</p>
+<ul>
+<li>Adding two values of <span class="math inline">\(n\)</span> digits requires <span class="math inline">\(n+1\)</span> digits to store the sum.</li>
+<li>Multiply two values of <span class="math inline">\(n\)</span> digits requires <span class="math inline">\(2n\)</span> digits to store the product.</li>
+</ul>
 </section>
-<section id="binary-addition-and-overflow" class="level2">
-<h2 class="anchored" data-anchor-id="binary-addition-and-overflow">Binary Addition and Overflow</h2>
-<p>Take 5 minutes to answer question 3 on your worksheets!</p>
+<section id="carryoverflow" class="level2">
+<h2 class="anchored" data-anchor-id="carryoverflow">Carry/Overflow</h2>
+<ul>
+<li>Doesn’t always happen</li>
+</ul>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>+</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>=</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="review-binary-addition-and-overflow" class="level2">
-<h2 class="anchored" data-anchor-id="review-binary-addition-and-overflow">Review: Binary Addition and Overflow</h2>
-<p>1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no</p>
+<section id="carryoverflow-1" class="level2">
+<h2 class="anchored" data-anchor-id="carryoverflow-1">Carry/Overflow</h2>
+<ul>
+<li>When it happens it matters</li>
+</ul>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>+</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>=</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="carryoverflow-2" class="level2">
+<h2 class="anchored" data-anchor-id="carryoverflow-2">Carry/Overflow</h2>
+<ul>
+<li>Carries can overflow</li>
+</ul>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>+</td>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>=</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="twos-complement" class="level2">
 <h2 class="anchored" data-anchor-id="twos-complement">Two’s Complement</h2>
-<p>Take 5 minutes to answer question 4 on your worksheets!</p>
+<ul>
+<li>Suppose we want to model negative numbers in hardware.
+<ul>
+<li>I have no idea why we would do that.</li>
+<li>Ask people that use computers, not make them.</li>
+</ul></li>
+<li>Consider the following.
+<ul>
+<li>-1 is the value to which we add 1 to get zero</li>
+<li>To what binary value does adding 1 yield zero.</li>
+</ul></li>
+</ul>
 </section>
 <section id="twos-complement-1" class="level2">
 <h2 class="anchored" data-anchor-id="twos-complement-1">Two’s Complement</h2>
-<p>4.2: What is the minimum number of 4.1: Represent -15 in two’s complement with 7 bits needed to represent 20 in two’s bits complement Unsigned: 0b 000 1111 Flip bits: 0b 111 0000 0b 010100 Add one: 0b 111 0001 6 bits 4.3: Convert the following two’s 4.4: Convert the following two’s complement number to decimal: complement number to decimal: 0b 1111 1110 0b 0011 1000 Flip bits: 0b 0000 0001 Positive, so no need to flip bits 56 Add one: 0b 0000 0010 → -2</p>
+<ul>
+<li>Fix <span class="math inline">\(n\)</span> bits of precision.</li>
+<li>Add 1 to “<span class="math inline">\(n\)</span> 1s” to get zero.</li>
+</ul>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>+</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>=</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Use the most significant/first bit as a sign bit.</li>
+</ul>
 
 
 <!-- -->
@@ -1193,507 +1804,587 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="an">title:</span><span class="co"> Introduction </span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="an">subtitle:</span><span class="co"> "w0d0"</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">---</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="fu"># Logistics</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">## Announcements</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="ss">- </span>**Welcome** to HW/<span class="in">`asm`</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="ss">- </span>**Action Items** discussion</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="fu">## Credit</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="ss">- </span>I stole this course from <span class="co">[</span><span class="ot">Kaki Ryan</span><span class="co">](https://www.cs.unc.edu/~kakiryan/)</span>.</span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="ss">- </span>Kaki and I overlapped a few years in Cynthia Sturton's hardware security group</span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="ss">- </span>Kaki actually understood what we were doing in the group.</span>
-<span id="cb4-18"><a href="#cb4-18"></a></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="fu">## Target Audience </span></span>
-<span id="cb4-20"><a href="#cb4-20"></a></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="ss">- </span>Tough-to-impossible without CS 271: Systems in ???</span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="ss">- </span>Good for:</span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="ss">    - </span>CS people with engineering interest</span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="ss">    - </span>Physics/engineering people with hardware interest</span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="ss">    - </span>Math people with applications interest</span>
-<span id="cb4-26"><a href="#cb4-26"></a></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="fu">## What is the course about?</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="ss">- </span>In prior work, you probably only worked with computers at the software level.</span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="ss">    - </span>True even in the case of e.g. an systems programming class, where final projects (blockchain or version control) were ultimately "software"</span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="ss">    - </span>Just implemented *as one would* implement a system like an OS, server, or compiler.</span>
-<span id="cb4-32"><a href="#cb4-32"></a></span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="fu">## Perspective</span></span>
-<span id="cb4-34"><a href="#cb4-34"></a></span>
-<span id="cb4-35"><a href="#cb4-35"></a><span class="ss">- </span>First consider what we now term a *high-level programming language* because it does not correspond directly to hardware.</span>
-<span id="cb4-36"><a href="#cb4-36"></a><span class="ss">- </span>C</span>
-<span id="cb4-37"><a href="#cb4-37"></a></span>
-<span id="cb4-38"><a href="#cb4-38"></a><span class="in">```{.c}</span></span>
-<span id="cb4-39"><a href="#cb4-39"></a><span class="co">// High-level (C)</span></span>
-<span id="cb4-40"><a href="#cb4-40"></a><span class="dt">int</span> add3<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a><span class="op">{</span></span>
-<span id="cb4-42"><a href="#cb4-42"></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">+</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb4-43"><a href="#cb4-43"></a><span class="op">}</span></span>
-<span id="cb4-44"><a href="#cb4-44"></a><span class="in">```</span></span>
-<span id="cb4-45"><a href="#cb4-45"></a></span>
-<span id="cb4-46"><a href="#cb4-46"></a><span class="fu">## Perspective</span></span>
-<span id="cb4-47"><a href="#cb4-47"></a></span>
-<span id="cb4-48"><a href="#cb4-48"></a><span class="ss">- </span>This is similar to, but distinct from, "assembly", which is specific to particular case of hardware.</span>
-<span id="cb4-49"><a href="#cb4-49"></a><span class="ss">- </span>RISC-V</span>
-<span id="cb4-50"><a href="#cb4-50"></a></span>
-<span id="cb4-51"><a href="#cb4-51"></a><span class="in">```{.email}</span></span>
-<span id="cb4-52"><a href="#cb4-52"></a># Matching RISC-V assembly</span>
-<span id="cb4-53"><a href="#cb4-53"></a># a0 = a, a1 = b; return in a0</span>
-<span id="cb4-54"><a href="#cb4-54"></a>add a0, a0, a1 # a0 = a0 + a1</span>
-<span id="cb4-55"><a href="#cb4-55"></a>addi a0, a0, 3 # a0 = a0 + 3</span>
-<span id="cb4-56"><a href="#cb4-56"></a>ret # return</span>
-<span id="cb4-57"><a href="#cb4-57"></a><span class="in">```</span></span>
-<span id="cb4-58"><a href="#cb4-58"></a></span>
-<span id="cb4-59"><a href="#cb4-59"></a><span class="fu">## Perspective</span></span>
-<span id="cb4-60"><a href="#cb4-60"></a></span>
-<span id="cb4-61"><a href="#cb4-61"></a><span class="ss">- </span>Both a wildly distinct from machine code, which might as well be expressed in binary (is not human readable)</span>
-<span id="cb4-62"><a href="#cb4-62"></a><span class="ss">- </span>Not a language at all!</span>
-<span id="cb4-63"><a href="#cb4-63"></a></span>
-<span id="cb4-64"><a href="#cb4-64"></a><span class="in">```{.email}</span></span>
-<span id="cb4-65"><a href="#cb4-65"></a>0000000 01011 01010</span>
-<span id="cb4-66"><a href="#cb4-66"></a>000 01010 0110011</span>
-<span id="cb4-67"><a href="#cb4-67"></a>000000000011 01010</span>
-<span id="cb4-68"><a href="#cb4-68"></a>000 01010 0010011</span>
-<span id="cb4-69"><a href="#cb4-69"></a>000000000000 00001</span>
-<span id="cb4-70"><a href="#cb4-70"></a>000 00000 1100111</span>
-<span id="cb4-71"><a href="#cb4-71"></a><span class="in">```</span></span>
-<span id="cb4-72"><a href="#cb4-72"></a></span>
-<span id="cb4-73"><a href="#cb4-73"></a><span class="fu">## Why should we care?</span></span>
-<span id="cb4-74"><a href="#cb4-74"></a></span>
-<span id="cb4-75"><a href="#cb4-75"></a>::: {.columns}</span>
-<span id="cb4-76"><a href="#cb4-76"></a></span>
-<span id="cb4-77"><a href="#cb4-77"></a>::: {.column width="50%"}</span>
-<span id="cb4-78"><a href="#cb4-78"></a></span>
-<span id="cb4-79"><a href="#cb4-79"></a>Intel Core i7</span>
-<span id="cb4-80"><a href="#cb4-80"></a></span>
-<span id="cb4-81"><a href="#cb4-81"></a><span class="al">![](https://upload.wikimedia.org/wikipedia/commons/0/0c/Intel_Core_i7_13700K.jpg)</span></span>
-<span id="cb4-82"><a href="#cb4-82"></a></span>
-<span id="cb4-83"><a href="#cb4-83"></a>:::</span>
-<span id="cb4-84"><a href="#cb4-84"></a></span>
-<span id="cb4-85"><a href="#cb4-85"></a>::: {.column width="50%"}</span>
-<span id="cb4-86"><a href="#cb4-86"></a></span>
-<span id="cb4-87"><a href="#cb4-87"></a>Apple M1</span>
-<span id="cb4-88"><a href="#cb4-88"></a></span>
-<span id="cb4-89"><a href="#cb4-89"></a><span class="al">![](https://upload.wikimedia.org/wikipedia/commons/d/df/Mac_Mini_M1_chip.jpg)</span></span>
-<span id="cb4-90"><a href="#cb4-90"></a></span>
-<span id="cb4-91"><a href="#cb4-91"></a>:::</span>
-<span id="cb4-92"><a href="#cb4-92"></a></span>
-<span id="cb4-93"><a href="#cb4-93"></a>::::</span>
-<span id="cb4-94"><a href="#cb4-94"></a></span>
-<span id="cb4-95"><a href="#cb4-95"></a><span class="fu">## Artificial Intelligence</span></span>
-<span id="cb4-96"><a href="#cb4-96"></a></span>
-<span id="cb4-97"><a href="#cb4-97"></a><span class="ss">- </span>We all love AI here.</span>
-<span id="cb4-98"><a href="#cb4-98"></a><span class="ss">- </span>Specific hardware (NVIDIA) matters a lot to AI.</span>
-<span id="cb4-99"><a href="#cb4-99"></a><span class="ss">- </span>Moving on...</span>
-<span id="cb4-100"><a href="#cb4-100"></a></span>
-<span id="cb4-101"><a href="#cb4-101"></a><span class="fu">## Goals of this Course</span></span>
-<span id="cb4-102"><a href="#cb4-102"></a></span>
-<span id="cb4-103"><a href="#cb4-103"></a><span class="ss">- </span>How does a computer work?</span>
-<span id="cb4-104"><a href="#cb4-104"></a><span class="ss">- </span>How is data represented in a computer?</span>
-<span id="cb4-105"><a href="#cb4-105"></a><span class="ss">    - </span>Numbers, strings, arrays, photos, music</span>
-<span id="cb4-106"><a href="#cb4-106"></a><span class="ss">- </span>How is a program represented in a computer?</span>
-<span id="cb4-107"><a href="#cb4-107"></a><span class="ss">- </span>What does a computer do with my program?</span>
-<span id="cb4-108"><a href="#cb4-108"></a><span class="ss">- </span>How is data stored? How is data processed?</span>
-<span id="cb4-109"><a href="#cb4-109"></a><span class="ss">- </span>Are there any limits to what a computer can do?</span>
-<span id="cb4-110"><a href="#cb4-110"></a></span>
-<span id="cb4-111"><a href="#cb4-111"></a><span class="fu">## Digital Logic </span></span>
-<span id="cb4-112"><a href="#cb4-112"></a></span>
-<span id="cb4-113"><a href="#cb4-113"></a><span class="ss">- </span>Logic circuits are used to build computer hardware, as well as</span>
-<span id="cb4-114"><a href="#cb4-114"></a>many other types of systems (microwave, car). </span>
-<span id="cb4-115"><a href="#cb4-115"></a><span class="ss">    - </span>All such systems are broadly classified as digital hardware.</span>
-<span id="cb4-116"><a href="#cb4-116"></a><span class="ss">- </span>Digital derives from how information is represented as discrete</span>
-<span id="cb4-117"><a href="#cb4-117"></a>ranges of electrical signals. </span>
-<span id="cb4-118"><a href="#cb4-118"></a><span class="ss">    - </span>Using discrete ranges provides</span>
-<span id="cb4-119"><a href="#cb4-119"></a>robustness and scalability.</span>
-<span id="cb4-120"><a href="#cb4-120"></a></span>
-<span id="cb4-121"><a href="#cb4-121"></a><span class="fu">## Its "New"</span></span>
-<span id="cb4-122"><a href="#cb4-122"></a></span>
-<span id="cb4-123"><a href="#cb4-123"></a><span class="ss">- </span>Digital hardware technology has evolved dramatically</span>
-<span id="cb4-124"><a href="#cb4-124"></a>over the past 75 years!</span>
-<span id="cb4-125"><a href="#cb4-125"></a><span class="ss">    - </span>As old as e.g. *Brown v. Board*</span>
-<span id="cb4-126"><a href="#cb4-126"></a><span class="ss">- </span>In the 1960s logic was built with discrete components,</span>
-<span id="cb4-127"><a href="#cb4-127"></a>transistors and resistors.</span>
-<span id="cb4-128"><a href="#cb4-128"></a><span class="ss">- </span>Integrated circuits (ICs) made it possible to place a number</span>
-<span id="cb4-129"><a href="#cb4-129"></a>of transistors on a single chip.</span>
-<span id="cb4-130"><a href="#cb4-130"></a></span>
-<span id="cb4-131"><a href="#cb4-131"></a><span class="fu">## Moore’s Law!</span></span>
-<span id="cb4-132"><a href="#cb4-132"></a></span>
-<span id="cb4-133"><a href="#cb4-133"></a><span class="ss">- </span>Ask me about "Dennard" or "Mosfet" Scaling.</span>
-<span id="cb4-134"><a href="#cb4-134"></a></span>
-<span id="cb4-135"><a href="#cb4-135"></a><span class="al">![](https://i0.wp.com/semiengineering.com/wp-content/uploads/Picture1-2.png)</span></span>
-<span id="cb4-136"><a href="#cb4-136"></a></span>
-<span id="cb4-137"><a href="#cb4-137"></a><span class="fu"># Themes</span></span>
-<span id="cb4-138"><a href="#cb4-138"></a></span>
-<span id="cb4-139"><a href="#cb4-139"></a><span class="fu">## Theme 1</span></span>
-<span id="cb4-140"><a href="#cb4-140"></a></span>
-<span id="cb4-141"><a href="#cb4-141"></a><span class="ss">- </span>Demystify Computers!</span>
-<span id="cb4-142"><a href="#cb4-142"></a><span class="ss">    - </span>I am persistently annoyed by claims that computers are "thinking"</span>
-<span id="cb4-143"><a href="#cb4-143"></a><span class="ss">    - </span>Separately, little annoyances creep up from lower levels (hardware) to higher levels (software).</span>
-<span id="cb4-144"><a href="#cb4-144"></a><span class="ss">        - </span>As a "complete" computer scientist, this would be your problem.</span>
-<span id="cb4-145"><a href="#cb4-145"></a></span>
-<span id="cb4-146"><a href="#cb4-146"></a><span class="fu">## Theme 2</span></span>
-<span id="cb4-147"><a href="#cb4-147"></a></span>
-<span id="cb4-148"><a href="#cb4-148"></a><span class="ss">- </span>The Power of Abstraction!</span>
-<span id="cb4-149"><a href="#cb4-149"></a><span class="ss">    - </span>Define a function, </span>
-<span id="cb4-150"><a href="#cb4-150"></a><span class="ss">    - </span>Develop an implementation, and then</span>
-<span id="cb4-151"><a href="#cb4-151"></a><span class="ss">    - </span>Put a box around it, and then</span>
-<span id="cb4-152"><a href="#cb4-152"></a><span class="ss">    - </span>Reuse it (over and over!).</span>
-<span id="cb4-153"><a href="#cb4-153"></a><span class="ss">- </span>Good example: big numbers.</span>
-<span id="cb4-154"><a href="#cb4-154"></a></span>
-<span id="cb4-155"><a href="#cb4-155"></a></span>
-<span id="cb4-156"><a href="#cb4-156"></a><span class="fu">## Theme 3</span></span>
-<span id="cb4-157"><a href="#cb4-157"></a></span>
-<span id="cb4-158"><a href="#cb4-158"></a><span class="ss">- </span>Computational structures!</span>
-<span id="cb4-159"><a href="#cb4-159"></a><span class="ss">    - </span>What are the fundamental elements of computation?</span>
-<span id="cb4-160"><a href="#cb4-160"></a><span class="ss">    - </span>Can we define computation independent of implementation or the technology that it is implemented with?</span>
-<span id="cb4-161"><a href="#cb4-161"></a><span class="ss">        - </span>In this course, argued from the physical side (vs. an automata class from the mathematical side).</span>
-<span id="cb4-162"><a href="#cb4-162"></a></span>
-<span id="cb4-163"><a href="#cb4-163"></a><span class="fu">## Recall: Goals</span></span>
-<span id="cb4-164"><a href="#cb4-164"></a></span>
-<span id="cb4-165"><a href="#cb4-165"></a><span class="ss">- </span>How does a computer work?</span>
-<span id="cb4-166"><a href="#cb4-166"></a><span class="ss">- </span>How is data represented in a computer?</span>
-<span id="cb4-167"><a href="#cb4-167"></a><span class="ss">    - </span>Numbers, strings, arrays, photos, music</span>
-<span id="cb4-168"><a href="#cb4-168"></a><span class="ss">- </span>How is a program represented in a computer?</span>
-<span id="cb4-169"><a href="#cb4-169"></a><span class="ss">- </span>What does a computer do with my program?</span>
-<span id="cb4-170"><a href="#cb4-170"></a><span class="ss">- </span>How is data stored? How is data processed?</span>
-<span id="cb4-171"><a href="#cb4-171"></a><span class="ss">- </span>Are there any limits to what a computer can do?</span>
-<span id="cb4-172"><a href="#cb4-172"></a></span>
-<span id="cb4-173"><a href="#cb4-173"></a><span class="fu"># Information</span></span>
-<span id="cb4-174"><a href="#cb4-174"></a></span>
-<span id="cb4-175"><a href="#cb4-175"></a><span class="fu">## What does Digital Logic do?</span></span>
-<span id="cb4-176"><a href="#cb4-176"></a></span>
-<span id="cb4-177"><a href="#cb4-177"></a><span class="ss">- </span>It processes bits: 1s and 0s</span>
-<span id="cb4-178"><a href="#cb4-178"></a><span class="ss">- </span>It implements abstract logic functions</span>
-<span id="cb4-179"><a href="#cb4-179"></a><span class="ss">- </span>It is robust, stable, and repeatable</span>
-<span id="cb4-180"><a href="#cb4-180"></a><span class="ss">- </span>It doubles every two years.</span>
-<span id="cb4-181"><a href="#cb4-181"></a><span class="ss">- </span>It represents, transforms, and stores information</span>
-<span id="cb4-182"><a href="#cb4-182"></a></span>
-<span id="cb4-183"><a href="#cb4-183"></a><span class="fu">## What is “Information”?</span></span>
-<span id="cb4-184"><a href="#cb4-184"></a></span>
-<span id="cb4-185"><a href="#cb4-185"></a><span class="ss">- </span>We go live to Wikitionary.</span>
-<span id="cb4-186"><a href="#cb4-186"></a></span>
-<span id="cb4-187"><a href="#cb4-187"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"1080"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"720"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://en.wiktionary.org/wiki/information#Noun"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"description"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
-<span id="cb4-188"><a href="#cb4-188"></a></span>
-<span id="cb4-189"><a href="#cb4-189"></a><span class="fu">## Working Definition</span></span>
-<span id="cb4-190"><a href="#cb4-190"></a></span>
-<span id="cb4-191"><a href="#cb4-191"></a>::: {.callout-note}</span>
-<span id="cb4-192"><a href="#cb4-192"></a><span class="fu"># A Computer Engineer's Definition</span></span>
-<span id="cb4-193"><a href="#cb4-193"></a></span>
-<span id="cb4-194"><a href="#cb4-194"></a>**Information resolves uncertainty.**</span>
-<span id="cb4-195"><a href="#cb4-195"></a></span>
-<span id="cb4-196"><a href="#cb4-196"></a><span class="ss">- </span>Information is simply that "stuff" which cannot be predicted. </span>
-<span id="cb4-197"><a href="#cb4-197"></a><span class="ss">- </span>The less likely a message is, the more information it conveys.</span>
-<span id="cb4-198"><a href="#cb4-198"></a></span>
-<span id="cb4-199"><a href="#cb4-199"></a>:::</span>
-<span id="cb4-200"><a href="#cb4-200"></a></span>
-<span id="cb4-201"><a href="#cb4-201"></a><span class="fu">## Quantifying Information</span></span>
-<span id="cb4-202"><a href="#cb4-202"></a></span>
-<span id="cb4-203"><a href="#cb4-203"></a>Suppose you’re faced with N equally probable choices, and I give</span>
-<span id="cb4-204"><a href="#cb4-204"></a>you a fact that narrows it down to M possibilities. Then you’ve been</span>
-<span id="cb4-205"><a href="#cb4-205"></a>given:</span>
-<span id="cb4-206"><a href="#cb4-206"></a>log (N/M) bits of information</span>
-<span id="cb4-207"><a href="#cb4-207"></a>2</span>
-<span id="cb4-208"><a href="#cb4-208"></a>Examples:</span>
-<span id="cb4-209"><a href="#cb4-209"></a>Outcome of a coin flip: log (2/1) = 1 bit</span>
-<span id="cb4-210"><a href="#cb4-210"></a>●</span>
-<span id="cb4-211"><a href="#cb4-211"></a>2</span>
-<span id="cb4-212"><a href="#cb4-212"></a>The roll of one die?</span>
-<span id="cb4-213"><a href="#cb4-213"></a>●</span>
-<span id="cb4-214"><a href="#cb4-214"></a>Someone tells you that their 8-digit</span>
-<span id="cb4-215"><a href="#cb4-215"></a>●</span>
-<span id="cb4-216"><a href="#cb4-216"></a>Information is the theoretical</span>
-<span id="cb4-217"><a href="#cb4-217"></a>underpinning of why digital</span>
-<span id="cb4-218"><a href="#cb4-218"></a>phone number is a palindrome?</span>
-<span id="cb4-219"><a href="#cb4-219"></a>computers use bits! ☺</span>
-<span id="cb4-220"><a href="#cb4-220"></a></span>
-<span id="cb4-221"><a href="#cb4-221"></a><span class="fu">## An exercise: How many bits?</span></span>
-<span id="cb4-222"><a href="#cb4-222"></a></span>
-<span id="cb4-223"><a href="#cb4-223"></a>With 1-2 classmates, take 5 minutes to answer question 1 on your</span>
-<span id="cb4-224"><a href="#cb4-224"></a>worksheet.</span>
-<span id="cb4-225"><a href="#cb4-225"></a>You can take “N” to represent the number of students in this class,</span>
-<span id="cb4-226"><a href="#cb4-226"></a>and “M” to be the number of students with the last name Ryan.</span>
-<span id="cb4-227"><a href="#cb4-227"></a></span>
-<span id="cb4-228"><a href="#cb4-228"></a><span class="fu">## An exercise: How many bits?</span></span>
-<span id="cb4-229"><a href="#cb4-229"></a></span>
-<span id="cb4-230"><a href="#cb4-230"></a>With 1-2 classmates, take 5 minutes to answer question 1 on your</span>
-<span id="cb4-231"><a href="#cb4-231"></a>worksheet.</span>
-<span id="cb4-232"><a href="#cb4-232"></a>You can take “N” to represent the number of students in this class,</span>
-<span id="cb4-233"><a href="#cb4-233"></a>and “M” to be the number of students with the last name Ryan.</span>
-<span id="cb4-234"><a href="#cb4-234"></a>1.1 bits=⌈log (N)⌉, where N is the number of students in the class.</span>
-<span id="cb4-235"><a href="#cb4-235"></a>2</span>
-<span id="cb4-236"><a href="#cb4-236"></a>if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits!</span>
-<span id="cb4-237"><a href="#cb4-237"></a>2</span>
-<span id="cb4-238"><a href="#cb4-238"></a>1.2 N/M</span>
-<span id="cb4-239"><a href="#cb4-239"></a></span>
-<span id="cb4-240"><a href="#cb4-240"></a><span class="fu">## What do programs really do?</span></span>
-<span id="cb4-241"><a href="#cb4-241"></a></span>
-<span id="cb4-242"><a href="#cb4-242"></a>At this point in your CS career, you</span>
-<span id="cb4-243"><a href="#cb4-243"></a>int f(int x) {</span>
-<span id="cb4-244"><a href="#cb4-244"></a>look at a program specification and int r;</span>
-<span id="cb4-245"><a href="#cb4-245"></a>int odd = 1;</span>
-<span id="cb4-246"><a href="#cb4-246"></a>figure out what it does!</span>
-<span id="cb4-247"><a href="#cb4-247"></a>for (r = 0; x &gt;= odd; r++) {</span>
-<span id="cb4-248"><a href="#cb4-248"></a>x -= odd;</span>
-<span id="cb4-249"><a href="#cb4-249"></a>odd += 2;</span>
-<span id="cb4-250"><a href="#cb4-250"></a>Q: What does this do? What is your</span>
-<span id="cb4-251"><a href="#cb4-251"></a>}</span>
-<span id="cb4-252"><a href="#cb4-252"></a>strategy for figuring it out?</span>
-<span id="cb4-253"><a href="#cb4-253"></a>return r;</span>
-<span id="cb4-254"><a href="#cb4-254"></a>}</span>
-<span id="cb4-255"><a href="#cb4-255"></a>Hint: Try f(36), f(64), f(100)</span>
-<span id="cb4-256"><a href="#cb4-256"></a></span>
-<span id="cb4-257"><a href="#cb4-257"></a><span class="fu">## What do programs really do?</span></span>
-<span id="cb4-258"><a href="#cb4-258"></a></span>
-<span id="cb4-259"><a href="#cb4-259"></a>At this point in your CS career, you</span>
-<span id="cb4-260"><a href="#cb4-260"></a>int f(int x) {</span>
-<span id="cb4-261"><a href="#cb4-261"></a>look at a program specification and int r;</span>
-<span id="cb4-262"><a href="#cb4-262"></a>int odd = 1;</span>
-<span id="cb4-263"><a href="#cb4-263"></a>figure out what it does!</span>
-<span id="cb4-264"><a href="#cb4-264"></a>for (r = 0; x &gt;= odd; r++) {</span>
-<span id="cb4-265"><a href="#cb4-265"></a>x -= odd;</span>
-<span id="cb4-266"><a href="#cb4-266"></a>odd += 2;</span>
-<span id="cb4-267"><a href="#cb4-267"></a>Q: What does this do? What is your</span>
-<span id="cb4-268"><a href="#cb4-268"></a>}</span>
-<span id="cb4-269"><a href="#cb4-269"></a>strategy for figuring it out?</span>
-<span id="cb4-270"><a href="#cb4-270"></a>return r;</span>
-<span id="cb4-271"><a href="#cb4-271"></a>}</span>
-<span id="cb4-272"><a href="#cb4-272"></a>Hint: Try f(36), f(64), f(100)</span>
-<span id="cb4-273"><a href="#cb4-273"></a>This is computing the square root</span>
-<span id="cb4-274"><a href="#cb4-274"></a></span>
-<span id="cb4-275"><a href="#cb4-275"></a><span class="fu">## How does a computer do it?</span></span>
-<span id="cb4-276"><a href="#cb4-276"></a></span>
-<span id="cb4-277"><a href="#cb4-277"></a>What would a computer do with this</span>
-<span id="cb4-278"><a href="#cb4-278"></a>program specification?</span>
-<span id="cb4-279"><a href="#cb4-279"></a>f: mv t0,a0</span>
-<span id="cb4-280"><a href="#cb4-280"></a>int f(int x) {</span>
-<span id="cb4-281"><a href="#cb4-281"></a>li t1,1</span>
-<span id="cb4-282"><a href="#cb4-282"></a>int r;</span>
-<span id="cb4-283"><a href="#cb4-283"></a>li a0,0</span>
-<span id="cb4-284"><a href="#cb4-284"></a>int odd = 1;</span>
-<span id="cb4-285"><a href="#cb4-285"></a>blt t0,t1,return</span>
-<span id="cb4-286"><a href="#cb4-286"></a>for (r = 0; x &gt;= odd; r++) {</span>
-<span id="cb4-287"><a href="#cb4-287"></a>loop: sub t0,t0,t1</span>
-<span id="cb4-288"><a href="#cb4-288"></a>x -= odd;</span>
-<span id="cb4-289"><a href="#cb4-289"></a>addi t1,t1,2</span>
-<span id="cb4-290"><a href="#cb4-290"></a>odd += 2;</span>
-<span id="cb4-291"><a href="#cb4-291"></a>addi a0,a0,1</span>
-<span id="cb4-292"><a href="#cb4-292"></a>}</span>
-<span id="cb4-293"><a href="#cb4-293"></a>bge t0,t1,loop</span>
-<span id="cb4-294"><a href="#cb4-294"></a>return r;</span>
-<span id="cb4-295"><a href="#cb4-295"></a>return: ret</span>
-<span id="cb4-296"><a href="#cb4-296"></a>}</span>
-<span id="cb4-297"><a href="#cb4-297"></a>It translates it into a series of simple</span>
-<span id="cb4-298"><a href="#cb4-298"></a>instructions!</span>
-<span id="cb4-299"><a href="#cb4-299"></a></span>
-<span id="cb4-300"><a href="#cb4-300"></a><span class="fu">## Are there limits to computation?</span></span>
-<span id="cb4-301"><a href="#cb4-301"></a></span>
-<span id="cb4-302"><a href="#cb4-302"></a>■ Will some new instruction be invented</span>
-<span id="cb4-303"><a href="#cb4-303"></a>that fundamentally changes how fast</span>
-<span id="cb4-304"><a href="#cb4-304"></a>computers solve problems?</span>
-<span id="cb4-305"><a href="#cb4-305"></a>■ Can computers solve *any* well-</span>
-<span id="cb4-306"><a href="#cb4-306"></a>specified problem?</span>
-<span id="cb4-307"><a href="#cb4-307"></a>– COMP455</span>
-<span id="cb4-308"><a href="#cb4-308"></a>■ Can we predict how long it will take for</span>
-<span id="cb4-309"><a href="#cb4-309"></a>a computer to solve a given problem?</span>
-<span id="cb4-310"><a href="#cb4-310"></a>– COMP210, COMP550</span>
-<span id="cb4-311"><a href="#cb4-311"></a>■ Does there exist a new model of</span>
-<span id="cb4-312"><a href="#cb4-312"></a>computation?</span>
-<span id="cb4-313"><a href="#cb4-313"></a></span>
-<span id="cb4-314"><a href="#cb4-314"></a><span class="fu">## ADMINISTRATIVE</span></span>
-<span id="cb4-315"><a href="#cb4-315"></a></span>
-<span id="cb4-316"><a href="#cb4-316"></a>DETAILS</span>
-<span id="cb4-317"><a href="#cb4-317"></a></span>
-<span id="cb4-318"><a href="#cb4-318"></a>Syllabus!</span>
-<span id="cb4-319"><a href="#cb4-319"></a>Course site:</span>
-<span id="cb4-320"><a href="#cb4-320"></a>https://www.cs.unc.edu/~kakiryan/teaching/311-</span>
-<span id="cb4-321"><a href="#cb4-321"></a>sp26/311-sp26.html</span>
-<span id="cb4-322"><a href="#cb4-322"></a>Or</span>
-<span id="cb4-323"><a href="#cb4-323"></a>https://tinyurl.com/comp311-sp26</span>
-<span id="cb4-324"><a href="#cb4-324"></a></span>
-<span id="cb4-325"><a href="#cb4-325"></a><span class="fu">## Course Structure</span></span>
-<span id="cb4-326"><a href="#cb4-326"></a></span>
-<span id="cb4-327"><a href="#cb4-327"></a>■ Assessment (65%):</span>
-<span id="cb4-328"><a href="#cb4-328"></a>– 6x Quizzes (QZ): 50% Your final can replace up to two of your</span>
-<span id="cb4-329"><a href="#cb4-329"></a>lowest quiz scores.</span>
-<span id="cb4-330"><a href="#cb4-330"></a>– Final Exam (FN): 15%</span>
-<span id="cb4-331"><a href="#cb4-331"></a>■ Practice and Preparation (30%):</span>
-<span id="cb4-332"><a href="#cb4-332"></a>– 6x Written Assignments (WA): 15%</span>
-<span id="cb4-333"><a href="#cb4-333"></a>– 5x Labs (LAB): 15%</span>
-<span id="cb4-334"><a href="#cb4-334"></a>■ In-Class Participation (5%):</span>
-<span id="cb4-335"><a href="#cb4-335"></a>– 1x Submission to Gradescope per class.</span>
-<span id="cb4-336"><a href="#cb4-336"></a>■ 4 can be dropped, no questions asked.</span>
-<span id="cb4-337"><a href="#cb4-337"></a></span>
-<span id="cb4-338"><a href="#cb4-338"></a><span class="fu">## Extensions + Late Days</span></span>
-<span id="cb4-339"><a href="#cb4-339"></a></span>
-<span id="cb4-340"><a href="#cb4-340"></a>■ You have 8 days to use on any assignment in the course, with no</span>
-<span id="cb4-341"><a href="#cb4-341"></a>explanation needed.</span>
-<span id="cb4-342"><a href="#cb4-342"></a>■ You may request extensions for illness or personal life events so</span>
-<span id="cb4-343"><a href="#cb4-343"></a>you don’t have to use up your late days.</span>
-<span id="cb4-344"><a href="#cb4-344"></a>– Extension form is linked in the syllabus</span>
-<span id="cb4-345"><a href="#cb4-345"></a>■ If you are not sure if something qualifies for an extension, just fill</span>
-<span id="cb4-346"><a href="#cb4-346"></a>out the form anyway, and we will get back to you.</span>
-<span id="cb4-347"><a href="#cb4-347"></a>■ You will not be penalized for submitting the assignment within</span>
-<span id="cb4-348"><a href="#cb4-348"></a>the provided grace period if you receive an extension!</span>
-<span id="cb4-349"><a href="#cb4-349"></a></span>
-<span id="cb4-350"><a href="#cb4-350"></a><span class="fu">## Gradescope</span></span>
-<span id="cb4-351"><a href="#cb4-351"></a></span>
-<span id="cb4-352"><a href="#cb4-352"></a>■ Make sure you are enrolled!</span>
-<span id="cb4-353"><a href="#cb4-353"></a>– For the correct section!</span>
-<span id="cb4-354"><a href="#cb4-354"></a></span>
-<span id="cb4-355"><a href="#cb4-355"></a><span class="fu">## The Team!</span></span>
-<span id="cb4-356"><a href="#cb4-356"></a></span>
-<span id="cb4-357"><a href="#cb4-357"></a>■ LAs:</span>
-<span id="cb4-358"><a href="#cb4-358"></a>– Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain,</span>
-<span id="cb4-359"><a href="#cb4-359"></a>Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil</span>
-<span id="cb4-360"><a href="#cb4-360"></a>Dickerson, Gabrielle Stewart, Kiara Smith, Nathan Santiago,</span>
-<span id="cb4-361"><a href="#cb4-361"></a>Betsy George, Matthew Thornton, Celine Keles, Rachit Pajbai,</span>
-<span id="cb4-362"><a href="#cb4-362"></a>Joaquim D’Silva, Joseph Zhen, Sven Reyes, Chenghe Kong,</span>
-<span id="cb4-363"><a href="#cb4-363"></a>Wai Phyo, Danny Xia, Issa Masumbuko</span>
-<span id="cb4-364"><a href="#cb4-364"></a>■ LA office hours will be held in CSXL RM SN143. Time TBD!</span>
-<span id="cb4-365"><a href="#cb4-365"></a>– I will send out an announcement once we schedule them!</span>
-<span id="cb4-366"><a href="#cb4-366"></a>■ My office hours are Tuesdays 1-3pm in FB114.</span>
-<span id="cb4-367"><a href="#cb4-367"></a></span>
-<span id="cb4-368"><a href="#cb4-368"></a>Classroom Community</span>
-<span id="cb4-369"><a href="#cb4-369"></a>■ Let’s all work together to create a supportive and welcoming learning</span>
-<span id="cb4-370"><a href="#cb4-370"></a>environment for everyone in this room!</span>
-<span id="cb4-371"><a href="#cb4-371"></a>■ I expect all of you to be present, respectful &amp; engaged in class, every day!</span>
-<span id="cb4-372"><a href="#cb4-372"></a>■ We will transition between groupwork &amp; lecture frequently.</span>
-<span id="cb4-373"><a href="#cb4-373"></a>– During group work: the more conversation the better!</span>
-<span id="cb4-374"><a href="#cb4-374"></a>– During lecture: Please lock in! Sound carries more than you think.</span>
-<span id="cb4-375"><a href="#cb4-375"></a>■ Ask questions! Utilize the TAs and office hours!</span>
-<span id="cb4-376"><a href="#cb4-376"></a>– Come to office hours for conceptual help, too! We love talking to you all!</span>
-<span id="cb4-377"><a href="#cb4-377"></a>■ I am always open to feedback!</span>
-<span id="cb4-378"><a href="#cb4-378"></a></span>
-<span id="cb4-379"><a href="#cb4-379"></a>HEALTH &amp; SAFETY</span>
-<span id="cb4-380"><a href="#cb4-380"></a></span>
-<span id="cb4-381"><a href="#cb4-381"></a>Face Masks</span>
-<span id="cb4-382"><a href="#cb4-382"></a>■ Optional</span>
-<span id="cb4-383"><a href="#cb4-383"></a>■ Use a mask often!</span>
-<span id="cb4-384"><a href="#cb4-384"></a></span>
-<span id="cb4-385"><a href="#cb4-385"></a>Emergency Procedures</span>
-<span id="cb4-386"><a href="#cb4-386"></a>■ Evacuate (fire, chemical hazard)</span>
-<span id="cb4-387"><a href="#cb4-387"></a>■ Shelter in place (weather related)</span>
-<span id="cb4-388"><a href="#cb4-388"></a>■ Secure in place (armed and dangerous assailant)</span>
-<span id="cb4-389"><a href="#cb4-389"></a>– run, hide (secure in place), fight</span>
-<span id="cb4-390"><a href="#cb4-390"></a></span>
-<span id="cb4-391"><a href="#cb4-391"></a>Acknowledgements</span>
-<span id="cb4-392"><a href="#cb4-392"></a>■ Optional Textbook 1: Computer Organization and Design RISC-V</span>
-<span id="cb4-393"><a href="#cb4-393"></a>Edition: The Hardware Software Interface by David Patterson and</span>
-<span id="cb4-394"><a href="#cb4-394"></a>John Hennessey</span>
-<span id="cb4-395"><a href="#cb4-395"></a>■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by</span>
-<span id="cb4-396"><a href="#cb4-396"></a>David Patterson and Andrew Waterman.</span>
-<span id="cb4-397"><a href="#cb4-397"></a>■ Connor McMahon, Leonard McMillan, Montek Singh</span>
-<span id="cb4-398"><a href="#cb4-398"></a></span>
-<span id="cb4-399"><a href="#cb4-399"></a><span class="fu">## 211 REVIEW ☺</span></span>
-<span id="cb4-400"><a href="#cb4-400"></a></span>
-<span id="cb4-401"><a href="#cb4-401"></a></span>
-<span id="cb4-402"><a href="#cb4-402"></a><span class="fu">## Base</span></span>
-<span id="cb4-403"><a href="#cb4-403"></a></span>
-<span id="cb4-404"><a href="#cb4-404"></a>■ A base is the number of different digits that a system can use to</span>
-<span id="cb4-405"><a href="#cb4-405"></a>represent numbers</span>
-<span id="cb4-406"><a href="#cb4-406"></a>■ Binary is base 2 because it has the digits 0 and 1</span>
-<span id="cb4-407"><a href="#cb4-407"></a>■ Decimal base 10 because it has the digits 0-9</span>
-<span id="cb4-408"><a href="#cb4-408"></a>■ Hex is base 16 because it has the digits 0-F</span>
-<span id="cb4-409"><a href="#cb4-409"></a></span>
-<span id="cb4-410"><a href="#cb4-410"></a><span class="fu">## Binary Notation</span></span>
-<span id="cb4-411"><a href="#cb4-411"></a></span>
-<span id="cb4-412"><a href="#cb4-412"></a>■ Always prepend binary numbers with “0b” or add a subscript of 2</span>
-<span id="cb4-413"><a href="#cb4-413"></a>– Ex: 0b 1001 or 1001</span>
-<span id="cb4-414"><a href="#cb4-414"></a>2</span>
-<span id="cb4-415"><a href="#cb4-415"></a>■ Place binary numbers in groups of four to make it easier to read</span>
-<span id="cb4-416"><a href="#cb4-416"></a>– Ex: 0b 1010 1111 0101 or 0b1010_1111_0101</span>
-<span id="cb4-417"><a href="#cb4-417"></a>– If you cannot evenly break up the number into groups of four,</span>
-<span id="cb4-418"><a href="#cb4-418"></a>start making the groups from the right</span>
-<span id="cb4-419"><a href="#cb4-419"></a>■ Ex: 0b10_1010_0011</span>
-<span id="cb4-420"><a href="#cb4-420"></a></span>
-<span id="cb4-421"><a href="#cb4-421"></a><span class="fu">## Hex Notation</span></span>
-<span id="cb4-422"><a href="#cb4-422"></a></span>
-<span id="cb4-423"><a href="#cb4-423"></a>■ Always prepend hex numbers with “0x” or add a subscript of 16</span>
-<span id="cb4-424"><a href="#cb4-424"></a>– Ex: 0xE2A or E2A</span>
-<span id="cb4-425"><a href="#cb4-425"></a>16</span>
-<span id="cb4-426"><a href="#cb4-426"></a></span>
-<span id="cb4-427"><a href="#cb4-427"></a><span class="fu">## Decimal Notation</span></span>
-<span id="cb4-428"><a href="#cb4-428"></a></span>
-<span id="cb4-429"><a href="#cb4-429"></a>■ You can indicate that a number is a decimal value by adding a</span>
-<span id="cb4-430"><a href="#cb4-430"></a>subscript of 10</span>
-<span id="cb4-431"><a href="#cb4-431"></a>– Ex: 54</span>
-<span id="cb4-432"><a href="#cb4-432"></a>10</span>
-<span id="cb4-433"><a href="#cb4-433"></a>■ If a number does not have a leading “0b” or “0x” and does not</span>
-<span id="cb4-434"><a href="#cb4-434"></a>have a subscript, it is assumed to be a decimal value</span>
-<span id="cb4-435"><a href="#cb4-435"></a></span>
-<span id="cb4-436"><a href="#cb4-436"></a><span class="fu">## Overflow</span></span>
-<span id="cb4-437"><a href="#cb4-437"></a></span>
-<span id="cb4-438"><a href="#cb4-438"></a>■ Overflow occurs when the result of the operation cannot be</span>
-<span id="cb4-439"><a href="#cb4-439"></a>represented with the given number of bits</span>
-<span id="cb4-440"><a href="#cb4-440"></a>■ When adding two unsigned numbers, overflow occurs when the</span>
-<span id="cb4-441"><a href="#cb4-441"></a>carry-out of the operation is 1</span>
-<span id="cb4-442"><a href="#cb4-442"></a></span>
-<span id="cb4-443"><a href="#cb4-443"></a><span class="fu">## Binary Addition and Overflow</span></span>
-<span id="cb4-444"><a href="#cb4-444"></a></span>
-<span id="cb4-445"><a href="#cb4-445"></a>Take 5 minutes to answer question 3 on your worksheets!</span>
-<span id="cb4-446"><a href="#cb4-446"></a></span>
-<span id="cb4-447"><a href="#cb4-447"></a><span class="fu">## Review: Binary Addition and Overflow</span></span>
-<span id="cb4-448"><a href="#cb4-448"></a></span>
-<span id="cb4-449"><a href="#cb4-449"></a>1111</span>
-<span id="cb4-450"><a href="#cb4-450"></a>1010</span>
-<span id="cb4-451"><a href="#cb4-451"></a>1001</span>
-<span id="cb4-452"><a href="#cb4-452"></a>2</span>
-<span id="cb4-453"><a href="#cb4-453"></a>2</span>
-<span id="cb4-454"><a href="#cb4-454"></a>+</span>
-<span id="cb4-455"><a href="#cb4-455"></a>+</span>
-<span id="cb4-456"><a href="#cb4-456"></a>0101</span>
-<span id="cb4-457"><a href="#cb4-457"></a>0111</span>
-<span id="cb4-458"><a href="#cb4-458"></a>2</span>
-<span id="cb4-459"><a href="#cb4-459"></a>2</span>
-<span id="cb4-460"><a href="#cb4-460"></a>1111</span>
-<span id="cb4-461"><a href="#cb4-461"></a>no 0000</span>
-<span id="cb4-462"><a href="#cb4-462"></a>yes</span>
-<span id="cb4-463"><a href="#cb4-463"></a>11</span>
-<span id="cb4-464"><a href="#cb4-464"></a>111</span>
-<span id="cb4-465"><a href="#cb4-465"></a>0110</span>
-<span id="cb4-466"><a href="#cb4-466"></a>1010</span>
-<span id="cb4-467"><a href="#cb4-467"></a>2</span>
-<span id="cb4-468"><a href="#cb4-468"></a>2</span>
-<span id="cb4-469"><a href="#cb4-469"></a>+</span>
-<span id="cb4-470"><a href="#cb4-470"></a>+</span>
-<span id="cb4-471"><a href="#cb4-471"></a>0110</span>
-<span id="cb4-472"><a href="#cb4-472"></a>0111</span>
-<span id="cb4-473"><a href="#cb4-473"></a>2</span>
-<span id="cb4-474"><a href="#cb4-474"></a>2</span>
-<span id="cb4-475"><a href="#cb4-475"></a>1100</span>
-<span id="cb4-476"><a href="#cb4-476"></a>0001</span>
-<span id="cb4-477"><a href="#cb4-477"></a>yes no</span>
-<span id="cb4-478"><a href="#cb4-478"></a></span>
-<span id="cb4-479"><a href="#cb4-479"></a><span class="fu">## Two’s Complement</span></span>
-<span id="cb4-480"><a href="#cb4-480"></a></span>
-<span id="cb4-481"><a href="#cb4-481"></a>Take 5 minutes to answer question 4 on your worksheets!</span>
-<span id="cb4-482"><a href="#cb4-482"></a></span>
-<span id="cb4-483"><a href="#cb4-483"></a><span class="fu">## Two’s Complement</span></span>
-<span id="cb4-484"><a href="#cb4-484"></a></span>
-<span id="cb4-485"><a href="#cb4-485"></a>4.2: What is the minimum number of</span>
-<span id="cb4-486"><a href="#cb4-486"></a>4.1: Represent -15 in two’s complement with 7</span>
-<span id="cb4-487"><a href="#cb4-487"></a>bits needed to represent 20 in two’s</span>
-<span id="cb4-488"><a href="#cb4-488"></a>bits</span>
-<span id="cb4-489"><a href="#cb4-489"></a>complement</span>
-<span id="cb4-490"><a href="#cb4-490"></a>Unsigned: 0b 000 1111</span>
-<span id="cb4-491"><a href="#cb4-491"></a>Flip bits: 0b 111 0000</span>
-<span id="cb4-492"><a href="#cb4-492"></a>0b 010100</span>
-<span id="cb4-493"><a href="#cb4-493"></a>Add one: 0b 111 0001</span>
-<span id="cb4-494"><a href="#cb4-494"></a>6 bits</span>
-<span id="cb4-495"><a href="#cb4-495"></a>4.3: Convert the following two’s 4.4: Convert the following two’s</span>
-<span id="cb4-496"><a href="#cb4-496"></a>complement number to decimal: complement number to decimal:</span>
-<span id="cb4-497"><a href="#cb4-497"></a>0b 1111 1110 0b 0011 1000</span>
-<span id="cb4-498"><a href="#cb4-498"></a>Flip bits: 0b 0000 0001</span>
-<span id="cb4-499"><a href="#cb4-499"></a>Positive, so no need to flip bits</span>
-<span id="cb4-500"><a href="#cb4-500"></a>56</span>
-<span id="cb4-501"><a href="#cb4-501"></a>Add one: 0b 0000 0010 → -2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="an">title:</span><span class="co"> Introduction </span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="an">subtitle:</span><span class="co"> "w0d0"</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">---</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="fu"># Logistics</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="fu">## Announcements</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="ss">- </span>**Welcome** to HW/<span class="in">`asm`</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="ss">- </span>**Action Items** discussion</span>
+<span id="cb12-12"><a href="#cb12-12"></a></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="fu">## Credit</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="ss">- </span>I stole this course from <span class="co">[</span><span class="ot">Kaki Ryan</span><span class="co">](https://www.cs.unc.edu/~kakiryan/)</span>.</span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="ss">- </span>Kaki and I overlapped a few years in Cynthia Sturton's hardware security group</span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="ss">- </span>Kaki actually understood what we were doing in the group.</span>
+<span id="cb12-18"><a href="#cb12-18"></a></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="fu">## Target Audience </span></span>
+<span id="cb12-20"><a href="#cb12-20"></a></span>
+<span id="cb12-21"><a href="#cb12-21"></a><span class="ss">- </span>Tough-to-impossible without CS 271: Systems in ???</span>
+<span id="cb12-22"><a href="#cb12-22"></a><span class="ss">- </span>Good for:</span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="ss">    - </span>CS people with engineering interest</span>
+<span id="cb12-24"><a href="#cb12-24"></a><span class="ss">    - </span>Physics/engineering people with hardware interest</span>
+<span id="cb12-25"><a href="#cb12-25"></a><span class="ss">    - </span>Math people with applications interest</span>
+<span id="cb12-26"><a href="#cb12-26"></a></span>
+<span id="cb12-27"><a href="#cb12-27"></a><span class="fu">## What is the course about?</span></span>
+<span id="cb12-28"><a href="#cb12-28"></a></span>
+<span id="cb12-29"><a href="#cb12-29"></a><span class="ss">- </span>In prior work, you probably only worked with computers at the software level.</span>
+<span id="cb12-30"><a href="#cb12-30"></a><span class="ss">    - </span>True even in the case of e.g. an systems programming class, where final projects (blockchain or version control) were ultimately "software"</span>
+<span id="cb12-31"><a href="#cb12-31"></a><span class="ss">    - </span>Just implemented *as one would* implement a system like an OS, server, or compiler.</span>
+<span id="cb12-32"><a href="#cb12-32"></a></span>
+<span id="cb12-33"><a href="#cb12-33"></a><span class="fu">## Perspective</span></span>
+<span id="cb12-34"><a href="#cb12-34"></a></span>
+<span id="cb12-35"><a href="#cb12-35"></a><span class="ss">- </span>First consider what we now term a *high-level programming language* because it does not correspond directly to hardware.</span>
+<span id="cb12-36"><a href="#cb12-36"></a><span class="ss">- </span>C</span>
+<span id="cb12-37"><a href="#cb12-37"></a></span>
+<span id="cb12-38"><a href="#cb12-38"></a><span class="in">```{.c}</span></span>
+<span id="cb12-39"><a href="#cb12-39"></a><span class="co">// High-level (C)</span></span>
+<span id="cb12-40"><a href="#cb12-40"></a><span class="dt">int</span> add3<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span></span>
+<span id="cb12-41"><a href="#cb12-41"></a><span class="op">{</span></span>
+<span id="cb12-42"><a href="#cb12-42"></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">+</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb12-43"><a href="#cb12-43"></a><span class="op">}</span></span>
+<span id="cb12-44"><a href="#cb12-44"></a><span class="in">```</span></span>
+<span id="cb12-45"><a href="#cb12-45"></a></span>
+<span id="cb12-46"><a href="#cb12-46"></a><span class="fu">## Perspective</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a></span>
+<span id="cb12-48"><a href="#cb12-48"></a><span class="ss">- </span>This is similar to, but distinct from, "assembly", which is specific to particular case of hardware.</span>
+<span id="cb12-49"><a href="#cb12-49"></a><span class="ss">- </span>RISC-V</span>
+<span id="cb12-50"><a href="#cb12-50"></a></span>
+<span id="cb12-51"><a href="#cb12-51"></a><span class="in">```{.email}</span></span>
+<span id="cb12-52"><a href="#cb12-52"></a># Matching RISC-V assembly</span>
+<span id="cb12-53"><a href="#cb12-53"></a># a0 = a, a1 = b; return in a0</span>
+<span id="cb12-54"><a href="#cb12-54"></a>add a0, a0, a1 # a0 = a0 + a1</span>
+<span id="cb12-55"><a href="#cb12-55"></a>addi a0, a0, 3 # a0 = a0 + 3</span>
+<span id="cb12-56"><a href="#cb12-56"></a>ret # return</span>
+<span id="cb12-57"><a href="#cb12-57"></a><span class="in">```</span></span>
+<span id="cb12-58"><a href="#cb12-58"></a></span>
+<span id="cb12-59"><a href="#cb12-59"></a><span class="fu">## Perspective</span></span>
+<span id="cb12-60"><a href="#cb12-60"></a></span>
+<span id="cb12-61"><a href="#cb12-61"></a><span class="ss">- </span>Both a wildly distinct from machine code, which might as well be expressed in binary (is not human readable)</span>
+<span id="cb12-62"><a href="#cb12-62"></a><span class="ss">- </span>Not a language at all!</span>
+<span id="cb12-63"><a href="#cb12-63"></a></span>
+<span id="cb12-64"><a href="#cb12-64"></a><span class="in">```{.email}</span></span>
+<span id="cb12-65"><a href="#cb12-65"></a>0000000 01011 01010</span>
+<span id="cb12-66"><a href="#cb12-66"></a>000 01010 0110011</span>
+<span id="cb12-67"><a href="#cb12-67"></a>000000000011 01010</span>
+<span id="cb12-68"><a href="#cb12-68"></a>000 01010 0010011</span>
+<span id="cb12-69"><a href="#cb12-69"></a>000000000000 00001</span>
+<span id="cb12-70"><a href="#cb12-70"></a>000 00000 1100111</span>
+<span id="cb12-71"><a href="#cb12-71"></a><span class="in">```</span></span>
+<span id="cb12-72"><a href="#cb12-72"></a></span>
+<span id="cb12-73"><a href="#cb12-73"></a><span class="fu">## Why should we care?</span></span>
+<span id="cb12-74"><a href="#cb12-74"></a></span>
+<span id="cb12-75"><a href="#cb12-75"></a>:::: {.columns}</span>
+<span id="cb12-76"><a href="#cb12-76"></a></span>
+<span id="cb12-77"><a href="#cb12-77"></a>::: {.column width="50%"}</span>
+<span id="cb12-78"><a href="#cb12-78"></a></span>
+<span id="cb12-79"><a href="#cb12-79"></a>Intel Core i7</span>
+<span id="cb12-80"><a href="#cb12-80"></a></span>
+<span id="cb12-81"><a href="#cb12-81"></a><span class="al">![](https://upload.wikimedia.org/wikipedia/commons/0/0c/Intel_Core_i7_13700K.jpg)</span></span>
+<span id="cb12-82"><a href="#cb12-82"></a></span>
+<span id="cb12-83"><a href="#cb12-83"></a>:::</span>
+<span id="cb12-84"><a href="#cb12-84"></a></span>
+<span id="cb12-85"><a href="#cb12-85"></a>::: {.column width="50%"}</span>
+<span id="cb12-86"><a href="#cb12-86"></a></span>
+<span id="cb12-87"><a href="#cb12-87"></a>Apple M1</span>
+<span id="cb12-88"><a href="#cb12-88"></a></span>
+<span id="cb12-89"><a href="#cb12-89"></a><span class="al">![](https://upload.wikimedia.org/wikipedia/commons/d/df/Mac_Mini_M1_chip.jpg)</span></span>
+<span id="cb12-90"><a href="#cb12-90"></a></span>
+<span id="cb12-91"><a href="#cb12-91"></a>:::</span>
+<span id="cb12-92"><a href="#cb12-92"></a></span>
+<span id="cb12-93"><a href="#cb12-93"></a>::::</span>
+<span id="cb12-94"><a href="#cb12-94"></a></span>
+<span id="cb12-95"><a href="#cb12-95"></a><span class="fu">## Artificial Intelligence</span></span>
+<span id="cb12-96"><a href="#cb12-96"></a></span>
+<span id="cb12-97"><a href="#cb12-97"></a><span class="ss">- </span>We all love AI here.</span>
+<span id="cb12-98"><a href="#cb12-98"></a><span class="ss">- </span>Specific hardware (NVIDIA) matters a lot to AI.</span>
+<span id="cb12-99"><a href="#cb12-99"></a><span class="ss">- </span>Moving on...</span>
+<span id="cb12-100"><a href="#cb12-100"></a></span>
+<span id="cb12-101"><a href="#cb12-101"></a><span class="fu">## Goals of this Course</span></span>
+<span id="cb12-102"><a href="#cb12-102"></a></span>
+<span id="cb12-103"><a href="#cb12-103"></a><span class="ss">- </span>How does a computer work?</span>
+<span id="cb12-104"><a href="#cb12-104"></a><span class="ss">- </span>How is data represented in a computer?</span>
+<span id="cb12-105"><a href="#cb12-105"></a><span class="ss">    - </span>Numbers, strings, arrays, photos, music</span>
+<span id="cb12-106"><a href="#cb12-106"></a><span class="ss">- </span>How is a program represented in a computer?</span>
+<span id="cb12-107"><a href="#cb12-107"></a><span class="ss">- </span>What does a computer do with my program?</span>
+<span id="cb12-108"><a href="#cb12-108"></a><span class="ss">- </span>How is data stored? How is data processed?</span>
+<span id="cb12-109"><a href="#cb12-109"></a><span class="ss">- </span>Are there any limits to what a computer can do?</span>
+<span id="cb12-110"><a href="#cb12-110"></a></span>
+<span id="cb12-111"><a href="#cb12-111"></a><span class="fu">## Digital Logic </span></span>
+<span id="cb12-112"><a href="#cb12-112"></a></span>
+<span id="cb12-113"><a href="#cb12-113"></a><span class="ss">- </span>Logic circuits are used to build computer hardware, as well as</span>
+<span id="cb12-114"><a href="#cb12-114"></a>many other types of systems (microwave, car). </span>
+<span id="cb12-115"><a href="#cb12-115"></a><span class="ss">    - </span>All such systems are broadly classified as digital hardware.</span>
+<span id="cb12-116"><a href="#cb12-116"></a><span class="ss">- </span>Digital derives from how information is represented as discrete</span>
+<span id="cb12-117"><a href="#cb12-117"></a>ranges of electrical signals. </span>
+<span id="cb12-118"><a href="#cb12-118"></a><span class="ss">    - </span>Using discrete ranges provides</span>
+<span id="cb12-119"><a href="#cb12-119"></a>robustness and scalability.</span>
+<span id="cb12-120"><a href="#cb12-120"></a></span>
+<span id="cb12-121"><a href="#cb12-121"></a><span class="fu">## Its "New"</span></span>
+<span id="cb12-122"><a href="#cb12-122"></a></span>
+<span id="cb12-123"><a href="#cb12-123"></a><span class="ss">- </span>Digital hardware technology has evolved dramatically</span>
+<span id="cb12-124"><a href="#cb12-124"></a>over the past 75 years!</span>
+<span id="cb12-125"><a href="#cb12-125"></a><span class="ss">    - </span>As old as e.g. *Brown v. Board*</span>
+<span id="cb12-126"><a href="#cb12-126"></a><span class="ss">- </span>In the 1960s logic was built with discrete components,</span>
+<span id="cb12-127"><a href="#cb12-127"></a>transistors and resistors.</span>
+<span id="cb12-128"><a href="#cb12-128"></a><span class="ss">- </span>Integrated circuits (ICs) made it possible to place a number</span>
+<span id="cb12-129"><a href="#cb12-129"></a>of transistors on a single chip.</span>
+<span id="cb12-130"><a href="#cb12-130"></a></span>
+<span id="cb12-131"><a href="#cb12-131"></a><span class="fu">## Moore’s Law!</span></span>
+<span id="cb12-132"><a href="#cb12-132"></a></span>
+<span id="cb12-133"><a href="#cb12-133"></a><span class="ss">- </span>Ask me about "Dennard" or "Mosfet" Scaling.</span>
+<span id="cb12-134"><a href="#cb12-134"></a></span>
+<span id="cb12-135"><a href="#cb12-135"></a><span class="al">![](https://i0.wp.com/semiengineering.com/wp-content/uploads/Picture1-2.png)</span></span>
+<span id="cb12-136"><a href="#cb12-136"></a></span>
+<span id="cb12-137"><a href="#cb12-137"></a><span class="fu"># Themes</span></span>
+<span id="cb12-138"><a href="#cb12-138"></a></span>
+<span id="cb12-139"><a href="#cb12-139"></a><span class="fu">## Theme 1</span></span>
+<span id="cb12-140"><a href="#cb12-140"></a></span>
+<span id="cb12-141"><a href="#cb12-141"></a><span class="ss">- </span>Demystify Computers!</span>
+<span id="cb12-142"><a href="#cb12-142"></a><span class="ss">    - </span>I am persistently annoyed by claims that computers are "thinking"</span>
+<span id="cb12-143"><a href="#cb12-143"></a><span class="ss">    - </span>Separately, little annoyances creep up from lower levels (hardware) to higher levels (software).</span>
+<span id="cb12-144"><a href="#cb12-144"></a><span class="ss">        - </span>As a "complete" computer scientist, this would be your problem.</span>
+<span id="cb12-145"><a href="#cb12-145"></a></span>
+<span id="cb12-146"><a href="#cb12-146"></a><span class="fu">## Theme 2</span></span>
+<span id="cb12-147"><a href="#cb12-147"></a></span>
+<span id="cb12-148"><a href="#cb12-148"></a><span class="ss">- </span>The Power of Abstraction!</span>
+<span id="cb12-149"><a href="#cb12-149"></a><span class="ss">    - </span>Define a function, </span>
+<span id="cb12-150"><a href="#cb12-150"></a><span class="ss">    - </span>Develop an implementation, and then</span>
+<span id="cb12-151"><a href="#cb12-151"></a><span class="ss">    - </span>Put a box around it, and then</span>
+<span id="cb12-152"><a href="#cb12-152"></a><span class="ss">    - </span>Reuse it (over and over!).</span>
+<span id="cb12-153"><a href="#cb12-153"></a><span class="ss">- </span>Good example: big numbers.</span>
+<span id="cb12-154"><a href="#cb12-154"></a></span>
+<span id="cb12-155"><a href="#cb12-155"></a></span>
+<span id="cb12-156"><a href="#cb12-156"></a><span class="fu">## Theme 3</span></span>
+<span id="cb12-157"><a href="#cb12-157"></a></span>
+<span id="cb12-158"><a href="#cb12-158"></a><span class="ss">- </span>Computational structures!</span>
+<span id="cb12-159"><a href="#cb12-159"></a><span class="ss">    - </span>What are the fundamental elements of computation?</span>
+<span id="cb12-160"><a href="#cb12-160"></a><span class="ss">    - </span>Can we define computation independent of implementation or the technology that it is implemented with?</span>
+<span id="cb12-161"><a href="#cb12-161"></a><span class="ss">        - </span>In this course, argued from the physical side (vs. an automata class from the mathematical side).</span>
+<span id="cb12-162"><a href="#cb12-162"></a></span>
+<span id="cb12-163"><a href="#cb12-163"></a><span class="fu">## Recall: Goals</span></span>
+<span id="cb12-164"><a href="#cb12-164"></a></span>
+<span id="cb12-165"><a href="#cb12-165"></a><span class="ss">- </span>How does a computer work?</span>
+<span id="cb12-166"><a href="#cb12-166"></a><span class="ss">- </span>How is data represented in a computer?</span>
+<span id="cb12-167"><a href="#cb12-167"></a><span class="ss">    - </span>Numbers, strings, arrays, photos, music</span>
+<span id="cb12-168"><a href="#cb12-168"></a><span class="ss">- </span>How is a program represented in a computer?</span>
+<span id="cb12-169"><a href="#cb12-169"></a><span class="ss">- </span>What does a computer do with my program?</span>
+<span id="cb12-170"><a href="#cb12-170"></a><span class="ss">- </span>How is data stored? How is data processed?</span>
+<span id="cb12-171"><a href="#cb12-171"></a><span class="ss">- </span>Are there any limits to what a computer can do?</span>
+<span id="cb12-172"><a href="#cb12-172"></a></span>
+<span id="cb12-173"><a href="#cb12-173"></a><span class="fu"># Information</span></span>
+<span id="cb12-174"><a href="#cb12-174"></a></span>
+<span id="cb12-175"><a href="#cb12-175"></a><span class="fu">## What does Digital Logic do?</span></span>
+<span id="cb12-176"><a href="#cb12-176"></a></span>
+<span id="cb12-177"><a href="#cb12-177"></a><span class="ss">- </span>It processes bits: 1s and 0s</span>
+<span id="cb12-178"><a href="#cb12-178"></a><span class="ss">- </span>It implements abstract logic functions</span>
+<span id="cb12-179"><a href="#cb12-179"></a><span class="ss">- </span>It is robust, stable, and repeatable</span>
+<span id="cb12-180"><a href="#cb12-180"></a><span class="ss">- </span>It doubles every two years.</span>
+<span id="cb12-181"><a href="#cb12-181"></a><span class="ss">- </span>It represents, transforms, and stores information</span>
+<span id="cb12-182"><a href="#cb12-182"></a></span>
+<span id="cb12-183"><a href="#cb12-183"></a><span class="fu">## What is “Information”?</span></span>
+<span id="cb12-184"><a href="#cb12-184"></a></span>
+<span id="cb12-185"><a href="#cb12-185"></a><span class="ss">- </span>We go live to Wikitionary.</span>
+<span id="cb12-186"><a href="#cb12-186"></a></span>
+<span id="cb12-187"><a href="#cb12-187"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> width</span><span class="op">=</span><span class="st">"1080"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"720"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://en.wiktionary.org/wiki/information#Noun"</span><span class="ot"> title</span><span class="op">=</span><span class="st">"description"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
+<span id="cb12-188"><a href="#cb12-188"></a></span>
+<span id="cb12-189"><a href="#cb12-189"></a><span class="fu">## Working Definition</span></span>
+<span id="cb12-190"><a href="#cb12-190"></a></span>
+<span id="cb12-191"><a href="#cb12-191"></a>::: {.callout-note}</span>
+<span id="cb12-192"><a href="#cb12-192"></a><span class="fu"># A Computer Engineer's Definition</span></span>
+<span id="cb12-193"><a href="#cb12-193"></a></span>
+<span id="cb12-194"><a href="#cb12-194"></a>**Information resolves uncertainty.**</span>
+<span id="cb12-195"><a href="#cb12-195"></a></span>
+<span id="cb12-196"><a href="#cb12-196"></a><span class="ss">- </span>Information is simply that "stuff" which cannot be predicted. </span>
+<span id="cb12-197"><a href="#cb12-197"></a><span class="ss">- </span>The less likely a message is, the more information it conveys.</span>
+<span id="cb12-198"><a href="#cb12-198"></a></span>
+<span id="cb12-199"><a href="#cb12-199"></a>:::</span>
+<span id="cb12-200"><a href="#cb12-200"></a></span>
+<span id="cb12-201"><a href="#cb12-201"></a><span class="fu">## Quantifying Information</span></span>
+<span id="cb12-202"><a href="#cb12-202"></a></span>
+<span id="cb12-203"><a href="#cb12-203"></a><span class="ss">- </span>Suppose you’re faced with $N$ equally probable choices,</span>
+<span id="cb12-204"><a href="#cb12-204"></a><span class="ss">    - </span>E.g. Diet Coke, Coke Zero, Cherry Coke, Vanilla Coke</span>
+<span id="cb12-205"><a href="#cb12-205"></a><span class="ss">- </span>And I give you a fact that narrows it down to M possibilities.</span>
+<span id="cb12-206"><a href="#cb12-206"></a><span class="ss">    - </span>It's flavored, so Cherry or Vanilla</span>
+<span id="cb12-207"><a href="#cb12-207"></a><span class="ss">- </span>This is worth $\log_2(\frac{M}{N})$ information.</span>
+<span id="cb12-208"><a href="#cb12-208"></a><span class="ss">    - </span>The unit for information is *bits*</span>
+<span id="cb12-209"><a href="#cb12-209"></a></span>
+<span id="cb12-210"><a href="#cb12-210"></a><span class="fu">## Counting Bits</span></span>
+<span id="cb12-211"><a href="#cb12-211"></a></span>
+<span id="cb12-212"><a href="#cb12-212"></a><span class="ss">- </span>Imagine bits are expensive.</span>
+<span id="cb12-213"><a href="#cb12-213"></a><span class="ss">- </span>How many bits would it take to store a designation from the following choices?</span>
+<span id="cb12-214"><a href="#cb12-214"></a></span>
+<span id="cb12-215"><a href="#cb12-215"></a><span class="in">```{.py}</span></span>
+<span id="cb12-216"><a href="#cb12-216"></a>options <span class="op">=</span> [<span class="st">"Diet"</span>, <span class="st">"Zero"</span>, <span class="st">"Cherry"</span>, <span class="st">"Vanilla"</span>]</span>
+<span id="cb12-217"><a href="#cb12-217"></a><span class="in">```</span></span>
+<span id="cb12-218"><a href="#cb12-218"></a></span>
+<span id="cb12-219"><a href="#cb12-219"></a><span class="ss">- </span>Indices are in ```range(4)``` and $log_2(4) = 2$</span>
+<span id="cb12-220"><a href="#cb12-220"></a></span>
+<span id="cb12-221"><a href="#cb12-221"></a><span class="in">```{.py}</span></span>
+<span id="cb12-222"><a href="#cb12-222"></a><span class="im">from</span> numpy <span class="im">import</span> log2</span>
+<span id="cb12-223"><a href="#cb12-223"></a>log2(<span class="dv">4</span>)</span>
+<span id="cb12-224"><a href="#cb12-224"></a><span class="in">```</span></span>
+<span id="cb12-225"><a href="#cb12-225"></a></span>
+<span id="cb12-226"><a href="#cb12-226"></a><span class="fu">## A Mapping</span></span>
+<span id="cb12-227"><a href="#cb12-227"></a></span>
+<span id="cb12-228"><a href="#cb12-228"></a><span class="ss">- </span>Perhaps the map is as follows.</span>
+<span id="cb12-229"><a href="#cb12-229"></a></span>
+<span id="cb12-230"><a href="#cb12-230"></a><span class="pp">|</span> Index <span class="pp">|</span> Choice <span class="pp">|</span></span>
+<span id="cb12-231"><a href="#cb12-231"></a><span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span></span>
+<span id="cb12-232"><a href="#cb12-232"></a><span class="pp">|</span> <span class="in">`0b00`</span> <span class="pp">|</span> <span class="in">`"Diet"`</span> <span class="pp">|</span></span>
+<span id="cb12-233"><a href="#cb12-233"></a><span class="pp">|</span> <span class="in">`0b01`</span> <span class="pp">|</span> <span class="in">`"Zero"`</span> <span class="pp">|</span></span>
+<span id="cb12-234"><a href="#cb12-234"></a><span class="pp">|</span> <span class="in">`0b10`</span> <span class="pp">|</span> <span class="in">`"Cherry"`</span> <span class="pp">|</span></span>
+<span id="cb12-235"><a href="#cb12-235"></a><span class="pp">|</span> <span class="in">`0b11`</span> <span class="pp">|</span> <span class="in">`"Vanilla"`</span> <span class="pp">|</span></span>
+<span id="cb12-236"><a href="#cb12-236"></a></span>
+<span id="cb12-237"><a href="#cb12-237"></a></span>
+<span id="cb12-238"><a href="#cb12-238"></a><span class="fu">## Counting Bit</span></span>
+<span id="cb12-239"><a href="#cb12-239"></a></span>
+<span id="cb12-240"><a href="#cb12-240"></a><span class="ss">- </span>Restrict to flavor.</span>
+<span id="cb12-241"><a href="#cb12-241"></a><span class="ss">- </span>How many bits would it take to store a designation from the following choices?</span>
+<span id="cb12-242"><a href="#cb12-242"></a></span>
+<span id="cb12-243"><a href="#cb12-243"></a><span class="in">```{.py}</span></span>
+<span id="cb12-244"><a href="#cb12-244"></a>options <span class="op">=</span> [<span class="st">"Cherry"</span>, <span class="st">"Vanilla"</span>]</span>
+<span id="cb12-245"><a href="#cb12-245"></a><span class="in">```</span></span>
+<span id="cb12-246"><a href="#cb12-246"></a></span>
+<span id="cb12-247"><a href="#cb12-247"></a><span class="ss">- </span>Indices are in ```range(2)``` and $\log_2(2) = 1$</span>
+<span id="cb12-248"><a href="#cb12-248"></a></span>
+<span id="cb12-249"><a href="#cb12-249"></a><span class="in">```{.py}</span></span>
+<span id="cb12-250"><a href="#cb12-250"></a><span class="im">from</span> numpy <span class="im">import</span> log2</span>
+<span id="cb12-251"><a href="#cb12-251"></a>log2(<span class="dv">2</span>)</span>
+<span id="cb12-252"><a href="#cb12-252"></a><span class="in">```</span></span>
+<span id="cb12-253"><a href="#cb12-253"></a><span class="fu">## A Mapping</span></span>
+<span id="cb12-254"><a href="#cb12-254"></a></span>
+<span id="cb12-255"><a href="#cb12-255"></a><span class="ss">- </span>We imagine this restricts the more significant binary digit to <span class="in">`1`</span>. </span>
+<span id="cb12-256"><a href="#cb12-256"></a></span>
+<span id="cb12-257"><a href="#cb12-257"></a><span class="pp">|</span> Index <span class="pp">|</span> Choice <span class="pp">|</span></span>
+<span id="cb12-258"><a href="#cb12-258"></a><span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span></span>
+<span id="cb12-259"><a href="#cb12-259"></a><span class="pp">|</span> <span class="in">`0b10`</span> <span class="pp">|</span> <span class="in">`"Cherry"`</span> <span class="pp">|</span></span>
+<span id="cb12-260"><a href="#cb12-260"></a><span class="pp">|</span> <span class="in">`0b11`</span> <span class="pp">|</span> <span class="in">`"Vanilla"`</span> <span class="pp">|</span></span>
+<span id="cb12-261"><a href="#cb12-261"></a></span>
+<span id="cb12-262"><a href="#cb12-262"></a><span class="ss">- </span>Disclosing "flavor" reveals one bit worth of information.</span>
+<span id="cb12-263"><a href="#cb12-263"></a></span>
+<span id="cb12-264"><a href="#cb12-264"></a><span class="fu">## Examples</span></span>
+<span id="cb12-265"><a href="#cb12-265"></a></span>
+<span id="cb12-266"><a href="#cb12-266"></a><span class="ss">- </span>Outcome of a coin flip: $\log_2(2/1)$ = 1</span>
+<span id="cb12-267"><a href="#cb12-267"></a><span class="ss">- </span>Roll of one die: $\log_2(6/1)$ <span class="dv">&amp;cong;</span> 2.6</span>
+<span id="cb12-268"><a href="#cb12-268"></a><span class="ss">- </span>Roll of one die is odd: $\log_2(6/3)$ <span class="dv">&amp;cong;</span> 1</span>
+<span id="cb12-269"><a href="#cb12-269"></a></span>
+<span id="cb12-270"><a href="#cb12-270"></a><span class="fu">## Exercise</span></span>
+<span id="cb12-271"><a href="#cb12-271"></a></span>
+<span id="cb12-272"><a href="#cb12-272"></a><span class="ss">- </span>A 7-digit phone number is a palindrome.</span>
+<span id="cb12-273"><a href="#cb12-273"></a><span class="ss">- </span>Proceed manually.</span>
+<span id="cb12-274"><a href="#cb12-274"></a><span class="ss">    - </span>Get an approximate solution absent any tools, or</span>
+<span id="cb12-275"><a href="#cb12-275"></a><span class="ss">    - </span>Express the solution in $\LaTeX$, or</span>
+<span id="cb12-276"><a href="#cb12-276"></a><span class="ss">    - </span>Express the solution in a <span class="in">`python`</span> script.</span>
+<span id="cb12-277"><a href="#cb12-277"></a> </span>
+<span id="cb12-278"><a href="#cb12-278"></a></span>
+<span id="cb12-279"><a href="#cb12-279"></a><span class="fu">## Solution</span></span>
+<span id="cb12-280"><a href="#cb12-280"></a></span>
+<span id="cb12-281"><a href="#cb12-281"></a><span class="ss">- </span>Each (decimal) digit stores $\log_2(10)$</span>
+<span id="cb12-282"><a href="#cb12-282"></a><span class="ss">- </span>7 independent digits stores up to $\log_2(10^7)$</span>
+<span id="cb12-283"><a href="#cb12-283"></a><span class="ss">- </span>A palindrome causes the final 3 to be determined by the first 3.</span>
+<span id="cb12-284"><a href="#cb12-284"></a><span class="ss">- </span>4 independent digits stores up to $\log_2(10^4)$</span>
+<span id="cb12-285"><a href="#cb12-285"></a><span class="ss">- </span>Discloses $\log_2(10^7/10^4) = \log_2(10^3)$</span>
+<span id="cb12-286"><a href="#cb12-286"></a><span class="ss">    - </span>$10^3$ <span class="dv">&amp;cong;</span> $2^10$ so approx. 10 bits.</span>
+<span id="cb12-287"><a href="#cb12-287"></a></span>
+<span id="cb12-288"><a href="#cb12-288"></a><span class="fu">## What do programs really do?</span></span>
+<span id="cb12-289"><a href="#cb12-289"></a></span>
+<span id="cb12-290"><a href="#cb12-290"></a>Quoth Kaki:</span>
+<span id="cb12-291"><a href="#cb12-291"></a></span>
+<span id="cb12-292"><a href="#cb12-292"></a><span class="at">&gt; At this point in your CS career, you look at a program specification and figure out what it does!</span></span>
+<span id="cb12-293"><a href="#cb12-293"></a></span>
+<span id="cb12-294"><a href="#cb12-294"></a><span class="in">```{.c}</span></span>
+<span id="cb12-295"><a href="#cb12-295"></a><span class="dt">int</span> f<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-296"><a href="#cb12-296"></a>    <span class="dt">int</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-297"><a href="#cb12-297"></a>    <span class="cf">while</span> <span class="op">(++</span>r <span class="op">*</span> r <span class="op">&lt;=</span> x<span class="op">)</span> <span class="op">{}</span></span>
+<span id="cb12-298"><a href="#cb12-298"></a>    <span class="cf">return</span> r <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb12-299"><a href="#cb12-299"></a><span class="op">}</span></span>
+<span id="cb12-300"><a href="#cb12-300"></a><span class="in">```</span></span>
+<span id="cb12-301"><a href="#cb12-301"></a></span>
+<span id="cb12-302"><a href="#cb12-302"></a><span class="fu">## How does a computer do it?</span></span>
+<span id="cb12-303"><a href="#cb12-303"></a></span>
+<span id="cb12-304"><a href="#cb12-304"></a></span>
+<span id="cb12-305"><a href="#cb12-305"></a>:::: {.columns}</span>
+<span id="cb12-306"><a href="#cb12-306"></a></span>
+<span id="cb12-307"><a href="#cb12-307"></a>::: {.column width="50%"}</span>
+<span id="cb12-308"><a href="#cb12-308"></a></span>
+<span id="cb12-309"><a href="#cb12-309"></a><span class="in">```{.c filename="cat f.c"}</span></span>
+<span id="cb12-310"><a href="#cb12-310"></a><span class="dt">int</span> f<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-311"><a href="#cb12-311"></a>    <span class="dt">int</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-312"><a href="#cb12-312"></a>    <span class="cf">while</span> <span class="op">(++</span>r <span class="op">*</span> r <span class="op">&lt;=</span> x<span class="op">)</span> <span class="op">{}</span></span>
+<span id="cb12-313"><a href="#cb12-313"></a>    <span class="cf">return</span> r <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb12-314"><a href="#cb12-314"></a><span class="op">}</span></span>
+<span id="cb12-315"><a href="#cb12-315"></a><span class="in">```</span></span>
+<span id="cb12-316"><a href="#cb12-316"></a></span>
+<span id="cb12-317"><a href="#cb12-317"></a>:::</span>
+<span id="cb12-318"><a href="#cb12-318"></a></span>
+<span id="cb12-319"><a href="#cb12-319"></a>::: {.column width="50%"}</span>
+<span id="cb12-320"><a href="#cb12-320"></a></span>
+<span id="cb12-321"><a href="#cb12-321"></a><span class="in">```{.s filename="gcc f.c -S &amp;&amp; cat f.s"}</span></span>
+<span id="cb12-322"><a href="#cb12-322"></a><span class="in">f:</span></span>
+<span id="cb12-323"><a href="#cb12-323"></a><span class="in">.LFB0:</span></span>
+<span id="cb12-324"><a href="#cb12-324"></a><span class="in">    endbr64</span></span>
+<span id="cb12-325"><a href="#cb12-325"></a><span class="in">    pushq   %rbp</span></span>
+<span id="cb12-326"><a href="#cb12-326"></a><span class="in">    movq    %rsp, %rbp</span></span>
+<span id="cb12-327"><a href="#cb12-327"></a><span class="in">    movl    %edi, -20(%rbp)</span></span>
+<span id="cb12-328"><a href="#cb12-328"></a><span class="in">    movl    $0, -4(%rbp)</span></span>
+<span id="cb12-329"><a href="#cb12-329"></a><span class="in">    nop</span></span>
+<span id="cb12-330"><a href="#cb12-330"></a><span class="in">.L2:</span></span>
+<span id="cb12-331"><a href="#cb12-331"></a><span class="in">    addl    $1, -4(%rbp)</span></span>
+<span id="cb12-332"><a href="#cb12-332"></a><span class="in">    movl    -4(%rbp), %eax</span></span>
+<span id="cb12-333"><a href="#cb12-333"></a><span class="in">    imull   %eax, %eax</span></span>
+<span id="cb12-334"><a href="#cb12-334"></a><span class="in">    cmpl    %eax, -20(%rbp)</span></span>
+<span id="cb12-335"><a href="#cb12-335"></a><span class="in">    jge .L2</span></span>
+<span id="cb12-336"><a href="#cb12-336"></a><span class="in">    movl    -4(%rbp), %eax</span></span>
+<span id="cb12-337"><a href="#cb12-337"></a><span class="in">    subl    $1, %eax</span></span>
+<span id="cb12-338"><a href="#cb12-338"></a><span class="in">    popq    %rbp</span></span>
+<span id="cb12-339"><a href="#cb12-339"></a><span class="in">    ret</span></span>
+<span id="cb12-340"><a href="#cb12-340"></a><span class="in">```</span></span>
+<span id="cb12-341"><a href="#cb12-341"></a></span>
+<span id="cb12-342"><a href="#cb12-342"></a>:::</span>
+<span id="cb12-343"><a href="#cb12-343"></a></span>
+<span id="cb12-344"><a href="#cb12-344"></a>::::</span>
+<span id="cb12-345"><a href="#cb12-345"></a></span>
+<span id="cb12-346"><a href="#cb12-346"></a><span class="fu">## What do we see?</span></span>
+<span id="cb12-347"><a href="#cb12-347"></a></span>
+<span id="cb12-348"><a href="#cb12-348"></a></span>
+<span id="cb12-349"><a href="#cb12-349"></a>:::: {.columns}</span>
+<span id="cb12-350"><a href="#cb12-350"></a></span>
+<span id="cb12-351"><a href="#cb12-351"></a>::: {.column width="50%"}</span>
+<span id="cb12-352"><a href="#cb12-352"></a></span>
+<span id="cb12-353"><a href="#cb12-353"></a><span class="ss">- </span>Four operations, one each of:</span>
+<span id="cb12-354"><a href="#cb12-354"></a><span class="ss">    - </span>$+$, $\times$, $-$, $\geq$</span>
+<span id="cb12-355"><a href="#cb12-355"></a><span class="ss">- </span>Many moves</span>
+<span id="cb12-356"><a href="#cb12-356"></a><span class="ss">    - </span>Including push, pop</span>
+<span id="cb12-357"><a href="#cb12-357"></a><span class="ss">- </span>Some control</span>
+<span id="cb12-358"><a href="#cb12-358"></a><span class="ss">    - </span>"Jump", return, "nop"</span>
+<span id="cb12-359"><a href="#cb12-359"></a></span>
+<span id="cb12-360"><a href="#cb12-360"></a>:::</span>
+<span id="cb12-361"><a href="#cb12-361"></a></span>
+<span id="cb12-362"><a href="#cb12-362"></a>::: {.column width="50%"}</span>
+<span id="cb12-363"><a href="#cb12-363"></a></span>
+<span id="cb12-364"><a href="#cb12-364"></a><span class="in">```{.s filename="gcc f.c -S &amp;&amp; cat f.s"}</span></span>
+<span id="cb12-365"><a href="#cb12-365"></a><span class="in">f:</span></span>
+<span id="cb12-366"><a href="#cb12-366"></a><span class="in">.LFB0:</span></span>
+<span id="cb12-367"><a href="#cb12-367"></a><span class="in">    endbr64</span></span>
+<span id="cb12-368"><a href="#cb12-368"></a><span class="in">    pushq   %rbp</span></span>
+<span id="cb12-369"><a href="#cb12-369"></a><span class="in">    movq    %rsp, %rbp</span></span>
+<span id="cb12-370"><a href="#cb12-370"></a><span class="in">    movl    %edi, -20(%rbp)</span></span>
+<span id="cb12-371"><a href="#cb12-371"></a><span class="in">    movl    $0, -4(%rbp)</span></span>
+<span id="cb12-372"><a href="#cb12-372"></a><span class="in">    nop</span></span>
+<span id="cb12-373"><a href="#cb12-373"></a><span class="in">.L2:</span></span>
+<span id="cb12-374"><a href="#cb12-374"></a><span class="in">    addl    $1, -4(%rbp)</span></span>
+<span id="cb12-375"><a href="#cb12-375"></a><span class="in">    movl    -4(%rbp), %eax</span></span>
+<span id="cb12-376"><a href="#cb12-376"></a><span class="in">    imull   %eax, %eax</span></span>
+<span id="cb12-377"><a href="#cb12-377"></a><span class="in">    cmpl    %eax, -20(%rbp)</span></span>
+<span id="cb12-378"><a href="#cb12-378"></a><span class="in">    jge .L2</span></span>
+<span id="cb12-379"><a href="#cb12-379"></a><span class="in">    movl    -4(%rbp), %eax</span></span>
+<span id="cb12-380"><a href="#cb12-380"></a><span class="in">    subl    $1, %eax</span></span>
+<span id="cb12-381"><a href="#cb12-381"></a><span class="in">    popq    %rbp</span></span>
+<span id="cb12-382"><a href="#cb12-382"></a><span class="in">    ret</span></span>
+<span id="cb12-383"><a href="#cb12-383"></a><span class="in">```</span></span>
+<span id="cb12-384"><a href="#cb12-384"></a></span>
+<span id="cb12-385"><a href="#cb12-385"></a>:::</span>
+<span id="cb12-386"><a href="#cb12-386"></a></span>
+<span id="cb12-387"><a href="#cb12-387"></a>::::</span>
+<span id="cb12-388"><a href="#cb12-388"></a></span>
+<span id="cb12-389"><a href="#cb12-389"></a><span class="fu"># Logistics</span></span>
+<span id="cb12-390"><a href="#cb12-390"></a></span>
+<span id="cb12-391"><a href="#cb12-391"></a><span class="fu">## It me</span></span>
+<span id="cb12-392"><a href="#cb12-392"></a></span>
+<span id="cb12-393"><a href="#cb12-393"></a><span class="ss">- </span>**Name** </span>
+<span id="cb12-394"><a href="#cb12-394"></a><span class="ss">  - </span>(Prof. )?Calvin</span>
+<span id="cb12-395"><a href="#cb12-395"></a><span class="ss">- </span>**Credentials**</span>
+<span id="cb12-396"><a href="#cb12-396"></a><span class="ss">  - </span>B.A. Mathematics</span>
+<span id="cb12-397"><a href="#cb12-397"></a><span class="ss">  - </span>B.S., M.S., Ph.D. Computer Science</span>
+<span id="cb12-398"><a href="#cb12-398"></a><span class="ss">- </span>**Pronouns** </span>
+<span id="cb12-399"><a href="#cb12-399"></a><span class="ss">  - </span>they/them </span>
+<span id="cb12-400"><a href="#cb12-400"></a></span>
+<span id="cb12-401"><a href="#cb12-401"></a><span class="fu">## The Great Work</span></span>
+<span id="cb12-402"><a href="#cb12-402"></a></span>
+<span id="cb12-403"><a href="#cb12-403"></a><span class="ss">- </span>Thesis Title</span>
+<span id="cb12-404"><a href="#cb12-404"></a><span class="ss">  - </span>Mining Secure Behavior of Hardware Designs </span>
+<span id="cb12-405"><a href="#cb12-405"></a><span class="ss">- </span>Plain English</span>
+<span id="cb12-406"><a href="#cb12-406"></a><span class="ss">  - </span>Just as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs. </span>
+<span id="cb12-407"><a href="#cb12-407"></a></span>
+<span id="cb12-408"><a href="#cb12-408"></a><span class="fu">## Course Format</span></span>
+<span id="cb12-409"><a href="#cb12-409"></a></span>
+<span id="cb12-410"><a href="#cb12-410"></a><span class="ss">- </span>Lectures in class</span>
+<span id="cb12-411"><a href="#cb12-411"></a><span class="ss">- </span>6 labs/homeworks</span>
+<span id="cb12-412"><a href="#cb12-412"></a><span class="ss">- </span>In person midterm</span>
+<span id="cb12-413"><a href="#cb12-413"></a><span class="ss">- </span>Was not clever enough to design a final, so none.</span>
+<span id="cb12-414"><a href="#cb12-414"></a></span>
+<span id="cb12-415"><a href="#cb12-415"></a><span class="fu">## Grade Policy</span></span>
+<span id="cb12-416"><a href="#cb12-416"></a></span>
+<span id="cb12-417"><a href="#cb12-417"></a><span class="ss">- </span>Your voices have been heard:</span>
+<span id="cb12-418"><a href="#cb12-418"></a></span>
+<span id="cb12-419"><a href="#cb12-419"></a><span class="at">&gt; I think failing my systems class was the best thing that happened to me.</span></span>
+<span id="cb12-420"><a href="#cb12-420"></a></span>
+<span id="cb12-421"><a href="#cb12-421"></a><span class="at">&gt; This course demanded strong self-motivation... Thus, I didn't learn as much as I might've if grading mattered more.</span></span>
+<span id="cb12-422"><a href="#cb12-422"></a></span>
+<span id="cb12-423"><a href="#cb12-423"></a><span class="fu">## Specification Grading</span></span>
+<span id="cb12-424"><a href="#cb12-424"></a></span>
+<span id="cb12-425"><a href="#cb12-425"></a><span class="ss">- </span>Basically, I will assign some stuff but you don't have to do all of it perfectly.</span>
+<span id="cb12-426"><a href="#cb12-426"></a><span class="ss">    - </span>No partial credit, everything is boolean grading.</span>
+<span id="cb12-427"><a href="#cb12-427"></a><span class="ss">- </span>I took distributions over final, midterm, and Lab/HW</span>
+<span id="cb12-428"><a href="#cb12-428"></a></span>
+<span id="cb12-429"><a href="#cb12-429"></a><span class="fu">## It pays to get A's</span></span>
+<span id="cb12-430"><a href="#cb12-430"></a></span>
+<span id="cb12-431"><a href="#cb12-431"></a><span class="pp">|</span>Grade<span class="pp">|</span>Requirements<span class="pp">|</span></span>
+<span id="cb12-432"><a href="#cb12-432"></a><span class="pp">|:----------:|------|</span></span>
+<span id="cb12-433"><a href="#cb12-433"></a><span class="pp">|</span>A<span class="pp">|</span>Complete all but one labs, midterm passing grade<span class="pp">|</span></span>
+<span id="cb12-434"><a href="#cb12-434"></a><span class="pp">|</span>A-<span class="pp">|</span>Complete half or more labs, midterm passing grade<span class="pp">|</span></span>
+<span id="cb12-435"><a href="#cb12-435"></a><span class="pp">|</span>A-<span class="pp">|</span>Complete all labs<span class="pp">|</span></span>
+<span id="cb12-436"><a href="#cb12-436"></a></span>
+<span id="cb12-437"><a href="#cb12-437"></a><span class="fu">## But B's are the Knees</span></span>
+<span id="cb12-438"><a href="#cb12-438"></a></span>
+<span id="cb12-439"><a href="#cb12-439"></a><span class="pp">|</span>Grade<span class="pp">|</span>Requirements<span class="pp">|</span></span>
+<span id="cb12-440"><a href="#cb12-440"></a><span class="pp">|:----------:|------|</span></span>
+<span id="cb12-441"><a href="#cb12-441"></a><span class="pp">|</span>B<span class="pp">|</span>Half or more labs<span class="pp">|</span></span>
+<span id="cb12-442"><a href="#cb12-442"></a><span class="pp">|</span>B<span class="pp">|</span>Midterm passing grade<span class="pp">|</span></span>
+<span id="cb12-443"><a href="#cb12-443"></a></span>
+<span id="cb12-444"><a href="#cb12-444"></a><span class="fu">## These may (???) earn degrees</span></span>
+<span id="cb12-445"><a href="#cb12-445"></a></span>
+<span id="cb12-446"><a href="#cb12-446"></a><span class="pp">|</span>Grade<span class="pp">|</span>Requirements<span class="pp">|</span></span>
+<span id="cb12-447"><a href="#cb12-447"></a><span class="pp">|:----------:|------|</span></span>
+<span id="cb12-448"><a href="#cb12-448"></a><span class="pp">|</span>C<span class="pp">|</span>Nonzero labs<span class="pp">|</span></span>
+<span id="cb12-449"><a href="#cb12-449"></a><span class="pp">|</span>F<span class="pp">|</span>Anything else<span class="pp">|</span></span>
+<span id="cb12-450"><a href="#cb12-450"></a></span>
+<span id="cb12-451"><a href="#cb12-451"></a><span class="fu">## Lab Grading</span></span>
+<span id="cb12-452"><a href="#cb12-452"></a></span>
+<span id="cb12-453"><a href="#cb12-453"></a><span class="ss">- </span>"Perfect" (counts for spec grading)</span>
+<span id="cb12-454"><a href="#cb12-454"></a><span class="ss">    - </span>Complete</span>
+<span id="cb12-455"><a href="#cb12-455"></a><span class="ss">    - </span>On time</span>
+<span id="cb12-456"><a href="#cb12-456"></a><span class="ss">    - </span>Correct</span>
+<span id="cb12-457"><a href="#cb12-457"></a><span class="ss">- </span>"Passing" (counts for spec grading)</span>
+<span id="cb12-458"><a href="#cb12-458"></a><span class="ss">    - </span>Complete</span>
+<span id="cb12-459"><a href="#cb12-459"></a><span class="ss">    - </span>On time</span>
+<span id="cb12-460"><a href="#cb12-460"></a><span class="ss">- </span>"Doesn't count" (=0%)</span>
+<span id="cb12-461"><a href="#cb12-461"></a><span class="ss">    - </span>Anything else</span>
+<span id="cb12-462"><a href="#cb12-462"></a>   </span>
+<span id="cb12-463"><a href="#cb12-463"></a><span class="fu">## Midterm </span></span>
+<span id="cb12-464"><a href="#cb12-464"></a></span>
+<span id="cb12-465"><a href="#cb12-465"></a><span class="ss">- </span>Midterm</span>
+<span id="cb12-466"><a href="#cb12-466"></a><span class="ss">    - </span>In person </span>
+<span id="cb12-467"><a href="#cb12-467"></a><span class="ss">    - </span>Written </span>
+<span id="cb12-468"><a href="#cb12-468"></a><span class="ss">    - </span>With notes</span>
+<span id="cb12-469"><a href="#cb12-469"></a><span class="ss">    - </span>Without computer</span>
+<span id="cb12-470"><a href="#cb12-470"></a><span class="ss">- </span>May have two (I'll count higher of two)</span>
+<span id="cb12-471"><a href="#cb12-471"></a></span>
+<span id="cb12-472"><a href="#cb12-472"></a><span class="fu">## Late Work Policy</span></span>
+<span id="cb12-473"><a href="#cb12-473"></a></span>
+<span id="cb12-474"><a href="#cb12-474"></a><span class="ss">- </span>Late work is not accepted.</span>
+<span id="cb12-475"><a href="#cb12-475"></a><span class="ss">    - </span>No exceptions.</span>
+<span id="cb12-476"><a href="#cb12-476"></a><span class="ss">    - </span>The specification grading framework incorpates tolerances.</span>
+<span id="cb12-477"><a href="#cb12-477"></a></span>
+<span id="cb12-478"><a href="#cb12-478"></a><span class="fu">## AI Policy</span></span>
+<span id="cb12-479"><a href="#cb12-479"></a></span>
+<span id="cb12-480"><a href="#cb12-480"></a><span class="ss">- </span>I have no idea if this will be useful.</span>
+<span id="cb12-481"><a href="#cb12-481"></a><span class="ss">- </span>Let me know.</span>
+<span id="cb12-482"><a href="#cb12-482"></a></span>
+<span id="cb12-483"><a href="#cb12-483"></a><span class="fu">## Collaboration Policy</span></span>
+<span id="cb12-484"><a href="#cb12-484"></a></span>
+<span id="cb12-485"><a href="#cb12-485"></a><span class="ss">- </span>You should chat with each other.</span>
+<span id="cb12-486"><a href="#cb12-486"></a><span class="ss">- </span>You should write your own solution.</span>
+<span id="cb12-487"><a href="#cb12-487"></a><span class="ss">- </span>If someone shows you something and you don't understand it *as well as something you write yourself*, it is a waste of your time to use the solution.</span>
+<span id="cb12-488"><a href="#cb12-488"></a><span class="ss">    - </span>But *not* a waste as a way to learn.</span>
+<span id="cb12-489"><a href="#cb12-489"></a></span>
+<span id="cb12-490"><a href="#cb12-490"></a></span>
+<span id="cb12-491"><a href="#cb12-491"></a><span class="fu"># 271 Review ☺</span></span>
+<span id="cb12-492"><a href="#cb12-492"></a></span>
+<span id="cb12-493"><a href="#cb12-493"></a><span class="fu">## Base</span></span>
+<span id="cb12-494"><a href="#cb12-494"></a></span>
+<span id="cb12-495"><a href="#cb12-495"></a><span class="ss">- </span>A base is the number of different digits that a system can use to represent numbers</span>
+<span id="cb12-496"><a href="#cb12-496"></a><span class="ss">- </span>Binary is base 2 because it has the digits 0 and 1</span>
+<span id="cb12-497"><a href="#cb12-497"></a><span class="ss">- </span>Decimal base 10 because it has the digits 0-9</span>
+<span id="cb12-498"><a href="#cb12-498"></a><span class="ss">- </span>Hex is base 16 because it has the digits 0-F</span>
+<span id="cb12-499"><a href="#cb12-499"></a></span>
+<span id="cb12-500"><a href="#cb12-500"></a><span class="fu">## Binary Notation</span></span>
+<span id="cb12-501"><a href="#cb12-501"></a></span>
+<span id="cb12-502"><a href="#cb12-502"></a><span class="ss">- </span>Always prepend binary numbers with “0b” or add a subscript of 2</span>
+<span id="cb12-503"><a href="#cb12-503"></a><span class="ss">    - </span>Ex: <span class="in">`0b1001`</span> or $1001_2$</span>
+<span id="cb12-504"><a href="#cb12-504"></a><span class="ss">- </span>Place binary numbers in groups of four to make it easier to read</span>
+<span id="cb12-505"><a href="#cb12-505"></a><span class="ss">    - </span>Ex: <span class="in">`0b 1010 1111 0101`</span> or <span class="in">`0b1010_1111_0101`</span></span>
+<span id="cb12-506"><a href="#cb12-506"></a><span class="ss">    - </span>If you cannot evenly break up the number into groups of four, start making the groups from the right</span>
+<span id="cb12-507"><a href="#cb12-507"></a><span class="ss">        - </span>Ex: <span class="in">`0b10_1010_0011`</span></span>
+<span id="cb12-508"><a href="#cb12-508"></a></span>
+<span id="cb12-509"><a href="#cb12-509"></a><span class="fu">## Hex Notation</span></span>
+<span id="cb12-510"><a href="#cb12-510"></a></span>
+<span id="cb12-511"><a href="#cb12-511"></a><span class="ss">- </span>Always prepend hex numbers with “0x” or add a subscript of 16</span>
+<span id="cb12-512"><a href="#cb12-512"></a><span class="ss">    - </span>Ex: <span class="in">`0xE2A`</span> or $E2A_{16}$</span>
+<span id="cb12-513"><a href="#cb12-513"></a></span>
+<span id="cb12-514"><a href="#cb12-514"></a><span class="fu">## Decimal Notation</span></span>
+<span id="cb12-515"><a href="#cb12-515"></a></span>
+<span id="cb12-516"><a href="#cb12-516"></a><span class="ss">- </span>You can indicate that a number is a decimal value by adding a subscript of 10</span>
+<span id="cb12-517"><a href="#cb12-517"></a><span class="ss">    - </span>Ex: $54_{10}$</span>
+<span id="cb12-518"><a href="#cb12-518"></a><span class="ss">    - </span>I will sometimes use <span class="in">`0d54`</span></span>
+<span id="cb12-519"><a href="#cb12-519"></a><span class="ss">- </span>If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value</span>
+<span id="cb12-520"><a href="#cb12-520"></a></span>
+<span id="cb12-521"><a href="#cb12-521"></a><span class="fu">## Overflow</span></span>
+<span id="cb12-522"><a href="#cb12-522"></a></span>
+<span id="cb12-523"><a href="#cb12-523"></a><span class="ss">- </span>Adding two values of $n$ digits requires $n+1$ digits to store the sum.</span>
+<span id="cb12-524"><a href="#cb12-524"></a><span class="ss">- </span>Multiply two values of $n$ digits requires $2n$ digits to store the product.</span>
+<span id="cb12-525"><a href="#cb12-525"></a></span>
+<span id="cb12-526"><a href="#cb12-526"></a><span class="fu">## Carry/Overflow</span></span>
+<span id="cb12-527"><a href="#cb12-527"></a></span>
+<span id="cb12-528"><a href="#cb12-528"></a><span class="ss">- </span>Doesn't always happen</span>
+<span id="cb12-529"><a href="#cb12-529"></a></span>
+<span id="cb12-530"><a href="#cb12-530"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-531"><a href="#cb12-531"></a><span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span></span>
+<span id="cb12-532"><a href="#cb12-532"></a><span class="pp">|</span> <span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span></span>
+<span id="cb12-533"><a href="#cb12-533"></a><span class="pp">|</span>+<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-534"><a href="#cb12-534"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-535"><a href="#cb12-535"></a><span class="pp">|</span>=<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-536"><a href="#cb12-536"></a></span>
+<span id="cb12-537"><a href="#cb12-537"></a><span class="fu">## Carry/Overflow</span></span>
+<span id="cb12-538"><a href="#cb12-538"></a></span>
+<span id="cb12-539"><a href="#cb12-539"></a><span class="ss">- </span>When it happens it matters</span>
+<span id="cb12-540"><a href="#cb12-540"></a></span>
+<span id="cb12-541"><a href="#cb12-541"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-542"><a href="#cb12-542"></a><span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span></span>
+<span id="cb12-543"><a href="#cb12-543"></a><span class="pp">|</span> <span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-544"><a href="#cb12-544"></a><span class="pp">|</span>+<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-545"><a href="#cb12-545"></a><span class="pp">|</span>c<span class="pp">|</span>1<span class="pp">|</span> <span class="pp">|</span>1<span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-546"><a href="#cb12-546"></a><span class="pp">|</span>=<span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span></span>
+<span id="cb12-547"><a href="#cb12-547"></a></span>
+<span id="cb12-548"><a href="#cb12-548"></a><span class="fu">## Carry/Overflow</span></span>
+<span id="cb12-549"><a href="#cb12-549"></a></span>
+<span id="cb12-550"><a href="#cb12-550"></a><span class="ss">- </span>Carries can overflow </span>
+<span id="cb12-551"><a href="#cb12-551"></a></span>
+<span id="cb12-552"><a href="#cb12-552"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-553"><a href="#cb12-553"></a><span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span></span>
+<span id="cb12-554"><a href="#cb12-554"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-555"><a href="#cb12-555"></a><span class="pp">|</span>+<span class="pp">|</span> <span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-556"><a href="#cb12-556"></a><span class="pp">|</span>c<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-557"><a href="#cb12-557"></a><span class="pp">|</span>=<span class="pp">|</span>1<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span></span>
+<span id="cb12-558"><a href="#cb12-558"></a></span>
+<span id="cb12-559"><a href="#cb12-559"></a></span>
+<span id="cb12-560"><a href="#cb12-560"></a><span class="fu">## Two’s Complement</span></span>
+<span id="cb12-561"><a href="#cb12-561"></a></span>
+<span id="cb12-562"><a href="#cb12-562"></a><span class="ss">- </span>Suppose we want to model negative numbers in hardware.</span>
+<span id="cb12-563"><a href="#cb12-563"></a><span class="ss">    - </span>I have no idea why we would do that.</span>
+<span id="cb12-564"><a href="#cb12-564"></a><span class="ss">    - </span>Ask people that use computers, not make them.</span>
+<span id="cb12-565"><a href="#cb12-565"></a><span class="ss">- </span>Consider the following.</span>
+<span id="cb12-566"><a href="#cb12-566"></a><span class="ss">    - </span>-1 is the value to which we add 1 to get zero</span>
+<span id="cb12-567"><a href="#cb12-567"></a><span class="ss">    - </span>To what binary value does adding 1 yield zero.</span>
+<span id="cb12-568"><a href="#cb12-568"></a></span>
+<span id="cb12-569"><a href="#cb12-569"></a><span class="fu">## Two’s Complement</span></span>
+<span id="cb12-570"><a href="#cb12-570"></a></span>
+<span id="cb12-571"><a href="#cb12-571"></a><span class="ss">- </span>Fix $n$ bits of precision.</span>
+<span id="cb12-572"><a href="#cb12-572"></a><span class="ss">- </span>Add 1 to "$n$ 1s" to get zero.</span>
+<span id="cb12-573"><a href="#cb12-573"></a></span>
+<span id="cb12-574"><a href="#cb12-574"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-575"><a href="#cb12-575"></a><span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span>-<span class="pp">|</span></span>
+<span id="cb12-576"><a href="#cb12-576"></a><span class="pp">|</span> <span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-577"><a href="#cb12-577"></a><span class="pp">|</span>+<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>1<span class="pp">|</span></span>
+<span id="cb12-578"><a href="#cb12-578"></a><span class="pp">|</span>c<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span>1<span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb12-579"><a href="#cb12-579"></a><span class="pp">|</span>=<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span>0<span class="pp">|</span></span>
+<span id="cb12-580"><a href="#cb12-580"></a></span>
+<span id="cb12-581"><a href="#cb12-581"></a><span class="ss">- </span>Use the most significant/first bit as a sign bit.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

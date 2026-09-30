@@ -214,7 +214,7 @@
     "href": "00.html#quantifying-information",
     "title": "Introduction",
     "section": "Quantifying Information",
-    "text": "Quantifying Information\nSuppose you’re faced with N equally probable choices, and I give you a fact that narrows it down to M possibilities. Then you’ve been given: log (N/M) bits of information 2 Examples: Outcome of a coin flip: log (2/1) = 1 bit ● 2 The roll of one die? ● Someone tells you that their 8-digit ● Information is the theoretical underpinning of why digital phone number is a palindrome? computers use bits! ☺",
+    "text": "Quantifying Information\n\nSuppose you’re faced with \\(N\\) equally probable choices,\n\nE.g. Diet Coke, Coke Zero, Cherry Coke, Vanilla Coke\n\nAnd I give you a fact that narrows it down to M possibilities.\n\nIt’s flavored, so Cherry or Vanilla\n\nThis is worth \\(\\log_2(\\frac{M}{N})\\) information.\n\nThe unit for information is bits",
     "crumbs": [
       "Introduction"
     ]
@@ -244,7 +244,7 @@
     "href": "00.html#what-do-programs-really-do",
     "title": "Introduction",
     "section": "What do programs really do?",
-    "text": "What do programs really do?\nAt this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100)",
+    "text": "What do programs really do?\nQuoth Kaki:\n\nAt this point in your CS career, you look at a program specification and figure out what it does!\n\nint f(int x) {\n    int r = 0;\n    while (++r * r &lt;= x) {}\n    return r - 1;\n}",
     "crumbs": [
       "Introduction"
     ]
@@ -264,7 +264,7 @@
     "href": "00.html#how-does-a-computer-do-it",
     "title": "Introduction",
     "section": "How does a computer do it?",
-    "text": "How does a computer do it?\nWhat would a computer do with this program specification? f: mv t0,a0 int f(int x) { li t1,1 int r; li a0,0 int odd = 1; blt t0,t1,return for (r = 0; x &gt;= odd; r++) { loop: sub t0,t0,t1 x -= odd; addi t1,t1,2 odd += 2; addi a0,a0,1 } bge t0,t1,loop return r; return: ret } It translates it into a series of simple instructions!",
+    "text": "How does a computer do it?\n\n\n\n\ncat f.c\n\nint f(int x) {\n    int r = 0;\n    while (++r * r &lt;= x) {}\n    return r - 1;\n}\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret",
     "crumbs": [
       "Introduction"
     ]
@@ -333,8 +333,8 @@
     "objectID": "00.html#review",
     "href": "00.html#review",
     "title": "Introduction",
-    "section": "211 REVIEW ☺",
-    "text": "211 REVIEW ☺",
+    "section": "271 REVIEW ☺",
+    "text": "271 REVIEW ☺",
     "crumbs": [
       "Introduction"
     ]
@@ -344,7 +344,7 @@
     "href": "00.html#base",
     "title": "Introduction",
     "section": "Base",
-    "text": "Base\n■ A base is the number of different digits that a system can use to represent numbers ■ Binary is base 2 because it has the digits 0 and 1 ■ Decimal base 10 because it has the digits 0-9 ■ Hex is base 16 because it has the digits 0-F",
+    "text": "Base\n\nA base is the number of different digits that a system can use to represent numbers\nBinary is base 2 because it has the digits 0 and 1\nDecimal base 10 because it has the digits 0-9\nHex is base 16 because it has the digits 0-F",
     "crumbs": [
       "Introduction"
     ]
@@ -354,7 +354,7 @@
     "href": "00.html#binary-notation",
     "title": "Introduction",
     "section": "Binary Notation",
-    "text": "Binary Notation\n■ Always prepend binary numbers with “0b” or add a subscript of 2 – Ex: 0b 1001 or 1001 2 ■ Place binary numbers in groups of four to make it easier to read – Ex: 0b 1010 1111 0101 or 0b1010_1111_0101 – If you cannot evenly break up the number into groups of four, start making the groups from the right ■ Ex: 0b10_1010_0011",
+    "text": "Binary Notation\n\nAlways prepend binary numbers with “0b” or add a subscript of 2\n\nEx: 0b1001 or \\(1001_2\\)\n\nPlace binary numbers in groups of four to make it easier to read\n\nEx: 0b 1010 1111 0101 or 0b1010_1111_0101\nIf you cannot evenly break up the number into groups of four, start making the groups from the right\n\nEx: 0b10_1010_0011",
     "crumbs": [
       "Introduction"
     ]
@@ -364,7 +364,7 @@
     "href": "00.html#hex-notation",
     "title": "Introduction",
     "section": "Hex Notation",
-    "text": "Hex Notation\n■ Always prepend hex numbers with “0x” or add a subscript of 16 – Ex: 0xE2A or E2A 16",
+    "text": "Hex Notation\n\nAlways prepend hex numbers with “0x” or add a subscript of 16\n\nEx: 0xE2A or \\(E2A_{16}\\)",
     "crumbs": [
       "Introduction"
     ]
@@ -374,7 +374,7 @@
     "href": "00.html#decimal-notation",
     "title": "Introduction",
     "section": "Decimal Notation",
-    "text": "Decimal Notation\n■ You can indicate that a number is a decimal value by adding a subscript of 10 – Ex: 54 10 ■ If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value",
+    "text": "Decimal Notation\n\nYou can indicate that a number is a decimal value by adding a subscript of 10\n\nEx: \\(54_{10}\\)\nI will sometimes use 0d54\n\nIf a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value",
     "crumbs": [
       "Introduction"
     ]
@@ -384,7 +384,7 @@
     "href": "00.html#overflow",
     "title": "Introduction",
     "section": "Overflow",
-    "text": "Overflow\n■ Overflow occurs when the result of the operation cannot be represented with the given number of bits ■ When adding two unsigned numbers, overflow occurs when the carry-out of the operation is 1",
+    "text": "Overflow\n\nAdding two values of \\(n\\) digits requires \\(n+1\\) digits to store the sum.\nMultiply two values of \\(n\\) digits requires \\(2n\\) digits to store the product.",
     "crumbs": [
       "Introduction"
     ]
@@ -414,7 +414,7 @@
     "href": "00.html#twos-complement",
     "title": "Introduction",
     "section": "Two’s Complement",
-    "text": "Two’s Complement\nTake 5 minutes to answer question 4 on your worksheets!",
+    "text": "Two’s Complement\n\nSuppose we want to model negative numbers in hardware.\n\nI have no idea why we would do that.\nAsk people that use computers, not make them.\n\nConsider the following.\n\n-1 is the value to which we add 1 to get zero\nTo what binary value does adding 1 yield zero.",
     "crumbs": [
       "Introduction"
     ]
@@ -424,7 +424,7 @@
     "href": "00.html#twos-complement-1",
     "title": "Introduction",
     "section": "Two’s Complement",
-    "text": "Two’s Complement\n4.2: What is the minimum number of 4.1: Represent -15 in two’s complement with 7 bits needed to represent 20 in two’s bits complement Unsigned: 0b 000 1111 Flip bits: 0b 111 0000 0b 010100 Add one: 0b 111 0001 6 bits 4.3: Convert the following two’s 4.4: Convert the following two’s complement number to decimal: complement number to decimal: 0b 1111 1110 0b 0011 1000 Flip bits: 0b 0000 0001 Positive, so no need to flip bits 56 Add one: 0b 0000 0010 → -2",
+    "text": "Two’s Complement\n\nFix \\(n\\) bits of precision.\nAdd 1 to “\\(n\\) 1s” to get zero.\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n\n\n\n=\n0\n0\n0\n0\n\n\n\n\nUse the most significant/first bit as a sign bit.",
     "crumbs": [
       "Introduction"
     ]
@@ -574,7 +574,7 @@
     "href": "00.rjs.html#quantifying-information",
     "title": "Introduction",
     "section": "Quantifying Information",
-    "text": "Quantifying Information\nSuppose you’re faced with N equally probable choices, and I give you a fact that narrows it down to M possibilities. Then you’ve been given: log (N/M) bits of information 2 Examples: Outcome of a coin flip: log (2/1) = 1 bit ● 2 The roll of one die? ● Someone tells you that their 8-digit ● Information is the theoretical underpinning of why digital phone number is a palindrome? computers use bits! ☺"
+    "text": "Quantifying Information\n\nSuppose you’re faced with \\(N\\) equally probable choices,\n\nE.g. Diet Coke, Coke Zero, Cherry Coke, Vanilla Coke\n\nAnd I give you a fact that narrows it down to M possibilities.\n\nIt’s flavored, so Cherry or Vanilla\n\nThis is worth \\(\\log_2(\\frac{M}{N})\\) information.\n\nThe unit for information is bits"
   },
   {
     "objectID": "00.rjs.html#an-exercise-how-many-bits",
@@ -595,7 +595,7 @@
     "href": "00.rjs.html#what-do-programs-really-do",
     "title": "Introduction",
     "section": "What do programs really do?",
-    "text": "What do programs really do?\nAt this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100)"
+    "text": "What do programs really do?\nQuoth Kaki:\n\nAt this point in your CS career, you look at a program specification and figure out what it does!\n\nint f(int x) {\n    int r = 0;\n    while (++r * r &lt;= x) {}\n    return r - 1;\n}"
   },
   {
     "objectID": "00.rjs.html#what-do-programs-really-do-1",
@@ -609,7 +609,7 @@
     "href": "00.rjs.html#how-does-a-computer-do-it",
     "title": "Introduction",
     "section": "How does a computer do it?",
-    "text": "How does a computer do it?\nWhat would a computer do with this program specification? f: mv t0,a0 int f(int x) { li t1,1 int r; li a0,0 int odd = 1; blt t0,t1,return for (r = 0; x &gt;= odd; r++) { loop: sub t0,t0,t1 x -= odd; addi t1,t1,2 odd += 2; addi a0,a0,1 } bge t0,t1,loop return r; return: ret } It translates it into a series of simple instructions!"
+    "text": "How does a computer do it?\n\n\n\n\ncat f.c\n\nint f(int x) {\n    int r = 0;\n    while (++r * r &lt;= x) {}\n    return r - 1;\n}\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret"
   },
   {
     "objectID": "00.rjs.html#are-there-limits-to-computation",
@@ -657,43 +657,43 @@
     "objectID": "00.rjs.html#review",
     "href": "00.rjs.html#review",
     "title": "Introduction",
-    "section": "211 REVIEW ☺",
-    "text": "211 REVIEW ☺"
+    "section": "271 REVIEW ☺",
+    "text": "271 REVIEW ☺"
   },
   {
     "objectID": "00.rjs.html#base",
     "href": "00.rjs.html#base",
     "title": "Introduction",
     "section": "Base",
-    "text": "Base\n■ A base is the number of different digits that a system can use to represent numbers ■ Binary is base 2 because it has the digits 0 and 1 ■ Decimal base 10 because it has the digits 0-9 ■ Hex is base 16 because it has the digits 0-F"
+    "text": "Base\n\nA base is the number of different digits that a system can use to represent numbers\nBinary is base 2 because it has the digits 0 and 1\nDecimal base 10 because it has the digits 0-9\nHex is base 16 because it has the digits 0-F"
   },
   {
     "objectID": "00.rjs.html#binary-notation",
     "href": "00.rjs.html#binary-notation",
     "title": "Introduction",
     "section": "Binary Notation",
-    "text": "Binary Notation\n■ Always prepend binary numbers with “0b” or add a subscript of 2 – Ex: 0b 1001 or 1001 2 ■ Place binary numbers in groups of four to make it easier to read – Ex: 0b 1010 1111 0101 or 0b1010_1111_0101 – If you cannot evenly break up the number into groups of four, start making the groups from the right ■ Ex: 0b10_1010_0011"
+    "text": "Binary Notation\n\nAlways prepend binary numbers with “0b” or add a subscript of 2\n\nEx: 0b1001 or \\(1001_2\\)\n\nPlace binary numbers in groups of four to make it easier to read\n\nEx: 0b 1010 1111 0101 or 0b1010_1111_0101\nIf you cannot evenly break up the number into groups of four, start making the groups from the right\n\nEx: 0b10_1010_0011"
   },
   {
     "objectID": "00.rjs.html#hex-notation",
     "href": "00.rjs.html#hex-notation",
     "title": "Introduction",
     "section": "Hex Notation",
-    "text": "Hex Notation\n■ Always prepend hex numbers with “0x” or add a subscript of 16 – Ex: 0xE2A or E2A 16"
+    "text": "Hex Notation\n\nAlways prepend hex numbers with “0x” or add a subscript of 16\n\nEx: 0xE2A or \\(E2A_{16}\\)"
   },
   {
     "objectID": "00.rjs.html#decimal-notation",
     "href": "00.rjs.html#decimal-notation",
     "title": "Introduction",
     "section": "Decimal Notation",
-    "text": "Decimal Notation\n■ You can indicate that a number is a decimal value by adding a subscript of 10 – Ex: 54 10 ■ If a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value"
+    "text": "Decimal Notation\n\nYou can indicate that a number is a decimal value by adding a subscript of 10\n\nEx: \\(54_{10}\\)\nI will sometimes use 0d54\n\nIf a number does not have a leading “0b” or “0x” and does not have a subscript, it is assumed to be a decimal value"
   },
   {
     "objectID": "00.rjs.html#overflow",
     "href": "00.rjs.html#overflow",
     "title": "Introduction",
     "section": "Overflow",
-    "text": "Overflow\n■ Overflow occurs when the result of the operation cannot be represented with the given number of bits ■ When adding two unsigned numbers, overflow occurs when the carry-out of the operation is 1"
+    "text": "Overflow\n\nAdding two values of \\(n\\) digits requires \\(n+1\\) digits to store the sum.\nMultiply two values of \\(n\\) digits requires \\(2n\\) digits to store the product."
   },
   {
     "objectID": "00.rjs.html#binary-addition-and-overflow",
@@ -714,14 +714,14 @@
     "href": "00.rjs.html#twos-complement",
     "title": "Introduction",
     "section": "Two’s Complement",
-    "text": "Two’s Complement\nTake 5 minutes to answer question 4 on your worksheets!"
+    "text": "Two’s Complement\n\nSuppose we want to model negative numbers in hardware.\n\nI have no idea why we would do that.\nAsk people that use computers, not make them.\n\nConsider the following.\n\n-1 is the value to which we add 1 to get zero\nTo what binary value does adding 1 yield zero."
   },
   {
     "objectID": "00.rjs.html#twos-complement-1",
     "href": "00.rjs.html#twos-complement-1",
     "title": "Introduction",
     "section": "Two’s Complement",
-    "text": "Two’s Complement\n4.2: What is the minimum number of 4.1: Represent -15 in two’s complement with 7 bits needed to represent 20 in two’s bits complement Unsigned: 0b 000 1111 Flip bits: 0b 111 0000 0b 010100 Add one: 0b 111 0001 6 bits 4.3: Convert the following two’s 4.4: Convert the following two’s complement number to decimal: complement number to decimal: 0b 1111 1110 0b 0011 1000 Flip bits: 0b 0000 0001 Positive, so no need to flip bits 56 Add one: 0b 0000 0010 → -2"
+    "text": "Two’s Complement\n\nFix \\(n\\) bits of precision.\nAdd 1 to “\\(n\\) 1s” to get zero.\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n\n\n\n=\n0\n0\n0\n0\n\n\n\n\nUse the most significant/first bit as a sign bit."
   },
   {
     "objectID": "10.html",
@@ -21721,5 +21721,447 @@
       "Old",
       "Introduction"
     ]
+  },
+  {
+    "objectID": "00.html#section",
+    "href": "00.html#section",
+    "title": "Introduction",
+    "section": "",
+    "text": "1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#section",
+    "href": "00.rjs.html#section",
+    "title": "Introduction",
+    "section": "",
+    "text": "1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no"
+  },
+  {
+    "objectID": "00.html#counting-bits",
+    "href": "00.html#counting-bits",
+    "title": "Introduction",
+    "section": "Counting Bits",
+    "text": "Counting Bits\n\nImagine bits are expensive.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Diet\", \"Zero\", \"Cherry\", \"Vanilla\"]\n\nIndices are in range(4) and \\(log_2(4) = 2\\)\n\nfrom numpy import log2\nlog2(4)",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#a-mapping",
+    "href": "00.html#a-mapping",
+    "title": "Introduction",
+    "section": "A Mapping",
+    "text": "A Mapping\n\nPerhaps the map is as follows.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b00\n\"Diet\"\n\n\n0b01\n\"Zero\"\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#counting-bits",
+    "href": "00.rjs.html#counting-bits",
+    "title": "Introduction",
+    "section": "Counting Bits",
+    "text": "Counting Bits\n\nImagine bits are expensive.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Diet\", \"Zero\", \"Cherry\", \"Vanilla\"]\n\nIndices are in range(4) and \\(log_2(4) = 2\\)\n\nfrom numpy import log2\nlog2(4)"
+  },
+  {
+    "objectID": "00.rjs.html#a-mapping",
+    "href": "00.rjs.html#a-mapping",
+    "title": "Introduction",
+    "section": "A Mapping",
+    "text": "A Mapping\n\nPerhaps the map is as follows.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b00\n\"Diet\"\n\n\n0b01\n\"Zero\"\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\""
+  },
+  {
+    "objectID": "00.html#counting-bit",
+    "href": "00.html#counting-bit",
+    "title": "Introduction",
+    "section": "Counting Bit",
+    "text": "Counting Bit\n\nRestrict to flavor.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Cherry\", \"Vanilla\"]\n\nIndices are in range(2) and \\(\\log_2(2) = 1\\)\n\nfrom numpy import log2\nlog2(2)",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#a-mapping-1",
+    "href": "00.html#a-mapping-1",
+    "title": "Introduction",
+    "section": "A Mapping",
+    "text": "A Mapping\n\nWe imagine this restricts the more significant binary digit to 1.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"\n\n\n\n\nDisclosing “flavor” reveals one bit worth of information.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#examples",
+    "href": "00.html#examples",
+    "title": "Introduction",
+    "section": "Examples",
+    "text": "Examples\n\nOutcome of a coin flip: \\(\\log_2(2/1)\\) = 1\nRoll of one die: \\(\\log_2(6/1)\\) ≅ 2.6\nRoll of one die is odd: \\(\\log_2(6/3)\\) ≅ 1",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#counting-bit",
+    "href": "00.rjs.html#counting-bit",
+    "title": "Introduction",
+    "section": "Counting Bit",
+    "text": "Counting Bit\n\nRestrict to flavor.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Cherry\", \"Vanilla\"]\n\nIndices are in range(2) and \\(\\log_2(2) = 1\\)\n\nfrom numpy import log2\nlog2(2)"
+  },
+  {
+    "objectID": "00.rjs.html#a-mapping-1",
+    "href": "00.rjs.html#a-mapping-1",
+    "title": "Introduction",
+    "section": "A Mapping",
+    "text": "A Mapping\n\nWe imagine this restricts the more significant binary digit to 1.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"\n\n\n\n\nDisclosing “flavor” reveals one bit worth of information."
+  },
+  {
+    "objectID": "00.rjs.html#examples",
+    "href": "00.rjs.html#examples",
+    "title": "Introduction",
+    "section": "Examples",
+    "text": "Examples\n\nOutcome of a coin flip: \\(\\log_2(2/1)\\) = 1\nRoll of one die: \\(\\log_2(6/1)\\) ≅ 2.6\nRoll of one die is odd: \\(\\log_2(6/3)\\) ≅ 1"
+  },
+  {
+    "objectID": "00.html#exercise",
+    "href": "00.html#exercise",
+    "title": "Introduction",
+    "section": "Exercise",
+    "text": "Exercise\n\nA 7-digit phone number is a palindrome.\nProceed manually.\n\nGet an approximate solution absent any tools, or\nExpress the solution in \\(\\LaTeX\\), or\nExpress the solution in a python script.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#solution",
+    "href": "00.html#solution",
+    "title": "Introduction",
+    "section": "Solution",
+    "text": "Solution\n\nEach (decimal) digit stores \\(\\log_2(10)\\)\n7 independent digits stores up to \\(\\log_2(10^7)\\)\nA palindrome causes the final 3 to be determined by the first 3.\n4 independent digits stores up to \\(\\log_2(10^4)\\)\nDiscloses \\(\\log_2(10^7/10^4) = \\log_2(10^3)\\)\n\n\\(10^3\\) ≅ \\(2^10\\) so approx. 10 bits.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#exercise",
+    "href": "00.rjs.html#exercise",
+    "title": "Introduction",
+    "section": "Exercise",
+    "text": "Exercise\n\nA 7-digit phone number is a palindrome.\nProceed manually.\n\nGet an approximate solution absent any tools, or\nExpress the solution in \\(\\LaTeX\\), or\nExpress the solution in a python script."
+  },
+  {
+    "objectID": "00.rjs.html#solution",
+    "href": "00.rjs.html#solution",
+    "title": "Introduction",
+    "section": "Solution",
+    "text": "Solution\n\nEach (decimal) digit stores \\(\\log_2(10)\\)\n7 independent digits stores up to \\(\\log_2(10^7)\\)\nA palindrome causes the final 3 to be determined by the first 3.\n4 independent digits stores up to \\(\\log_2(10^4)\\)\nDiscloses \\(\\log_2(10^7/10^4) = \\log_2(10^3)\\)\n\n\\(10^3\\) ≅ \\(2^10\\) so approx. 10 bits."
+  },
+  {
+    "objectID": "00.html#what-do-we-see",
+    "href": "00.html#what-do-we-see",
+    "title": "Introduction",
+    "section": "What do we see?",
+    "text": "What do we see?\n\n\n\nFour operations, one each of:\n\n\\(+\\), \\(\\times\\), \\(-\\), \\(\\geq\\)\n\nMany moves\n\nIncluding push, pop\n\nSome control\n\n“Jump”, return, “nop”\n\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#what-do-we-see",
+    "href": "00.rjs.html#what-do-we-see",
+    "title": "Introduction",
+    "section": "What do we see?",
+    "text": "What do we see?\n\n\n\nFour operations, one each of:\n\n\\(+\\), \\(\\times\\), \\(-\\), \\(\\geq\\)\n\nMany moves\n\nIncluding push, pop\n\nSome control\n\n“Jump”, return, “nop”\n\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret"
+  },
+  {
+    "objectID": "00.html#it-me",
+    "href": "00.html#it-me",
+    "title": "Introduction",
+    "section": "It me",
+    "text": "It me\n\nName\n\n(Prof. )?Calvin\n\nCredentials\n\nB.A. Mathematics\nB.S., M.S., Ph.D. Computer Science\n\nPronouns\n\nthey/them",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#the-great-work",
+    "href": "00.html#the-great-work",
+    "title": "Introduction",
+    "section": "The Great Work",
+    "text": "The Great Work\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#course-format",
+    "href": "00.html#course-format",
+    "title": "Introduction",
+    "section": "Course Format",
+    "text": "Course Format\n\nLectures in class\n6 labs/homeworks\nIn person midterm\nWas not clever enough to design a final, so none.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#grade-policy",
+    "href": "00.html#grade-policy",
+    "title": "Introduction",
+    "section": "Grade Policy",
+    "text": "Grade Policy\n\nYour voices have been heard:\n\n\nI think failing my systems class was the best thing that happened to me.\n\n\nThis course demanded strong self-motivation… Thus, I didn’t learn as much as I might’ve if grading mattered more.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#specification-grading",
+    "href": "00.html#specification-grading",
+    "title": "Introduction",
+    "section": "Specification Grading",
+    "text": "Specification Grading\n\nBasically, I will assign some stuff but you don’t have to do all of it perfectly.\n\nNo partial credit, everything is boolean grading.\n\nI took distributions over final, midterm, and Lab/HW",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#it-pays-to-get-as",
+    "href": "00.html#it-pays-to-get-as",
+    "title": "Introduction",
+    "section": "It pays to get A’s",
+    "text": "It pays to get A’s\n\n\n\nGrade\nRequirements\n\n\n\n\nA\nComplete all but one labs, midterm passing grade\n\n\nA-\nComplete half or more labs, midterm passing grade\n\n\nA-\nComplete all labs",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#but-bs-are-the-knees",
+    "href": "00.html#but-bs-are-the-knees",
+    "title": "Introduction",
+    "section": "But B’s are the Knees",
+    "text": "But B’s are the Knees\n\n\n\nGrade\nRequirements\n\n\n\n\nB\nHalf or more labs\n\n\nB\nMidterm passing grade",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#these-may-earn-degrees",
+    "href": "00.html#these-may-earn-degrees",
+    "title": "Introduction",
+    "section": "These may (???) earn degrees",
+    "text": "These may (???) earn degrees\n\n\n\nGrade\nRequirements\n\n\n\n\nC\nNonzero labs\n\n\nF\nAnything else",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#lab-grading",
+    "href": "00.html#lab-grading",
+    "title": "Introduction",
+    "section": "Lab Grading",
+    "text": "Lab Grading\n\n“Perfect” (counts for spec grading)\n\nComplete\nOn time\nCorrect\n\n“Passing” (counts for spec grading)\n\nComplete\nOn time\n\n“Doesn’t count” (=0%)\n\nAnything else",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#midterm-final",
+    "href": "00.html#midterm-final",
+    "title": "Introduction",
+    "section": "Midterm & Final",
+    "text": "Midterm & Final\n\nMidterm\n\nFree-standing binary\nFaults/exceptions/interrupts\nMemory management",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#late-work-policy",
+    "href": "00.html#late-work-policy",
+    "title": "Introduction",
+    "section": "Late Work Policy",
+    "text": "Late Work Policy\n\nLate work is not accepted.\n\nNo exceptions.\nThe specification grading framework incorpates tolerances.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#ai-policy",
+    "href": "00.html#ai-policy",
+    "title": "Introduction",
+    "section": "AI Policy",
+    "text": "AI Policy\n\nI have no idea if this will be useful.\nLet me know.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#collaboration-policy",
+    "href": "00.html#collaboration-policy",
+    "title": "Introduction",
+    "section": "Collaboration Policy",
+    "text": "Collaboration Policy\n\nYou should chat with each other.\nYou should write your own solution.\nIf someone shows you something and you don’t understand it as well as something you write yourself, it is a waste of your time to use the solution.\n\nBut not a waste as a way to learn.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#it-me",
+    "href": "00.rjs.html#it-me",
+    "title": "Introduction",
+    "section": "It me",
+    "text": "It me\n\nName\n\n(Prof. )?Calvin\n\nCredentials\n\nB.A. Mathematics\nB.S., M.S., Ph.D. Computer Science\n\nPronouns\n\nthey/them"
+  },
+  {
+    "objectID": "00.rjs.html#the-great-work",
+    "href": "00.rjs.html#the-great-work",
+    "title": "Introduction",
+    "section": "The Great Work",
+    "text": "The Great Work\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs."
+  },
+  {
+    "objectID": "00.rjs.html#course-format",
+    "href": "00.rjs.html#course-format",
+    "title": "Introduction",
+    "section": "Course Format",
+    "text": "Course Format\n\nLectures in class\n6 labs/homeworks\nIn person midterm\nWas not clever enough to design a final, so none."
+  },
+  {
+    "objectID": "00.rjs.html#grade-policy",
+    "href": "00.rjs.html#grade-policy",
+    "title": "Introduction",
+    "section": "Grade Policy",
+    "text": "Grade Policy\n\nYour voices have been heard:\n\n\nI think failing my systems class was the best thing that happened to me.\n\n\nThis course demanded strong self-motivation… Thus, I didn’t learn as much as I might’ve if grading mattered more."
+  },
+  {
+    "objectID": "00.rjs.html#specification-grading",
+    "href": "00.rjs.html#specification-grading",
+    "title": "Introduction",
+    "section": "Specification Grading",
+    "text": "Specification Grading\n\nBasically, I will assign some stuff but you don’t have to do all of it perfectly.\n\nNo partial credit, everything is boolean grading.\n\nI took distributions over final, midterm, and Lab/HW"
+  },
+  {
+    "objectID": "00.rjs.html#it-pays-to-get-as",
+    "href": "00.rjs.html#it-pays-to-get-as",
+    "title": "Introduction",
+    "section": "It pays to get A’s",
+    "text": "It pays to get A’s\n\n\n\nGrade\nRequirements\n\n\n\n\nA\nComplete all but one labs, midterm passing grade\n\n\nA-\nComplete half or more labs, midterm passing grade\n\n\nA-\nComplete all labs"
+  },
+  {
+    "objectID": "00.rjs.html#but-bs-are-the-knees",
+    "href": "00.rjs.html#but-bs-are-the-knees",
+    "title": "Introduction",
+    "section": "But B’s are the Knees",
+    "text": "But B’s are the Knees\n\n\n\nGrade\nRequirements\n\n\n\n\nB\nHalf or more labs\n\n\nB\nMidterm passing grade"
+  },
+  {
+    "objectID": "00.rjs.html#these-may-earn-degrees",
+    "href": "00.rjs.html#these-may-earn-degrees",
+    "title": "Introduction",
+    "section": "These may (???) earn degrees",
+    "text": "These may (???) earn degrees\n\n\n\nGrade\nRequirements\n\n\n\n\nC\nNonzero labs\n\n\nF\nAnything else"
+  },
+  {
+    "objectID": "00.rjs.html#lab-grading",
+    "href": "00.rjs.html#lab-grading",
+    "title": "Introduction",
+    "section": "Lab Grading",
+    "text": "Lab Grading\n\n“Perfect” (counts for spec grading)\n\nComplete\nOn time\nCorrect\n\n“Passing” (counts for spec grading)\n\nComplete\nOn time\n\n“Doesn’t count” (=0%)\n\nAnything else"
+  },
+  {
+    "objectID": "00.rjs.html#midterm-final",
+    "href": "00.rjs.html#midterm-final",
+    "title": "Introduction",
+    "section": "Midterm & Final",
+    "text": "Midterm & Final\n\nMidterm\n\nFree-standing binary\nFaults/exceptions/interrupts\nMemory management"
+  },
+  {
+    "objectID": "00.rjs.html#late-work-policy",
+    "href": "00.rjs.html#late-work-policy",
+    "title": "Introduction",
+    "section": "Late Work Policy",
+    "text": "Late Work Policy\n\nLate work is not accepted.\n\nNo exceptions.\nThe specification grading framework incorpates tolerances."
+  },
+  {
+    "objectID": "00.rjs.html#ai-policy",
+    "href": "00.rjs.html#ai-policy",
+    "title": "Introduction",
+    "section": "AI Policy",
+    "text": "AI Policy\n\nI have no idea if this will be useful.\nLet me know."
+  },
+  {
+    "objectID": "00.rjs.html#collaboration-policy",
+    "href": "00.rjs.html#collaboration-policy",
+    "title": "Introduction",
+    "section": "Collaboration Policy",
+    "text": "Collaboration Policy\n\nYou should chat with each other.\nYou should write your own solution.\nIf someone shows you something and you don’t understand it as well as something you write yourself, it is a waste of your time to use the solution.\n\nBut not a waste as a way to learn."
+  },
+  {
+    "objectID": "00.html#midterm",
+    "href": "00.html#midterm",
+    "title": "Introduction",
+    "section": "Midterm",
+    "text": "Midterm\n\nMidterm\n\nIn person\nWritten\nWith notes\nWithout computer\n\nMay have two (I’ll count higher of two)",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#midterm",
+    "href": "00.rjs.html#midterm",
+    "title": "Introduction",
+    "section": "Midterm",
+    "text": "Midterm\n\nMidterm\n\nIn person\nWritten\nWith notes\nWithout computer\n\nMay have two (I’ll count higher of two)"
+  },
+  {
+    "objectID": "00.html#carryoverflow",
+    "href": "00.html#carryoverflow",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nDoesn’t always happen\n\n\n\n\n\n1\n0\n1\n0\n\n\n+\n0\n1\n0\n1\n\n\n\n\n\n\n\n\n\n=\n1\n1\n1\n1",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#carryoverflow",
+    "href": "00.rjs.html#carryoverflow",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nDoesn’t always happen\n\n\n\n\n\n1\n0\n1\n0\n\n\n+\n0\n1\n0\n1\n\n\n\n\n\n\n\n\n\n=\n1\n1\n1\n1"
+  },
+  {
+    "objectID": "00.html#carryoverflow-1",
+    "href": "00.html#carryoverflow-1",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nWhen it happens it matters\n\n\n\n\n\n0\n1\n0\n1\n\n\n+\n0\n1\n0\n1\n\n\nc\n1\n\n1\n\n\n\n=\n1\n0\n1\n0",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#carryoverflow-1",
+    "href": "00.rjs.html#carryoverflow-1",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nWhen it happens it matters\n\n\n\n\n\n0\n1\n0\n1\n\n\n+\n0\n1\n0\n1\n\n\nc\n1\n\n1\n\n\n\n=\n1\n0\n1\n0"
+  },
+  {
+    "objectID": "00.html#carryoverflow-2",
+    "href": "00.html#carryoverflow-2",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nCarries can overflow\n\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n1\n\n\n\n=\n1\n0\n0\n0\n0",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.rjs.html#carryoverflow-2",
+    "href": "00.rjs.html#carryoverflow-2",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nCarries can overflow\n\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n1\n\n\n\n=\n1\n0\n0\n0\n0"
   }
 ]
