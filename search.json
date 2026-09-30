@@ -220,21 +220,71 @@
     ]
   },
   {
-    "objectID": "00.html#an-exercise-how-many-bits",
-    "href": "00.html#an-exercise-how-many-bits",
+    "objectID": "00.html#counting-bits",
+    "href": "00.html#counting-bits",
     "title": "Introduction",
-    "section": "An exercise: How many bits?",
-    "text": "An exercise: How many bits?\nWith 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan.",
+    "section": "Counting Bits",
+    "text": "Counting Bits\n\nImagine bits are expensive.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Diet\", \"Zero\", \"Cherry\", \"Vanilla\"]\n\nIndices are in range(4) and \\(log_2(4) = 2\\)\n\nfrom numpy import log2\nlog2(4)",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#an-exercise-how-many-bits-1",
-    "href": "00.html#an-exercise-how-many-bits-1",
+    "objectID": "00.html#a-mapping",
+    "href": "00.html#a-mapping",
     "title": "Introduction",
-    "section": "An exercise: How many bits?",
-    "text": "An exercise: How many bits?\nWith 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 1.1 bits=⌈log (N)⌉, where N is the number of students in the class. 2 if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits! 2 1.2 N/M",
+    "section": "A Mapping",
+    "text": "A Mapping\n\nPerhaps the map is as follows.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b00\n\"Diet\"\n\n\n0b01\n\"Zero\"\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#counting-bit",
+    "href": "00.html#counting-bit",
+    "title": "Introduction",
+    "section": "Counting Bit",
+    "text": "Counting Bit\n\nRestrict to flavor.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Cherry\", \"Vanilla\"]\n\nIndices are in range(2) and \\(\\log_2(2) = 1\\)\n\nfrom numpy import log2\nlog2(2)",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#a-mapping-1",
+    "href": "00.html#a-mapping-1",
+    "title": "Introduction",
+    "section": "A Mapping",
+    "text": "A Mapping\n\nWe imagine this restricts the more significant binary digit to 1.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"\n\n\n\n\nDisclosing “flavor” reveals one bit worth of information.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#examples",
+    "href": "00.html#examples",
+    "title": "Introduction",
+    "section": "Examples",
+    "text": "Examples\n\nOutcome of a coin flip: \\(\\log_2(2/1)\\) = 1\nRoll of one die: \\(\\log_2(6/1)\\) ≅ 2.6\nRoll of one die is odd: \\(\\log_2(6/3)\\) ≅ 1",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#exercise",
+    "href": "00.html#exercise",
+    "title": "Introduction",
+    "section": "Exercise",
+    "text": "Exercise\n\nA 7-digit phone number is a palindrome.\nProceed manually.\n\nGet an approximate solution absent any tools, or\nExpress the solution in \\(\\LaTeX\\), or\nExpress the solution in a python script.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#solution",
+    "href": "00.html#solution",
+    "title": "Introduction",
+    "section": "Solution",
+    "text": "Solution\n\nEach (decimal) digit stores \\(\\log_2(10)\\)\n7 independent digits stores up to \\(\\log_2(10^7)\\)\nA palindrome causes the final 3 to be determined by the first 3.\n4 independent digits stores up to \\(\\log_2(10^4)\\)\nDiscloses \\(\\log_2(10^7/10^4) = \\log_2(10^3)\\)\n\n\\(10^3\\) ≅ \\(2^10\\) so approx. 10 bits.",
     "crumbs": [
       "Introduction"
     ]
@@ -250,16 +300,6 @@
     ]
   },
   {
-    "objectID": "00.html#what-do-programs-really-do-1",
-    "href": "00.html#what-do-programs-really-do-1",
-    "title": "Introduction",
-    "section": "What do programs really do?",
-    "text": "What do programs really do?\nAt this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) This is computing the square root",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
     "objectID": "00.html#how-does-a-computer-do-it",
     "href": "00.html#how-does-a-computer-do-it",
     "title": "Introduction",
@@ -270,71 +310,141 @@
     ]
   },
   {
-    "objectID": "00.html#are-there-limits-to-computation",
-    "href": "00.html#are-there-limits-to-computation",
+    "objectID": "00.html#what-do-we-see",
+    "href": "00.html#what-do-we-see",
     "title": "Introduction",
-    "section": "Are there limits to computation?",
-    "text": "Are there limits to computation?\n■ Will some new instruction be invented that fundamentally changes how fast computers solve problems? ■ Can computers solve any well- specified problem? – COMP455 ■ Can we predict how long it will take for a computer to solve a given problem? – COMP210, COMP550 ■ Does there exist a new model of computation?",
+    "section": "What do we see?",
+    "text": "What do we see?\n\n\n\nFour operations, one each of:\n\n\\(+\\), \\(\\times\\), \\(-\\), \\(\\geq\\)\n\nMany moves\n\nIncluding push, pop\n\nSome control\n\n“Jump”, return, “nop”\n\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#administrative",
-    "href": "00.html#administrative",
+    "objectID": "00.html#it-me",
+    "href": "00.html#it-me",
     "title": "Introduction",
-    "section": "ADMINISTRATIVE",
-    "text": "ADMINISTRATIVE\nDETAILS\nSyllabus! Course site: https://www.cs.unc.edu/~kakiryan/teaching/311- sp26/311-sp26.html Or https://tinyurl.com/comp311-sp26",
+    "section": "It me",
+    "text": "It me\n\nName\n\n(Prof. )?Calvin\n\nCredentials\n\nB.A. Mathematics\nB.S., M.S., Ph.D. Computer Science\n\nPronouns\n\nthey/them",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#course-structure",
-    "href": "00.html#course-structure",
+    "objectID": "00.html#the-great-work",
+    "href": "00.html#the-great-work",
     "title": "Introduction",
-    "section": "Course Structure",
-    "text": "Course Structure\n■ Assessment (65%): – 6x Quizzes (QZ): 50% Your final can replace up to two of your lowest quiz scores. – Final Exam (FN): 15% ■ Practice and Preparation (30%): – 6x Written Assignments (WA): 15% – 5x Labs (LAB): 15% ■ In-Class Participation (5%): – 1x Submission to Gradescope per class. ■ 4 can be dropped, no questions asked.",
+    "section": "The Great Work",
+    "text": "The Great Work\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs.",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#extensions-late-days",
-    "href": "00.html#extensions-late-days",
+    "objectID": "00.html#course-format",
+    "href": "00.html#course-format",
     "title": "Introduction",
-    "section": "Extensions + Late Days",
-    "text": "Extensions + Late Days\n■ You have 8 days to use on any assignment in the course, with no explanation needed. ■ You may request extensions for illness or personal life events so you don’t have to use up your late days. – Extension form is linked in the syllabus ■ If you are not sure if something qualifies for an extension, just fill out the form anyway, and we will get back to you. ■ You will not be penalized for submitting the assignment within the provided grace period if you receive an extension!",
+    "section": "Course Format",
+    "text": "Course Format\n\nLectures in class\n6 labs/homeworks\nIn person midterm\nWas not clever enough to design a final, so none.",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#gradescope",
-    "href": "00.html#gradescope",
+    "objectID": "00.html#grade-policy",
+    "href": "00.html#grade-policy",
     "title": "Introduction",
-    "section": "Gradescope",
-    "text": "Gradescope\n■ Make sure you are enrolled! – For the correct section!",
+    "section": "Grade Policy",
+    "text": "Grade Policy\n\nYour voices have been heard:\n\n\nI think failing my systems class was the best thing that happened to me.\n\n\nThis course demanded strong self-motivation… Thus, I didn’t learn as much as I might’ve if grading mattered more.",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#the-team",
-    "href": "00.html#the-team",
+    "objectID": "00.html#specification-grading",
+    "href": "00.html#specification-grading",
     "title": "Introduction",
-    "section": "The Team!",
-    "text": "The Team!\n■ LAs: – Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain, Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil Dickerson, Gabrielle Stewart, Kiara Smith, Nathan Santiago, Betsy George, Matthew Thornton, Celine Keles, Rachit Pajbai, Joaquim D’Silva, Joseph Zhen, Sven Reyes, Chenghe Kong, Wai Phyo, Danny Xia, Issa Masumbuko ■ LA office hours will be held in CSXL RM SN143. Time TBD! – I will send out an announcement once we schedule them! ■ My office hours are Tuesdays 1-3pm in FB114.\nClassroom Community ■ Let’s all work together to create a supportive and welcoming learning environment for everyone in this room! ■ I expect all of you to be present, respectful & engaged in class, every day! ■ We will transition between groupwork & lecture frequently. – During group work: the more conversation the better! – During lecture: Please lock in! Sound carries more than you think. ■ Ask questions! Utilize the TAs and office hours! – Come to office hours for conceptual help, too! We love talking to you all! ■ I am always open to feedback!\nHEALTH & SAFETY\nFace Masks ■ Optional ■ Use a mask often!\nEmergency Procedures ■ Evacuate (fire, chemical hazard) ■ Shelter in place (weather related) ■ Secure in place (armed and dangerous assailant) – run, hide (secure in place), fight\nAcknowledgements ■ Optional Textbook 1: Computer Organization and Design RISC-V Edition: The Hardware Software Interface by David Patterson and John Hennessey ■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by David Patterson and Andrew Waterman. ■ Connor McMahon, Leonard McMillan, Montek Singh",
+    "section": "Specification Grading",
+    "text": "Specification Grading\n\nBasically, I will assign some stuff but you don’t have to do all of it perfectly.\n\nNo partial credit, everything is boolean grading.\n\nI took distributions over final, midterm, and Lab/HW",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#review",
-    "href": "00.html#review",
+    "objectID": "00.html#it-pays-to-get-as",
+    "href": "00.html#it-pays-to-get-as",
     "title": "Introduction",
-    "section": "271 REVIEW ☺",
-    "text": "271 REVIEW ☺",
+    "section": "It pays to get A’s",
+    "text": "It pays to get A’s\n\n\n\nGrade\nRequirements\n\n\n\n\nA\nComplete all but one labs, midterm passing grade\n\n\nA-\nComplete half or more labs, midterm passing grade\n\n\nA-\nComplete all labs",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#but-bs-are-the-knees",
+    "href": "00.html#but-bs-are-the-knees",
+    "title": "Introduction",
+    "section": "But B’s are the Knees",
+    "text": "But B’s are the Knees\n\n\n\nGrade\nRequirements\n\n\n\n\nB\nHalf or more labs\n\n\nB\nMidterm passing grade",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#these-may-earn-degrees",
+    "href": "00.html#these-may-earn-degrees",
+    "title": "Introduction",
+    "section": "These may (???) earn degrees",
+    "text": "These may (???) earn degrees\n\n\n\nGrade\nRequirements\n\n\n\n\nC\nNonzero labs\n\n\nF\nAnything else",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#lab-grading",
+    "href": "00.html#lab-grading",
+    "title": "Introduction",
+    "section": "Lab Grading",
+    "text": "Lab Grading\n\n“Perfect” (counts for spec grading)\n\nComplete\nOn time\nCorrect\n\n“Passing” (counts for spec grading)\n\nComplete\nOn time\n\n“Doesn’t count” (=0%)\n\nAnything else",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#midterm",
+    "href": "00.html#midterm",
+    "title": "Introduction",
+    "section": "Midterm",
+    "text": "Midterm\n\nMidterm\n\nIn person\nWritten\nWith notes\nWithout computer\n\nMay have two (I’ll count higher of two)",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#late-work-policy",
+    "href": "00.html#late-work-policy",
+    "title": "Introduction",
+    "section": "Late Work Policy",
+    "text": "Late Work Policy\n\nLate work is not accepted.\n\nNo exceptions.\nThe specification grading framework incorpates tolerances.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#ai-policy",
+    "href": "00.html#ai-policy",
+    "title": "Introduction",
+    "section": "AI Policy",
+    "text": "AI Policy\n\nI have no idea if this will be useful.\nLet me know.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#collaboration-policy",
+    "href": "00.html#collaboration-policy",
+    "title": "Introduction",
+    "section": "Collaboration Policy",
+    "text": "Collaboration Policy\n\nYou should chat with each other.\nYou should write your own solution.\nIf someone shows you something and you don’t understand it as well as something you write yourself, it is a waste of your time to use the solution.\n\nBut not a waste as a way to learn.",
     "crumbs": [
       "Introduction"
     ]
@@ -390,21 +500,31 @@
     ]
   },
   {
-    "objectID": "00.html#binary-addition-and-overflow",
-    "href": "00.html#binary-addition-and-overflow",
+    "objectID": "00.html#carryoverflow",
+    "href": "00.html#carryoverflow",
     "title": "Introduction",
-    "section": "Binary Addition and Overflow",
-    "text": "Binary Addition and Overflow\nTake 5 minutes to answer question 3 on your worksheets!",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nDoesn’t always happen\n\n\n\n\n\n1\n0\n1\n0\n\n\n+\n0\n1\n0\n1\n\n\n\n\n\n\n\n\n\n=\n1\n1\n1\n1",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "00.html#review-binary-addition-and-overflow",
-    "href": "00.html#review-binary-addition-and-overflow",
+    "objectID": "00.html#carryoverflow-1",
+    "href": "00.html#carryoverflow-1",
     "title": "Introduction",
-    "section": "Review: Binary Addition and Overflow",
-    "text": "Review: Binary Addition and Overflow\n1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nWhen it happens it matters\n\n\n\n\n\n0\n1\n0\n1\n\n\n+\n0\n1\n0\n1\n\n\nc\n1\n\n1\n\n\n\n=\n1\n0\n1\n0",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "00.html#carryoverflow-2",
+    "href": "00.html#carryoverflow-2",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nCarries can overflow\n\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n1\n\n\n\n=\n1\n0\n0\n0\n0",
     "crumbs": [
       "Introduction"
     ]
@@ -577,18 +697,53 @@
     "text": "Quantifying Information\n\nSuppose you’re faced with \\(N\\) equally probable choices,\n\nE.g. Diet Coke, Coke Zero, Cherry Coke, Vanilla Coke\n\nAnd I give you a fact that narrows it down to M possibilities.\n\nIt’s flavored, so Cherry or Vanilla\n\nThis is worth \\(\\log_2(\\frac{M}{N})\\) information.\n\nThe unit for information is bits"
   },
   {
-    "objectID": "00.rjs.html#an-exercise-how-many-bits",
-    "href": "00.rjs.html#an-exercise-how-many-bits",
+    "objectID": "00.rjs.html#counting-bits",
+    "href": "00.rjs.html#counting-bits",
     "title": "Introduction",
-    "section": "An exercise: How many bits?",
-    "text": "An exercise: How many bits?\nWith 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan."
+    "section": "Counting Bits",
+    "text": "Counting Bits\n\nImagine bits are expensive.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Diet\", \"Zero\", \"Cherry\", \"Vanilla\"]\n\nIndices are in range(4) and \\(log_2(4) = 2\\)\n\nfrom numpy import log2\nlog2(4)"
   },
   {
-    "objectID": "00.rjs.html#an-exercise-how-many-bits-1",
-    "href": "00.rjs.html#an-exercise-how-many-bits-1",
+    "objectID": "00.rjs.html#a-mapping",
+    "href": "00.rjs.html#a-mapping",
     "title": "Introduction",
-    "section": "An exercise: How many bits?",
-    "text": "An exercise: How many bits?\nWith 1-2 classmates, take 5 minutes to answer question 1 on your worksheet. You can take “N” to represent the number of students in this class, and “M” to be the number of students with the last name Ryan. 1.1 bits=⌈log (N)⌉, where N is the number of students in the class. 2 if there are 100 students in the class, log (100) ~~ 6.64 ⇒ 7 bits! 2 1.2 N/M"
+    "section": "A Mapping",
+    "text": "A Mapping\n\nPerhaps the map is as follows.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b00\n\"Diet\"\n\n\n0b01\n\"Zero\"\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\""
+  },
+  {
+    "objectID": "00.rjs.html#counting-bit",
+    "href": "00.rjs.html#counting-bit",
+    "title": "Introduction",
+    "section": "Counting Bit",
+    "text": "Counting Bit\n\nRestrict to flavor.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Cherry\", \"Vanilla\"]\n\nIndices are in range(2) and \\(\\log_2(2) = 1\\)\n\nfrom numpy import log2\nlog2(2)"
+  },
+  {
+    "objectID": "00.rjs.html#a-mapping-1",
+    "href": "00.rjs.html#a-mapping-1",
+    "title": "Introduction",
+    "section": "A Mapping",
+    "text": "A Mapping\n\nWe imagine this restricts the more significant binary digit to 1.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"\n\n\n\n\nDisclosing “flavor” reveals one bit worth of information."
+  },
+  {
+    "objectID": "00.rjs.html#examples",
+    "href": "00.rjs.html#examples",
+    "title": "Introduction",
+    "section": "Examples",
+    "text": "Examples\n\nOutcome of a coin flip: \\(\\log_2(2/1)\\) = 1\nRoll of one die: \\(\\log_2(6/1)\\) ≅ 2.6\nRoll of one die is odd: \\(\\log_2(6/3)\\) ≅ 1"
+  },
+  {
+    "objectID": "00.rjs.html#exercise",
+    "href": "00.rjs.html#exercise",
+    "title": "Introduction",
+    "section": "Exercise",
+    "text": "Exercise\n\nA 7-digit phone number is a palindrome.\nProceed manually.\n\nGet an approximate solution absent any tools, or\nExpress the solution in \\(\\LaTeX\\), or\nExpress the solution in a python script."
+  },
+  {
+    "objectID": "00.rjs.html#solution",
+    "href": "00.rjs.html#solution",
+    "title": "Introduction",
+    "section": "Solution",
+    "text": "Solution\n\nEach (decimal) digit stores \\(\\log_2(10)\\)\n7 independent digits stores up to \\(\\log_2(10^7)\\)\nA palindrome causes the final 3 to be determined by the first 3.\n4 independent digits stores up to \\(\\log_2(10^4)\\)\nDiscloses \\(\\log_2(10^7/10^4) = \\log_2(10^3)\\)\n\n\\(10^3\\) ≅ \\(2^10\\) so approx. 10 bits."
   },
   {
     "objectID": "00.rjs.html#what-do-programs-really-do",
@@ -598,13 +753,6 @@
     "text": "What do programs really do?\nQuoth Kaki:\n\nAt this point in your CS career, you look at a program specification and figure out what it does!\n\nint f(int x) {\n    int r = 0;\n    while (++r * r &lt;= x) {}\n    return r - 1;\n}"
   },
   {
-    "objectID": "00.rjs.html#what-do-programs-really-do-1",
-    "href": "00.rjs.html#what-do-programs-really-do-1",
-    "title": "Introduction",
-    "section": "What do programs really do?",
-    "text": "What do programs really do?\nAt this point in your CS career, you int f(int x) { look at a program specification and int r; int odd = 1; figure out what it does! for (r = 0; x &gt;= odd; r++) { x -= odd; odd += 2; Q: What does this do? What is your } strategy for figuring it out? return r; } Hint: Try f(36), f(64), f(100) This is computing the square root"
-  },
-  {
     "objectID": "00.rjs.html#how-does-a-computer-do-it",
     "href": "00.rjs.html#how-does-a-computer-do-it",
     "title": "Introduction",
@@ -612,53 +760,102 @@
     "text": "How does a computer do it?\n\n\n\n\ncat f.c\n\nint f(int x) {\n    int r = 0;\n    while (++r * r &lt;= x) {}\n    return r - 1;\n}\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret"
   },
   {
-    "objectID": "00.rjs.html#are-there-limits-to-computation",
-    "href": "00.rjs.html#are-there-limits-to-computation",
+    "objectID": "00.rjs.html#what-do-we-see",
+    "href": "00.rjs.html#what-do-we-see",
     "title": "Introduction",
-    "section": "Are there limits to computation?",
-    "text": "Are there limits to computation?\n■ Will some new instruction be invented that fundamentally changes how fast computers solve problems? ■ Can computers solve any well- specified problem? – COMP455 ■ Can we predict how long it will take for a computer to solve a given problem? – COMP210, COMP550 ■ Does there exist a new model of computation?"
+    "section": "What do we see?",
+    "text": "What do we see?\n\n\n\nFour operations, one each of:\n\n\\(+\\), \\(\\times\\), \\(-\\), \\(\\geq\\)\n\nMany moves\n\nIncluding push, pop\n\nSome control\n\n“Jump”, return, “nop”\n\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret"
   },
   {
-    "objectID": "00.rjs.html#administrative",
-    "href": "00.rjs.html#administrative",
+    "objectID": "00.rjs.html#it-me",
+    "href": "00.rjs.html#it-me",
     "title": "Introduction",
-    "section": "ADMINISTRATIVE",
-    "text": "ADMINISTRATIVE\nDETAILS\nSyllabus! Course site: https://www.cs.unc.edu/~kakiryan/teaching/311- sp26/311-sp26.html Or https://tinyurl.com/comp311-sp26"
+    "section": "It me",
+    "text": "It me\n\nName\n\n(Prof. )?Calvin\n\nCredentials\n\nB.A. Mathematics\nB.S., M.S., Ph.D. Computer Science\n\nPronouns\n\nthey/them"
   },
   {
-    "objectID": "00.rjs.html#course-structure",
-    "href": "00.rjs.html#course-structure",
+    "objectID": "00.rjs.html#the-great-work",
+    "href": "00.rjs.html#the-great-work",
     "title": "Introduction",
-    "section": "Course Structure",
-    "text": "Course Structure\n■ Assessment (65%): – 6x Quizzes (QZ): 50% Your final can replace up to two of your lowest quiz scores. – Final Exam (FN): 15% ■ Practice and Preparation (30%): – 6x Written Assignments (WA): 15% – 5x Labs (LAB): 15% ■ In-Class Participation (5%): – 1x Submission to Gradescope per class. ■ 4 can be dropped, no questions asked."
+    "section": "The Great Work",
+    "text": "The Great Work\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs."
   },
   {
-    "objectID": "00.rjs.html#extensions-late-days",
-    "href": "00.rjs.html#extensions-late-days",
+    "objectID": "00.rjs.html#course-format",
+    "href": "00.rjs.html#course-format",
     "title": "Introduction",
-    "section": "Extensions + Late Days",
-    "text": "Extensions + Late Days\n■ You have 8 days to use on any assignment in the course, with no explanation needed. ■ You may request extensions for illness or personal life events so you don’t have to use up your late days. – Extension form is linked in the syllabus ■ If you are not sure if something qualifies for an extension, just fill out the form anyway, and we will get back to you. ■ You will not be penalized for submitting the assignment within the provided grace period if you receive an extension!"
+    "section": "Course Format",
+    "text": "Course Format\n\nLectures in class\n6 labs/homeworks\nIn person midterm\nWas not clever enough to design a final, so none."
   },
   {
-    "objectID": "00.rjs.html#gradescope",
-    "href": "00.rjs.html#gradescope",
+    "objectID": "00.rjs.html#grade-policy",
+    "href": "00.rjs.html#grade-policy",
     "title": "Introduction",
-    "section": "Gradescope",
-    "text": "Gradescope\n■ Make sure you are enrolled! – For the correct section!"
+    "section": "Grade Policy",
+    "text": "Grade Policy\n\nYour voices have been heard:\n\n\nI think failing my systems class was the best thing that happened to me.\n\n\nThis course demanded strong self-motivation… Thus, I didn’t learn as much as I might’ve if grading mattered more."
   },
   {
-    "objectID": "00.rjs.html#the-team",
-    "href": "00.rjs.html#the-team",
+    "objectID": "00.rjs.html#specification-grading",
+    "href": "00.rjs.html#specification-grading",
     "title": "Introduction",
-    "section": "The Team!",
-    "text": "The Team!\n■ LAs: – Zhi Yang, Jules Kim, Ben Chesser, Trey Anderson, Aashvi Jain, Joe Shanahan, Christopher McClanahan, Grace Odondi, Akil Dickerson, Gabrielle Stewart, Kiara Smith, Nathan Santiago, Betsy George, Matthew Thornton, Celine Keles, Rachit Pajbai, Joaquim D’Silva, Joseph Zhen, Sven Reyes, Chenghe Kong, Wai Phyo, Danny Xia, Issa Masumbuko ■ LA office hours will be held in CSXL RM SN143. Time TBD! – I will send out an announcement once we schedule them! ■ My office hours are Tuesdays 1-3pm in FB114.\nClassroom Community ■ Let’s all work together to create a supportive and welcoming learning environment for everyone in this room! ■ I expect all of you to be present, respectful & engaged in class, every day! ■ We will transition between groupwork & lecture frequently. – During group work: the more conversation the better! – During lecture: Please lock in! Sound carries more than you think. ■ Ask questions! Utilize the TAs and office hours! – Come to office hours for conceptual help, too! We love talking to you all! ■ I am always open to feedback!\nHEALTH & SAFETY\nFace Masks ■ Optional ■ Use a mask often!\nEmergency Procedures ■ Evacuate (fire, chemical hazard) ■ Shelter in place (weather related) ■ Secure in place (armed and dangerous assailant) – run, hide (secure in place), fight\nAcknowledgements ■ Optional Textbook 1: Computer Organization and Design RISC-V Edition: The Hardware Software Interface by David Patterson and John Hennessey ■ Textbook 2: The RISC-V Reader: An Open Architecture Atlas by David Patterson and Andrew Waterman. ■ Connor McMahon, Leonard McMillan, Montek Singh"
+    "section": "Specification Grading",
+    "text": "Specification Grading\n\nBasically, I will assign some stuff but you don’t have to do all of it perfectly.\n\nNo partial credit, everything is boolean grading.\n\nI took distributions over final, midterm, and Lab/HW"
   },
   {
-    "objectID": "00.rjs.html#review",
-    "href": "00.rjs.html#review",
+    "objectID": "00.rjs.html#it-pays-to-get-as",
+    "href": "00.rjs.html#it-pays-to-get-as",
     "title": "Introduction",
-    "section": "271 REVIEW ☺",
-    "text": "271 REVIEW ☺"
+    "section": "It pays to get A’s",
+    "text": "It pays to get A’s\n\n\n\nGrade\nRequirements\n\n\n\n\nA\nComplete all but one labs, midterm passing grade\n\n\nA-\nComplete half or more labs, midterm passing grade\n\n\nA-\nComplete all labs"
+  },
+  {
+    "objectID": "00.rjs.html#but-bs-are-the-knees",
+    "href": "00.rjs.html#but-bs-are-the-knees",
+    "title": "Introduction",
+    "section": "But B’s are the Knees",
+    "text": "But B’s are the Knees\n\n\n\nGrade\nRequirements\n\n\n\n\nB\nHalf or more labs\n\n\nB\nMidterm passing grade"
+  },
+  {
+    "objectID": "00.rjs.html#these-may-earn-degrees",
+    "href": "00.rjs.html#these-may-earn-degrees",
+    "title": "Introduction",
+    "section": "These may (???) earn degrees",
+    "text": "These may (???) earn degrees\n\n\n\nGrade\nRequirements\n\n\n\n\nC\nNonzero labs\n\n\nF\nAnything else"
+  },
+  {
+    "objectID": "00.rjs.html#lab-grading",
+    "href": "00.rjs.html#lab-grading",
+    "title": "Introduction",
+    "section": "Lab Grading",
+    "text": "Lab Grading\n\n“Perfect” (counts for spec grading)\n\nComplete\nOn time\nCorrect\n\n“Passing” (counts for spec grading)\n\nComplete\nOn time\n\n“Doesn’t count” (=0%)\n\nAnything else"
+  },
+  {
+    "objectID": "00.rjs.html#midterm",
+    "href": "00.rjs.html#midterm",
+    "title": "Introduction",
+    "section": "Midterm",
+    "text": "Midterm\n\nMidterm\n\nIn person\nWritten\nWith notes\nWithout computer\n\nMay have two (I’ll count higher of two)"
+  },
+  {
+    "objectID": "00.rjs.html#late-work-policy",
+    "href": "00.rjs.html#late-work-policy",
+    "title": "Introduction",
+    "section": "Late Work Policy",
+    "text": "Late Work Policy\n\nLate work is not accepted.\n\nNo exceptions.\nThe specification grading framework incorpates tolerances."
+  },
+  {
+    "objectID": "00.rjs.html#ai-policy",
+    "href": "00.rjs.html#ai-policy",
+    "title": "Introduction",
+    "section": "AI Policy",
+    "text": "AI Policy\n\nI have no idea if this will be useful.\nLet me know."
+  },
+  {
+    "objectID": "00.rjs.html#collaboration-policy",
+    "href": "00.rjs.html#collaboration-policy",
+    "title": "Introduction",
+    "section": "Collaboration Policy",
+    "text": "Collaboration Policy\n\nYou should chat with each other.\nYou should write your own solution.\nIf someone shows you something and you don’t understand it as well as something you write yourself, it is a waste of your time to use the solution.\n\nBut not a waste as a way to learn."
   },
   {
     "objectID": "00.rjs.html#base",
@@ -696,18 +893,25 @@
     "text": "Overflow\n\nAdding two values of \\(n\\) digits requires \\(n+1\\) digits to store the sum.\nMultiply two values of \\(n\\) digits requires \\(2n\\) digits to store the product."
   },
   {
-    "objectID": "00.rjs.html#binary-addition-and-overflow",
-    "href": "00.rjs.html#binary-addition-and-overflow",
+    "objectID": "00.rjs.html#carryoverflow",
+    "href": "00.rjs.html#carryoverflow",
     "title": "Introduction",
-    "section": "Binary Addition and Overflow",
-    "text": "Binary Addition and Overflow\nTake 5 minutes to answer question 3 on your worksheets!"
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nDoesn’t always happen\n\n\n\n\n\n1\n0\n1\n0\n\n\n+\n0\n1\n0\n1\n\n\n\n\n\n\n\n\n\n=\n1\n1\n1\n1"
   },
   {
-    "objectID": "00.rjs.html#review-binary-addition-and-overflow",
-    "href": "00.rjs.html#review-binary-addition-and-overflow",
+    "objectID": "00.rjs.html#carryoverflow-1",
+    "href": "00.rjs.html#carryoverflow-1",
     "title": "Introduction",
-    "section": "Review: Binary Addition and Overflow",
-    "text": "Review: Binary Addition and Overflow\n1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no"
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nWhen it happens it matters\n\n\n\n\n\n0\n1\n0\n1\n\n\n+\n0\n1\n0\n1\n\n\nc\n1\n\n1\n\n\n\n=\n1\n0\n1\n0"
+  },
+  {
+    "objectID": "00.rjs.html#carryoverflow-2",
+    "href": "00.rjs.html#carryoverflow-2",
+    "title": "Introduction",
+    "section": "Carry/Overflow",
+    "text": "Carry/Overflow\n\nCarries can overflow\n\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n1\n\n\n\n=\n1\n0\n0\n0\n0"
   },
   {
     "objectID": "00.rjs.html#twos-complement",
@@ -12474,1252 +12678,147 @@
   {
     "objectID": "01.rjs.html#announcements",
     "href": "01.rjs.html#announcements",
-    "title": "Circuits",
+    "title": "Instructions",
     "section": "Announcements",
     "text": "Announcements\n\nWelcome to HW/asm\nAction Items discussion"
   },
   {
-    "objectID": "01.rjs.html#logistics-updates",
-    "href": "01.rjs.html#logistics-updates",
-    "title": "Circuits",
-    "section": "Logistics Updates",
-    "text": "Logistics Updates\n■ First quiz on Wednesday! – If you have ARS accommodations, please make arrangements! ■ First written assignment posted today, due in a week! ■ Quiz review session next Tuesday. Time TBD. ■ Regular LA office hours will start soon. I will post announcement once our schedule is sorted. ■ Systems reading group will actually start next week ☺ – 5pm in FB141!"
+    "objectID": "01.rjs.html#the-big-three",
+    "href": "01.rjs.html#the-big-three",
+    "title": "Instructions",
+    "section": "The Big Three",
+    "text": "The Big Three\n\nEach computer has at least three basic units:\n\nI/O (Input/Output\nMemory\nCPU (Central Processing Unit)"
   },
   {
-    "objectID": "01.rjs.html#logistics-updates-1",
-    "href": "01.rjs.html#logistics-updates-1",
-    "title": "Circuits",
-    "section": "Logistics Updates",
-    "text": "Logistics Updates\nQuiz Topics: ■ – 211 Review – Conceptual topics from first two days ■ Going between decimal, binary, hex ■ Tracing a simple assembly instruction ■ Two’s complement (add, subtract) (addition, subtraction) Basic circuits, switches, – ■ Overflow transistors Basic memory questions – ■ Whatever we get through ■ Similar to in-class & WS today! questions"
+    "objectID": "01.rjs.html#i0",
+    "href": "01.rjs.html#i0",
+    "title": "Instructions",
+    "section": "I/0",
+    "text": "I/0\n\nWhere data arrives from the outside world\nWhere data is sent to the outside world\nWhere data is archived for the “long term”\n\nPersists through power cycles\n\nKeyboard, mouse, monitor, HDD\nSymbols to bits (and back)"
   },
   {
-    "objectID": "01.rjs.html#more-211-review",
-    "href": "01.rjs.html#more-211-review",
-    "title": "Circuits",
-    "section": "MORE 211 REVIEW:",
-    "text": "MORE 211 REVIEW:\nMEMORY"
+    "objectID": "01.rjs.html#memory",
+    "href": "01.rjs.html#memory",
+    "title": "Instructions",
+    "section": "Memory",
+    "text": "Memory\n\nWhere data is stored when in usage\n\nArrays, trees, matrices (not files, really)\nOften called RAM\n“Handful” of GBs\n\nKey-value storage over addresses and values or contents"
   },
   {
-    "objectID": "01.rjs.html#storing-data-in-memory",
-    "href": "01.rjs.html#storing-data-in-memory",
-    "title": "Circuits",
-    "section": "Storing Data in Memory",
-    "text": "Storing Data in Memory\n1 byte = 8 bits Each of these rows can store one byte of data"
+    "objectID": "01.rjs.html#cpu",
+    "href": "01.rjs.html#cpu",
+    "title": "Instructions",
+    "section": "CPU",
+    "text": "CPU\n\nData is manipulated\n\nArithmetic operations\nControl flow\nLoad and store operations\n\nHow values in memory are alterated\nHow I/O values are manipulated.\n\n\nThis is the cool one."
   },
   {
-    "objectID": "01.rjs.html#storing-data-in-memory-1",
-    "href": "01.rjs.html#storing-data-in-memory-1",
-    "title": "Circuits",
-    "section": "Storing Data in Memory",
-    "text": "Storing Data in Memory\n1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row."
+    "objectID": "01.rjs.html#processing",
+    "href": "01.rjs.html#processing",
+    "title": "Instructions",
+    "section": "“Processing”",
+    "text": "“Processing”\n\nA CPU performs low-level operations called instructions\n\nThese are cool, and good.\n\nFour types\n\nArithmetic\nLogical\nComparison (or tests)\nControl"
   },
   {
-    "objectID": "01.rjs.html#byte-addresses",
-    "href": "01.rjs.html#byte-addresses",
-    "title": "Circuits",
-    "section": "Byte Addresses",
-    "text": "Byte Addresses\n1 byte = 8 bits Byte Address 0 0b0000 0101 1 0b0000 0100 2 0b1111 1110 To reference each of these 3 locations, we use something called a byte address. 4 5 6 Note that these addresses 7 are not stored anywhere! 8 9 10 11"
+    "objectID": "01.rjs.html#examples",
+    "href": "01.rjs.html#examples",
+    "title": "Instructions",
+    "section": "Examples",
+    "text": "Examples\n\nArithmetic\n\n\\(+\\), \\(-\\), \\(\\times\\), $%\n\nLogical\n\nNOT, AND, OR, XOR\n\nComparison\n\n\\(\\gt\\), \\(lt\\), \\(=\\), \\(\\geq\\), \\(\\leq\\)\n\nControl\n\nGo to a place in code, return to call site."
   },
   {
-    "objectID": "01.rjs.html#storing-larger-data",
-    "href": "01.rjs.html#storing-larger-data",
-    "title": "Circuits",
-    "section": "Storing Larger Data",
-    "text": "Storing Larger Data\n■ What if I want to store an integer? – sizeof(int) = 4 bytes Variables whose types are larger than one byte span multiple addresses in memory!"
-  },
-  {
-    "objectID": "01.rjs.html#storing-larger-data-1",
-    "href": "01.rjs.html#storing-larger-data-1",
-    "title": "Circuits",
-    "section": "Storing Larger Data",
-    "text": "Storing Larger Data\n1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101"
-  },
-  {
-    "objectID": "01.rjs.html#storing-larger-data-2",
-    "href": "01.rjs.html#storing-larger-data-2",
-    "title": "Circuits",
-    "section": "Storing Larger Data",
-    "text": "Storing Larger Data\n1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101 Byte Data Address 0 What order 1 should we store the bits? 2 3"
-  },
-  {
-    "objectID": "01.rjs.html#msb-and-lsb",
-    "href": "01.rjs.html#msb-and-lsb",
-    "title": "Circuits",
-    "section": "MSB and LSB",
-    "text": "MSB and LSB\n0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB)"
-  },
-  {
-    "objectID": "01.rjs.html#little-endian-ordering",
-    "href": "01.rjs.html#little-endian-ordering",
-    "title": "Circuits",
-    "section": "Little Endian Ordering",
-    "text": "Little Endian Ordering\n■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3"
-  },
-  {
-    "objectID": "01.rjs.html#little-endian-ordering-1",
-    "href": "01.rjs.html#little-endian-ordering-1",
-    "title": "Circuits",
-    "section": "Little Endian Ordering",
-    "text": "Little Endian Ordering\n■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3"
-  },
-  {
-    "objectID": "01.rjs.html#big-endian-ordering",
-    "href": "01.rjs.html#big-endian-ordering",
-    "title": "Circuits",
-    "section": "Big Endian Ordering",
-    "text": "Big Endian Ordering\n■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3"
-  },
-  {
-    "objectID": "01.rjs.html#big-endian-ordering-1",
-    "href": "01.rjs.html#big-endian-ordering-1",
-    "title": "Circuits",
-    "section": "Big Endian Ordering",
-    "text": "Big Endian Ordering\n■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 0000 0000 1 0000 0101 2 0000 0110 1100 1101 3"
-  },
-  {
-    "objectID": "01.rjs.html#little-endian-ordering-2",
-    "href": "01.rjs.html#little-endian-ordering-2",
-    "title": "Circuits",
-    "section": "Little Endian Ordering",
-    "text": "Little Endian Ordering\n■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Little Endian Ordering is dominant in processor architectures and is what we will be using in this class! Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3"
-  },
-  {
-    "objectID": "01.rjs.html#working-with-memory",
-    "href": "01.rjs.html#working-with-memory",
-    "title": "Circuits",
-    "section": "Working with memory",
-    "text": "Working with memory\n■ How do you know if an individual row should be interpreted as a one-byte value or if it is part of a larger number? – You cannot tell from looking at the memory – you’ll have this information stored somewhere else! – When you send memory requests, you specify the address and the size of data you want to read. Memory request → assembly instruction! ☺ lw x5, 8(x10)"
-  },
-  {
-    "objectID": "01.rjs.html#byte",
-    "href": "01.rjs.html#byte",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nData Address Integer Array 0 1 0 1 2 3 4 2 3 5 90 100 40 11 4 5 6 7 8 sizeof(int) = 4 bytes 9 10 11 12 13 14 15 16 17 18 19"
-  },
-  {
-    "objectID": "01.rjs.html#byte-1",
-    "href": "01.rjs.html#byte-1",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nByte Data | | Data Address | | | — | ———— | — | Address 0 0 | 1 | 5 | 1 | | — | — | — | 2 2 | 3 | | 3 | | — | — | — | 4 4 5 | 5 | 90 | | | — | — | — | 6 6 | 7 | | 7 | | — | — | — | 8 8 | 9 | | 9 | | — | — | — | 100 10 10 11 11 | 12 | | 12 | | — | — | — | 13 13 40 | 14 | | 14 | | — | — | — | 15 15 | 16 | | 16 | | — | — | — | | 17 | 11 | 17 | | 18 | | 18 | 19 19"
-  },
-  {
-    "objectID": "01.rjs.html#byte-2",
-    "href": "01.rjs.html#byte-2",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nByte Data | | Data Address | | | | — | ———— | — | — | Address 0 | 0 | | | 0b 0000 0101 | | — | — | — | ———— | | 1 | 5 | 1 | 0b 0000 0000 | 2 | 2 | | | 0b 0000 0000 | | — | — | — | ———— | | 3 | | 3 | 0b 0000 0000 | 4 | 4 | | | 0b 0101 1010 | | — | — | — | ———— | | | | 5 | 0b 0000 0000 | | 5 | 90 | | | 6 | 6 | | | 0b 0000 0000 | | — | — | — | ———— | | 7 | | 7 | | 0b 0000 0000 8 | 8 | | | 0b 0110 0100 | | — | — | — | ———— | | 9 | | 9 | | | | 100 | | 0b 0000 0000 | 10 | 10 | | | 0b 0000 0000 | | — | — | — | ———— | 11 | 11 | | | 0b 0000 0000 | | — | — | — | ———— | | 12 | | 12 | | 0b 0010 1000 13 | 13 | | | 0b 0000 0000 | | — | — | — | ———— | 40 | 14 | | 14 | | | — | — | — | — | 0b 0000 0000 15 | 15 | | | 0b 0000 0000 | | — | — | — | ———— | | 16 | | 16 | | 0b 0000 1011 | 17 | 11 | 17 | 0b 0000 0000 | | — | — | — | ———— | | 18 | | 18 | | 0b 0000 0000 19 | 19 | | | 0b 0000 0000 | | — | — | — | ———— |"
-  },
-  {
-    "objectID": "01.rjs.html#byte-3",
-    "href": "01.rjs.html#byte-3",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nData Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 sizeof(int) = 4 bytes 9 100 10 11 12 13 Assuming this array starts at 40 14 address 0, this is how it is stored in 15 memory 16 17 11 18 19"
-  },
-  {
-    "objectID": "01.rjs.html#byte-4",
-    "href": "01.rjs.html#byte-4",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nData Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 The address of each element in the array corresponds to its starting byte in memory. 9 100 10 11 Since the size of each element in this array is 12 4 bytes, we can compute the address of any 13 40 element by taking its index and multiplying it 14 by 4. 15 16 17 11 Base address = address of the start of the array 18 19"
-  },
-  {
-    "objectID": "01.rjs.html#address-calculation",
-    "href": "01.rjs.html#address-calculation",
-    "title": "Circuits",
-    "section": "Address Calculation",
-    "text": "Address Calculation\n■ I have a 10-element integer array whose base address is 20. What is the address of index 9?"
-  },
-  {
-    "objectID": "01.rjs.html#address-calculation-1",
-    "href": "01.rjs.html#address-calculation-1",
-    "title": "Circuits",
-    "section": "Address Calculation",
-    "text": "Address Calculation\n■ I have a 10-element integer array whose base address is 20. What is the address of index 9? – array’s base address + index * size of integer – 20 + 9 * 4 = 56"
-  },
-  {
-    "objectID": "01.rjs.html#diagram-configurations",
-    "href": "01.rjs.html#diagram-configurations",
-    "title": "Circuits",
-    "section": "Diagram Configurations",
-    "text": "Diagram Configurations\n■ Sometimes memory diagrams will show 4 bytes per row instead of 1 byte per row – See side-by-side comparison on the next slide ■ This provides a more compact way to visualize the data ■ Much of the data that we are working with is 4 bytes, so this structure makes it easier to see what is stored in memory"
-  },
-  {
-    "objectID": "01.rjs.html#byte-byte",
-    "href": "01.rjs.html#byte-byte",
-    "title": "Circuits",
-    "section": "Byte Byte",
-    "text": "Byte Byte\nData Data Address Address 0 0 1 4 2 8 3 12 4 16 5 20 6 24 7 28 8 32 9 36 10 40 11 44 12 48 13 52 14 56 15 60 16 64 17 68 18 72 19 76"
-  },
-  {
-    "objectID": "01.rjs.html#byte-byte-1",
-    "href": "01.rjs.html#byte-byte-1",
-    "title": "Circuits",
-    "section": "| Byte | | Byte | |",
-    "text": "| Byte | | Byte | |\n——- | —- | ——- | —- |\n        | Data | | Data |\nAddress | | Address | |\n0 | | 0 | |\n5 | 1 | 5 | | | | — | — | — | — | | | | 4 | 90 | | 2 | | 8 | 100 | 3 | | | 12 | 40 | | — | — | — | — | | 4 | | 16 | 11 | | 5 | 90 | 20 | | | 6 | | 24 | | 7 28 8 32 9 | | 100 | 36 | | | — | — | — | — | | 10 | | 40 | | | 11 | | 44 | | 12 48 13 | | 40 | 52 | | | — | — | — | — | 14 56 | 15 | | 60 | | | — | — | — | — | 16 64 | 17 | 11 | | | | — | — | — | — | 68 18 72 | 19 | | 76 | | | — | — | — | — |"
-  },
-  {
-    "objectID": "01.rjs.html#byte-byte-2",
-    "href": "01.rjs.html#byte-byte-2",
-    "title": "Circuits",
-    "section": "| Byte | | Byte | |",
-    "text": "| Byte | | Byte | |\n—– | — | —– | — |\nData Data Address Address | 0 | 0b 0000 0101 | 0 | | | — | ———— | — | — | 0b 0000 0000 0000 0000 0000 0000 0000 0101 1 | | 0b 0000 0000 | 4 | 0b 0000 0000 0000 0000 0000 0000 0101 1010 | | — | ———— | — | —————————————— | | 2 | 0b 0000 0000 | 8 | 0b 0000 0000 0000 0000 0000 0000 0110 0100 | 3 | | 0b 0000 0000 | 12 | 0b 0000 0000 0000 0000 0000 0000 0010 1000 | | — | ———— | — | —————————————— | | 4 | 0b 0101 1010 | 16 | 0b 0000 0000 0000 0000 0000 0000 0000 1011 | | 5 | 0b 0000 0000 | 20 | | | 6 | | 24 | | 0b 0000 0000 7 | | 0b 0000 0000 | 28 | | | — | ———— | — | — | 8 | | 0b 0110 0100 | 32 | | | — | ———— | — | — | 9 | | 0b 0000 0000 | 36 | | | — | ———— | — | — | | 10 | | 40 | | 0b 0000 0000 | 11 | | 44 | | | — | — | — | — | 0b 0000 0000 12 48 0b 0010 1000 13 | | 0b 0000 0000 | 52 | | | — | ———— | — | — | 14 | | 0b 0000 0000 | 56 | | | — | ———— | — | — | | 15 | | 60 | | 0b 0000 0000 16 | | 0b 0000 1011 | 64 | | | — | ———— | — | — | 17 | | 0b 0000 0000 | 68 | | | — | ———— | — | — | 18 | | 0b 0000 0000 | 72 | | | — | ———— | — | — | | 19 | | 76 | | 0b 0000 0000"
-  },
-  {
-    "objectID": "01.rjs.html#addresses-in-hex",
-    "href": "01.rjs.html#addresses-in-hex",
-    "title": "Circuits",
-    "section": "Addresses in Hex",
-    "text": "Addresses in Hex\n■ Addresses are normally written in hex, not decimal ■ In this class, we are working in a 32-bit address space, meaning that addresses are 4 bytes ■ The rest of the memory diagrams you see in class will look the diagrams on the next slide ■ Notice that the compactness of the right diagram allows us to display more data at once than the left diagram"
-  },
-  {
-    "objectID": "01.rjs.html#byte-byte-3",
-    "href": "01.rjs.html#byte-byte-3",
-    "title": "Circuits",
-    "section": "Byte Byte",
-    "text": "Byte Byte\nData Data Address Address 0x00000000 0x00000000 0x00000001 0x00000004 0x00000002 0x00000008 0x00000003 0x0000000C 0x00000004 0x00000010 0x00000005 0x00000014 0x00000006 0x00000018 0x00000007 0x0000001C 0x00000008 0x00000020 0x00000009 0x00000024 0x0000000A 0x00000028 0x0000000B 0x0000002C Each row stores one byte of data Each row stores four bytes of data"
-  },
-  {
-    "objectID": "01.rjs.html#size-of-memory-address",
-    "href": "01.rjs.html#size-of-memory-address",
-    "title": "Circuits",
-    "section": "Size of Memory Address",
-    "text": "Size of Memory Address\nByte Data Address ■ The size of our memory 0b000 determines the number of 0b001 bits we need to address it 0b010 ■ For example, if our memory 0b011 can only hold 8 bytes, we 0b100 will need log (8) = 3 bits to 2 address the memory 0b101 0b110 0b111"
-  },
-  {
-    "objectID": "01.rjs.html#size-of-memory-address-1",
-    "href": "01.rjs.html#size-of-memory-address-1",
-    "title": "Circuits",
-    "section": "Size of Memory Address",
-    "text": "Size of Memory Address\n■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes)"
-  },
-  {
-    "objectID": "01.rjs.html#size-of-memory-address-2",
-    "href": "01.rjs.html#size-of-memory-address-2",
-    "title": "Circuits",
-    "section": "Size of Memory Address",
-    "text": "Size of Memory Address\n■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes) log (4 GB) 2 log (22 * 230) 2 log (232) 2 32"
-  },
-  {
-    "objectID": "01.rjs.html#basic-circuits",
-    "href": "01.rjs.html#basic-circuits",
-    "title": "Circuits",
-    "section": "BASIC CIRCUITS",
-    "text": "BASIC CIRCUITS"
-  },
-  {
-    "objectID": "01.rjs.html#a-substrate-for-computation",
-    "href": "01.rjs.html#a-substrate-for-computation",
-    "title": "Circuits",
-    "section": "A Substrate for Computation",
-    "text": "A Substrate for Computation\n■ We can build devices for processing and representing bits using almost any physical phenomenon - magnetic flux Wait! Some of those might have potential… - trained elephants - falling water - turning gears - DNA sequences - polarization of a photon 1 1 0 1 0 0 1 1 0 1 0 0"
-  },
-  {
-    "objectID": "01.rjs.html#using-electromagnetic-phenomena",
-    "href": "01.rjs.html#using-electromagnetic-phenomena",
-    "title": "Circuits",
-    "section": "Using Electromagnetic Phenomena",
-    "text": "Using Electromagnetic Phenomena\n▪ Some EM things we could encode bits with: ▪ voltages, phase, currents, frequency ▪ With today’s technologies voltages are most often used. ▪ Voltage pros: ▪ easy generation, detection ▪ voltage changes can be very fast ▪ lots of engineering knowledge ▪ Voltage cons: ▪ easily affected by environment ▪ DC connectivity required? ▪ R & C effects slow things down"
-  },
-  {
-    "objectID": "01.rjs.html#voltage-and-current",
-    "href": "01.rjs.html#voltage-and-current",
-    "title": "Circuits",
-    "section": "Voltage and Current",
-    "text": "Voltage and Current\n■ Voltage – The force that makes electrons flow – Measured in Volts (V) ■ Current – The rate of flow of electrons – Measured in Amperes (A)"
-  },
-  {
-    "objectID": "01.rjs.html#representing-information-with-voltages",
-    "href": "01.rjs.html#representing-information-with-voltages",
-    "title": "Circuits",
-    "section": "Representing Information with Voltages",
-    "text": "Representing Information with Voltages\nRepresentation of each point (x, y) in a B&W Picture: 0 volts: BLACK 1 volt: WHITE 0.37 volts: 37% Gray etc. Representation of a picture: Scan points in some prescribed raster order… generate voltage waveform How much information at each point?"
-  },
-  {
-    "objectID": "01.rjs.html#information-processing-computation",
-    "href": "01.rjs.html#information-processing-computation",
-    "title": "Circuits",
-    "section": "Information Processing = Computation",
-    "text": "Information Processing = Computation\nFirst, let’s consider some processing blocks: | v | Copy | v | | — | —- | — | | v | INV | | 1-v"
-  },
-  {
-    "objectID": "01.rjs.html#lets-build-a-system",
-    "href": "01.rjs.html#lets-build-a-system",
-    "title": "Circuits",
-    "section": "Let’s Build a System!",
-    "text": "Let’s Build a System!\nCopy INV Copy INV input (In Theory) (Reality) Copy INV ? Copy INV output"
-  },
-  {
-    "objectID": "01.rjs.html#contracts-key-to-system-design",
-    "href": "01.rjs.html#contracts-key-to-system-design",
-    "title": "Circuits",
-    "section": "Contracts: Key to System Design",
-    "text": "Contracts: Key to System Design\nA SYSTEM is a structure that is “guaranteed” to exhibit a specified behavior, assuming all of its components obey their specified behaviors. How is this achieved? Through Contracts Every system component will have clear obligations and responsibilities. If these are maintained we have every right to expect the system to behave as planned. If contracts are violated all bets are off."
-  },
-  {
-    "objectID": "01.rjs.html#digital-contracts",
-    "href": "01.rjs.html#digital-contracts",
-    "title": "Circuits",
-    "section": "Digital Contracts",
-    "text": "Digital Contracts\nWhy DIGITAL? … because it keeps the contracts SIMPLE! It’s the price we pay for this robustness? 0 or 1 All the information that we transfer between components is only one bit! But, in exchange, we get reliable, modular, and reproducible systems."
-  },
-  {
-    "objectID": "01.rjs.html#the-digital-abstraction",
-    "href": "01.rjs.html#the-digital-abstraction",
-    "title": "Circuits",
-    "section": "The Digital Abstraction",
-    "text": "The Digital Abstraction\n“Ideal” Abstract World Real World 0/ Manufacturing 1 Variations Bits Noise Volts or Electrons or Ergs or Gallons Keep in mind, the real world is not digital, we engineer it to behave that way. We coerce real physical phenomena to implement digital designs!"
-  },
-  {
-    "objectID": "01.rjs.html#a-digital-processing-element",
-    "href": "01.rjs.html#a-digital-processing-element",
-    "title": "Circuits",
-    "section": "A Digital Processing Element",
-    "text": "A Digital Processing Element\n• A combinational device is a digital element that has – one or more digital inputs – one or more digital outputs – a functional specification that details the value of each output for every possible combination of valid input values – a timing specification consisting (at a minimum) an upper bound propagation delay, t , on the required time for the device to compute the pd specified valid output values from an arbitrary set of stable, valid input values Output a “1” if at least 2 out of 3 of input A my inputs are a “1”. Otherwise, output “0”. input B output Y I will generate a valid input C output in no more than 2 minutes after seeing valid inputs"
-  },
-  {
-    "objectID": "01.rjs.html#a-combinational-digital-system",
-    "href": "01.rjs.html#a-combinational-digital-system",
-    "title": "Circuits",
-    "section": "A Combinational Digital System",
-    "text": "A Combinational Digital System\nA system of interconnected elements is combinational if: ▪ Each circuit element is combinational ▪ Every input is connected to exactly one output or directly to some source of 0’s or 1’s ▪ The circuit contains no directed cycles ▪ But, in order to realize digital processing, elements we have one more requirement!"
-  },
-  {
-    "objectID": "01.rjs.html#nose-margins",
-    "href": "01.rjs.html#nose-margins",
-    "title": "Circuits",
-    "section": "Nose Margins",
-    "text": "Nose Margins\n■ Key idea: Don’t allow “0” to be mistaken for a “1” or vice versa ■ Use the same “uniform bit-representation convention”, for every component in our digital system ■ To implement devices with high reliability, we outlaw “close calls” via a representation convention which forbids a range of voltages between “0” and “1”. ■ Ensure the valid input range is more tolerant (larger) than the valid output range Our definition of valid does not preclude inputs and outputs from passing through invalid values. In fact, they must, but only during transitions. Our specifications allow for this (i.e. outputs are specified sometime (T ) after after inputs become valid). pd"
-  },
-  {
-    "objectID": "01.rjs.html#digital-processing-elements-gates",
-    "href": "01.rjs.html#digital-processing-elements-gates",
-    "title": "Circuits",
-    "section": "Digital Processing Elements (Gates)",
-    "text": "Digital Processing Elements (Gates)\nSome digital processing elements occur so frequently that we give them special names and symbols I will copy and I will output the A Y restore my input A Y complement of to my output buffer my input inverter A A I will output a I will output a Y Y ‘1’ AifN aDll my ‘1’ if aOnRy of my B B inputs are ‘1’ inputs are ‘1’ Q: What is the point of a buffer? A Doesn’t a wire do the same thing? I will only output a Y A: A buffer restores marginal digital ‘1’ if an XodOd Rnumber signals, because the output is as good B of my inputs are ‘1’ or “better” than the input (i.e. it solves that bad image problem from slide 7)."
-  },
-  {
-    "objectID": "01.rjs.html#digital-processing-elements-gates-1",
-    "href": "01.rjs.html#digital-processing-elements-gates-1",
-    "title": "Circuits",
-    "section": "Digital Processing Elements (Gates)",
-    "text": "Digital Processing Elements (Gates)\nSome digital processing elements occur so frequently that we give them special names and symbols A Y A Y buffer inverter A A Y Y AND OR B B A Y XOR B"
-  },
-  {
-    "objectID": "01.rjs.html#how-do-we-make-gates",
-    "href": "01.rjs.html#how-do-we-make-gates",
-    "title": "Circuits",
-    "section": "How do we make gates?",
-    "text": "How do we make gates?\n■ A controllable switch is the common This symbol link of all computing technologies indicates a “high” potential, or the voltage of the ■ Switches control voltages by creating power supply L and opening paths between higher and o a d lower potentials ■ Closed circuit: – fully connected, allows electricity to flow uninterrupted ■ Open circuit – A circuit that contains a broken This symbol indicates a connection “low” or ground – Electricity stops flowing at the point potential where the connection was lost"
-  },
-  {
-    "objectID": "01.rjs.html#switches",
-    "href": "01.rjs.html#switches",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\nOpen (off) Closed (on) Electricity can flow through a closed switch, it cannot flow through an open switch"
-  },
-  {
-    "objectID": "01.rjs.html#switches-1",
-    "href": "01.rjs.html#switches-1",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\nOpen (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 5V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 5V"
-  },
-  {
-    "objectID": "01.rjs.html#switches-2",
-    "href": "01.rjs.html#switches-2",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\nOpen (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 0V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 0V"
-  },
-  {
-    "objectID": "01.rjs.html#switches-in-series",
-    "href": "01.rjs.html#switches-in-series",
-    "title": "Circuits",
-    "section": "Switches in Series",
-    "text": "Switches in Series\nswitch0 switch1 switch0 switch1 switch0 switch1 switch0 switch1 Current can only flow between the two ends if both switches are closed current_flow = switch AND switch 0 1"
-  },
-  {
-    "objectID": "01.rjs.html#switches-in-parallel",
-    "href": "01.rjs.html#switches-in-parallel",
-    "title": "Circuits",
-    "section": "Switches in Parallel",
-    "text": "Switches in Parallel\nswitch0 switch0 switch1 switch1 switch0 switch0 switch1 switch1 Current can flow between the two ends if either of the switches is closed current_flow = switch OR switch 0 1"
-  },
-  {
-    "objectID": "01.rjs.html#digital-variables-and-functions",
-    "href": "01.rjs.html#digital-variables-and-functions",
-    "title": "Circuits",
-    "section": "Digital Variables and Functions",
-    "text": "Digital Variables and Functions\n■ A binary variable, 0 or 1, can represent the state of switch – on or off, open or closed ■ The setting of switches can be used to turn on and off other switches to compose more complicated functions."
-  },
-  {
-    "objectID": "01.rjs.html#a-simple-function-turning-on-a-light",
-    "href": "01.rjs.html#a-simple-function-turning-on-a-light",
-    "title": "Circuits",
-    "section": "A Simple Function: Turning on a Light",
-    "text": "A Simple Function: Turning on a Light\n■ By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. ■ This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON"
-  },
-  {
-    "objectID": "01.rjs.html#functions-with-two-switches",
-    "href": "01.rjs.html#functions-with-two-switches",
-    "title": "Circuits",
-    "section": "Functions with Two Switches",
-    "text": "Functions with Two Switches\n■ Two switches can be connected either in series or in parallel ■ Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions ■ · is logical AND"
-  },
-  {
-    "objectID": "01.rjs.html#functions-with-two-switches-1",
-    "href": "01.rjs.html#functions-with-two-switches-1",
-    "title": "Circuits",
-    "section": "Functions with Two Switches",
-    "text": "Functions with Two Switches\n■ With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. ■ “+” is logical OR Two basic two-input logic functions"
-  },
-  {
-    "objectID": "01.rjs.html#a-three-switch-function",
-    "href": "01.rjs.html#a-three-switch-function",
-    "title": "Circuits",
-    "section": "A Three-Switch Function",
-    "text": "A Three-Switch Function\n■ Three switches can be used to control the light in more complex ways. This series- parallel connection of switches realizes the logic function: – L(x1, x2, x3) = (x1 + x2) · x3 ■ The light is on if x3 = 1 and, at the same time, at least one of the x1 or x2 are 1."
-  },
-  {
-    "objectID": "01.rjs.html#a-three-switch-function-1",
-    "href": "01.rjs.html#a-three-switch-function-1",
-    "title": "Circuits",
-    "section": "A Three-Switch Function",
-    "text": "A Three-Switch Function"
-  },
-  {
-    "objectID": "01.rjs.html#truth-tables",
-    "href": "01.rjs.html#truth-tables",
-    "title": "Circuits",
-    "section": "Truth Tables",
-    "text": "Truth Tables\n■ Every logical function over a finite set of inputs can be described in a tabular fashion that enumerates all possible input combinations and provides the associated output. ■ Functions expressed this way are called truth tables."
-  },
-  {
-    "objectID": "01.rjs.html#pondering-truth-tables",
-    "href": "01.rjs.html#pondering-truth-tables",
-    "title": "Circuits",
-    "section": "Pondering Truth Tables",
-    "text": "Pondering Truth Tables"
-  },
-  {
-    "objectID": "01.rjs.html#transistors",
-    "href": "01.rjs.html#transistors",
-    "title": "Circuits",
-    "section": "TRANSISTORS",
-    "text": "TRANSISTORS"
-  },
-  {
-    "objectID": "01.rjs.html#transistors-are-the-physical-building",
-    "href": "01.rjs.html#transistors-are-the-physical-building",
-    "title": "Circuits",
-    "section": "Transistors are the physical building",
-    "text": "Transistors are the physical building\nblocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s. You can think of it as an electrically controlled switch that turns current on or off."
-  },
-  {
-    "objectID": "01.rjs.html#transistors-are-like-switches",
-    "href": "01.rjs.html#transistors-are-like-switches",
-    "title": "Circuits",
-    "section": "Transistors are like switches",
-    "text": "Transistors are like switches\nOff On Switches are controlled by physical contact Transistors are controlled by a voltage"
-  },
-  {
-    "objectID": "01.rjs.html#two-states-binary",
-    "href": "01.rjs.html#two-states-binary",
-    "title": "Circuits",
-    "section": "Two States: Binary!",
-    "text": "Two States: Binary!\n■ Transistors can be in two distinct states: on or off ■ This is why our machines communicate in binary (1s and 0s)! On Off"
-  },
-  {
-    "objectID": "01.rjs.html#logic-levels",
-    "href": "01.rjs.html#logic-levels",
-    "title": "Circuits",
-    "section": "Logic Levels",
-    "text": "Logic Levels\n■ Instead of specifying the exact voltage level (e.g. 3V or 5V), we’ll simply use binary terms when discussing transistors. ■ We’ll either have a high voltage or a low voltage. ■ There are a few different terms for these voltage levels. – High voltage ■ logic high = logic 1 = 1 – Low voltage ■ logic low = logic 0 = 0"
-  },
-  {
-    "objectID": "01.rjs.html#transistors-1",
-    "href": "01.rjs.html#transistors-1",
-    "title": "Circuits",
-    "section": "Transistors",
-    "text": "Transistors\n■ We will be working with two types of transistors – nMOS transistors – pMOS transistors ■ There are three terminals – Gate: controls whether the transistor is on or off – Source and Drain: endpoints"
-  },
-  {
-    "objectID": "01.rjs.html#transistor-symbol",
-    "href": "01.rjs.html#transistor-symbol",
-    "title": "Circuits",
-    "section": "Transistor Symbol",
-    "text": "Transistor Symbol\nTransistor Switch (n-channel MOSFET) The terminal labeled with the blue dot determines whether current can flow between the terminals labeled with the red dot."
-  },
-  {
-    "objectID": "01.rjs.html#nmos-transistor",
-    "href": "01.rjs.html#nmos-transistor",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\n■ There are three terminals V (drain voltage) D – Gate: controls whether the transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (source voltage) S"
-  },
-  {
-    "objectID": "01.rjs.html#nmos-transistor-1",
-    "href": "01.rjs.html#nmos-transistor-1",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\n■ If the gate voltage is high (logic 1), V (drain voltage) D current can flow between source and drain – The source and drain will be connected and will have the V (gate voltage) G same voltage ■ If the gate voltage is low, current cannot flow between source and drain V (source voltage) S – The source and drain are not connected"
-  },
-  {
-    "objectID": "01.rjs.html#nmos-transistor-2",
-    "href": "01.rjs.html#nmos-transistor-2",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\nLet’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | D | | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? V | | V | | V | | | | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | | | D | | D | | | | D | | D | | V | | V | | | V | | | V | | | G | | G | | | G | | | G | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | V | | V | | | | V | | V | | | S | | S | | | | S | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 |"
-  },
-  {
-    "objectID": "01.rjs.html#nmos-transistor-3",
-    "href": "01.rjs.html#nmos-transistor-3",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\nV V V V D D D D Logic 0 Logic 1 unknown unknown V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are connected V is low, so source and drain are not connected G G"
+    "objectID": "01.rjs.html#section",
+    "href": "01.rjs.html#section",
+    "title": "Instructions",
+    "section": "",
+    "text": "What\n\n\ndo\nwe\n\nmean\n\n\n\nby\n\n“processing”?\n\n\n\n\n\n\n\n■\nA CPU\nperforms\n\n\nlow-level\n\n\noperations\n\n\n\ncalled\n\nINSTRUCTIONS\n\n\n\n\n■ Arithmetic | | ADD | X | to Y | then | put | the result | | | in | Z | | | | | | | — | — | — | —- | —- | — | ———- | — | — | — | — | — | — | — | — | — | - | | SUBTRACT | | | X from | | Y then | | put | the | result | | back | in | Y | | | — | ——– | — | — | —— | — | —— | — | — | — | —— | — | —- | — | — | — | - ■ Logical | | Set | Z | to 1 | if X | AND | Y are | 1, | otherwise | | | set | Z | to | 0 | | | — | — | — | —- | —- | — | —– | — | ——— | — | — | — | — | — | — | — | - | | (AND | | X with | Y | then | put | the | result | | in | Z) | | | | | | — | —- | —- | —— | —- | —- | — | — | ——— | — | — | — | —- | — | — | — | | | Set | Z to | 1 | if X | OR Y | are | 1, | otherwise | | | set | Z to | 0 | | | - | | (OR | X | with | Y then | | put | the | result in | | Z) | | | | | | | — | — | — | —- | —— | — | — | — | ——— | — | — | — | — | — | — | — | ■ Comparison | | Set | Z | to 1 | if X | is EQUAL | | to | Y, | otherwise | | set | | Z to | 0 | | | — | — | — | —- | —- | ——– | — | — | — | ——— | — | — | — | —- | — | — | - Set Z to 1 if X is GREATER THAN OR EQUAL to Y, otherwise set Z to 0 - ■ Control | | - Skip | the | next | INSTRUCTION | | | | if | Z | is EQUAL | | to | 0 | | 34 | | — | —— | — | —- | ———– | — | — | — | — | — | ——– | — | — | — | — | — |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow\n\nMemory\n\n\nis\nOrganized\n\n\n\n\n\n\n\n\n\n\n■\nA group\n\nof bits!\n\n\n\n\n\n\n\n\n\n\n\n■\nGroups\nof\nbits can\nrepresent\n\nvarious\ntypes\nof data\n\n\n\n\n\n\n\n– Integers, Signed integers. Floating-point values, Strings, Pixels ■ Memory is organized as a vector of bits with indices called “addresses” | | | 0 1 | 0 0 1 | 0 1 0 | 1 0 | 1 0[0 | 0 1 | 0 1 0 | 1 0]0 | 0 1 0 | 1 1 1 | 1 … | | — | — | — | —– | —– | — | —– | — | —– | —– | —– | —– | —– | A vector of bits | | | 0 1 | 2 3 4 | 5 6 7 | 8 | 9 10 11 | 12 13 14 | 15 16 | 17 18 19 | 20 21 | …. | | | — | — | — | —– | —– | — | ——- | ——– | ——– | ——– | —– | — | — | | | | | | | | | We can | address | | | | | Bits have | | | | | | | | groups | of bits | likea | | | | | — | — | — | — | — | — | — | —— | ——- | —— | — | — | — | indices called | | “addresses” | | | | | | vector. | For example | | | | | | — | ———– | — | — | — | — | — | ————— | ———— | —– | — | — | — | | | | | | | | | the 8-bits from | | | | | | | | | | | | | | [12:20], | might | be | | | | | | | | | | | | the number | | “42”. | | | | 35\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAddresses\n\n\nare\nKey!\n\n\n\n\n\n\n\n\n\n\n\nThe need to “address” bits is one of the most important factors of a | computer’s | design. | | | | | | | | | | | ———- | ——— | ——– | ——– | ————— | ———- | —— | — | ——- | ——- | — | | Some | questions | | computer | | architects | (you!) | | may | ponder… | | | ■ How | many bits | | will | I ever | need? | | | | | | | (remember | | computer | | representations | | | are | finite) | | | The size of scratch variables (registers), is more determined by the ■ need to address bits than the size of the data-types needed.. Should we squander address space by giving “every” bit a distinct ■ address? | Perhaps | we could | | address | | bits in | more | manageable | | | units | | ——- | ——– | — | ——- | — | ——- | —- | ———- | — | — | —– | 36\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMemory\n\n\n\n\nConcepts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAddress\n\nContents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n0\n\n42\n\n\n\n\n•\nMemory\n\nis\ndivided\n\ninto\n“addressable”\n\n\nunits,\n\neach\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n3.141592\n\n\n\n\n\nwith\nan\naddress\n\n(like\n\nan array\n\nwith\nindices)\n\n\n2\n\n“Lee “\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n“Hart”\n\n\n\n\n\nAddressable\n\n\nunits\n\nare\nusually\n\nlarger\nthan\na bit,\n\n\n\n\n\n\n\n\n\n• Here we | | | | | | | | | | | | | | 4 | | “Bud “ | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | — | assume | | typically | | 8 (byte), | | | 16 | (halfword), | | | | | | | | | | | | — | ——— | — | ——— | — | — | — | ———– | — | — | — | — | — | — | — | —— | —– | — | | | | | | | | | | | | | | | 5 | | “Levi” | a 32- | | bit” | | 32 (word), | | or | 64 | (long) | | bits | | | | | | 6 | | “le “ | | | | — | ———- | — | — | — | —— | — | —- | — | — | — | — | — | — | — | —– | — | — | “Word” address- | | | | | | | | | | | | | | 7 | | 2 | | | | — | —- | ——- | — | — | — | ——– | — | ———- | — | — | — | — | — | — | — | —– | — | | | Each | address | | | has | variable | | “contents” | | | | | | | | able | | • | | | | | | | | | | | | | | 8 | 0x00000293 | | machine | | | — | —— | ——– | ——– | — | ———- | —– | — | — | — | — | — | — | — | ———- | — | ——- | — | | | Memory | | contents | | | might | be: | | | | | | | | | | | | • | | | | | | | | | | | | | 9 | 0x00a00313 | | | | | | | | | | | | | | | | | | 10 | 0x006282b3 | | | | | | | Integers | in | 2’s | complement | | | | | | | | | | | | | • | | | | | | | | | | | | | | 11 | 0xfff30313 | | | | | — | — | —— | — | —- | —— | — | — | — | — | — | — | — | — | ———- | — | — | — | | | | Floats | in | IEEE | format | | | | | | | | | | | | | • | | | | | | | | | | | | | | 12 | 0xfe601ce3 | | | | | — | — | ——- | ——— | —– | — | ——- | — | — | — | — | — | — | — | ———- | ———- | — | — | | | | Strings | in | ASCII | or | Unicode | | | | | | | | | | | | | | • | | | | | | | | | | | | 13 | 0x0000006f | | | | | | | Data | structure | | de | jour | | | | | | | 14 | | 0x00004020 | | | • | | | | | | | | | | | | | | 15 | | 0x20090001 | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | ADDRESSES • | | | Nothing | distinguishes | | | | the | difference | | | | | | | | | 37 | | — | — | ——- | ————- | — | — | — | — | ———- | — | — | — | — | — | — | — | — | — | •\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\n\n\n\nare\n\n\nalso\n\n\nstored\nin\n\n\n\n\n\n\n\nmemory! | | | | | | | | | | | | | | | | Address | Contents | | — | ———— | ——- | — | ————- | — | — | — | ——- | —— | —- | — | ——- | —– | — | ——- | ——– | | • | INSTRUCTIONS | | | | for | the | CPU | are | stored | | in | memory | | | | | | | | | | | | | | | | | | | | | 0 | 42 | | | along | with | | data | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 1 | 3.141592 | | | | | | | | | | | | | | | | | 2 | “Lee “ | | | CPU | fetches | | instructions, | | | | decodes | | them | | and | then | | | | • | | | | | | | | | | | | | | | | 3 | “Hart” | | — | ———– | ——– | ——- | —— | ———- | ——- | ——— | ——– | — | ——– | —- | —- | —- | — | — | ————- | | | performs | | their | | implied | | operation | | | | | | | | | | | | | | | | | | | | | | | | | | 4 | “Bud “ | | • | Mechanism | | | inside | | the | CPU | directs | | which | | | | | | | | | | | | | | | | | | | | | | | 5 | “Levi” | | | instruction | | | to | get | next. | | | | | | | | | | | | | | | | | | | | | | | | | | | 6 | “le “ | | | | | | | | | | | | | | | | | 7 | 2 | | • | They | appear | | | in memory | | as | a string | | of | bits | that | are | | | | | | | | | | | | | | | | | | | | 8 | li x5,0 | | | typically | | uniform | | | in size | | | | | | | | | | | | | | | | | | | | | | | | | | | 9 | li x6,10 | | • | Their | encoding | | | as | “bits” | is | called | | “machine | | | | | | | | | | | | | | | | | | | | | | | 10 | add x5,x5,x6 | | | language.” | | | ex: | 0c3c1d7fff | | | | | | | | | | | | | | | | | | | | | | | | | | | | 11 | addi x6,x6,-1 | bne x0,x6,.-2 12 | • | We | assign | | “mnemonics” | | | to | particular | | | bit | patterns | | | | | | — | —– | ——– | ——— | ———– | — | — | —— | ———- | ——– | — | — | ———- | — | — | — | ———- | | | | | | | | | | | | | | | | | 13 | j . | | | to | indicate | | meanings. | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 14 | 0x00004020 | | | These | | mnemonics | | | are | called | | Assembly | | | language. | | | | | | • | | | | | | | | | | | | | | | 15 | 0x20090001 | | | ex: | mv | x1, | | 10 | | | | | | | | | | | |\nA Bit of History There is a commonly recurring debate over whether “data” and “instructions” should be mixed. Leads to two common flavors of computer architectures | “Harvard” | Architecture | | | ——— | ———— | — | Program CPU Mem | I/O | (Central | | | — | ——— | — | Data Processing (Input/Output) Unit) Memory | “Von | Neumann” | Architecture | | —- | ——– | ———— | CPU Unified | I/O | (Central | | | — | ——— | — | Processing Memory (Input/Output) Unit)\n\n\n\nAside:\nUndergrad\n\nSystems\n\nReading\nGroup!!\n☺\n\n\n\n\n\n■ Thursdays at 5pm! ■ FB141 | ■ Food | provided! | | | | | | | | ——— | ———- | —– | ——– | ——— | — | — | — | | ■ All are | welcome!! | | | | | | | | – No | background | in CS | research | necessary | | | | ■ If you are interested in being added to the mailing list, send me an email!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnatomy\nof\na\nvon\n\nNeumann\n\n\n\nComputer\n\n\n\n\n\n\n\n\n\n\n\nCPU control | | | | | Data | | | | | | Control | | | | | | | — | — | — | — | —- | — | — | — | — | — | ——- | — | — | — | — | — | Internal storage | | | | | Paths | | | status | | | Unit | | | | | | | — | — | — | ——- | —– | — | —- | —— | — | ——- | —- | — | — | — | — | — | | | | | address | | | data | | | address | | | | | | | instructions MEMORY + | dest | | | | | | | | | | PC | | | 1101000111 | | | | —- | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | 1 011 | | | | … | | | | | | | | | | R1 | ←R2+R3 | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | registers | | | | | | | | | ● | INSTRUCTIONS | | | coded | | as binary | data | | — | — | — | — | — | — | — | — | — | ———— | — | — | —– | — | ——— | —- | Moreabout | | | | | | | | | ● | PROGRAM | | COUNTER | | or | PC: | | | — | — | — | — | — | — | — | — | — | ——- | — | ——- | — | — | — | — | thisstuff | asel | | | | | bsel | | | | | | | | | | | | —- | — | — | — | —- | —- | — | —— | — | ——- | ———— | ——- | ———— | — | — | ————- | | | | | | | | | later! | | Address | | of next | instruction | | | to execute | | | | | | | | | | ● | logic | to translate | | instructions | | | into control | | | | | | | | | | | signals | for | data | path | | | | | | fn | ALU | | Cc’s | | | | | | | | | | | | operations 41\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnatomy\n\nof an\nInstruction\n\n\n\n\n\n\n\n\n\n\n\n\nNearly all instructions can be made to fit a common template… | | | | OPCODE | | DESTINATION, | | OPERAND | , OPERAND | | | | — | —- | ——- | —— | — | ———— | —— | ——- | ——— | ——— | — | | | What | to do: | | | | | | 1 | | 2 | | | add | | | | Where | to put | | | | | | | | | | | | | | Who | to apply | | | | sub | | | | the result | | | | | | | | | | | | | | | the | operation | to… | and | | | | | | | | | variables, | constants, | etc.. | | — | — | — | — | — | — | — | — | ———- | ———- | —– | or beq bne | | Issues | remaining | … | | | | | CPU | | | | — | ——- | ———- | ———– | ————– | — | — | — | — | — | — | | | • Which | operations | to include? | | | | | | | | | | • Where | to get | variables | and constants? | | | | | | | Memory | | • Where | to store | the results? | | | | | | | | | — | ——- | ——– | ———— | — | — | — | — | — | — | — | 42\n\n\n\nAnatomy\n\nof\nan\nInstruction\n\n\n\n\n\n\n\n\n■ Computers execute a set of primitive operations called instructions | ■ Instructions | | specify | an operation | and | its operands | | | | ————– | ———— | ——- | ———— | ——- | ————- | — | — | | (arguments | | of the | operation) | | | | | | ■ Types | of operands: | | destination, | source, | and immediate | | | Operands | | | | | | (variables, | arguments, | etc.) | | — | — | ——– | — | — | ———– | ———- | —– | | | add | x0,x1,x2 | | | | | | Whydoallofthe variablesstart Source Operands with“X”? | CPU’shavea | | | | | Destination | Operand | | | ———- | — | — | — | — | ———– | ——- | — | smallnumber(16- 32)of registers | that areusedto | | | | | Immediate | | | | ————– | — | — | — | — | ———- | — | — | holdvariables Operand | | addi | x0,x1,1 | | | | | | | — | —- | ——- | — | — | — | — | — | 43\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeaning\n\n\n\nof\nan\n\nInstruction\n\n\n\n\n\n\n\n\n\n\n■ | | Operations | | are | abbreviated | | into | opcodes | | (1-4 | letters) | | | | — | ———- | — | — | ———– | — | —- | ——- | — | —- | ——– | — | — | ■ | | Instructions | | are | specified | | with | a very | regular | | syntax | | | | — | ———— | ——- | — | ——— | — | —- | ——— | ——- | — | —— | — | — | | | – | Opcodes | are | followed | | by | arguments | | | | | | – Usually the destination is next, then one or more source arguments | | | (This | is not | strictly the | | case, | but | it is | generally | | true) | | | — | — | —– | —— | ———— | — | —– | — | —– | ——— | — | —– | — | ■ | | Why | this order? | | | | | | | | | | | | — | ——- | ———– | ———- | — | ——– | — | —- | —- | —- | — | — | — | | | Analogy | to | high-level | | language | | like | Java | or C | | | | Theinstructionsyntax | | | | | | | | | | | int | x0, x1, | x2; | | — | — | — | — | — | — | — | — | — | — | — | ——- | —- | providesoperandsinthesame orderasyouwouldexpectina | | | | | | | | | | | x0 | = x1 + | x2; | | — | — | — | — | — | — | — | — | — | — | — | —— | — | statementfromahighlevel language. | | | | | | | | | | Instead | | of: | | | — | — | ——– | — | — | — | — | — | — | ——- | — | —- | —– | | | add | x0,x1,x2 | | | | | | | | | | | | | | | | | | | | | | x1 | + x2 | = x0; | 44\n\n\n\nInstructions\n\n\nare\nSimple\n\n\n\n\n\n\n\n■ Computers interpret “programs” by translating them from the high-level language | where | into | “low-level” | simple | instructions | that | it understands | | ———— | ——— | ———– | ——– | ———— | —- | ————– | | ■ High-Level | Languages | | | | | | | Compilers | | (C, C++, | Fortran) | | | | ▪ | Interpreters | | (Basic, | Ruby, | Lua, Python, | Perl, | JavaScript) | | ———— | — | ——- | —– | ———— | —– | ———– | ▪ Hybrids (Java) ▪ | | | | | | x: | .word 0 | | ———- | ——– | — | — | — | — | ——————- | | | | | | | y: | .word 0 | | ■ Assembly | Language | | | | | | | | | | | | c: | .word 123456 | | int | x, | y; | | | | | | | | | | | | lw t0,0(gp) # get x | y = (x-3)*(y+123456); | | | | | | | addi t0,t0,-3 | | — | — | — | — | — | — | ——————– | | | | | | | | lw t1,4(gp) # get y | | | | | | | | lw t2,8(gp) # get c | | | | | | | | add t1,t1,t2 | | | | | | | | mul t0,t0,t1 | | | | | | | | sw t0,0(gp) | # save y 45\n\n\n\nInstructions\n\n\n\nare\nBinary\n\n\n\n\n\n\n\n■ Computers interpret “assembly programs” by translating them from their | mnemonic | | simple | instructions | | into strings | of bits | | | ———- | — | ——– | ———— | — | ———— | ——- | — | | ■ Assembly | | Language | | | | | | | ■ Machine | | Language | | | | | | – Note the “mostly” one-to-one correspondence between lines of | | assembly | | code and | lines | of machine | code | | | — | ——– | — | ——– | —– | ———- | —- | — | 0x00000000 | | x: | .word | 0 | | | | 0x00000000 | | — | — | —– | —— | — | — | — | ———- | | | y: | .word | 0 | | | | 0x0001E240 | | | c: | .word | 123456 | | | | | … | | | lw | t0,0(gp) | | # get x | | | | — | — | — | ——– | — | ——- | — | — | 0x0001E240 addi t0,t0,-3 0x0001A283 | | | lw | t1,4(gp) | | # get y | | | | — | — | — | ——– | — | ——– | — | — | 0xFFD28293 | | | lw | t2,8(gp) | | # get c | | | | — | — | — | ——– | — | ——- | — | — | 0x0081A383 add t1,t1,t2 0x00730333 mul t0,t0,t1 0x026282B3 sw t0,0(gp) | | | | | | # save y | | | | — | — | — | — | — | ——– | — | — | 0x0051A023 46\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 45\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 46\nLooping the Flow ● Repeat the process treating the variables as unknowns or “formal variables” ● Knowing what the program does allows us to write down its specification, and give it a meaningful name ● The instruction sequence then becomes a general-purpose tool Instructions Variables times7: add t0,t1,t1 t0:Xw 8Xx 5X6x 392x An infinite add t0,t0,t0 t1:Xx 7Xx 4X9x 343x loop add t0,t0,t0 t2:y sub t1,t0,t1 t3:z j times7 4749\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen\n\nIssues\n\n\n\nin Our\n\nSimple\nModel?\n\n\n\n\n\n■ | | WHERE | | in memory | | are | INSTRUCTIONS | | stored? | | | — | —– | — | ——— | — | — | ———— | — | ——- | — | ■ | | HOW | are | instructions | | | represented? | | | | | — | — | — | ———— | — | — | ———— | — | — | — | ■ | | WHERE | | are | VARIABLES stored? | | | | | | | — | —– | — | — | —————– | — | — | — | — | — | ■ | | What | are | LABELs? | | How | do they | relate | to | | | — | —– | ———— | ———– | — | ———– | ——- | —— | —— | — | | | where | instructions | | | are | stored? | | | | | | ■ How | about | more | | complicated | | data | types? | | | | – | Arrays? | | | | | | | | | | – | Data | Structures? | | | | | | | | | – | Objects? | | | | | | | | ■ | | Where | | does | a program | | start | executing? | | | | — | —— | —- | —- | ——— | — | —– | ———- | — | — | | | ■ When | does | | it stop? | | | | | | 50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe\n\nStored-Program\n\n\n\n\n\n\n\n\nComputer\n\n\n\n\n\n\n\n■ The von Neumann architecture addresses these issues as follows: | ■ | Instructions | | | and | | Data | are | stored | | in a common | | memory | | | — | ———— | — | — | — | — | —- | — | —— | — | ———– | — | —— | — | Memory | ■ | Sequential | | | semantics: | | | To | the | PROGRAMMER | | | | | | — | ———- | — | — | ———- | — | — | — | — | ———- | — | — | — | — | Instruction | | all | instructions | | | appear | | to | execute | | in an | order, | | | | — | — | ———— | — | — | —— | — | — | ——- | — | —– | —— | — | — | Instruction | | or sequentially | | | | | | | | | | | | | | — | ————— | — | — | — | — | — | — | — | — | — | — | — | — | Instruction Central | | Key idea: | | Memory | | holds | not | only | | | | | | Instruction | | — | ——— | — | —— | — | —– | — | —– | — | — | — | — | — | ———– | Processing | | data, | but | coded instructions | | | | | that | | | | | | | — | —– | — | —————— | — | — | — | — | —– | — | — | — | — | — | Unit | | make | up | a program. | | | | | | | | | | data | | — | —- | — | ———- | — | — | — | — | — | — | — | — | — | —- | data | CPU | fetches and | | | executes | | instructions | | | from | memory | | | | | — | ———– | — | — | ——– | — | ———— | — | — | —- | —— | — | — | — | data | | • The | CPU | is | a H/W | interpreter | | | | | | | | | | — | ——— | ———- | ——- | —— | ———– | ———- | ——- | —————- | ——– | —— | — | — | — | | | • Program | | IS | simply | DATA | | for | this interpreter | | | | | | | | • Main | | memory: | | Single | expandable | | | resource | pool | | | | | | - | constrains | | both | data | and | program | | size | | | | | | | - | don’t | need | to | make | separate | | decisions | | of | | | | | | | how | large | of | a program | | or | data | memory | to buy | | | | 51\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V\n\n\n\nMemory\n\n\nDetails\n\n\n\n\n\n\n\n\n\n\n■\nMemory\n\nlocations\n\nare\naddressable\n\nin different\n\nsized chunks\n\n\n\n\n\n\n\n–\n8-bit\nchunks\n\n(bytes)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nshort2\n\nshort0\n\n\n\n\n\n–\n16-bit\n\nchunks\n(shorts)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbyte3\nbyte2\nbyte1\nbyte0\n\n\n\n\nword | | – | 32-bit | | chunks | (words) | | | | | | | | | | | — | — | —— | — | —— | ——- | — | — | — | — | — | — | — | — | — | Addr | | – | 64-bit | | chunks | | | | | | | | | | …43210 | | — | — | —— | — | —— | — | — | — | — | — | — | — | — | — | —— | 0: 313029… | | | | | | | | | | | | 2 | 1 | | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 3 long0 (longs/doubles) 4: | | | | | | | | | | | 7 | 6 | 5 | | 4 | | — | — | —- | ———- | — | —– | — | — | — | — | — | — | — | — | — | | ■ | We | also | frequently | | need | | | | 8: | 11 | 10 | 9 | | 8 | long8 | | access | | to individual | | bits! | | | | | | | | | | | — | —— | — | ————- | — | —— | — | — | — | — | — | — | — | — | — | 12: | | | | | | | | | | | 15 | 14 | 13 | | 12 | | — | ————- | ———— | — | —————- | ——– | ——– | ——– | — | — | — | — | — | — | — | | | (Instructions | | | help | with | this) | | | | | | | | | | ■ | Every | BYTE | | has | a unique | address | | | | | | | | | | | (RISC-V is | | a | byte-addressable | | | machine) | | | | | | | | | ■ | Most | instructions | | | are | one word | | | | | | | | | 52\n211 REVIEW: MEMORY 55\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 56\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 57\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 58\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 59\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 60\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 61\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n■ What\nif I want\nto store\nan integer?\n\n\n\n\n\n– sizeof(int)\n\n= 4 bytes\n\n\n\n\n\n\n\n\n\n\nVariables\nwhose\ntypes are\n\n\n\n\n\n\nlarger\nthan one\nbyte span\n\n\n\n\n\n\nmultiple\naddresses\nin memory!\n\n\n\n62\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | 63\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | Byte Data Address 0 What order 1 should we | store the | bits? | 2 | | | | | | | | | ——— | —– | — | — | — | — | — | — | — | — | 3 64\n\n\n\n\n\n\n\n\n\n\n\n\n\nMSB\nand\nLSB\n\n\n\n\n\n\n\n\n\n0b\n0000\n0000 0000\n0101\n0000\n0110\n1100\n1101\n\n\n\nMost Significant\nByte\n\n\n\nLeast Significant\nByte\n\n\n\n(MSB)\n\n\n\n\n(LSB)\n\n\n\n\n65\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 66\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 67\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 68\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —- | —– | —- | —- | —- | —————– | —– | | | Most Significant | | Byte | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | | 0 | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | | | | | | 0000 | 0101 | | | | 1 | | | | | 0000 | 0110 | | | | | — | — | — | — | —- | —- | — | — | — | 2 1100 1101 3 69\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b 0000 | 0000 | 0000 | | 0101 | 0000 | 0110 | 1100 | 1101 | | ——- | —- | —— | —— | ——– | —- | ——– | —- | —- | | | | Little | Endian | Ordering | is | dominant | in | | Most Significant Bpyrtoecessor architectures and is whaLtewaset Significant Byte | | (MSB) | | | | | | (LSB) | | | — | —– | — | —- | ——– | ——- | —— | —– | — | | | | | will | be using | in this | class! | | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 70"
   },
   {
     "objectID": "01.html",
     "href": "01.html",
-    "title": "Circuits",
+    "title": "Instructions",
     "section": "",
     "text": "Welcome to HW/asm\nAction Items discussion",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
     "objectID": "01.html#announcements",
     "href": "01.html#announcements",
-    "title": "Circuits",
+    "title": "Instructions",
     "section": "",
     "text": "Welcome to HW/asm\nAction Items discussion",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
-    "objectID": "01.html#logistics-updates",
-    "href": "01.html#logistics-updates",
-    "title": "Circuits",
-    "section": "Logistics Updates",
-    "text": "Logistics Updates\n■ First quiz on Wednesday! – If you have ARS accommodations, please make arrangements! ■ First written assignment posted today, due in a week! ■ Quiz review session next Tuesday. Time TBD. ■ Regular LA office hours will start soon. I will post announcement once our schedule is sorted. ■ Systems reading group will actually start next week ☺ – 5pm in FB141!",
+    "objectID": "01.html#the-big-three",
+    "href": "01.html#the-big-three",
+    "title": "Instructions",
+    "section": "The Big Three",
+    "text": "The Big Three\n\nEach computer has at least three basic units:\n\nI/O (Input/Output\nMemory\nCPU (Central Processing Unit)",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
-    "objectID": "01.html#logistics-updates-1",
-    "href": "01.html#logistics-updates-1",
-    "title": "Circuits",
-    "section": "Logistics Updates",
-    "text": "Logistics Updates\nQuiz Topics: ■ – 211 Review – Conceptual topics from first two days ■ Going between decimal, binary, hex ■ Tracing a simple assembly instruction ■ Two’s complement (add, subtract) (addition, subtraction) Basic circuits, switches, – ■ Overflow transistors Basic memory questions – ■ Whatever we get through ■ Similar to in-class & WS today! questions",
+    "objectID": "01.html#i0",
+    "href": "01.html#i0",
+    "title": "Instructions",
+    "section": "I/0",
+    "text": "I/0\n\nWhere data arrives from the outside world\nWhere data is sent to the outside world\nWhere data is archived for the “long term”\n\nPersists through power cycles\n\nKeyboard, mouse, monitor, HDD\nSymbols to bits (and back)",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
-    "objectID": "01.html#more-211-review",
-    "href": "01.html#more-211-review",
-    "title": "Circuits",
-    "section": "MORE 211 REVIEW:",
-    "text": "MORE 211 REVIEW:\nMEMORY",
+    "objectID": "01.html#memory",
+    "href": "01.html#memory",
+    "title": "Instructions",
+    "section": "Memory",
+    "text": "Memory\n\nWhere data is stored when in usage\n\nArrays, trees, matrices (not files, really)\nOften called RAM\n“Handful” of GBs\n\nKey-value storage over addresses and values or contents",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
-    "objectID": "01.html#storing-data-in-memory",
-    "href": "01.html#storing-data-in-memory",
-    "title": "Circuits",
-    "section": "Storing Data in Memory",
-    "text": "Storing Data in Memory\n1 byte = 8 bits Each of these rows can store one byte of data",
+    "objectID": "01.html#cpu",
+    "href": "01.html#cpu",
+    "title": "Instructions",
+    "section": "CPU",
+    "text": "CPU\n\nData is manipulated\n\nArithmetic operations\nControl flow\nLoad and store operations\n\nHow values in memory are alterated\nHow I/O values are manipulated.\n\n\nThis is the cool one.",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
-    "objectID": "01.html#storing-data-in-memory-1",
-    "href": "01.html#storing-data-in-memory-1",
-    "title": "Circuits",
-    "section": "Storing Data in Memory",
-    "text": "Storing Data in Memory\n1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row.",
+    "objectID": "01.html#processing",
+    "href": "01.html#processing",
+    "title": "Instructions",
+    "section": "“Processing”",
+    "text": "“Processing”\n\nA CPU performs low-level operations called instructions\n\nThese are cool, and good.\n\nFour types\n\nArithmetic\nLogical\nComparison (or tests)\nControl",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
-    "objectID": "01.html#byte-addresses",
-    "href": "01.html#byte-addresses",
-    "title": "Circuits",
-    "section": "Byte Addresses",
-    "text": "Byte Addresses\n1 byte = 8 bits Byte Address 0 0b0000 0101 1 0b0000 0100 2 0b1111 1110 To reference each of these 3 locations, we use something called a byte address. 4 5 6 Note that these addresses 7 are not stored anywhere! 8 9 10 11",
+    "objectID": "01.html#examples",
+    "href": "01.html#examples",
+    "title": "Instructions",
+    "section": "Examples",
+    "text": "Examples\n\nArithmetic\n\n\\(+\\), \\(-\\), \\(\\times\\), $%\n\nLogical\n\nNOT, AND, OR, XOR\n\nComparison\n\n\\(\\gt\\), \\(lt\\), \\(=\\), \\(\\geq\\), \\(\\leq\\)\n\nControl\n\nGo to a place in code, return to call site.",
     "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
-    "objectID": "01.html#storing-larger-data",
-    "href": "01.html#storing-larger-data",
-    "title": "Circuits",
-    "section": "Storing Larger Data",
-    "text": "Storing Larger Data\n■ What if I want to store an integer? – sizeof(int) = 4 bytes Variables whose types are larger than one byte span multiple addresses in memory!",
+    "objectID": "01.html#section",
+    "href": "01.html#section",
+    "title": "Instructions",
+    "section": "",
+    "text": "What\n\n\ndo\nwe\n\nmean\n\n\n\nby\n\n“processing”?\n\n\n\n\n\n\n\n■\nA CPU\nperforms\n\n\nlow-level\n\n\noperations\n\n\n\ncalled\n\nINSTRUCTIONS\n\n\n\n\n■ Arithmetic | | ADD | X | to Y | then | put | the result | | | in | Z | | | | | | | — | — | — | —- | —- | — | ———- | — | — | — | — | — | — | — | — | — | - | | SUBTRACT | | | X from | | Y then | | put | the | result | | back | in | Y | | | — | ——– | — | — | —— | — | —— | — | — | — | —— | — | —- | — | — | — | - ■ Logical | | Set | Z | to 1 | if X | AND | Y are | 1, | otherwise | | | set | Z | to | 0 | | | — | — | — | —- | —- | — | —– | — | ——— | — | — | — | — | — | — | — | - | | (AND | | X with | Y | then | put | the | result | | in | Z) | | | | | | — | —- | —- | —— | —- | —- | — | — | ——— | — | — | — | —- | — | — | — | | | Set | Z to | 1 | if X | OR Y | are | 1, | otherwise | | | set | Z to | 0 | | | - | | (OR | X | with | Y then | | put | the | result in | | Z) | | | | | | | — | — | — | —- | —— | — | — | — | ——— | — | — | — | — | — | — | — | ■ Comparison | | Set | Z | to 1 | if X | is EQUAL | | to | Y, | otherwise | | set | | Z to | 0 | | | — | — | — | —- | —- | ——– | — | — | — | ——— | — | — | — | —- | — | — | - Set Z to 1 if X is GREATER THAN OR EQUAL to Y, otherwise set Z to 0 - ■ Control | | - Skip | the | next | INSTRUCTION | | | | if | Z | is EQUAL | | to | 0 | | 34 | | — | —— | — | —- | ———– | — | — | — | — | — | ——– | — | — | — | — | — |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow\n\nMemory\n\n\nis\nOrganized\n\n\n\n\n\n\n\n\n\n\n■\nA group\n\nof bits!\n\n\n\n\n\n\n\n\n\n\n\n■\nGroups\nof\nbits can\nrepresent\n\nvarious\ntypes\nof data\n\n\n\n\n\n\n\n– Integers, Signed integers. Floating-point values, Strings, Pixels ■ Memory is organized as a vector of bits with indices called “addresses” | | | 0 1 | 0 0 1 | 0 1 0 | 1 0 | 1 0[0 | 0 1 | 0 1 0 | 1 0]0 | 0 1 0 | 1 1 1 | 1 … | | — | — | — | —– | —– | — | —– | — | —– | —– | —– | —– | —– | A vector of bits | | | 0 1 | 2 3 4 | 5 6 7 | 8 | 9 10 11 | 12 13 14 | 15 16 | 17 18 19 | 20 21 | …. | | | — | — | — | —– | —– | — | ——- | ——– | ——– | ——– | —– | — | — | | | | | | | | | We can | address | | | | | Bits have | | | | | | | | groups | of bits | likea | | | | | — | — | — | — | — | — | — | —— | ——- | —— | — | — | — | indices called | | “addresses” | | | | | | vector. | For example | | | | | | — | ———– | — | — | — | — | — | ————— | ———— | —– | — | — | — | | | | | | | | | the 8-bits from | | | | | | | | | | | | | | [12:20], | might | be | | | | | | | | | | | | the number | | “42”. | | | | 35\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAddresses\n\n\nare\nKey!\n\n\n\n\n\n\n\n\n\n\n\nThe need to “address” bits is one of the most important factors of a | computer’s | design. | | | | | | | | | | | ———- | ——— | ——– | ——– | ————— | ———- | —— | — | ——- | ——- | — | | Some | questions | | computer | | architects | (you!) | | may | ponder… | | | ■ How | many bits | | will | I ever | need? | | | | | | | (remember | | computer | | representations | | | are | finite) | | | The size of scratch variables (registers), is more determined by the ■ need to address bits than the size of the data-types needed.. Should we squander address space by giving “every” bit a distinct ■ address? | Perhaps | we could | | address | | bits in | more | manageable | | | units | | ——- | ——– | — | ——- | — | ——- | —- | ———- | — | — | —– | 36\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMemory\n\n\n\n\nConcepts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAddress\n\nContents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n0\n\n42\n\n\n\n\n•\nMemory\n\nis\ndivided\n\ninto\n“addressable”\n\n\nunits,\n\neach\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n3.141592\n\n\n\n\n\nwith\nan\naddress\n\n(like\n\nan array\n\nwith\nindices)\n\n\n2\n\n“Lee “\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n“Hart”\n\n\n\n\n\nAddressable\n\n\nunits\n\nare\nusually\n\nlarger\nthan\na bit,\n\n\n\n\n\n\n\n\n\n• Here we | | | | | | | | | | | | | | 4 | | “Bud “ | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | — | assume | | typically | | 8 (byte), | | | 16 | (halfword), | | | | | | | | | | | | — | ——— | — | ——— | — | — | — | ———– | — | — | — | — | — | — | — | —— | —– | — | | | | | | | | | | | | | | | 5 | | “Levi” | a 32- | | bit” | | 32 (word), | | or | 64 | (long) | | bits | | | | | | 6 | | “le “ | | | | — | ———- | — | — | — | —— | — | —- | — | — | — | — | — | — | — | —– | — | — | “Word” address- | | | | | | | | | | | | | | 7 | | 2 | | | | — | —- | ——- | — | — | — | ——– | — | ———- | — | — | — | — | — | — | — | —– | — | | | Each | address | | | has | variable | | “contents” | | | | | | | | able | | • | | | | | | | | | | | | | | 8 | 0x00000293 | | machine | | | — | —— | ——– | ——– | — | ———- | —– | — | — | — | — | — | — | — | ———- | — | ——- | — | | | Memory | | contents | | | might | be: | | | | | | | | | | | | • | | | | | | | | | | | | | 9 | 0x00a00313 | | | | | | | | | | | | | | | | | | 10 | 0x006282b3 | | | | | | | Integers | in | 2’s | complement | | | | | | | | | | | | | • | | | | | | | | | | | | | | 11 | 0xfff30313 | | | | | — | — | —— | — | —- | —— | — | — | — | — | — | — | — | — | ———- | — | — | — | | | | Floats | in | IEEE | format | | | | | | | | | | | | | • | | | | | | | | | | | | | | 12 | 0xfe601ce3 | | | | | — | — | ——- | ——— | —– | — | ——- | — | — | — | — | — | — | — | ———- | ———- | — | — | | | | Strings | in | ASCII | or | Unicode | | | | | | | | | | | | | | • | | | | | | | | | | | | 13 | 0x0000006f | | | | | | | Data | structure | | de | jour | | | | | | | 14 | | 0x00004020 | | | • | | | | | | | | | | | | | | 15 | | 0x20090001 | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | ADDRESSES • | | | Nothing | distinguishes | | | | the | difference | | | | | | | | | 37 | | — | — | ——- | ————- | — | — | — | — | ———- | — | — | — | — | — | — | — | — | — | •\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstructions\n\n\n\n\n\n\nare\n\n\nalso\n\n\nstored\nin\n\n\n\n\n\n\n\nmemory! | | | | | | | | | | | | | | | | Address | Contents | | — | ———— | ——- | — | ————- | — | — | — | ——- | —— | —- | — | ——- | —– | — | ——- | ——– | | • | INSTRUCTIONS | | | | for | the | CPU | are | stored | | in | memory | | | | | | | | | | | | | | | | | | | | | 0 | 42 | | | along | with | | data | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 1 | 3.141592 | | | | | | | | | | | | | | | | | 2 | “Lee “ | | | CPU | fetches | | instructions, | | | | decodes | | them | | and | then | | | | • | | | | | | | | | | | | | | | | 3 | “Hart” | | — | ———– | ——– | ——- | —— | ———- | ——- | ——— | ——– | — | ——– | —- | —- | —- | — | — | ————- | | | performs | | their | | implied | | operation | | | | | | | | | | | | | | | | | | | | | | | | | | 4 | “Bud “ | | • | Mechanism | | | inside | | the | CPU | directs | | which | | | | | | | | | | | | | | | | | | | | | | | 5 | “Levi” | | | instruction | | | to | get | next. | | | | | | | | | | | | | | | | | | | | | | | | | | | 6 | “le “ | | | | | | | | | | | | | | | | | 7 | 2 | | • | They | appear | | | in memory | | as | a string | | of | bits | that | are | | | | | | | | | | | | | | | | | | | | 8 | li x5,0 | | | typically | | uniform | | | in size | | | | | | | | | | | | | | | | | | | | | | | | | | | 9 | li x6,10 | | • | Their | encoding | | | as | “bits” | is | called | | “machine | | | | | | | | | | | | | | | | | | | | | | | 10 | add x5,x5,x6 | | | language.” | | | ex: | 0c3c1d7fff | | | | | | | | | | | | | | | | | | | | | | | | | | | | 11 | addi x6,x6,-1 | bne x0,x6,.-2 12 | • | We | assign | | “mnemonics” | | | to | particular | | | bit | patterns | | | | | | — | —– | ——– | ——— | ———– | — | — | —— | ———- | ——– | — | — | ———- | — | — | — | ———- | | | | | | | | | | | | | | | | | 13 | j . | | | to | indicate | | meanings. | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 14 | 0x00004020 | | | These | | mnemonics | | | are | called | | Assembly | | | language. | | | | | | • | | | | | | | | | | | | | | | 15 | 0x20090001 | | | ex: | mv | x1, | | 10 | | | | | | | | | | | |\nA Bit of History There is a commonly recurring debate over whether “data” and “instructions” should be mixed. Leads to two common flavors of computer architectures | “Harvard” | Architecture | | | ——— | ———— | — | Program CPU Mem | I/O | (Central | | | — | ——— | — | Data Processing (Input/Output) Unit) Memory | “Von | Neumann” | Architecture | | —- | ——– | ———— | CPU Unified | I/O | (Central | | | — | ——— | — | Processing Memory (Input/Output) Unit)\n\n\n\nAside:\nUndergrad\n\nSystems\n\nReading\nGroup!!\n☺\n\n\n\n\n\n■ Thursdays at 5pm! ■ FB141 | ■ Food | provided! | | | | | | | | ——— | ———- | —– | ——– | ——— | — | — | — | | ■ All are | welcome!! | | | | | | | | – No | background | in CS | research | necessary | | | | ■ If you are interested in being added to the mailing list, send me an email!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnatomy\nof\na\nvon\n\nNeumann\n\n\n\nComputer\n\n\n\n\n\n\n\n\n\n\n\nCPU control | | | | | Data | | | | | | Control | | | | | | | — | — | — | — | —- | — | — | — | — | — | ——- | — | — | — | — | — | Internal storage | | | | | Paths | | | status | | | Unit | | | | | | | — | — | — | ——- | —– | — | —- | —— | — | ——- | —- | — | — | — | — | — | | | | | address | | | data | | | address | | | | | | | instructions MEMORY + | dest | | | | | | | | | | PC | | | 1101000111 | | | | —- | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | 1 011 | | | | … | | | | | | | | | | R1 | ←R2+R3 | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | registers | | | | | | | | | ● | INSTRUCTIONS | | | coded | | as binary | data | | — | — | — | — | — | — | — | — | — | ———— | — | — | —– | — | ——— | —- | Moreabout | | | | | | | | | ● | PROGRAM | | COUNTER | | or | PC: | | | — | — | — | — | — | — | — | — | — | ——- | — | ——- | — | — | — | — | thisstuff | asel | | | | | bsel | | | | | | | | | | | | —- | — | — | — | —- | —- | — | —— | — | ——- | ———— | ——- | ———— | — | — | ————- | | | | | | | | | later! | | Address | | of next | instruction | | | to execute | | | | | | | | | | ● | logic | to translate | | instructions | | | into control | | | | | | | | | | | signals | for | data | path | | | | | | fn | ALU | | Cc’s | | | | | | | | | | | | operations 41\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnatomy\n\nof an\nInstruction\n\n\n\n\n\n\n\n\n\n\n\n\nNearly all instructions can be made to fit a common template… | | | | OPCODE | | DESTINATION, | | OPERAND | , OPERAND | | | | — | —- | ——- | —— | — | ———— | —— | ——- | ——— | ——— | — | | | What | to do: | | | | | | 1 | | 2 | | | add | | | | Where | to put | | | | | | | | | | | | | | Who | to apply | | | | sub | | | | the result | | | | | | | | | | | | | | | the | operation | to… | and | | | | | | | | | variables, | constants, | etc.. | | — | — | — | — | — | — | — | — | ———- | ———- | —– | or beq bne | | Issues | remaining | … | | | | | CPU | | | | — | ——- | ———- | ———– | ————– | — | — | — | — | — | — | | | • Which | operations | to include? | | | | | | | | | | • Where | to get | variables | and constants? | | | | | | | Memory | | • Where | to store | the results? | | | | | | | | | — | ——- | ——– | ———— | — | — | — | — | — | — | — | 42\n\n\n\nAnatomy\n\nof\nan\nInstruction\n\n\n\n\n\n\n\n\n■ Computers execute a set of primitive operations called instructions | ■ Instructions | | specify | an operation | and | its operands | | | | ————– | ———— | ——- | ———— | ——- | ————- | — | — | | (arguments | | of the | operation) | | | | | | ■ Types | of operands: | | destination, | source, | and immediate | | | Operands | | | | | | (variables, | arguments, | etc.) | | — | — | ——– | — | — | ———– | ———- | —– | | | add | x0,x1,x2 | | | | | | Whydoallofthe variablesstart Source Operands with“X”? | CPU’shavea | | | | | Destination | Operand | | | ———- | — | — | — | — | ———– | ——- | — | smallnumber(16- 32)of registers | that areusedto | | | | | Immediate | | | | ————– | — | — | — | — | ———- | — | — | holdvariables Operand | | addi | x0,x1,1 | | | | | | | — | —- | ——- | — | — | — | — | — | 43\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeaning\n\n\n\nof\nan\n\nInstruction\n\n\n\n\n\n\n\n\n\n\n■ | | Operations | | are | abbreviated | | into | opcodes | | (1-4 | letters) | | | | — | ———- | — | — | ———– | — | —- | ——- | — | —- | ——– | — | — | ■ | | Instructions | | are | specified | | with | a very | regular | | syntax | | | | — | ———— | ——- | — | ——— | — | —- | ——— | ——- | — | —— | — | — | | | – | Opcodes | are | followed | | by | arguments | | | | | | – Usually the destination is next, then one or more source arguments | | | (This | is not | strictly the | | case, | but | it is | generally | | true) | | | — | — | —– | —— | ———— | — | —– | — | —– | ——— | — | —– | — | ■ | | Why | this order? | | | | | | | | | | | | — | ——- | ———– | ———- | — | ——– | — | —- | —- | —- | — | — | — | | | Analogy | to | high-level | | language | | like | Java | or C | | | | Theinstructionsyntax | | | | | | | | | | | int | x0, x1, | x2; | | — | — | — | — | — | — | — | — | — | — | — | ——- | —- | providesoperandsinthesame orderasyouwouldexpectina | | | | | | | | | | | x0 | = x1 + | x2; | | — | — | — | — | — | — | — | — | — | — | — | —— | — | statementfromahighlevel language. | | | | | | | | | | Instead | | of: | | | — | — | ——– | — | — | — | — | — | — | ——- | — | —- | —– | | | add | x0,x1,x2 | | | | | | | | | | | | | | | | | | | | | | x1 | + x2 | = x0; | 44\n\n\n\nInstructions\n\n\nare\nSimple\n\n\n\n\n\n\n\n■ Computers interpret “programs” by translating them from the high-level language | where | into | “low-level” | simple | instructions | that | it understands | | ———— | ——— | ———– | ——– | ———— | —- | ————– | | ■ High-Level | Languages | | | | | | | Compilers | | (C, C++, | Fortran) | | | | ▪ | Interpreters | | (Basic, | Ruby, | Lua, Python, | Perl, | JavaScript) | | ———— | — | ——- | —– | ———— | —– | ———– | ▪ Hybrids (Java) ▪ | | | | | | x: | .word 0 | | ———- | ——– | — | — | — | — | ——————- | | | | | | | y: | .word 0 | | ■ Assembly | Language | | | | | | | | | | | | c: | .word 123456 | | int | x, | y; | | | | | | | | | | | | lw t0,0(gp) # get x | y = (x-3)*(y+123456); | | | | | | | addi t0,t0,-3 | | — | — | — | — | — | — | ——————– | | | | | | | | lw t1,4(gp) # get y | | | | | | | | lw t2,8(gp) # get c | | | | | | | | add t1,t1,t2 | | | | | | | | mul t0,t0,t1 | | | | | | | | sw t0,0(gp) | # save y 45\n\n\n\nInstructions\n\n\n\nare\nBinary\n\n\n\n\n\n\n\n■ Computers interpret “assembly programs” by translating them from their | mnemonic | | simple | instructions | | into strings | of bits | | | ———- | — | ——– | ———— | — | ———— | ——- | — | | ■ Assembly | | Language | | | | | | | ■ Machine | | Language | | | | | | – Note the “mostly” one-to-one correspondence between lines of | | assembly | | code and | lines | of machine | code | | | — | ——– | — | ——– | —– | ———- | —- | — | 0x00000000 | | x: | .word | 0 | | | | 0x00000000 | | — | — | —– | —— | — | — | — | ———- | | | y: | .word | 0 | | | | 0x0001E240 | | | c: | .word | 123456 | | | | | … | | | lw | t0,0(gp) | | # get x | | | | — | — | — | ——– | — | ——- | — | — | 0x0001E240 addi t0,t0,-3 0x0001A283 | | | lw | t1,4(gp) | | # get y | | | | — | — | — | ——– | — | ——– | — | — | 0xFFD28293 | | | lw | t2,8(gp) | | # get c | | | | — | — | — | ——– | — | ——- | — | — | 0x0081A383 add t1,t1,t2 0x00730333 mul t0,t0,t1 0x026282B3 sw t0,0(gp) | | | | | | # save y | | | | — | — | — | — | — | ——– | — | — | 0x0051A023 46\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 45\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 46\nLooping the Flow ● Repeat the process treating the variables as unknowns or “formal variables” ● Knowing what the program does allows us to write down its specification, and give it a meaningful name ● The instruction sequence then becomes a general-purpose tool Instructions Variables times7: add t0,t1,t1 t0:Xw 8Xx 5X6x 392x An infinite add t0,t0,t0 t1:Xx 7Xx 4X9x 343x loop add t0,t0,t0 t2:y sub t1,t0,t1 t3:z j times7 4749\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen\n\nIssues\n\n\n\nin Our\n\nSimple\nModel?\n\n\n\n\n\n■ | | WHERE | | in memory | | are | INSTRUCTIONS | | stored? | | | — | —– | — | ——— | — | — | ———— | — | ——- | — | ■ | | HOW | are | instructions | | | represented? | | | | | — | — | — | ———— | — | — | ———— | — | — | — | ■ | | WHERE | | are | VARIABLES stored? | | | | | | | — | —– | — | — | —————– | — | — | — | — | — | ■ | | What | are | LABELs? | | How | do they | relate | to | | | — | —– | ———— | ———– | — | ———– | ——- | —— | —— | — | | | where | instructions | | | are | stored? | | | | | | ■ How | about | more | | complicated | | data | types? | | | | – | Arrays? | | | | | | | | | | – | Data | Structures? | | | | | | | | | – | Objects? | | | | | | | | ■ | | Where | | does | a program | | start | executing? | | | | — | —— | —- | —- | ——— | — | —– | ———- | — | — | | | ■ When | does | | it stop? | | | | | | 50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe\n\nStored-Program\n\n\n\n\n\n\n\n\nComputer\n\n\n\n\n\n\n\n■ The von Neumann architecture addresses these issues as follows: | ■ | Instructions | | | and | | Data | are | stored | | in a common | | memory | | | — | ———— | — | — | — | — | —- | — | —— | — | ———– | — | —— | — | Memory | ■ | Sequential | | | semantics: | | | To | the | PROGRAMMER | | | | | | — | ———- | — | — | ———- | — | — | — | — | ———- | — | — | — | — | Instruction | | all | instructions | | | appear | | to | execute | | in an | order, | | | | — | — | ———— | — | — | —— | — | — | ——- | — | —– | —— | — | — | Instruction | | or sequentially | | | | | | | | | | | | | | — | ————— | — | — | — | — | — | — | — | — | — | — | — | — | Instruction Central | | Key idea: | | Memory | | holds | not | only | | | | | | Instruction | | — | ——— | — | —— | — | —– | — | —– | — | — | — | — | — | ———– | Processing | | data, | but | coded instructions | | | | | that | | | | | | | — | —– | — | —————— | — | — | — | — | —– | — | — | — | — | — | Unit | | make | up | a program. | | | | | | | | | | data | | — | —- | — | ———- | — | — | — | — | — | — | — | — | — | —- | data | CPU | fetches and | | | executes | | instructions | | | from | memory | | | | | — | ———– | — | — | ——– | — | ———— | — | — | —- | —— | — | — | — | data | | • The | CPU | is | a H/W | interpreter | | | | | | | | | | — | ——— | ———- | ——- | —— | ———– | ———- | ——- | —————- | ——– | —— | — | — | — | | | • Program | | IS | simply | DATA | | for | this interpreter | | | | | | | | • Main | | memory: | | Single | expandable | | | resource | pool | | | | | | - | constrains | | both | data | and | program | | size | | | | | | | - | don’t | need | to | make | separate | | decisions | | of | | | | | | | how | large | of | a program | | or | data | memory | to buy | | | | 51\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V\n\n\n\nMemory\n\n\nDetails\n\n\n\n\n\n\n\n\n\n\n■\nMemory\n\nlocations\n\nare\naddressable\n\nin different\n\nsized chunks\n\n\n\n\n\n\n\n–\n8-bit\nchunks\n\n(bytes)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nshort2\n\nshort0\n\n\n\n\n\n–\n16-bit\n\nchunks\n(shorts)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbyte3\nbyte2\nbyte1\nbyte0\n\n\n\n\nword | | – | 32-bit | | chunks | (words) | | | | | | | | | | | — | — | —— | — | —— | ——- | — | — | — | — | — | — | — | — | — | Addr | | – | 64-bit | | chunks | | | | | | | | | | …43210 | | — | — | —— | — | —— | — | — | — | — | — | — | — | — | — | —— | 0: 313029… | | | | | | | | | | | | 2 | 1 | | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 3 long0 (longs/doubles) 4: | | | | | | | | | | | 7 | 6 | 5 | | 4 | | — | — | —- | ———- | — | —– | — | — | — | — | — | — | — | — | — | | ■ | We | also | frequently | | need | | | | 8: | 11 | 10 | 9 | | 8 | long8 | | access | | to individual | | bits! | | | | | | | | | | | — | —— | — | ————- | — | —— | — | — | — | — | — | — | — | — | — | 12: | | | | | | | | | | | 15 | 14 | 13 | | 12 | | — | ————- | ———— | — | —————- | ——– | ——– | ——– | — | — | — | — | — | — | — | | | (Instructions | | | help | with | this) | | | | | | | | | | ■ | Every | BYTE | | has | a unique | address | | | | | | | | | | | (RISC-V is | | a | byte-addressable | | | machine) | | | | | | | | | ■ | Most | instructions | | | are | one word | | | | | | | | | 52\n211 REVIEW: MEMORY 55\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 56\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 57\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 58\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 59\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 60\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 61\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n■ What\nif I want\nto store\nan integer?\n\n\n\n\n\n– sizeof(int)\n\n= 4 bytes\n\n\n\n\n\n\n\n\n\n\nVariables\nwhose\ntypes are\n\n\n\n\n\n\nlarger\nthan one\nbyte span\n\n\n\n\n\n\nmultiple\naddresses\nin memory!\n\n\n\n62\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | 63\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | Byte Data Address 0 What order 1 should we | store the | bits? | 2 | | | | | | | | | ——— | —– | — | — | — | — | — | — | — | — | 3 64\n\n\n\n\n\n\n\n\n\n\n\n\n\nMSB\nand\nLSB\n\n\n\n\n\n\n\n\n\n0b\n0000\n0000 0000\n0101\n0000\n0110\n1100\n1101\n\n\n\nMost Significant\nByte\n\n\n\nLeast Significant\nByte\n\n\n\n(MSB)\n\n\n\n\n(LSB)\n\n\n\n\n65\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 66\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 67\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 68\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —- | —– | —- | —- | —- | —————– | —– | | | Most Significant | | Byte | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | | 0 | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | | | | | | 0000 | 0101 | | | | 1 | | | | | 0000 | 0110 | | | | | — | — | — | — | —- | —- | — | — | — | 2 1100 1101 3 69\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b 0000 | 0000 | 0000 | | 0101 | 0000 | 0110 | 1100 | 1101 | | ——- | —- | —— | —— | ——– | —- | ——– | —- | —- | | | | Little | Endian | Ordering | is | dominant | in | | Most Significant Bpyrtoecessor architectures and is whaLtewaset Significant Byte | | (MSB) | | | | | | (LSB) | | | — | —– | — | —- | ——– | ——- | —— | —– | — | | | | | will | be using | in this | class! | | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 70",
     "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#storing-larger-data-1",
-    "href": "01.html#storing-larger-data-1",
-    "title": "Circuits",
-    "section": "Storing Larger Data",
-    "text": "Storing Larger Data\n1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#storing-larger-data-2",
-    "href": "01.html#storing-larger-data-2",
-    "title": "Circuits",
-    "section": "Storing Larger Data",
-    "text": "Storing Larger Data\n1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101 Byte Data Address 0 What order 1 should we store the bits? 2 3",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#msb-and-lsb",
-    "href": "01.html#msb-and-lsb",
-    "title": "Circuits",
-    "section": "MSB and LSB",
-    "text": "MSB and LSB\n0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#little-endian-ordering",
-    "href": "01.html#little-endian-ordering",
-    "title": "Circuits",
-    "section": "Little Endian Ordering",
-    "text": "Little Endian Ordering\n■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#little-endian-ordering-1",
-    "href": "01.html#little-endian-ordering-1",
-    "title": "Circuits",
-    "section": "Little Endian Ordering",
-    "text": "Little Endian Ordering\n■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#big-endian-ordering",
-    "href": "01.html#big-endian-ordering",
-    "title": "Circuits",
-    "section": "Big Endian Ordering",
-    "text": "Big Endian Ordering\n■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#big-endian-ordering-1",
-    "href": "01.html#big-endian-ordering-1",
-    "title": "Circuits",
-    "section": "Big Endian Ordering",
-    "text": "Big Endian Ordering\n■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 0000 0000 1 0000 0101 2 0000 0110 1100 1101 3",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#little-endian-ordering-2",
-    "href": "01.html#little-endian-ordering-2",
-    "title": "Circuits",
-    "section": "Little Endian Ordering",
-    "text": "Little Endian Ordering\n■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Little Endian Ordering is dominant in processor architectures and is what we will be using in this class! Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#working-with-memory",
-    "href": "01.html#working-with-memory",
-    "title": "Circuits",
-    "section": "Working with memory",
-    "text": "Working with memory\n■ How do you know if an individual row should be interpreted as a one-byte value or if it is part of a larger number? – You cannot tell from looking at the memory – you’ll have this information stored somewhere else! – When you send memory requests, you specify the address and the size of data you want to read. Memory request → assembly instruction! ☺ lw x5, 8(x10)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte",
-    "href": "01.html#byte",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nData Address Integer Array 0 1 0 1 2 3 4 2 3 5 90 100 40 11 4 5 6 7 8 sizeof(int) = 4 bytes 9 10 11 12 13 14 15 16 17 18 19",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-1",
-    "href": "01.html#byte-1",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nByte Data | | Data Address | | | — | ———— | — | Address 0 0 | 1 | 5 | 1 | | — | — | — | 2 2 | 3 | | 3 | | — | — | — | 4 4 5 | 5 | 90 | | | — | — | — | 6 6 | 7 | | 7 | | — | — | — | 8 8 | 9 | | 9 | | — | — | — | 100 10 10 11 11 | 12 | | 12 | | — | — | — | 13 13 40 | 14 | | 14 | | — | — | — | 15 15 | 16 | | 16 | | — | — | — | | 17 | 11 | 17 | | 18 | | 18 | 19 19",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-2",
-    "href": "01.html#byte-2",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nByte Data | | Data Address | | | | — | ———— | — | — | Address 0 | 0 | | | 0b 0000 0101 | | — | — | — | ———— | | 1 | 5 | 1 | 0b 0000 0000 | 2 | 2 | | | 0b 0000 0000 | | — | — | — | ———— | | 3 | | 3 | 0b 0000 0000 | 4 | 4 | | | 0b 0101 1010 | | — | — | — | ———— | | | | 5 | 0b 0000 0000 | | 5 | 90 | | | 6 | 6 | | | 0b 0000 0000 | | — | — | — | ———— | | 7 | | 7 | | 0b 0000 0000 8 | 8 | | | 0b 0110 0100 | | — | — | — | ———— | | 9 | | 9 | | | | 100 | | 0b 0000 0000 | 10 | 10 | | | 0b 0000 0000 | | — | — | — | ———— | 11 | 11 | | | 0b 0000 0000 | | — | — | — | ———— | | 12 | | 12 | | 0b 0010 1000 13 | 13 | | | 0b 0000 0000 | | — | — | — | ———— | 40 | 14 | | 14 | | | — | — | — | — | 0b 0000 0000 15 | 15 | | | 0b 0000 0000 | | — | — | — | ———— | | 16 | | 16 | | 0b 0000 1011 | 17 | 11 | 17 | 0b 0000 0000 | | — | — | — | ———— | | 18 | | 18 | | 0b 0000 0000 19 | 19 | | | 0b 0000 0000 | | — | — | — | ———— |",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-3",
-    "href": "01.html#byte-3",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nData Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 sizeof(int) = 4 bytes 9 100 10 11 12 13 Assuming this array starts at 40 14 address 0, this is how it is stored in 15 memory 16 17 11 18 19",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-4",
-    "href": "01.html#byte-4",
-    "title": "Circuits",
-    "section": "Byte",
-    "text": "Byte\nData Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 The address of each element in the array corresponds to its starting byte in memory. 9 100 10 11 Since the size of each element in this array is 12 4 bytes, we can compute the address of any 13 40 element by taking its index and multiplying it 14 by 4. 15 16 17 11 Base address = address of the start of the array 18 19",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#address-calculation",
-    "href": "01.html#address-calculation",
-    "title": "Circuits",
-    "section": "Address Calculation",
-    "text": "Address Calculation\n■ I have a 10-element integer array whose base address is 20. What is the address of index 9?",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#address-calculation-1",
-    "href": "01.html#address-calculation-1",
-    "title": "Circuits",
-    "section": "Address Calculation",
-    "text": "Address Calculation\n■ I have a 10-element integer array whose base address is 20. What is the address of index 9? – array’s base address + index * size of integer – 20 + 9 * 4 = 56",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#diagram-configurations",
-    "href": "01.html#diagram-configurations",
-    "title": "Circuits",
-    "section": "Diagram Configurations",
-    "text": "Diagram Configurations\n■ Sometimes memory diagrams will show 4 bytes per row instead of 1 byte per row – See side-by-side comparison on the next slide ■ This provides a more compact way to visualize the data ■ Much of the data that we are working with is 4 bytes, so this structure makes it easier to see what is stored in memory",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-byte",
-    "href": "01.html#byte-byte",
-    "title": "Circuits",
-    "section": "Byte Byte",
-    "text": "Byte Byte\nData Data Address Address 0 0 1 4 2 8 3 12 4 16 5 20 6 24 7 28 8 32 9 36 10 40 11 44 12 48 13 52 14 56 15 60 16 64 17 68 18 72 19 76",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-byte-1",
-    "href": "01.html#byte-byte-1",
-    "title": "Circuits",
-    "section": "| Byte | | Byte | |",
-    "text": "| Byte | | Byte | |\n——- | —- | ——- | —- |\n        | Data | | Data |\nAddress | | Address | |\n0 | | 0 | |\n5 | 1 | 5 | | | | — | — | — | — | | | | 4 | 90 | | 2 | | 8 | 100 | 3 | | | 12 | 40 | | — | — | — | — | | 4 | | 16 | 11 | | 5 | 90 | 20 | | | 6 | | 24 | | 7 28 8 32 9 | | 100 | 36 | | | — | — | — | — | | 10 | | 40 | | | 11 | | 44 | | 12 48 13 | | 40 | 52 | | | — | — | — | — | 14 56 | 15 | | 60 | | | — | — | — | — | 16 64 | 17 | 11 | | | | — | — | — | — | 68 18 72 | 19 | | 76 | | | — | — | — | — |",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-byte-2",
-    "href": "01.html#byte-byte-2",
-    "title": "Circuits",
-    "section": "| Byte | | Byte | |",
-    "text": "| Byte | | Byte | |\n—– | — | —– | — |\nData Data Address Address | 0 | 0b 0000 0101 | 0 | | | — | ———— | — | — | 0b 0000 0000 0000 0000 0000 0000 0000 0101 1 | | 0b 0000 0000 | 4 | 0b 0000 0000 0000 0000 0000 0000 0101 1010 | | — | ———— | — | —————————————— | | 2 | 0b 0000 0000 | 8 | 0b 0000 0000 0000 0000 0000 0000 0110 0100 | 3 | | 0b 0000 0000 | 12 | 0b 0000 0000 0000 0000 0000 0000 0010 1000 | | — | ———— | — | —————————————— | | 4 | 0b 0101 1010 | 16 | 0b 0000 0000 0000 0000 0000 0000 0000 1011 | | 5 | 0b 0000 0000 | 20 | | | 6 | | 24 | | 0b 0000 0000 7 | | 0b 0000 0000 | 28 | | | — | ———— | — | — | 8 | | 0b 0110 0100 | 32 | | | — | ———— | — | — | 9 | | 0b 0000 0000 | 36 | | | — | ———— | — | — | | 10 | | 40 | | 0b 0000 0000 | 11 | | 44 | | | — | — | — | — | 0b 0000 0000 12 48 0b 0010 1000 13 | | 0b 0000 0000 | 52 | | | — | ———— | — | — | 14 | | 0b 0000 0000 | 56 | | | — | ———— | — | — | | 15 | | 60 | | 0b 0000 0000 16 | | 0b 0000 1011 | 64 | | | — | ———— | — | — | 17 | | 0b 0000 0000 | 68 | | | — | ———— | — | — | 18 | | 0b 0000 0000 | 72 | | | — | ———— | — | — | | 19 | | 76 | | 0b 0000 0000",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#addresses-in-hex",
-    "href": "01.html#addresses-in-hex",
-    "title": "Circuits",
-    "section": "Addresses in Hex",
-    "text": "Addresses in Hex\n■ Addresses are normally written in hex, not decimal ■ In this class, we are working in a 32-bit address space, meaning that addresses are 4 bytes ■ The rest of the memory diagrams you see in class will look the diagrams on the next slide ■ Notice that the compactness of the right diagram allows us to display more data at once than the left diagram",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#byte-byte-3",
-    "href": "01.html#byte-byte-3",
-    "title": "Circuits",
-    "section": "Byte Byte",
-    "text": "Byte Byte\nData Data Address Address 0x00000000 0x00000000 0x00000001 0x00000004 0x00000002 0x00000008 0x00000003 0x0000000C 0x00000004 0x00000010 0x00000005 0x00000014 0x00000006 0x00000018 0x00000007 0x0000001C 0x00000008 0x00000020 0x00000009 0x00000024 0x0000000A 0x00000028 0x0000000B 0x0000002C Each row stores one byte of data Each row stores four bytes of data",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#size-of-memory-address",
-    "href": "01.html#size-of-memory-address",
-    "title": "Circuits",
-    "section": "Size of Memory Address",
-    "text": "Size of Memory Address\nByte Data Address ■ The size of our memory 0b000 determines the number of 0b001 bits we need to address it 0b010 ■ For example, if our memory 0b011 can only hold 8 bytes, we 0b100 will need log (8) = 3 bits to 2 address the memory 0b101 0b110 0b111",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#size-of-memory-address-1",
-    "href": "01.html#size-of-memory-address-1",
-    "title": "Circuits",
-    "section": "Size of Memory Address",
-    "text": "Size of Memory Address\n■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#size-of-memory-address-2",
-    "href": "01.html#size-of-memory-address-2",
-    "title": "Circuits",
-    "section": "Size of Memory Address",
-    "text": "Size of Memory Address\n■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes) log (4 GB) 2 log (22 * 230) 2 log (232) 2 32",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#basic-circuits",
-    "href": "01.html#basic-circuits",
-    "title": "Circuits",
-    "section": "BASIC CIRCUITS",
-    "text": "BASIC CIRCUITS",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#a-substrate-for-computation",
-    "href": "01.html#a-substrate-for-computation",
-    "title": "Circuits",
-    "section": "A Substrate for Computation",
-    "text": "A Substrate for Computation\n■ We can build devices for processing and representing bits using almost any physical phenomenon - magnetic flux Wait! Some of those might have potential… - trained elephants - falling water - turning gears - DNA sequences - polarization of a photon 1 1 0 1 0 0 1 1 0 1 0 0",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#using-electromagnetic-phenomena",
-    "href": "01.html#using-electromagnetic-phenomena",
-    "title": "Circuits",
-    "section": "Using Electromagnetic Phenomena",
-    "text": "Using Electromagnetic Phenomena\n▪ Some EM things we could encode bits with: ▪ voltages, phase, currents, frequency ▪ With today’s technologies voltages are most often used. ▪ Voltage pros: ▪ easy generation, detection ▪ voltage changes can be very fast ▪ lots of engineering knowledge ▪ Voltage cons: ▪ easily affected by environment ▪ DC connectivity required? ▪ R & C effects slow things down",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#voltage-and-current",
-    "href": "01.html#voltage-and-current",
-    "title": "Circuits",
-    "section": "Voltage and Current",
-    "text": "Voltage and Current\n■ Voltage – The force that makes electrons flow – Measured in Volts (V) ■ Current – The rate of flow of electrons – Measured in Amperes (A)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#representing-information-with-voltages",
-    "href": "01.html#representing-information-with-voltages",
-    "title": "Circuits",
-    "section": "Representing Information with Voltages",
-    "text": "Representing Information with Voltages\nRepresentation of each point (x, y) in a B&W Picture: 0 volts: BLACK 1 volt: WHITE 0.37 volts: 37% Gray etc. Representation of a picture: Scan points in some prescribed raster order… generate voltage waveform How much information at each point?",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#information-processing-computation",
-    "href": "01.html#information-processing-computation",
-    "title": "Circuits",
-    "section": "Information Processing = Computation",
-    "text": "Information Processing = Computation\nFirst, let’s consider some processing blocks: | v | Copy | v | | — | —- | — | | v | INV | | 1-v",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#lets-build-a-system",
-    "href": "01.html#lets-build-a-system",
-    "title": "Circuits",
-    "section": "Let’s Build a System!",
-    "text": "Let’s Build a System!\nCopy INV Copy INV input (In Theory) (Reality) Copy INV ? Copy INV output",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#contracts-key-to-system-design",
-    "href": "01.html#contracts-key-to-system-design",
-    "title": "Circuits",
-    "section": "Contracts: Key to System Design",
-    "text": "Contracts: Key to System Design\nA SYSTEM is a structure that is “guaranteed” to exhibit a specified behavior, assuming all of its components obey their specified behaviors. How is this achieved? Through Contracts Every system component will have clear obligations and responsibilities. If these are maintained we have every right to expect the system to behave as planned. If contracts are violated all bets are off.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#digital-contracts",
-    "href": "01.html#digital-contracts",
-    "title": "Circuits",
-    "section": "Digital Contracts",
-    "text": "Digital Contracts\nWhy DIGITAL? … because it keeps the contracts SIMPLE! It’s the price we pay for this robustness? 0 or 1 All the information that we transfer between components is only one bit! But, in exchange, we get reliable, modular, and reproducible systems.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#the-digital-abstraction",
-    "href": "01.html#the-digital-abstraction",
-    "title": "Circuits",
-    "section": "The Digital Abstraction",
-    "text": "The Digital Abstraction\n“Ideal” Abstract World Real World 0/ Manufacturing 1 Variations Bits Noise Volts or Electrons or Ergs or Gallons Keep in mind, the real world is not digital, we engineer it to behave that way. We coerce real physical phenomena to implement digital designs!",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#a-digital-processing-element",
-    "href": "01.html#a-digital-processing-element",
-    "title": "Circuits",
-    "section": "A Digital Processing Element",
-    "text": "A Digital Processing Element\n• A combinational device is a digital element that has – one or more digital inputs – one or more digital outputs – a functional specification that details the value of each output for every possible combination of valid input values – a timing specification consisting (at a minimum) an upper bound propagation delay, t , on the required time for the device to compute the pd specified valid output values from an arbitrary set of stable, valid input values Output a “1” if at least 2 out of 3 of input A my inputs are a “1”. Otherwise, output “0”. input B output Y I will generate a valid input C output in no more than 2 minutes after seeing valid inputs",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#a-combinational-digital-system",
-    "href": "01.html#a-combinational-digital-system",
-    "title": "Circuits",
-    "section": "A Combinational Digital System",
-    "text": "A Combinational Digital System\nA system of interconnected elements is combinational if: ▪ Each circuit element is combinational ▪ Every input is connected to exactly one output or directly to some source of 0’s or 1’s ▪ The circuit contains no directed cycles ▪ But, in order to realize digital processing, elements we have one more requirement!",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#nose-margins",
-    "href": "01.html#nose-margins",
-    "title": "Circuits",
-    "section": "Nose Margins",
-    "text": "Nose Margins\n■ Key idea: Don’t allow “0” to be mistaken for a “1” or vice versa ■ Use the same “uniform bit-representation convention”, for every component in our digital system ■ To implement devices with high reliability, we outlaw “close calls” via a representation convention which forbids a range of voltages between “0” and “1”. ■ Ensure the valid input range is more tolerant (larger) than the valid output range Our definition of valid does not preclude inputs and outputs from passing through invalid values. In fact, they must, but only during transitions. Our specifications allow for this (i.e. outputs are specified sometime (T ) after after inputs become valid). pd",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#digital-processing-elements-gates",
-    "href": "01.html#digital-processing-elements-gates",
-    "title": "Circuits",
-    "section": "Digital Processing Elements (Gates)",
-    "text": "Digital Processing Elements (Gates)\nSome digital processing elements occur so frequently that we give them special names and symbols I will copy and I will output the A Y restore my input A Y complement of to my output buffer my input inverter A A I will output a I will output a Y Y ‘1’ AifN aDll my ‘1’ if aOnRy of my B B inputs are ‘1’ inputs are ‘1’ Q: What is the point of a buffer? A Doesn’t a wire do the same thing? I will only output a Y A: A buffer restores marginal digital ‘1’ if an XodOd Rnumber signals, because the output is as good B of my inputs are ‘1’ or “better” than the input (i.e. it solves that bad image problem from slide 7).",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#digital-processing-elements-gates-1",
-    "href": "01.html#digital-processing-elements-gates-1",
-    "title": "Circuits",
-    "section": "Digital Processing Elements (Gates)",
-    "text": "Digital Processing Elements (Gates)\nSome digital processing elements occur so frequently that we give them special names and symbols A Y A Y buffer inverter A A Y Y AND OR B B A Y XOR B",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#how-do-we-make-gates",
-    "href": "01.html#how-do-we-make-gates",
-    "title": "Circuits",
-    "section": "How do we make gates?",
-    "text": "How do we make gates?\n■ A controllable switch is the common This symbol link of all computing technologies indicates a “high” potential, or the voltage of the ■ Switches control voltages by creating power supply L and opening paths between higher and o a d lower potentials ■ Closed circuit: – fully connected, allows electricity to flow uninterrupted ■ Open circuit – A circuit that contains a broken This symbol indicates a connection “low” or ground – Electricity stops flowing at the point potential where the connection was lost",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#switches",
-    "href": "01.html#switches",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\nOpen (off) Closed (on) Electricity can flow through a closed switch, it cannot flow through an open switch",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#switches-1",
-    "href": "01.html#switches-1",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\nOpen (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 5V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 5V",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#switches-2",
-    "href": "01.html#switches-2",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\nOpen (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 0V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 0V",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#switches-in-series",
-    "href": "01.html#switches-in-series",
-    "title": "Circuits",
-    "section": "Switches in Series",
-    "text": "Switches in Series\nswitch0 switch1 switch0 switch1 switch0 switch1 switch0 switch1 Current can only flow between the two ends if both switches are closed current_flow = switch AND switch 0 1",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#switches-in-parallel",
-    "href": "01.html#switches-in-parallel",
-    "title": "Circuits",
-    "section": "Switches in Parallel",
-    "text": "Switches in Parallel\nswitch0 switch0 switch1 switch1 switch0 switch0 switch1 switch1 Current can flow between the two ends if either of the switches is closed current_flow = switch OR switch 0 1",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#digital-variables-and-functions",
-    "href": "01.html#digital-variables-and-functions",
-    "title": "Circuits",
-    "section": "Digital Variables and Functions",
-    "text": "Digital Variables and Functions\n■ A binary variable, 0 or 1, can represent the state of switch – on or off, open or closed ■ The setting of switches can be used to turn on and off other switches to compose more complicated functions.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#a-simple-function-turning-on-a-light",
-    "href": "01.html#a-simple-function-turning-on-a-light",
-    "title": "Circuits",
-    "section": "A Simple Function: Turning on a Light",
-    "text": "A Simple Function: Turning on a Light\n■ By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. ■ This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#functions-with-two-switches",
-    "href": "01.html#functions-with-two-switches",
-    "title": "Circuits",
-    "section": "Functions with Two Switches",
-    "text": "Functions with Two Switches\n■ Two switches can be connected either in series or in parallel ■ Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions ■ · is logical AND",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#functions-with-two-switches-1",
-    "href": "01.html#functions-with-two-switches-1",
-    "title": "Circuits",
-    "section": "Functions with Two Switches",
-    "text": "Functions with Two Switches\n■ With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. ■ “+” is logical OR Two basic two-input logic functions",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#a-three-switch-function",
-    "href": "01.html#a-three-switch-function",
-    "title": "Circuits",
-    "section": "A Three-Switch Function",
-    "text": "A Three-Switch Function\n■ Three switches can be used to control the light in more complex ways. This series- parallel connection of switches realizes the logic function: – L(x1, x2, x3) = (x1 + x2) · x3 ■ The light is on if x3 = 1 and, at the same time, at least one of the x1 or x2 are 1.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#a-three-switch-function-1",
-    "href": "01.html#a-three-switch-function-1",
-    "title": "Circuits",
-    "section": "A Three-Switch Function",
-    "text": "A Three-Switch Function",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#truth-tables",
-    "href": "01.html#truth-tables",
-    "title": "Circuits",
-    "section": "Truth Tables",
-    "text": "Truth Tables\n■ Every logical function over a finite set of inputs can be described in a tabular fashion that enumerates all possible input combinations and provides the associated output. ■ Functions expressed this way are called truth tables.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#pondering-truth-tables",
-    "href": "01.html#pondering-truth-tables",
-    "title": "Circuits",
-    "section": "Pondering Truth Tables",
-    "text": "Pondering Truth Tables",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#transistors",
-    "href": "01.html#transistors",
-    "title": "Circuits",
-    "section": "TRANSISTORS",
-    "text": "TRANSISTORS",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#transistors-are-the-physical-building",
-    "href": "01.html#transistors-are-the-physical-building",
-    "title": "Circuits",
-    "section": "Transistors are the physical building",
-    "text": "Transistors are the physical building\nblocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s. You can think of it as an electrically controlled switch that turns current on or off.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#transistors-are-like-switches",
-    "href": "01.html#transistors-are-like-switches",
-    "title": "Circuits",
-    "section": "Transistors are like switches",
-    "text": "Transistors are like switches\nOff On Switches are controlled by physical contact Transistors are controlled by a voltage",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#two-states-binary",
-    "href": "01.html#two-states-binary",
-    "title": "Circuits",
-    "section": "Two States: Binary!",
-    "text": "Two States: Binary!\n■ Transistors can be in two distinct states: on or off ■ This is why our machines communicate in binary (1s and 0s)! On Off",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#logic-levels",
-    "href": "01.html#logic-levels",
-    "title": "Circuits",
-    "section": "Logic Levels",
-    "text": "Logic Levels\n■ Instead of specifying the exact voltage level (e.g. 3V or 5V), we’ll simply use binary terms when discussing transistors. ■ We’ll either have a high voltage or a low voltage. ■ There are a few different terms for these voltage levels. – High voltage ■ logic high = logic 1 = 1 – Low voltage ■ logic low = logic 0 = 0",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#transistors-1",
-    "href": "01.html#transistors-1",
-    "title": "Circuits",
-    "section": "Transistors",
-    "text": "Transistors\n■ We will be working with two types of transistors – nMOS transistors – pMOS transistors ■ There are three terminals – Gate: controls whether the transistor is on or off – Source and Drain: endpoints",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#transistor-symbol",
-    "href": "01.html#transistor-symbol",
-    "title": "Circuits",
-    "section": "Transistor Symbol",
-    "text": "Transistor Symbol\nTransistor Switch (n-channel MOSFET) The terminal labeled with the blue dot determines whether current can flow between the terminals labeled with the red dot.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#nmos-transistor",
-    "href": "01.html#nmos-transistor",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\n■ There are three terminals V (drain voltage) D – Gate: controls whether the transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (source voltage) S",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#nmos-transistor-1",
-    "href": "01.html#nmos-transistor-1",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\n■ If the gate voltage is high (logic 1), V (drain voltage) D current can flow between source and drain – The source and drain will be connected and will have the V (gate voltage) G same voltage ■ If the gate voltage is low, current cannot flow between source and drain V (source voltage) S – The source and drain are not connected",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#nmos-transistor-2",
-    "href": "01.html#nmos-transistor-2",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\nLet’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | D | | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? V | | V | | V | | | | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | | | D | | D | | | | D | | D | | V | | V | | | V | | | V | | | G | | G | | | G | | | G | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | V | | V | | | | V | | V | | | S | | S | | | | S | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 |",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "01.html#nmos-transistor-3",
-    "href": "01.html#nmos-transistor-3",
-    "title": "Circuits",
-    "section": "NMOS Transistor",
-    "text": "NMOS Transistor\nV V V V D D D D Logic 0 Logic 1 unknown unknown V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are connected V is low, so source and drain are not connected G G",
-    "crumbs": [
-      "Circuits"
+      "Instructions"
     ]
   },
   {
@@ -21721,447 +20820,5 @@
       "Old",
       "Introduction"
     ]
-  },
-  {
-    "objectID": "00.html#section",
-    "href": "00.html#section",
-    "title": "Introduction",
-    "section": "",
-    "text": "1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#section",
-    "href": "00.rjs.html#section",
-    "title": "Introduction",
-    "section": "",
-    "text": "1111 1010 1001 2 2 + + 0101 0111 2 2 1111 no 0000 yes 11 111 0110 1010 2 2 + + 0110 0111 2 2 1100 0001 yes no"
-  },
-  {
-    "objectID": "00.html#counting-bits",
-    "href": "00.html#counting-bits",
-    "title": "Introduction",
-    "section": "Counting Bits",
-    "text": "Counting Bits\n\nImagine bits are expensive.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Diet\", \"Zero\", \"Cherry\", \"Vanilla\"]\n\nIndices are in range(4) and \\(log_2(4) = 2\\)\n\nfrom numpy import log2\nlog2(4)",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#a-mapping",
-    "href": "00.html#a-mapping",
-    "title": "Introduction",
-    "section": "A Mapping",
-    "text": "A Mapping\n\nPerhaps the map is as follows.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b00\n\"Diet\"\n\n\n0b01\n\"Zero\"\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#counting-bits",
-    "href": "00.rjs.html#counting-bits",
-    "title": "Introduction",
-    "section": "Counting Bits",
-    "text": "Counting Bits\n\nImagine bits are expensive.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Diet\", \"Zero\", \"Cherry\", \"Vanilla\"]\n\nIndices are in range(4) and \\(log_2(4) = 2\\)\n\nfrom numpy import log2\nlog2(4)"
-  },
-  {
-    "objectID": "00.rjs.html#a-mapping",
-    "href": "00.rjs.html#a-mapping",
-    "title": "Introduction",
-    "section": "A Mapping",
-    "text": "A Mapping\n\nPerhaps the map is as follows.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b00\n\"Diet\"\n\n\n0b01\n\"Zero\"\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\""
-  },
-  {
-    "objectID": "00.html#counting-bit",
-    "href": "00.html#counting-bit",
-    "title": "Introduction",
-    "section": "Counting Bit",
-    "text": "Counting Bit\n\nRestrict to flavor.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Cherry\", \"Vanilla\"]\n\nIndices are in range(2) and \\(\\log_2(2) = 1\\)\n\nfrom numpy import log2\nlog2(2)",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#a-mapping-1",
-    "href": "00.html#a-mapping-1",
-    "title": "Introduction",
-    "section": "A Mapping",
-    "text": "A Mapping\n\nWe imagine this restricts the more significant binary digit to 1.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"\n\n\n\n\nDisclosing “flavor” reveals one bit worth of information.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#examples",
-    "href": "00.html#examples",
-    "title": "Introduction",
-    "section": "Examples",
-    "text": "Examples\n\nOutcome of a coin flip: \\(\\log_2(2/1)\\) = 1\nRoll of one die: \\(\\log_2(6/1)\\) ≅ 2.6\nRoll of one die is odd: \\(\\log_2(6/3)\\) ≅ 1",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#counting-bit",
-    "href": "00.rjs.html#counting-bit",
-    "title": "Introduction",
-    "section": "Counting Bit",
-    "text": "Counting Bit\n\nRestrict to flavor.\nHow many bits would it take to store a designation from the following choices?\n\noptions = [\"Cherry\", \"Vanilla\"]\n\nIndices are in range(2) and \\(\\log_2(2) = 1\\)\n\nfrom numpy import log2\nlog2(2)"
-  },
-  {
-    "objectID": "00.rjs.html#a-mapping-1",
-    "href": "00.rjs.html#a-mapping-1",
-    "title": "Introduction",
-    "section": "A Mapping",
-    "text": "A Mapping\n\nWe imagine this restricts the more significant binary digit to 1.\n\n\n\n\nIndex\nChoice\n\n\n\n\n0b10\n\"Cherry\"\n\n\n0b11\n\"Vanilla\"\n\n\n\n\nDisclosing “flavor” reveals one bit worth of information."
-  },
-  {
-    "objectID": "00.rjs.html#examples",
-    "href": "00.rjs.html#examples",
-    "title": "Introduction",
-    "section": "Examples",
-    "text": "Examples\n\nOutcome of a coin flip: \\(\\log_2(2/1)\\) = 1\nRoll of one die: \\(\\log_2(6/1)\\) ≅ 2.6\nRoll of one die is odd: \\(\\log_2(6/3)\\) ≅ 1"
-  },
-  {
-    "objectID": "00.html#exercise",
-    "href": "00.html#exercise",
-    "title": "Introduction",
-    "section": "Exercise",
-    "text": "Exercise\n\nA 7-digit phone number is a palindrome.\nProceed manually.\n\nGet an approximate solution absent any tools, or\nExpress the solution in \\(\\LaTeX\\), or\nExpress the solution in a python script.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#solution",
-    "href": "00.html#solution",
-    "title": "Introduction",
-    "section": "Solution",
-    "text": "Solution\n\nEach (decimal) digit stores \\(\\log_2(10)\\)\n7 independent digits stores up to \\(\\log_2(10^7)\\)\nA palindrome causes the final 3 to be determined by the first 3.\n4 independent digits stores up to \\(\\log_2(10^4)\\)\nDiscloses \\(\\log_2(10^7/10^4) = \\log_2(10^3)\\)\n\n\\(10^3\\) ≅ \\(2^10\\) so approx. 10 bits.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#exercise",
-    "href": "00.rjs.html#exercise",
-    "title": "Introduction",
-    "section": "Exercise",
-    "text": "Exercise\n\nA 7-digit phone number is a palindrome.\nProceed manually.\n\nGet an approximate solution absent any tools, or\nExpress the solution in \\(\\LaTeX\\), or\nExpress the solution in a python script."
-  },
-  {
-    "objectID": "00.rjs.html#solution",
-    "href": "00.rjs.html#solution",
-    "title": "Introduction",
-    "section": "Solution",
-    "text": "Solution\n\nEach (decimal) digit stores \\(\\log_2(10)\\)\n7 independent digits stores up to \\(\\log_2(10^7)\\)\nA palindrome causes the final 3 to be determined by the first 3.\n4 independent digits stores up to \\(\\log_2(10^4)\\)\nDiscloses \\(\\log_2(10^7/10^4) = \\log_2(10^3)\\)\n\n\\(10^3\\) ≅ \\(2^10\\) so approx. 10 bits."
-  },
-  {
-    "objectID": "00.html#what-do-we-see",
-    "href": "00.html#what-do-we-see",
-    "title": "Introduction",
-    "section": "What do we see?",
-    "text": "What do we see?\n\n\n\nFour operations, one each of:\n\n\\(+\\), \\(\\times\\), \\(-\\), \\(\\geq\\)\n\nMany moves\n\nIncluding push, pop\n\nSome control\n\n“Jump”, return, “nop”\n\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#what-do-we-see",
-    "href": "00.rjs.html#what-do-we-see",
-    "title": "Introduction",
-    "section": "What do we see?",
-    "text": "What do we see?\n\n\n\nFour operations, one each of:\n\n\\(+\\), \\(\\times\\), \\(-\\), \\(\\geq\\)\n\nMany moves\n\nIncluding push, pop\n\nSome control\n\n“Jump”, return, “nop”\n\n\n\n\n\ngcc f.c -S && cat f.s\n\nf:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    $0, -4(%rbp)\n    nop\n.L2:\n    addl    $1, -4(%rbp)\n    movl    -4(%rbp), %eax\n    imull   %eax, %eax\n    cmpl    %eax, -20(%rbp)\n    jge .L2\n    movl    -4(%rbp), %eax\n    subl    $1, %eax\n    popq    %rbp\n    ret"
-  },
-  {
-    "objectID": "00.html#it-me",
-    "href": "00.html#it-me",
-    "title": "Introduction",
-    "section": "It me",
-    "text": "It me\n\nName\n\n(Prof. )?Calvin\n\nCredentials\n\nB.A. Mathematics\nB.S., M.S., Ph.D. Computer Science\n\nPronouns\n\nthey/them",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#the-great-work",
-    "href": "00.html#the-great-work",
-    "title": "Introduction",
-    "section": "The Great Work",
-    "text": "The Great Work\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#course-format",
-    "href": "00.html#course-format",
-    "title": "Introduction",
-    "section": "Course Format",
-    "text": "Course Format\n\nLectures in class\n6 labs/homeworks\nIn person midterm\nWas not clever enough to design a final, so none.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#grade-policy",
-    "href": "00.html#grade-policy",
-    "title": "Introduction",
-    "section": "Grade Policy",
-    "text": "Grade Policy\n\nYour voices have been heard:\n\n\nI think failing my systems class was the best thing that happened to me.\n\n\nThis course demanded strong self-motivation… Thus, I didn’t learn as much as I might’ve if grading mattered more.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#specification-grading",
-    "href": "00.html#specification-grading",
-    "title": "Introduction",
-    "section": "Specification Grading",
-    "text": "Specification Grading\n\nBasically, I will assign some stuff but you don’t have to do all of it perfectly.\n\nNo partial credit, everything is boolean grading.\n\nI took distributions over final, midterm, and Lab/HW",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#it-pays-to-get-as",
-    "href": "00.html#it-pays-to-get-as",
-    "title": "Introduction",
-    "section": "It pays to get A’s",
-    "text": "It pays to get A’s\n\n\n\nGrade\nRequirements\n\n\n\n\nA\nComplete all but one labs, midterm passing grade\n\n\nA-\nComplete half or more labs, midterm passing grade\n\n\nA-\nComplete all labs",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#but-bs-are-the-knees",
-    "href": "00.html#but-bs-are-the-knees",
-    "title": "Introduction",
-    "section": "But B’s are the Knees",
-    "text": "But B’s are the Knees\n\n\n\nGrade\nRequirements\n\n\n\n\nB\nHalf or more labs\n\n\nB\nMidterm passing grade",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#these-may-earn-degrees",
-    "href": "00.html#these-may-earn-degrees",
-    "title": "Introduction",
-    "section": "These may (???) earn degrees",
-    "text": "These may (???) earn degrees\n\n\n\nGrade\nRequirements\n\n\n\n\nC\nNonzero labs\n\n\nF\nAnything else",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#lab-grading",
-    "href": "00.html#lab-grading",
-    "title": "Introduction",
-    "section": "Lab Grading",
-    "text": "Lab Grading\n\n“Perfect” (counts for spec grading)\n\nComplete\nOn time\nCorrect\n\n“Passing” (counts for spec grading)\n\nComplete\nOn time\n\n“Doesn’t count” (=0%)\n\nAnything else",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#midterm-final",
-    "href": "00.html#midterm-final",
-    "title": "Introduction",
-    "section": "Midterm & Final",
-    "text": "Midterm & Final\n\nMidterm\n\nFree-standing binary\nFaults/exceptions/interrupts\nMemory management",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#late-work-policy",
-    "href": "00.html#late-work-policy",
-    "title": "Introduction",
-    "section": "Late Work Policy",
-    "text": "Late Work Policy\n\nLate work is not accepted.\n\nNo exceptions.\nThe specification grading framework incorpates tolerances.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#ai-policy",
-    "href": "00.html#ai-policy",
-    "title": "Introduction",
-    "section": "AI Policy",
-    "text": "AI Policy\n\nI have no idea if this will be useful.\nLet me know.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.html#collaboration-policy",
-    "href": "00.html#collaboration-policy",
-    "title": "Introduction",
-    "section": "Collaboration Policy",
-    "text": "Collaboration Policy\n\nYou should chat with each other.\nYou should write your own solution.\nIf someone shows you something and you don’t understand it as well as something you write yourself, it is a waste of your time to use the solution.\n\nBut not a waste as a way to learn.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#it-me",
-    "href": "00.rjs.html#it-me",
-    "title": "Introduction",
-    "section": "It me",
-    "text": "It me\n\nName\n\n(Prof. )?Calvin\n\nCredentials\n\nB.A. Mathematics\nB.S., M.S., Ph.D. Computer Science\n\nPronouns\n\nthey/them"
-  },
-  {
-    "objectID": "00.rjs.html#the-great-work",
-    "href": "00.rjs.html#the-great-work",
-    "title": "Introduction",
-    "section": "The Great Work",
-    "text": "The Great Work\n\nThesis Title\n\nMining Secure Behavior of Hardware Designs\n\nPlain English\n\nJust as there are bugs in code that makes software, modern hardware is also written in code and therefore may contain bugs. I find these bugs."
-  },
-  {
-    "objectID": "00.rjs.html#course-format",
-    "href": "00.rjs.html#course-format",
-    "title": "Introduction",
-    "section": "Course Format",
-    "text": "Course Format\n\nLectures in class\n6 labs/homeworks\nIn person midterm\nWas not clever enough to design a final, so none."
-  },
-  {
-    "objectID": "00.rjs.html#grade-policy",
-    "href": "00.rjs.html#grade-policy",
-    "title": "Introduction",
-    "section": "Grade Policy",
-    "text": "Grade Policy\n\nYour voices have been heard:\n\n\nI think failing my systems class was the best thing that happened to me.\n\n\nThis course demanded strong self-motivation… Thus, I didn’t learn as much as I might’ve if grading mattered more."
-  },
-  {
-    "objectID": "00.rjs.html#specification-grading",
-    "href": "00.rjs.html#specification-grading",
-    "title": "Introduction",
-    "section": "Specification Grading",
-    "text": "Specification Grading\n\nBasically, I will assign some stuff but you don’t have to do all of it perfectly.\n\nNo partial credit, everything is boolean grading.\n\nI took distributions over final, midterm, and Lab/HW"
-  },
-  {
-    "objectID": "00.rjs.html#it-pays-to-get-as",
-    "href": "00.rjs.html#it-pays-to-get-as",
-    "title": "Introduction",
-    "section": "It pays to get A’s",
-    "text": "It pays to get A’s\n\n\n\nGrade\nRequirements\n\n\n\n\nA\nComplete all but one labs, midterm passing grade\n\n\nA-\nComplete half or more labs, midterm passing grade\n\n\nA-\nComplete all labs"
-  },
-  {
-    "objectID": "00.rjs.html#but-bs-are-the-knees",
-    "href": "00.rjs.html#but-bs-are-the-knees",
-    "title": "Introduction",
-    "section": "But B’s are the Knees",
-    "text": "But B’s are the Knees\n\n\n\nGrade\nRequirements\n\n\n\n\nB\nHalf or more labs\n\n\nB\nMidterm passing grade"
-  },
-  {
-    "objectID": "00.rjs.html#these-may-earn-degrees",
-    "href": "00.rjs.html#these-may-earn-degrees",
-    "title": "Introduction",
-    "section": "These may (???) earn degrees",
-    "text": "These may (???) earn degrees\n\n\n\nGrade\nRequirements\n\n\n\n\nC\nNonzero labs\n\n\nF\nAnything else"
-  },
-  {
-    "objectID": "00.rjs.html#lab-grading",
-    "href": "00.rjs.html#lab-grading",
-    "title": "Introduction",
-    "section": "Lab Grading",
-    "text": "Lab Grading\n\n“Perfect” (counts for spec grading)\n\nComplete\nOn time\nCorrect\n\n“Passing” (counts for spec grading)\n\nComplete\nOn time\n\n“Doesn’t count” (=0%)\n\nAnything else"
-  },
-  {
-    "objectID": "00.rjs.html#midterm-final",
-    "href": "00.rjs.html#midterm-final",
-    "title": "Introduction",
-    "section": "Midterm & Final",
-    "text": "Midterm & Final\n\nMidterm\n\nFree-standing binary\nFaults/exceptions/interrupts\nMemory management"
-  },
-  {
-    "objectID": "00.rjs.html#late-work-policy",
-    "href": "00.rjs.html#late-work-policy",
-    "title": "Introduction",
-    "section": "Late Work Policy",
-    "text": "Late Work Policy\n\nLate work is not accepted.\n\nNo exceptions.\nThe specification grading framework incorpates tolerances."
-  },
-  {
-    "objectID": "00.rjs.html#ai-policy",
-    "href": "00.rjs.html#ai-policy",
-    "title": "Introduction",
-    "section": "AI Policy",
-    "text": "AI Policy\n\nI have no idea if this will be useful.\nLet me know."
-  },
-  {
-    "objectID": "00.rjs.html#collaboration-policy",
-    "href": "00.rjs.html#collaboration-policy",
-    "title": "Introduction",
-    "section": "Collaboration Policy",
-    "text": "Collaboration Policy\n\nYou should chat with each other.\nYou should write your own solution.\nIf someone shows you something and you don’t understand it as well as something you write yourself, it is a waste of your time to use the solution.\n\nBut not a waste as a way to learn."
-  },
-  {
-    "objectID": "00.html#midterm",
-    "href": "00.html#midterm",
-    "title": "Introduction",
-    "section": "Midterm",
-    "text": "Midterm\n\nMidterm\n\nIn person\nWritten\nWith notes\nWithout computer\n\nMay have two (I’ll count higher of two)",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#midterm",
-    "href": "00.rjs.html#midterm",
-    "title": "Introduction",
-    "section": "Midterm",
-    "text": "Midterm\n\nMidterm\n\nIn person\nWritten\nWith notes\nWithout computer\n\nMay have two (I’ll count higher of two)"
-  },
-  {
-    "objectID": "00.html#carryoverflow",
-    "href": "00.html#carryoverflow",
-    "title": "Introduction",
-    "section": "Carry/Overflow",
-    "text": "Carry/Overflow\n\nDoesn’t always happen\n\n\n\n\n\n1\n0\n1\n0\n\n\n+\n0\n1\n0\n1\n\n\n\n\n\n\n\n\n\n=\n1\n1\n1\n1",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#carryoverflow",
-    "href": "00.rjs.html#carryoverflow",
-    "title": "Introduction",
-    "section": "Carry/Overflow",
-    "text": "Carry/Overflow\n\nDoesn’t always happen\n\n\n\n\n\n1\n0\n1\n0\n\n\n+\n0\n1\n0\n1\n\n\n\n\n\n\n\n\n\n=\n1\n1\n1\n1"
-  },
-  {
-    "objectID": "00.html#carryoverflow-1",
-    "href": "00.html#carryoverflow-1",
-    "title": "Introduction",
-    "section": "Carry/Overflow",
-    "text": "Carry/Overflow\n\nWhen it happens it matters\n\n\n\n\n\n0\n1\n0\n1\n\n\n+\n0\n1\n0\n1\n\n\nc\n1\n\n1\n\n\n\n=\n1\n0\n1\n0",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#carryoverflow-1",
-    "href": "00.rjs.html#carryoverflow-1",
-    "title": "Introduction",
-    "section": "Carry/Overflow",
-    "text": "Carry/Overflow\n\nWhen it happens it matters\n\n\n\n\n\n0\n1\n0\n1\n\n\n+\n0\n1\n0\n1\n\n\nc\n1\n\n1\n\n\n\n=\n1\n0\n1\n0"
-  },
-  {
-    "objectID": "00.html#carryoverflow-2",
-    "href": "00.html#carryoverflow-2",
-    "title": "Introduction",
-    "section": "Carry/Overflow",
-    "text": "Carry/Overflow\n\nCarries can overflow\n\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n1\n\n\n\n=\n1\n0\n0\n0\n0",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "00.rjs.html#carryoverflow-2",
-    "href": "00.rjs.html#carryoverflow-2",
-    "title": "Introduction",
-    "section": "Carry/Overflow",
-    "text": "Carry/Overflow\n\nCarries can overflow\n\n\n\n\n\n\n1\n1\n1\n1\n\n\n+\n\n0\n0\n0\n1\n\n\nc\n1\n1\n1\n1\n\n\n\n=\n1\n0\n0\n0\n0"
   }
 ]

@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Systems in C – Circuits</title>
+  <title>Systems in C – Instructions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -126,8 +126,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Circuits</h1>
-  <p class="subtitle">w1d0</p>
+  <h1 class="title">Instructions</h1>
+  <p class="subtitle">w0d1</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -146,298 +146,1238 @@
 </ul>
 </section></section>
 <section>
-<section id="section" class="title-slide slide level1 center">
-<h1></h1>
-<p>COMP311: COMPUTER ORGANIZATION! Lecture 3: Memory Review, Basic Circuits tinyurl.com/comp311-sp26</p>
-</section>
-<section id="logistics-updates" class="slide level2">
-<h2>Logistics Updates</h2>
-<p>■ First quiz on Wednesday! – If you have ARS accommodations, please make arrangements! ■ First written assignment posted today, due in a week! ■ Quiz review session next Tuesday. Time TBD. ■ Regular LA office hours will start soon. I will post announcement once our schedule is sorted. ■ Systems reading group will actually start <em>next</em> week ☺ – 5pm in FB141!</p>
-</section>
-<section id="logistics-updates-1" class="slide level2">
-<h2>Logistics Updates</h2>
-<p>Quiz Topics: ■ – 211 Review – Conceptual topics from first two days ■ Going between decimal, binary, hex ■ Tracing a simple assembly instruction ■ Two’s complement (add, subtract) (addition, subtraction) Basic circuits, switches, – ■ Overflow transistors Basic memory questions – ■ Whatever we get through ■ Similar to in-class &amp; WS today! questions</p>
-</section>
-<section id="more-211-review" class="slide level2">
-<h2>MORE 211 REVIEW:</h2>
-<p>MEMORY</p>
-</section>
-<section id="storing-data-in-memory" class="slide level2">
-<h2>Storing Data in Memory</h2>
-<p>1 byte = 8 bits Each of these rows can store one byte of data</p>
-</section>
-<section id="storing-data-in-memory-1" class="slide level2">
-<h2>Storing Data in Memory</h2>
-<p>1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row.</p>
-</section>
-<section id="byte-addresses" class="slide level2">
-<h2>Byte Addresses</h2>
-<p>1 byte = 8 bits Byte Address 0 0b0000 0101 1 0b0000 0100 2 0b1111 1110 To reference each of these 3 locations, we use something called a byte address. 4 5 6 Note that these addresses 7 are not stored anywhere! 8 9 10 11</p>
-</section>
-<section id="storing-larger-data" class="slide level2">
-<h2>Storing Larger Data</h2>
-<p>■ What if I want to store an integer? – sizeof(int) = 4 bytes Variables whose types are larger than one byte span multiple addresses in memory!</p>
-</section>
-<section id="storing-larger-data-1" class="slide level2">
-<h2>Storing Larger Data</h2>
-<p>1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101</p>
-</section>
-<section id="storing-larger-data-2" class="slide level2">
-<h2>Storing Larger Data</h2>
-<p>1 int = 4 bytes ■ Let’s say I want to store an integer whose value is 329,421 329421 = 0b 0000 0000 0000 0101 0000 0110 1100 1101 Byte Data Address 0 What order 1 should we store the bits? 2 3</p>
-</section>
-<section id="msb-and-lsb" class="slide level2">
-<h2>MSB and LSB</h2>
-<p>0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB)</p>
-</section>
-<section id="little-endian-ordering" class="slide level2">
-<h2>Little Endian Ordering</h2>
-<p>■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3</p>
-</section>
-<section id="little-endian-ordering-1" class="slide level2">
-<h2>Little Endian Ordering</h2>
-<p>■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3</p>
-</section>
-<section id="big-endian-ordering" class="slide level2">
-<h2>Big Endian Ordering</h2>
-<p>■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1 2 3</p>
-</section>
-<section id="big-endian-ordering-1" class="slide level2">
-<h2>Big Endian Ordering</h2>
-<p>■ The least significant byte of the integer goes in the largest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 0000 0000 1 0000 0101 2 0000 0110 1100 1101 3</p>
-</section>
-<section id="little-endian-ordering-2" class="slide level2">
-<h2>Little Endian Ordering</h2>
-<p>■ The least significant byte of the integer goes in the lowest address 0b 0000 0000 0000 0101 0000 0110 1100 1101 Little Endian Ordering is dominant in processor architectures and is what we will be using in this class! Most Significant Byte Least Significant Byte (MSB) (LSB) Byte Data Address 0 1100 1101 1 0000 0110 2 0000 0101 0000 0000 3</p>
-</section>
-<section id="working-with-memory" class="slide level2">
-<h2>Working with memory</h2>
-<p>■ How do you know if an individual row should be interpreted as a one-byte value or if it is part of a larger number? – You cannot tell from looking at the memory – you’ll have this information stored somewhere else! – When you send memory requests, you specify the address and the size of data you want to read. Memory request → assembly instruction! ☺ lw x5, 8(x10)</p>
-</section>
-<section id="byte" class="slide level2">
-<h2>Byte</h2>
-<p>Data Address Integer Array 0 1 0 1 2 3 4 2 3 5 90 100 40 11 4 5 6 7 8 sizeof(int) = 4 bytes 9 10 11 12 13 14 15 16 17 18 19</p>
-</section>
-<section id="byte-1" class="slide level2">
-<h2>Byte</h2>
-<p>Byte Data | | Data Address | | | — | ———— | — | Address 0 0 | 1 | 5 | 1 | | — | — | — | 2 2 | 3 | | 3 | | — | — | — | 4 4 5 | 5 | 90 | | | — | — | — | 6 6 | 7 | | 7 | | — | — | — | 8 8 | 9 | | 9 | | — | — | — | 100 10 10 11 11 | 12 | | 12 | | — | — | — | 13 13 40 | 14 | | 14 | | — | — | — | 15 15 | 16 | | 16 | | — | — | — | | 17 | 11 | 17 | | 18 | | 18 | 19 19</p>
-</section>
-<section id="byte-2" class="slide level2">
-<h2>Byte</h2>
-<p>Byte Data | | Data Address | | | | — | ———— | — | — | Address 0 | 0 | | | 0b 0000 0101 | | — | — | — | ———— | | 1 | 5 | 1 | 0b 0000 0000 | 2 | 2 | | | 0b 0000 0000 | | — | — | — | ———— | | 3 | | 3 | 0b 0000 0000 | 4 | 4 | | | 0b 0101 1010 | | — | — | — | ———— | | | | 5 | 0b 0000 0000 | | 5 | 90 | | | 6 | 6 | | | 0b 0000 0000 | | — | — | — | ———— | | 7 | | 7 | | 0b 0000 0000 8 | 8 | | | 0b 0110 0100 | | — | — | — | ———— | | 9 | | 9 | | | | 100 | | 0b 0000 0000 | 10 | 10 | | | 0b 0000 0000 | | — | — | — | ———— | 11 | 11 | | | 0b 0000 0000 | | — | — | — | ———— | | 12 | | 12 | | 0b 0010 1000 13 | 13 | | | 0b 0000 0000 | | — | — | — | ———— | 40 | 14 | | 14 | | | — | — | — | — | 0b 0000 0000 15 | 15 | | | 0b 0000 0000 | | — | — | — | ———— | | 16 | | 16 | | 0b 0000 1011 | 17 | 11 | 17 | 0b 0000 0000 | | — | — | — | ———— | | 18 | | 18 | | 0b 0000 0000 19 | 19 | | | 0b 0000 0000 | | — | — | — | ———— |</p>
-</section>
-<section id="byte-3" class="slide level2">
-<h2>Byte</h2>
-<p>Data Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 sizeof(int) = 4 bytes 9 100 10 11 12 13 Assuming this array starts at 40 14 address 0, this is how it is stored in 15 memory 16 17 11 18 19</p>
-</section>
-<section id="byte-4" class="slide level2">
-<h2>Byte</h2>
-<p>Data Address Integer Array 0 1 5 0 1 2 3 4 2 3 5 90 100 40 11 4 5 90 6 7 8 The address of each element in the array corresponds to its starting byte in memory. 9 100 10 11 Since the size of each element in this array is 12 4 bytes, we can compute the address of any 13 40 element by taking its index and multiplying it 14 by 4. 15 16 17 11 Base address = address of the start of the array 18 19</p>
-</section>
-<section id="address-calculation" class="slide level2">
-<h2>Address Calculation</h2>
-<p>■ I have a 10-element integer array whose base address is 20. What is the address of index 9?</p>
-</section>
-<section id="address-calculation-1" class="slide level2">
-<h2>Address Calculation</h2>
-<p>■ I have a 10-element integer array whose base address is 20. What is the address of index 9? – array’s base address + index * size of integer – 20 + 9 * 4 = 56</p>
-</section>
-<section id="diagram-configurations" class="slide level2">
-<h2>Diagram Configurations</h2>
-<p>■ Sometimes memory diagrams will show 4 bytes per row instead of 1 byte per row – See side-by-side comparison on the next slide ■ This provides a more compact way to visualize the data ■ Much of the data that we are working with is 4 bytes, so this structure makes it easier to see what is stored in memory</p>
-</section>
-<section id="byte-byte" class="slide level2">
-<h2>Byte Byte</h2>
-<p>Data Data Address Address 0 0 1 4 2 8 3 12 4 16 5 20 6 24 7 28 8 32 9 36 10 40 11 44 12 48 13 52 14 56 15 60 16 64 17 68 18 72 19 76</p>
-</section>
-<section id="byte-byte-1" class="slide level2">
-<h2>| Byte | | Byte | |</h2>
-<div class="line-block">——- | —- | ——- | —- |<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Data | | Data |<br>
-Address | | Address | |<br>
-0 | | 0 | |</div>
-<p>5 | 1 | 5 | | | | — | — | — | — | | | | 4 | 90 | | 2 | | 8 | 100 | 3 | | | 12 | 40 | | — | — | — | — | | 4 | | 16 | 11 | | 5 | 90 | 20 | | | 6 | | 24 | | 7 28 8 32 9 | | 100 | 36 | | | — | — | — | — | | 10 | | 40 | | | 11 | | 44 | | 12 48 13 | | 40 | 52 | | | — | — | — | — | 14 56 | 15 | | 60 | | | — | — | — | — | 16 64 | 17 | 11 | | | | — | — | — | — | 68 18 72 | 19 | | 76 | | | — | — | — | — |</p>
-</section>
-<section id="byte-byte-2" class="slide level2">
-<h2>| Byte | | Byte | |</h2>
-<div class="line-block">—– | — | —– | — |</div>
-<p>Data Data Address Address | 0 | 0b 0000 0101 | 0 | | | — | ———— | — | — | 0b 0000 0000 0000 0000 0000 0000 0000 0101 1 | | 0b 0000 0000 | 4 | 0b 0000 0000 0000 0000 0000 0000 0101 1010 | | — | ———— | — | —————————————— | | 2 | 0b 0000 0000 | 8 | 0b 0000 0000 0000 0000 0000 0000 0110 0100 | 3 | | 0b 0000 0000 | 12 | 0b 0000 0000 0000 0000 0000 0000 0010 1000 | | — | ———— | — | —————————————— | | 4 | 0b 0101 1010 | 16 | 0b 0000 0000 0000 0000 0000 0000 0000 1011 | | 5 | 0b 0000 0000 | 20 | | | 6 | | 24 | | 0b 0000 0000 7 | | 0b 0000 0000 | 28 | | | — | ———— | — | — | 8 | | 0b 0110 0100 | 32 | | | — | ———— | — | — | 9 | | 0b 0000 0000 | 36 | | | — | ———— | — | — | | 10 | | 40 | | 0b 0000 0000 | 11 | | 44 | | | — | — | — | — | 0b 0000 0000 12 48 0b 0010 1000 13 | | 0b 0000 0000 | 52 | | | — | ———— | — | — | 14 | | 0b 0000 0000 | 56 | | | — | ———— | — | — | | 15 | | 60 | | 0b 0000 0000 16 | | 0b 0000 1011 | 64 | | | — | ———— | — | — | 17 | | 0b 0000 0000 | 68 | | | — | ———— | — | — | 18 | | 0b 0000 0000 | 72 | | | — | ———— | — | — | | 19 | | 76 | | 0b 0000 0000</p>
-</section>
-<section id="addresses-in-hex" class="slide level2">
-<h2>Addresses in Hex</h2>
-<p>■ Addresses are normally written in hex, not decimal ■ In this class, we are working in a 32-bit address space, meaning that addresses are 4 bytes ■ The rest of the memory diagrams you see in class will look the diagrams on the next slide ■ Notice that the compactness of the right diagram allows us to display more data at once than the left diagram</p>
-</section>
-<section id="byte-byte-3" class="slide level2">
-<h2>Byte Byte</h2>
-<p>Data Data Address Address 0x00000000 0x00000000 0x00000001 0x00000004 0x00000002 0x00000008 0x00000003 0x0000000C 0x00000004 0x00000010 0x00000005 0x00000014 0x00000006 0x00000018 0x00000007 0x0000001C 0x00000008 0x00000020 0x00000009 0x00000024 0x0000000A 0x00000028 0x0000000B 0x0000002C Each row stores one byte of data Each row stores four bytes of data</p>
-</section>
-<section id="size-of-memory-address" class="slide level2">
-<h2>Size of Memory Address</h2>
-<p>Byte Data Address ■ The size of our memory 0b000 determines the number of 0b001 bits we need to address it 0b010 ■ For example, if our memory 0b011 can only hold 8 bytes, we 0b100 will need log (8) = 3 bits to 2 address the memory 0b101 0b110 0b111</p>
-</section>
-<section id="size-of-memory-address-1" class="slide level2">
-<h2>Size of Memory Address</h2>
-<p>■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes)</p>
-</section>
-<section id="size-of-memory-address-2" class="slide level2">
-<h2>Size of Memory Address</h2>
-<p>■ If the size of our memory is 4 GB, how many bits do we need to address our memory? (1GB = 230 bytes) log (4 GB) 2 log (22 * 230) 2 log (232) 2 32</p>
-</section>
-<section id="basic-circuits" class="slide level2">
-<h2>BASIC CIRCUITS</h2>
-</section>
-<section id="a-substrate-for-computation" class="slide level2">
-<h2>A Substrate for Computation</h2>
-<p>■ We can build devices for processing and representing bits using almost any physical phenomenon - magnetic flux Wait! Some of those might have potential… - trained elephants - falling water - turning gears - DNA sequences - polarization of a photon 1 1 0 1 0 0 1 1 0 1 0 0</p>
-</section>
-<section id="using-electromagnetic-phenomena" class="slide level2">
-<h2>Using Electromagnetic Phenomena</h2>
-<p>▪ Some EM things we could encode bits with: ▪ voltages, phase, currents, frequency ▪ With today’s technologies voltages are most often used. ▪ Voltage pros: ▪ easy generation, detection ▪ voltage changes can be very fast ▪ lots of engineering knowledge ▪ Voltage cons: ▪ easily affected by environment ▪ DC connectivity required? ▪ R &amp; C effects slow things down</p>
-</section>
-<section id="voltage-and-current" class="slide level2">
-<h2>Voltage and Current</h2>
-<p>■ Voltage – The force that makes electrons flow – Measured in Volts (V) ■ Current – The rate of flow of electrons – Measured in Amperes (A)</p>
-</section>
-<section id="representing-information-with-voltages" class="slide level2">
-<h2>Representing Information with Voltages</h2>
-<p>Representation of each point (x, y) in a B&amp;W Picture: 0 volts: BLACK 1 volt: WHITE 0.37 volts: 37% Gray etc. Representation of a picture: Scan points in some prescribed raster order… generate voltage waveform How much information at each point?</p>
-</section>
-<section id="information-processing-computation" class="slide level2">
-<h2>Information Processing = Computation</h2>
-<p>First, let’s consider some processing blocks: | v | Copy | v | | — | —- | — | | v | INV | | 1-v</p>
-</section>
-<section id="lets-build-a-system" class="slide level2">
-<h2>Let’s Build a System!</h2>
-<p>Copy INV Copy INV input (In Theory) (Reality) Copy INV ? Copy INV output</p>
-</section>
-<section id="contracts-key-to-system-design" class="slide level2">
-<h2>Contracts: Key to System Design</h2>
-<p>A SYSTEM is a structure that is “guaranteed” to exhibit a specified behavior, assuming all of its components obey their specified behaviors. How is this achieved? Through Contracts Every system component will have clear obligations and responsibilities. If these are maintained we have every right to expect the system to behave as planned. If contracts are violated all bets are off.</p>
-</section>
-<section id="digital-contracts" class="slide level2">
-<h2>Digital Contracts</h2>
-<p>Why DIGITAL? … because it keeps the contracts SIMPLE! It’s the price we pay for this robustness? 0 or 1 All the information that we transfer between components is only one bit! But, in exchange, we get reliable, modular, and reproducible systems.</p>
-</section>
-<section id="the-digital-abstraction" class="slide level2">
-<h2>The Digital Abstraction</h2>
-<p>“Ideal” Abstract World Real World 0/ Manufacturing 1 Variations Bits Noise Volts or Electrons or Ergs or Gallons Keep in mind, the real world is not digital, we engineer it to behave that way. We coerce real physical phenomena to implement digital designs!</p>
-</section>
-<section id="a-digital-processing-element" class="slide level2">
-<h2>A Digital Processing Element</h2>
-<p>• A combinational device is a digital element that has – one or more digital inputs – one or more digital outputs – a functional specification that details the value of each output for every possible combination of valid input values – a timing specification consisting (at a minimum) an upper bound propagation delay, t , on the required time for the device to compute the pd specified valid output values from an arbitrary set of stable, valid input values Output a “1” if at least 2 out of 3 of input A my inputs are a “1”. Otherwise, output “0”. input B output Y I will generate a valid input C output in no more than 2 minutes after seeing valid inputs</p>
-</section>
-<section id="a-combinational-digital-system" class="slide level2">
-<h2>A Combinational Digital System</h2>
-<p>A system of interconnected elements is combinational if: ▪ Each circuit element is combinational ▪ Every input is connected to exactly one output or directly to some source of 0’s or 1’s ▪ The circuit contains no directed cycles ▪ But, in order to realize digital processing, elements we have one more requirement!</p>
-</section>
-<section id="nose-margins" class="slide level2">
-<h2>Nose Margins</h2>
-<p>■ Key idea: Don’t allow “0” to be mistaken for a “1” or vice versa ■ Use the same “uniform bit-representation convention”, for every component in our digital system ■ To implement devices with high reliability, we outlaw “close calls” via a representation convention which forbids a range of voltages between “0” and “1”. ■ Ensure the valid input range is more tolerant (larger) than the valid output range Our definition of valid does not preclude inputs and outputs from passing through invalid values. In fact, they must, but only during transitions. Our specifications allow for this (i.e. outputs are specified sometime (T ) after after inputs become valid). pd</p>
-</section>
-<section id="digital-processing-elements-gates" class="slide level2">
-<h2>Digital Processing Elements (Gates)</h2>
-<p>Some digital processing elements occur so frequently that we give them special names and symbols I will copy and I will output the A Y restore my input A Y complement of to my output buffer my input inverter A A I will output a I will output a Y Y ‘1’ AifN aDll my ‘1’ if aOnRy of my B B inputs are ‘1’ inputs are ‘1’ Q: What is the point of a buffer? A Doesn’t a wire do the same thing? I will only output a Y A: A buffer restores marginal digital ‘1’ if an XodOd Rnumber signals, because the output is as good B of my inputs are ‘1’ or “better” than the input (i.e.&nbsp;it solves that bad image problem from slide 7).</p>
-</section>
-<section id="digital-processing-elements-gates-1" class="slide level2">
-<h2>Digital Processing Elements (Gates)</h2>
-<p>Some digital processing elements occur so frequently that we give them special names and symbols A Y A Y buffer inverter A A Y Y AND OR B B A Y XOR B</p>
-</section>
-<section id="how-do-we-make-gates" class="slide level2">
-<h2>How do we make gates?</h2>
-<p>■ A controllable switch is the common This symbol link of all computing technologies indicates a “high” potential, or the voltage of the ■ Switches control voltages by creating power supply L and opening paths between higher and o a d lower potentials ■ Closed circuit: – fully connected, allows electricity to flow uninterrupted ■ Open circuit – A circuit that contains a broken This symbol indicates a connection “low” or ground – Electricity stops flowing at the point potential where the connection was lost</p>
-</section>
-<section id="switches" class="slide level2">
-<h2>Switches</h2>
-<p>Open (off) Closed (on) Electricity can flow through a closed switch, it cannot flow through an open switch</p>
-</section>
-<section id="switches-1" class="slide level2">
-<h2>Switches</h2>
-<p>Open (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 5V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 5V</p>
-</section>
-<section id="switches-2" class="slide level2">
-<h2>Switches</h2>
-<p>Open (off) Closed (on) 5V ??? 5V 5V Let’s say we apply 0V to the left side of the switch ▪ If the switch is open, we don’t necessarily know the voltage on the right ▪ Would need to see the full circuit to determine the voltage ▪ If the switch is closed, the voltage on the right is 0V</p>
-</section>
-<section id="switches-in-series" class="slide level2">
-<h2>Switches in Series</h2>
-<p>switch0 switch1 switch0 switch1 switch0 switch1 switch0 switch1 Current can only flow between the two ends if both switches are closed current_flow = switch AND switch 0 1</p>
-</section>
-<section id="switches-in-parallel" class="slide level2">
-<h2>Switches in Parallel</h2>
-<p>switch0 switch0 switch1 switch1 switch0 switch0 switch1 switch1 Current can flow between the two ends if either of the switches is closed current_flow = switch OR switch 0 1</p>
-</section>
-<section id="digital-variables-and-functions" class="slide level2">
-<h2>Digital Variables and Functions</h2>
-<p>■ A binary variable, 0 or 1, can represent the state of switch – on or off, open or closed ■ The setting of switches can be used to turn on and off other switches to compose more complicated functions.</p>
-</section>
-<section id="a-simple-function-turning-on-a-light" class="slide level2">
-<h2>A Simple Function: Turning on a Light</h2>
-<p>■ By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. ■ This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON</p>
-</section>
-<section id="functions-with-two-switches" class="slide level2">
-<h2>Functions with Two Switches</h2>
-<p>■ Two switches can be connected either in series or in parallel ■ Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions ■ · is logical AND</p>
-</section>
-<section id="functions-with-two-switches-1" class="slide level2">
-<h2>Functions with Two Switches</h2>
-<p>■ With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. ■ “+” is logical OR Two basic two-input logic functions</p>
-</section>
-<section id="a-three-switch-function" class="slide level2">
-<h2>A Three-Switch Function</h2>
-<p>■ Three switches can be used to control the light in more complex ways. This series- parallel connection of switches realizes the logic function: – L(x1, x2, x3) = (x1 + x2) · x3 ■ The light is on if x3 = 1 and, at the same time, at least one of the x1 or x2 are 1.</p>
-</section>
-<section id="a-three-switch-function-1" class="slide level2">
-<h2>A Three-Switch Function</h2>
-</section>
-<section id="truth-tables" class="slide level2">
-<h2>Truth Tables</h2>
-<p>■ Every logical function over a finite set of inputs can be described in a tabular fashion that enumerates all possible input combinations and provides the associated output. ■ Functions expressed this way are called truth tables.</p>
-</section>
-<section id="pondering-truth-tables" class="slide level2">
-<h2>Pondering Truth Tables</h2>
-</section>
-<section id="transistors" class="slide level2">
-<h2>TRANSISTORS</h2>
-</section>
-<section id="transistors-are-the-physical-building" class="slide level2">
-<h2>Transistors are the physical building</h2>
-<p>blocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s. You can think of it as an electrically controlled switch that turns current on or off.</p>
-</section>
-<section id="transistors-are-like-switches" class="slide level2">
-<h2>Transistors are like switches</h2>
-<p>Off On Switches are controlled by physical contact Transistors are controlled by a voltage</p>
-</section>
-<section id="two-states-binary" class="slide level2">
-<h2>Two States: Binary!</h2>
-<p>■ Transistors can be in two distinct states: on or off ■ This is why our machines communicate in binary (1s and 0s)! On Off</p>
-</section>
-<section id="logic-levels" class="slide level2">
-<h2>Logic Levels</h2>
-<p>■ Instead of specifying the exact voltage level (e.g.&nbsp;3V or 5V), we’ll simply use binary terms when discussing transistors. ■ We’ll either have a high voltage or a low voltage. ■ There are a few different terms for these voltage levels. – High voltage ■ logic high = logic 1 = 1 – Low voltage ■ logic low = logic 0 = 0</p>
-</section>
-<section id="transistors-1" class="slide level2">
-<h2>Transistors</h2>
-<p>■ We will be working with two types of transistors – nMOS transistors – pMOS transistors ■ There are three terminals – Gate: controls whether the transistor is on or off – Source and Drain: endpoints</p>
-</section>
-<section id="transistor-symbol" class="slide level2">
-<h2>Transistor Symbol</h2>
-<p>Transistor Switch (n-channel MOSFET) The terminal labeled with the blue dot determines whether current can flow between the terminals labeled with the red dot.</p>
-</section>
-<section id="nmos-transistor" class="slide level2">
-<h2>NMOS Transistor</h2>
-<p>■ There are three terminals V (drain voltage) D – Gate: controls whether the transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (source voltage) S</p>
-</section>
-<section id="nmos-transistor-1" class="slide level2">
-<h2>NMOS Transistor</h2>
-<p>■ If the gate voltage is high (logic 1), V (drain voltage) D current can flow between source and drain – The source and drain will be connected and will have the V (gate voltage) G same voltage ■ If the gate voltage is low, current cannot flow between source and drain V (source voltage) S – The source and drain are not connected</p>
-</section>
-<section id="nmos-transistor-2" class="slide level2">
-<h2>NMOS Transistor</h2>
-<p>Let’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | D | | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? V | | V | | V | | | | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | | | D | | D | | | | D | | D | | V | | V | | | V | | | V | | | G | | G | | | G | | | G | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | V | | V | | | | V | | V | | | S | | S | | | | S | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 |</p>
-</section>
-<section id="nmos-transistor-3" class="slide level2">
-<h2>NMOS Transistor</h2>
-<p>V V V V D D D D Logic 0 Logic 1 unknown unknown V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are connected V is low, so source and drain are not connected G G</p>
+<section id="organization" class="title-slide slide level1 center">
+<h1>Organization</h1>
+
+</section>
+<section id="the-big-three" class="slide level2">
+<h2>The Big Three</h2>
+<ul>
+<li>Each computer has at least three basic units:
+<ul>
+<li><em>I/O</em> (Input/Output</li>
+<li><em>Memory</em></li>
+<li><em>CPU</em> (Central Processing Unit)</li>
+</ul></li>
+</ul>
+</section>
+<section id="i0" class="slide level2">
+<h2>I/0</h2>
+<ul>
+<li>Where data arrives from the outside world</li>
+<li>Where data is sent to the outside world</li>
+<li>Where data is archived for the “long term”
+<ul>
+<li>Persists through power cycles</li>
+</ul></li>
+<li>Keyboard, mouse, monitor, HDD</li>
+<li>Symbols to bits (and back)</li>
+</ul>
+</section>
+<section id="memory" class="slide level2">
+<h2>Memory</h2>
+<ul>
+<li>Where data is stored when in usage
+<ul>
+<li>Arrays, trees, matrices (not files, really)</li>
+<li>Often called RAM</li>
+<li>“Handful” of GBs</li>
+</ul></li>
+<li>Key-value storage over <em>addresses</em> and <em>values</em> or contents</li>
+</ul>
+</section>
+<section id="cpu" class="slide level2">
+<h2>CPU</h2>
+<ul>
+<li>Data is manipulated
+<ul>
+<li>Arithmetic operations</li>
+<li>Control flow</li>
+<li>Load and store operations
+<ul>
+<li>How values in memory are alterated</li>
+<li>How I/O values are manipulated.</li>
+</ul></li>
+</ul></li>
+<li>This is the cool one.</li>
+</ul>
+</section>
+<section id="processing" class="slide level2">
+<h2>“Processing”</h2>
+<ul>
+<li>A CPU performs low-level operations called <em>instructions</em>
+<ul>
+<li>These are cool, and good.</li>
+</ul></li>
+<li>Four types
+<ul>
+<li>Arithmetic</li>
+<li>Logical</li>
+<li>Comparison (or tests)</li>
+<li>Control</li>
+</ul></li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+<ul>
+<li>Arithmetic
+<ul>
+<li><span class="math inline">\(+\)</span>, <span class="math inline">\(-\)</span>, <span class="math inline">\(\times\)</span>, $%</li>
+</ul></li>
+<li>Logical
+<ul>
+<li><code>NOT</code>, <code>AND</code>, <code>OR</code>, <code>XOR</code></li>
+</ul></li>
+<li>Comparison
+<ul>
+<li><span class="math inline">\(\gt\)</span>, <span class="math inline">\(lt\)</span>, <span class="math inline">\(=\)</span>, <span class="math inline">\(\geq\)</span>, <span class="math inline">\(\leq\)</span></li>
+</ul></li>
+<li>Control
+<ul>
+<li>Go to a place in code, return to call site.</li>
+</ul></li>
+</ul>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 10%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 11%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 14%">
+<col style="width: 3%">
+<col style="width: 13%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What</th>
+<th></th>
+<th></th>
+<th>do</th>
+<th>we</th>
+<th></th>
+<th>mean</th>
+<th></th>
+<th></th>
+<th></th>
+<th>by</th>
+<th></th>
+<th>“processing”?</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>■</td>
+<td>A CPU</td>
+<td>performs</td>
+<td></td>
+<td></td>
+<td>low-level</td>
+<td></td>
+<td></td>
+<td>operations</td>
+<td></td>
+<td></td>
+<td></td>
+<td>called</td>
+<td></td>
+<td>INSTRUCTIONS</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>■ Arithmetic | | ADD | X | to Y | then | put | the result | | | in | Z | | | | | | | — | — | — | —- | —- | — | ———- | — | — | — | — | — | — | — | — | — | - | | SUBTRACT | | | X from | | Y then | | put | the | result | | back | in | Y | | | — | ——– | — | — | —— | — | —— | — | — | — | —— | — | —- | — | — | — | - ■ Logical | | Set | Z | to 1 | if X | AND | Y are | 1, | otherwise | | | set | Z | to | 0 | | | — | — | — | —- | —- | — | —– | — | ——— | — | — | — | — | — | — | — | - | | (AND | | X with | Y | then | put | the | result | | in | Z) | | | | | | — | —- | —- | —— | —- | —- | — | — | ——— | — | — | — | —- | — | — | — | | | Set | Z to | 1 | if X | OR Y | are | 1, | otherwise | | | set | Z to | 0 | | | - | | (OR | X | with | Y then | | put | the | result in | | Z) | | | | | | | — | — | — | —- | —— | — | — | — | ——— | — | — | — | — | — | — | — | ■ Comparison | | Set | Z | to 1 | if X | is EQUAL | | to | Y, | otherwise | | set | | Z to | 0 | | | — | — | — | —- | —- | ——– | — | — | — | ——— | — | — | — | —- | — | — | - Set Z to 1 if X is GREATER THAN OR EQUAL to Y, otherwise set Z to 0 - ■ Control | | - Skip | the | next | INSTRUCTION | | | | if | Z | is EQUAL | | to | 0 | | 34 | | — | —— | — | —- | ———– | — | — | — | — | — | ——– | — | — | — | — | — |</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>How</th>
+<th></th>
+<th>Memory</th>
+<th></th>
+<th></th>
+<th>is</th>
+<th>Organized</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>■</td>
+<td>A group</td>
+<td></td>
+<td>of bits!</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>■</td>
+<td>Groups</td>
+<td>of</td>
+<td>bits can</td>
+<td>represent</td>
+<td></td>
+<td>various</td>
+<td>types</td>
+<td>of data</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>– Integers, Signed integers. Floating-point values, Strings, Pixels ■ Memory is organized as a vector of bits with indices called “addresses” | | | 0 1 | 0 0 1 | 0 1 0 | 1 0 | 1 0[0 | 0 1 | 0 1 0 | 1 0]0 | 0 1 0 | 1 1 1 | 1 … | | — | — | — | —– | —– | — | —– | — | —– | —– | —– | —– | —– | A vector of bits | | | 0 1 | 2 3 4 | 5 6 7 | 8 | 9 10 11 | 12 13 14 | 15 16 | 17 18 19 | 20 21 | …. | | | — | — | — | —– | —– | — | ——- | ——– | ——– | ——– | —– | — | — | | | | | | | | | We can | address | | | | | Bits have | | | | | | | | groups | of bits | likea | | | | | — | — | — | — | — | — | — | —— | ——- | —— | — | — | — | indices called | | “addresses” | | | | | | vector. | For example | | | | | | — | ———– | — | — | — | — | — | ————— | ———— | —– | — | — | — | | | | | | | | | the 8-bits from | | | | | | | | | | | | | | [12:20], | might | be | | | | | | | | | | | | the number | | “42”. | | | | 35</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Addresses</th>
+<th></th>
+<th></th>
+<th>are</th>
+<th>Key!</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>The need to “address” bits is one of the most important factors of a | computer’s | design. | | | | | | | | | | | ———- | ——— | ——– | ——– | ————— | ———- | —— | — | ——- | ——- | — | | Some | questions | | computer | | architects | (you!) | | may | ponder… | | | ■ How | many bits | | will | I ever | need? | | | | | | | (remember | | computer | | representations | | | are | finite) | | | The size of scratch variables (registers), is more determined by the ■ need to address bits than the size of the data-types needed.. Should we squander address space by giving “every” bit a distinct ■ address? | Perhaps | we could | | address | | bits in | more | manageable | | | units | | ——- | ——– | — | ——- | — | ——- | —- | ———- | — | — | —– | 36</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 2%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 11%">
+<col style="width: 2%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 7%">
+<col style="width: 2%">
+<col style="width: 2%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Memory</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>Concepts</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Address</td>
+<td></td>
+<td>Contents</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>42</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>•</td>
+<td>Memory</td>
+<td></td>
+<td>is</td>
+<td>divided</td>
+<td></td>
+<td>into</td>
+<td>“addressable”</td>
+<td></td>
+<td></td>
+<td>units,</td>
+<td></td>
+<td>each</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>3.141592</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>with</td>
+<td>an</td>
+<td>address</td>
+<td></td>
+<td>(like</td>
+<td></td>
+<td>an array</td>
+<td></td>
+<td>with</td>
+<td>indices)</td>
+<td></td>
+<td></td>
+<td>2</td>
+<td></td>
+<td>“Lee “</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>3</td>
+<td></td>
+<td>“Hart”</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Addressable</td>
+<td></td>
+<td></td>
+<td>units</td>
+<td></td>
+<td>are</td>
+<td>usually</td>
+<td></td>
+<td>larger</td>
+<td>than</td>
+<td>a bit,</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>• Here we | | | | | | | | | | | | | | 4 | | “Bud “ | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | — | assume | | typically | | 8 (byte), | | | 16 | (halfword), | | | | | | | | | | | | — | ——— | — | ——— | — | — | — | ———– | — | — | — | — | — | — | — | —— | —– | — | | | | | | | | | | | | | | | 5 | | “Levi” | a 32- | | bit” | | 32 (word), | | or | 64 | (long) | | bits | | | | | | 6 | | “le “ | | | | — | ———- | — | — | — | —— | — | —- | — | — | — | — | — | — | — | —– | — | — | “Word” address- | | | | | | | | | | | | | | 7 | | 2 | | | | — | —- | ——- | — | — | — | ——– | — | ———- | — | — | — | — | — | — | — | —– | — | | | Each | address | | | has | variable | | “contents” | | | | | | | | able | | • | | | | | | | | | | | | | | 8 | 0x00000293 | | machine | | | — | —— | ——– | ——– | — | ———- | —– | — | — | — | — | — | — | — | ———- | — | ——- | — | | | Memory | | contents | | | might | be: | | | | | | | | | | | | • | | | | | | | | | | | | | 9 | 0x00a00313 | | | | | | | | | | | | | | | | | | 10 | 0x006282b3 | | | | | | | Integers | in | 2’s | complement | | | | | | | | | | | | | • | | | | | | | | | | | | | | 11 | 0xfff30313 | | | | | — | — | —— | — | —- | —— | — | — | — | — | — | — | — | — | ———- | — | — | — | | | | Floats | in | IEEE | format | | | | | | | | | | | | | • | | | | | | | | | | | | | | 12 | 0xfe601ce3 | | | | | — | — | ——- | ——— | —– | — | ——- | — | — | — | — | — | — | — | ———- | ———- | — | — | | | | Strings | in | ASCII | or | Unicode | | | | | | | | | | | | | | • | | | | | | | | | | | | 13 | 0x0000006f | | | | | | | Data | structure | | de | jour | | | | | | | 14 | | 0x00004020 | | | • | | | | | | | | | | | | | | 15 | | 0x20090001 | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | ADDRESSES • | | | Nothing | distinguishes | | | | the | difference | | | | | | | | | 37 | | — | — | ——- | ————- | — | — | — | — | ———- | — | — | — | — | — | — | — | — | — | •</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instructions</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>are</th>
+<th></th>
+<th></th>
+<th>also</th>
+<th></th>
+<th></th>
+<th>stored</th>
+<th>in</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>memory! | | | | | | | | | | | | | | | | Address | Contents | | — | ———— | ——- | — | ————- | — | — | — | ——- | —— | —- | — | ——- | —– | — | ——- | ——– | | • | INSTRUCTIONS | | | | for | the | CPU | are | stored | | in | memory | | | | | | | | | | | | | | | | | | | | | 0 | 42 | | | along | with | | data | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 1 | 3.141592 | | | | | | | | | | | | | | | | | 2 | “Lee “ | | | CPU | fetches | | instructions, | | | | decodes | | them | | and | then | | | | • | | | | | | | | | | | | | | | | 3 | “Hart” | | — | ———– | ——– | ——- | —— | ———- | ——- | ——— | ——– | — | ——– | —- | —- | —- | — | — | ————- | | | performs | | their | | implied | | operation | | | | | | | | | | | | | | | | | | | | | | | | | | 4 | “Bud “ | | • | Mechanism | | | inside | | the | CPU | directs | | which | | | | | | | | | | | | | | | | | | | | | | | 5 | “Levi” | | | instruction | | | to | get | next. | | | | | | | | | | | | | | | | | | | | | | | | | | | 6 | “le “ | | | | | | | | | | | | | | | | | 7 | 2 | | • | They | appear | | | in memory | | as | a string | | of | bits | that | are | | | | | | | | | | | | | | | | | | | | 8 | li x5,0 | | | typically | | uniform | | | in size | | | | | | | | | | | | | | | | | | | | | | | | | | | 9 | li x6,10 | | • | Their | encoding | | | as | “bits” | is | called | | “machine | | | | | | | | | | | | | | | | | | | | | | | 10 | add x5,x5,x6 | | | language.” | | | ex: | 0c3c1d7fff | | | | | | | | | | | | | | | | | | | | | | | | | | | | 11 | addi x6,x6,-1 | bne x0,x6,.-2 12 | • | We | assign | | “mnemonics” | | | to | particular | | | bit | patterns | | | | | | — | —– | ——– | ——— | ———– | — | — | —— | ———- | ——– | — | — | ———- | — | — | — | ———- | | | | | | | | | | | | | | | | | 13 | j . | | | to | indicate | | meanings. | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 14 | 0x00004020 | | | These | | mnemonics | | | are | called | | Assembly | | | language. | | | | | | • | | | | | | | | | | | | | | | 15 | 0x20090001 | | | ex: | mv | x1, | | 10 | | | | | | | | | | | |</p>
+<p>A <sub>Bit</sub> of History There is a commonly recurring debate over whether “data” and “instructions” should be mixed. Leads to two common flavors of computer architectures | “Harvard” | Architecture | | | ——— | ———— | — | Program CPU Mem | I/O | (Central | | | — | ——— | — | Data Processing (Input/Output) Unit) Memory | “Von | Neumann” | Architecture | | —- | ——– | ———— | CPU Unified | I/O | (Central | | | — | ——— | — | Processing Memory (Input/Output) Unit)</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Aside:</th>
+<th>Undergrad</th>
+<th></th>
+<th>Systems</th>
+<th></th>
+<th>Reading</th>
+<th>Group!!</th>
+<th>☺</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ Thursdays at 5pm! ■ FB141 | ■ Food | provided! | | | | | | | | ——— | ———- | —– | ——– | ——— | — | — | — | | ■ All are | welcome!! | | | | | | | | – No | background | in CS | research | necessary | | | | ■ If you are interested in being added to the mailing list, send me an email!</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Anatomy</th>
+<th>of</th>
+<th>a</th>
+<th>von</th>
+<th></th>
+<th>Neumann</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Computer</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>CPU control | | | | | Data | | | | | | Control | | | | | | | — | — | — | — | —- | — | — | — | — | — | ——- | — | — | — | — | — | Internal storage | | | | | Paths | | | status | | | Unit | | | | | | | — | — | — | ——- | —– | — | —- | —— | — | ——- | —- | — | — | — | — | — | | | | | address | | | data | | | address | | | | | | | instructions MEMORY + | dest | | | | | | | | | | PC | | | 1101000111 | | | | —- | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | 1 011 | | | | … | | | | | | | | | | R1 | ←R2+R3 | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | registers | | | | | | | | | ● | INSTRUCTIONS | | | coded | | as binary | data | | — | — | — | — | — | — | — | — | — | ———— | — | — | —– | — | ——— | —- | Moreabout | | | | | | | | | ● | PROGRAM | | COUNTER | | or | PC: | | | — | — | — | — | — | — | — | — | — | ——- | — | ——- | — | — | — | — | thisstuff | asel | | | | | bsel | | | | | | | | | | | | —- | — | — | — | —- | —- | — | —— | — | ——- | ———— | ——- | ———— | — | — | ————- | | | | | | | | | later! | | Address | | of next | instruction | | | to execute | | | | | | | | | | ● | logic | to translate | | instructions | | | into control | | | | | | | | | | | signals | for | data | path | | | | | | fn | ALU | | Cc’s | | | | | | | | | | | | operations 41</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 23%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Anatomy</th>
+<th></th>
+<th>of an</th>
+<th>Instruction</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Nearly all instructions can be made to fit a common template… | | | | OPCODE | | DESTINATION, | | OPERAND | , OPERAND | | | | — | —- | ——- | —— | — | ———— | —— | ——- | ——— | ——— | — | | | What | to do: | | | | | | 1 | | 2 | | | add | | | | Where | to put | | | | | | | | | | | | | | Who | to apply | | | | sub | | | | the result | | | | | | | | | | | | | | | the | operation | to… | and | | | | | | | | | variables, | constants, | etc.. | | — | — | — | — | — | — | — | — | ———- | ———- | —– | or beq bne | | Issues | remaining | … | | | | | CPU | | | | — | ——- | ———- | ———– | ————– | — | — | — | — | — | — | | | • Which | operations | to include? | | | | | | | | | | • Where | to get | variables | and constants? | | | | | | | Memory | | • Where | to store | the results? | | | | | | | | | — | ——- | ——– | ———— | — | — | — | — | — | — | — | 42</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Anatomy</th>
+<th></th>
+<th>of</th>
+<th>an</th>
+<th>Instruction</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ Computers execute a set of primitive operations called instructions | ■ Instructions | | specify | an operation | and | its operands | | | | ————– | ———— | ——- | ———— | ——- | ————- | — | — | | (arguments | | of the | operation) | | | | | | ■ Types | of operands: | | destination, | source, | and immediate | | | Operands | | | | | | (variables, | arguments, | etc.) | | — | — | ——– | — | — | ———– | ———- | —– | | | add | x0,x1,x2 | | | | | | Whydoallofthe variablesstart Source Operands with“X”? | CPU’shavea | | | | | Destination | Operand | | | ———- | — | — | — | — | ———– | ——- | — | smallnumber(16- 32)of registers | that areusedto | | | | | Immediate | | | | ————– | — | — | — | — | ———- | — | — | holdvariables Operand | | addi | x0,x1,1 | | | | | | | — | —- | ——- | — | — | — | — | — | 43</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 21%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Meaning</th>
+<th></th>
+<th></th>
+<th></th>
+<th>of</th>
+<th>an</th>
+<th></th>
+<th>Instruction</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ | | Operations | | are | abbreviated | | into | opcodes | | (1-4 | letters) | | | | — | ———- | — | — | ———– | — | —- | ——- | — | —- | ——– | — | — | ■ | | Instructions | | are | specified | | with | a very | regular | | syntax | | | | — | ———— | ——- | — | ——— | — | —- | ——— | ——- | — | —— | — | — | | | – | Opcodes | are | followed | | by | arguments | | | | | | – Usually the destination is next, then one or more source arguments | | | (This | is not | strictly the | | case, | but | it is | generally | | true) | | | — | — | —– | —— | ———— | — | —– | — | —– | ——— | — | —– | — | ■ | | Why | this order? | | | | | | | | | | | | — | ——- | ———– | ———- | — | ——– | — | —- | —- | —- | — | — | — | | | Analogy | to | high-level | | language | | like | Java | or C | | | | Theinstructionsyntax | | | | | | | | | | | int | x0, x1, | x2; | | — | — | — | — | — | — | — | — | — | — | — | ——- | —- | providesoperandsinthesame orderasyouwouldexpectina | | | | | | | | | | | x0 | = x1 + | x2; | | — | — | — | — | — | — | — | — | — | — | — | —— | — | statementfromahighlevel language. | | | | | | | | | | Instead | | of: | | | — | — | ——– | — | — | — | — | — | — | ——- | — | —- | —– | | | add | x0,x1,x2 | | | | | | | | | | | | | | | | | | | | | | x1 | + x2 | = x0; | 44</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Instructions</th>
+<th></th>
+<th></th>
+<th>are</th>
+<th>Simple</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ Computers interpret “programs” by translating them from the high-level language | where | into | “low-level” | simple | instructions | that | it understands | | ———— | ——— | ———– | ——– | ———— | —- | ————– | | ■ High-Level | Languages | | | | | | | Compilers | | (C, C++, | Fortran) | | | | ▪ | Interpreters | | (Basic, | Ruby, | Lua, Python, | Perl, | JavaScript) | | ———— | — | ——- | —– | ———— | —– | ———– | ▪ Hybrids (Java) ▪ | | | | | | x: | .word 0 | | ———- | ——– | — | — | — | — | ——————- | | | | | | | y: | .word 0 | | ■ Assembly | Language | | | | | | | | | | | | c: | .word 123456 | | int | x, | y; | | | | | | | | | | | | lw t0,0(gp) # get x | y = (x-3)*(y+123456); | | | | | | | addi t0,t0,-3 | | — | — | — | — | — | — | ——————– | | | | | | | | lw t1,4(gp) # get y | | | | | | | | lw t2,8(gp) # get c | | | | | | | | add t1,t1,t2 | | | | | | | | mul t0,t0,t1 | | | | | | | | sw t0,0(gp) | # save y 45</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Instructions</th>
+<th></th>
+<th></th>
+<th></th>
+<th>are</th>
+<th>Binary</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ Computers interpret “assembly programs” by translating them from their | mnemonic | | simple | instructions | | into strings | of bits | | | ———- | — | ——– | ———— | — | ———— | ——- | — | | ■ Assembly | | Language | | | | | | | ■ Machine | | Language | | | | | | – Note the “mostly” one-to-one correspondence between lines of | | assembly | | code and | lines | of machine | code | | | — | ——– | — | ——– | —– | ———- | —- | — | 0x00000000 | | x: | .word | 0 | | | | 0x00000000 | | — | — | —– | —— | — | — | — | ———- | | | y: | .word | 0 | | | | 0x0001E240 | | | c: | .word | 123456 | | | | | … | | | lw | t0,0(gp) | | # get x | | | | — | — | — | ——– | — | ——- | — | — | 0x0001E240 addi t0,t0,-3 0x0001A283 | | | lw | t1,4(gp) | | # get y | | | | — | — | — | ——– | — | ——– | — | — | 0xFFD28293 | | | lw | t2,8(gp) | | # get c | | | | — | — | — | ——– | — | ——- | — | — | 0x0081A383 add t1,t1,t2 0x00730333 mul t0,t0,t1 0x026282B3 sw t0,0(gp) | | | | | | # save y | | | | — | — | — | — | — | ——– | — | — | 0x0051A023 46</p>
+<p>A Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 45</p>
+<p>A Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 46</p>
+<p>Looping the Flow ● Repeat the process treating the variables as unknowns or “formal variables” ● Knowing what the program does allows us to write down its specification, and give it a meaningful name ● The instruction sequence then becomes a general-purpose tool Instructions Variables times7: add t0,t1,t1 t0:Xw 8Xx 5X6x 392x An infinite add t0,t0,t0 t1:Xx 7Xx 4X9x 343x loop add t0,t0,t0 t2:y sub t1,t0,t1 t3:z j times7 4749</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Open</th>
+<th></th>
+<th>Issues</th>
+<th></th>
+<th></th>
+<th></th>
+<th>in Our</th>
+<th></th>
+<th>Simple</th>
+<th>Model?</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ | | WHERE | | in memory | | are | INSTRUCTIONS | | stored? | | | — | —– | — | ——— | — | — | ———— | — | ——- | — | ■ | | HOW | are | instructions | | | represented? | | | | | — | — | — | ———— | — | — | ———— | — | — | — | ■ | | WHERE | | are | VARIABLES stored? | | | | | | | — | —– | — | — | —————– | — | — | — | — | — | ■ | | What | are | LABELs? | | How | do they | relate | to | | | — | —– | ———— | ———– | — | ———– | ——- | —— | —— | — | | | where | instructions | | | are | stored? | | | | | | ■ How | about | more | | complicated | | data | types? | | | | – | Arrays? | | | | | | | | | | – | Data | Structures? | | | | | | | | | – | Objects? | | | | | | | | ■ | | Where | | does | a program | | start | executing? | | | | — | —— | —- | —- | ——— | — | —– | ———- | — | — | | | ■ When | does | | it stop? | | | | | | 50</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 24%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 13%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>The</th>
+<th></th>
+<th>Stored-Program</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>Computer</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ The von Neumann architecture addresses these issues as follows: | ■ | Instructions | | | and | | Data | are | stored | | in a common | | memory | | | — | ———— | — | — | — | — | —- | — | —— | — | ———– | — | —— | — | Memory | ■ | Sequential | | | semantics: | | | To | the | PROGRAMMER | | | | | | — | ———- | — | — | ———- | — | — | — | — | ———- | — | — | — | — | Instruction | | all | instructions | | | appear | | to | execute | | in an | order, | | | | — | — | ———— | — | — | —— | — | — | ——- | — | —– | —— | — | — | Instruction | | or sequentially | | | | | | | | | | | | | | — | ————— | — | — | — | — | — | — | — | — | — | — | — | — | Instruction Central | | Key idea: | | Memory | | holds | not | only | | | | | | Instruction | | — | ——— | — | —— | — | —– | — | —– | — | — | — | — | — | ———– | Processing | | data, | but | coded instructions | | | | | that | | | | | | | — | —– | — | —————— | — | — | — | — | —– | — | — | — | — | — | Unit | | make | up | a program. | | | | | | | | | | data | | — | —- | — | ———- | — | — | — | — | — | — | — | — | — | —- | data | CPU | fetches and | | | executes | | instructions | | | from | memory | | | | | — | ———– | — | — | ——– | — | ———— | — | — | —- | —— | — | — | — | data | | • The | CPU | is | a H/W | interpreter | | | | | | | | | | — | ——— | ———- | ——- | —— | ———– | ———- | ——- | —————- | ——– | —— | — | — | — | | | • Program | | IS | simply | DATA | | for | this interpreter | | | | | | | | • Main | | memory: | | Single | expandable | | | resource | pool | | | | | | - | constrains | | both | data | and | program | | size | | | | | | | - | don’t | need | to | make | separate | | decisions | | of | | | | | | | how | large | of | a program | | or | data | memory | to buy | | | | 51</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 3%">
+<col style="width: 12%">
+<col style="width: 3%">
+<col style="width: 12%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>RISC-V</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Memory</th>
+<th></th>
+<th></th>
+<th>Details</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>■</td>
+<td>Memory</td>
+<td></td>
+<td>locations</td>
+<td></td>
+<td>are</td>
+<td>addressable</td>
+<td></td>
+<td>in different</td>
+<td></td>
+<td>sized chunks</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>–</td>
+<td>8-bit</td>
+<td>chunks</td>
+<td></td>
+<td>(bytes)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>short2</td>
+<td></td>
+<td>short0</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>–</td>
+<td>16-bit</td>
+<td></td>
+<td>chunks</td>
+<td>(shorts)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>byte3</td>
+<td>byte2</td>
+<td>byte1</td>
+<td>byte0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>word | | – | 32-bit | | chunks | (words) | | | | | | | | | | | — | — | —— | — | —— | ——- | — | — | — | — | — | — | — | — | — | Addr | | – | 64-bit | | chunks | | | | | | | | | | …43210 | | — | — | —— | — | —— | — | — | — | — | — | — | — | — | — | —— | 0: 313029… | | | | | | | | | | | | 2 | 1 | | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 3 long0 (longs/doubles) 4: | | | | | | | | | | | 7 | 6 | 5 | | 4 | | — | — | —- | ———- | — | —– | — | — | — | — | — | — | — | — | — | | ■ | We | also | frequently | | need | | | | 8: | 11 | 10 | 9 | | 8 | long8 | | access | | to individual | | bits! | | | | | | | | | | | — | —— | — | ————- | — | —— | — | — | — | — | — | — | — | — | — | 12: | | | | | | | | | | | 15 | 14 | 13 | | 12 | | — | ————- | ———— | — | —————- | ——– | ——– | ——– | — | — | — | — | — | — | — | | | (Instructions | | | help | with | this) | | | | | | | | | | ■ | Every | BYTE | | has | a unique | address | | | | | | | | | | | (RISC-V is | | a | byte-addressable | | | machine) | | | | | | | | | ■ | Most | instructions | | | are | one word | | | | | | | | | 52</p>
+<p>211 REVIEW: MEMORY 55</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Storing</th>
+<th></th>
+<th>Data</th>
+<th>in Memory</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 56</p>
+<p>Storing Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 57</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Byte</th>
+<th>Addresses</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 58</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Storing</th>
+<th></th>
+<th>Data</th>
+<th>in Memory</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 59</p>
+<p>Storing Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 60</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Byte</th>
+<th>Addresses</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 61</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Storing</th>
+<th></th>
+<th>Larger</th>
+<th>Data</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>■ What</td>
+<td>if I want</td>
+<td>to store</td>
+<td>an integer?</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>– sizeof(int)</td>
+<td></td>
+<td>= 4 bytes</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Variables</td>
+<td>whose</td>
+<td>types are</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>larger</td>
+<td>than one</td>
+<td>byte span</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>multiple</td>
+<td>addresses</td>
+<td>in memory!</td>
+</tr>
+</tbody>
+</table>
+<p>62</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Storing</th>
+<th></th>
+<th>Larger</th>
+<th>Data</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1 int =</td>
+<td>4 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | 63</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Storing</th>
+<th></th>
+<th>Larger</th>
+<th>Data</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1 int =</td>
+<td>4 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | Byte Data Address 0 What order 1 should we | store the | bits? | 2 | | | | | | | | | ——— | —– | — | — | — | — | — | — | — | — | 3 64</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 25%">
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 27%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>MSB</th>
+<th>and</th>
+<th>LSB</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0b</td>
+<td>0000</td>
+<td>0000 0000</td>
+<td>0101</td>
+<td>0000</td>
+<td>0110</td>
+<td>1100</td>
+<td>1101</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Most Significant</td>
+<td>Byte</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Least Significant</td>
+<td>Byte</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>(MSB)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>(LSB)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>65</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Little</th>
+<th>Endian</th>
+<th></th>
+<th>Ordering</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 66</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Little</th>
+<th>Endian</th>
+<th></th>
+<th>Ordering</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 67</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Big</th>
+<th>Endian</th>
+<th></th>
+<th>Ordering</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 68</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Big</th>
+<th>Endian</th>
+<th></th>
+<th>Ordering</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —- | —– | —- | —- | —- | —————– | —– | | | Most Significant | | Byte | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | | 0 | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | | | | | | 0000 | 0101 | | | | 1 | | | | | 0000 | 0110 | | | | | — | — | — | — | —- | —- | — | — | — | 2 1100 1101 3 69</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Little</th>
+<th>Endian</th>
+<th></th>
+<th>Ordering</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>■ The least significant byte of the integer goes in the lowest address | 0b 0000 | 0000 | 0000 | | 0101 | 0000 | 0110 | 1100 | 1101 | | ——- | —- | —— | —— | ——– | —- | ——– | —- | —- | | | | Little | Endian | Ordering | is | dominant | in | | Most Significant Bpyrtoecessor architectures and is whaLtewaset Significant Byte | | (MSB) | | | | | | (LSB) | | | — | —– | — | —- | ——– | ——- | —— | —– | — | | | | | will | be using | in this | class! | | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 70</p>
 
 
 </section></section>
