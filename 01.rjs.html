@@ -27,6 +27,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-1d86d68c35eb7061f9efcb6a994936f6.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -153,9 +219,10 @@
 <section id="the-big-three" class="slide level2">
 <h2>The Big Three</h2>
 <ul>
-<li>Each computer has at least three basic units:
+<li>Decompose a computer.</li>
+<li>At least three basic units:
 <ul>
-<li><em>I/O</em> (Input/Output</li>
+<li><em>I/O</em> (Input/Output)</li>
 <li><em>Memory</em></li>
 <li><em>CPU</em> (Central Processing Unit)</li>
 </ul></li>
@@ -239,462 +306,885 @@
 </ul></li>
 </ul>
 </section>
+<section id="aside-goto" class="slide level2">
+<h2>Aside: Goto</h2>
+<ul>
+<li>Back in the good (bad) old days, we didn’t have <code>for</code> and <code>while</code>.</li>
+<li>We had to make them overselves, out of <code>goto</code>.
+<ul>
+<li>Place a label in between two lines of code.</li>
+<li>Invoke via <code>goto</code> keyword + label.</li>
+<li>Syntax (punctuation) matters here, of course.</li>
+</ul></li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li>By the way, these compile to identical assembly.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>cat f.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="cat f.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a></a><span class="dt">int</span> f<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a></a>    <span class="dt">int</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-3"><a></a>    <span class="cf">while</span> <span class="op">(++</span>r <span class="op">*</span> r <span class="op">&lt;=</span> x<span class="op">)</span> <span class="op">{}</span></span>
+<span id="cb1-4"><a></a>    <span class="cf">return</span> r <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-5"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>f_goto.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="f_goto.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a></a><span class="dt">int</span> f<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a></a>    <span class="dt">int</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-3"><a></a>jump_here<span class="op">:</span></span>
+<span id="cb2-4"><a></a>    <span class="cf">if</span>  <span class="op">(++</span>r <span class="op">*</span> r <span class="op">&lt;=</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-5"><a></a>        <span class="cf">goto</span> jump_here<span class="op">;</span></span>
+<span id="cb2-6"><a></a>    <span class="op">}</span></span>
+<span id="cb2-7"><a></a>        <span class="cf">return</span> r <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-8"><a></a>    <span class="op">}</span></span>
+<span id="cb2-9"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="exercise" class="slide level2">
+<h2>Exercise</h2>
+<ul>
+<li>Write factorial in C.</li>
+<li>Use:
+<ul>
+<li><code>goto</code></li>
+</ul></li>
+<li>Don’t use:
+<ul>
+<li><code>for</code></li>
+<li><code>while</code></li>
+<li>Recursion</li>
+<li>An LLM</li>
+</ul></li>
+</ul>
+</section>
+<section id="solution" class="slide level2">
+<h2>Solution</h2>
+<details>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>fact.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="fact.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a></a><span class="dt">int</span> fact<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a></a>    <span class="dt">int</span> r <span class="op">=</span> n<span class="op">;</span></span>
+<span id="cb3-3"><a></a>iterate<span class="op">:</span></span>
+<span id="cb3-4"><a></a>    <span class="cf">if</span> <span class="op">(--</span>n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-5"><a></a>        r <span class="op">*=</span> n<span class="op">;</span></span>
+<span id="cb3-6"><a></a>        <span class="cf">goto</span> iterate<span class="op">;</span></span>
+<span id="cb3-7"><a></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb3-8"><a></a>        <span class="cf">return</span> r<span class="op">;</span></span>
+<span id="cb3-9"><a></a>    <span class="op">}</span></span>
+<span id="cb3-10"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Bonus if your code compiles to identical <code>.s</code> as a <code>while</code> solution.</p>
+</details>
+</section>
+<section id="helpful-sample-code" class="slide level2">
+<h2>Helpful Sample Code</h2>
+<ul>
+<li>I use this often.</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>template.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="template.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb4-2"><a></a><span class="pp">#include </span><span class="im">&lt;stdint.h&gt;</span></span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="dt">int</span> help<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-5"><a></a>iterate<span class="op">:</span></span>
+<span id="cb4-6"><a></a>    <span class="cf">if</span> <span class="op">(</span><span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-7"><a></a>        <span class="cf">goto</span> iterate<span class="op">;</span></span>
+<span id="cb4-8"><a></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb4-9"><a></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-10"><a></a>    <span class="op">}</span></span>
+<span id="cb4-11"><a></a><span class="op">}</span></span>
+<span id="cb4-12"><a></a></span>
+<span id="cb4-13"><a></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-14"><a></a>    <span class="dt">int</span> n<span class="op">;</span></span>
+<span id="cb4-15"><a></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-16"><a></a>        scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>n<span class="op">);</span></span>
+<span id="cb4-17"><a></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> help<span class="op">(</span>n<span class="op">));</span></span>
+<span id="cb4-18"><a></a>    <span class="op">}</span></span>
+<span id="cb4-19"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-20"><a></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="okay" class="slide level2">
+<h2>Okay</h2>
+<ul>
+<li>Never use <code>goto</code> except as a learning tool.</li>
+<li><a href="https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf">Edgar Dijkstra: Go To Statement Considered Harmful</a></li>
+<li>This letter essentially ended support for <code>goto</code> in all langauges, at once.</li>
+</ul>
+</section>
+<section id="memory-1" class="slide level2">
+<h2>Memory</h2>
+<ul>
+<li>Memory is organized as collections (really arrays) of bits.</li>
+<li>These arrays of bits of respresent… everything.
+<ul>
+<li>Integers (signed or unsigned), floating point values, strings</li>
+<li>Pixels, so both image and video.</li>
+</ul></li>
+<li>Within computers, a <strong>single</strong> and <strong>enormous</strong> array for which indices are terms <em>addresses</em>.</li>
+</ul>
+</section>
+<section id="an-array" class="slide level2">
+<h2>An Array</h2>
+<ul>
+<li>Take an array of 32 bit words
+<ul>
+<li>Because they’re easier to type than 64 bit words.</li>
+<li>And clearly not bytes.</li>
+</ul></li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Address</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0x0</td>
+<td>6c6c6548</td>
+</tr>
+<tr class="even">
+<td>0x1</td>
+<td>77202c6f</td>
+</tr>
+<tr class="odd">
+<td>0x2</td>
+<td>646c726f</td>
+</tr>
+<tr class="even">
+<td>0x3</td>
+<td>00000021</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="load-it-up" class="slide level2">
+<h2>Load it up</h2>
+<ul>
+<li>How would you examine this memory?</li>
+<li>What <em>meaning</em> may it represent?</li>
+<li>How do indices/address reveal meaning?</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>main.c</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="main.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a></a>    <span class="dt">uint32_t</span> <span class="op">*</span>fake_memory <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-2"><a></a>        <span class="bn">0x6c6c6548</span><span class="op">,</span></span>
+<span id="cb5-3"><a></a>        <span class="bn">0x77202c6f</span><span class="op">,</span></span>
+<span id="cb5-4"><a></a>        <span class="bn">0x646c726f</span><span class="op">,</span></span>
+<span id="cb5-5"><a></a>        <span class="bn">0x00000021</span></span>
+<span id="cb5-6"><a></a>    <span class="op">};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="one-example" class="slide level2">
+<h2>One Example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">$</span> cat main.c</span>
+<span id="cb6-2"><a></a><span class="co">#include &lt;stdio.h&gt;</span></span>
+<span id="cb6-3"><a></a><span class="co">#include &lt;stdint.h&gt;</span></span>
+<span id="cb6-4"><a></a></span>
+<span id="cb6-5"><a></a><span class="ex">int</span> main<span class="er">(</span><span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb6-6"><a></a>    <span class="ex">uint32_t</span> fake_memory<span class="pp">[</span><span class="ss">4</span><span class="pp">]</span> = {</span>
+<span id="cb6-7"><a></a>        <span class="ex">0x6c6c6548,</span></span>
+<span id="cb6-8"><a></a>        <span class="ex">0x77202c6f,</span></span>
+<span id="cb6-9"><a></a>        <span class="ex">0x646c726f,</span></span>
+<span id="cb6-10"><a></a>        <span class="ex">0x00000021</span></span>
+<span id="cb6-11"><a></a>    <span class="kw">};</span></span>
+<span id="cb6-12"><a></a>    <span class="bu">printf</span><span class="er">(</span><span class="st">"%s\n"</span><span class="ex">,</span> fake_memory<span class="kw">);</span></span>
+<span id="cb6-13"><a></a>    <span class="cf">return</span> <span class="dv">0</span><span class="kw">;</span></span>
+<span id="cb6-14"><a></a><span class="er">}</span></span>
+<span id="cb6-15"><a></a><span class="ex">$</span> gcc other.c <span class="at">-w</span> <span class="kw">&amp;&amp;</span> <span class="ex">./a.out</span></span>
+<span id="cb6-16"><a></a><span class="ex">Hello,</span> world!</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="addresses-are-keys" class="slide level2">
+<h2>Addresses are Key(s)</h2>
+<ul>
+<li>Determining addressing is a core design decision.
+<ul>
+<li>How many bits will I ever need?</li>
+<li>How large are variables (usually as physical registers)</li>
+<li>What is the smallest unit requiring a unique address?
+<ul>
+<li>Bit? Byte? Word?</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="memory-concepts" class="slide level2">
+<h2>Memory Concepts</h2>
+<ul>
+<li>So, we:
+<ul>
+<li>Divide memory into addressable units (words)</li>
+</ul></li>
+<li>How can you determine addressable size?</li>
+</ul>
+</section>
+<section id="memory-concepts-1" class="slide level2">
+<h2>Memory Concepts</h2>
+<ul>
+<li>Divide into words</li>
+<li>Populate words with “contents” or “values”
+<ul>
+<li>address:contents::key:value</li>
+</ul></li>
+<li>Memory contents may be
+<ul>
+<li>Integers</li>
+<li>Floats</li>
+<li>Strings</li>
+<li><em>Addresses themselves</em></li>
+</ul></li>
+</ul>
+</section>
 <section id="section" class="slide level2">
 <h2></h2>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 5%">
-<col style="width: 8%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 10%">
-<col style="width: 4%">
-<col style="width: 3%">
-<col style="width: 11%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 14%">
-<col style="width: 3%">
-<col style="width: 13%">
-<col style="width: 3%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>What</th>
-<th></th>
-<th></th>
-<th>do</th>
-<th>we</th>
-<th></th>
-<th>mean</th>
-<th></th>
-<th></th>
-<th></th>
-<th>by</th>
-<th></th>
-<th>“processing”?</th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>■</td>
-<td>A CPU</td>
-<td>performs</td>
-<td></td>
-<td></td>
-<td>low-level</td>
-<td></td>
-<td></td>
-<td>operations</td>
-<td></td>
-<td></td>
-<td></td>
-<td>called</td>
-<td></td>
-<td>INSTRUCTIONS</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>■ Arithmetic | | ADD | X | to Y | then | put | the result | | | in | Z | | | | | | | — | — | — | —- | —- | — | ———- | — | — | — | — | — | — | — | — | — | - | | SUBTRACT | | | X from | | Y then | | put | the | result | | back | in | Y | | | — | ——– | — | — | —— | — | —— | — | — | — | —— | — | —- | — | — | — | - ■ Logical | | Set | Z | to 1 | if X | AND | Y are | 1, | otherwise | | | set | Z | to | 0 | | | — | — | — | —- | —- | — | —– | — | ——— | — | — | — | — | — | — | — | - | | (AND | | X with | Y | then | put | the | result | | in | Z) | | | | | | — | —- | —- | —— | —- | —- | — | — | ——— | — | — | — | —- | — | — | — | | | Set | Z to | 1 | if X | OR Y | are | 1, | otherwise | | | set | Z to | 0 | | | - | | (OR | X | with | Y then | | put | the | result in | | Z) | | | | | | | — | — | — | —- | —— | — | — | — | ——— | — | — | — | — | — | — | — | ■ Comparison | | Set | Z | to 1 | if X | is EQUAL | | to | Y, | otherwise | | set | | Z to | 0 | | | — | — | — | —- | —- | ——– | — | — | — | ——— | — | — | — | —- | — | — | - Set Z to 1 if X is GREATER THAN OR EQUAL to Y, otherwise set Z to 0 - ■ Control | | - Skip | the | next | INSTRUCTION | | | | if | Z | is EQUAL | | to | 0 | | 34 | | — | —— | — | —- | ———– | — | — | — | — | — | ——– | — | — | — | — | — |</p>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 10%">
-<col style="width: 8%">
-<col style="width: 11%">
-<col style="width: 13%">
-<col style="width: 4%">
-<col style="width: 13%">
-<col style="width: 7%">
-<col style="width: 10%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>How</th>
-<th></th>
-<th>Memory</th>
-<th></th>
-<th></th>
-<th>is</th>
-<th>Organized</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>■</td>
-<td>A group</td>
-<td></td>
-<td>of bits!</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>■</td>
-<td>Groups</td>
-<td>of</td>
-<td>bits can</td>
-<td>represent</td>
-<td></td>
-<td>various</td>
-<td>types</td>
-<td>of data</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>– Integers, Signed integers. Floating-point values, Strings, Pixels ■ Memory is organized as a vector of bits with indices called “addresses” | | | 0 1 | 0 0 1 | 0 1 0 | 1 0 | 1 0[0 | 0 1 | 0 1 0 | 1 0]0 | 0 1 0 | 1 1 1 | 1 … | | — | — | — | —– | —– | — | —– | — | —– | —– | —– | —– | —– | A vector of bits | | | 0 1 | 2 3 4 | 5 6 7 | 8 | 9 10 11 | 12 13 14 | 15 16 | 17 18 19 | 20 21 | …. | | | — | — | — | —– | —– | — | ——- | ——– | ——– | ——– | —– | — | — | | | | | | | | | We can | address | | | | | Bits have | | | | | | | | groups | of bits | likea | | | | | — | — | — | — | — | — | — | —— | ——- | —— | — | — | — | indices called | | “addresses” | | | | | | vector. | For example | | | | | | — | ———– | — | — | — | — | — | ————— | ———— | —– | — | — | — | | | | | | | | | the 8-bits from | | | | | | | | | | | | | | [12:20], | might | be | | | | | | | | | | | | the number | | “42”. | | | | 35</p>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 10%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Addresses</th>
-<th></th>
-<th></th>
-<th>are</th>
-<th>Key!</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p>The need to “address” bits is one of the most important factors of a | computer’s | design. | | | | | | | | | | | ———- | ——— | ——– | ——– | ————— | ———- | —— | — | ——- | ——- | — | | Some | questions | | computer | | architects | (you!) | | may | ponder… | | | ■ How | many bits | | will | I ever | need? | | | | | | | (remember | | computer | | representations | | | are | finite) | | | The size of scratch variables (registers), is more determined by the ■ need to address bits than the size of the data-types needed.. Should we squander address space by giving “every” bit a distinct ■ address? | Perhaps | we could | | address | | bits in | more | manageable | | | units | | ——- | ——– | — | ——- | — | ——- | —- | ———- | — | — | —– | 36</p>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 9%">
-<col style="width: 2%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 7%">
-<col style="width: 3%">
-<col style="width: 11%">
-<col style="width: 2%">
-<col style="width: 5%">
-<col style="width: 7%">
-<col style="width: 5%">
-<col style="width: 4%">
-<col style="width: 6%">
-<col style="width: 2%">
-<col style="width: 7%">
-<col style="width: 2%">
-<col style="width: 2%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Memory</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th>Concepts</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>Address</td>
-<td></td>
-<td>Contents</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>0</td>
-<td></td>
-<td>42</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>•</td>
-<td>Memory</td>
-<td></td>
-<td>is</td>
-<td>divided</td>
-<td></td>
-<td>into</td>
-<td>“addressable”</td>
-<td></td>
-<td></td>
-<td>units,</td>
-<td></td>
-<td>each</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>1</td>
-<td></td>
-<td>3.141592</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>with</td>
-<td>an</td>
-<td>address</td>
-<td></td>
-<td>(like</td>
-<td></td>
-<td>an array</td>
-<td></td>
-<td>with</td>
-<td>indices)</td>
-<td></td>
-<td></td>
-<td>2</td>
-<td></td>
-<td>“Lee “</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>3</td>
-<td></td>
-<td>“Hart”</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>Addressable</td>
-<td></td>
-<td></td>
-<td>units</td>
-<td></td>
-<td>are</td>
-<td>usually</td>
-<td></td>
-<td>larger</td>
-<td>than</td>
-<td>a bit,</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>• Here we | | | | | | | | | | | | | | 4 | | “Bud “ | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | — | assume | | typically | | 8 (byte), | | | 16 | (halfword), | | | | | | | | | | | | — | ——— | — | ——— | — | — | — | ———– | — | — | — | — | — | — | — | —— | —– | — | | | | | | | | | | | | | | | 5 | | “Levi” | a 32- | | bit” | | 32 (word), | | or | 64 | (long) | | bits | | | | | | 6 | | “le “ | | | | — | ———- | — | — | — | —— | — | —- | — | — | — | — | — | — | — | —– | — | — | “Word” address- | | | | | | | | | | | | | | 7 | | 2 | | | | — | —- | ——- | — | — | — | ——– | — | ———- | — | — | — | — | — | — | — | —– | — | | | Each | address | | | has | variable | | “contents” | | | | | | | | able | | • | | | | | | | | | | | | | | 8 | 0x00000293 | | machine | | | — | —— | ——– | ——– | — | ———- | —– | — | — | — | — | — | — | — | ———- | — | ——- | — | | | Memory | | contents | | | might | be: | | | | | | | | | | | | • | | | | | | | | | | | | | 9 | 0x00a00313 | | | | | | | | | | | | | | | | | | 10 | 0x006282b3 | | | | | | | Integers | in | 2’s | complement | | | | | | | | | | | | | • | | | | | | | | | | | | | | 11 | 0xfff30313 | | | | | — | — | —— | — | —- | —— | — | — | — | — | — | — | — | — | ———- | — | — | — | | | | Floats | in | IEEE | format | | | | | | | | | | | | | • | | | | | | | | | | | | | | 12 | 0xfe601ce3 | | | | | — | — | ——- | ——— | —– | — | ——- | — | — | — | — | — | — | — | ———- | ———- | — | — | | | | Strings | in | ASCII | or | Unicode | | | | | | | | | | | | | | • | | | | | | | | | | | | 13 | 0x0000006f | | | | | | | Data | structure | | de | jour | | | | | | | 14 | | 0x00004020 | | | • | | | | | | | | | | | | | | 15 | | 0x20090001 | | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | ADDRESSES • | | | Nothing | distinguishes | | | | the | difference | | | | | | | | | 37 | | — | — | ——- | ————- | — | — | — | — | ———- | — | — | — | — | — | — | — | — | — | •</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 6%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 9%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Instructions</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th>are</th>
-<th></th>
-<th></th>
-<th>also</th>
-<th></th>
-<th></th>
-<th>stored</th>
-<th>in</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p>memory! | | | | | | | | | | | | | | | | Address | Contents | | — | ———— | ——- | — | ————- | — | — | — | ——- | —— | —- | — | ——- | —– | — | ——- | ——– | | • | INSTRUCTIONS | | | | for | the | CPU | are | stored | | in | memory | | | | | | | | | | | | | | | | | | | | | 0 | 42 | | | along | with | | data | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 1 | 3.141592 | | | | | | | | | | | | | | | | | 2 | “Lee “ | | | CPU | fetches | | instructions, | | | | decodes | | them | | and | then | | | | • | | | | | | | | | | | | | | | | 3 | “Hart” | | — | ———– | ——– | ——- | —— | ———- | ——- | ——— | ——– | — | ——– | —- | —- | —- | — | — | ————- | | | performs | | their | | implied | | operation | | | | | | | | | | | | | | | | | | | | | | | | | | 4 | “Bud “ | | • | Mechanism | | | inside | | the | CPU | directs | | which | | | | | | | | | | | | | | | | | | | | | | | 5 | “Levi” | | | instruction | | | to | get | next. | | | | | | | | | | | | | | | | | | | | | | | | | | | 6 | “le “ | | | | | | | | | | | | | | | | | 7 | 2 | | • | They | appear | | | in memory | | as | a string | | of | bits | that | are | | | | | | | | | | | | | | | | | | | | 8 | li x5,0 | | | typically | | uniform | | | in size | | | | | | | | | | | | | | | | | | | | | | | | | | | 9 | li x6,10 | | • | Their | encoding | | | as | “bits” | is | called | | “machine | | | | | | | | | | | | | | | | | | | | | | | 10 | add x5,x5,x6 | | | language.” | | | ex: | 0c3c1d7fff | | | | | | | | | | | | | | | | | | | | | | | | | | | | 11 | addi x6,x6,-1 | bne x0,x6,.-2 12 | • | We | assign | | “mnemonics” | | | to | particular | | | bit | patterns | | | | | | — | —– | ——– | ——— | ———– | — | — | —— | ———- | ——– | — | — | ———- | — | — | — | ———- | | | | | | | | | | | | | | | | | 13 | j . | | | to | indicate | | meanings. | | | | | | | | | | | | | | | | | | | | | | | | | | | | | 14 | 0x00004020 | | | These | | mnemonics | | | are | called | | Assembly | | | language. | | | | | | • | | | | | | | | | | | | | | | 15 | 0x20090001 | | | ex: | mv | x1, | | 10 | | | | | | | | | | | |</p>
-<p>A <sub>Bit</sub> of History There is a commonly recurring debate over whether “data” and “instructions” should be mixed. Leads to two common flavors of computer architectures | “Harvard” | Architecture | | | ——— | ———— | — | Program CPU Mem | I/O | (Central | | | — | ——— | — | Data Processing (Input/Output) Unit) Memory | “Von | Neumann” | Architecture | | —- | ——– | ———— | CPU Unified | I/O | (Central | | | — | ——— | — | Processing Memory (Input/Output) Unit)</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>Aside:</th>
-<th>Undergrad</th>
-<th></th>
-<th>Systems</th>
-<th></th>
-<th>Reading</th>
-<th>Group!!</th>
-<th>☺</th>
+<th style="text-align: center;">Address</th>
+<th style="text-align: center;">Contents</th>
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">42</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3.141592</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">“Tort”</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">“ia”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">“Ursu”</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">“la”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><strong>0x00000293</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;"><strong>0x00a00313</strong></td>
+</tr>
 </tbody>
 </table>
-<p>■ Thursdays at 5pm! ■ FB141 | ■ Food | provided! | | | | | | | | ——— | ———- | —– | ——– | ——— | — | — | — | | ■ All are | welcome!! | | | | | | | | – No | background | in CS | research | necessary | | | | ■ If you are interested in being added to the mailing list, send me an email!</p>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 11%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 11%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 13%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-</colgroup>
+</section>
+<section id="the-ouroboros" class="slide level2">
+<h2>The Ouroboros</h2>
+<ul>
+<li>Instructions are also stored in memory.
+<ul>
+<li>Alongside data. Just bits.</li>
+</ul></li>
+<li>CPU “fetches”, “decodes”, and then executes.</li>
+<li>Then the location of the next instruction is determined.
+<ul>
+<li>Usually next address.</li>
+<li>Unless you hit a <code>goto</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="some-terms" class="slide level2">
+<h2>Some Terms</h2>
+<ul>
+<li>“Fetch” and “Decode”
+<ul>
+<li>Technical terms in CPU design.</li>
+</ul></li>
+<li>The instructions-as-data are termed “machine language”</li>
+<li>“Mnemonics” are socially constructed manners of referring to machine code.
+<ul>
+<li>These mnemonics form assembly language (asm)</li>
+<li><code>movl %eax, %edi</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li>Subset of <code>fact.s</code></li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>fact.s</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename="fact.s"><pre class="sourceCode numberSource s number-lines code-with-copy"><code class="sourceCode gnuassembler"><span id="cb7-1"><a></a><span class="fu">.L2:</span></span>
+<span id="cb7-2"><a></a>    <span class="kw">subl</span>    <span class="dv">$1</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb7-3"><a></a>    <span class="kw">cmpl</span>    <span class="dv">$0</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb7-4"><a></a>    <span class="cf">je</span>  .L3</span>
+<span id="cb7-5"><a></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb7-6"><a></a>    <span class="kw">imull</span>   <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb7-7"><a></a>    <span class="kw">movl</span>    <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb7-8"><a></a>    <span class="cf">jmp</span> .L2</span>
+<span id="cb7-9"><a></a><span class="fu">.L3:</span></span>
+<span id="cb7-10"><a></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb7-11"><a></a>    <span class="kw">popq</span>    <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb7-12"><a></a>    <span class="kw">ret</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="as-an-array" class="slide level2 smaller">
+<h2>As an array</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>fact.s</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-filename="fact.s"><pre class="sourceCode numberSource s number-lines code-with-copy"><code class="sourceCode gnuassembler"><span id="cb8-1"><a></a><span class="fu">.L2:</span></span>
+<span id="cb8-2"><a></a>    <span class="kw">subl</span>    <span class="dv">$1</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb8-3"><a></a>    <span class="kw">cmpl</span>    <span class="dv">$0</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb8-4"><a></a>    <span class="cf">je</span>  .L3</span>
+<span id="cb8-5"><a></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb8-6"><a></a>    <span class="kw">imull</span>   <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb8-7"><a></a>    <span class="kw">movl</span>    <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb8-8"><a></a>    <span class="cf">jmp</span> .L2</span>
+<span id="cb8-9"><a></a><span class="fu">.L3:</span></span>
+<span id="cb8-10"><a></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb8-11"><a></a>    <span class="kw">popq</span>    <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb8-12"><a></a>    <span class="kw">ret</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:60%;">
+<table class="caption-top">
 <thead>
 <tr class="header">
-<th>Anatomy</th>
-<th>of</th>
-<th>a</th>
-<th>von</th>
-<th></th>
-<th>Neumann</th>
-<th></th>
-<th></th>
-<th></th>
-<th>Computer</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th>Addr/Key</th>
+<th>Insn/Val</th>
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>0x0</td>
+<td>subl $1, -20(%rbp)</td>
+</tr>
+<tr class="even">
+<td>0x1</td>
+<td>cmpl $0, -20(%rbp)</td>
+</tr>
+<tr class="odd">
+<td>0x2</td>
+<td>je .L3</td>
+</tr>
+<tr class="even">
+<td>0x3</td>
+<td>movl -4(%rbp), %eax</td>
+</tr>
+<tr class="odd">
+<td>0x4</td>
+<td>imull -20(%rbp), %eax</td>
+</tr>
+<tr class="even">
+<td>0x5</td>
+<td>movl %eax, -4(%rbp)</td>
+</tr>
+<tr class="odd">
+<td>0x6</td>
+<td>jmp .L2</td>
+</tr>
+<tr class="even">
+<td>0x7</td>
+<td>movl -4(%rbp), %eax</td>
+</tr>
+<tr class="odd">
+<td>0x8</td>
+<td>popq %rbp</td>
+</tr>
+<tr class="even">
+<td>0x9</td>
+<td>ret</td>
+</tr>
 </tbody>
 </table>
-<p>CPU control | | | | | Data | | | | | | Control | | | | | | | — | — | — | — | —- | — | — | — | — | — | ——- | — | — | — | — | — | Internal storage | | | | | Paths | | | status | | | Unit | | | | | | | — | — | — | ——- | —– | — | —- | —— | — | ——- | —- | — | — | — | — | — | | | | | address | | | data | | | address | | | | | | | instructions MEMORY + | dest | | | | | | | | | | PC | | | 1101000111 | | | | —- | — | — | — | — | — | — | — | — | — | — | — | — | ———- | — | — | 1 011 | | | | … | | | | | | | | | | R1 | ←R2+R3 | | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | —— | — | registers | | | | | | | | | ● | INSTRUCTIONS | | | coded | | as binary | data | | — | — | — | — | — | — | — | — | — | ———— | — | — | —– | — | ——— | —- | Moreabout | | | | | | | | | ● | PROGRAM | | COUNTER | | or | PC: | | | — | — | — | — | — | — | — | — | — | ——- | — | ——- | — | — | — | — | thisstuff | asel | | | | | bsel | | | | | | | | | | | | —- | — | — | — | —- | —- | — | —— | — | ——- | ———— | ——- | ———— | — | — | ————- | | | | | | | | | later! | | Address | | of next | instruction | | | to execute | | | | | | | | | | ● | logic | to translate | | instructions | | | into control | | | | | | | | | | | signals | for | data | path | | | | | | fn | ALU | | Cc’s | | | | | | | | | | | | operations 41</p>
+</div></div>
+</section>
+<section id="understanding-goto" class="slide level2 smaller">
+<h2>Understanding <code>goto</code></h2>
+<ul>
+<li>Let’s replace <code>.L3</code> and <code>.L2</code></li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Addr/Key</th>
+<th>Insn/Val</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0x0</td>
+<td>subl $1, -20(%rbp)</td>
+</tr>
+<tr class="even">
+<td>0x1</td>
+<td>cmpl $0, -20(%rbp)</td>
+</tr>
+<tr class="odd">
+<td>0x2</td>
+<td>je 0x7</td>
+</tr>
+<tr class="even">
+<td>0x3</td>
+<td>movl -4(%rbp), %eax</td>
+</tr>
+<tr class="odd">
+<td>0x4</td>
+<td>imull -20(%rbp), %eax</td>
+</tr>
+<tr class="even">
+<td>0x5</td>
+<td>movl %eax, -4(%rbp)</td>
+</tr>
+<tr class="odd">
+<td>0x6</td>
+<td>jmp 0x0</td>
+</tr>
+<tr class="even">
+<td>0x7</td>
+<td>movl -4(%rbp), %eax</td>
+</tr>
+<tr class="odd">
+<td>0x8</td>
+<td>popq %rbp</td>
+</tr>
+<tr class="even">
+<td>0x9</td>
+<td>ret</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="improve-readability" class="slide level2 smaller">
+<h2>Improve Readability</h2>
+<ul>
+<li>You know, I bet we can align the mnemonics.</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Addr/Key</th>
+<th style="text-align: left;">Val[0]</th>
+<th style="text-align: left;">Val[1]</th>
+<th style="text-align: left;">Val[2]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0x0</td>
+<td style="text-align: left;">subl</td>
+<td style="text-align: left;">$1</td>
+<td style="text-align: left;">-20(%rbp)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x1</td>
+<td style="text-align: left;">cmpl</td>
+<td style="text-align: left;">$0</td>
+<td style="text-align: left;">-20(%rbp)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0x2</td>
+<td style="text-align: left;">je</td>
+<td style="text-align: left;">0x7</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x3</td>
+<td style="text-align: left;">movl</td>
+<td style="text-align: left;">-4(%rbp)</td>
+<td style="text-align: left;">%eax</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0x4</td>
+<td style="text-align: left;">imull</td>
+<td style="text-align: left;">-20(%rbp)</td>
+<td style="text-align: left;">%eax</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x5</td>
+<td style="text-align: left;">movl</td>
+<td style="text-align: left;">%eax</td>
+<td style="text-align: left;">-4(%rbp)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0x6</td>
+<td style="text-align: left;">jmp</td>
+<td style="text-align: left;">0x0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x7</td>
+<td style="text-align: left;">movl</td>
+<td style="text-align: left;">-4(%rbp)</td>
+<td style="text-align: left;">%eax</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0x8</td>
+<td style="text-align: left;">popq</td>
+<td style="text-align: left;">%rbp</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x9</td>
+<td style="text-align: left;">ret</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section>
+<section id="history" class="title-slide slide level1 center">
+<h1>History</h1>
+
+</section>
+<section id="a-bit-of-history" class="slide level2">
+<h2>A Bit of History</h2>
+<ul>
+<li>In early days
+<ul>
+<li>Before HDDs</li>
+</ul></li>
+<li>Debate over whether “data” and “instructions” should be mixed.</li>
+<li>Leads to two common flavors of computer architectures <!--
+## "Harvard" Architecture
+
+- No relation to Harvard. 
+- Discrete memories.
+
+```{.dot}
+//| echo: false
+digraph Harvard {
+    // General Graph Settings for transparency and layout
+    graph [
+        rankdir=LR;
+        bgcolor="transparent";
+        fontname="Arial, Helvetica, sans-serif";
+        nodesep=1.0;
+        ranksep=1.2;
+    ]
+
+    // Node Styles for boxes
+    node [
+        shape=rectangle;
+        style="filled, rounded";
+        color="white";      // Box Border color
+        fillcolor="none";  // Hollow fill (fully transparent inside border)
+        fontcolor="white";   // Text color
+        fontsize=24;
+        width=3.5;
+        height=2.0;
+        penwidth=2.0;       // Thicker border
+    ]
+
+    // Edge Styles for arrows
+    edge [
+        color="white";      // Arrow color
+        fontcolor="white";   // Arrow text color (not used)
+        len=2.0;
+        penwidth=2.0;       // Thicker lines
+    ]
+
+    IO [
+        label="I/O\n(Input/Output)";
+    ]
+
+    CPU [
+        label="CPU\n(Central\nProcessing\nUnit)";
+    ]
+
+    // Subgraph to align Program Memory and Data Memory vertically in the same rank/column
+    subgraph cluster_memory {
+        style=invis;
+        rank=same;
+
+        ProgMem [
+            label="Program\nMemory";
+            width=3.0; // Slightly narrower memory boxes
+            height=1.0;
+        ]
+
+        DataMem [
+            label="Data\nMemory";
+            width=3.0;
+            height=1.0;
+        ]
+    }
+
+    // --- Define Connections (Edges/Arrows) ---
+
+    IO -> CPU [dir=both]; // Bidirectional I/O <-> CPU
+
+    CPU -> ProgMem [dir=both];
+    DataMem -> CPU;
+}
+```
+
+## History
+
+- This made a lot more sense when programs were e.g. on physical punch cards.
+    - Slide a card into a mainframe.
+    - Mainframe has internal scratch memory.
+    - Printer prints out numerical result.
+
+## Von Neumann
+
+- Competing Formulation
+
+
+```{.dot}
+//| echo: false
+digraph Harvard {
+    // General Graph Settings for transparency and layout
+    graph [
+        rankdir=LR;
+        bgcolor="transparent";
+        fontname="Arial, Helvetica, sans-serif";
+        nodesep=1.0;
+        ranksep=1.2;
+    ]
+
+    // Node Styles for boxes
+    node [
+        shape=rectangle;
+        style="filled, rounded";
+        color="white";      // Box Border color
+        fillcolor="none";  // Hollow fill (fully transparent inside border)
+        fontcolor="white";   // Text color
+        fontsize=24;
+        width=3.5;
+        height=2.0;
+        penwidth=2.0;       // Thicker border
+    ]
+
+    // Edge Styles for arrows
+    edge [
+        color="white";      // Arrow color
+        fontcolor="white";   // Arrow text color (not used)
+        len=2.0;
+        penwidth=2.0;       // Thicker lines
+    ]
+
+    IO [
+        label="I/O\n(Input/Output)";
+    ]
+
+    CPU [
+        label="CPU\n(Central\nProcessing\nUnit)";
+    ]
+
+    MEM [
+        label="Unified\nMemory";
+    ]
+    IO -> CPU [dir=both]; // Bidirectional I/O <-> CPU
+    CPU -> MEM [dir=both];
+}
+```
+
+--></li>
+</ul>
+</section>
+<section id="architecture" class="slide level2">
+<h2>Architecture</h2>
+<ul>
+<li>This is the now-legendary Von Neumann architecture.</li>
+</ul>
+<center>
+<a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture"> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Von_Neumann_Architecture.svg" style="filter:invert(1)"> </a>
+</center>
+</section>
+<section id="von-neumann-formally" class="slide level2">
+<h2>Von Neumann, Formally</h2>
+<ul>
+<li>A central arithmetic unit to perform arithmetic operations;</li>
+<li>A central control unit to sequence operations performed by the machine;</li>
+<li>Memory that stores data and instructions;</li>
+<li>An “outside recording medium” to store input to and output from the machine;</li>
+<li>Input and output mechanisms to transfer data between the memory and the outside recording medium.</li>
+</ul>
+</section>
+<section id="competing-formulation" class="slide level2">
+<h2>Competing Formulation</h2>
+<blockquote>
+<p>The competing formulation known as the <em>Harvard architecture</em> differed in that information describing actions (say, <em>executables</em> or “stored memory programs” or “instructions”) and information for read-write (say <em>data files</em> or just “data”) had distinct storage mediums.</p>
+</blockquote>
+<ul>
+<li>As far as I know, none of these were ever made.</li>
+<li>Theoretical idea.</li>
+</ul>
+</section>
+<section id="harvard-architecture" class="slide level2">
+<h2>Harvard Architecture</h2>
+<center>
+<a href="https://en.wikipedia.org/wiki/Harvard_architecture"> <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Harvard_architecture.svg" style="filter:invert(1)"> </a>
+</center>
+</section>
+<section id="historical-use-case" class="slide level2">
+<h2>Historical use case</h2>
+<ul>
+<li>Historical computing devices had no onboard storage and programs lived on e.g.&nbsp;external tapes.
+<ul>
+<li>The Harvard architecture is a helpful model in this case.</li>
+</ul></li>
+<li>Today, everything lives on a SSD (OS, browser, audio/video files, debug logs, etc.)
+<ul>
+<li>Hence Von Neumann</li>
+</ul></li>
+</ul>
+</section>
+<section id="von-neumann---aside" class="slide level2">
+<h2>Von Neumann - Aside</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Be advised this is a Manhattan Project member and form your own opinion about that.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<center>
+<a href="https://en.wikipedia.org/wiki/Harvard_architecture"> <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/JohnvonNeumann-LosAlamos.gif"> </a>
+</center>
+</div></div>
+</section></section>
+<section>
+<section id="instructions" class="title-slide slide level1 center">
+<h1>Instructions</h1>
+
+</section>
+<section id="anatomy" class="slide level2">
+<h2>Anatomy</h2>
+<ul>
+<li>We previously as a nicety decomposed mnemonics.</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Addr/Key</th>
+<th style="text-align: left;">Val[0]</th>
+<th style="text-align: left;">Val[1]</th>
+<th style="text-align: left;">Val[2]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0x0</td>
+<td style="text-align: left;">subl</td>
+<td style="text-align: left;">$1</td>
+<td style="text-align: left;">-20(%rbp)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x1</td>
+<td style="text-align: left;">cmpl</td>
+<td style="text-align: left;">$0</td>
+<td style="text-align: left;">-20(%rbp)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0x2</td>
+<td style="text-align: left;">je</td>
+<td style="text-align: left;">0x7</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>One problem</li>
+</ul>
+</section>
+<section id="remember-this" class="slide level2 smaller">
+<h2>Remember this?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Intel</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>gcc fact.c -S</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="gcc fact.c -S"><pre class="sourceCode numberSource s number-lines code-with-copy"><code class="sourceCode gnuassembler"><span id="cb9-1"><a></a><span class="fu">fact:</span></span>
+<span id="cb9-2"><a></a><span class="fu">.LFB0:</span></span>
+<span id="cb9-3"><a></a>    endbr64</span>
+<span id="cb9-4"><a></a>    <span class="kw">pushq</span>   <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb9-5"><a></a>    <span class="kw">movq</span>    <span class="op">%</span><span class="kw">rsp</span><span class="op">,</span> <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb9-6"><a></a>    <span class="kw">movl</span>    <span class="op">%</span><span class="kw">edi</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb9-7"><a></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb9-8"><a></a>    <span class="kw">movl</span>    <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb9-9"><a></a><span class="fu">.L2:</span></span>
+<span id="cb9-10"><a></a>    <span class="kw">subl</span>    <span class="dv">$1</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb9-11"><a></a>    <span class="kw">cmpl</span>    <span class="dv">$0</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb9-12"><a></a>    <span class="cf">je</span>  .L3</span>
+<span id="cb9-13"><a></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb9-14"><a></a>    <span class="kw">imull</span>   <span class="op">-</span><span class="dv">20</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb9-15"><a></a>    <span class="kw">movl</span>    <span class="op">%</span><span class="kw">eax</span><span class="op">,</span> <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">)</span></span>
+<span id="cb9-16"><a></a>    <span class="cf">jmp</span> .L2</span>
+<span id="cb9-17"><a></a><span class="fu">.L3:</span></span>
+<span id="cb9-18"><a></a>    <span class="kw">movl</span>    <span class="op">-</span><span class="dv">4</span><span class="op">(%</span><span class="kw">rbp</span><span class="op">),</span> <span class="op">%</span><span class="kw">eax</span></span>
+<span id="cb9-19"><a></a>    <span class="kw">popq</span>    <span class="op">%</span><span class="kw">rbp</span></span>
+<span id="cb9-20"><a></a>    <span class="kw">ret</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Apple M1</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>aarch64-linux-gnu-gcc-13 fact.c -S</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-filename="aarch64-linux-gnu-gcc-13 fact.c -S"><pre class="sourceCode numberSource s number-lines code-with-copy"><code class="sourceCode gnuassembler"><span id="cb10-1"><a></a><span class="fu">fact:</span></span>
+<span id="cb10-2"><a></a><span class="fu">.LFB0:</span></span>
+<span id="cb10-3"><a></a>    <span class="kw">sub</span> <span class="kw">sp</span><span class="op">,</span> <span class="kw">sp</span><span class="op">,</span> <span class="co">#32</span></span>
+<span id="cb10-4"><a></a>    <span class="kw">str</span> w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">12</span><span class="op">]</span></span>
+<span id="cb10-5"><a></a>    ldr w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">12</span><span class="op">]</span></span>
+<span id="cb10-6"><a></a>    <span class="kw">str</span> w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">28</span><span class="op">]</span></span>
+<span id="cb10-7"><a></a><span class="fu">.L2:</span></span>
+<span id="cb10-8"><a></a>    ldr w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">12</span><span class="op">]</span></span>
+<span id="cb10-9"><a></a>    <span class="kw">sub</span> w0<span class="op">,</span> w0<span class="op">,</span> <span class="co">#1</span></span>
+<span id="cb10-10"><a></a>    <span class="kw">str</span> w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">12</span><span class="op">]</span></span>
+<span id="cb10-11"><a></a>    ldr w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">12</span><span class="op">]</span></span>
+<span id="cb10-12"><a></a>    cmp w0<span class="op">,</span> <span class="dv">0</span></span>
+<span id="cb10-13"><a></a>    beq .L3</span>
+<span id="cb10-14"><a></a>    ldr w1<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">28</span><span class="op">]</span></span>
+<span id="cb10-15"><a></a>    ldr w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">12</span><span class="op">]</span></span>
+<span id="cb10-16"><a></a>    <span class="kw">mul</span> w0<span class="op">,</span> w1<span class="op">,</span> w0</span>
+<span id="cb10-17"><a></a>    <span class="kw">str</span> w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">28</span><span class="op">]</span></span>
+<span id="cb10-18"><a></a>    b   .L2</span>
+<span id="cb10-19"><a></a><span class="fu">.L3:</span></span>
+<span id="cb10-20"><a></a>    ldr w0<span class="op">,</span> <span class="op">[</span><span class="kw">sp</span><span class="op">,</span> <span class="dv">28</span><span class="op">]</span></span>
+<span id="cb10-21"><a></a>    add <span class="kw">sp</span><span class="op">,</span> <span class="kw">sp</span><span class="op">,</span> <span class="dv">32</span></span>
+<span id="cb10-22"><a></a>    <span class="kw">ret</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
 <table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 14%">
