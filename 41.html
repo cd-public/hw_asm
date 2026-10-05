@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Adders – Systems in C</title>
+<title>Adders – HW &amp; asm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,9 +21,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,17 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./50.html" rel="next">
 <link href="./40.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-40a160e28a8c0a8ad2fc184c8ba4238c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b21cd3d7a06200bb4af90b976216a8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -132,8 +129,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">HW &amp; asm</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -292,23 +290,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Old</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -2022,294 +2003,287 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2317,161 +2291,185 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./40.html" class="pagination-link" aria-label="Encoders">
@@ -2484,7 +2482,7 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> Adders  </span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="an">subtitle:</span><span class="co"> "w4d1"</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">---</span></span>
@@ -2589,53 +2587,53 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-103"><a href="#cb1-103"></a></span>
 <span id="cb1-104"><a href="#cb1-104"></a><span class="fu">## Full Adder</span></span>
 <span id="cb1-105"><a href="#cb1-105"></a></span>
-<span id="cb1-106"><a href="#cb1-106"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> C   <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-107"><a href="#cb1-107"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-106"><a href="#cb1-106"></a>| A   | B   | C   | C   | S   |     |     |     |     |     |     |     |</span>
+<span id="cb1-107"><a href="#cb1-107"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-108"><a href="#cb1-108"></a>BC</span>
-<span id="cb1-109"><a href="#cb1-109"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> i   <span class="pp">|</span> O   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-110"><a href="#cb1-110"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-109"><a href="#cb1-109"></a>|     |     | i   | O   |     |     |     |     |     |     |     |     |</span>
+<span id="cb1-110"><a href="#cb1-110"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-111"><a href="#cb1-111"></a>i</span>
 <span id="cb1-112"><a href="#cb1-112"></a>A</span>
-<span id="cb1-113"><a href="#cb1-113"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 𝑆 = <span class="pp">|</span> 𝐴 + 𝐵 <span class="pp">|</span> + 𝐶𝑖 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb1-114"><a href="#cb1-114"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
-<span id="cb1-115"><a href="#cb1-115"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 00  <span class="pp">|</span> 01 11 <span class="pp">|</span> 10    <span class="pp">|</span></span>
-<span id="cb1-116"><a href="#cb1-116"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb1-117"><a href="#cb1-117"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0 1   <span class="pp">|</span> 0     <span class="pp">|</span></span>
-<span id="cb1-118"><a href="#cb1-118"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb1-119"><a href="#cb1-119"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1 1   <span class="pp">|</span> 1     <span class="pp">|</span></span>
-<span id="cb1-120"><a href="#cb1-120"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb1-121"><a href="#cb1-121"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb1-122"><a href="#cb1-122"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span> 𝐶 = <span class="pp">|</span> 𝐴𝐶𝑖 <span class="pp">|</span> + 𝐴𝐵  <span class="pp">|</span> + 𝐵𝐶𝑖 <span class="pp">|</span></span>
+<span id="cb1-113"><a href="#cb1-113"></a>| 0   | 0   | 0   | 0   | 0   | 𝑆 = | 𝐴 + 𝐵 | + 𝐶𝑖 |     |     |       |       |</span>
+<span id="cb1-114"><a href="#cb1-114"></a>| --- | --- | --- | --- | --- | --- | ----- | ---- | --- | --- | ----- | ----- |</span>
+<span id="cb1-115"><a href="#cb1-115"></a>|     |     |     |     |     |     |       |      |     | 00  | 01 11 | 10    |</span>
+<span id="cb1-116"><a href="#cb1-116"></a>| 0   | 0   | 1   | 0   | 1   |     |       |      |     |     |       |       |</span>
+<span id="cb1-117"><a href="#cb1-117"></a>| 0   | 1   | 0   | 0   | 1   |     |       |      | 0   | 0   | 0 1   | 0     |</span>
+<span id="cb1-118"><a href="#cb1-118"></a>| 0   | 1   | 1   | 1   | 0   |     |       |      |     |     |       |       |</span>
+<span id="cb1-119"><a href="#cb1-119"></a>|     |     |     |     |     |     |       |      | 1   | 0   | 1 1   | 1     |</span>
+<span id="cb1-120"><a href="#cb1-120"></a>| 1   | 0   | 0   | 0   | 1   |     |       |      |     |     |       |       |</span>
+<span id="cb1-121"><a href="#cb1-121"></a>| 1   | 0   | 1   | 1   | 0   |     |       |      |     |     |       |       |</span>
+<span id="cb1-122"><a href="#cb1-122"></a>|     |     |     |     |     |     |       |      | 𝐶 = | 𝐴𝐶𝑖 | + 𝐴𝐵  | + 𝐵𝐶𝑖 |</span>
 <span id="cb1-123"><a href="#cb1-123"></a>𝑂</span>
-<span id="cb1-124"><a href="#cb1-124"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-125"><a href="#cb1-125"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-126"><a href="#cb1-126"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-124"><a href="#cb1-124"></a>| 1   | 1   | 0   | 1   | 0   |     |     |     |     |     |     |     |</span>
+<span id="cb1-125"><a href="#cb1-125"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-126"><a href="#cb1-126"></a>| 1   | 1   | 1   | 1   | 1   |     |     |     |     |     |     |     |</span>
 <span id="cb1-127"><a href="#cb1-127"></a></span>
 <span id="cb1-128"><a href="#cb1-128"></a><span class="fu">## Recall: 3-input XOR</span></span>
 <span id="cb1-129"><a href="#cb1-129"></a></span>
-<span id="cb1-130"><a href="#cb1-130"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-131"><a href="#cb1-131"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-130"><a href="#cb1-130"></a>|     |     | A   | B   | C   | Y   |</span>
+<span id="cb1-131"><a href="#cb1-131"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-132"><a href="#cb1-132"></a>A</span>
-<span id="cb1-133"><a href="#cb1-133"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-134"><a href="#cb1-134"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-133"><a href="#cb1-133"></a>|     |     | 0   | 0   | 0   | 0   |</span>
+<span id="cb1-134"><a href="#cb1-134"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-135"><a href="#cb1-135"></a>B Y</span>
-<span id="cb1-136"><a href="#cb1-136"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-137"><a href="#cb1-137"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-136"><a href="#cb1-136"></a>|     |     | 0   | 0   | 1   | 1   |</span>
+<span id="cb1-137"><a href="#cb1-137"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-138"><a href="#cb1-138"></a>C</span>
-<span id="cb1-139"><a href="#cb1-139"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-140"><a href="#cb1-140"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-139"><a href="#cb1-139"></a>|     |     | 0   | 1   | 0   | 1   |</span>
+<span id="cb1-140"><a href="#cb1-140"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-141"><a href="#cb1-141"></a>logically</span>
-<span id="cb1-142"><a href="#cb1-142"></a><span class="pp">|</span>     <span class="pp">|</span> equivalent  <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-143"><a href="#cb1-143"></a><span class="pp">| ---</span> <span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-142"><a href="#cb1-142"></a>|     | equivalent  | 0   | 1   | 1   | 0   |</span>
+<span id="cb1-143"><a href="#cb1-143"></a>| --- | ----------- | --- | --- | --- | --- |</span>
 <span id="cb1-144"><a href="#cb1-144"></a>circuits</span>
-<span id="cb1-145"><a href="#cb1-145"></a><span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-146"><a href="#cb1-146"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-147"><a href="#cb1-147"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-145"><a href="#cb1-145"></a>| A   |     | 1   | 0   | 0   | 1   |</span>
+<span id="cb1-146"><a href="#cb1-146"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-147"><a href="#cb1-147"></a>|     |     | 1   | 0   | 1   | 0   |</span>
 <span id="cb1-148"><a href="#cb1-148"></a>B Y</span>
 <span id="cb1-149"><a href="#cb1-149"></a>C</span>
-<span id="cb1-150"><a href="#cb1-150"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-151"><a href="#cb1-151"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-152"><a href="#cb1-152"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-150"><a href="#cb1-150"></a>|     |     | 1   | 1   | 0   | 0   |</span>
+<span id="cb1-151"><a href="#cb1-151"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-152"><a href="#cb1-152"></a>|     |     | 1   | 1   | 1   | 1   |</span>
 <span id="cb1-153"><a href="#cb1-153"></a>For any number of inputs, the output is 1 when an odd number of inputs is 1</span>
 <span id="cb1-154"><a href="#cb1-154"></a></span>
 <span id="cb1-155"><a href="#cb1-155"></a><span class="fu">## Transistor Count</span></span>
@@ -2653,15 +2651,15 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-167"><a href="#cb1-167"></a></span>
 <span id="cb1-168"><a href="#cb1-168"></a><span class="fu">## Full Adder</span></span>
 <span id="cb1-169"><a href="#cb1-169"></a></span>
-<span id="cb1-170"><a href="#cb1-170"></a><span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span> 𝐶 = <span class="pp">|</span> 𝐴𝐶𝑖 <span class="pp">|</span> + 𝐴𝐵 <span class="pp">|</span> + 𝐵𝐶𝑖 <span class="pp">|</span></span>
-<span id="cb1-171"><a href="#cb1-171"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
-<span id="cb1-172"><a href="#cb1-172"></a><span class="pp">|</span> 𝑆 = <span class="pp">|</span> 𝐴 + 𝐵 <span class="pp">|</span> + 𝐶𝑖 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb1-170"><a href="#cb1-170"></a>|     |       |      | 𝐶 = | 𝐴𝐶𝑖 | + 𝐴𝐵 | + 𝐵𝐶𝑖 |</span>
+<span id="cb1-171"><a href="#cb1-171"></a>| --- | ----- | ---- | --- | --- | ---- | ----- |</span>
+<span id="cb1-172"><a href="#cb1-172"></a>| 𝑆 = | 𝐴 + 𝐵 | + 𝐶𝑖 |     |     |      |       |</span>
 <span id="cb1-173"><a href="#cb1-173"></a>𝑂</span>
 <span id="cb1-174"><a href="#cb1-174"></a></span>
 <span id="cb1-175"><a href="#cb1-175"></a><span class="fu">## Full Adder: transistor minimization</span></span>
 <span id="cb1-176"><a href="#cb1-176"></a></span>
-<span id="cb1-177"><a href="#cb1-177"></a><span class="pp">|</span> 𝑆 = <span class="pp">|</span> 𝐴 + 𝐵 <span class="pp">|</span> + 𝐶𝑖 <span class="pp">|</span> 𝐶 = <span class="pp">|</span> 𝐴𝐶𝑖 <span class="pp">|</span> + 𝐴𝐵 <span class="pp">|</span> + 𝐵𝐶𝑖 <span class="pp">|</span></span>
-<span id="cb1-178"><a href="#cb1-178"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
+<span id="cb1-177"><a href="#cb1-177"></a>| 𝑆 = | 𝐴 + 𝐵 | + 𝐶𝑖 | 𝐶 = | 𝐴𝐶𝑖 | + 𝐴𝐵 | + 𝐵𝐶𝑖 |</span>
+<span id="cb1-178"><a href="#cb1-178"></a>| --- | ----- | ---- | --- | --- | ---- | ----- |</span>
 <span id="cb1-179"><a href="#cb1-179"></a>𝑂</span>
 <span id="cb1-180"><a href="#cb1-180"></a></span>
 <span id="cb1-181"><a href="#cb1-181"></a><span class="fu">## Full Adder: transistor minimization</span></span>
@@ -2677,67 +2675,67 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-191"><a href="#cb1-191"></a></span>
 <span id="cb1-192"><a href="#cb1-192"></a><span class="fu">## Full Adder: Alternate implementation</span></span>
 <span id="cb1-193"><a href="#cb1-193"></a></span>
-<span id="cb1-194"><a href="#cb1-194"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑆 = <span class="pp">|</span> 𝐴 + 𝐵 <span class="pp">|</span> 𝐶   <span class="pp">|</span></span>
-<span id="cb1-195"><a href="#cb1-195"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-196"><a href="#cb1-196"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> C   <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> +   <span class="pp">|</span></span>
-<span id="cb1-197"><a href="#cb1-197"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> i   <span class="pp">|</span> O   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-198"><a href="#cb1-198"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-199"><a href="#cb1-199"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-194"><a href="#cb1-194"></a>|     |     |     |     |     | 𝑆 = | 𝐴 + 𝐵 | 𝐶   |</span>
+<span id="cb1-195"><a href="#cb1-195"></a>| --- | --- | --- | --- | --- | --- | ----- | --- |</span>
+<span id="cb1-196"><a href="#cb1-196"></a>| A   | B   | C   | C   | S   |     |       | +   |</span>
+<span id="cb1-197"><a href="#cb1-197"></a>|     |     | i   | O   |     |     |       |     |</span>
+<span id="cb1-198"><a href="#cb1-198"></a>| 0   | 0   | 0   | 0   | 0   |     |       |     |</span>
+<span id="cb1-199"><a href="#cb1-199"></a>| 0   | 0   | 1   | 0   | 1   |     |       |     |</span>
 <span id="cb1-200"><a href="#cb1-200"></a>𝐶 =</span>
 <span id="cb1-201"><a href="#cb1-201"></a>𝑂</span>
-<span id="cb1-202"><a href="#cb1-202"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-203"><a href="#cb1-203"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-204"><a href="#cb1-204"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-205"><a href="#cb1-205"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-206"><a href="#cb1-206"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-207"><a href="#cb1-207"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-208"><a href="#cb1-208"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-202"><a href="#cb1-202"></a>| 0   | 1   | 0   | 0   | 1   |     |     |     |</span>
+<span id="cb1-203"><a href="#cb1-203"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-204"><a href="#cb1-204"></a>| 0   | 1   | 1   | 1   | 0   |     |     |     |</span>
+<span id="cb1-205"><a href="#cb1-205"></a>| 1   | 0   | 0   | 0   | 1   |     |     |     |</span>
+<span id="cb1-206"><a href="#cb1-206"></a>| 1   | 0   | 1   | 1   | 0   |     |     |     |</span>
+<span id="cb1-207"><a href="#cb1-207"></a>| 1   | 1   | 0   | 1   | 0   |     |     |     |</span>
+<span id="cb1-208"><a href="#cb1-208"></a>| 1   | 1   | 1   | 1   | 1   |     |     |     |</span>
 <span id="cb1-209"><a href="#cb1-209"></a></span>
 <span id="cb1-210"><a href="#cb1-210"></a><span class="fu">## Full Adder: Alternate Implementation</span></span>
 <span id="cb1-211"><a href="#cb1-211"></a></span>
-<span id="cb1-212"><a href="#cb1-212"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑆 = <span class="pp">|</span> 𝐴 +     <span class="pp">|</span> 𝐵 𝐶   <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-213"><a href="#cb1-213"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
-<span id="cb1-214"><a href="#cb1-214"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> C   <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span> +     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-215"><a href="#cb1-215"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> i   <span class="pp">|</span> O   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-216"><a href="#cb1-216"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-217"><a href="#cb1-217"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-218"><a href="#cb1-218"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> ҧ       <span class="pp">|</span>       <span class="pp">|</span> ത   <span class="pp">|</span>        <span class="pp">|</span> ഥ   <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-219"><a href="#cb1-219"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶   <span class="pp">|</span> = 𝐴𝐵𝐶   <span class="pp">|</span> + 𝐴𝐵𝐶 <span class="pp">|</span>     <span class="pp">|</span> + 𝐴𝐵𝐶  <span class="pp">|</span>     <span class="pp">|</span> + 𝐴𝐵𝐶𝑖 <span class="pp">|</span></span>
-<span id="cb1-220"><a href="#cb1-220"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑂   <span class="pp">|</span>         <span class="pp">|</span> 𝑖     <span class="pp">|</span>     <span class="pp">|</span> 𝑖      <span class="pp">|</span> 𝑖   <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-221"><a href="#cb1-221"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-222"><a href="#cb1-222"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> ҧ       <span class="pp">|</span>       <span class="pp">|</span> ത   <span class="pp">|</span>        <span class="pp">|</span> ഥ   <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-223"><a href="#cb1-223"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶   <span class="pp">|</span> = 𝐴𝐵𝐶   <span class="pp">|</span> + 𝐴𝐵𝐶 <span class="pp">|</span>     <span class="pp">|</span> + 𝐴𝐵(𝐶 <span class="pp">|</span>     <span class="pp">|</span> + 𝐶𝑖)  <span class="pp">|</span></span>
-<span id="cb1-224"><a href="#cb1-224"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-225"><a href="#cb1-225"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑂   <span class="pp">|</span>         <span class="pp">|</span> 𝑖     <span class="pp">|</span>     <span class="pp">|</span> 𝑖      <span class="pp">|</span>     <span class="pp">|</span> 𝑖      <span class="pp">|</span></span>
-<span id="cb1-226"><a href="#cb1-226"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-227"><a href="#cb1-227"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> ҧ       <span class="pp">|</span>       <span class="pp">|</span> ത   <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-228"><a href="#cb1-228"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶   <span class="pp">|</span> = 𝐴𝐵𝐶   <span class="pp">|</span> + 𝐴𝐵𝐶 <span class="pp">|</span>     <span class="pp">|</span> + 𝐴𝐵   <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-229"><a href="#cb1-229"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-230"><a href="#cb1-230"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑂   <span class="pp">|</span>         <span class="pp">|</span> 𝑖     <span class="pp">|</span>     <span class="pp">|</span> 𝑖      <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-231"><a href="#cb1-231"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span> ҧ     <span class="pp">|</span> ത   <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-232"><a href="#cb1-232"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶   <span class="pp">|</span> = 𝐶 (𝐴𝐵 <span class="pp">|</span> +     <span class="pp">|</span> 𝐴𝐵) <span class="pp">|</span> + 𝐴𝐵   <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-233"><a href="#cb1-233"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑂   <span class="pp">|</span> 𝑖       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-234"><a href="#cb1-234"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-235"><a href="#cb1-235"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶   <span class="pp">|</span> = 𝐶 (𝐴  <span class="pp">|</span> 𝐵)    <span class="pp">|</span> +   <span class="pp">|</span> 𝐴𝐵     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-212"><a href="#cb1-212"></a>|     |     |     |     |     | 𝑆 = | 𝐴 +     | 𝐵 𝐶   |     |        |     |        |</span>
+<span id="cb1-213"><a href="#cb1-213"></a>| --- | --- | --- | --- | --- | --- | ------- | ----- | --- | ------ | --- | ------ |</span>
+<span id="cb1-214"><a href="#cb1-214"></a>| A   | B   | C   | C   | S   |     |         | +     |     |        |     |        |</span>
+<span id="cb1-215"><a href="#cb1-215"></a>|     |     | i   | O   |     |     |         |       |     |        |     |        |</span>
+<span id="cb1-216"><a href="#cb1-216"></a>| 0   | 0   | 0   | 0   | 0   |     |         |       |     |        |     |        |</span>
+<span id="cb1-217"><a href="#cb1-217"></a>| 0   | 0   | 1   | 0   | 1   |     |         |       |     |        |     |        |</span>
+<span id="cb1-218"><a href="#cb1-218"></a>|     |     |     |     |     |     | ҧ       |       | ത   |        | ഥ   |        |</span>
+<span id="cb1-219"><a href="#cb1-219"></a>|     |     |     |     |     | 𝐶   | = 𝐴𝐵𝐶   | + 𝐴𝐵𝐶 |     | + 𝐴𝐵𝐶  |     | + 𝐴𝐵𝐶𝑖 |</span>
+<span id="cb1-220"><a href="#cb1-220"></a>|     |     |     |     |     | 𝑂   |         | 𝑖     |     | 𝑖      | 𝑖   |        |</span>
+<span id="cb1-221"><a href="#cb1-221"></a>| 0   | 1   | 0   | 0   | 1   |     |         |       |     |        |     |        |</span>
+<span id="cb1-222"><a href="#cb1-222"></a>|     |     |     |     |     |     | ҧ       |       | ത   |        | ഥ   |        |</span>
+<span id="cb1-223"><a href="#cb1-223"></a>|     |     |     |     |     | 𝐶   | = 𝐴𝐵𝐶   | + 𝐴𝐵𝐶 |     | + 𝐴𝐵(𝐶 |     | + 𝐶𝑖)  |</span>
+<span id="cb1-224"><a href="#cb1-224"></a>| 0   | 1   | 1   | 1   | 0   |     |         |       |     |        |     |        |</span>
+<span id="cb1-225"><a href="#cb1-225"></a>|     |     |     |     |     | 𝑂   |         | 𝑖     |     | 𝑖      |     | 𝑖      |</span>
+<span id="cb1-226"><a href="#cb1-226"></a>| 1   | 0   | 0   | 0   | 1   |     |         |       |     |        |     |        |</span>
+<span id="cb1-227"><a href="#cb1-227"></a>|     |     |     |     |     |     | ҧ       |       | ത   |        |     |        |</span>
+<span id="cb1-228"><a href="#cb1-228"></a>|     |     |     |     |     | 𝐶   | = 𝐴𝐵𝐶   | + 𝐴𝐵𝐶 |     | + 𝐴𝐵   |     |        |</span>
+<span id="cb1-229"><a href="#cb1-229"></a>| 1   | 0   | 1   | 1   | 0   |     |         |       |     |        |     |        |</span>
+<span id="cb1-230"><a href="#cb1-230"></a>|     |     |     |     |     | 𝑂   |         | 𝑖     |     | 𝑖      |     |        |</span>
+<span id="cb1-231"><a href="#cb1-231"></a>| 1   | 1   | 0   | 1   | 0   |     |         | ҧ     | ത   |        |     |        |</span>
+<span id="cb1-232"><a href="#cb1-232"></a>|     |     |     |     |     | 𝐶   | = 𝐶 (𝐴𝐵 | +     | 𝐴𝐵) | + 𝐴𝐵   |     |        |</span>
+<span id="cb1-233"><a href="#cb1-233"></a>|     |     |     |     |     | 𝑂   | 𝑖       |       |     |        |     |        |</span>
+<span id="cb1-234"><a href="#cb1-234"></a>| 1   | 1   | 1   | 1   | 1   |     |         |       |     |        |     |        |</span>
+<span id="cb1-235"><a href="#cb1-235"></a>|     |     |     |     |     | 𝐶   | = 𝐶 (𝐴  | 𝐵)    | +   | 𝐴𝐵     |     |        |</span>
 <span id="cb1-236"><a href="#cb1-236"></a>+</span>
-<span id="cb1-237"><a href="#cb1-237"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑂   <span class="pp">|</span> 𝑖   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-238"><a href="#cb1-238"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-237"><a href="#cb1-237"></a>|     |     |     |     |     | 𝑂   | 𝑖   |     |     |     |     |     |</span>
+<span id="cb1-238"><a href="#cb1-238"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-239"><a href="#cb1-239"></a></span>
 <span id="cb1-240"><a href="#cb1-240"></a><span class="fu">## Full Adder: Alternate Implementation</span></span>
 <span id="cb1-241"><a href="#cb1-241"></a></span>
-<span id="cb1-242"><a href="#cb1-242"></a><span class="pp">|</span> 𝑆 = <span class="pp">|</span> 𝐴 + 𝐵 <span class="pp">|</span> 𝐶𝑖  <span class="pp">|</span> 𝐶 = <span class="pp">|</span> 𝐶 (𝐴 <span class="pp">|</span> + 𝐵) <span class="pp">|</span> + 𝐴𝐵 <span class="pp">|</span></span>
-<span id="cb1-243"><a href="#cb1-243"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-242"><a href="#cb1-242"></a>| 𝑆 = | 𝐴 + 𝐵 | 𝐶𝑖  | 𝐶 = | 𝐶 (𝐴 | + 𝐵) | + 𝐴𝐵 |</span>
+<span id="cb1-243"><a href="#cb1-243"></a>| --- | ----- | --- | --- | ---- | ---- | ---- |</span>
 <span id="cb1-244"><a href="#cb1-244"></a>+</span>
-<span id="cb1-245"><a href="#cb1-245"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑂   <span class="pp">|</span> 𝑖   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-246"><a href="#cb1-246"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-245"><a href="#cb1-245"></a>|     |     |     | 𝑂   | 𝑖   |     |     |</span>
+<span id="cb1-246"><a href="#cb1-246"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-247"><a href="#cb1-247"></a></span>
 <span id="cb1-248"><a href="#cb1-248"></a><span class="fu">## Full Adder: Alternate Implementation</span></span>
 <span id="cb1-249"><a href="#cb1-249"></a></span>
-<span id="cb1-250"><a href="#cb1-250"></a><span class="pp">|</span> 𝑆 = <span class="pp">|</span> 𝐴 + 𝐵 <span class="pp">|</span> 𝐶𝑖  <span class="pp">|</span> 𝐶 = <span class="pp">|</span> 𝐶 (𝐴 <span class="pp">|</span> + 𝐵) <span class="pp">|</span> + 𝐴𝐵 <span class="pp">|</span></span>
-<span id="cb1-251"><a href="#cb1-251"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-250"><a href="#cb1-250"></a>| 𝑆 = | 𝐴 + 𝐵 | 𝐶𝑖  | 𝐶 = | 𝐶 (𝐴 | + 𝐵) | + 𝐴𝐵 |</span>
+<span id="cb1-251"><a href="#cb1-251"></a>| --- | ----- | --- | --- | ---- | ---- | ---- |</span>
 <span id="cb1-252"><a href="#cb1-252"></a>+</span>
-<span id="cb1-253"><a href="#cb1-253"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝑂   <span class="pp">|</span> 𝑖   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-254"><a href="#cb1-254"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-253"><a href="#cb1-253"></a>|     |     |     | 𝑂   | 𝑖   |     |     |</span>
+<span id="cb1-254"><a href="#cb1-254"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-255"><a href="#cb1-255"></a></span>
 <span id="cb1-256"><a href="#cb1-256"></a><span class="fu">## Full Adder: Reducing Transistor Count</span></span>
 <span id="cb1-257"><a href="#cb1-257"></a></span>
@@ -2760,32 +2758,32 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-274"><a href="#cb1-274"></a></span>
 <span id="cb1-275"><a href="#cb1-275"></a><span class="fu">## 4-bit Adder</span></span>
 <span id="cb1-276"><a href="#cb1-276"></a></span>
-<span id="cb1-277"><a href="#cb1-277"></a><span class="pp">|</span> C    <span class="pp">|</span> C   <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-278"><a href="#cb1-278"></a><span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-279"><a href="#cb1-279"></a><span class="pp">|</span> O,3  <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-280"><a href="#cb1-280"></a><span class="pp">|</span>      <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-281"><a href="#cb1-281"></a><span class="pp">|</span>      <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-277"><a href="#cb1-277"></a>| C    | C   | C   |     | C   |     |     |     |</span>
+<span id="cb1-278"><a href="#cb1-278"></a>| ---- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-279"><a href="#cb1-279"></a>| O,3  | O,2 |     | O,1 | O,0 |     |     |     |</span>
+<span id="cb1-280"><a href="#cb1-280"></a>|      | A   |     | A   | A   |     | A   |     |</span>
+<span id="cb1-281"><a href="#cb1-281"></a>|      | 3   |     | 2   |     | 1   |     | 0   |</span>
 <span id="cb1-282"><a href="#cb1-282"></a>+</span>
-<span id="cb1-283"><a href="#cb1-283"></a><span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-284"><a href="#cb1-284"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-285"><a href="#cb1-285"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-286"><a href="#cb1-286"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span></span>
-<span id="cb1-287"><a href="#cb1-287"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-283"><a href="#cb1-283"></a>|     | B   |     | B   | B   |     | B   |     |</span>
+<span id="cb1-284"><a href="#cb1-284"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-285"><a href="#cb1-285"></a>|     | 3   |     | 2   |     | 1   |     | 0   |</span>
+<span id="cb1-286"><a href="#cb1-286"></a>|     | S   |     | S   |     | S   |     | S   |</span>
+<span id="cb1-287"><a href="#cb1-287"></a>|     | 3   |     | 2   |     | 1   |     | 0   |</span>
 <span id="cb1-288"><a href="#cb1-288"></a></span>
 <span id="cb1-289"><a href="#cb1-289"></a><span class="fu">## 4-bit Adder</span></span>
 <span id="cb1-290"><a href="#cb1-290"></a></span>
 <span id="cb1-291"><a href="#cb1-291"></a>■ How would you use 4 full-adders to add together A and B?</span>
-<span id="cb1-292"><a href="#cb1-292"></a><span class="pp">|</span> C    <span class="pp">|</span> C   <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-293"><a href="#cb1-293"></a><span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-294"><a href="#cb1-294"></a><span class="pp">|</span> O,3  <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-295"><a href="#cb1-295"></a><span class="pp">|</span>      <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-296"><a href="#cb1-296"></a><span class="pp">|</span>      <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-292"><a href="#cb1-292"></a>| C    | C   | C   |     | C   |     |     |     |     |</span>
+<span id="cb1-293"><a href="#cb1-293"></a>| ---- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-294"><a href="#cb1-294"></a>| O,3  | O,2 |     | O,1 | O,0 |     |     |     |     |</span>
+<span id="cb1-295"><a href="#cb1-295"></a>|      | A   |     | A   | A   |     | A   |     |     |</span>
+<span id="cb1-296"><a href="#cb1-296"></a>|      | 3   |     | 2   |     | 1   |     | 0   |     |</span>
 <span id="cb1-297"><a href="#cb1-297"></a>+</span>
-<span id="cb1-298"><a href="#cb1-298"></a><span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-299"><a href="#cb1-299"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-300"><a href="#cb1-300"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-301"><a href="#cb1-301"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-302"><a href="#cb1-302"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> A B <span class="pp">|</span></span>
+<span id="cb1-298"><a href="#cb1-298"></a>|     | B   |     | B   | B   |     | B   |     |     |</span>
+<span id="cb1-299"><a href="#cb1-299"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-300"><a href="#cb1-300"></a>|     | 3   |     | 2   |     | 1   |     | 0   |     |</span>
+<span id="cb1-301"><a href="#cb1-301"></a>|     | S   |     | S   |     | S   |     | S   |     |</span>
+<span id="cb1-302"><a href="#cb1-302"></a>|     | 3   |     | 2   |     | 1   |     | 0   | A B |</span>
 <span id="cb1-303"><a href="#cb1-303"></a>0 0</span>
 <span id="cb1-304"><a href="#cb1-304"></a>C</span>
 <span id="cb1-305"><a href="#cb1-305"></a>O,0</span>
@@ -2796,31 +2794,31 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-310"><a href="#cb1-310"></a></span>
 <span id="cb1-311"><a href="#cb1-311"></a><span class="fu">## 4-bit Adder</span></span>
 <span id="cb1-312"><a href="#cb1-312"></a></span>
-<span id="cb1-313"><a href="#cb1-313"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> C    <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-314"><a href="#cb1-314"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-315"><a href="#cb1-315"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> O,3  <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-316"><a href="#cb1-316"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-317"><a href="#cb1-317"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-313"><a href="#cb1-313"></a>|     |     |     | C    |     | C   | C   |     | C   |     |     |     |     |</span>
+<span id="cb1-314"><a href="#cb1-314"></a>| --- | --- | --- | ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-315"><a href="#cb1-315"></a>|     |     |     | O,3  |     | O,2 |     | O,1 | O,0 |     |     |     |     |</span>
+<span id="cb1-316"><a href="#cb1-316"></a>|     |     |     |      |     | A   |     | A   | A   |     | A   |     |     |</span>
+<span id="cb1-317"><a href="#cb1-317"></a>|     |     |     |      |     | 3   |     | 2   |     | 1   |     | 0   |     |</span>
 <span id="cb1-318"><a href="#cb1-318"></a>+</span>
-<span id="cb1-319"><a href="#cb1-319"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-320"><a href="#cb1-320"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-321"><a href="#cb1-321"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-322"><a href="#cb1-322"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-323"><a href="#cb1-323"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-324"><a href="#cb1-324"></a><span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span></span>
-<span id="cb1-325"><a href="#cb1-325"></a><span class="pp">|</span>     <span class="pp">|</span> 3 3 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-326"><a href="#cb1-326"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0 0 <span class="pp">|</span></span>
-<span id="cb1-327"><a href="#cb1-327"></a><span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-328"><a href="#cb1-328"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-329"><a href="#cb1-329"></a><span class="pp">|</span> O,3 <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-319"><a href="#cb1-319"></a>|     |     |     |     |     | B   |     | B   | B   |     | B   |     |     |</span>
+<span id="cb1-320"><a href="#cb1-320"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-321"><a href="#cb1-321"></a>|     |     |     |     |     | 3   |     | 2   |     | 1   |     | 0   |     |</span>
+<span id="cb1-322"><a href="#cb1-322"></a>|     |     |     |     |     | S   |     | S   |     | S   |     | S   |     |</span>
+<span id="cb1-323"><a href="#cb1-323"></a>|     |     |     |     |     | 3   |     | 2   |     | 1   |     | 0   |     |</span>
+<span id="cb1-324"><a href="#cb1-324"></a>|     | A B |     |     | A   | B   |     |     | A   |     | B   |     | A B |</span>
+<span id="cb1-325"><a href="#cb1-325"></a>|     | 3 3 |     |     | 2   |     | 2   |     |     |     |     |     |     |</span>
+<span id="cb1-326"><a href="#cb1-326"></a>|     |     |     |     |     |     |     |     |     | 1   | 1   |     | 0 0 |</span>
+<span id="cb1-327"><a href="#cb1-327"></a>| C   |     | C   |     |     |     |     |     |     |     |     |     |     |</span>
+<span id="cb1-328"><a href="#cb1-328"></a>|     |     |     |     |     |     | C   |     |     |     |     | C   |     |</span>
+<span id="cb1-329"><a href="#cb1-329"></a>| O,3 |     | O,2 |     |     |     |     | O,1 |     |     |     |     |     |</span>
 <span id="cb1-330"><a href="#cb1-330"></a>O,0</span>
-<span id="cb1-331"><a href="#cb1-331"></a><span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span></span>
-<span id="cb1-332"><a href="#cb1-332"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-331"><a href="#cb1-331"></a>|     | FA  |     |     | FA  |     |     |     |     | FA  |     |     | FA  |</span>
+<span id="cb1-332"><a href="#cb1-332"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-333"><a href="#cb1-333"></a>0</span>
-<span id="cb1-334"><a href="#cb1-334"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span></span>
-<span id="cb1-335"><a href="#cb1-335"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-336"><a href="#cb1-336"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-337"><a href="#cb1-337"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-334"><a href="#cb1-334"></a>|     | S   |     |     | S   |     |     |     |     | S   |     |     | S   |</span>
+<span id="cb1-335"><a href="#cb1-335"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-336"><a href="#cb1-336"></a>|     | 3   |     |     |     | 2   |     |     |     |     |     |     |     |</span>
+<span id="cb1-337"><a href="#cb1-337"></a>|     |     |     |     |     |     |     |     |     | 1   |     |     | 0   |</span>
 <span id="cb1-338"><a href="#cb1-338"></a></span>
 <span id="cb1-339"><a href="#cb1-339"></a><span class="fu">## ADDER-SUBTRACTOR</span></span>
 <span id="cb1-340"><a href="#cb1-340"></a></span>
@@ -2881,144 +2879,144 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-395"><a href="#cb1-395"></a></span>
 <span id="cb1-396"><a href="#cb1-396"></a><span class="fu">## Subtractor</span></span>
 <span id="cb1-397"><a href="#cb1-397"></a></span>
-<span id="cb1-398"><a href="#cb1-398"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-399"><a href="#cb1-399"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-400"><a href="#cb1-400"></a><span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span></span>
-<span id="cb1-401"><a href="#cb1-401"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span> 3   <span class="pp">|</span> 2   <span class="pp">|</span> 2   <span class="pp">|</span> 1 1 <span class="pp">|</span>     <span class="pp">|</span> 0 0 <span class="pp">|</span></span>
+<span id="cb1-398"><a href="#cb1-398"></a>|     |     |     | A B |     | A B |     |     |</span>
+<span id="cb1-399"><a href="#cb1-399"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-400"><a href="#cb1-400"></a>|     | A B |     |     |     |     |     | A B |</span>
+<span id="cb1-401"><a href="#cb1-401"></a>|     | 3   | 3   | 2   | 2   | 1 1 |     | 0 0 |</span>
 <span id="cb1-402"><a href="#cb1-402"></a>How would you wire up</span>
 <span id="cb1-403"><a href="#cb1-403"></a>this circuit to have it</span>
 <span id="cb1-404"><a href="#cb1-404"></a>correctly perform</span>
 <span id="cb1-405"><a href="#cb1-405"></a>subtraction?</span>
-<span id="cb1-406"><a href="#cb1-406"></a><span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-407"><a href="#cb1-407"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-406"><a href="#cb1-406"></a>| C   |     | C   |     | C   |     |     |     |</span>
+<span id="cb1-407"><a href="#cb1-407"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-408"><a href="#cb1-408"></a>C</span>
-<span id="cb1-409"><a href="#cb1-409"></a><span class="pp">|</span> O,3 <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span>     <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-410"><a href="#cb1-410"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-411"><a href="#cb1-411"></a><span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span></span>
-<span id="cb1-412"><a href="#cb1-412"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-409"><a href="#cb1-409"></a>| O,3 |     | O,2 |     | O,1 |     | O,0 |     |</span>
+<span id="cb1-410"><a href="#cb1-410"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-411"><a href="#cb1-411"></a>|     | FA  |     | FA  |     | FA  |     | FA  |</span>
+<span id="cb1-412"><a href="#cb1-412"></a>|     | S   |     | S   |     | S   |     |     |</span>
 <span id="cb1-413"><a href="#cb1-413"></a>S</span>
-<span id="cb1-414"><a href="#cb1-414"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-415"><a href="#cb1-415"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-414"><a href="#cb1-414"></a>|     | 3   |     | 2   |     | 1   |     |     |</span>
+<span id="cb1-415"><a href="#cb1-415"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-416"><a href="#cb1-416"></a>0</span>
 <span id="cb1-417"><a href="#cb1-417"></a></span>
 <span id="cb1-418"><a href="#cb1-418"></a><span class="fu">## Subtractor</span></span>
 <span id="cb1-419"><a href="#cb1-419"></a></span>
-<span id="cb1-420"><a href="#cb1-420"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-421"><a href="#cb1-421"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-422"><a href="#cb1-422"></a><span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span></span>
-<span id="cb1-423"><a href="#cb1-423"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span> 3   <span class="pp">|</span> 2   <span class="pp">|</span> 2   <span class="pp">|</span> 1 1 <span class="pp">|</span>     <span class="pp">|</span> 0 0 <span class="pp">|</span></span>
+<span id="cb1-420"><a href="#cb1-420"></a>|     |     |     | A B |     | A B |     |     |</span>
+<span id="cb1-421"><a href="#cb1-421"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-422"><a href="#cb1-422"></a>|     | A B |     |     |     |     |     | A B |</span>
+<span id="cb1-423"><a href="#cb1-423"></a>|     | 3   | 3   | 2   | 2   | 1 1 |     | 0 0 |</span>
 <span id="cb1-424"><a href="#cb1-424"></a>How would you wire up</span>
 <span id="cb1-425"><a href="#cb1-425"></a>this circuit to have it</span>
 <span id="cb1-426"><a href="#cb1-426"></a>correctly perform</span>
 <span id="cb1-427"><a href="#cb1-427"></a>subtraction?</span>
-<span id="cb1-428"><a href="#cb1-428"></a><span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-429"><a href="#cb1-429"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-428"><a href="#cb1-428"></a>| C   |     | C   |     | C   |     |     |     |</span>
+<span id="cb1-429"><a href="#cb1-429"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-430"><a href="#cb1-430"></a>C</span>
-<span id="cb1-431"><a href="#cb1-431"></a><span class="pp">|</span> O,3 <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span>     <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-432"><a href="#cb1-432"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-433"><a href="#cb1-433"></a><span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span></span>
-<span id="cb1-434"><a href="#cb1-434"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-431"><a href="#cb1-431"></a>| O,3 |     | O,2 |     | O,1 |     | O,0 |     |</span>
+<span id="cb1-432"><a href="#cb1-432"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-433"><a href="#cb1-433"></a>|     | FA  |     | FA  |     | FA  |     | FA  |</span>
+<span id="cb1-434"><a href="#cb1-434"></a>|     | S   |     | S   |     | S   |     |     |</span>
 <span id="cb1-435"><a href="#cb1-435"></a>S</span>
-<span id="cb1-436"><a href="#cb1-436"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-437"><a href="#cb1-437"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-436"><a href="#cb1-436"></a>|     | 3   |     | 2   |     | 1   |     |     |</span>
+<span id="cb1-437"><a href="#cb1-437"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-438"><a href="#cb1-438"></a>0</span>
 <span id="cb1-439"><a href="#cb1-439"></a></span>
 <span id="cb1-440"><a href="#cb1-440"></a><span class="fu">## Subtractor</span></span>
 <span id="cb1-441"><a href="#cb1-441"></a></span>
-<span id="cb1-442"><a href="#cb1-442"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-443"><a href="#cb1-443"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-444"><a href="#cb1-444"></a><span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span></span>
-<span id="cb1-445"><a href="#cb1-445"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span> 3   <span class="pp">|</span> 2   <span class="pp">|</span> 2   <span class="pp">|</span> 1 1 <span class="pp">|</span>     <span class="pp">|</span> 0 0 <span class="pp">|</span></span>
+<span id="cb1-442"><a href="#cb1-442"></a>|     |     |     | A B |     | A B |     |     |</span>
+<span id="cb1-443"><a href="#cb1-443"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-444"><a href="#cb1-444"></a>|     | A B |     |     |     |     |     | A B |</span>
+<span id="cb1-445"><a href="#cb1-445"></a>|     | 3   | 3   | 2   | 2   | 1 1 |     | 0 0 |</span>
 <span id="cb1-446"><a href="#cb1-446"></a>1</span>
-<span id="cb1-447"><a href="#cb1-447"></a><span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-448"><a href="#cb1-448"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-447"><a href="#cb1-447"></a>| C   |     | C   |     | C   |     |     |     |</span>
+<span id="cb1-448"><a href="#cb1-448"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-449"><a href="#cb1-449"></a>C</span>
-<span id="cb1-450"><a href="#cb1-450"></a><span class="pp">|</span> O,3 <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span>     <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-451"><a href="#cb1-451"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-452"><a href="#cb1-452"></a><span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span></span>
-<span id="cb1-453"><a href="#cb1-453"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-450"><a href="#cb1-450"></a>| O,3 |     | O,2 |     | O,1 |     | O,0 |     |</span>
+<span id="cb1-451"><a href="#cb1-451"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-452"><a href="#cb1-452"></a>|     | FA  |     | FA  |     | FA  |     | FA  |</span>
+<span id="cb1-453"><a href="#cb1-453"></a>|     | S   |     | S   |     | S   |     |     |</span>
 <span id="cb1-454"><a href="#cb1-454"></a>S</span>
-<span id="cb1-455"><a href="#cb1-455"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-456"><a href="#cb1-456"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-455"><a href="#cb1-455"></a>|     | 3   |     | 2   |     | 1   |     |     |</span>
+<span id="cb1-456"><a href="#cb1-456"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-457"><a href="#cb1-457"></a>0</span>
 <span id="cb1-458"><a href="#cb1-458"></a></span>
 <span id="cb1-459"><a href="#cb1-459"></a><span class="fu">## Adder/subtractor</span></span>
 <span id="cb1-460"><a href="#cb1-460"></a></span>
-<span id="cb1-461"><a href="#cb1-461"></a><span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span> A B <span class="pp">|</span></span>
-<span id="cb1-462"><a href="#cb1-462"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-463"><a href="#cb1-463"></a><span class="pp">|</span>     <span class="pp">|</span> 3 3 <span class="pp">|</span>     <span class="pp">|</span> 2 2 <span class="pp">|</span>     <span class="pp">|</span> 1 1 <span class="pp">|</span> 0 0 <span class="pp">|</span></span>
+<span id="cb1-461"><a href="#cb1-461"></a>|     | A B |     | A B |     | A B | A B |</span>
+<span id="cb1-462"><a href="#cb1-462"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-463"><a href="#cb1-463"></a>|     | 3 3 |     | 2 2 |     | 1 1 | 0 0 |</span>
 <span id="cb1-464"><a href="#cb1-464"></a>K If K == 0, A + B</span>
 <span id="cb1-465"><a href="#cb1-465"></a>If K == 1, A - B</span>
-<span id="cb1-466"><a href="#cb1-466"></a><span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-467"><a href="#cb1-467"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-466"><a href="#cb1-466"></a>| C   |     | C   |     |     |     |     |</span>
+<span id="cb1-467"><a href="#cb1-467"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-468"><a href="#cb1-468"></a>C C</span>
-<span id="cb1-469"><a href="#cb1-469"></a><span class="pp">|</span> O,3 <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-470"><a href="#cb1-470"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-469"><a href="#cb1-469"></a>| O,3 |     | O,2 |     | O,1 |     |     |</span>
+<span id="cb1-470"><a href="#cb1-470"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-471"><a href="#cb1-471"></a>O,0</span>
-<span id="cb1-472"><a href="#cb1-472"></a><span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span> FA  <span class="pp">|</span></span>
-<span id="cb1-473"><a href="#cb1-473"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-474"><a href="#cb1-474"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span> S   <span class="pp">|</span></span>
-<span id="cb1-475"><a href="#cb1-475"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-476"><a href="#cb1-476"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-472"><a href="#cb1-472"></a>|     | FA  |     | FA  |     | FA  | FA  |</span>
+<span id="cb1-473"><a href="#cb1-473"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-474"><a href="#cb1-474"></a>|     | S   |     | S   |     | S   | S   |</span>
+<span id="cb1-475"><a href="#cb1-475"></a>|     | 3   |     | 2   |     |     |     |</span>
+<span id="cb1-476"><a href="#cb1-476"></a>|     |     |     |     |     | 1   | 0   |</span>
 <span id="cb1-477"><a href="#cb1-477"></a></span>
 <span id="cb1-478"><a href="#cb1-478"></a><span class="fu">## Adder/Subtractor Implementation 1</span></span>
 <span id="cb1-479"><a href="#cb1-479"></a></span>
-<span id="cb1-480"><a href="#cb1-480"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-481"><a href="#cb1-481"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-482"><a href="#cb1-482"></a><span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span></span>
-<span id="cb1-483"><a href="#cb1-483"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-480"><a href="#cb1-480"></a>|     |     |     | B   |     | A   |     | B   | A   |     | B   |     |     |</span>
+<span id="cb1-481"><a href="#cb1-481"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-482"><a href="#cb1-482"></a>|     | A   |     |     |     |     |     |     |     |     |     | A   | B   |</span>
+<span id="cb1-483"><a href="#cb1-483"></a>|     |     | 3   |     | 3   |     | 2   | 2   |     | 1   | 1   | 0   | 0   |</span>
 <span id="cb1-484"><a href="#cb1-484"></a>K</span>
-<span id="cb1-485"><a href="#cb1-485"></a><span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-486"><a href="#cb1-486"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-485"><a href="#cb1-485"></a>| C   |     |     |     | C   |     |     | C   |     |     |     |     |     |</span>
+<span id="cb1-486"><a href="#cb1-486"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-487"><a href="#cb1-487"></a>C</span>
-<span id="cb1-488"><a href="#cb1-488"></a><span class="pp">|</span> O,3 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-489"><a href="#cb1-489"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-490"><a href="#cb1-490"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-491"><a href="#cb1-491"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-488"><a href="#cb1-488"></a>| O,3 |     |     |     | O,2 |     |     | O,1 |     |     | O,0 |     |     |</span>
+<span id="cb1-489"><a href="#cb1-489"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-490"><a href="#cb1-490"></a>|     |     | FA  |     |     |     | FA  |     |     | FA  |     | FA  |     |</span>
+<span id="cb1-491"><a href="#cb1-491"></a>|     |     | S   |     |     |     | S   |     |     | S   |     |     |     |</span>
 <span id="cb1-492"><a href="#cb1-492"></a>S</span>
-<span id="cb1-493"><a href="#cb1-493"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-494"><a href="#cb1-494"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-493"><a href="#cb1-493"></a>|     |     | 3   |     |     |     | 2   |     |     | 1   |     |     |     |</span>
+<span id="cb1-494"><a href="#cb1-494"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-495"><a href="#cb1-495"></a>0</span>
 <span id="cb1-496"><a href="#cb1-496"></a></span>
 <span id="cb1-497"><a href="#cb1-497"></a><span class="fu">## XOR</span></span>
 <span id="cb1-498"><a href="#cb1-498"></a></span>
 <span id="cb1-499"><a href="#cb1-499"></a>ഥ</span>
 <span id="cb1-500"><a href="#cb1-500"></a>+</span>
-<span id="cb1-501"><a href="#cb1-501"></a><span class="pp">|</span> 𝑁   <span class="pp">|</span> 1 = <span class="pp">|</span> 𝑁   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-502"><a href="#cb1-502"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-503"><a href="#cb1-503"></a><span class="pp">|</span> 𝑁 + <span class="pp">|</span> 0 = <span class="pp">|</span> 𝑁   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-501"><a href="#cb1-501"></a>| 𝑁   | 1 = | 𝑁   |     |</span>
+<span id="cb1-502"><a href="#cb1-502"></a>| --- | --- | --- | --- |</span>
+<span id="cb1-503"><a href="#cb1-503"></a>| 𝑁 + | 0 = | 𝑁   |     |</span>
 <span id="cb1-504"><a href="#cb1-504"></a>If we XOR B with K</span>
-<span id="cb1-505"><a href="#cb1-505"></a><span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-506"><a href="#cb1-506"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-505"><a href="#cb1-505"></a>| A   |     | B   | Y   |</span>
+<span id="cb1-506"><a href="#cb1-506"></a>| --- | --- | --- | --- |</span>
 <span id="cb1-507"><a href="#cb1-507"></a>i</span>
 <span id="cb1-508"><a href="#cb1-508"></a>When K = 0, B + K = B</span>
 <span id="cb1-509"><a href="#cb1-509"></a>•</span>
 <span id="cb1-510"><a href="#cb1-510"></a>i i</span>
-<span id="cb1-511"><a href="#cb1-511"></a><span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-512"><a href="#cb1-512"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-511"><a href="#cb1-511"></a>| 0   |     | 0   | 0   |</span>
+<span id="cb1-512"><a href="#cb1-512"></a>| --- | --- | --- | --- |</span>
 <span id="cb1-513"><a href="#cb1-513"></a>• When K = 1, B + K = B</span>
 <span id="cb1-514"><a href="#cb1-514"></a>i i</span>
-<span id="cb1-515"><a href="#cb1-515"></a><span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-516"><a href="#cb1-516"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-517"><a href="#cb1-517"></a><span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-518"><a href="#cb1-518"></a><span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-515"><a href="#cb1-515"></a>| 0   |     | 1   | 1   |</span>
+<span id="cb1-516"><a href="#cb1-516"></a>| --- | --- | --- | --- |</span>
+<span id="cb1-517"><a href="#cb1-517"></a>| 1   |     | 0   | 1   |</span>
+<span id="cb1-518"><a href="#cb1-518"></a>| 1   |     | 1   | 0   |</span>
 <span id="cb1-519"><a href="#cb1-519"></a></span>
 <span id="cb1-520"><a href="#cb1-520"></a><span class="fu">## Adder/Subtractor Implementation 2</span></span>
 <span id="cb1-521"><a href="#cb1-521"></a></span>
-<span id="cb1-522"><a href="#cb1-522"></a><span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> A B <span class="pp">|</span>     <span class="pp">|</span> B   <span class="pp">|</span> K   <span class="pp">|</span></span>
-<span id="cb1-523"><a href="#cb1-523"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-522"><a href="#cb1-522"></a>|     | A B |     | A B |     | A B |     | B   | K   |</span>
+<span id="cb1-523"><a href="#cb1-523"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-524"><a href="#cb1-524"></a>A</span>
-<span id="cb1-525"><a href="#cb1-525"></a><span class="pp">|</span>     <span class="pp">|</span> 3 3 <span class="pp">|</span>     <span class="pp">|</span> 2 2 <span class="pp">|</span>     <span class="pp">|</span> 1 1 <span class="pp">|</span>     <span class="pp">|</span> 0 0 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-526"><a href="#cb1-526"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-527"><a href="#cb1-527"></a><span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span> C   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-525"><a href="#cb1-525"></a>|     | 3 3 |     | 2 2 |     | 1 1 |     | 0 0 |     |</span>
+<span id="cb1-526"><a href="#cb1-526"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-527"><a href="#cb1-527"></a>| C   |     | C   |     | C   |     |     |     |     |</span>
 <span id="cb1-528"><a href="#cb1-528"></a>C</span>
-<span id="cb1-529"><a href="#cb1-529"></a><span class="pp">|</span> O,3 <span class="pp">|</span>     <span class="pp">|</span> O,2 <span class="pp">|</span>     <span class="pp">|</span> O,1 <span class="pp">|</span>     <span class="pp">|</span> O,0 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-530"><a href="#cb1-530"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-531"><a href="#cb1-531"></a><span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span> FA  <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-532"><a href="#cb1-532"></a><span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span> S   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-529"><a href="#cb1-529"></a>| O,3 |     | O,2 |     | O,1 |     | O,0 |     |     |</span>
+<span id="cb1-530"><a href="#cb1-530"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-531"><a href="#cb1-531"></a>|     | FA  |     | FA  |     | FA  |     | FA  |     |</span>
+<span id="cb1-532"><a href="#cb1-532"></a>|     | S   |     | S   |     | S   |     |     |     |</span>
 <span id="cb1-533"><a href="#cb1-533"></a>S</span>
-<span id="cb1-534"><a href="#cb1-534"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-535"><a href="#cb1-535"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-534"><a href="#cb1-534"></a>|     | 3   |     | 2   |     | 1   |     |     |     |</span>
+<span id="cb1-535"><a href="#cb1-535"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-536"><a href="#cb1-536"></a>0</span>
 <span id="cb1-537"><a href="#cb1-537"></a></span>
 <span id="cb1-538"><a href="#cb1-538"></a><span class="fu">## SHIFTER CIRCUITS</span></span>
@@ -3087,45 +3085,45 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-601"><a href="#cb1-601"></a><span class="fu">## Shift Amount</span></span>
 <span id="cb1-602"><a href="#cb1-602"></a></span>
 <span id="cb1-603"><a href="#cb1-603"></a>Shift Amount Result</span>
-<span id="cb1-604"><a href="#cb1-604"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0b1101 <span class="pp">|</span>                                    <span class="pp">|</span>            <span class="pp">|</span></span>
-<span id="cb1-605"><a href="#cb1-605"></a><span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ----------------------------------</span> <span class="pp">| ----------</span> <span class="pp">|</span></span>
-<span id="cb1-606"><a href="#cb1-606"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0b1010 <span class="pp">|</span> We need to be able to shift by up  <span class="pp">|</span>            <span class="pp">|</span></span>
-<span id="cb1-607"><a href="#cb1-607"></a><span class="pp">|</span> 2   <span class="pp">|</span> 0b0100 <span class="pp">|</span>                                    <span class="pp">|</span> to 3 bits. <span class="pp">|</span></span>
-<span id="cb1-608"><a href="#cb1-608"></a><span class="pp">|</span> 3   <span class="pp">|</span> 0b1000 <span class="pp">|</span>                                    <span class="pp">|</span>            <span class="pp">|</span></span>
+<span id="cb1-604"><a href="#cb1-604"></a>| 0   | 0b1101 |                                    |            |</span>
+<span id="cb1-605"><a href="#cb1-605"></a>| --- | ------ | ---------------------------------- | ---------- |</span>
+<span id="cb1-606"><a href="#cb1-606"></a>| 1   | 0b1010 | We need to be able to shift by up  |            |</span>
+<span id="cb1-607"><a href="#cb1-607"></a>| 2   | 0b0100 |                                    | to 3 bits. |</span>
+<span id="cb1-608"><a href="#cb1-608"></a>| 3   | 0b1000 |                                    |            |</span>
 <span id="cb1-609"><a href="#cb1-609"></a>To represent the numbers 0-3,</span>
-<span id="cb1-610"><a href="#cb1-610"></a><span class="pp">|</span> 4   <span class="pp">|</span> 0b0000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-611"><a href="#cb1-611"></a><span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-610"><a href="#cb1-610"></a>| 4   | 0b0000 |     |     |</span>
+<span id="cb1-611"><a href="#cb1-611"></a>| --- | ------ | --- | --- |</span>
 <span id="cb1-612"><a href="#cb1-612"></a>we need 2 bits.</span>
-<span id="cb1-613"><a href="#cb1-613"></a><span class="pp">|</span> 5   <span class="pp">|</span> 0b0000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-614"><a href="#cb1-614"></a><span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-615"><a href="#cb1-615"></a><span class="pp">|</span> 6   <span class="pp">|</span> 0b0000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-616"><a href="#cb1-616"></a><span class="pp">|</span> 7   <span class="pp">|</span> 0b0000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-617"><a href="#cb1-617"></a><span class="pp">|</span> 8   <span class="pp">|</span> 0b0000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-613"><a href="#cb1-613"></a>| 5   | 0b0000 |     |     |</span>
+<span id="cb1-614"><a href="#cb1-614"></a>| --- | ------ | --- | --- |</span>
+<span id="cb1-615"><a href="#cb1-615"></a>| 6   | 0b0000 |     |     |</span>
+<span id="cb1-616"><a href="#cb1-616"></a>| 7   | 0b0000 |     |     |</span>
+<span id="cb1-617"><a href="#cb1-617"></a>| 8   | 0b0000 |     |     |</span>
 <span id="cb1-618"><a href="#cb1-618"></a></span>
 <span id="cb1-619"><a href="#cb1-619"></a><span class="fu">## Shift Amount</span></span>
 <span id="cb1-620"><a href="#cb1-620"></a></span>
-<span id="cb1-621"><a href="#cb1-621"></a><span class="pp">|</span> Shift Amount <span class="pp">|</span>     <span class="pp">|</span> Result  <span class="pp">|</span> We need to be able to shift by up  <span class="pp">|</span>            <span class="pp">|</span></span>
-<span id="cb1-622"><a href="#cb1-622"></a><span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ----------------------------------</span> <span class="pp">| ----------</span> <span class="pp">|</span></span>
-<span id="cb1-623"><a href="#cb1-623"></a><span class="pp">|</span>              <span class="pp">|</span> 0   <span class="pp">|</span> 0b10101 <span class="pp">|</span>                                    <span class="pp">|</span> to 4 bits. <span class="pp">|</span></span>
-<span id="cb1-624"><a href="#cb1-624"></a><span class="pp">|</span>              <span class="pp">|</span> 1   <span class="pp">|</span> 0b01010 <span class="pp">|</span>                                    <span class="pp">|</span>            <span class="pp">|</span></span>
+<span id="cb1-621"><a href="#cb1-621"></a>| Shift Amount |     | Result  | We need to be able to shift by up  |            |</span>
+<span id="cb1-622"><a href="#cb1-622"></a>| ------------ | --- | ------- | ---------------------------------- | ---------- |</span>
+<span id="cb1-623"><a href="#cb1-623"></a>|              | 0   | 0b10101 |                                    | to 4 bits. |</span>
+<span id="cb1-624"><a href="#cb1-624"></a>|              | 1   | 0b01010 |                                    |            |</span>
 <span id="cb1-625"><a href="#cb1-625"></a>To represent the numbers 0-4,</span>
-<span id="cb1-626"><a href="#cb1-626"></a><span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 0b10100 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-627"><a href="#cb1-627"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-626"><a href="#cb1-626"></a>|     | 2   | 0b10100 |     |     |</span>
+<span id="cb1-627"><a href="#cb1-627"></a>| --- | --- | ------- | --- | --- |</span>
 <span id="cb1-628"><a href="#cb1-628"></a>we need 3 bits.</span>
-<span id="cb1-629"><a href="#cb1-629"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span> 0b01000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-630"><a href="#cb1-630"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-631"><a href="#cb1-631"></a><span class="pp">|</span>     <span class="pp">|</span> 4   <span class="pp">|</span> 0b10000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-632"><a href="#cb1-632"></a><span class="pp">|</span>     <span class="pp">|</span> 5   <span class="pp">|</span> 0b00000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-629"><a href="#cb1-629"></a>|     | 3   | 0b01000 |     |     |</span>
+<span id="cb1-630"><a href="#cb1-630"></a>| --- | --- | ------- | --- | --- |</span>
+<span id="cb1-631"><a href="#cb1-631"></a>|     | 4   | 0b10000 |     |     |</span>
+<span id="cb1-632"><a href="#cb1-632"></a>|     | 5   | 0b00000 |     |     |</span>
 <span id="cb1-633"><a href="#cb1-633"></a>For an n-bit number, need</span>
-<span id="cb1-634"><a href="#cb1-634"></a><span class="pp">|</span>     <span class="pp">|</span> 6   <span class="pp">|</span> 0b00000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-635"><a href="#cb1-635"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-634"><a href="#cb1-634"></a>|     | 6   | 0b00000 |     |     |</span>
+<span id="cb1-635"><a href="#cb1-635"></a>| --- | --- | ------- | --- | --- |</span>
 <span id="cb1-636"><a href="#cb1-636"></a>ceil(log n) bits for the shift</span>
 <span id="cb1-637"><a href="#cb1-637"></a>2</span>
-<span id="cb1-638"><a href="#cb1-638"></a><span class="pp">|</span>     <span class="pp">|</span> 7   <span class="pp">|</span> 0b00000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-639"><a href="#cb1-639"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-638"><a href="#cb1-638"></a>|     | 7   | 0b00000 |     |     |</span>
+<span id="cb1-639"><a href="#cb1-639"></a>| --- | --- | ------- | --- | --- |</span>
 <span id="cb1-640"><a href="#cb1-640"></a>amount</span>
-<span id="cb1-641"><a href="#cb1-641"></a><span class="pp">|</span>     <span class="pp">|</span> 8   <span class="pp">|</span> 0b00000 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-642"><a href="#cb1-642"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-641"><a href="#cb1-641"></a>|     | 8   | 0b00000 |     |     |</span>
+<span id="cb1-642"><a href="#cb1-642"></a>| --- | --- | ------- | --- | --- |</span>
 <span id="cb1-643"><a href="#cb1-643"></a></span>
 <span id="cb1-644"><a href="#cb1-644"></a><span class="fu">## Left Shift</span></span>
 <span id="cb1-645"><a href="#cb1-645"></a></span>
@@ -3144,20 +3142,20 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-658"><a href="#cb1-658"></a><span class="fu">## Left Shift</span></span>
 <span id="cb1-659"><a href="#cb1-659"></a></span>
 <span id="cb1-660"><a href="#cb1-660"></a>Output Value</span>
-<span id="cb1-661"><a href="#cb1-661"></a><span class="pp">|</span>     <span class="pp">|</span> Y   <span class="pp">|</span> Y   <span class="pp">|</span> Y   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-662"><a href="#cb1-662"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-663"><a href="#cb1-663"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span> 2   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-664"><a href="#cb1-664"></a><span class="pp">|</span> 0   <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span></span>
-<span id="cb1-665"><a href="#cb1-665"></a><span class="pp">|</span>     <span class="pp">|</span> 3   <span class="pp">|</span> 2   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-661"><a href="#cb1-661"></a>|     | Y   | Y   | Y   | Y   |</span>
+<span id="cb1-662"><a href="#cb1-662"></a>| --- | --- | --- | --- | --- |</span>
+<span id="cb1-663"><a href="#cb1-663"></a>|     | 3   | 2   | 1   | 0   |</span>
+<span id="cb1-664"><a href="#cb1-664"></a>| 0   | A   | A   | A   | A   |</span>
+<span id="cb1-665"><a href="#cb1-665"></a>|     | 3   | 2   | 1   | 0   |</span>
 <span id="cb1-666"><a href="#cb1-666"></a>Shift</span>
-<span id="cb1-667"><a href="#cb1-667"></a><span class="pp">|</span> 1   <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-668"><a href="#cb1-668"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-669"><a href="#cb1-669"></a><span class="pp">|</span>     <span class="pp">|</span> 2   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-667"><a href="#cb1-667"></a>| 1   | A   | A   | A   | 0   |</span>
+<span id="cb1-668"><a href="#cb1-668"></a>| --- | --- | --- | --- | --- |</span>
+<span id="cb1-669"><a href="#cb1-669"></a>|     | 2   | 1   | 0   |     |</span>
 <span id="cb1-670"><a href="#cb1-670"></a>Amount</span>
-<span id="cb1-671"><a href="#cb1-671"></a><span class="pp">|</span> 2   <span class="pp">|</span> A   <span class="pp">|</span> A   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-672"><a href="#cb1-672"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-673"><a href="#cb1-673"></a><span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-674"><a href="#cb1-674"></a><span class="pp">|</span> 3   <span class="pp">|</span> A   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-671"><a href="#cb1-671"></a>| 2   | A   | A   | 0   | 0   |</span>
+<span id="cb1-672"><a href="#cb1-672"></a>| --- | --- | --- | --- | --- |</span>
+<span id="cb1-673"><a href="#cb1-673"></a>|     | 1   | 0   |     |     |</span>
+<span id="cb1-674"><a href="#cb1-674"></a>| 3   | A   | 0   | 0   | 0   |</span>
 <span id="cb1-675"><a href="#cb1-675"></a>0</span>
 <span id="cb1-676"><a href="#cb1-676"></a></span>
 <span id="cb1-677"><a href="#cb1-677"></a><span class="fu">## Left Shift</span></span>
@@ -3172,36 +3170,36 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-686"><a href="#cb1-686"></a></span>
 <span id="cb1-687"><a href="#cb1-687"></a><span class="fu">## | R-T | YPE &amp; I-T | YPE  |</span></span>
 <span id="cb1-688"><a href="#cb1-688"></a></span>
-<span id="cb1-689"><a href="#cb1-689"></a><span class="pp">| ---</span> <span class="pp">| ---------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-689"><a href="#cb1-689"></a>| --- | --------- | ---- |</span>
 <span id="cb1-690"><a href="#cb1-690"></a>INSTRUCTIONS</span>
 <span id="cb1-691"><a href="#cb1-691"></a></span>
 <span id="cb1-692"><a href="#cb1-692"></a><span class="fu">## What is the course about?</span></span>
 <span id="cb1-693"><a href="#cb1-693"></a></span>
-<span id="cb1-694"><a href="#cb1-694"></a><span class="pp">|</span> High-level programming  <span class="pp">|</span>     <span class="pp">|</span> Assembly <span class="pp">|</span>     <span class="pp">|</span> Machine code <span class="pp">|</span></span>
-<span id="cb1-695"><a href="#cb1-695"></a><span class="pp">| -----------------------</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">|</span></span>
+<span id="cb1-694"><a href="#cb1-694"></a>| High-level programming  |     | Assembly |     | Machine code |</span>
+<span id="cb1-695"><a href="#cb1-695"></a>| ----------------------- | --- | -------- | --- | ------------ |</span>
 <span id="cb1-696"><a href="#cb1-696"></a>languages Low-level languages</span>
 <span id="cb1-697"><a href="#cb1-697"></a>0000000 01011 01010</span>
 <span id="cb1-698"><a href="#cb1-698"></a>000 01010 0110011</span>
 <span id="cb1-699"><a href="#cb1-699"></a>// High-level (C)</span>
 <span id="cb1-700"><a href="#cb1-700"></a><span class="fu"># Matching RISC-V assembly</span></span>
 <span id="cb1-701"><a href="#cb1-701"></a>int add3(int a, int b)</span>
-<span id="cb1-702"><a href="#cb1-702"></a><span class="pp">|</span>     <span class="pp">|</span> # a0 = a, a1 = b;  <span class="pp">|</span>     <span class="pp">|</span> return in a0 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-703"><a href="#cb1-703"></a><span class="pp">| ---</span> <span class="pp">| ------------------</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-702"><a href="#cb1-702"></a>|     | # a0 = a, a1 = b;  |     | return in a0 |     |</span>
+<span id="cb1-703"><a href="#cb1-703"></a>| --- | ------------------ | --- | ------------ | --- |</span>
 <span id="cb1-704"><a href="#cb1-704"></a>000000000011 01010</span>
 <span id="cb1-705"><a href="#cb1-705"></a>{</span>
 <span id="cb1-706"><a href="#cb1-706"></a>return a + b + 3; 000 01010 0010011</span>
-<span id="cb1-707"><a href="#cb1-707"></a><span class="pp">|</span>     <span class="pp">|</span> add   a0, a0, a1  <span class="pp">|</span>     <span class="pp">|</span> # a0 = a0 + a1  <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-708"><a href="#cb1-708"></a><span class="pp">| ---</span> <span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-707"><a href="#cb1-707"></a>|     | add   a0, a0, a1  |     | # a0 = a0 + a1  |     |</span>
+<span id="cb1-708"><a href="#cb1-708"></a>| --- | ----------------- | --- | --------------- | --- |</span>
 <span id="cb1-709"><a href="#cb1-709"></a>}</span>
-<span id="cb1-710"><a href="#cb1-710"></a><span class="pp">|</span>     <span class="pp">|</span> addi <span class="pp">|</span> a0, a0, 3  <span class="pp">|</span> # a0 = a0 + 3 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-711"><a href="#cb1-711"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ----------</span> <span class="pp">| -------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-710"><a href="#cb1-710"></a>|     | addi | a0, a0, 3  | # a0 = a0 + 3 |     |</span>
+<span id="cb1-711"><a href="#cb1-711"></a>| --- | ---- | ---------- | ------------- | --- |</span>
 <span id="cb1-712"><a href="#cb1-712"></a>000000000000 00001</span>
-<span id="cb1-713"><a href="#cb1-713"></a><span class="pp">|</span>     <span class="pp">|</span> ret   <span class="pp">|</span>     <span class="pp">|</span> # return <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-714"><a href="#cb1-714"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-713"><a href="#cb1-713"></a>|     | ret   |     | # return |     |</span>
+<span id="cb1-714"><a href="#cb1-714"></a>| --- | ----- | --- | -------- | --- |</span>
 <span id="cb1-715"><a href="#cb1-715"></a>000 00000 1100111</span>
 <span id="cb1-716"><a href="#cb1-716"></a>Easy for humans to</span>
-<span id="cb1-717"><a href="#cb1-717"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Human readable <span class="pp">|</span>     <span class="pp">|</span> Machine-readable <span class="pp">|</span></span>
-<span id="cb1-718"><a href="#cb1-718"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------------</span> <span class="pp">| ---</span> <span class="pp">| ----------------</span> <span class="pp">|</span></span>
+<span id="cb1-717"><a href="#cb1-717"></a>|     |     | Human readable |     | Machine-readable |</span>
+<span id="cb1-718"><a href="#cb1-718"></a>| --- | --- | -------------- | --- | ---------------- |</span>
 <span id="cb1-719"><a href="#cb1-719"></a>read/write</span>
 <span id="cb1-720"><a href="#cb1-720"></a></span>
 <span id="cb1-721"><a href="#cb1-721"></a><span class="fu">## Square in different assembly languages</span></span>
@@ -3224,8 +3222,8 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-738"><a href="#cb1-738"></a></span>
 <span id="cb1-739"><a href="#cb1-739"></a><span class="fu">## Square in different assembly languages</span></span>
 <span id="cb1-740"><a href="#cb1-740"></a></span>
-<span id="cb1-741"><a href="#cb1-741"></a><span class="pp">|</span> MIPS <span class="pp">|</span> x86 <span class="pp">|</span> ARM <span class="pp">|</span></span>
-<span id="cb1-742"><a href="#cb1-742"></a><span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-741"><a href="#cb1-741"></a>| MIPS | x86 | ARM |</span>
+<span id="cb1-742"><a href="#cb1-742"></a>| ---- | --- | --- |</span>
 <span id="cb1-743"><a href="#cb1-743"></a></span>
 <span id="cb1-744"><a href="#cb1-744"></a><span class="fu">## Instruction Set Architecture (ISA)</span></span>
 <span id="cb1-745"><a href="#cb1-745"></a></span>
@@ -3294,17 +3292,17 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-808"><a href="#cb1-808"></a>of the operation, usually one of the 32 registers</span>
 <span id="cb1-809"><a href="#cb1-809"></a>● Embedded constants (“immediate” values) of various sizes,</span>
 <span id="cb1-810"><a href="#cb1-810"></a>The basic data-processing instruction formats:</span>
-<span id="cb1-811"><a href="#cb1-811"></a><span class="pp">|</span> 31 30 29 <span class="pp">|</span> 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
-<span id="cb1-812"><a href="#cb1-812"></a><span class="pp">| --------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
+<span id="cb1-811"><a href="#cb1-811"></a>| 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 |</span>
+<span id="cb1-812"><a href="#cb1-812"></a>| -------- | ----------- | ----------- | ----------- | ----------- | ---------- | ------- | --------- |</span>
 <span id="cb1-813"><a href="#cb1-813"></a>R-type:</span>
-<span id="cb1-814"><a href="#cb1-814"></a><span class="pp">|</span>          <span class="pp">|</span>             <span class="pp">|</span> rs2         <span class="pp">|</span> rs1         <span class="pp">|</span>             <span class="pp">|</span> rd         <span class="pp">|</span> opcode  <span class="pp">|</span>           <span class="pp">|</span></span>
-<span id="cb1-815"><a href="#cb1-815"></a><span class="pp">| --------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| -----------</span> <span class="pp">| ----------</span> <span class="pp">| -------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
-<span id="cb1-816"><a href="#cb1-816"></a><span class="pp">|</span> func7    <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span>             <span class="pp">|</span> func3       <span class="pp">|</span>            <span class="pp">|</span>         <span class="pp">|</span>           <span class="pp">|</span></span>
-<span id="cb1-817"><a href="#cb1-817"></a><span class="pp">|</span> 31 30 29 <span class="pp">|</span> 28 27 26 25 <span class="pp">|</span> 24 23 22 21 <span class="pp">|</span> 20 19 18 17 <span class="pp">|</span> 16 15 14 13 <span class="pp">|</span> 12 11 10 9 <span class="pp">|</span> 8 7 6 5 <span class="pp">|</span> 4 3 2 1 0 <span class="pp">|</span></span>
+<span id="cb1-814"><a href="#cb1-814"></a>|          |             | rs2         | rs1         |             | rd         | opcode  |           |</span>
+<span id="cb1-815"><a href="#cb1-815"></a>| -------- | ----------- | ----------- | ----------- | ----------- | ---------- | ------- | --------- |</span>
+<span id="cb1-816"><a href="#cb1-816"></a>| func7    |             |             |             | func3       |            |         |           |</span>
+<span id="cb1-817"><a href="#cb1-817"></a>| 31 30 29 | 28 27 26 25 | 24 23 22 21 | 20 19 18 17 | 16 15 14 13 | 12 11 10 9 | 8 7 6 5 | 4 3 2 1 0 |</span>
 <span id="cb1-818"><a href="#cb1-818"></a>I-type:</span>
-<span id="cb1-819"><a href="#cb1-819"></a><span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span> rs1 <span class="pp">|</span>       <span class="pp">|</span> rd  <span class="pp">|</span> opcode <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-820"><a href="#cb1-820"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-821"><a href="#cb1-821"></a><span class="pp">|</span>     <span class="pp">|</span> imm12 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> func3 <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-819"><a href="#cb1-819"></a>|     |       |     | rs1 |       | rd  | opcode |     |</span>
+<span id="cb1-820"><a href="#cb1-820"></a>| --- | ----- | --- | --- | ----- | --- | ------ | --- |</span>
+<span id="cb1-821"><a href="#cb1-821"></a>|     | imm12 |     |     | func3 |     |        |     |</span>
 <span id="cb1-822"><a href="#cb1-822"></a></span>
 <span id="cb1-823"><a href="#cb1-823"></a><span class="fu">## Reading Binary</span></span>
 <span id="cb1-824"><a href="#cb1-824"></a></span>
@@ -3320,24 +3318,24 @@ O,0 | | FA | | | FA | | | | | FA | | | FA | | — | — | — | — | — | — 
 <span id="cb1-834"><a href="#cb1-834"></a></span>
 <span id="cb1-835"><a href="#cb1-835"></a><span class="fu">## r1 = r2 + r3; add x1, x3, x2</span></span>
 <span id="cb1-836"><a href="#cb1-836"></a></span>
-<span id="cb1-837"><a href="#cb1-837"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-838"><a href="#cb1-838"></a><span class="pp">| ------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -----</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-839"><a href="#cb1-839"></a><span class="pp">|</span> funct7 <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>       <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-840"><a href="#cb1-840"></a><span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-841"><a href="#cb1-841"></a><span class="pp">|</span> 31     <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12 11 <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>        <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-837"><a href="#cb1-837"></a>|        |       | source     |       | source     |       |        |       | destination  |     |        |     |</span>
+<span id="cb1-838"><a href="#cb1-838"></a>| ------ | ----- | ---------- | ----- | ---------- | ----- | ------ | ----- | ------------ | --- | ------ | --- |</span>
+<span id="cb1-839"><a href="#cb1-839"></a>| funct7 |       |            |       |            |       | funct3 |       |              |     | opcode |     |</span>
+<span id="cb1-840"><a href="#cb1-840"></a>|        |       | register 2 |       | register 1 |       |        |       | register     |     |        |     |</span>
+<span id="cb1-841"><a href="#cb1-841"></a>| 31     | 25 24 |            | 20 19 |            | 15 14 |        | 12 11 |              | 7 6 |        | 0   |</span>
 <span id="cb1-842"><a href="#cb1-842"></a></span>
 <span id="cb1-843"><a href="#cb1-843"></a><span class="fu">## r1 = r2 + r3; add x3, x2, x1</span></span>
 <span id="cb1-844"><a href="#cb1-844"></a></span>
-<span id="cb1-845"><a href="#cb1-845"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span> source     <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> destination  <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-846"><a href="#cb1-846"></a><span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -----</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-847"><a href="#cb1-847"></a><span class="pp">|</span> funct7  <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span>            <span class="pp">|</span>       <span class="pp">|</span> funct3 <span class="pp">|</span>       <span class="pp">|</span>              <span class="pp">|</span>     <span class="pp">|</span> opcode  <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-848"><a href="#cb1-848"></a><span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span> register 2 <span class="pp">|</span>       <span class="pp">|</span> register 1 <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>       <span class="pp">|</span> register     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-849"><a href="#cb1-849"></a><span class="pp">|</span> 0000000 <span class="pp">|</span>       <span class="pp">|</span> 00011      <span class="pp">|</span>       <span class="pp">|</span> 00010      <span class="pp">|</span>       <span class="pp">|</span> 000    <span class="pp">|</span>       <span class="pp">|</span> 00001        <span class="pp">|</span>     <span class="pp">|</span> 0110011 <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-850"><a href="#cb1-850"></a><span class="pp">|</span> 31      <span class="pp">|</span> 25 24 <span class="pp">|</span>            <span class="pp">|</span> 20 19 <span class="pp">|</span>            <span class="pp">|</span> 15 14 <span class="pp">|</span>        <span class="pp">|</span> 12 11 <span class="pp">|</span>              <span class="pp">|</span> 7 6 <span class="pp">|</span>         <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-845"><a href="#cb1-845"></a>|         |       | source     |       | source     |       |        |       | destination  |     |         |     |</span>
+<span id="cb1-846"><a href="#cb1-846"></a>| ------- | ----- | ---------- | ----- | ---------- | ----- | ------ | ----- | ------------ | --- | ------- | --- |</span>
+<span id="cb1-847"><a href="#cb1-847"></a>| funct7  |       |            |       |            |       | funct3 |       |              |     | opcode  |     |</span>
+<span id="cb1-848"><a href="#cb1-848"></a>|         |       | register 2 |       | register 1 |       |        |       | register     |     |         |     |</span>
+<span id="cb1-849"><a href="#cb1-849"></a>| 0000000 |       | 00011      |       | 00010      |       | 000    |       | 00001        |     | 0110011 |     |</span>
+<span id="cb1-850"><a href="#cb1-850"></a>| 31      | 25 24 |            | 20 19 |            | 15 14 |        | 12 11 |              | 7 6 |         | 0   |</span>
 <span id="cb1-851"><a href="#cb1-851"></a>00000000001100010000000010110011</span>
 <span id="cb1-852"><a href="#cb1-852"></a>Opcode is always 0110011 for integer R-type ALU instructions</span>
 <span id="cb1-853"><a href="#cb1-853"></a>funct3 is always the primary operation code group (e.g. 000 = add/sub. 100 = xor, 111 = and)</span>
-<span id="cb1-854"><a href="#cb1-854"></a>funct7 is used to further specify the operation (e.g. distinguishes add vs. sub. srl vs. sra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-854"><a href="#cb1-854"></a>funct7 is used to further specify the operation (e.g. distinguishes add vs. sub. srl vs. sra)</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

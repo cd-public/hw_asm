@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Gates – Systems in C</title>
+<title>Gates – HW &amp; asm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,9 +21,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,17 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./21.html" rel="next">
 <link href="./11.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-40a160e28a8c0a8ad2fc184c8ba4238c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b21cd3d7a06200bb4af90b976216a8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -132,8 +129,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">HW &amp; asm</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -292,23 +290,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Old</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -1895,294 +1876,287 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2190,161 +2164,185 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./11.html" class="pagination-link" aria-label="Transistors">
@@ -2357,7 +2355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> Gates </span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="an">subtitle:</span><span class="co"> "w2d0"</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">---</span></span>
@@ -2496,74 +2494,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-137"><a href="#cb1-137"></a></span>
 <span id="cb1-138"><a href="#cb1-138"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb1-139"><a href="#cb1-139"></a></span>
-<span id="cb1-140"><a href="#cb1-140"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-141"><a href="#cb1-141"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-142"><a href="#cb1-142"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-143"><a href="#cb1-143"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-144"><a href="#cb1-144"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-145"><a href="#cb1-145"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-140"><a href="#cb1-140"></a>| A   | B   | Y   |</span>
+<span id="cb1-141"><a href="#cb1-141"></a>| --- | --- | --- |</span>
+<span id="cb1-142"><a href="#cb1-142"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-143"><a href="#cb1-143"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-144"><a href="#cb1-144"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-145"><a href="#cb1-145"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-146"><a href="#cb1-146"></a></span>
 <span id="cb1-147"><a href="#cb1-147"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb1-148"><a href="#cb1-148"></a></span>
-<span id="cb1-149"><a href="#cb1-149"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-150"><a href="#cb1-150"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-151"><a href="#cb1-151"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-152"><a href="#cb1-152"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-153"><a href="#cb1-153"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-154"><a href="#cb1-154"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-149"><a href="#cb1-149"></a>| A   | B   | Y   |</span>
+<span id="cb1-150"><a href="#cb1-150"></a>| --- | --- | --- |</span>
+<span id="cb1-151"><a href="#cb1-151"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-152"><a href="#cb1-152"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-153"><a href="#cb1-153"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-154"><a href="#cb1-154"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-155"><a href="#cb1-155"></a></span>
 <span id="cb1-156"><a href="#cb1-156"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb1-157"><a href="#cb1-157"></a></span>
-<span id="cb1-158"><a href="#cb1-158"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-159"><a href="#cb1-159"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-158"><a href="#cb1-158"></a>| A   | B   | Y   |     |</span>
+<span id="cb1-159"><a href="#cb1-159"></a>| --- | --- | --- | --- |</span>
 <span id="cb1-160"><a href="#cb1-160"></a>pull-up network</span>
-<span id="cb1-161"><a href="#cb1-161"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>                   <span class="pp">|</span></span>
-<span id="cb1-162"><a href="#cb1-162"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----------------</span> <span class="pp">|</span></span>
-<span id="cb1-163"><a href="#cb1-163"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>                   <span class="pp">|</span></span>
-<span id="cb1-164"><a href="#cb1-164"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> pull-down network <span class="pp">|</span></span>
-<span id="cb1-165"><a href="#cb1-165"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>                   <span class="pp">|</span></span>
+<span id="cb1-161"><a href="#cb1-161"></a>| 0   | 0   | 1   |                   |</span>
+<span id="cb1-162"><a href="#cb1-162"></a>| --- | --- | --- | ----------------- |</span>
+<span id="cb1-163"><a href="#cb1-163"></a>| 0   | 1   | 0   |                   |</span>
+<span id="cb1-164"><a href="#cb1-164"></a>| 1   | 0   | 0   | pull-down network |</span>
+<span id="cb1-165"><a href="#cb1-165"></a>| 1   | 1   | 0   |                   |</span>
 <span id="cb1-166"><a href="#cb1-166"></a></span>
 <span id="cb1-167"><a href="#cb1-167"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb1-168"><a href="#cb1-168"></a></span>
-<span id="cb1-169"><a href="#cb1-169"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-170"><a href="#cb1-170"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-171"><a href="#cb1-171"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-172"><a href="#cb1-172"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-173"><a href="#cb1-173"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-174"><a href="#cb1-174"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-169"><a href="#cb1-169"></a>| A   | B   | Y   |</span>
+<span id="cb1-170"><a href="#cb1-170"></a>| --- | --- | --- |</span>
+<span id="cb1-171"><a href="#cb1-171"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-172"><a href="#cb1-172"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-173"><a href="#cb1-173"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-174"><a href="#cb1-174"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-175"><a href="#cb1-175"></a>both pMOS on,</span>
 <span id="cb1-176"><a href="#cb1-176"></a>output pulled up</span>
 <span id="cb1-177"><a href="#cb1-177"></a></span>
 <span id="cb1-178"><a href="#cb1-178"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb1-179"><a href="#cb1-179"></a></span>
-<span id="cb1-180"><a href="#cb1-180"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-181"><a href="#cb1-181"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-182"><a href="#cb1-182"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-183"><a href="#cb1-183"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-184"><a href="#cb1-184"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-185"><a href="#cb1-185"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-180"><a href="#cb1-180"></a>| A   | B   | Y   |</span>
+<span id="cb1-181"><a href="#cb1-181"></a>| --- | --- | --- |</span>
+<span id="cb1-182"><a href="#cb1-182"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-183"><a href="#cb1-183"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-184"><a href="#cb1-184"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-185"><a href="#cb1-185"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-186"><a href="#cb1-186"></a>B’s nMOS on,</span>
 <span id="cb1-187"><a href="#cb1-187"></a>pulls down</span>
 <span id="cb1-188"><a href="#cb1-188"></a></span>
 <span id="cb1-189"><a href="#cb1-189"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb1-190"><a href="#cb1-190"></a></span>
-<span id="cb1-191"><a href="#cb1-191"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-192"><a href="#cb1-192"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-193"><a href="#cb1-193"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-194"><a href="#cb1-194"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-195"><a href="#cb1-195"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-196"><a href="#cb1-196"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-191"><a href="#cb1-191"></a>| A   | B   | Y   |</span>
+<span id="cb1-192"><a href="#cb1-192"></a>| --- | --- | --- |</span>
+<span id="cb1-193"><a href="#cb1-193"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-194"><a href="#cb1-194"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-195"><a href="#cb1-195"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-196"><a href="#cb1-196"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-197"><a href="#cb1-197"></a>A’s nMOS on,</span>
 <span id="cb1-198"><a href="#cb1-198"></a>pulls down</span>
 <span id="cb1-199"><a href="#cb1-199"></a></span>
 <span id="cb1-200"><a href="#cb1-200"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb1-201"><a href="#cb1-201"></a></span>
-<span id="cb1-202"><a href="#cb1-202"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-203"><a href="#cb1-203"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-204"><a href="#cb1-204"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-205"><a href="#cb1-205"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-206"><a href="#cb1-206"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-207"><a href="#cb1-207"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-202"><a href="#cb1-202"></a>| A   | B   | Y   |</span>
+<span id="cb1-203"><a href="#cb1-203"></a>| --- | --- | --- |</span>
+<span id="cb1-204"><a href="#cb1-204"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-205"><a href="#cb1-205"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-206"><a href="#cb1-206"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-207"><a href="#cb1-207"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-208"><a href="#cb1-208"></a>both nMOS on,</span>
 <span id="cb1-209"><a href="#cb1-209"></a>strong pull down</span>
 <span id="cb1-210"><a href="#cb1-210"></a></span>
@@ -2572,65 +2570,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-213"><a href="#cb1-213"></a></span>
 <span id="cb1-214"><a href="#cb1-214"></a><span class="fu">## CMOS NAND</span></span>
 <span id="cb1-215"><a href="#cb1-215"></a></span>
-<span id="cb1-216"><a href="#cb1-216"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-217"><a href="#cb1-217"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-218"><a href="#cb1-218"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-219"><a href="#cb1-219"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-220"><a href="#cb1-220"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-221"><a href="#cb1-221"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-216"><a href="#cb1-216"></a>| A   | B   | Y   |</span>
+<span id="cb1-217"><a href="#cb1-217"></a>| --- | --- | --- |</span>
+<span id="cb1-218"><a href="#cb1-218"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-219"><a href="#cb1-219"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-220"><a href="#cb1-220"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-221"><a href="#cb1-221"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-222"><a href="#cb1-222"></a></span>
 <span id="cb1-223"><a href="#cb1-223"></a><span class="fu">## CMOS NAND</span></span>
 <span id="cb1-224"><a href="#cb1-224"></a></span>
-<span id="cb1-225"><a href="#cb1-225"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-226"><a href="#cb1-226"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-227"><a href="#cb1-227"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-228"><a href="#cb1-228"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-229"><a href="#cb1-229"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-230"><a href="#cb1-230"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-225"><a href="#cb1-225"></a>| A   | B   | Y   |</span>
+<span id="cb1-226"><a href="#cb1-226"></a>| --- | --- | --- |</span>
+<span id="cb1-227"><a href="#cb1-227"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-228"><a href="#cb1-228"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-229"><a href="#cb1-229"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-230"><a href="#cb1-230"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-231"><a href="#cb1-231"></a></span>
 <span id="cb1-232"><a href="#cb1-232"></a><span class="fu">## CMOS NAND</span></span>
 <span id="cb1-233"><a href="#cb1-233"></a></span>
-<span id="cb1-234"><a href="#cb1-234"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-235"><a href="#cb1-235"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-236"><a href="#cb1-236"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-237"><a href="#cb1-237"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-238"><a href="#cb1-238"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-239"><a href="#cb1-239"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-234"><a href="#cb1-234"></a>| A   | B   | Y   |</span>
+<span id="cb1-235"><a href="#cb1-235"></a>| --- | --- | --- |</span>
+<span id="cb1-236"><a href="#cb1-236"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-237"><a href="#cb1-237"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-238"><a href="#cb1-238"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-239"><a href="#cb1-239"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-240"><a href="#cb1-240"></a>both pMOS on,</span>
 <span id="cb1-241"><a href="#cb1-241"></a>pull-up works</span>
 <span id="cb1-242"><a href="#cb1-242"></a></span>
 <span id="cb1-243"><a href="#cb1-243"></a><span class="fu">## CMOS NAND</span></span>
 <span id="cb1-244"><a href="#cb1-244"></a></span>
-<span id="cb1-245"><a href="#cb1-245"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-246"><a href="#cb1-246"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-247"><a href="#cb1-247"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-248"><a href="#cb1-248"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-249"><a href="#cb1-249"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-250"><a href="#cb1-250"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-245"><a href="#cb1-245"></a>| A   | B   | Y   |</span>
+<span id="cb1-246"><a href="#cb1-246"></a>| --- | --- | --- |</span>
+<span id="cb1-247"><a href="#cb1-247"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-248"><a href="#cb1-248"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-249"><a href="#cb1-249"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-250"><a href="#cb1-250"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-251"><a href="#cb1-251"></a>A’s pMOS still</span>
 <span id="cb1-252"><a href="#cb1-252"></a>on, output</span>
 <span id="cb1-253"><a href="#cb1-253"></a>pulled high</span>
 <span id="cb1-254"><a href="#cb1-254"></a></span>
 <span id="cb1-255"><a href="#cb1-255"></a><span class="fu">## CMOS NAND</span></span>
 <span id="cb1-256"><a href="#cb1-256"></a></span>
-<span id="cb1-257"><a href="#cb1-257"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-258"><a href="#cb1-258"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-259"><a href="#cb1-259"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-260"><a href="#cb1-260"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-261"><a href="#cb1-261"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-262"><a href="#cb1-262"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-257"><a href="#cb1-257"></a>| A   | B   | Y   |</span>
+<span id="cb1-258"><a href="#cb1-258"></a>| --- | --- | --- |</span>
+<span id="cb1-259"><a href="#cb1-259"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-260"><a href="#cb1-260"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-261"><a href="#cb1-261"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-262"><a href="#cb1-262"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-263"><a href="#cb1-263"></a>B’s pMOS still</span>
 <span id="cb1-264"><a href="#cb1-264"></a>on, output</span>
 <span id="cb1-265"><a href="#cb1-265"></a>pulled high</span>
 <span id="cb1-266"><a href="#cb1-266"></a></span>
 <span id="cb1-267"><a href="#cb1-267"></a><span class="fu">## CMOS NAND</span></span>
 <span id="cb1-268"><a href="#cb1-268"></a></span>
-<span id="cb1-269"><a href="#cb1-269"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-270"><a href="#cb1-270"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-271"><a href="#cb1-271"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-272"><a href="#cb1-272"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-273"><a href="#cb1-273"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-274"><a href="#cb1-274"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-269"><a href="#cb1-269"></a>| A   | B   | Y   |</span>
+<span id="cb1-270"><a href="#cb1-270"></a>| --- | --- | --- |</span>
+<span id="cb1-271"><a href="#cb1-271"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-272"><a href="#cb1-272"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-273"><a href="#cb1-273"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-274"><a href="#cb1-274"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-275"><a href="#cb1-275"></a>both pMOS off,</span>
 <span id="cb1-276"><a href="#cb1-276"></a>both nMOS on</span>
 <span id="cb1-277"><a href="#cb1-277"></a>→ path to</span>
@@ -2638,133 +2636,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-279"><a href="#cb1-279"></a></span>
 <span id="cb1-280"><a href="#cb1-280"></a><span class="fu">## CMOS NAND</span></span>
 <span id="cb1-281"><a href="#cb1-281"></a></span>
-<span id="cb1-282"><a href="#cb1-282"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-283"><a href="#cb1-283"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-282"><a href="#cb1-282"></a>| A   | B   | Y   |</span>
+<span id="cb1-283"><a href="#cb1-283"></a>| --- | --- | --- |</span>
 <span id="cb1-284"><a href="#cb1-284"></a>pull-up network</span>
-<span id="cb1-285"><a href="#cb1-285"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-286"><a href="#cb1-286"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-287"><a href="#cb1-287"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-288"><a href="#cb1-288"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-285"><a href="#cb1-285"></a>| 0   | 0   | 1   |</span>
+<span id="cb1-286"><a href="#cb1-286"></a>| --- | --- | --- |</span>
+<span id="cb1-287"><a href="#cb1-287"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-288"><a href="#cb1-288"></a>| 1   | 0   | 1   |</span>
 <span id="cb1-289"><a href="#cb1-289"></a>pull-down network</span>
-<span id="cb1-290"><a href="#cb1-290"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-291"><a href="#cb1-291"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-290"><a href="#cb1-290"></a>| 1   | 1   | 0   |</span>
+<span id="cb1-291"><a href="#cb1-291"></a>| --- | --- | --- |</span>
 <span id="cb1-292"><a href="#cb1-292"></a></span>
 <span id="cb1-293"><a href="#cb1-293"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb1-294"><a href="#cb1-294"></a></span>
 <span id="cb1-295"><a href="#cb1-295"></a></span>
 <span id="cb1-296"><a href="#cb1-296"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb1-297"><a href="#cb1-297"></a></span>
-<span id="cb1-298"><a href="#cb1-298"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-299"><a href="#cb1-299"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-300"><a href="#cb1-300"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-301"><a href="#cb1-301"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-302"><a href="#cb1-302"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-303"><a href="#cb1-303"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-298"><a href="#cb1-298"></a>| A   | B   | Y   |</span>
+<span id="cb1-299"><a href="#cb1-299"></a>| --- | --- | --- |</span>
+<span id="cb1-300"><a href="#cb1-300"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-301"><a href="#cb1-301"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-302"><a href="#cb1-302"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-303"><a href="#cb1-303"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-304"><a href="#cb1-304"></a></span>
 <span id="cb1-305"><a href="#cb1-305"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb1-306"><a href="#cb1-306"></a></span>
-<span id="cb1-307"><a href="#cb1-307"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-308"><a href="#cb1-308"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-309"><a href="#cb1-309"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-310"><a href="#cb1-310"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-311"><a href="#cb1-311"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-312"><a href="#cb1-312"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-307"><a href="#cb1-307"></a>| A   | B   | Y   |</span>
+<span id="cb1-308"><a href="#cb1-308"></a>| --- | --- | --- |</span>
+<span id="cb1-309"><a href="#cb1-309"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-310"><a href="#cb1-310"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-311"><a href="#cb1-311"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-312"><a href="#cb1-312"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-313"><a href="#cb1-313"></a>INVERTER</span>
 <span id="cb1-314"><a href="#cb1-314"></a>NAND</span>
 <span id="cb1-315"><a href="#cb1-315"></a></span>
 <span id="cb1-316"><a href="#cb1-316"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb1-317"><a href="#cb1-317"></a></span>
-<span id="cb1-318"><a href="#cb1-318"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-319"><a href="#cb1-319"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-320"><a href="#cb1-320"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-321"><a href="#cb1-321"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-322"><a href="#cb1-322"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-323"><a href="#cb1-323"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-318"><a href="#cb1-318"></a>| A   | B   | Y   |</span>
+<span id="cb1-319"><a href="#cb1-319"></a>| --- | --- | --- |</span>
+<span id="cb1-320"><a href="#cb1-320"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-321"><a href="#cb1-321"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-322"><a href="#cb1-322"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-323"><a href="#cb1-323"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-324"><a href="#cb1-324"></a></span>
 <span id="cb1-325"><a href="#cb1-325"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb1-326"><a href="#cb1-326"></a></span>
-<span id="cb1-327"><a href="#cb1-327"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-328"><a href="#cb1-328"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-329"><a href="#cb1-329"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-330"><a href="#cb1-330"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-331"><a href="#cb1-331"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-332"><a href="#cb1-332"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-327"><a href="#cb1-327"></a>| A   | B   | Y   |</span>
+<span id="cb1-328"><a href="#cb1-328"></a>| --- | --- | --- |</span>
+<span id="cb1-329"><a href="#cb1-329"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-330"><a href="#cb1-330"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-331"><a href="#cb1-331"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-332"><a href="#cb1-332"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-333"><a href="#cb1-333"></a></span>
 <span id="cb1-334"><a href="#cb1-334"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb1-335"><a href="#cb1-335"></a></span>
-<span id="cb1-336"><a href="#cb1-336"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-337"><a href="#cb1-337"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-338"><a href="#cb1-338"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-339"><a href="#cb1-339"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-340"><a href="#cb1-340"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-341"><a href="#cb1-341"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-336"><a href="#cb1-336"></a>| A   | B   | Y   |</span>
+<span id="cb1-337"><a href="#cb1-337"></a>| --- | --- | --- |</span>
+<span id="cb1-338"><a href="#cb1-338"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-339"><a href="#cb1-339"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-340"><a href="#cb1-340"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-341"><a href="#cb1-341"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-342"><a href="#cb1-342"></a></span>
 <span id="cb1-343"><a href="#cb1-343"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb1-344"><a href="#cb1-344"></a></span>
-<span id="cb1-345"><a href="#cb1-345"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-346"><a href="#cb1-346"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-347"><a href="#cb1-347"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-348"><a href="#cb1-348"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-349"><a href="#cb1-349"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-350"><a href="#cb1-350"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-345"><a href="#cb1-345"></a>| A   | B   | Y   |</span>
+<span id="cb1-346"><a href="#cb1-346"></a>| --- | --- | --- |</span>
+<span id="cb1-347"><a href="#cb1-347"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-348"><a href="#cb1-348"></a>| 0   | 1   | 0   |</span>
+<span id="cb1-349"><a href="#cb1-349"></a>| 1   | 0   | 0   |</span>
+<span id="cb1-350"><a href="#cb1-350"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-351"><a href="#cb1-351"></a></span>
 <span id="cb1-352"><a href="#cb1-352"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb1-353"><a href="#cb1-353"></a></span>
 <span id="cb1-354"><a href="#cb1-354"></a></span>
 <span id="cb1-355"><a href="#cb1-355"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb1-356"><a href="#cb1-356"></a></span>
-<span id="cb1-357"><a href="#cb1-357"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-358"><a href="#cb1-358"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-359"><a href="#cb1-359"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-360"><a href="#cb1-360"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-361"><a href="#cb1-361"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-362"><a href="#cb1-362"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-357"><a href="#cb1-357"></a>| A   | B   | Y   |</span>
+<span id="cb1-358"><a href="#cb1-358"></a>| --- | --- | --- |</span>
+<span id="cb1-359"><a href="#cb1-359"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-360"><a href="#cb1-360"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-361"><a href="#cb1-361"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-362"><a href="#cb1-362"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-363"><a href="#cb1-363"></a></span>
 <span id="cb1-364"><a href="#cb1-364"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb1-365"><a href="#cb1-365"></a></span>
-<span id="cb1-366"><a href="#cb1-366"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-367"><a href="#cb1-367"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-368"><a href="#cb1-368"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-369"><a href="#cb1-369"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-370"><a href="#cb1-370"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-371"><a href="#cb1-371"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-366"><a href="#cb1-366"></a>| A   | B   | Y   |</span>
+<span id="cb1-367"><a href="#cb1-367"></a>| --- | --- | --- |</span>
+<span id="cb1-368"><a href="#cb1-368"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-369"><a href="#cb1-369"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-370"><a href="#cb1-370"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-371"><a href="#cb1-371"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-372"><a href="#cb1-372"></a>NOR INVERTER</span>
 <span id="cb1-373"><a href="#cb1-373"></a></span>
 <span id="cb1-374"><a href="#cb1-374"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb1-375"><a href="#cb1-375"></a></span>
-<span id="cb1-376"><a href="#cb1-376"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-377"><a href="#cb1-377"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-378"><a href="#cb1-378"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-379"><a href="#cb1-379"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-380"><a href="#cb1-380"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-381"><a href="#cb1-381"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-376"><a href="#cb1-376"></a>| A   | B   | Y   |</span>
+<span id="cb1-377"><a href="#cb1-377"></a>| --- | --- | --- |</span>
+<span id="cb1-378"><a href="#cb1-378"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-379"><a href="#cb1-379"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-380"><a href="#cb1-380"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-381"><a href="#cb1-381"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-382"><a href="#cb1-382"></a></span>
 <span id="cb1-383"><a href="#cb1-383"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb1-384"><a href="#cb1-384"></a></span>
-<span id="cb1-385"><a href="#cb1-385"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-386"><a href="#cb1-386"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-387"><a href="#cb1-387"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-388"><a href="#cb1-388"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-389"><a href="#cb1-389"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-390"><a href="#cb1-390"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-385"><a href="#cb1-385"></a>| A   | B   | Y   |</span>
+<span id="cb1-386"><a href="#cb1-386"></a>| --- | --- | --- |</span>
+<span id="cb1-387"><a href="#cb1-387"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-388"><a href="#cb1-388"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-389"><a href="#cb1-389"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-390"><a href="#cb1-390"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-391"><a href="#cb1-391"></a></span>
 <span id="cb1-392"><a href="#cb1-392"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb1-393"><a href="#cb1-393"></a></span>
-<span id="cb1-394"><a href="#cb1-394"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-395"><a href="#cb1-395"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-396"><a href="#cb1-396"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-397"><a href="#cb1-397"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-398"><a href="#cb1-398"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-399"><a href="#cb1-399"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-394"><a href="#cb1-394"></a>| A   | B   | Y   |</span>
+<span id="cb1-395"><a href="#cb1-395"></a>| --- | --- | --- |</span>
+<span id="cb1-396"><a href="#cb1-396"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-397"><a href="#cb1-397"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-398"><a href="#cb1-398"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-399"><a href="#cb1-399"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-400"><a href="#cb1-400"></a></span>
 <span id="cb1-401"><a href="#cb1-401"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb1-402"><a href="#cb1-402"></a></span>
-<span id="cb1-403"><a href="#cb1-403"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-404"><a href="#cb1-404"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-405"><a href="#cb1-405"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-406"><a href="#cb1-406"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-407"><a href="#cb1-407"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-408"><a href="#cb1-408"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-403"><a href="#cb1-403"></a>| A   | B   | Y   |</span>
+<span id="cb1-404"><a href="#cb1-404"></a>| --- | --- | --- |</span>
+<span id="cb1-405"><a href="#cb1-405"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-406"><a href="#cb1-406"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-407"><a href="#cb1-407"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-408"><a href="#cb1-408"></a>| 1   | 1   | 1   |</span>
 <span id="cb1-409"><a href="#cb1-409"></a></span>
 <span id="cb1-410"><a href="#cb1-410"></a><span class="fu">## Transistor Count</span></span>
 <span id="cb1-411"><a href="#cb1-411"></a></span>
@@ -2801,13 +2799,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-442"><a href="#cb1-442"></a></span>
 <span id="cb1-443"><a href="#cb1-443"></a>Truth Table Equation</span>
 <span id="cb1-444"><a href="#cb1-444"></a>Symbol</span>
-<span id="cb1-445"><a href="#cb1-445"></a><span class="pp">|</span> A   <span class="pp">|</span> Y   <span class="pp">|</span> ഥ   <span class="pp">|</span></span>
-<span id="cb1-446"><a href="#cb1-446"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-445"><a href="#cb1-445"></a>| A   | Y   | ഥ   |</span>
+<span id="cb1-446"><a href="#cb1-446"></a>| --- | --- | --- |</span>
 <span id="cb1-447"><a href="#cb1-447"></a>Y = A</span>
 <span id="cb1-448"><a href="#cb1-448"></a>A Y</span>
-<span id="cb1-449"><a href="#cb1-449"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-450"><a href="#cb1-450"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-451"><a href="#cb1-451"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-449"><a href="#cb1-449"></a>| 0   | 1   |     |</span>
+<span id="cb1-450"><a href="#cb1-450"></a>| --- | --- | --- |</span>
+<span id="cb1-451"><a href="#cb1-451"></a>| 1   | 0   |     |</span>
 <span id="cb1-452"><a href="#cb1-452"></a></span>
 <span id="cb1-453"><a href="#cb1-453"></a><span class="fu">## What logic gates can we build?</span></span>
 <span id="cb1-454"><a href="#cb1-454"></a></span>
@@ -2872,12 +2870,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-513"><a href="#cb1-513"></a><span class="fu">## Implementing XOR with AND, OR, NOT!</span></span>
 <span id="cb1-514"><a href="#cb1-514"></a></span>
 <span id="cb1-515"><a href="#cb1-515"></a>Truth Table</span>
-<span id="cb1-516"><a href="#cb1-516"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-517"><a href="#cb1-517"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-518"><a href="#cb1-518"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-519"><a href="#cb1-519"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-520"><a href="#cb1-520"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-521"><a href="#cb1-521"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-516"><a href="#cb1-516"></a>| A   | B   | Y   |</span>
+<span id="cb1-517"><a href="#cb1-517"></a>| --- | --- | --- |</span>
+<span id="cb1-518"><a href="#cb1-518"></a>| 0   | 0   | 0   |</span>
+<span id="cb1-519"><a href="#cb1-519"></a>| 0   | 1   | 1   |</span>
+<span id="cb1-520"><a href="#cb1-520"></a>| 1   | 0   | 1   |</span>
+<span id="cb1-521"><a href="#cb1-521"></a>| 1   | 1   | 0   |</span>
 <span id="cb1-522"><a href="#cb1-522"></a>Challenge question: convert this use ONLY NAND</span>
 <span id="cb1-523"><a href="#cb1-523"></a>gates. How many NAND gates did you use?</span>
 <span id="cb1-524"><a href="#cb1-524"></a></span>
@@ -2896,99 +2894,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-537"><a href="#cb1-537"></a></span>
 <span id="cb1-538"><a href="#cb1-538"></a><span class="fu">## AND Gate</span></span>
 <span id="cb1-539"><a href="#cb1-539"></a></span>
-<span id="cb1-540"><a href="#cb1-540"></a><span class="pp">|</span> Symbol <span class="pp">|</span>     <span class="pp">|</span> Truth Table <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Equation <span class="pp">|</span></span>
-<span id="cb1-541"><a href="#cb1-541"></a><span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">|</span></span>
-<span id="cb1-542"><a href="#cb1-542"></a><span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> A           <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span>          <span class="pp">|</span></span>
+<span id="cb1-540"><a href="#cb1-540"></a>| Symbol |     | Truth Table |     |     | Equation |</span>
+<span id="cb1-541"><a href="#cb1-541"></a>| ------ | --- | ----------- | --- | --- | -------- |</span>
+<span id="cb1-542"><a href="#cb1-542"></a>|        |     | A           | B   | Y   |          |</span>
 <span id="cb1-543"><a href="#cb1-543"></a>Y = A x B</span>
 <span id="cb1-544"><a href="#cb1-544"></a>A</span>
-<span id="cb1-545"><a href="#cb1-545"></a><span class="pp">|</span>     <span class="pp">|</span> Y   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-546"><a href="#cb1-546"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-545"><a href="#cb1-545"></a>|     | Y   | 0   | 0   | 0   |     |</span>
+<span id="cb1-546"><a href="#cb1-546"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-547"><a href="#cb1-547"></a>or</span>
 <span id="cb1-548"><a href="#cb1-548"></a>B</span>
-<span id="cb1-549"><a href="#cb1-549"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> Y = AB <span class="pp">|</span></span>
-<span id="cb1-550"><a href="#cb1-550"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
-<span id="cb1-551"><a href="#cb1-551"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-552"><a href="#cb1-552"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-549"><a href="#cb1-549"></a>|     |     | 0   | 1   | 0   | Y = AB |</span>
+<span id="cb1-550"><a href="#cb1-550"></a>| --- | --- | --- | --- | --- | ------ |</span>
+<span id="cb1-551"><a href="#cb1-551"></a>|     |     | 1   | 0   | 0   |        |</span>
+<span id="cb1-552"><a href="#cb1-552"></a>|     |     | 1   | 1   | 1   |        |</span>
 <span id="cb1-553"><a href="#cb1-553"></a></span>
 <span id="cb1-554"><a href="#cb1-554"></a><span class="fu">## OR Gate</span></span>
 <span id="cb1-555"><a href="#cb1-555"></a></span>
 <span id="cb1-556"><a href="#cb1-556"></a>Symbol Equation</span>
 <span id="cb1-557"><a href="#cb1-557"></a>Truth Table</span>
-<span id="cb1-558"><a href="#cb1-558"></a><span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-559"><a href="#cb1-559"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-558"><a href="#cb1-558"></a>|     | A   | B   | Y   |</span>
+<span id="cb1-559"><a href="#cb1-559"></a>| --- | --- | --- | --- |</span>
 <span id="cb1-560"><a href="#cb1-560"></a>Y = A + B</span>
 <span id="cb1-561"><a href="#cb1-561"></a>A</span>
-<span id="cb1-562"><a href="#cb1-562"></a><span class="pp">|</span> Y   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-563"><a href="#cb1-563"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-562"><a href="#cb1-562"></a>| Y   | 0   | 0   | 0   |</span>
+<span id="cb1-563"><a href="#cb1-563"></a>| --- | --- | --- | --- |</span>
 <span id="cb1-564"><a href="#cb1-564"></a>B</span>
-<span id="cb1-565"><a href="#cb1-565"></a><span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-566"><a href="#cb1-566"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-567"><a href="#cb1-567"></a><span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-568"><a href="#cb1-568"></a><span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-565"><a href="#cb1-565"></a>|     | 0   | 1   | 1   |</span>
+<span id="cb1-566"><a href="#cb1-566"></a>| --- | --- | --- | --- |</span>
+<span id="cb1-567"><a href="#cb1-567"></a>|     | 1   | 0   | 1   |</span>
+<span id="cb1-568"><a href="#cb1-568"></a>|     | 1   | 1   | 1   |</span>
 <span id="cb1-569"><a href="#cb1-569"></a></span>
 <span id="cb1-570"><a href="#cb1-570"></a><span class="fu">## XOR Gate</span></span>
 <span id="cb1-571"><a href="#cb1-571"></a></span>
-<span id="cb1-572"><a href="#cb1-572"></a><span class="pp">|</span> Symbol <span class="pp">|</span>     <span class="pp">|</span> Truth Table <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Equation <span class="pp">|</span></span>
-<span id="cb1-573"><a href="#cb1-573"></a><span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">|</span></span>
-<span id="cb1-574"><a href="#cb1-574"></a><span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> A           <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span>          <span class="pp">|</span></span>
+<span id="cb1-572"><a href="#cb1-572"></a>| Symbol |     | Truth Table |     |     | Equation |</span>
+<span id="cb1-573"><a href="#cb1-573"></a>| ------ | --- | ----------- | --- | --- | -------- |</span>
+<span id="cb1-574"><a href="#cb1-574"></a>|        |     | A           | B   | Y   |          |</span>
 <span id="cb1-575"><a href="#cb1-575"></a>A</span>
 <span id="cb1-576"><a href="#cb1-576"></a>𝐴 +</span>
 <span id="cb1-577"><a href="#cb1-577"></a>Y = 𝐵</span>
-<span id="cb1-578"><a href="#cb1-578"></a><span class="pp">|</span>     <span class="pp">|</span> Y   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-579"><a href="#cb1-579"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-578"><a href="#cb1-578"></a>|     | Y   | 0   | 0   | 0   |     |</span>
+<span id="cb1-579"><a href="#cb1-579"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-580"><a href="#cb1-580"></a>B</span>
-<span id="cb1-581"><a href="#cb1-581"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-582"><a href="#cb1-582"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-583"><a href="#cb1-583"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-584"><a href="#cb1-584"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-581"><a href="#cb1-581"></a>|     |     | 0   | 1   | 1   |     |</span>
+<span id="cb1-582"><a href="#cb1-582"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-583"><a href="#cb1-583"></a>|     |     | 1   | 0   | 1   |     |</span>
+<span id="cb1-584"><a href="#cb1-584"></a>|     |     | 1   | 1   | 0   |     |</span>
 <span id="cb1-585"><a href="#cb1-585"></a></span>
 <span id="cb1-586"><a href="#cb1-586"></a><span class="fu">## NAND</span></span>
 <span id="cb1-587"><a href="#cb1-587"></a></span>
-<span id="cb1-588"><a href="#cb1-588"></a><span class="pp">|</span> Symbol <span class="pp">|</span>     <span class="pp">|</span> Truth Table <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Equation <span class="pp">|</span></span>
-<span id="cb1-589"><a href="#cb1-589"></a><span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">|</span></span>
-<span id="cb1-590"><a href="#cb1-590"></a><span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> A           <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span>          <span class="pp">|</span></span>
+<span id="cb1-588"><a href="#cb1-588"></a>| Symbol |     | Truth Table |     |     | Equation |</span>
+<span id="cb1-589"><a href="#cb1-589"></a>| ------ | --- | ----------- | --- | --- | -------- |</span>
+<span id="cb1-590"><a href="#cb1-590"></a>|        |     | A           | B   | Y   |          |</span>
 <span id="cb1-591"><a href="#cb1-591"></a>A</span>
 <span id="cb1-592"><a href="#cb1-592"></a>Y = 𝐴 𝑥 𝐵</span>
-<span id="cb1-593"><a href="#cb1-593"></a><span class="pp">|</span>     <span class="pp">|</span> Y   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-594"><a href="#cb1-594"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-593"><a href="#cb1-593"></a>|     | Y   | 0   | 0   | 1   |     |</span>
+<span id="cb1-594"><a href="#cb1-594"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-595"><a href="#cb1-595"></a>or</span>
 <span id="cb1-596"><a href="#cb1-596"></a>B</span>
-<span id="cb1-597"><a href="#cb1-597"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-598"><a href="#cb1-598"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-597"><a href="#cb1-597"></a>|     |     | 0   | 1   | 1   |     |</span>
+<span id="cb1-598"><a href="#cb1-598"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-599"><a href="#cb1-599"></a>𝑌 = 𝐴𝐵</span>
-<span id="cb1-600"><a href="#cb1-600"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-601"><a href="#cb1-601"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-602"><a href="#cb1-602"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-600"><a href="#cb1-600"></a>|     |     | 1   | 0   | 1   |     |</span>
+<span id="cb1-601"><a href="#cb1-601"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-602"><a href="#cb1-602"></a>|     |     | 1   | 1   | 0   |     |</span>
 <span id="cb1-603"><a href="#cb1-603"></a></span>
 <span id="cb1-604"><a href="#cb1-604"></a><span class="fu">## NOR</span></span>
 <span id="cb1-605"><a href="#cb1-605"></a></span>
-<span id="cb1-606"><a href="#cb1-606"></a><span class="pp">|</span> Symbol <span class="pp">|</span>     <span class="pp">|</span> Truth Table <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Equation <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-607"><a href="#cb1-607"></a><span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-608"><a href="#cb1-608"></a><span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> A           <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span>          <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-606"><a href="#cb1-606"></a>| Symbol |     | Truth Table |     |     | Equation |     |     |</span>
+<span id="cb1-607"><a href="#cb1-607"></a>| ------ | --- | ----------- | --- | --- | -------- | --- | --- |</span>
+<span id="cb1-608"><a href="#cb1-608"></a>|        |     | A           | B   | Y   |          |     |     |</span>
 <span id="cb1-609"><a href="#cb1-609"></a>A</span>
-<span id="cb1-610"><a href="#cb1-610"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Y = <span class="pp">|</span> 𝐴 + <span class="pp">|</span> 𝐵   <span class="pp">|</span></span>
-<span id="cb1-611"><a href="#cb1-611"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-612"><a href="#cb1-612"></a><span class="pp">|</span>     <span class="pp">|</span> Y   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-610"><a href="#cb1-610"></a>|     |     |     |     |     | Y = | 𝐴 + | 𝐵   |</span>
+<span id="cb1-611"><a href="#cb1-611"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-612"><a href="#cb1-612"></a>|     | Y   | 0   | 0   | 1   |     |     |     |</span>
 <span id="cb1-613"><a href="#cb1-613"></a>B</span>
-<span id="cb1-614"><a href="#cb1-614"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-615"><a href="#cb1-615"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-616"><a href="#cb1-616"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-617"><a href="#cb1-617"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-614"><a href="#cb1-614"></a>|     |     | 0   | 1   | 0   |     |     |     |</span>
+<span id="cb1-615"><a href="#cb1-615"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-616"><a href="#cb1-616"></a>|     |     | 1   | 0   | 0   |     |     |     |</span>
+<span id="cb1-617"><a href="#cb1-617"></a>|     |     | 1   | 1   | 0   |     |     |     |</span>
 <span id="cb1-618"><a href="#cb1-618"></a></span>
 <span id="cb1-619"><a href="#cb1-619"></a><span class="fu">## XNOR Gate</span></span>
 <span id="cb1-620"><a href="#cb1-620"></a></span>
-<span id="cb1-621"><a href="#cb1-621"></a><span class="pp">|</span> Symbol <span class="pp">|</span>     <span class="pp">|</span> Truth Table <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Equation <span class="pp">|</span></span>
-<span id="cb1-622"><a href="#cb1-622"></a><span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">|</span></span>
-<span id="cb1-623"><a href="#cb1-623"></a><span class="pp">|</span>        <span class="pp">|</span>     <span class="pp">|</span> A           <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span>          <span class="pp">|</span></span>
+<span id="cb1-621"><a href="#cb1-621"></a>| Symbol |     | Truth Table |     |     | Equation |</span>
+<span id="cb1-622"><a href="#cb1-622"></a>| ------ | --- | ----------- | --- | --- | -------- |</span>
+<span id="cb1-623"><a href="#cb1-623"></a>|        |     | A           | B   | Y   |          |</span>
 <span id="cb1-624"><a href="#cb1-624"></a>A</span>
 <span id="cb1-625"><a href="#cb1-625"></a>Y = 𝐴 + 𝐵</span>
-<span id="cb1-626"><a href="#cb1-626"></a><span class="pp">|</span>     <span class="pp">|</span> Y   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-627"><a href="#cb1-627"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-626"><a href="#cb1-626"></a>|     | Y   | 0   | 0   | 1   |     |</span>
+<span id="cb1-627"><a href="#cb1-627"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-628"><a href="#cb1-628"></a>B</span>
-<span id="cb1-629"><a href="#cb1-629"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-630"><a href="#cb1-630"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-631"><a href="#cb1-631"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-632"><a href="#cb1-632"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-629"><a href="#cb1-629"></a>|     |     | 0   | 1   | 0   |     |</span>
+<span id="cb1-630"><a href="#cb1-630"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-631"><a href="#cb1-631"></a>|     |     | 1   | 0   | 0   |     |</span>
+<span id="cb1-632"><a href="#cb1-632"></a>|     |     | 1   | 1   | 1   |     |</span>
 <span id="cb1-633"><a href="#cb1-633"></a></span>
 <span id="cb1-634"><a href="#cb1-634"></a><span class="fu">## FORMING</span></span>
 <span id="cb1-635"><a href="#cb1-635"></a></span>
@@ -3002,16 +3000,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-643"><a href="#cb1-643"></a><span class="fu">## Ex1: Forming Equations from Logic</span></span>
 <span id="cb1-644"><a href="#cb1-644"></a></span>
 <span id="cb1-645"><a href="#cb1-645"></a>Diagrams</span>
-<span id="cb1-646"><a href="#cb1-646"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴𝐵  <span class="pp">|</span> + 𝐶𝐷 <span class="pp">|</span></span>
-<span id="cb1-647"><a href="#cb1-647"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-646"><a href="#cb1-646"></a>| 𝑌 = | 𝐴𝐵  | + 𝐶𝐷 |</span>
+<span id="cb1-647"><a href="#cb1-647"></a>| --- | --- | ---- |</span>
 <span id="cb1-648"><a href="#cb1-648"></a></span>
 <span id="cb1-649"><a href="#cb1-649"></a><span class="fu">## Ex2: Forming Equations from Logic Diagrams</span></span>
 <span id="cb1-650"><a href="#cb1-650"></a></span>
 <span id="cb1-651"><a href="#cb1-651"></a></span>
 <span id="cb1-652"><a href="#cb1-652"></a><span class="fu">## Ex2: Forming Equations from Logic Diagrams</span></span>
 <span id="cb1-653"><a href="#cb1-653"></a></span>
-<span id="cb1-654"><a href="#cb1-654"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> (𝐴 + <span class="pp">|</span> 𝐵)(𝐶 <span class="pp">|</span> + 𝐷) <span class="pp">|</span></span>
-<span id="cb1-655"><a href="#cb1-655"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-654"><a href="#cb1-654"></a>| 𝑌 = | (𝐴 + | 𝐵)(𝐶 | + 𝐷) |</span>
+<span id="cb1-655"><a href="#cb1-655"></a>| --- | ---- | ---- | ---- |</span>
 <span id="cb1-656"><a href="#cb1-656"></a></span>
 <span id="cb1-657"><a href="#cb1-657"></a><span class="fu">## Ex3: Forming Equations from Logic</span></span>
 <span id="cb1-658"><a href="#cb1-658"></a></span>
@@ -3020,16 +3018,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-661"><a href="#cb1-661"></a><span class="fu">## Ex3: Forming Equations from Logic Diagrams</span></span>
 <span id="cb1-662"><a href="#cb1-662"></a></span>
 <span id="cb1-663"><a href="#cb1-663"></a>ത</span>
-<span id="cb1-664"><a href="#cb1-664"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴𝐵  <span class="pp">|</span> 𝐶 + <span class="pp">|</span> 𝐷 + <span class="pp">|</span> 𝐸   <span class="pp">|</span></span>
-<span id="cb1-665"><a href="#cb1-665"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-664"><a href="#cb1-664"></a>| 𝑌 = | 𝐴𝐵  | 𝐶 + | 𝐷 + | 𝐸   |</span>
+<span id="cb1-665"><a href="#cb1-665"></a>| --- | --- | --- | --- | --- |</span>
 <span id="cb1-666"><a href="#cb1-666"></a></span>
 <span id="cb1-667"><a href="#cb1-667"></a><span class="fu">## EX4: Forming Equations from Logic Diagrams</span></span>
 <span id="cb1-668"><a href="#cb1-668"></a></span>
 <span id="cb1-669"><a href="#cb1-669"></a></span>
 <span id="cb1-670"><a href="#cb1-670"></a><span class="fu">## Forming Equations from Logic Diagrams</span></span>
 <span id="cb1-671"><a href="#cb1-671"></a></span>
-<span id="cb1-672"><a href="#cb1-672"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> (𝐴𝐵 <span class="pp">|</span> + 𝐶) (𝐷 <span class="pp">|</span> + 𝐸) <span class="pp">|</span></span>
-<span id="cb1-673"><a href="#cb1-673"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-672"><a href="#cb1-672"></a>| 𝑌 = | (𝐴𝐵 | + 𝐶) (𝐷 | + 𝐸) |</span>
+<span id="cb1-673"><a href="#cb1-673"></a>| --- | --- | ------- | ---- |</span>
 <span id="cb1-674"><a href="#cb1-674"></a></span>
 <span id="cb1-675"><a href="#cb1-675"></a><span class="fu">## FORMING LOGIC</span></span>
 <span id="cb1-676"><a href="#cb1-676"></a></span>
@@ -3038,49 +3036,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-679"><a href="#cb1-679"></a></span>
 <span id="cb1-680"><a href="#cb1-680"></a><span class="fu">## Ex1: Forming Logic Diagrams from</span></span>
 <span id="cb1-681"><a href="#cb1-681"></a></span>
-<span id="cb1-682"><a href="#cb1-682"></a><span class="pp">|</span> Equations <span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴 + <span class="pp">|</span> 𝐵 𝐶 <span class="pp">|</span></span>
-<span id="cb1-683"><a href="#cb1-683"></a><span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-682"><a href="#cb1-682"></a>| Equations | 𝑌 = | 𝐴 + | 𝐵 𝐶 |</span>
+<span id="cb1-683"><a href="#cb1-683"></a>| --------- | --- | --- | --- |</span>
 <span id="cb1-684"><a href="#cb1-684"></a></span>
 <span id="cb1-685"><a href="#cb1-685"></a><span class="fu">## Ex1: Forming Logic Diagrams from</span></span>
 <span id="cb1-686"><a href="#cb1-686"></a></span>
-<span id="cb1-687"><a href="#cb1-687"></a><span class="pp">|</span> Equations <span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴 + <span class="pp">|</span> 𝐵 𝐶 <span class="pp">|</span></span>
-<span id="cb1-688"><a href="#cb1-688"></a><span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-687"><a href="#cb1-687"></a>| Equations | 𝑌 = | 𝐴 + | 𝐵 𝐶 |</span>
+<span id="cb1-688"><a href="#cb1-688"></a>| --------- | --- | --- | --- |</span>
 <span id="cb1-689"><a href="#cb1-689"></a></span>
 <span id="cb1-690"><a href="#cb1-690"></a><span class="fu">## Ex2: Forming Logic Diagrams from</span></span>
 <span id="cb1-691"><a href="#cb1-691"></a></span>
 <span id="cb1-692"><a href="#cb1-692"></a>Equations</span>
-<span id="cb1-693"><a href="#cb1-693"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴 + <span class="pp">|</span> 𝐵 𝐶𝐷 <span class="pp">|</span></span>
-<span id="cb1-694"><a href="#cb1-694"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-693"><a href="#cb1-693"></a>| 𝑌 = | 𝐴 + | 𝐵 𝐶𝐷 |</span>
+<span id="cb1-694"><a href="#cb1-694"></a>| --- | --- | ---- |</span>
 <span id="cb1-695"><a href="#cb1-695"></a></span>
 <span id="cb1-696"><a href="#cb1-696"></a><span class="fu">## Ex2: Forming Logic Diagrams from</span></span>
 <span id="cb1-697"><a href="#cb1-697"></a></span>
 <span id="cb1-698"><a href="#cb1-698"></a>Equations</span>
-<span id="cb1-699"><a href="#cb1-699"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴 + <span class="pp">|</span> 𝐵 𝐶𝐷 <span class="pp">|</span></span>
-<span id="cb1-700"><a href="#cb1-700"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">|</span></span>
+<span id="cb1-699"><a href="#cb1-699"></a>| 𝑌 = | 𝐴 + | 𝐵 𝐶𝐷 |</span>
+<span id="cb1-700"><a href="#cb1-700"></a>| --- | --- | ---- |</span>
 <span id="cb1-701"><a href="#cb1-701"></a></span>
 <span id="cb1-702"><a href="#cb1-702"></a><span class="fu">## Ex3: Forming Logic Diagrams from</span></span>
 <span id="cb1-703"><a href="#cb1-703"></a></span>
 <span id="cb1-704"><a href="#cb1-704"></a>Equations</span>
-<span id="cb1-705"><a href="#cb1-705"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> (𝐴 + <span class="pp">|</span> 𝐵)(𝐶𝐷) <span class="pp">|</span> + 𝐸 <span class="pp">|</span></span>
-<span id="cb1-706"><a href="#cb1-706"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-705"><a href="#cb1-705"></a>| 𝑌 = | (𝐴 + | 𝐵)(𝐶𝐷) | + 𝐸 |</span>
+<span id="cb1-706"><a href="#cb1-706"></a>| --- | ---- | ------ | --- |</span>
 <span id="cb1-707"><a href="#cb1-707"></a></span>
 <span id="cb1-708"><a href="#cb1-708"></a><span class="fu">## Ex3: Forming Logic Diagrams from</span></span>
 <span id="cb1-709"><a href="#cb1-709"></a></span>
 <span id="cb1-710"><a href="#cb1-710"></a>Equations</span>
-<span id="cb1-711"><a href="#cb1-711"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> (𝐴 + <span class="pp">|</span> 𝐵)(𝐶𝐷) <span class="pp">|</span> + 𝐸 <span class="pp">|</span></span>
-<span id="cb1-712"><a href="#cb1-712"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-711"><a href="#cb1-711"></a>| 𝑌 = | (𝐴 + | 𝐵)(𝐶𝐷) | + 𝐸 |</span>
+<span id="cb1-712"><a href="#cb1-712"></a>| --- | ---- | ------ | --- |</span>
 <span id="cb1-713"><a href="#cb1-713"></a></span>
 <span id="cb1-714"><a href="#cb1-714"></a><span class="fu">## Forming Logic Diagrams from Equations</span></span>
 <span id="cb1-715"><a href="#cb1-715"></a></span>
 <span id="cb1-716"><a href="#cb1-716"></a>ҧ</span>
-<span id="cb1-717"><a href="#cb1-717"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> (𝐴)( <span class="pp">|</span> 𝐵 + <span class="pp">|</span> 𝐶) + <span class="pp">|</span> 𝐷𝐸  <span class="pp">|</span></span>
-<span id="cb1-718"><a href="#cb1-718"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-717"><a href="#cb1-717"></a>| 𝑌 = | (𝐴)( | 𝐵 + | 𝐶) + | 𝐷𝐸  |</span>
+<span id="cb1-718"><a href="#cb1-718"></a>| --- | ---- | --- | ---- | --- |</span>
 <span id="cb1-719"><a href="#cb1-719"></a></span>
 <span id="cb1-720"><a href="#cb1-720"></a><span class="fu">## Forming Logic Diagrams from Equations</span></span>
 <span id="cb1-721"><a href="#cb1-721"></a></span>
 <span id="cb1-722"><a href="#cb1-722"></a>ҧ</span>
-<span id="cb1-723"><a href="#cb1-723"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> (𝐴)( <span class="pp">|</span> 𝐵 + <span class="pp">|</span> 𝐶) + <span class="pp">|</span> 𝐷𝐸  <span class="pp">|</span></span>
-<span id="cb1-724"><a href="#cb1-724"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-723"><a href="#cb1-723"></a>| 𝑌 = | (𝐴)( | 𝐵 + | 𝐶) + | 𝐷𝐸  |</span>
+<span id="cb1-724"><a href="#cb1-724"></a>| --- | ---- | --- | ---- | --- |</span>
 <span id="cb1-725"><a href="#cb1-725"></a></span>
 <span id="cb1-726"><a href="#cb1-726"></a><span class="fu">## FORMING TRUTH</span></span>
 <span id="cb1-727"><a href="#cb1-727"></a></span>
@@ -3090,70 +3088,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-731"><a href="#cb1-731"></a><span class="fu">## Ex1: Forming Truth Tables from</span></span>
 <span id="cb1-732"><a href="#cb1-732"></a></span>
 <span id="cb1-733"><a href="#cb1-733"></a>Equations</span>
-<span id="cb1-734"><a href="#cb1-734"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-735"><a href="#cb1-735"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-736"><a href="#cb1-736"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-734"><a href="#cb1-734"></a>|     |     |     | A   | B   | Y   |</span>
+<span id="cb1-735"><a href="#cb1-735"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-736"><a href="#cb1-736"></a>|     |     |     | 0   | 0   |     |</span>
 <span id="cb1-737"><a href="#cb1-737"></a>ത</span>
-<span id="cb1-738"><a href="#cb1-738"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴 + <span class="pp">|</span>   𝐵 <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-739"><a href="#cb1-739"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-740"><a href="#cb1-740"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-741"><a href="#cb1-741"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-738"><a href="#cb1-738"></a>| 𝑌 = | 𝐴 + |   𝐵 | 0   | 1   |     |</span>
+<span id="cb1-739"><a href="#cb1-739"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-740"><a href="#cb1-740"></a>|     |     |     | 1   | 0   |     |</span>
+<span id="cb1-741"><a href="#cb1-741"></a>|     |     |     | 1   | 1   |     |</span>
 <span id="cb1-742"><a href="#cb1-742"></a></span>
 <span id="cb1-743"><a href="#cb1-743"></a><span class="fu">## Ex1: Forming Truth Tables from</span></span>
 <span id="cb1-744"><a href="#cb1-744"></a></span>
 <span id="cb1-745"><a href="#cb1-745"></a>Equations</span>
-<span id="cb1-746"><a href="#cb1-746"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-747"><a href="#cb1-747"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-748"><a href="#cb1-748"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-746"><a href="#cb1-746"></a>|     |     |     | A   | B   | Y   |</span>
+<span id="cb1-747"><a href="#cb1-747"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-748"><a href="#cb1-748"></a>|     |     |     | 0   | 0   | 1   |</span>
 <span id="cb1-749"><a href="#cb1-749"></a>ത</span>
-<span id="cb1-750"><a href="#cb1-750"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴 + <span class="pp">|</span>   𝐵 <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-751"><a href="#cb1-751"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-752"><a href="#cb1-752"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-753"><a href="#cb1-753"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-750"><a href="#cb1-750"></a>| 𝑌 = | 𝐴 + |   𝐵 | 0   | 1   | 0   |</span>
+<span id="cb1-751"><a href="#cb1-751"></a>| --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-752"><a href="#cb1-752"></a>|     |     |     | 1   | 0   | 1   |</span>
+<span id="cb1-753"><a href="#cb1-753"></a>|     |     |     | 1   | 1   | 1   |</span>
 <span id="cb1-754"><a href="#cb1-754"></a></span>
 <span id="cb1-755"><a href="#cb1-755"></a><span class="fu">## Ex2: Forming Truth Tables from</span></span>
 <span id="cb1-756"><a href="#cb1-756"></a></span>
 <span id="cb1-757"><a href="#cb1-757"></a>Equations</span>
-<span id="cb1-758"><a href="#cb1-758"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-759"><a href="#cb1-759"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-760"><a href="#cb1-760"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-761"><a href="#cb1-761"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-758"><a href="#cb1-758"></a>|     |     |     | A   | B   | C   | Y   |</span>
+<span id="cb1-759"><a href="#cb1-759"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-760"><a href="#cb1-760"></a>|     |     |     | 0   | 0   | 0   |     |</span>
+<span id="cb1-761"><a href="#cb1-761"></a>|     |     |     | 0   | 0   | 1   |     |</span>
 <span id="cb1-762"><a href="#cb1-762"></a>ҧ</span>
-<span id="cb1-763"><a href="#cb1-763"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴𝐵  <span class="pp">|</span> +   𝐶 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-764"><a href="#cb1-764"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-765"><a href="#cb1-765"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-766"><a href="#cb1-766"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-767"><a href="#cb1-767"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-768"><a href="#cb1-768"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-769"><a href="#cb1-769"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-770"><a href="#cb1-770"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-763"><a href="#cb1-763"></a>| 𝑌 = | 𝐴𝐵  | +   𝐶 |     |     |     |     |</span>
+<span id="cb1-764"><a href="#cb1-764"></a>| --- | --- | ----- | --- | --- | --- | --- |</span>
+<span id="cb1-765"><a href="#cb1-765"></a>|     |     |       | 0   | 1   | 0   |     |</span>
+<span id="cb1-766"><a href="#cb1-766"></a>|     |     |       | 0   | 1   | 1   |     |</span>
+<span id="cb1-767"><a href="#cb1-767"></a>|     |     |       | 1   | 0   | 0   |     |</span>
+<span id="cb1-768"><a href="#cb1-768"></a>|     |     |       | 1   | 0   | 1   |     |</span>
+<span id="cb1-769"><a href="#cb1-769"></a>|     |     |       | 1   | 1   | 0   |     |</span>
+<span id="cb1-770"><a href="#cb1-770"></a>|     |     |       | 1   | 1   | 1   |     |</span>
 <span id="cb1-771"><a href="#cb1-771"></a></span>
 <span id="cb1-772"><a href="#cb1-772"></a><span class="fu">## Ex2: Forming Truth Tables from</span></span>
 <span id="cb1-773"><a href="#cb1-773"></a></span>
 <span id="cb1-774"><a href="#cb1-774"></a>Equations</span>
-<span id="cb1-775"><a href="#cb1-775"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-776"><a href="#cb1-776"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-777"><a href="#cb1-777"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-778"><a href="#cb1-778"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-775"><a href="#cb1-775"></a>|     |     |     | A   | B   | C   | Y   |</span>
+<span id="cb1-776"><a href="#cb1-776"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-777"><a href="#cb1-777"></a>|     |     |     | 0   | 0   | 0   | 1   |</span>
+<span id="cb1-778"><a href="#cb1-778"></a>|     |     |     | 0   | 0   | 1   | 0   |</span>
 <span id="cb1-779"><a href="#cb1-779"></a>ҧ</span>
-<span id="cb1-780"><a href="#cb1-780"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴𝐵  <span class="pp">|</span> +   𝐶 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-781"><a href="#cb1-781"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-782"><a href="#cb1-782"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-783"><a href="#cb1-783"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-784"><a href="#cb1-784"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-785"><a href="#cb1-785"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-786"><a href="#cb1-786"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-787"><a href="#cb1-787"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-780"><a href="#cb1-780"></a>| 𝑌 = | 𝐴𝐵  | +   𝐶 |     |     |     |     |</span>
+<span id="cb1-781"><a href="#cb1-781"></a>| --- | --- | ----- | --- | --- | --- | --- |</span>
+<span id="cb1-782"><a href="#cb1-782"></a>|     |     |       | 0   | 1   | 0   | 1   |</span>
+<span id="cb1-783"><a href="#cb1-783"></a>|     |     |       | 0   | 1   | 1   | 0   |</span>
+<span id="cb1-784"><a href="#cb1-784"></a>|     |     |       | 1   | 0   | 0   | 1   |</span>
+<span id="cb1-785"><a href="#cb1-785"></a>|     |     |       | 1   | 0   | 1   | 0   |</span>
+<span id="cb1-786"><a href="#cb1-786"></a>|     |     |       | 1   | 1   | 0   | 1   |</span>
+<span id="cb1-787"><a href="#cb1-787"></a>|     |     |       | 1   | 1   | 1   | 1   |</span>
 <span id="cb1-788"><a href="#cb1-788"></a></span>
 <span id="cb1-789"><a href="#cb1-789"></a><span class="fu">## Forming Truth Tables from Equations</span></span>
 <span id="cb1-790"><a href="#cb1-790"></a></span>
-<span id="cb1-791"><a href="#cb1-791"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-792"><a href="#cb1-792"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-793"><a href="#cb1-793"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-794"><a href="#cb1-794"></a><span class="pp">|</span>     <span class="pp">|</span> ҧ ത <span class="pp">|</span>      <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-795"><a href="#cb1-795"></a><span class="pp">|</span> 𝑌 = <span class="pp">|</span> 𝐴𝐵  <span class="pp">|</span> + 𝐴𝐵 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-796"><a href="#cb1-796"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-797"><a href="#cb1-797"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-791"><a href="#cb1-791"></a>|     |     |      | A   | B   | Y   |</span>
+<span id="cb1-792"><a href="#cb1-792"></a>| --- | --- | ---- | --- | --- | --- |</span>
+<span id="cb1-793"><a href="#cb1-793"></a>|     |     |      | 0   | 0   |     |</span>
+<span id="cb1-794"><a href="#cb1-794"></a>|     | ҧ ത |      | 0   | 1   |     |</span>
+<span id="cb1-795"><a href="#cb1-795"></a>| 𝑌 = | 𝐴𝐵  | + 𝐴𝐵 |     |     |     |</span>
+<span id="cb1-796"><a href="#cb1-796"></a>|     |     |      | 1   | 0   |     |</span>
+<span id="cb1-797"><a href="#cb1-797"></a>|     |     |      | 1   | 1   |     |</span>
 <span id="cb1-798"><a href="#cb1-798"></a></span>
 <span id="cb1-799"><a href="#cb1-799"></a><span class="fu">## FORMING</span></span>
 <span id="cb1-800"><a href="#cb1-800"></a></span>
@@ -3163,62 +3161,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-804"><a href="#cb1-804"></a><span class="fu">## Sum of Products Form</span></span>
 <span id="cb1-805"><a href="#cb1-805"></a></span>
 <span id="cb1-806"><a href="#cb1-806"></a>When two or more products (AND) are summed (OR) together</span>
-<span id="cb1-807"><a href="#cb1-807"></a><span class="pp">|</span> Sum of Products  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>   Not Sum of Products <span class="pp">|</span></span>
-<span id="cb1-808"><a href="#cb1-808"></a><span class="pp">| ----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---------------------</span> <span class="pp">|</span></span>
-<span id="cb1-809"><a href="#cb1-809"></a><span class="pp">|</span> 𝑌 = 𝐴𝐵 + 𝐴𝐶      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>   𝑌 = (𝐴 + 𝐵)(𝐶 + 𝐴)  <span class="pp">|</span></span>
+<span id="cb1-807"><a href="#cb1-807"></a>| Sum of Products  |     |     |     |     |   Not Sum of Products |</span>
+<span id="cb1-808"><a href="#cb1-808"></a>| ---------------- | --- | --- | --- | --- | --------------------- |</span>
+<span id="cb1-809"><a href="#cb1-809"></a>| 𝑌 = 𝐴𝐵 + 𝐴𝐶      |     |     |     |     |   𝑌 = (𝐴 + 𝐵)(𝐶 + 𝐴)  |</span>
 <span id="cb1-810"><a href="#cb1-810"></a>Approach: write down a</span>
 <span id="cb1-811"><a href="#cb1-811"></a>boolean expression for</span>
 <span id="cb1-812"><a href="#cb1-812"></a>every ‘1’ in the output</span>
 <span id="cb1-813"><a href="#cb1-813"></a></span>
 <span id="cb1-814"><a href="#cb1-814"></a><span class="fu">## Ex: Forming Equations from Truth Tables</span></span>
 <span id="cb1-815"><a href="#cb1-815"></a></span>
-<span id="cb1-816"><a href="#cb1-816"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-817"><a href="#cb1-817"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-818"><a href="#cb1-818"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-819"><a href="#cb1-819"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-820"><a href="#cb1-820"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-821"><a href="#cb1-821"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-822"><a href="#cb1-822"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-823"><a href="#cb1-823"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-824"><a href="#cb1-824"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-825"><a href="#cb1-825"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-816"><a href="#cb1-816"></a>| A   | B   | C   | Y   |</span>
+<span id="cb1-817"><a href="#cb1-817"></a>| --- | --- | --- | --- |</span>
+<span id="cb1-818"><a href="#cb1-818"></a>| 0   | 0   | 0   | 1   |</span>
+<span id="cb1-819"><a href="#cb1-819"></a>| 0   | 0   | 1   | 0   |</span>
+<span id="cb1-820"><a href="#cb1-820"></a>| 0   | 1   | 0   | 1   |</span>
+<span id="cb1-821"><a href="#cb1-821"></a>| 0   | 1   | 1   | 0   |</span>
+<span id="cb1-822"><a href="#cb1-822"></a>| 1   | 0   | 0   | 0   |</span>
+<span id="cb1-823"><a href="#cb1-823"></a>| 1   | 0   | 1   | 1   |</span>
+<span id="cb1-824"><a href="#cb1-824"></a>| 1   | 1   | 0   | 0   |</span>
+<span id="cb1-825"><a href="#cb1-825"></a>| 1   | 1   | 1   | 0   |</span>
 <span id="cb1-826"><a href="#cb1-826"></a></span>
 <span id="cb1-827"><a href="#cb1-827"></a><span class="fu">## Ex: Forming Equations from Truth Tables</span></span>
 <span id="cb1-828"><a href="#cb1-828"></a></span>
-<span id="cb1-829"><a href="#cb1-829"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-830"><a href="#cb1-830"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-829"><a href="#cb1-829"></a>| A   | B   | C   | Y   |     |     |     |     |</span>
+<span id="cb1-830"><a href="#cb1-830"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-831"><a href="#cb1-831"></a>ҧ ത ҧ</span>
 <span id="cb1-832"><a href="#cb1-832"></a>𝐴𝐵𝐶</span>
-<span id="cb1-833"><a href="#cb1-833"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-834"><a href="#cb1-834"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-835"><a href="#cb1-835"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-833"><a href="#cb1-833"></a>| 0   | 0   | 0   | 1   |     |     |     |     |</span>
+<span id="cb1-834"><a href="#cb1-834"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-835"><a href="#cb1-835"></a>| 0   | 0   | 1   | 0   |     |     |     |     |</span>
 <span id="cb1-836"><a href="#cb1-836"></a>ҧ ҧ</span>
 <span id="cb1-837"><a href="#cb1-837"></a>𝐴𝐵𝐶</span>
-<span id="cb1-838"><a href="#cb1-838"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-839"><a href="#cb1-839"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-840"><a href="#cb1-840"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> ҧ ത ҧ <span class="pp">|</span> ҧ ҧ <span class="pp">|</span> ത   <span class="pp">|</span></span>
+<span id="cb1-838"><a href="#cb1-838"></a>| 0   | 1   | 0   | 1   |     |       |     |     |</span>
+<span id="cb1-839"><a href="#cb1-839"></a>| --- | --- | --- | --- | --- | ----- | --- | --- |</span>
+<span id="cb1-840"><a href="#cb1-840"></a>|     |     |     |     |     | ҧ ത ҧ | ҧ ҧ | ത   |</span>
 <span id="cb1-841"><a href="#cb1-841"></a>𝑌 = 𝐴𝐵𝐶+ 𝐴𝐵𝐶 + 𝐴𝐵𝐶</span>
-<span id="cb1-842"><a href="#cb1-842"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-843"><a href="#cb1-843"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-844"><a href="#cb1-844"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-842"><a href="#cb1-842"></a>| 0   | 1   | 1   | 0   |     |     |     |     |</span>
+<span id="cb1-843"><a href="#cb1-843"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-844"><a href="#cb1-844"></a>| 1   | 0   | 0   | 0   |     |     |     |     |</span>
 <span id="cb1-845"><a href="#cb1-845"></a>ത</span>
-<span id="cb1-846"><a href="#cb1-846"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 𝐴𝐵𝐶 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-847"><a href="#cb1-847"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-848"><a href="#cb1-848"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-849"><a href="#cb1-849"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-846"><a href="#cb1-846"></a>| 1   | 0   | 1   | 1   | 𝐴𝐵𝐶 |     |     |     |</span>
+<span id="cb1-847"><a href="#cb1-847"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-848"><a href="#cb1-848"></a>| 1   | 1   | 0   | 0   |     |     |     |     |</span>
+<span id="cb1-849"><a href="#cb1-849"></a>| 1   | 1   | 1   | 0   |     |     |     |     |</span>
 <span id="cb1-850"><a href="#cb1-850"></a></span>
 <span id="cb1-851"><a href="#cb1-851"></a><span class="fu">## Forming Equations from Truth Tables</span></span>
 <span id="cb1-852"><a href="#cb1-852"></a></span>
-<span id="cb1-853"><a href="#cb1-853"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span></span>
-<span id="cb1-854"><a href="#cb1-854"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-855"><a href="#cb1-855"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-856"><a href="#cb1-856"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-857"><a href="#cb1-857"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-858"><a href="#cb1-858"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-859"><a href="#cb1-859"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-860"><a href="#cb1-860"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-861"><a href="#cb1-861"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-862"><a href="#cb1-862"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-853"><a href="#cb1-853"></a>| A   | B   | C   | Y   |</span>
+<span id="cb1-854"><a href="#cb1-854"></a>| --- | --- | --- | --- |</span>
+<span id="cb1-855"><a href="#cb1-855"></a>| 0   | 0   | 0   | 0   |</span>
+<span id="cb1-856"><a href="#cb1-856"></a>| 0   | 0   | 1   | 1   |</span>
+<span id="cb1-857"><a href="#cb1-857"></a>| 0   | 1   | 0   | 0   |</span>
+<span id="cb1-858"><a href="#cb1-858"></a>| 0   | 1   | 1   | 0   |</span>
+<span id="cb1-859"><a href="#cb1-859"></a>| 1   | 0   | 0   | 1   |</span>
+<span id="cb1-860"><a href="#cb1-860"></a>| 1   | 0   | 1   | 0   |</span>
+<span id="cb1-861"><a href="#cb1-861"></a>| 1   | 1   | 0   | 1   |</span>
+<span id="cb1-862"><a href="#cb1-862"></a>| 1   | 1   | 1   | 1   |</span>
 <span id="cb1-863"><a href="#cb1-863"></a></span>
 <span id="cb1-864"><a href="#cb1-864"></a><span class="fu">## A Systematic Design Approach</span></span>
 <span id="cb1-865"><a href="#cb1-865"></a></span>
@@ -3227,7 +3225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-868"><a href="#cb1-868"></a>2) Write down a Boolean expression for every ‘1’</span>
 <span id="cb1-869"><a href="#cb1-869"></a>in the output</span>
 <span id="cb1-870"><a href="#cb1-870"></a>Y = (!C &amp;&amp; !B &amp;&amp; A) || (!C &amp;&amp; B &amp;&amp; A)</span>
-<span id="cb1-871"><a href="#cb1-871"></a><span class="pp">||</span> (C &amp;&amp; B &amp;&amp; !A) <span class="pp">||</span> (C &amp;&amp; B &amp;&amp; A)</span>
+<span id="cb1-871"><a href="#cb1-871"></a>|| (C &amp;&amp; B &amp;&amp; !A) || (C &amp;&amp; B &amp;&amp; A)</span>
 <span id="cb1-872"><a href="#cb1-872"></a>3) Wire up the ideal gates, replace them with</span>
 <span id="cb1-873"><a href="#cb1-873"></a>equivalent realizable gates, call it a day, and go</span>
 <span id="cb1-874"><a href="#cb1-874"></a>home!</span>
@@ -3255,7 +3253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-896"><a href="#cb1-896"></a>C</span>
 <span id="cb1-897"><a href="#cb1-897"></a>A</span>
 <span id="cb1-898"><a href="#cb1-898"></a>B</span>
-<span id="cb1-899"><a href="#cb1-899"></a>C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-899"><a href="#cb1-899"></a>C</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

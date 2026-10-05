@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Caching – Systems in C</title>
+<title>Caching – HW &amp; asm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,9 +21,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,17 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./C0.html" rel="next">
 <link href="./B0.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-40a160e28a8c0a8ad2fc184c8ba4238c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b21cd3d7a06200bb4af90b976216a8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -132,8 +129,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">HW &amp; asm</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -292,23 +290,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Old</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -445,294 +426,287 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -740,161 +714,185 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./B0.html" class="pagination-link" aria-label="Memory Hierarchy">
@@ -907,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> Caching </span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="an">subtitle:</span><span class="co"> "wBd1"</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">---</span></span>
@@ -957,18 +955,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-48"><a href="#cb1-48"></a></span>
 <span id="cb1-49"><a href="#cb1-49"></a>A B</span>
 <span id="cb1-50"><a href="#cb1-50"></a>Read-Only</span>
-<span id="cb1-51"><a href="#cb1-51"></a><span class="pp">|</span> A B   <span class="pp">|</span> F n ( A , <span class="pp">|</span> B )   <span class="pp">|</span> Memory  <span class="pp">|</span></span>
-<span id="cb1-52"><a href="#cb1-52"></a><span class="pp">| -----</span> <span class="pp">| ---------</span> <span class="pp">| -----</span> <span class="pp">| -------</span> <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a>| A B   | F n ( A , | B )   | Memory  |</span>
+<span id="cb1-52"><a href="#cb1-52"></a>| ----- | --------- | ----- | ------- |</span>
 <span id="cb1-53"><a href="#cb1-53"></a>(ROM)</span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="pp">|</span> 0 0   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-55"><a href="#cb1-55"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-56"><a href="#cb1-56"></a><span class="pp">|</span> 0 1   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a>| 0 0   | 0   |     |     |</span>
+<span id="cb1-55"><a href="#cb1-55"></a>| ----- | --- | --- | --- |</span>
+<span id="cb1-56"><a href="#cb1-56"></a>| 0 1   | 1   |     |     |</span>
 <span id="cb1-57"><a href="#cb1-57"></a>MUX</span>
 <span id="cb1-58"><a href="#cb1-58"></a>Fn(A,B)</span>
 <span id="cb1-59"><a href="#cb1-59"></a>Logic</span>
-<span id="cb1-60"><a href="#cb1-60"></a><span class="pp">|</span> 1 0   <span class="pp">|</span> 1   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-61"><a href="#cb1-61"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-62"><a href="#cb1-62"></a><span class="pp">|</span> 1 1   <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a>| 1 0   | 1   |     |     |</span>
+<span id="cb1-61"><a href="#cb1-61"></a>| ----- | --- | --- | --- |</span>
+<span id="cb1-62"><a href="#cb1-62"></a>| 1 1   | 0   |     |     |</span>
 <span id="cb1-63"><a href="#cb1-63"></a></span>
 <span id="cb1-64"><a href="#cb1-64"></a>■ A multiplexer can implement a lookup table:</span>
 <span id="cb1-65"><a href="#cb1-65"></a>– for an N-input function we need a 2N input multiplexer</span>
@@ -1117,32 +1115,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-208"><a href="#cb1-208"></a>appears as both</span>
 <span id="cb1-209"><a href="#cb1-209"></a>combinational circuit.</span>
 <span id="cb1-210"><a href="#cb1-210"></a>input and output</span>
-<span id="cb1-211"><a href="#cb1-211"></a><span class="pp">|</span> A   <span class="pp">|</span>     <span class="pp">|</span> G D <span class="pp">|</span> Q   <span class="pp">|</span> Q   <span class="pp">|</span></span>
-<span id="cb1-212"><a href="#cb1-212"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-213"><a href="#cb1-213"></a><span class="pp">|</span>     <span class="pp">|</span> 0   <span class="pp">|</span>     <span class="pp">|</span> IN  <span class="pp">|</span> OUT <span class="pp">|</span></span>
+<span id="cb1-211"><a href="#cb1-211"></a>| A   |     | G D | Q   | Q   |</span>
+<span id="cb1-212"><a href="#cb1-212"></a>| --- | --- | --- | --- | --- |</span>
+<span id="cb1-213"><a href="#cb1-213"></a>|     | 0   |     | IN  | OUT |</span>
 <span id="cb1-214"><a href="#cb1-214"></a>QY</span>
-<span id="cb1-215"><a href="#cb1-215"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 0 -- <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
-<span id="cb1-216"><a href="#cb1-216"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-215"><a href="#cb1-215"></a>|     |     | 0 -- | 0   | 0   |</span>
+<span id="cb1-216"><a href="#cb1-216"></a>| --- | --- | ---- | --- | --- |</span>
 <span id="cb1-217"><a href="#cb1-217"></a>Q stable</span>
-<span id="cb1-218"><a href="#cb1-218"></a><span class="pp">|</span> DB  <span class="pp">|</span> 1   <span class="pp">|</span> 0 -- <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-219"><a href="#cb1-219"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-220"><a href="#cb1-220"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1 0  <span class="pp">|</span> --  <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb1-218"><a href="#cb1-218"></a>| DB  | 1   | 0 -- | 1   | 1   |</span>
+<span id="cb1-219"><a href="#cb1-219"></a>| --- | --- | ---- | --- | --- |</span>
+<span id="cb1-220"><a href="#cb1-220"></a>|     |     | 1 0  | --  | 0   |</span>
 <span id="cb1-221"><a href="#cb1-221"></a>Q follows D</span>
 <span id="cb1-222"><a href="#cb1-222"></a>1 1</span>
-<span id="cb1-223"><a href="#cb1-223"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> --  <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-224"><a href="#cb1-224"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-223"><a href="#cb1-223"></a>|     |     |     | --  | 1   |</span>
+<span id="cb1-224"><a href="#cb1-224"></a>| --- | --- | --- | --- | --- |</span>
 <span id="cb1-225"><a href="#cb1-225"></a>GS</span>
 <span id="cb1-226"><a href="#cb1-226"></a></span>
 <span id="cb1-227"><a href="#cb1-227"></a>Flip Flop Timing</span>
-<span id="cb1-228"><a href="#cb1-228"></a><span class="dt">&lt;</span><span class="kw">t</span></span>
-<span id="cb1-229"><a href="#cb1-229"></a><span class="ot">PD</span></span>
-<span id="cb1-230"><a href="#cb1-230"></a><span class="ot">Q</span></span>
-<span id="cb1-231"><a href="#cb1-231"></a><span class="ot">D D Q Q</span></span>
-<span id="cb1-232"><a href="#cb1-232"></a><span class="ot">CLK</span></span>
-<span id="cb1-233"><a href="#cb1-233"></a><span class="ot">CLK</span></span>
-<span id="cb1-234"><a href="#cb1-234"></a><span class="ot">D</span></span>
-<span id="cb1-235"><a href="#cb1-235"></a><span class="ot">t : maximum propagation delay</span><span class="er">,</span><span class="ot"> CLK </span><span class="er">→</span><span class="ot">Q</span></span>
-<span id="cb1-236"><a href="#cb1-236"></a><span class="ot">PD </span><span class="dt">&gt;</span>t &gt;t</span>
+<span id="cb1-228"><a href="#cb1-228"></a>&lt;t</span>
+<span id="cb1-229"><a href="#cb1-229"></a>PD</span>
+<span id="cb1-230"><a href="#cb1-230"></a>Q</span>
+<span id="cb1-231"><a href="#cb1-231"></a>D D Q Q</span>
+<span id="cb1-232"><a href="#cb1-232"></a>CLK</span>
+<span id="cb1-233"><a href="#cb1-233"></a>CLK</span>
+<span id="cb1-234"><a href="#cb1-234"></a>D</span>
+<span id="cb1-235"><a href="#cb1-235"></a>t : maximum propagation delay, CLK →Q</span>
+<span id="cb1-236"><a href="#cb1-236"></a>PD &gt;t &gt;t</span>
 <span id="cb1-237"><a href="#cb1-237"></a>SETUP HOLD</span>
 <span id="cb1-238"><a href="#cb1-238"></a>t : setup time</span>
 <span id="cb1-239"><a href="#cb1-239"></a>SETUP</span>
@@ -1158,12 +1156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-249"><a href="#cb1-249"></a>wrong value.</span>
 <span id="cb1-250"><a href="#cb1-250"></a></span>
 <span id="cb1-251"><a href="#cb1-251"></a>Flip Flop Timing Example</span>
-<span id="cb1-252"><a href="#cb1-252"></a><span class="dt">&lt;</span><span class="kw">t</span></span>
-<span id="cb1-253"><a href="#cb1-253"></a><span class="ot">PD</span></span>
-<span id="cb1-254"><a href="#cb1-254"></a><span class="ot">Q</span></span>
-<span id="cb1-255"><a href="#cb1-255"></a><span class="ot">CLK</span></span>
-<span id="cb1-256"><a href="#cb1-256"></a><span class="ot">D</span></span>
-<span id="cb1-257"><a href="#cb1-257"></a><span class="dt">&gt;</span>t &gt;t</span>
+<span id="cb1-252"><a href="#cb1-252"></a>&lt;t</span>
+<span id="cb1-253"><a href="#cb1-253"></a>PD</span>
+<span id="cb1-254"><a href="#cb1-254"></a>Q</span>
+<span id="cb1-255"><a href="#cb1-255"></a>CLK</span>
+<span id="cb1-256"><a href="#cb1-256"></a>D</span>
+<span id="cb1-257"><a href="#cb1-257"></a>&gt;t &gt;t</span>
 <span id="cb1-258"><a href="#cb1-258"></a>SETUP HOLD</span>
 <span id="cb1-259"><a href="#cb1-259"></a>A flip-flop has the following timing parameters:</span>
 <span id="cb1-260"><a href="#cb1-260"></a>t = 2 ns, t = 1 ns, t = 3 ns.</span>
@@ -1174,9 +1172,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-265"><a href="#cb1-265"></a></span>
 <span id="cb1-266"><a href="#cb1-266"></a>Flip Flop Timing Example</span>
 <span id="cb1-267"><a href="#cb1-267"></a>A flip-flop has the following timing parameters:</span>
-<span id="cb1-268"><a href="#cb1-268"></a><span class="pp">|</span> t = 2 ns, t <span class="pp">|</span>  = 1 ns, t <span class="pp">|</span>  = 3 ns. <span class="pp">|</span></span>
-<span id="cb1-269"><a href="#cb1-269"></a><span class="pp">| -----------</span> <span class="pp">| ----------</span> <span class="pp">| --------</span> <span class="pp">|</span></span>
-<span id="cb1-270"><a href="#cb1-270"></a><span class="pp">|</span> setup       <span class="pp">|</span> hold       <span class="pp">|</span> PD       <span class="pp">|</span></span>
+<span id="cb1-268"><a href="#cb1-268"></a>| t = 2 ns, t |  = 1 ns, t |  = 3 ns. |</span>
+<span id="cb1-269"><a href="#cb1-269"></a>| ----------- | ---------- | -------- |</span>
+<span id="cb1-270"><a href="#cb1-270"></a>| setup       | hold       | PD       |</span>
 <span id="cb1-271"><a href="#cb1-271"></a>A rising clock edge occurs at 10 ns.</span>
 <span id="cb1-272"><a href="#cb1-272"></a><span class="ss">1. </span>During what time interval must D remain stable so the value is captured correctly?</span>
 <span id="cb1-273"><a href="#cb1-273"></a><span class="ss">2. </span>By what latest time should Q have updated after the clock edge?</span>
@@ -1263,16 +1261,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-354"><a href="#cb1-354"></a>R E/W</span>
 <span id="cb1-355"><a href="#cb1-355"></a>part of the FSM</span>
 <span id="cb1-356"><a href="#cb1-356"></a>G N/S</span>
-<span id="cb1-357"><a href="#cb1-357"></a><span class="pp">|</span> Input (State) <span class="pp">|</span> Output <span class="pp">|</span> Next State <span class="pp">|</span></span>
-<span id="cb1-358"><a href="#cb1-358"></a><span class="pp">| -------------</span> <span class="pp">| ------</span> <span class="pp">| ----------</span> <span class="pp">|</span></span>
-<span id="cb1-359"><a href="#cb1-359"></a><span class="pp">|</span> 00            <span class="pp">|</span> 10 00  <span class="pp">|</span> 01         <span class="pp">|</span></span>
-<span id="cb1-360"><a href="#cb1-360"></a><span class="pp">|</span> 01            <span class="pp">|</span> 01 00  <span class="pp">|</span> 10         <span class="pp">|</span></span>
+<span id="cb1-357"><a href="#cb1-357"></a>| Input (State) | Output | Next State |</span>
+<span id="cb1-358"><a href="#cb1-358"></a>| ------------- | ------ | ---------- |</span>
+<span id="cb1-359"><a href="#cb1-359"></a>| 00            | 10 00  | 01         |</span>
+<span id="cb1-360"><a href="#cb1-360"></a>| 01            | 01 00  | 10         |</span>
 <span id="cb1-361"><a href="#cb1-361"></a>R E/W</span>
-<span id="cb1-362"><a href="#cb1-362"></a><span class="pp">|</span> 10  <span class="pp">|</span> 00 10 <span class="pp">|</span> 11  <span class="pp">|</span></span>
-<span id="cb1-363"><a href="#cb1-363"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-362"><a href="#cb1-362"></a>| 10  | 00 10 | 11  |</span>
+<span id="cb1-363"><a href="#cb1-363"></a>| --- | ----- | --- |</span>
 <span id="cb1-364"><a href="#cb1-364"></a>Y N/S</span>
-<span id="cb1-365"><a href="#cb1-365"></a><span class="pp">|</span> 11  <span class="pp">|</span> 00 01 <span class="pp">|</span> 00  <span class="pp">|</span></span>
-<span id="cb1-366"><a href="#cb1-366"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-365"><a href="#cb1-365"></a>| 11  | 00 01 | 00  |</span>
+<span id="cb1-366"><a href="#cb1-366"></a>| --- | ----- | --- |</span>
 <span id="cb1-367"><a href="#cb1-367"></a></span>
 <span id="cb1-368"><a href="#cb1-368"></a>FSMs in the CPU</span>
 <span id="cb1-369"><a href="#cb1-369"></a>The complete finite-state</span>
@@ -1305,20 +1303,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-396"><a href="#cb1-396"></a>What Do We Want in a Memory?</span>
 <span id="cb1-397"><a href="#cb1-397"></a>Observation: As capacity goes up and</span>
 <span id="cb1-398"><a href="#cb1-398"></a>cost does down, latency gets worse.</span>
-<span id="cb1-399"><a href="#cb1-399"></a><span class="pp">|</span>     <span class="pp">|</span> PC   <span class="pp">|</span> ADDR <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-400"><a href="#cb1-400"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-401"><a href="#cb1-401"></a><span class="pp">|</span>     <span class="pp">|</span> INST <span class="pp">|</span> DOUT <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-399"><a href="#cb1-399"></a>|     | PC   | ADDR |     |</span>
+<span id="cb1-400"><a href="#cb1-400"></a>| --- | ---- | ---- | --- |</span>
+<span id="cb1-401"><a href="#cb1-401"></a>|     | INST | DOUT |     |</span>
 <span id="cb1-402"><a href="#cb1-402"></a>miniRISC-V MEMORY</span>
-<span id="cb1-403"><a href="#cb1-403"></a><span class="pp">|</span>            <span class="pp">|</span> MADDR         <span class="pp">|</span> ADDR       <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-404"><a href="#cb1-404"></a><span class="pp">| ----------</span> <span class="pp">| -------------</span> <span class="pp">| ----------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
-<span id="cb1-405"><a href="#cb1-405"></a><span class="pp">|</span>            <span class="pp">|</span> MDATA         <span class="pp">|</span> DATA       <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-406"><a href="#cb1-406"></a><span class="pp">|</span>            <span class="pp">|</span> Wr            <span class="pp">|</span> R/W        <span class="pp">|</span>        <span class="pp">|</span></span>
-<span id="cb1-407"><a href="#cb1-407"></a><span class="pp">|</span>            <span class="pp">|</span> Capacity      <span class="pp">|</span> Latency    <span class="pp">|</span> Cost   <span class="pp">|</span></span>
-<span id="cb1-408"><a href="#cb1-408"></a><span class="pp">|</span> Register   <span class="pp">|</span> 1000s of bits <span class="pp">|</span> 10 ps      <span class="pp">|</span> $$$$   <span class="pp">|</span></span>
-<span id="cb1-409"><a href="#cb1-409"></a><span class="pp">|</span> SRAM       <span class="pp">|</span> 1-8 MBytes    <span class="pp">|</span> 0.5-1 ns   <span class="pp">|</span> $2K/GB <span class="pp">|</span></span>
-<span id="cb1-410"><a href="#cb1-410"></a><span class="pp">|</span> DRAM       <span class="pp">|</span> 1-8 GBytes    <span class="pp">|</span> 50 ns      <span class="pp">|</span> $20/GB <span class="pp">|</span></span>
-<span id="cb1-411"><a href="#cb1-411"></a><span class="pp">|</span> Hard disk* <span class="pp">|</span> 100s GBytes   <span class="pp">|</span> 10 ms      <span class="pp">|</span> 20¢/GB <span class="pp">|</span></span>
-<span id="cb1-412"><a href="#cb1-412"></a><span class="pp">|</span> Want?      <span class="pp">|</span> Huge          <span class="pp">|</span> Low (fast) <span class="pp">|</span> Cheap! <span class="pp">|</span></span>
+<span id="cb1-403"><a href="#cb1-403"></a>|            | MADDR         | ADDR       |        |</span>
+<span id="cb1-404"><a href="#cb1-404"></a>| ---------- | ------------- | ---------- | ------ |</span>
+<span id="cb1-405"><a href="#cb1-405"></a>|            | MDATA         | DATA       |        |</span>
+<span id="cb1-406"><a href="#cb1-406"></a>|            | Wr            | R/W        |        |</span>
+<span id="cb1-407"><a href="#cb1-407"></a>|            | Capacity      | Latency    | Cost   |</span>
+<span id="cb1-408"><a href="#cb1-408"></a>| Register   | 1000s of bits | 10 ps      | $$$$   |</span>
+<span id="cb1-409"><a href="#cb1-409"></a>| SRAM       | 1-8 MBytes    | 0.5-1 ns   | $2K/GB |</span>
+<span id="cb1-410"><a href="#cb1-410"></a>| DRAM       | 1-8 GBytes    | 50 ns      | $20/GB |</span>
+<span id="cb1-411"><a href="#cb1-411"></a>| Hard disk* | 100s GBytes   | 10 ms      | 20¢/GB |</span>
+<span id="cb1-412"><a href="#cb1-412"></a>| Want?      | Huge          | Low (fast) | Cheap! |</span>
 <span id="cb1-413"><a href="#cb1-413"></a>*non-volatile:  Typically magnetic disk drive, but also SSD/flash now</span>
 <span id="cb1-414"><a href="#cb1-414"></a></span>
 <span id="cb1-415"><a href="#cb1-415"></a>Best of Both Worlds</span>
@@ -1605,27 +1603,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-696"><a href="#cb1-696"></a>– TAG is the memory address</span>
 <span id="cb1-697"><a href="#cb1-697"></a>Main Memory</span>
 <span id="cb1-698"><a href="#cb1-698"></a>– DATA is a copy of memory contents at the</span>
-<span id="cb1-699"><a href="#cb1-699"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1000 <span class="pp">|</span> 17  <span class="pp">|</span></span>
-<span id="cb1-700"><a href="#cb1-700"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-699"><a href="#cb1-699"></a>|     |     | 1000 | 17  |</span>
+<span id="cb1-700"><a href="#cb1-700"></a>| --- | --- | ---- | --- |</span>
 <span id="cb1-701"><a href="#cb1-701"></a>address given by TAG</span>
-<span id="cb1-702"><a href="#cb1-702"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1004 <span class="pp">|</span> 23  <span class="pp">|</span></span>
-<span id="cb1-703"><a href="#cb1-703"></a><span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-704"><a href="#cb1-704"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1008 <span class="pp">|</span> 11  <span class="pp">|</span></span>
-<span id="cb1-705"><a href="#cb1-705"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1012 <span class="pp">|</span> 5   <span class="pp">|</span></span>
-<span id="cb1-706"><a href="#cb1-706"></a><span class="pp">|</span> Tag  <span class="pp">|</span> Data <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-707"><a href="#cb1-707"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1016 <span class="pp">|</span> 29  <span class="pp">|</span></span>
-<span id="cb1-708"><a href="#cb1-708"></a><span class="pp">|</span> 1000 <span class="pp">|</span> 17   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-709"><a href="#cb1-709"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1020 <span class="pp">|</span> 38  <span class="pp">|</span></span>
-<span id="cb1-710"><a href="#cb1-710"></a><span class="pp">|</span> 1040 <span class="pp">|</span> 1    <span class="pp">|</span> 1024 <span class="pp">|</span> 44  <span class="pp">|</span></span>
-<span id="cb1-711"><a href="#cb1-711"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1028 <span class="pp">|</span> 99  <span class="pp">|</span></span>
-<span id="cb1-712"><a href="#cb1-712"></a><span class="pp">|</span> 1032 <span class="pp">|</span> 97   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-713"><a href="#cb1-713"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1032 <span class="pp">|</span> 97  <span class="pp">|</span></span>
-<span id="cb1-714"><a href="#cb1-714"></a><span class="pp">|</span> 1008 <span class="pp">|</span> 11   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-715"><a href="#cb1-715"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1036 <span class="pp">|</span> 25  <span class="pp">|</span></span>
+<span id="cb1-702"><a href="#cb1-702"></a>|      |      | 1004 | 23  |</span>
+<span id="cb1-703"><a href="#cb1-703"></a>| ---- | ---- | ---- | --- |</span>
+<span id="cb1-704"><a href="#cb1-704"></a>|      |      | 1008 | 11  |</span>
+<span id="cb1-705"><a href="#cb1-705"></a>|      |      | 1012 | 5   |</span>
+<span id="cb1-706"><a href="#cb1-706"></a>| Tag  | Data |      |     |</span>
+<span id="cb1-707"><a href="#cb1-707"></a>|      |      | 1016 | 29  |</span>
+<span id="cb1-708"><a href="#cb1-708"></a>| 1000 | 17   |      |     |</span>
+<span id="cb1-709"><a href="#cb1-709"></a>|      |      | 1020 | 38  |</span>
+<span id="cb1-710"><a href="#cb1-710"></a>| 1040 | 1    | 1024 | 44  |</span>
+<span id="cb1-711"><a href="#cb1-711"></a>|      |      | 1028 | 99  |</span>
+<span id="cb1-712"><a href="#cb1-712"></a>| 1032 | 97   |      |     |</span>
+<span id="cb1-713"><a href="#cb1-713"></a>|      |      | 1032 | 97  |</span>
+<span id="cb1-714"><a href="#cb1-714"></a>| 1008 | 11   |      |     |</span>
+<span id="cb1-715"><a href="#cb1-715"></a>|      |      | 1036 | 25  |</span>
 <span id="cb1-716"><a href="#cb1-716"></a>Cache</span>
-<span id="cb1-717"><a href="#cb1-717"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1040 <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-718"><a href="#cb1-718"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-719"><a href="#cb1-719"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1044 <span class="pp">|</span> 4   <span class="pp">|</span></span>
+<span id="cb1-717"><a href="#cb1-717"></a>|     |     | 1040 | 1   |</span>
+<span id="cb1-718"><a href="#cb1-718"></a>| --- | --- | ---- | --- |</span>
+<span id="cb1-719"><a href="#cb1-719"></a>|     |     | 1044 | 4   |</span>
 <span id="cb1-720"><a href="#cb1-720"></a></span>
 <span id="cb1-721"><a href="#cb1-721"></a>Cache Access</span>
 <span id="cb1-722"><a href="#cb1-722"></a>■ On load (lw) we look in the TAG entries for the address</span>
@@ -1633,27 +1631,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-724"><a href="#cb1-724"></a>– Found → a HIT, return the DATA</span>
 <span id="cb1-725"><a href="#cb1-725"></a>Main Memory</span>
 <span id="cb1-726"><a href="#cb1-726"></a>– Not Found → a MISS, go to memory for the data</span>
-<span id="cb1-727"><a href="#cb1-727"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1000 <span class="pp">|</span> 17  <span class="pp">|</span></span>
-<span id="cb1-728"><a href="#cb1-728"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-727"><a href="#cb1-727"></a>|     |     | 1000 | 17  |</span>
+<span id="cb1-728"><a href="#cb1-728"></a>| --- | --- | ---- | --- |</span>
 <span id="cb1-729"><a href="#cb1-729"></a>and put it and the address (TAG) in the cache</span>
-<span id="cb1-730"><a href="#cb1-730"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1004 <span class="pp">|</span> 23  <span class="pp">|</span></span>
-<span id="cb1-731"><a href="#cb1-731"></a><span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-732"><a href="#cb1-732"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1008 <span class="pp">|</span> 11  <span class="pp">|</span></span>
-<span id="cb1-733"><a href="#cb1-733"></a><span class="pp">|</span> Tag  <span class="pp">|</span> Data <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-734"><a href="#cb1-734"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1012 <span class="pp">|</span> 5   <span class="pp">|</span></span>
-<span id="cb1-735"><a href="#cb1-735"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1016 <span class="pp">|</span> 29  <span class="pp">|</span></span>
-<span id="cb1-736"><a href="#cb1-736"></a><span class="pp">|</span> 1000 <span class="pp">|</span> 17   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-737"><a href="#cb1-737"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1020 <span class="pp">|</span> 38  <span class="pp">|</span></span>
-<span id="cb1-738"><a href="#cb1-738"></a><span class="pp">|</span> 1040 <span class="pp">|</span> 1    <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-739"><a href="#cb1-739"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1024 <span class="pp">|</span> 44  <span class="pp">|</span></span>
-<span id="cb1-740"><a href="#cb1-740"></a><span class="pp">|</span> 1032 <span class="pp">|</span> 97   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-741"><a href="#cb1-741"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1028 <span class="pp">|</span> 99  <span class="pp">|</span></span>
-<span id="cb1-742"><a href="#cb1-742"></a><span class="pp">|</span> 1008 <span class="pp">|</span> 11   <span class="pp">|</span> 1032 <span class="pp">|</span> 97  <span class="pp">|</span></span>
-<span id="cb1-743"><a href="#cb1-743"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span> 1036 <span class="pp">|</span> 25  <span class="pp">|</span></span>
+<span id="cb1-730"><a href="#cb1-730"></a>|      |      | 1004 | 23  |</span>
+<span id="cb1-731"><a href="#cb1-731"></a>| ---- | ---- | ---- | --- |</span>
+<span id="cb1-732"><a href="#cb1-732"></a>|      |      | 1008 | 11  |</span>
+<span id="cb1-733"><a href="#cb1-733"></a>| Tag  | Data |      |     |</span>
+<span id="cb1-734"><a href="#cb1-734"></a>|      |      | 1012 | 5   |</span>
+<span id="cb1-735"><a href="#cb1-735"></a>|      |      | 1016 | 29  |</span>
+<span id="cb1-736"><a href="#cb1-736"></a>| 1000 | 17   |      |     |</span>
+<span id="cb1-737"><a href="#cb1-737"></a>|      |      | 1020 | 38  |</span>
+<span id="cb1-738"><a href="#cb1-738"></a>| 1040 | 1    |      |     |</span>
+<span id="cb1-739"><a href="#cb1-739"></a>|      |      | 1024 | 44  |</span>
+<span id="cb1-740"><a href="#cb1-740"></a>| 1032 | 97   |      |     |</span>
+<span id="cb1-741"><a href="#cb1-741"></a>|      |      | 1028 | 99  |</span>
+<span id="cb1-742"><a href="#cb1-742"></a>| 1008 | 11   | 1032 | 97  |</span>
+<span id="cb1-743"><a href="#cb1-743"></a>|      |      | 1036 | 25  |</span>
 <span id="cb1-744"><a href="#cb1-744"></a>Cache</span>
-<span id="cb1-745"><a href="#cb1-745"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1040 <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-746"><a href="#cb1-746"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-747"><a href="#cb1-747"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1044 <span class="pp">|</span> 4   <span class="pp">|</span></span>
+<span id="cb1-745"><a href="#cb1-745"></a>|     |     | 1040 | 1   |</span>
+<span id="cb1-746"><a href="#cb1-746"></a>| --- | --- | ---- | --- |</span>
+<span id="cb1-747"><a href="#cb1-747"></a>|     |     | 1044 | 4   |</span>
 <span id="cb1-748"><a href="#cb1-748"></a></span>
 <span id="cb1-749"><a href="#cb1-749"></a>Cache Lines</span>
 <span id="cb1-750"><a href="#cb1-750"></a>■ Usually get more data than requested</span>
@@ -1661,30 +1659,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-752"><a href="#cb1-752"></a>– usually much bigger than 1 word, 32 bytes per line</span>
 <span id="cb1-753"><a href="#cb1-753"></a>Main Memory</span>
 <span id="cb1-754"><a href="#cb1-754"></a>is common</span>
-<span id="cb1-755"><a href="#cb1-755"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1000 <span class="pp">|</span> 17  <span class="pp">|</span></span>
-<span id="cb1-756"><a href="#cb1-756"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-755"><a href="#cb1-755"></a>|     |     |     | 1000 | 17  |</span>
+<span id="cb1-756"><a href="#cb1-756"></a>| --- | --- | --- | ---- | --- |</span>
 <span id="cb1-757"><a href="#cb1-757"></a>– bigger LINE means fewer misses because of spatial</span>
-<span id="cb1-758"><a href="#cb1-758"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1004 <span class="pp">|</span> 23  <span class="pp">|</span></span>
-<span id="cb1-759"><a href="#cb1-759"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-758"><a href="#cb1-758"></a>|     |     |     | 1004 | 23  |</span>
+<span id="cb1-759"><a href="#cb1-759"></a>| --- | --- | --- | ---- | --- |</span>
 <span id="cb1-760"><a href="#cb1-760"></a>locality</span>
-<span id="cb1-761"><a href="#cb1-761"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1008 <span class="pp">|</span> 11  <span class="pp">|</span></span>
-<span id="cb1-762"><a href="#cb1-762"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-761"><a href="#cb1-761"></a>|     |     |     | 1008 | 11  |</span>
+<span id="cb1-762"><a href="#cb1-762"></a>| --- | --- | --- | ---- | --- |</span>
 <span id="cb1-763"><a href="#cb1-763"></a>– but bigger LINE means longer time on miss</span>
-<span id="cb1-764"><a href="#cb1-764"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1012 <span class="pp">|</span> 5   <span class="pp">|</span></span>
-<span id="cb1-765"><a href="#cb1-765"></a><span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-766"><a href="#cb1-766"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1016 <span class="pp">|</span> 29  <span class="pp">|</span></span>
-<span id="cb1-767"><a href="#cb1-767"></a><span class="pp">|</span> Tag  <span class="pp">|</span> Data <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-768"><a href="#cb1-768"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1020 <span class="pp">|</span> 38  <span class="pp">|</span></span>
-<span id="cb1-769"><a href="#cb1-769"></a><span class="pp">|</span> 1000 <span class="pp">|</span> 17   <span class="pp">|</span> 23  <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-770"><a href="#cb1-770"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1024 <span class="pp">|</span> 44  <span class="pp">|</span></span>
-<span id="cb1-771"><a href="#cb1-771"></a><span class="pp">|</span> 1040 <span class="pp">|</span> 1    <span class="pp">|</span> 4   <span class="pp">|</span> 1028 <span class="pp">|</span> 99  <span class="pp">|</span></span>
-<span id="cb1-772"><a href="#cb1-772"></a><span class="pp">|</span> 1032 <span class="pp">|</span> 97   <span class="pp">|</span> 25  <span class="pp">|</span> 1032 <span class="pp">|</span> 97  <span class="pp">|</span></span>
-<span id="cb1-773"><a href="#cb1-773"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1036 <span class="pp">|</span> 25  <span class="pp">|</span></span>
-<span id="cb1-774"><a href="#cb1-774"></a><span class="pp">|</span> 1008 <span class="pp">|</span> 11   <span class="pp">|</span> 5   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-775"><a href="#cb1-775"></a><span class="pp">|</span>      <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1040 <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-764"><a href="#cb1-764"></a>|      |      |     | 1012 | 5   |</span>
+<span id="cb1-765"><a href="#cb1-765"></a>| ---- | ---- | --- | ---- | --- |</span>
+<span id="cb1-766"><a href="#cb1-766"></a>|      |      |     | 1016 | 29  |</span>
+<span id="cb1-767"><a href="#cb1-767"></a>| Tag  | Data |     |      |     |</span>
+<span id="cb1-768"><a href="#cb1-768"></a>|      |      |     | 1020 | 38  |</span>
+<span id="cb1-769"><a href="#cb1-769"></a>| 1000 | 17   | 23  |      |     |</span>
+<span id="cb1-770"><a href="#cb1-770"></a>|      |      |     | 1024 | 44  |</span>
+<span id="cb1-771"><a href="#cb1-771"></a>| 1040 | 1    | 4   | 1028 | 99  |</span>
+<span id="cb1-772"><a href="#cb1-772"></a>| 1032 | 97   | 25  | 1032 | 97  |</span>
+<span id="cb1-773"><a href="#cb1-773"></a>|      |      |     | 1036 | 25  |</span>
+<span id="cb1-774"><a href="#cb1-774"></a>| 1008 | 11   | 5   |      |     |</span>
+<span id="cb1-775"><a href="#cb1-775"></a>|      |      |     | 1040 | 1   |</span>
 <span id="cb1-776"><a href="#cb1-776"></a>Cache</span>
-<span id="cb1-777"><a href="#cb1-777"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1044 <span class="pp">|</span> 4   <span class="pp">|</span></span>
-<span id="cb1-778"><a href="#cb1-778"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-777"><a href="#cb1-777"></a>|     |     |     | 1044 | 4   |</span>
+<span id="cb1-778"><a href="#cb1-778"></a>| --- | --- | --- | ---- | --- |</span>
 <span id="cb1-779"><a href="#cb1-779"></a></span>
 <span id="cb1-780"><a href="#cb1-780"></a>Finding the TAG in the Cache</span>
 <span id="cb1-781"><a href="#cb1-781"></a>■ Fully Associative:</span>
@@ -1720,27 +1718,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-811"><a href="#cb1-811"></a>– With 4 cache lines, next 2 bits determine which line to use</span>
 <span id="cb1-812"><a href="#cb1-812"></a>Main memory</span>
 <span id="cb1-813"><a href="#cb1-813"></a>■ 1024d = 10000000000b → line = 00b = 0d</span>
-<span id="cb1-814"><a href="#cb1-814"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1000 <span class="pp">|</span> 17  <span class="pp">|</span></span>
-<span id="cb1-815"><a href="#cb1-815"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-814"><a href="#cb1-814"></a>|     |     |     | 1000 | 17  |</span>
+<span id="cb1-815"><a href="#cb1-815"></a>| --- | --- | --- | ---- | --- |</span>
 <span id="cb1-816"><a href="#cb1-816"></a>■ 1000d = 01111101000b → line = 01b = 1d</span>
-<span id="cb1-817"><a href="#cb1-817"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1004 <span class="pp">|</span> 23  <span class="pp">|</span></span>
-<span id="cb1-818"><a href="#cb1-818"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-817"><a href="#cb1-817"></a>|     |     |     | 1004 | 23  |</span>
+<span id="cb1-818"><a href="#cb1-818"></a>| --- | --- | --- | ---- | --- |</span>
 <span id="cb1-819"><a href="#cb1-819"></a>■ 1040d = 10000010000b → line = 10b = 2d</span>
-<span id="cb1-820"><a href="#cb1-820"></a><span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 1008 <span class="pp">|</span> 11  <span class="pp">|</span></span>
-<span id="cb1-821"><a href="#cb1-821"></a><span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-822"><a href="#cb1-822"></a><span class="pp">|</span> Tag  <span class="pp">|</span>     <span class="pp">|</span> Data <span class="pp">|</span> 1012 <span class="pp">|</span> 5   <span class="pp">|</span></span>
-<span id="cb1-823"><a href="#cb1-823"></a><span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 1016 <span class="pp">|</span> 29  <span class="pp">|</span></span>
-<span id="cb1-824"><a href="#cb1-824"></a><span class="pp">|</span> 1024 <span class="pp">|</span> 44  <span class="pp">|</span> 99   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-825"><a href="#cb1-825"></a><span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 1020 <span class="pp">|</span> 38  <span class="pp">|</span></span>
-<span id="cb1-826"><a href="#cb1-826"></a><span class="pp">|</span> 1000 <span class="pp">|</span> 17  <span class="pp">|</span> 23   <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-827"><a href="#cb1-827"></a><span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 1024 <span class="pp">|</span> 44  <span class="pp">|</span></span>
-<span id="cb1-828"><a href="#cb1-828"></a><span class="pp">|</span> 1040 <span class="pp">|</span> 1   <span class="pp">|</span> 4    <span class="pp">|</span> 1028 <span class="pp">|</span> 99  <span class="pp">|</span></span>
-<span id="cb1-829"><a href="#cb1-829"></a><span class="pp">|</span> 1016 <span class="pp">|</span> 29  <span class="pp">|</span> 38   <span class="pp">|</span> 1032 <span class="pp">|</span> 97  <span class="pp">|</span></span>
-<span id="cb1-830"><a href="#cb1-830"></a><span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span> 1036 <span class="pp">|</span> 25  <span class="pp">|</span></span>
+<span id="cb1-820"><a href="#cb1-820"></a>|      |     |      | 1008 | 11  |</span>
+<span id="cb1-821"><a href="#cb1-821"></a>| ---- | --- | ---- | ---- | --- |</span>
+<span id="cb1-822"><a href="#cb1-822"></a>| Tag  |     | Data | 1012 | 5   |</span>
+<span id="cb1-823"><a href="#cb1-823"></a>|      |     |      | 1016 | 29  |</span>
+<span id="cb1-824"><a href="#cb1-824"></a>| 1024 | 44  | 99   |      |     |</span>
+<span id="cb1-825"><a href="#cb1-825"></a>|      |     |      | 1020 | 38  |</span>
+<span id="cb1-826"><a href="#cb1-826"></a>| 1000 | 17  | 23   |      |     |</span>
+<span id="cb1-827"><a href="#cb1-827"></a>|      |     |      | 1024 | 44  |</span>
+<span id="cb1-828"><a href="#cb1-828"></a>| 1040 | 1   | 4    | 1028 | 99  |</span>
+<span id="cb1-829"><a href="#cb1-829"></a>| 1016 | 29  | 38   | 1032 | 97  |</span>
+<span id="cb1-830"><a href="#cb1-830"></a>|      |     |      | 1036 | 25  |</span>
 <span id="cb1-831"><a href="#cb1-831"></a>Cache</span>
-<span id="cb1-832"><a href="#cb1-832"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1040 <span class="pp">|</span> 1   <span class="pp">|</span></span>
-<span id="cb1-833"><a href="#cb1-833"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-834"><a href="#cb1-834"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1044 <span class="pp">|</span> 4   <span class="pp">|</span></span>
+<span id="cb1-832"><a href="#cb1-832"></a>|     |     |     | 1040 | 1   |</span>
+<span id="cb1-833"><a href="#cb1-833"></a>| --- | --- | --- | ---- | --- |</span>
+<span id="cb1-834"><a href="#cb1-834"></a>|     |     |     | 1044 | 4   |</span>
 <span id="cb1-835"><a href="#cb1-835"></a></span>
 <span id="cb1-836"><a href="#cb1-836"></a>Addresses split into 3 parts:</span>
 <span id="cb1-837"><a href="#cb1-837"></a>Offset (lowest bits):  which byte within the block</span>
@@ -1754,29 +1752,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-845"><a href="#cb1-845"></a></span>
 <span id="cb1-846"><a href="#cb1-846"></a>Memory</span>
 <span id="cb1-847"><a href="#cb1-847"></a>■ 1008d = 01111110000b → line = 10b = 2d</span>
-<span id="cb1-848"><a href="#cb1-848"></a><span class="pp">|</span>                                   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1000 <span class="pp">|</span> 17  <span class="pp">|</span></span>
-<span id="cb1-849"><a href="#cb1-849"></a><span class="pp">| ---------------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-850"><a href="#cb1-850"></a><span class="pp">|</span> – …but earlier we put 1040d there <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1004 <span class="pp">|</span> 23  <span class="pp">|</span></span>
-<span id="cb1-851"><a href="#cb1-851"></a><span class="pp">|</span>                                   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1008 <span class="pp">|</span> 11  <span class="pp">|</span></span>
+<span id="cb1-848"><a href="#cb1-848"></a>|                                   |     |     |     | 1000 | 17  |</span>
+<span id="cb1-849"><a href="#cb1-849"></a>| --------------------------------- | --- | --- | --- | ---- | --- |</span>
+<span id="cb1-850"><a href="#cb1-850"></a>| – …but earlier we put 1040d there |     |     |     | 1004 | 23  |</span>
+<span id="cb1-851"><a href="#cb1-851"></a>|                                   |     |     |     | 1008 | 11  |</span>
 <span id="cb1-852"><a href="#cb1-852"></a>■ 1040d = 10000010000b → line = 10b = 2d</span>
-<span id="cb1-853"><a href="#cb1-853"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1012 <span class="pp">|</span> 5   <span class="pp">|</span></span>
-<span id="cb1-854"><a href="#cb1-854"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-853"><a href="#cb1-853"></a>|     |     |     |     | 1012 | 5   |</span>
+<span id="cb1-854"><a href="#cb1-854"></a>| --- | --- | --- | --- | ---- | --- |</span>
 <span id="cb1-855"><a href="#cb1-855"></a>– …so evict 1040d, put 1008d in that entry</span>
-<span id="cb1-856"><a href="#cb1-856"></a><span class="pp">|</span>     <span class="pp">|</span>          <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1016 <span class="pp">|</span> 29  <span class="pp">|</span></span>
-<span id="cb1-857"><a href="#cb1-857"></a><span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-858"><a href="#cb1-858"></a><span class="pp">|</span>     <span class="pp">|</span> Tag      <span class="pp">|</span> Data <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-859"><a href="#cb1-859"></a><span class="pp">|</span>     <span class="pp">|</span>          <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1020 <span class="pp">|</span> 38  <span class="pp">|</span></span>
-<span id="cb1-860"><a href="#cb1-860"></a><span class="pp">|</span>     <span class="pp">|</span> 1024     <span class="pp">|</span> 44   <span class="pp">|</span> 99  <span class="pp">|</span> 1024 <span class="pp">|</span> 44  <span class="pp">|</span></span>
-<span id="cb1-861"><a href="#cb1-861"></a><span class="pp">|</span>     <span class="pp">|</span>          <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1028 <span class="pp">|</span> 99  <span class="pp">|</span></span>
-<span id="cb1-862"><a href="#cb1-862"></a><span class="pp">|</span>     <span class="pp">|</span> 1000     <span class="pp">|</span> 17   <span class="pp">|</span> 23  <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-863"><a href="#cb1-863"></a><span class="pp">|</span>     <span class="pp">|</span>          <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1032 <span class="pp">|</span> 97  <span class="pp">|</span></span>
-<span id="cb1-864"><a href="#cb1-864"></a><span class="pp">|</span>     <span class="pp">|</span> 11004008 <span class="pp">|</span> 111  <span class="pp">|</span> 45  <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-865"><a href="#cb1-865"></a><span class="pp">|</span>     <span class="pp">|</span>          <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1036 <span class="pp">|</span> 25  <span class="pp">|</span></span>
-<span id="cb1-866"><a href="#cb1-866"></a><span class="pp">|</span>     <span class="pp">|</span> 1016     <span class="pp">|</span> 29   <span class="pp">|</span> 38  <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-867"><a href="#cb1-867"></a><span class="pp">|</span>     <span class="pp">|</span>          <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> 1040 <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb1-856"><a href="#cb1-856"></a>|     |          |      |     | 1016 | 29  |</span>
+<span id="cb1-857"><a href="#cb1-857"></a>| --- | -------- | ---- | --- | ---- | --- |</span>
+<span id="cb1-858"><a href="#cb1-858"></a>|     | Tag      | Data |     |      |     |</span>
+<span id="cb1-859"><a href="#cb1-859"></a>|     |          |      |     | 1020 | 38  |</span>
+<span id="cb1-860"><a href="#cb1-860"></a>|     | 1024     | 44   | 99  | 1024 | 44  |</span>
+<span id="cb1-861"><a href="#cb1-861"></a>|     |          |      |     | 1028 | 99  |</span>
+<span id="cb1-862"><a href="#cb1-862"></a>|     | 1000     | 17   | 23  |      |     |</span>
+<span id="cb1-863"><a href="#cb1-863"></a>|     |          |      |     | 1032 | 97  |</span>
+<span id="cb1-864"><a href="#cb1-864"></a>|     | 11004008 | 111  | 45  |      |     |</span>
+<span id="cb1-865"><a href="#cb1-865"></a>|     |          |      |     | 1036 | 25  |</span>
+<span id="cb1-866"><a href="#cb1-866"></a>|     | 1016     | 29   | 38  |      |     |</span>
+<span id="cb1-867"><a href="#cb1-867"></a>|     |          |      |     | 1040 | 1   |</span>
 <span id="cb1-868"><a href="#cb1-868"></a>Cache</span>
-<span id="cb1-869"><a href="#cb1-869"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 1044 <span class="pp">|</span> 4   <span class="pp">|</span></span>
-<span id="cb1-870"><a href="#cb1-870"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-869"><a href="#cb1-869"></a>|     |     |     |     | 1044 | 4   |</span>
+<span id="cb1-870"><a href="#cb1-870"></a>| --- | --- | --- | --- | ---- | --- |</span>
 <span id="cb1-871"><a href="#cb1-871"></a></span>
 <span id="cb1-872"><a href="#cb1-872"></a>Miss Penalty and Rate</span>
 <span id="cb1-873"><a href="#cb1-873"></a>■ How much time do you lose on a Miss?</span>
@@ -1802,18 +1800,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-893"><a href="#cb1-893"></a>Average CPI = 5 * 0.95 + (120+5) * 0.05 = 11</span>
 <span id="cb1-894"><a href="#cb1-894"></a></span>
 <span id="cb1-895"><a href="#cb1-895"></a>Continuum of Associativity</span>
-<span id="cb1-896"><a href="#cb1-896"></a><span class="pp">|</span> Fully associative <span class="pp">|</span> N-way set associative <span class="pp">|</span> Direct-mapped <span class="pp">|</span></span>
-<span id="cb1-897"><a href="#cb1-897"></a><span class="pp">| -----------------</span> <span class="pp">| ---------------------</span> <span class="pp">| -------------</span> <span class="pp">|</span></span>
-<span id="cb1-898"><a href="#cb1-898"></a><span class="pp">|</span>                   <span class="pp">|</span> address address       <span class="pp">|</span>               <span class="pp">|</span></span>
+<span id="cb1-896"><a href="#cb1-896"></a>| Fully associative | N-way set associative | Direct-mapped |</span>
+<span id="cb1-897"><a href="#cb1-897"></a>| ----------------- | --------------------- | ------------- |</span>
+<span id="cb1-898"><a href="#cb1-898"></a>|                   | address address       |               |</span>
 <span id="cb1-899"><a href="#cb1-899"></a>address</span>
 <span id="cb1-900"><a href="#cb1-900"></a>N</span>
 <span id="cb1-901"><a href="#cb1-901"></a>Compares addr with ALL  Compares addr with N tags  Compare addr with only</span>
 <span id="cb1-902"><a href="#cb1-902"></a>tags simultaneously location  simultaneously.  Data can be  ONE tag.  Location A can be</span>
 <span id="cb1-903"><a href="#cb1-903"></a>A can be stored in any cache  stored in any of the N cache  stored in exactly one cache</span>
 <span id="cb1-904"><a href="#cb1-904"></a>lines belonging to a “set”</span>
-<span id="cb1-905"><a href="#cb1-905"></a><span class="pp">|</span> line. <span class="pp">|</span>     <span class="pp">|</span> line. <span class="pp">|</span></span>
-<span id="cb1-906"><a href="#cb1-906"></a><span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
-<span id="cb1-907"><a href="#cb1-907"></a>like N direct-mapped caches.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-905"><a href="#cb1-905"></a>| line. |     | line. |</span>
+<span id="cb1-906"><a href="#cb1-906"></a>| ----- | --- | ----- |</span>
+<span id="cb1-907"><a href="#cb1-907"></a>like N direct-mapped caches.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

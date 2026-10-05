@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Stages – Systems in C</title>
+<title>Stages – HW &amp; asm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,9 +21,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,17 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./90.html" rel="next">
 <link href="./80.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-40a160e28a8c0a8ad2fc184c8ba4238c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b21cd3d7a06200bb4af90b976216a8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -132,8 +129,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">HW &amp; asm</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -292,23 +290,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Security</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Old</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -803,294 +784,287 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1098,161 +1072,185 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./80.html" class="pagination-link" aria-label="Pipeline RISC-V">
@@ -1265,7 +1263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> Stages </span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="an">subtitle:</span><span class="co"> "w8d1"</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">---</span></span>
@@ -1309,20 +1307,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-42"><a href="#cb1-42"></a></span>
 <span id="cb1-43"><a href="#cb1-43"></a>Summary Table</span>
 <span id="cb1-44"><a href="#cb1-44"></a>Instruction</span>
-<span id="cb1-45"><a href="#cb1-45"></a><span class="pp">|</span>     <span class="pp">|</span> IF  <span class="pp">|</span> ID  <span class="pp">|</span> EX  <span class="pp">|</span> MEM <span class="pp">|</span> WB  <span class="pp">|</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>|     | IF  | ID  | EX  | MEM | WB  |</span>
+<span id="cb1-46"><a href="#cb1-46"></a>| --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-47"><a href="#cb1-47"></a>Type</span>
-<span id="cb1-48"><a href="#cb1-48"></a><span class="pp">|</span> Arithmetic <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> ALU       <span class="pp">|</span> —         <span class="pp">|</span> Write result <span class="pp">|</span></span>
-<span id="cb1-49"><a href="#cb1-49"></a><span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---------</span> <span class="pp">| ---------</span> <span class="pp">| ------------</span> <span class="pp">|</span></span>
-<span id="cb1-50"><a href="#cb1-50"></a><span class="pp">|</span> LW         <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Addr calc <span class="pp">|</span> Read mem  <span class="pp">|</span> Write result <span class="pp">|</span></span>
-<span id="cb1-51"><a href="#cb1-51"></a><span class="pp">|</span> SW         <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Addr calc <span class="pp">|</span> Write mem <span class="pp">|</span> —            <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a>| Arithmetic |     |     | ALU       | —         | Write result |</span>
+<span id="cb1-49"><a href="#cb1-49"></a>| ---------- | --- | --- | --------- | --------- | ------------ |</span>
+<span id="cb1-50"><a href="#cb1-50"></a>| LW         |     |     | Addr calc | Read mem  | Write result |</span>
+<span id="cb1-51"><a href="#cb1-51"></a>| SW         |     |     | Addr calc | Write mem | —            |</span>
 <span id="cb1-52"><a href="#cb1-52"></a>Compare +</span>
-<span id="cb1-53"><a href="#cb1-53"></a><span class="pp">|</span> Branch <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> —   <span class="pp">|</span> —   <span class="pp">|</span></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a>| Branch |     |     |     | —   | —   |</span>
+<span id="cb1-54"><a href="#cb1-54"></a>| ------ | --- | --- | --- | --- | --- |</span>
 <span id="cb1-55"><a href="#cb1-55"></a>branch</span>
 <span id="cb1-56"><a href="#cb1-56"></a>Jump</span>
-<span id="cb1-57"><a href="#cb1-57"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Jump target* <span class="pp">|</span> —   <span class="pp">|</span> —   <span class="pp">|</span></span>
-<span id="cb1-58"><a href="#cb1-58"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a>|     |     |     | Jump target* | —   | —   |</span>
+<span id="cb1-58"><a href="#cb1-58"></a>| --- | --- | --- | ------------ | --- | --- |</span>
 <span id="cb1-59"><a href="#cb1-59"></a>EX: Figure out what to</span>
 <span id="cb1-60"><a href="#cb1-60"></a>MEM: Only matters for  WB: Only matters if we</span>
 <span id="cb1-61"><a href="#cb1-61"></a>do/action to take for specific</span>
@@ -1440,11 +1438,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-173"><a href="#cb1-173"></a></span>
 <span id="cb1-174"><a href="#cb1-174"></a><span class="fu">## Stages Used by Each Instruction</span></span>
 <span id="cb1-175"><a href="#cb1-175"></a></span>
-<span id="cb1-176"><a href="#cb1-176"></a><span class="pp">|</span> Instruction <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span></span>
-<span id="cb1-177"><a href="#cb1-177"></a><span class="pp">| -----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
+<span id="cb1-176"><a href="#cb1-176"></a>| Instruction | Fetch | Decode | Execute | Memory | Writeback |</span>
+<span id="cb1-177"><a href="#cb1-177"></a>| ----------- | ----- | ------ | ------- | ------ | --------- |</span>
 <span id="cb1-178"><a href="#cb1-178"></a>arithmetic and</span>
-<span id="cb1-179"><a href="#cb1-179"></a><span class="pp">|</span> logical (add, addi,  <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span></span>
-<span id="cb1-180"><a href="#cb1-180"></a><span class="pp">| --------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-179"><a href="#cb1-179"></a>| logical (add, addi,  | X   | X   | X   |     | X   |</span>
+<span id="cb1-180"><a href="#cb1-180"></a>| -------------------- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-181"><a href="#cb1-181"></a>or, etc)</span>
 <span id="cb1-182"><a href="#cb1-182"></a>sw</span>
 <span id="cb1-183"><a href="#cb1-183"></a>lw</span>
@@ -1453,22 +1451,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-186"><a href="#cb1-186"></a></span>
 <span id="cb1-187"><a href="#cb1-187"></a><span class="fu">## Time Needed for Each Stage</span></span>
 <span id="cb1-188"><a href="#cb1-188"></a></span>
-<span id="cb1-189"><a href="#cb1-189"></a><span class="pp">|</span>      <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span></span>
-<span id="cb1-190"><a href="#cb1-190"></a><span class="pp">| ----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">|</span></span>
-<span id="cb1-191"><a href="#cb1-191"></a><span class="pp">|</span> Time <span class="pp">|</span> 200ps <span class="pp">|</span> 100ps  <span class="pp">|</span> 200ps   <span class="pp">|</span> 200ps  <span class="pp">|</span> 100ps     <span class="pp">|</span></span>
+<span id="cb1-189"><a href="#cb1-189"></a>|      | Fetch | Decode | Execute | Memory | Writeback |</span>
+<span id="cb1-190"><a href="#cb1-190"></a>| ---- | ----- | ------ | ------- | ------ | --------- |</span>
+<span id="cb1-191"><a href="#cb1-191"></a>| Time | 200ps | 100ps  | 200ps   | 200ps  | 100ps     |</span>
 <span id="cb1-192"><a href="#cb1-192"></a></span>
 <span id="cb1-193"><a href="#cb1-193"></a><span class="fu">## Time Needed for Each Instruction</span></span>
 <span id="cb1-194"><a href="#cb1-194"></a></span>
-<span id="cb1-195"><a href="#cb1-195"></a><span class="pp">|</span>     <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-196"><a href="#cb1-196"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-195"><a href="#cb1-195"></a>|     | Fetch | Decode | Execute | Memory | Writeback |     |</span>
+<span id="cb1-196"><a href="#cb1-196"></a>| --- | ----- | ------ | ------- | ------ | --------- | --- |</span>
 <span id="cb1-197"><a href="#cb1-197"></a>Time</span>
-<span id="cb1-198"><a href="#cb1-198"></a><span class="pp">|</span>             <span class="pp">|</span> 200ps <span class="pp">|</span> 100ps  <span class="pp">|</span> 200ps   <span class="pp">|</span> 200ps  <span class="pp">|</span> 100ps     <span class="pp">|</span>            <span class="pp">|</span></span>
-<span id="cb1-199"><a href="#cb1-199"></a><span class="pp">| -----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ----------</span> <span class="pp">|</span></span>
-<span id="cb1-200"><a href="#cb1-200"></a><span class="pp">|</span> Instruction <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span> Total Time <span class="pp">|</span></span>
+<span id="cb1-198"><a href="#cb1-198"></a>|             | 200ps | 100ps  | 200ps   | 200ps  | 100ps     |            |</span>
+<span id="cb1-199"><a href="#cb1-199"></a>| ----------- | ----- | ------ | ------- | ------ | --------- | ---------- |</span>
+<span id="cb1-200"><a href="#cb1-200"></a>| Instruction | Fetch | Decode | Execute | Memory | Writeback | Total Time |</span>
 <span id="cb1-201"><a href="#cb1-201"></a>arithmetic  200ps + 100ps + 200ps + 100ps = 600ps</span>
 <span id="cb1-202"><a href="#cb1-202"></a>and logical</span>
-<span id="cb1-203"><a href="#cb1-203"></a><span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-204"><a href="#cb1-204"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-203"><a href="#cb1-203"></a>|     | X   | X   | X   |     | X   |     |</span>
+<span id="cb1-204"><a href="#cb1-204"></a>| --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-205"><a href="#cb1-205"></a>(add, addi,</span>
 <span id="cb1-206"><a href="#cb1-206"></a>or, etc)</span>
 <span id="cb1-207"><a href="#cb1-207"></a>sw</span>
@@ -1478,26 +1476,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-211"><a href="#cb1-211"></a></span>
 <span id="cb1-212"><a href="#cb1-212"></a><span class="fu">## Time Needed for Each Instruction</span></span>
 <span id="cb1-213"><a href="#cb1-213"></a></span>
-<span id="cb1-214"><a href="#cb1-214"></a><span class="pp">|</span>     <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-215"><a href="#cb1-215"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-214"><a href="#cb1-214"></a>|     | Fetch | Decode | Execute | Memory | Writeback |     |     |</span>
+<span id="cb1-215"><a href="#cb1-215"></a>| --- | ----- | ------ | ------- | ------ | --------- | --- | --- |</span>
 <span id="cb1-216"><a href="#cb1-216"></a>Time</span>
-<span id="cb1-217"><a href="#cb1-217"></a><span class="pp">|</span>             <span class="pp">|</span> 200ps <span class="pp">|</span> 100ps  <span class="pp">|</span> 200ps   <span class="pp">|</span> 200ps  <span class="pp">|</span> 100ps     <span class="pp">|</span>                                       <span class="pp">|</span>            <span class="pp">|</span></span>
-<span id="cb1-218"><a href="#cb1-218"></a><span class="pp">| -----------</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| -------</span> <span class="pp">| ------</span> <span class="pp">| ---------</span> <span class="pp">| -------------------------------------</span> <span class="pp">| ----------</span> <span class="pp">|</span></span>
-<span id="cb1-219"><a href="#cb1-219"></a><span class="pp">|</span> Instruction <span class="pp">|</span> Fetch <span class="pp">|</span> Decode <span class="pp">|</span> Execute <span class="pp">|</span> Memory <span class="pp">|</span> Writeback <span class="pp">|</span>                                       <span class="pp">|</span> Total Time <span class="pp">|</span></span>
-<span id="cb1-220"><a href="#cb1-220"></a><span class="pp">|</span> arithmetic  <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span>         <span class="pp">|</span>        <span class="pp">|</span>           <span class="pp">|</span> 200ps + 100ps + 200ps + 100ps = 600ps <span class="pp">|</span>            <span class="pp">|</span></span>
+<span id="cb1-217"><a href="#cb1-217"></a>|             | 200ps | 100ps  | 200ps   | 200ps  | 100ps     |                                       |            |</span>
+<span id="cb1-218"><a href="#cb1-218"></a>| ----------- | ----- | ------ | ------- | ------ | --------- | ------------------------------------- | ---------- |</span>
+<span id="cb1-219"><a href="#cb1-219"></a>| Instruction | Fetch | Decode | Execute | Memory | Writeback |                                       | Total Time |</span>
+<span id="cb1-220"><a href="#cb1-220"></a>| arithmetic  |       |        |         |        |           | 200ps + 100ps + 200ps + 100ps = 600ps |            |</span>
 <span id="cb1-221"><a href="#cb1-221"></a>and logical</span>
-<span id="cb1-222"><a href="#cb1-222"></a><span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-223"><a href="#cb1-223"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-222"><a href="#cb1-222"></a>|     | X   | X   | X   |     | X   |     |     |</span>
+<span id="cb1-223"><a href="#cb1-223"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-224"><a href="#cb1-224"></a>(add, addi,</span>
 <span id="cb1-225"><a href="#cb1-225"></a>or, etc)</span>
-<span id="cb1-226"><a href="#cb1-226"></a><span class="pp">|</span> sw  <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span> 200 + 100 + 200 + 200 = 700ps       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-227"><a href="#cb1-227"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----------------------------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-228"><a href="#cb1-228"></a><span class="pp">|</span> lw  <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> 200 + 100 + 200 + 200 + 100 = 800ps <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-226"><a href="#cb1-226"></a>| sw  | X   | X   | X   | X   |     | 200 + 100 + 200 + 200 = 700ps       |     |</span>
+<span id="cb1-227"><a href="#cb1-227"></a>| --- | --- | --- | --- | --- | --- | ----------------------------------- | --- |</span>
+<span id="cb1-228"><a href="#cb1-228"></a>| lw  | X   | X   | X   | X   | X   | 200 + 100 + 200 + 200 + 100 = 800ps |     |</span>
 <span id="cb1-229"><a href="#cb1-229"></a>branch 200 + 100 + 200 = 500ps</span>
-<span id="cb1-230"><a href="#cb1-230"></a><span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>                   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-231"><a href="#cb1-231"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-232"><a href="#cb1-232"></a><span class="pp">|</span> j   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 200 + 100 = 300ps <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-233"><a href="#cb1-233"></a><span class="pp">|</span>     <span class="pp">|</span> X   <span class="pp">|</span> X   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>                   <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-230"><a href="#cb1-230"></a>|     | X   | X   | X   |     |     |                   |     |</span>
+<span id="cb1-231"><a href="#cb1-231"></a>| --- | --- | --- | --- | --- | --- | ----------------- | --- |</span>
+<span id="cb1-232"><a href="#cb1-232"></a>| j   |     |     |     |     |     | 200 + 100 = 300ps |     |</span>
+<span id="cb1-233"><a href="#cb1-233"></a>|     | X   | X   |     |     |     |                   |     |</span>
 <span id="cb1-234"><a href="#cb1-234"></a></span>
 <span id="cb1-235"><a href="#cb1-235"></a><span class="fu">## Min Clock Period</span></span>
 <span id="cb1-236"><a href="#cb1-236"></a></span>
@@ -1534,8 +1532,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-267"><a href="#cb1-267"></a></span>
 <span id="cb1-268"><a href="#cb1-268"></a><span class="fu">## Cycle 2</span></span>
 <span id="cb1-269"><a href="#cb1-269"></a></span>
-<span id="cb1-270"><a href="#cb1-270"></a><span class="pp">|</span> sub x8, x9, x20  <span class="pp">|</span> lw x9, 100(x0)  <span class="pp">|</span> add x8, x6, x7 <span class="pp">|</span></span>
-<span id="cb1-271"><a href="#cb1-271"></a><span class="pp">| ----------------</span> <span class="pp">| ---------------</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
+<span id="cb1-270"><a href="#cb1-270"></a>| sub x8, x9, x20  | lw x9, 100(x0)  | add x8, x6, x7 |</span>
+<span id="cb1-271"><a href="#cb1-271"></a>| ---------------- | --------------- | -------------- |</span>
 <span id="cb1-272"><a href="#cb1-272"></a></span>
 <span id="cb1-273"><a href="#cb1-273"></a><span class="fu">## Cycle 3</span></span>
 <span id="cb1-274"><a href="#cb1-274"></a></span>
@@ -1545,8 +1543,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-278"><a href="#cb1-278"></a><span class="fu">## Cycle 4</span></span>
 <span id="cb1-279"><a href="#cb1-279"></a></span>
 <span id="cb1-280"><a href="#cb1-280"></a>add x8, x6, x7</span>
-<span id="cb1-281"><a href="#cb1-281"></a><span class="pp">|</span> or x21, x11, x12 <span class="pp">|</span> sw x10, 0(x20) <span class="pp">|</span> lw x9, 100(x0)  <span class="pp">|</span></span>
-<span id="cb1-282"><a href="#cb1-282"></a><span class="pp">| ----------------</span> <span class="pp">| --------------</span> <span class="pp">| ---------------</span> <span class="pp">|</span></span>
+<span id="cb1-281"><a href="#cb1-281"></a>| or x21, x11, x12 | sw x10, 0(x20) | lw x9, 100(x0)  |</span>
+<span id="cb1-282"><a href="#cb1-282"></a>| ---------------- | -------------- | --------------- |</span>
 <span id="cb1-283"><a href="#cb1-283"></a>sub x8, x9, x20</span>
 <span id="cb1-284"><a href="#cb1-284"></a></span>
 <span id="cb1-285"><a href="#cb1-285"></a><span class="fu">## Cycle 5</span></span>
@@ -1571,8 +1569,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-304"><a href="#cb1-304"></a></span>
 <span id="cb1-305"><a href="#cb1-305"></a>Determine the Min Clock Period</span>
 <span id="cb1-306"><a href="#cb1-306"></a>register is 20ps</span>
-<span id="cb1-307"><a href="#cb1-307"></a><span class="pp">|</span> 200ps <span class="pp">|</span> 100ps <span class="pp">|</span> 200ps <span class="pp">|</span> 200ps <span class="pp">|</span> 100ps <span class="pp">|</span></span>
-<span id="cb1-308"><a href="#cb1-308"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">|</span></span>
+<span id="cb1-307"><a href="#cb1-307"></a>| 200ps | 100ps | 200ps | 200ps | 100ps |</span>
+<span id="cb1-308"><a href="#cb1-308"></a>| ----- | ----- | ----- | ----- | ----- |</span>
 <span id="cb1-309"><a href="#cb1-309"></a></span>
 <span id="cb1-310"><a href="#cb1-310"></a><span class="fu">## Latency</span></span>
 <span id="cb1-311"><a href="#cb1-311"></a></span>
@@ -1806,16 +1804,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-539"><a href="#cb1-539"></a><span class="fu">## Multiply</span></span>
 <span id="cb1-540"><a href="#cb1-540"></a></span>
 <span id="cb1-541"><a href="#cb1-541"></a>MUL: multiply registers</span>
-<span id="cb1-542"><a href="#cb1-542"></a><span class="pp">|</span> Syntax:    <span class="pp">|</span>     <span class="pp">|</span> mul rd,rs,rt                            <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-543"><a href="#cb1-543"></a><span class="pp">| ----------</span> <span class="pp">| ---</span> <span class="pp">| ---------------------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-544"><a href="#cb1-544"></a><span class="pp">|</span> Encoding:  <span class="pp">|</span>     <span class="pp">|</span> 0000 001t tttt ssss s000 dddd d011 0011 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-542"><a href="#cb1-542"></a>| Syntax:    |     | mul rd,rs,rt                            |     |     |</span>
+<span id="cb1-543"><a href="#cb1-543"></a>| ---------- | --- | --------------------------------------- | --- | --- |</span>
+<span id="cb1-544"><a href="#cb1-544"></a>| Encoding:  |     | 0000 001t tttt ssss s000 dddd d011 0011 |     |     |</span>
 <span id="cb1-545"><a href="#cb1-545"></a>Description:</span>
 <span id="cb1-546"><a href="#cb1-546"></a>Reg<span class="co">[</span><span class="ot">d</span><span class="co">]</span> ← Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span> * Reg<span class="co">[</span><span class="ot">t</span><span class="co">]</span></span>
 <span id="cb1-547"><a href="#cb1-547"></a>Multiply the contents of Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span> and Reg<span class="co">[</span><span class="ot">t</span><span class="co">]</span>, and place the lower 32-</span>
 <span id="cb1-548"><a href="#cb1-548"></a>bits of the product in Reg<span class="co">[</span><span class="ot">d</span><span class="co">]</span>. Overflows are ignored. MUL is binary</span>
 <span id="cb1-549"><a href="#cb1-549"></a>and semantically compliant with the RV32M mul instruction.</span>
-<span id="cb1-550"><a href="#cb1-550"></a><span class="pp">|</span> Example:  <span class="pp">|</span> mul x5,x6,x7  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> # Encoded as: 0x027302B3 <span class="pp">|</span></span>
-<span id="cb1-551"><a href="#cb1-551"></a><span class="pp">| ---------</span> <span class="pp">| -------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------------------</span> <span class="pp">|</span></span>
+<span id="cb1-550"><a href="#cb1-550"></a>| Example:  | mul x5,x6,x7  |     |     | # Encoded as: 0x027302B3 |</span>
+<span id="cb1-551"><a href="#cb1-551"></a>| --------- | ------------- | --- | --- | ------------------------ |</span>
 <span id="cb1-552"><a href="#cb1-552"></a></span>
 <span id="cb1-553"><a href="#cb1-553"></a><span class="fu">## Divide</span></span>
 <span id="cb1-554"><a href="#cb1-554"></a></span>
@@ -1838,15 +1836,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-571"><a href="#cb1-571"></a>Encoding:  0000 001t tttt ssss s110 dddd d011 0011</span>
 <span id="cb1-572"><a href="#cb1-572"></a>Description:</span>
 <span id="cb1-573"><a href="#cb1-573"></a>Reg<span class="co">[</span><span class="ot">d</span><span class="co">]</span> ← Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span> % Reg<span class="co">[</span><span class="ot">t</span><span class="co">]</span></span>
-<span id="cb1-574"><a href="#cb1-574"></a><span class="pp">|</span> Divide     <span class="pp">|</span> the  <span class="pp">|</span> contents     <span class="pp">|</span>           <span class="pp">|</span> of  Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span>  <span class="pp">|</span>     <span class="pp">|</span> by  Reg<span class="co">[</span><span class="ot">t</span><span class="co">]</span>,       <span class="pp">|</span>      <span class="pp">|</span> and  place  <span class="pp">|</span> the     <span class="pp">|</span></span>
-<span id="cb1-575"><a href="#cb1-575"></a><span class="pp">| ----------</span> <span class="pp">| ----</span> <span class="pp">| ------------</span> <span class="pp">| ---------</span> <span class="pp">| -----------</span> <span class="pp">| ---</span> <span class="pp">| -----------------</span> <span class="pp">| ----</span> <span class="pp">| -----------</span> <span class="pp">| -------</span> <span class="pp">|</span></span>
-<span id="cb1-576"><a href="#cb1-576"></a><span class="pp">|</span> remainder  <span class="pp">|</span>      <span class="pp">|</span> in  Reg<span class="co">[</span><span class="ot">d</span><span class="co">]</span>.  <span class="pp">|</span>           <span class="pp">|</span> A  divisor  <span class="pp">|</span>     <span class="pp">|</span> of  0  does       <span class="pp">|</span> not  <span class="pp">|</span> generate    <span class="pp">|</span> an      <span class="pp">|</span></span>
-<span id="cb1-577"><a href="#cb1-577"></a><span class="pp">|</span> overflow   <span class="pp">|</span>      <span class="pp">|</span> and  the     <span class="pp">|</span> contents  <span class="pp">|</span>             <span class="pp">|</span> of  <span class="pp">|</span> the  destination  <span class="pp">|</span>      <span class="pp">|</span> register    <span class="pp">|</span> rd  is  <span class="pp">|</span></span>
+<span id="cb1-574"><a href="#cb1-574"></a>| Divide     | the  | contents     |           | of  Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span>  |     | by  Reg<span class="co">[</span><span class="ot">t</span><span class="co">]</span>,       |      | and  place  | the     |</span>
+<span id="cb1-575"><a href="#cb1-575"></a>| ---------- | ---- | ------------ | --------- | ----------- | --- | ----------------- | ---- | ----------- | ------- |</span>
+<span id="cb1-576"><a href="#cb1-576"></a>| remainder  |      | in  Reg<span class="co">[</span><span class="ot">d</span><span class="co">]</span>.  |           | A  divisor  |     | of  0  does       | not  | generate    | an      |</span>
+<span id="cb1-577"><a href="#cb1-577"></a>| overflow   |      | and  the     | contents  |             | of  | the  destination  |      | register    | rd  is  |</span>
 <span id="cb1-578"><a href="#cb1-578"></a>set to the dividend, Reg<span class="co">[</span><span class="ot">s</span><span class="co">]</span>. REM is binary and semantically</span>
 <span id="cb1-579"><a href="#cb1-579"></a>compliant with the RV32M rem instruction.</span>
 <span id="cb1-580"><a href="#cb1-580"></a>Example:</span>
-<span id="cb1-581"><a href="#cb1-581"></a><span class="pp">|</span> rem x7,x5,x6  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> # Encoded as: 0x0262E3B3 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-582"><a href="#cb1-582"></a><span class="pp">| -------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-581"><a href="#cb1-581"></a>| rem x7,x5,x6  |     |     |     |     |     | # Encoded as: 0x0262E3B3 |     |     |     |</span>
+<span id="cb1-582"><a href="#cb1-582"></a>| ------------- | --- | --- | --- | --- | --- | ------------------------ | --- | --- | --- |</span>
 <span id="cb1-583"><a href="#cb1-583"></a></span>
 <span id="cb1-584"><a href="#cb1-584"></a><span class="fu">## Another instruction: AUIPC</span></span>
 <span id="cb1-585"><a href="#cb1-585"></a></span>
@@ -1902,31 +1900,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-635"><a href="#cb1-635"></a>CALLS!</span>
 <span id="cb1-636"><a href="#cb1-636"></a></span>
 <span id="cb1-637"><a href="#cb1-637"></a>The Beauty and Power of Procedures</span>
-<span id="cb1-638"><a href="#cb1-638"></a><span class="pp">|</span> ● Reusable code fragments (modular design) <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-639"><a href="#cb1-639"></a><span class="pp">| ------------------------------------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-638"><a href="#cb1-638"></a>| ● Reusable code fragments (modular design) |     |     |</span>
+<span id="cb1-639"><a href="#cb1-639"></a>| ------------------------------------------ | --- | --- |</span>
 <span id="cb1-640"><a href="#cb1-640"></a></span>
 <span id="cb1-641"><a href="#cb1-641"></a>clear_screen();</span>
 <span id="cb1-642"><a href="#cb1-642"></a>// code to draw a bunch of lines</span>
-<span id="cb1-643"><a href="#cb1-643"></a><span class="pp">|</span>     <span class="pp">|</span> clear_screen(); <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-644"><a href="#cb1-644"></a><span class="pp">| ---</span> <span class="pp">| ---------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-645"><a href="#cb1-645"></a><span class="pp">|</span>     <span class="pp">|</span>                 <span class="pp">|</span> …   <span class="pp">|</span></span>
+<span id="cb1-643"><a href="#cb1-643"></a>|     | clear_screen(); |     |</span>
+<span id="cb1-644"><a href="#cb1-644"></a>| --- | --------------- | --- |</span>
+<span id="cb1-645"><a href="#cb1-645"></a>|     |                 | …   |</span>
 <span id="cb1-646"><a href="#cb1-646"></a>Parameterized procedures (variable behaviors)</span>
 <span id="cb1-647"><a href="#cb1-647"></a>●</span>
 <span id="cb1-648"><a href="#cb1-648"></a></span>
 <span id="cb1-649"><a href="#cb1-649"></a>line(x1,y1,x2,y2,color);</span>
 <span id="cb1-650"><a href="#cb1-650"></a>for (int i = 0; i &lt; N-1; i++)</span>
-<span id="cb1-651"><a href="#cb1-651"></a><span class="pp">|</span>     <span class="pp">|</span> line(x2,y2,x3,y3,color); <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-652"><a href="#cb1-652"></a><span class="pp">| ---</span> <span class="pp">| ------------------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-651"><a href="#cb1-651"></a>|     | line(x2,y2,x3,y3,color); |     |</span>
+<span id="cb1-652"><a href="#cb1-652"></a>| --- | ------------------------ | --- |</span>
 <span id="cb1-653"><a href="#cb1-653"></a>    line(x<span class="co">[</span><span class="ot">i</span><span class="co">]</span>,y<span class="co">[</span><span class="ot">i</span><span class="co">]</span>,x<span class="co">[</span><span class="ot">i+1</span><span class="co">]</span>,y<span class="co">[</span><span class="ot">i+1</span><span class="co">]</span>,color);</span>
-<span id="cb1-654"><a href="#cb1-654"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> …   <span class="pp">|</span></span>
-<span id="cb1-655"><a href="#cb1-655"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-654"><a href="#cb1-654"></a>|     |     | …   |</span>
+<span id="cb1-655"><a href="#cb1-655"></a>| --- | --- | --- |</span>
 <span id="cb1-656"><a href="#cb1-656"></a>line(x<span class="co">[</span><span class="ot">i</span><span class="co">]</span>,y<span class="co">[</span><span class="ot">i</span><span class="co">]</span>,x<span class="co">[</span><span class="ot">0</span><span class="co">]</span>,y<span class="co">[</span><span class="ot">0</span><span class="co">]</span>,color);</span>
 <span id="cb1-657"><a href="#cb1-657"></a>Functions (procedures that return values)</span>
 <span id="cb1-658"><a href="#cb1-658"></a>●</span>
 <span id="cb1-659"><a href="#cb1-659"></a></span>
 <span id="cb1-660"><a href="#cb1-660"></a>xMax = max(max(x1,x2),x3);</span>
-<span id="cb1-661"><a href="#cb1-661"></a><span class="pp">|</span>     <span class="pp">|</span> yMax = max(max(y1,y2),y3); <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-662"><a href="#cb1-662"></a><span class="pp">| ---</span> <span class="pp">| --------------------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-661"><a href="#cb1-661"></a>|     | yMax = max(max(y1,y2),y3); |     |</span>
+<span id="cb1-662"><a href="#cb1-662"></a>| --- | -------------------------- | --- |</span>
 <span id="cb1-663"><a href="#cb1-663"></a></span>
 <span id="cb1-664"><a href="#cb1-664"></a><span class="fu">## More Procedure Power</span></span>
 <span id="cb1-665"><a href="#cb1-665"></a></span>
@@ -1982,41 +1980,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-715"><a href="#cb1-715"></a></span>
 <span id="cb1-716"><a href="#cb1-716"></a><span class="fu">## Register use conventions</span></span>
 <span id="cb1-717"><a href="#cb1-717"></a></span>
-<span id="cb1-718"><a href="#cb1-718"></a><span class="pp">|</span>     <span class="pp">|</span> x0/zero (always zero) <span class="pp">|</span> x16/a6 (argument) <span class="pp">|</span></span>
-<span id="cb1-719"><a href="#cb1-719"></a><span class="pp">| ---</span> <span class="pp">| ---------------------</span> <span class="pp">| -----------------</span> <span class="pp">|</span></span>
+<span id="cb1-718"><a href="#cb1-718"></a>|     | x0/zero (always zero) | x16/a6 (argument) |</span>
+<span id="cb1-719"><a href="#cb1-719"></a>| --- | --------------------- | ----------------- |</span>
 <span id="cb1-720"><a href="#cb1-720"></a>By convention, the RISC-V</span>
-<span id="cb1-721"><a href="#cb1-721"></a><span class="pp">|</span>     <span class="pp">|</span> x1/ra (return address) <span class="pp">|</span> x17/a7 (argument) <span class="pp">|</span></span>
-<span id="cb1-722"><a href="#cb1-722"></a><span class="pp">| ---</span> <span class="pp">| ----------------------</span> <span class="pp">| -----------------</span> <span class="pp">|</span></span>
+<span id="cb1-721"><a href="#cb1-721"></a>|     | x1/ra (return address) | x17/a7 (argument) |</span>
+<span id="cb1-722"><a href="#cb1-722"></a>| --- | ---------------------- | ----------------- |</span>
 <span id="cb1-723"><a href="#cb1-723"></a>registers are assigned to  x2/sp (stack pointer) x18/s2 (saved)</span>
-<span id="cb1-724"><a href="#cb1-724"></a><span class="pp">|</span>     <span class="pp">|</span> x3/gp (global pointer) <span class="pp">|</span> x19/s3 (saved) <span class="pp">|</span></span>
-<span id="cb1-725"><a href="#cb1-725"></a><span class="pp">| ---</span> <span class="pp">| ----------------------</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
+<span id="cb1-724"><a href="#cb1-724"></a>|     | x3/gp (global pointer) | x19/s3 (saved) |</span>
+<span id="cb1-725"><a href="#cb1-725"></a>| --- | ---------------------- | -------------- |</span>
 <span id="cb1-726"><a href="#cb1-726"></a>specific uses and names</span>
-<span id="cb1-727"><a href="#cb1-727"></a><span class="pp">|</span>                             <span class="pp">|</span> x4/tp (thread pointer) <span class="pp">|</span> x20/s4 (saved) <span class="pp">|</span></span>
-<span id="cb1-728"><a href="#cb1-728"></a><span class="pp">| ---------------------------</span> <span class="pp">| ----------------------</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
-<span id="cb1-729"><a href="#cb1-729"></a><span class="pp">|</span> used in the ABI. These are  <span class="pp">|</span> x5/t0 (temporary)      <span class="pp">|</span> x21/s5 (saved) <span class="pp">|</span></span>
+<span id="cb1-727"><a href="#cb1-727"></a>|                             | x4/tp (thread pointer) | x20/s4 (saved) |</span>
+<span id="cb1-728"><a href="#cb1-728"></a>| --------------------------- | ---------------------- | -------------- |</span>
+<span id="cb1-729"><a href="#cb1-729"></a>| used in the ABI. These are  | x5/t0 (temporary)      | x21/s5 (saved) |</span>
 <span id="cb1-730"><a href="#cb1-730"></a>x6/t1 (temporary) x22 (saved)</span>
 <span id="cb1-731"><a href="#cb1-731"></a>supported by the assembler,</span>
 <span id="cb1-732"><a href="#cb1-732"></a>x7/t2  (temporary) x23 (saved)</span>
-<span id="cb1-733"><a href="#cb1-733"></a><span class="pp">|</span>     <span class="pp">|</span> x8/fp (frame pointer) <span class="pp">|</span> x24 (saved) <span class="pp">|</span></span>
-<span id="cb1-734"><a href="#cb1-734"></a><span class="pp">| ---</span> <span class="pp">| ---------------------</span> <span class="pp">| -----------</span> <span class="pp">|</span></span>
+<span id="cb1-733"><a href="#cb1-733"></a>|     | x8/fp (frame pointer) | x24 (saved) |</span>
+<span id="cb1-734"><a href="#cb1-734"></a>| --- | --------------------- | ----------- |</span>
 <span id="cb1-735"><a href="#cb1-735"></a>and high-level languages.</span>
 <span id="cb1-736"><a href="#cb1-736"></a>x9/s1 (saved) x25 (saved)</span>
-<span id="cb1-737"><a href="#cb1-737"></a><span class="pp">|</span>     <span class="pp">|</span> x10/a0 (argument/return value 1) <span class="pp">|</span> x26 (saved) <span class="pp">|</span></span>
-<span id="cb1-738"><a href="#cb1-738"></a><span class="pp">| ---</span> <span class="pp">| --------------------------------</span> <span class="pp">| -----------</span> <span class="pp">|</span></span>
-<span id="cb1-739"><a href="#cb1-739"></a><span class="pp">|</span>     <span class="pp">|</span> x11/a1 (argument/return value 2) <span class="pp">|</span> x27 (saved) <span class="pp">|</span></span>
+<span id="cb1-737"><a href="#cb1-737"></a>|     | x10/a0 (argument/return value 1) | x26 (saved) |</span>
+<span id="cb1-738"><a href="#cb1-738"></a>| --- | -------------------------------- | ----------- |</span>
+<span id="cb1-739"><a href="#cb1-739"></a>|     | x11/a1 (argument/return value 2) | x27 (saved) |</span>
 <span id="cb1-740"><a href="#cb1-740"></a>We’ll use these names</span>
-<span id="cb1-741"><a href="#cb1-741"></a><span class="pp">|</span>     <span class="pp">|</span> x12/a2 (argument) <span class="pp">|</span> x28 (temporary) <span class="pp">|</span></span>
-<span id="cb1-742"><a href="#cb1-742"></a><span class="pp">| ---</span> <span class="pp">| -----------------</span> <span class="pp">| ---------------</span> <span class="pp">|</span></span>
-<span id="cb1-743"><a href="#cb1-743"></a><span class="pp">|</span>     <span class="pp">|</span> x13/a3 (argument) <span class="pp">|</span> x29 (temporary) <span class="pp">|</span></span>
+<span id="cb1-741"><a href="#cb1-741"></a>|     | x12/a2 (argument) | x28 (temporary) |</span>
+<span id="cb1-742"><a href="#cb1-742"></a>| --- | ----------------- | --------------- |</span>
+<span id="cb1-743"><a href="#cb1-743"></a>|     | x13/a3 (argument) | x29 (temporary) |</span>
 <span id="cb1-744"><a href="#cb1-744"></a>increasingly.</span>
-<span id="cb1-745"><a href="#cb1-745"></a><span class="pp">|</span>     <span class="pp">|</span> x14/a4 (argument) <span class="pp">|</span> X30 (temporary) <span class="pp">|</span></span>
-<span id="cb1-746"><a href="#cb1-746"></a><span class="pp">| ---</span> <span class="pp">| -----------------</span> <span class="pp">| ---------------</span> <span class="pp">|</span></span>
-<span id="cb1-747"><a href="#cb1-747"></a><span class="pp">|</span>     <span class="pp">|</span> x15/a5 (argument) <span class="pp">|</span> X31 (temporary) <span class="pp">|</span></span>
+<span id="cb1-745"><a href="#cb1-745"></a>|     | x14/a4 (argument) | X30 (temporary) |</span>
+<span id="cb1-746"><a href="#cb1-746"></a>| --- | ----------------- | --------------- |</span>
+<span id="cb1-747"><a href="#cb1-747"></a>|     | x15/a5 (argument) | X31 (temporary) |</span>
 <span id="cb1-748"><a href="#cb1-748"></a>Why have such conventions?</span>
 <span id="cb1-749"><a href="#cb1-749"></a>Prevents functions from  Allows independently  Separately written fns can</span>
 <span id="cb1-750"><a href="#cb1-750"></a>accidentally overwriting each  compiled code to co-execute  safely share CPU without</span>
-<span id="cb1-751"><a href="#cb1-751"></a><span class="pp">|</span> other’s values <span class="pp">|</span> correctly! <span class="pp">|</span> corrupting each other’s data <span class="pp">|</span></span>
-<span id="cb1-752"><a href="#cb1-752"></a><span class="pp">| --------------</span> <span class="pp">| ----------</span> <span class="pp">| ----------------------------</span> <span class="pp">|</span></span>
+<span id="cb1-751"><a href="#cb1-751"></a>| other’s values | correctly! | corrupting each other’s data |</span>
+<span id="cb1-752"><a href="#cb1-752"></a>| -------------- | ---------- | ---------------------------- |</span>
 <span id="cb1-753"><a href="#cb1-753"></a></span>
 <span id="cb1-754"><a href="#cb1-754"></a><span class="fu">## These conventions for</span></span>
 <span id="cb1-755"><a href="#cb1-755"></a></span>
@@ -2206,16 +2204,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-939"><a href="#cb1-939"></a>uniform. The I-type instructions encode their immediate operand as</span>
 <span id="cb1-940"><a href="#cb1-940"></a>follows:</span>
 <span id="cb1-941"><a href="#cb1-941"></a>Examples:</span>
-<span id="cb1-942"><a href="#cb1-942"></a><span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>   addi   <span class="pp">|</span>         <span class="pp">|</span> lb  <span class="pp">|</span></span>
-<span id="cb1-943"><a href="#cb1-943"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| --------</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-944"><a href="#cb1-944"></a><span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>   andi   <span class="pp">|</span>         <span class="pp">|</span> lbu <span class="pp">|</span></span>
-<span id="cb1-945"><a href="#cb1-945"></a><span class="pp">|</span> 11 10 <span class="pp">|</span> 9 8 7 <span class="pp">|</span> 6 5 4 <span class="pp">|</span> 3 2 1 0 <span class="pp">|</span>     <span class="pp">|</span>          <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-946"><a href="#cb1-946"></a><span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>   ori    <span class="pp">|</span>      lh <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-947"><a href="#cb1-947"></a><span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>   slti   <span class="pp">|</span>         <span class="pp">|</span> lhu <span class="pp">|</span></span>
-<span id="cb1-948"><a href="#cb1-948"></a><span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>   sltui  <span class="pp">|</span>         <span class="pp">|</span> lw  <span class="pp">|</span></span>
+<span id="cb1-942"><a href="#cb1-942"></a>|       |       |       |         |     |   addi   |         | lb  |</span>
+<span id="cb1-943"><a href="#cb1-943"></a>| ----- | ----- | ----- | ------- | --- | -------- | ------- | --- |</span>
+<span id="cb1-944"><a href="#cb1-944"></a>|       |       |       |         |     |   andi   |         | lbu |</span>
+<span id="cb1-945"><a href="#cb1-945"></a>| 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 |     |          |         |     |</span>
+<span id="cb1-946"><a href="#cb1-946"></a>|       |       |       |         |     |   ori    |      lh |     |</span>
+<span id="cb1-947"><a href="#cb1-947"></a>|       |       |       |         |     |   slti   |         | lhu |</span>
+<span id="cb1-948"><a href="#cb1-948"></a>|       |       |       |         |     |   sltui  |         | lw  |</span>
 <span id="cb1-949"><a href="#cb1-949"></a>  xori</span>
-<span id="cb1-950"><a href="#cb1-950"></a><span class="pp">|</span>     <span class="pp">|</span> imm12 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> rs1 <span class="pp">|</span> func3 <span class="pp">|</span> rd  <span class="pp">|</span> opcode <span class="pp">|</span></span>
-<span id="cb1-951"><a href="#cb1-951"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
+<span id="cb1-950"><a href="#cb1-950"></a>|     | imm12 |     |     | rs1 | func3 | rd  | opcode |</span>
+<span id="cb1-951"><a href="#cb1-951"></a>| --- | ----- | --- | --- | --- | ----- | --- | ------ |</span>
 <span id="cb1-952"><a href="#cb1-952"></a>I-type:</span>
 <span id="cb1-953"><a href="#cb1-953"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
 <span id="cb1-954"><a href="#cb1-954"></a></span>
@@ -2256,21 +2254,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-989"><a href="#cb1-989"></a>RISC-V store instructions include an offset, but it is not encoded in an obvious</span>
 <span id="cb1-990"><a href="#cb1-990"></a>way. Note that there is no need for a rd register in a store, but both rs1 and</span>
 <span id="cb1-991"><a href="#cb1-991"></a>rs2 are needed if the encodings are used consistently.</span>
-<span id="cb1-992"><a href="#cb1-992"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Examples: <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> The assembler will take care  <span class="pp">|</span></span>
-<span id="cb1-993"><a href="#cb1-993"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----------------------------</span> <span class="pp">|</span></span>
+<span id="cb1-992"><a href="#cb1-992"></a>|     |     |     |     |     |     |     | Examples: |     |     | The assembler will take care  |</span>
+<span id="cb1-993"><a href="#cb1-993"></a>| --- | --- | --- | --- | --- | --- | --- | --------- | --- | --- | ----------------------------- |</span>
 <span id="cb1-994"><a href="#cb1-994"></a>of filling in the immediate</span>
-<span id="cb1-995"><a href="#cb1-995"></a><span class="pp">|</span>     <span class="pp">|</span> 11 10 <span class="pp">|</span> 9 8 7 <span class="pp">|</span> 6 5 4 <span class="pp">|</span> 3 2 1 0 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-996"><a href="#cb1-996"></a><span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-995"><a href="#cb1-995"></a>|     | 11 10 | 9 8 7 | 6 5 4 | 3 2 1 0 |     |     |     |     |     |     |</span>
+<span id="cb1-996"><a href="#cb1-996"></a>| --- | ----- | ----- | ----- | ------- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-997"><a href="#cb1-997"></a>  sb</span>
 <span id="cb1-998"><a href="#cb1-998"></a>fields, of the instruction. It</span>
 <span id="cb1-999"><a href="#cb1-999"></a>has some impact on the</span>
 <span id="cb1-1000"><a href="#cb1-1000"></a>  sh</span>
 <span id="cb1-1001"><a href="#cb1-1001"></a>H/W design</span>
 <span id="cb1-1002"><a href="#cb1-1002"></a>  sw</span>
-<span id="cb1-1003"><a href="#cb1-1003"></a><span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>      <span class="pp">|</span> 0 1 <span class="pp">|</span> 0 0 0 <span class="pp">|</span> 1 1 <span class="pp">|</span></span>
-<span id="cb1-1004"><a href="#cb1-1004"></a><span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-1005"><a href="#cb1-1005"></a><span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span> rs2 <span class="pp">|</span> rs1 <span class="pp">|</span> func3 <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-1006"><a href="#cb1-1006"></a><span class="pp">|</span> S-type: <span class="pp">|</span>     <span class="pp">|</span> imm7 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span> imm5 <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-1003"><a href="#cb1-1003"></a>|         |     |      |     |     |     |       |      | 0 1 | 0 0 0 | 1 1 |</span>
+<span id="cb1-1004"><a href="#cb1-1004"></a>| ------- | --- | ---- | --- | --- | --- | ----- | ---- | --- | ----- | --- |</span>
+<span id="cb1-1005"><a href="#cb1-1005"></a>|         |     |      |     | rs2 | rs1 | func3 |      |     |       |     |</span>
+<span id="cb1-1006"><a href="#cb1-1006"></a>| S-type: |     | imm7 |     |     |     |       | imm5 |     |       |     |</span>
 <span id="cb1-1007"><a href="#cb1-1007"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
 <span id="cb1-1008"><a href="#cb1-1008"></a></span>
 <span id="cb1-1009"><a href="#cb1-1009"></a><span class="fu">## Immediate Offsets for Branches</span></span>
@@ -2280,15 +2278,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-1013"><a href="#cb1-1013"></a>a rd register; only rs1 and rs2 are used. Branch offsets can only be even.</span>
 <span id="cb1-1014"><a href="#cb1-1014"></a>In fact, all instructions must be aligned to half-word boundaries.</span>
 <span id="cb1-1015"><a href="#cb1-1015"></a>Examples:</span>
-<span id="cb1-1016"><a href="#cb1-1016"></a><span class="pp">|</span> 12 11 10 <span class="pp">|</span> 9 8 <span class="pp">|</span> 7 6 5 <span class="pp">|</span> 4 3 2 <span class="pp">|</span> 1 0 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-1017"><a href="#cb1-1017"></a><span class="pp">| --------</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-1016"><a href="#cb1-1016"></a>| 12 11 10 | 9 8 | 7 6 5 | 4 3 2 | 1 0 |     |     |     |     |     |</span>
+<span id="cb1-1017"><a href="#cb1-1017"></a>| -------- | --- | ----- | ----- | --- | --- | --- | --- | --- | --- |</span>
 <span id="cb1-1018"><a href="#cb1-1018"></a>0</span>
-<span id="cb1-1019"><a href="#cb1-1019"></a><span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>   beq   <span class="pp">|</span>     <span class="pp">|</span> bne   <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-1020"><a href="#cb1-1020"></a><span class="pp">| ---</span> <span class="pp">| ----</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-1021"><a href="#cb1-1021"></a><span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>   blt   <span class="pp">|</span>     <span class="pp">|</span> bltu  <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-1022"><a href="#cb1-1022"></a><span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>   bge   <span class="pp">|</span>     <span class="pp">|</span> bgeu  <span class="pp">|</span>     <span class="pp">|</span></span>
-<span id="cb1-1023"><a href="#cb1-1023"></a><span class="pp">|</span>     <span class="pp">|</span>      <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>         <span class="pp">|</span> 1 1 <span class="pp">|</span> 0 0 0 <span class="pp">|</span> 1 1 <span class="pp">|</span></span>
-<span id="cb1-1024"><a href="#cb1-1024"></a><span class="pp">|</span>     <span class="pp">|</span> imm7 <span class="pp">|</span>     <span class="pp">|</span> rs2 <span class="pp">|</span> rs1 <span class="pp">|</span> func3 <span class="pp">|</span> imm5    <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-1019"><a href="#cb1-1019"></a>|     |      |     |     |     |       |   beq   |     | bne   |     |</span>
+<span id="cb1-1020"><a href="#cb1-1020"></a>| --- | ---- | --- | --- | --- | ----- | ------- | --- | ----- | --- |</span>
+<span id="cb1-1021"><a href="#cb1-1021"></a>|     |      |     |     |     |       |   blt   |     | bltu  |     |</span>
+<span id="cb1-1022"><a href="#cb1-1022"></a>|     |      |     |     |     |       |   bge   |     | bgeu  |     |</span>
+<span id="cb1-1023"><a href="#cb1-1023"></a>|     |      |     |     |     |       |         | 1 1 | 0 0 0 | 1 1 |</span>
+<span id="cb1-1024"><a href="#cb1-1024"></a>|     | imm7 |     | rs2 | rs1 | func3 | imm5    |     |       |     |</span>
 <span id="cb1-1025"><a href="#cb1-1025"></a>S -type:</span>
 <span id="cb1-1026"><a href="#cb1-1026"></a>B</span>
 <span id="cb1-1027"><a href="#cb1-1027"></a>31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0</span>
@@ -2303,7 +2301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-1036"><a href="#cb1-1036"></a>jal</span>
 <span id="cb1-1037"><a href="#cb1-1037"></a>77</span>
 <span id="cb1-1038"><a href="#cb1-1038"></a>U -type: imm20 rd opcode</span>
-<span id="cb1-1039"><a href="#cb1-1039"></a>J</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-1039"><a href="#cb1-1039"></a>J</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

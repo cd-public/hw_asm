@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction – Systems in C</title>
+<title>Introduction – HW &amp; asm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,9 +21,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,17 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./11.html" rel="next">
 <link href="./01.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-40a160e28a8c0a8ad2fc184c8ba4238c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b21cd3d7a06200bb4af90b976216a8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +117,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -138,7 +135,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -161,8 +158,9 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">HW &amp; asm</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -321,23 +319,6 @@ window.Quarto = {
  <span class="menu-text">Security</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Old</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./old/00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -905,7 +886,7 @@ window.Quarto = {
 <ul>
 <li>We end up with</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">"276"</span>[<span class="dv">0</span>] <span class="op">==</span> <span class="st">'2'</span> <span class="kw">and</span> <span class="dv">276</span> <span class="op">%</span> (<span class="dv">10</span> <span class="op">**</span> <span class="dv">1</span>) <span class="op">==</span> <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">"276"</span>[<span class="dv">0</span>] <span class="op">==</span> <span class="st">'2'</span> <span class="kw">and</span> <span class="dv">276</span> <span class="op">%</span> (<span class="dv">10</span> <span class="op">**</span> <span class="dv">1</span>) <span class="op">==</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Confusing!</li>
 </ul>
@@ -938,7 +919,7 @@ window.Quarto = {
 </ul></li>
 </ul></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="test" class="level2">
 <h2 class="anchored" data-anchor-id="test">Test</h2>
@@ -949,12 +930,12 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>scanf.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb3" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">);</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="warning" class="level2">
@@ -962,7 +943,7 @@ window.Quarto = {
 <ul>
 <li>We draw a warning for missing <em>arguments</em> for each <em>format code</em></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb4-1"><a href="#cb4-1"></a>scanf.c: In function ‘main’:</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb4-1"><a href="#cb4-1"></a>scanf.c: In function ‘main’:</span>
 <span id="cb4-2"><a href="#cb4-2"></a>scanf.c:4:13: warning: format ‘%d’ expects a matching ‘int *’ argument [-Wformat=]</span>
 <span id="cb4-3"><a href="#cb4-3"></a>    4 |     scanf("%d,%d");</span>
 <span id="cb4-4"><a href="#cb4-4"></a>      |            ~^</span>
@@ -972,21 +953,21 @@ window.Quarto = {
 <span id="cb4-8"><a href="#cb4-8"></a>    4 |     scanf("%d,%d");</span>
 <span id="cb4-9"><a href="#cb4-9"></a>      |               ~^</span>
 <span id="cb4-10"><a href="#cb4-10"></a>      |                |</span>
-<span id="cb4-11"><a href="#cb4-11"></a>      |                int *</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-11"><a href="#cb4-11"></a>      |                int *</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="arguments" class="level2">
 <h2 class="anchored" data-anchor-id="arguments">Arguments</h2>
 <ul>
 <li>We need integers.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1"></a>    <span class="dt">int</span> a<span class="op">,</span>b<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1"></a>    <span class="dt">int</span> a<span class="op">,</span>b<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Well actually, were asked to provided an <code>int *</code> for each integer format code.</li>
 </ul>
 <blockquote class="blockquote">
 <p>format ‘%d’ expects a matching ’int *’</p>
 </blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span> <span class="co">/* Think of these as arrays of one element. */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span> <span class="co">/* Think of these as arrays of one element. */</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Regard <code>int *n</code> is just an <code>int n[m]</code> for which we don’t say what <code>m</code> is.</li>
 </ul>
@@ -1015,20 +996,20 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>scanf.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb7" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Use as follows:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb8-1"><a href="#cb8-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb8-1"><a href="#cb8-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
 <span id="cb8-2"><a href="#cb8-2"></a>123,456</span>
-<span id="cb8-3"><a href="#cb8-3"></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a href="#cb8-3"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Clean exit!</li>
 </ul>
@@ -1042,20 +1023,20 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>scanf.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb9" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb9-5"><a href="#cb9-5"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
 <span id="cb9-6"><a href="#cb9-6"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Use as follows:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb10-1"><a href="#cb10-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb10-1"><a href="#cb10-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
 <span id="cb10-2"><a href="#cb10-2"></a>123,456</span>
-<span id="cb10-3"><a href="#cb10-3"></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-3"><a href="#cb10-3"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Clean exit!</li>
 </ul>
@@ -1066,26 +1047,26 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>scanf.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb11" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb11-5"><a href="#cb11-5"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
 <span id="cb11-6"><a href="#cb11-6"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
 <span id="cb11-7"><a href="#cb11-7"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Can we print values back?</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb12-1"><a href="#cb12-1"></a>scanf.c: In function ‘main’:</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb12-1"><a href="#cb12-1"></a>scanf.c: In function ‘main’:</span>
 <span id="cb12-2"><a href="#cb12-2"></a>scanf.c:6:14: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘int *’ [-Wformat=]</span>
 <span id="cb12-3"><a href="#cb12-3"></a>    6 |     printf("%d%d\n", a, b);</span>
 <span id="cb12-4"><a href="#cb12-4"></a>      |             ~^       ~</span>
 <span id="cb12-5"><a href="#cb12-5"></a>      |              |       |</span>
 <span id="cb12-6"><a href="#cb12-6"></a>      |              int     int *</span>
 <span id="cb12-7"><a href="#cb12-7"></a>      |             %ls</span>
-<span id="cb12-8"><a href="#cb12-8"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-8"><a href="#cb12-8"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="printing-1" class="level2">
 <h2 class="anchored" data-anchor-id="printing-1">Printing</h2>
@@ -1093,22 +1074,22 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>scanf.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb13" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb13-4"><a href="#cb13-4"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb13-5"><a href="#cb13-5"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">);</span></span>
 <span id="cb13-6"><a href="#cb13-6"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">[</span><span class="dv">0</span><span class="op">],</span> b<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb13-7"><a href="#cb13-7"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Print needs values, not references.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb14-1"><a href="#cb14-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb14-1"><a href="#cb14-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
 <span id="cb14-2"><a href="#cb14-2"></a>123,456</span>
 <span id="cb14-3"><a href="#cb14-3"></a>123456</span>
-<span id="cb14-4"><a href="#cb14-4"></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-4"><a href="#cb14-4"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="double-it" class="level2">
 <h2 class="anchored" data-anchor-id="double-it">Double it</h2>
@@ -1121,7 +1102,7 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>scanf.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb15" data-filename="scanf.c"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a></span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb15-4"><a href="#cb15-4"></a>    <span class="dt">int</span> a<span class="op">[</span><span class="dv">1</span><span class="op">],</span> b<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
@@ -1130,16 +1111,16 @@ window.Quarto = {
 <span id="cb15-7"><a href="#cb15-7"></a>    b<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">*=</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb15-8"><a href="#cb15-8"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%d%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">[</span><span class="dv">0</span><span class="op">],</span> b<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb15-9"><a href="#cb15-9"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb16-1"><a href="#cb16-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb16-1"><a href="#cb16-1"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
 <span id="cb16-2"><a href="#cb16-2"></a>123,456</span>
 <span id="cb16-3"><a href="#cb16-3"></a>246912</span>
 <span id="cb16-4"><a href="#cb16-4"></a>$ ./a.out</span>
 <span id="cb16-5"><a href="#cb16-5"></a>123,567</span>
 <span id="cb16-6"><a href="#cb16-6"></a>2461134</span>
-<span id="cb16-7"><a href="#cb16-7"></a>$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-7"><a href="#cb16-7"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Uh oh.</li>
 </ul>
@@ -1384,14 +1365,14 @@ window.Quarto = {
 <li>Can use a numerical computing technology (Python) to validate.</li>
 <li>A add of <code>0b01001</code> to <code>0b01010</code> equals <code>0b10011</code></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)</span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)</span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="co">'0b10011'</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[<span class="dv">2</span>::<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb17-4"><a href="#cb17-4"></a><span class="co">'1b0'</span></span>
 <span id="cb17-5"><a href="#cb17-5"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[:<span class="dv">2</span>:<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb17-6"><a href="#cb17-6"></a><span class="co">'1100'</span></span>
 <span id="cb17-7"><a href="#cb17-7"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[:<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co">'11001'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="co">'11001'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="does-it-matter" class="level2">
 <h2 class="anchored" data-anchor-id="does-it-matter">Does it matter?</h2>
@@ -1433,9 +1414,9 @@ window.Quarto = {
 <li><code>long</code> is a type (usually the 64 bit type)</li>
 <li><code>(long)1</code> is the value of <code>1</code> as a 64 bit type</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1"></a><span class="dt">long</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1"></a><span class="dt">long</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="dt">int</span> y <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>x <span class="op">=</span> <span class="op">(</span><span class="dt">long</span><span class="op">)</span>y<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb18-3"><a href="#cb18-3"></a>x <span class="op">=</span> <span class="op">(</span><span class="dt">long</span><span class="op">)</span>y<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="arrays" class="level2">
@@ -1455,13 +1436,13 @@ window.Quarto = {
 <li>Create a variable <code>x</code></li>
 <li>It <em>can</em> refer to an <code>int</code></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>x : <span class="bu">list</span>[<span class="bu">int</span>] <span class="co"># not x = [None]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>x : <span class="bu">list</span>[<span class="bu">int</span>] <span class="co"># not x = [None]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Can’t use yet.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>x[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># this would error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>x[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># this would error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a></span>
 <span id="cb21-3"><a href="#cb21-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb21-4"><a href="#cb21-4"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
@@ -1473,7 +1454,7 @@ window.Quarto = {
 <span id="cb21-10"><a href="#cb21-10"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
 <span id="cb21-11"><a href="#cb21-11"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb21-12"><a href="#cb21-12"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb21-13"><a href="#cb21-13"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1488,10 +1469,10 @@ window.Quarto = {
 <ul>
 <li>The value <code>buf</code> holds <em>some</em> reference.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>buf <span class="op">=</span>  <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>buf <span class="op">=</span>  <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a></span>
 <span id="cb23-3"><a href="#cb23-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb23-4"><a href="#cb23-4"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
@@ -1503,7 +1484,7 @@ window.Quarto = {
 <span id="cb23-10"><a href="#cb23-10"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
 <span id="cb23-11"><a href="#cb23-11"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb23-12"><a href="#cb23-12"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1520,7 +1501,7 @@ window.Quarto = {
 </ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a></span>
 <span id="cb24-3"><a href="#cb24-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb24-4"><a href="#cb24-4"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
@@ -1532,12 +1513,12 @@ window.Quarto = {
 <span id="cb24-10"><a href="#cb24-10"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
 <span id="cb24-11"><a href="#cb24-11"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb24-12"><a href="#cb24-12"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb24-13"><a href="#cb24-13"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1"></a><span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="bn">0xA</span><span class="op">,</span> OxB<span class="op">,</span> <span class="bn">0xC</span><span class="op">,</span> <span class="bn">0xD</span> <span class="op">};</span> <span class="co">/* okay */</span></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1"></a><span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="bn">0xA</span><span class="op">,</span> OxB<span class="op">,</span> <span class="bn">0xC</span><span class="op">,</span> <span class="bn">0xD</span> <span class="op">};</span> <span class="co">/* okay */</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a><span class="co">/* say, char notbuf[2]; buf = notbuf; */</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>buf <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">};</span> <span class="co">/* banned - it isn't safe */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-3"><a href="#cb25-3"></a>buf <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">};</span> <span class="co">/* banned - it isn't safe */</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="i-lied" class="level2">
 <h2 class="anchored" data-anchor-id="i-lied">I lied</h2>
@@ -1549,7 +1530,7 @@ window.Quarto = {
 <li>If you omit the cast, you will get a warning or error</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb26-2"><a href="#cb26-2"></a></span>
 <span id="cb26-3"><a href="#cb26-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb26-4"><a href="#cb26-4"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
@@ -1561,7 +1542,7 @@ window.Quarto = {
 <span id="cb26-10"><a href="#cb26-10"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
 <span id="cb26-11"><a href="#cb26-11"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb26-12"><a href="#cb26-12"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb26-13"><a href="#cb26-13"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-13"><a href="#cb26-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1584,7 +1565,7 @@ window.Quarto = {
 </ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a></span>
 <span id="cb27-3"><a href="#cb27-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb27-4"><a href="#cb27-4"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
@@ -1596,11 +1577,11 @@ window.Quarto = {
 <span id="cb27-10"><a href="#cb27-10"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
 <span id="cb27-11"><a href="#cb27-11"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb27-12"><a href="#cb27-12"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-13"><a href="#cb27-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>I got no warnings/errors.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb28-1"><a href="#cb28-1"></a>d0c0b0a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb28-1"><a href="#cb28-1"></a>d0c0b0a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1635,7 +1616,7 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>tester.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb29" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a></span>
 <span id="cb29-3"><a href="#cb29-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb29-4"><a href="#cb29-4"></a>        <span class="dt">char</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
@@ -1647,7 +1628,7 @@ window.Quarto = {
 <span id="cb29-10"><a href="#cb29-10"></a>                y <span class="op">+=</span> <span class="dv">10</span><span class="op">;</span></span>
 <span id="cb29-11"><a href="#cb29-11"></a>        <span class="op">}</span></span>
 <span id="cb29-12"><a href="#cb29-12"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb29-13"><a href="#cb29-13"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-13"><a href="#cb29-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Simply type any string then press ENTER.</li>
@@ -1657,7 +1638,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="output">Output</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb30-1"><a href="#cb30-1"></a>a</span>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb30-1"><a href="#cb30-1"></a>a</span>
 <span id="cb30-2"><a href="#cb30-2"></a>0, 0</span>
 <span id="cb30-3"><a href="#cb30-3"></a>...</span>
 <span id="cb30-4"><a href="#cb30-4"></a>a</span>
@@ -1672,7 +1653,7 @@ window.Quarto = {
 <span id="cb30-13"><a href="#cb30-13"></a>a</span>
 <span id="cb30-14"><a href="#cb30-14"></a>-6, 250</span>
 <span id="cb30-15"><a href="#cb30-15"></a>a</span>
-<span id="cb30-16"><a href="#cb30-16"></a>4, 4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-16"><a href="#cb30-16"></a>4, 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <ul>
 <li>Unsigned values have roughly double the maximum of signed values.</li>
@@ -1696,20 +1677,20 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>tester.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb31" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb31-2"><a href="#cb31-2"></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
 <span id="cb31-3"><a href="#cb31-3"></a>        <span class="cf">while</span> <span class="op">(</span>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> x<span class="op">))</span> <span class="op">{</span></span>
 <span id="cb31-4"><a href="#cb31-4"></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%hhd</span><span class="st">, </span><span class="sc">%u\n</span><span class="st">"</span><span class="op">,</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span>x<span class="op">[</span><span class="dv">0</span><span class="op">],</span> <span class="op">(</span><span class="dt">unsigned</span> <span class="dt">char</span><span class="op">)</span>x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb31-5"><a href="#cb31-5"></a>        <span class="op">}</span></span>
 <span id="cb31-6"><a href="#cb31-6"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb31-7"><a href="#cb31-7"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-7"><a href="#cb31-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="output-1" class="level2">
 <h2 class="anchored" data-anchor-id="output-1">Output</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb32-1"><a href="#cb32-1"></a>10</span>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb32-1"><a href="#cb32-1"></a>10</span>
 <span id="cb32-2"><a href="#cb32-2"></a>10, 10</span>
 <span id="cb32-3"><a href="#cb32-3"></a>126</span>
 <span id="cb32-4"><a href="#cb32-4"></a>126, 126</span>
@@ -1720,7 +1701,7 @@ window.Quarto = {
 <span id="cb32-9"><a href="#cb32-9"></a>255</span>
 <span id="cb32-10"><a href="#cb32-10"></a>-1, 255</span>
 <span id="cb32-11"><a href="#cb32-11"></a>256</span>
-<span id="cb32-12"><a href="#cb32-12"></a>0, 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-12"><a href="#cb32-12"></a>0, 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <ul>
 <li>Signed values in <span class="math inline">\(n\)</span> bit integers loop at <span class="math inline">\(2^{n-1}\)</span>
@@ -1739,7 +1720,7 @@ window.Quarto = {
 <div class="code-with-filename-file">
 <pre><strong>tester.c</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb33" data-filename="tester.c"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb33-2"><a href="#cb33-2"></a></span>
 <span id="cb33-3"><a href="#cb33-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb33-4"><a href="#cb33-4"></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
@@ -1748,12 +1729,12 @@ window.Quarto = {
 <span id="cb33-7"><a href="#cb33-7"></a>                <span class="op">*</span>x<span class="op">,</span> <span class="op">(</span><span class="dt">unsigned</span><span class="op">)*</span>x<span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb33-8"><a href="#cb33-8"></a>        <span class="op">}</span></span>
 <span id="cb33-9"><a href="#cb33-9"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb33-10"><a href="#cb33-10"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-10"><a href="#cb33-10"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="some-things-to-try" class="level2">
 <h2 class="anchored" data-anchor-id="some-things-to-try">Some things to try</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb34-1"><a href="#cb34-1"></a>65536</span>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb34-1"><a href="#cb34-1"></a>65536</span>
 <span id="cb34-2"><a href="#cb34-2"></a>65536, 65536, 00000000000000010000000000000000</span>
 <span id="cb34-3"><a href="#cb34-3"></a>-1</span>
 <span id="cb34-4"><a href="#cb34-4"></a>-1, 4294967295, 11111111111111111111111111111111</span>
@@ -1766,7 +1747,7 @@ window.Quarto = {
 <span id="cb34-11"><a href="#cb34-11"></a>256</span>
 <span id="cb34-12"><a href="#cb34-12"></a>256, 256, 00000000000000000000000100000000</span>
 <span id="cb34-13"><a href="#cb34-13"></a>-255</span>
-<span id="cb34-14"><a href="#cb34-14"></a>-255, 4294967041, 11111111111111111111111100000001</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-14"><a href="#cb34-14"></a>-255, 4294967041, 11111111111111111111111100000001</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="takeaways" class="level2">
 <h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
@@ -1783,7 +1764,7 @@ window.Quarto = {
 </section>
 <section id="stinger" class="level2">
 <h2 class="anchored" data-anchor-id="stinger">Stinger</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource C number-lines code-with-copy"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb35-2"><a href="#cb35-2"></a></span>
 <span id="cb35-3"><a href="#cb35-3"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb35-4"><a href="#cb35-4"></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">],</span> y<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
@@ -1795,7 +1776,7 @@ window.Quarto = {
 <span id="cb35-10"><a href="#cb35-10"></a>                                x<span class="op">[</span><span class="dv">0</span><span class="op">]/</span>y<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb35-11"><a href="#cb35-11"></a>        <span class="op">}</span></span>
 <span id="cb35-12"><a href="#cb35-12"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb35-13"><a href="#cb35-13"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-13"><a href="#cb35-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 <!-- -->
@@ -1805,294 +1786,287 @@ window.Quarto = {
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2100,161 +2074,185 @@ window.Quarto = {
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./01.html" class="pagination-link" aria-label="Instructions">
@@ -2267,7 +2265,7 @@ window.Quarto = {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb36" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1"></a><span class="co">---</span></span>
 <span id="cb36-2"><a href="#cb36-2"></a><span class="an">title:</span><span class="co"> Introduction </span></span>
 <span id="cb36-3"><a href="#cb36-3"></a><span class="an">subtitle:</span><span class="co"> "w0d0"</span></span>
 <span id="cb36-4"><a href="#cb36-4"></a><span class="co">---</span></span>
@@ -2312,22 +2310,22 @@ window.Quarto = {
 <span id="cb36-43"><a href="#cb36-43"></a>::: {.column width="50%"}</span>
 <span id="cb36-44"><a href="#cb36-44"></a></span>
 <span id="cb36-47"><a href="#cb36-47"></a><span class="in">```{dot}</span></span>
-<span id="cb36-48"><a href="#cb36-48"></a><span class="co">//| echo: false</span></span>
-<span id="cb36-49"><a href="#cb36-49"></a><span class="co">//| fig-width: 400px</span></span>
-<span id="cb36-50"><a href="#cb36-50"></a><span class="kw">digraph</span> <span class="va">finite_automata</span> <span class="ot">{</span></span>
-<span id="cb36-51"><a href="#cb36-51"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">TD</span><span class="ot">;</span><span class="co"> </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"#191919"</span><span class="ot">;</span></span>
-<span id="cb36-52"><a href="#cb36-52"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">shape</span><span class="ot">=</span><span class="va">record</span><span class="ot">];</span></span>
-<span id="cb36-53"><a href="#cb36-53"></a><span class="co">  </span><span class="kw">edge</span><span class="co"> </span><span class="ot">[</span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">,</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="ot">]</span></span>
+<span id="cb36-48"><a href="#cb36-48"></a><span class="in">//| echo: false</span></span>
+<span id="cb36-49"><a href="#cb36-49"></a><span class="in">//| fig-width: 400px</span></span>
+<span id="cb36-50"><a href="#cb36-50"></a><span class="in">digraph finite_automata {</span></span>
+<span id="cb36-51"><a href="#cb36-51"></a><span class="in">  rankdir=TD; bgcolor="#191919";</span></span>
+<span id="cb36-52"><a href="#cb36-52"></a><span class="in">  node [fontcolor = "#ffffff", color = "#ffffff", shape=record];</span></span>
+<span id="cb36-53"><a href="#cb36-53"></a><span class="in">  edge [color = "#ffffff",fontcolor = "#ffffff"]</span></span>
 <span id="cb36-54"><a href="#cb36-54"></a></span>
-<span id="cb36-55"><a href="#cb36-55"></a><span class="co">  </span><span class="va">struct</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{ {&lt;0&gt; 10^0  | &lt;1&gt; 10^1| &lt;2&gt; 10^2}} "</span><span class="ot">];</span></span>
-<span id="cb36-56"><a href="#cb36-56"></a><span class="co">  </span><span class="va">struct0</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{0|1|2|3|4|5|6|7|8|9}"</span><span class="ot">];</span></span>
-<span id="cb36-57"><a href="#cb36-57"></a><span class="co">  </span><span class="va">struct1</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{0|1|2|3|4|5|6|7|8|9}"</span><span class="ot">];</span></span>
-<span id="cb36-58"><a href="#cb36-58"></a><span class="co">  </span><span class="va">struct2</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{0|1|2|3|4|5|6|7|8|9}"</span><span class="ot">];</span></span>
-<span id="cb36-59"><a href="#cb36-59"></a><span class="co">  </span><span class="va">struct</span><span class="co">:</span><span class="dv">0</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">struct0</span></span>
-<span id="cb36-60"><a href="#cb36-60"></a><span class="co">  </span><span class="va">struct</span><span class="co">:</span><span class="dv">1</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">struct1</span></span>
-<span id="cb36-61"><a href="#cb36-61"></a><span class="co">  </span><span class="va">struct</span><span class="co">:</span><span class="dv">2</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">struct2</span></span>
+<span id="cb36-55"><a href="#cb36-55"></a><span class="in">  struct [label="{ {&lt;0&gt; 10^0  | &lt;1&gt; 10^1| &lt;2&gt; 10^2}} "];</span></span>
+<span id="cb36-56"><a href="#cb36-56"></a><span class="in">  struct0 [label="{0|1|2|3|4|5|6|7|8|9}"];</span></span>
+<span id="cb36-57"><a href="#cb36-57"></a><span class="in">  struct1 [label="{0|1|2|3|4|5|6|7|8|9}"];</span></span>
+<span id="cb36-58"><a href="#cb36-58"></a><span class="in">  struct2 [label="{0|1|2|3|4|5|6|7|8|9}"];</span></span>
+<span id="cb36-59"><a href="#cb36-59"></a><span class="in">  struct:0 -&gt; struct0</span></span>
+<span id="cb36-60"><a href="#cb36-60"></a><span class="in">  struct:1 -&gt; struct1</span></span>
+<span id="cb36-61"><a href="#cb36-61"></a><span class="in">  struct:2 -&gt; struct2</span></span>
 <span id="cb36-62"><a href="#cb36-62"></a></span>
-<span id="cb36-63"><a href="#cb36-63"></a><span class="ot">}</span></span>
+<span id="cb36-63"><a href="#cb36-63"></a><span class="in">}</span></span>
 <span id="cb36-64"><a href="#cb36-64"></a><span class="in">```</span></span>
 <span id="cb36-65"><a href="#cb36-65"></a></span>
 <span id="cb36-66"><a href="#cb36-66"></a>:::</span>
@@ -2343,15 +2341,15 @@ window.Quarto = {
 <span id="cb36-76"><a href="#cb36-76"></a></span>
 <span id="cb36-77"><a href="#cb36-77"></a></span>
 <span id="cb36-80"><a href="#cb36-80"></a><span class="in">```{dot}</span></span>
-<span id="cb36-81"><a href="#cb36-81"></a><span class="co">//| echo: false</span></span>
-<span id="cb36-82"><a href="#cb36-82"></a><span class="co">//| fig-width: 800px</span></span>
-<span id="cb36-83"><a href="#cb36-83"></a><span class="co">//| fig-height: 200px</span></span>
-<span id="cb36-84"><a href="#cb36-84"></a><span class="kw">digraph</span> <span class="va">finite_automata</span> <span class="ot">{</span></span>
-<span id="cb36-85"><a href="#cb36-85"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">LR</span><span class="ot">;</span><span class="co"> </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"#191919"</span><span class="ot">;</span></span>
-<span id="cb36-86"><a href="#cb36-86"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">shape</span><span class="ot">=</span><span class="va">record</span><span class="ot">];</span></span>
+<span id="cb36-81"><a href="#cb36-81"></a><span class="in">//| echo: false</span></span>
+<span id="cb36-82"><a href="#cb36-82"></a><span class="in">//| fig-width: 800px</span></span>
+<span id="cb36-83"><a href="#cb36-83"></a><span class="in">//| fig-height: 200px</span></span>
+<span id="cb36-84"><a href="#cb36-84"></a><span class="in">digraph finite_automata {</span></span>
+<span id="cb36-85"><a href="#cb36-85"></a><span class="in">  rankdir=LR; bgcolor="#191919";</span></span>
+<span id="cb36-86"><a href="#cb36-86"></a><span class="in">  node [fontcolor = "#ffffff", color = "#ffffff", shape=record];</span></span>
 <span id="cb36-87"><a href="#cb36-87"></a></span>
-<span id="cb36-88"><a href="#cb36-88"></a><span class="co">  </span><span class="va">struct</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{2^0|2^1|2^2|2^3|2^4|2^5|2^6|2^7|2^8|2^9}|{0|0|0|0|0|0|0|0|0|0}|{1|1|1|1|1|1|1|1|1|1}"</span><span class="ot">];</span></span>
-<span id="cb36-89"><a href="#cb36-89"></a><span class="ot">}</span></span>
+<span id="cb36-88"><a href="#cb36-88"></a><span class="in">  struct [label="{2^0|2^1|2^2|2^3|2^4|2^5|2^6|2^7|2^8|2^9}|{0|0|0|0|0|0|0|0|0|0}|{1|1|1|1|1|1|1|1|1|1}"];</span></span>
+<span id="cb36-89"><a href="#cb36-89"></a><span class="in">}</span></span>
 <span id="cb36-90"><a href="#cb36-90"></a><span class="in">```</span></span>
 <span id="cb36-91"><a href="#cb36-91"></a></span>
 <span id="cb36-92"><a href="#cb36-92"></a><span class="fu">## Binary</span></span>
@@ -2360,15 +2358,15 @@ window.Quarto = {
 <span id="cb36-95"><a href="#cb36-95"></a><span class="ss">- </span>Versus the specific digit $\in <span class="co">[</span><span class="ot">1,9</span><span class="co">]</span>$ and presence of absense (<span class="in">`0`</span>)</span>
 <span id="cb36-96"><a href="#cb36-96"></a></span>
 <span id="cb36-99"><a href="#cb36-99"></a><span class="in">```{dot}</span></span>
-<span id="cb36-100"><a href="#cb36-100"></a><span class="co">//| echo: false</span></span>
-<span id="cb36-101"><a href="#cb36-101"></a><span class="co">//| fig-width: 800px</span></span>
-<span id="cb36-102"><a href="#cb36-102"></a><span class="co">//| fig-height: 200px</span></span>
-<span id="cb36-103"><a href="#cb36-103"></a><span class="kw">digraph</span> <span class="va">finite_automata</span> <span class="ot">{</span></span>
-<span id="cb36-104"><a href="#cb36-104"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">LR</span><span class="ot">;</span><span class="co"> </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"#191919"</span><span class="ot">;</span></span>
-<span id="cb36-105"><a href="#cb36-105"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">shape</span><span class="ot">=</span><span class="va">record</span><span class="ot">];</span></span>
+<span id="cb36-100"><a href="#cb36-100"></a><span class="in">//| echo: false</span></span>
+<span id="cb36-101"><a href="#cb36-101"></a><span class="in">//| fig-width: 800px</span></span>
+<span id="cb36-102"><a href="#cb36-102"></a><span class="in">//| fig-height: 200px</span></span>
+<span id="cb36-103"><a href="#cb36-103"></a><span class="in">digraph finite_automata {</span></span>
+<span id="cb36-104"><a href="#cb36-104"></a><span class="in">  rankdir=LR; bgcolor="#191919";</span></span>
+<span id="cb36-105"><a href="#cb36-105"></a><span class="in">  node [fontcolor = "#ffffff", color = "#ffffff", shape=record];</span></span>
 <span id="cb36-106"><a href="#cb36-106"></a></span>
-<span id="cb36-107"><a href="#cb36-107"></a><span class="co">  </span><span class="va">struct</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{2^0|2^1|2^2|2^3|2^4|2^5|2^6|2^7|2^8|2^9}|{|1|||1|1|||1|}"</span><span class="ot">];</span></span>
-<span id="cb36-108"><a href="#cb36-108"></a><span class="ot">}</span></span>
+<span id="cb36-107"><a href="#cb36-107"></a><span class="in">  struct [label="{2^0|2^1|2^2|2^3|2^4|2^5|2^6|2^7|2^8|2^9}|{|1|||1|1|||1|}"];</span></span>
+<span id="cb36-108"><a href="#cb36-108"></a><span class="in">}</span></span>
 <span id="cb36-109"><a href="#cb36-109"></a><span class="in">```</span></span>
 <span id="cb36-110"><a href="#cb36-110"></a></span>
 <span id="cb36-111"><a href="#cb36-111"></a><span class="fu">## Wait a minute.</span></span>
@@ -2388,22 +2386,22 @@ window.Quarto = {
 <span id="cb36-125"><a href="#cb36-125"></a></span>
 <span id="cb36-126"><a href="#cb36-126"></a></span>
 <span id="cb36-129"><a href="#cb36-129"></a><span class="in">```{dot}</span></span>
-<span id="cb36-130"><a href="#cb36-130"></a><span class="co">//| echo: false</span></span>
-<span id="cb36-131"><a href="#cb36-131"></a><span class="co">//| fig-width: 400px</span></span>
-<span id="cb36-132"><a href="#cb36-132"></a><span class="co">//| fig-height: 400px</span></span>
-<span id="cb36-133"><a href="#cb36-133"></a><span class="kw">digraph</span> <span class="va">finite_automata</span> <span class="ot">{</span></span>
-<span id="cb36-134"><a href="#cb36-134"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">TD</span><span class="ot">;</span><span class="co"> </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"#191919"</span><span class="ot">;</span></span>
-<span id="cb36-135"><a href="#cb36-135"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">shape</span><span class="ot">=</span><span class="va">record</span><span class="ot">];</span></span>
-<span id="cb36-136"><a href="#cb36-136"></a><span class="co">  </span><span class="kw">edge</span><span class="co"> </span><span class="ot">[</span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">,</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="ot">]</span></span>
+<span id="cb36-130"><a href="#cb36-130"></a><span class="in">//| echo: false</span></span>
+<span id="cb36-131"><a href="#cb36-131"></a><span class="in">//| fig-width: 400px</span></span>
+<span id="cb36-132"><a href="#cb36-132"></a><span class="in">//| fig-height: 400px</span></span>
+<span id="cb36-133"><a href="#cb36-133"></a><span class="in">digraph finite_automata {</span></span>
+<span id="cb36-134"><a href="#cb36-134"></a><span class="in">  rankdir=TD; bgcolor="#191919";</span></span>
+<span id="cb36-135"><a href="#cb36-135"></a><span class="in">  node [fontcolor = "#ffffff", color = "#ffffff", shape=record];</span></span>
+<span id="cb36-136"><a href="#cb36-136"></a><span class="in">  edge [color = "#ffffff",fontcolor = "#ffffff"]</span></span>
 <span id="cb36-137"><a href="#cb36-137"></a></span>
-<span id="cb36-138"><a href="#cb36-138"></a><span class="co">  </span><span class="va">struct</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{ {&lt;0&gt; 10^0  | &lt;1&gt; 10^1| &lt;2&gt; 10^2}} "</span><span class="ot">];</span></span>
-<span id="cb36-139"><a href="#cb36-139"></a><span class="co">  </span><span class="va">struct0</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{||||||6|||}"</span><span class="ot">];</span></span>
-<span id="cb36-140"><a href="#cb36-140"></a><span class="co">  </span><span class="va">struct1</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{|||||||7||}"</span><span class="ot">];</span></span>
-<span id="cb36-141"><a href="#cb36-141"></a><span class="co">  </span><span class="va">struct2</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{||2|||||||}"</span><span class="ot">];</span></span>
-<span id="cb36-142"><a href="#cb36-142"></a><span class="co">  </span><span class="va">struct</span><span class="co">:</span><span class="dv">0</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">struct0</span></span>
-<span id="cb36-143"><a href="#cb36-143"></a><span class="co">  </span><span class="va">struct</span><span class="co">:</span><span class="dv">1</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">struct1</span></span>
-<span id="cb36-144"><a href="#cb36-144"></a><span class="co">  </span><span class="va">struct</span><span class="co">:</span><span class="dv">2</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">struct2</span></span>
-<span id="cb36-145"><a href="#cb36-145"></a><span class="ot">}</span></span>
+<span id="cb36-138"><a href="#cb36-138"></a><span class="in">  struct [label="{ {&lt;0&gt; 10^0  | &lt;1&gt; 10^1| &lt;2&gt; 10^2}} "];</span></span>
+<span id="cb36-139"><a href="#cb36-139"></a><span class="in">  struct0 [label="{||||||6|||}"];</span></span>
+<span id="cb36-140"><a href="#cb36-140"></a><span class="in">  struct1 [label="{|||||||7||}"];</span></span>
+<span id="cb36-141"><a href="#cb36-141"></a><span class="in">  struct2 [label="{||2|||||||}"];</span></span>
+<span id="cb36-142"><a href="#cb36-142"></a><span class="in">  struct:0 -&gt; struct0</span></span>
+<span id="cb36-143"><a href="#cb36-143"></a><span class="in">  struct:1 -&gt; struct1</span></span>
+<span id="cb36-144"><a href="#cb36-144"></a><span class="in">  struct:2 -&gt; struct2</span></span>
+<span id="cb36-145"><a href="#cb36-145"></a><span class="in">}</span></span>
 <span id="cb36-146"><a href="#cb36-146"></a><span class="in">```</span></span>
 <span id="cb36-147"><a href="#cb36-147"></a></span>
 <span id="cb36-148"><a href="#cb36-148"></a>:::</span>
@@ -2421,7 +2419,7 @@ window.Quarto = {
 <span id="cb36-160"><a href="#cb36-160"></a></span>
 <span id="cb36-161"><a href="#cb36-161"></a><span class="ss">- </span>We end up with</span>
 <span id="cb36-162"><a href="#cb36-162"></a><span class="in">```{.python}</span></span>
-<span id="cb36-163"><a href="#cb36-163"></a><span class="co">"276"</span>[<span class="dv">0</span>] <span class="op">==</span> <span class="st">'2'</span> <span class="kw">and</span> <span class="dv">276</span> <span class="op">%</span> (<span class="dv">10</span> <span class="op">**</span> <span class="dv">1</span>) <span class="op">==</span> <span class="dv">6</span></span>
+<span id="cb36-163"><a href="#cb36-163"></a><span class="in">"276"[0] == '2' and 276 % (10 ** 1) == 6</span></span>
 <span id="cb36-164"><a href="#cb36-164"></a><span class="in">```</span></span>
 <span id="cb36-165"><a href="#cb36-165"></a><span class="ss">- </span>Confusing!  </span>
 <span id="cb36-166"><a href="#cb36-166"></a></span>
@@ -2465,17 +2463,17 @@ window.Quarto = {
 <span id="cb36-204"><a href="#cb36-204"></a><span class="ss">- </span>We draw a warning for missing *arguments* for each *format code*</span>
 <span id="cb36-205"><a href="#cb36-205"></a></span>
 <span id="cb36-206"><a href="#cb36-206"></a><span class="in">```{.email}</span></span>
-<span id="cb36-207"><a href="#cb36-207"></a>scanf.c: In function ‘main’:</span>
-<span id="cb36-208"><a href="#cb36-208"></a>scanf.c:4:13: warning: format ‘%d’ expects a matching ‘int *’ argument [-Wformat=]</span>
-<span id="cb36-209"><a href="#cb36-209"></a>    4 |     scanf("%d,%d");</span>
-<span id="cb36-210"><a href="#cb36-210"></a>      |            ~^</span>
-<span id="cb36-211"><a href="#cb36-211"></a>      |             |</span>
-<span id="cb36-212"><a href="#cb36-212"></a>      |             int *</span>
-<span id="cb36-213"><a href="#cb36-213"></a>scanf.c:4:16: warning: format ‘%d’ expects a matching ‘int *’ argument [-Wformat=]</span>
-<span id="cb36-214"><a href="#cb36-214"></a>    4 |     scanf("%d,%d");</span>
-<span id="cb36-215"><a href="#cb36-215"></a>      |               ~^</span>
-<span id="cb36-216"><a href="#cb36-216"></a>      |                |</span>
-<span id="cb36-217"><a href="#cb36-217"></a>      |                int *</span>
+<span id="cb36-207"><a href="#cb36-207"></a><span class="in">scanf.c: In function ‘main’:</span></span>
+<span id="cb36-208"><a href="#cb36-208"></a><span class="in">scanf.c:4:13: warning: format ‘%d’ expects a matching ‘int *’ argument [-Wformat=]</span></span>
+<span id="cb36-209"><a href="#cb36-209"></a><span class="in">    4 |     scanf("%d,%d");</span></span>
+<span id="cb36-210"><a href="#cb36-210"></a><span class="in">      |            ~^</span></span>
+<span id="cb36-211"><a href="#cb36-211"></a><span class="in">      |             |</span></span>
+<span id="cb36-212"><a href="#cb36-212"></a><span class="in">      |             int *</span></span>
+<span id="cb36-213"><a href="#cb36-213"></a><span class="in">scanf.c:4:16: warning: format ‘%d’ expects a matching ‘int *’ argument [-Wformat=]</span></span>
+<span id="cb36-214"><a href="#cb36-214"></a><span class="in">    4 |     scanf("%d,%d");</span></span>
+<span id="cb36-215"><a href="#cb36-215"></a><span class="in">      |               ~^</span></span>
+<span id="cb36-216"><a href="#cb36-216"></a><span class="in">      |                |</span></span>
+<span id="cb36-217"><a href="#cb36-217"></a><span class="in">      |                int *</span></span>
 <span id="cb36-218"><a href="#cb36-218"></a><span class="in">```</span></span>
 <span id="cb36-219"><a href="#cb36-219"></a></span>
 <span id="cb36-220"><a href="#cb36-220"></a><span class="fu">## Arguments</span></span>
@@ -2533,9 +2531,9 @@ window.Quarto = {
 <span id="cb36-272"><a href="#cb36-272"></a></span>
 <span id="cb36-273"><a href="#cb36-273"></a><span class="ss">- </span>Use as follows:</span>
 <span id="cb36-274"><a href="#cb36-274"></a><span class="in">```{.email}</span></span>
-<span id="cb36-275"><a href="#cb36-275"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
-<span id="cb36-276"><a href="#cb36-276"></a>123,456</span>
-<span id="cb36-277"><a href="#cb36-277"></a>$</span>
+<span id="cb36-275"><a href="#cb36-275"></a><span class="in">$ gcc scanf.c &amp;&amp; ./a.out</span></span>
+<span id="cb36-276"><a href="#cb36-276"></a><span class="in">123,456</span></span>
+<span id="cb36-277"><a href="#cb36-277"></a><span class="in">$</span></span>
 <span id="cb36-278"><a href="#cb36-278"></a><span class="in">```</span></span>
 <span id="cb36-279"><a href="#cb36-279"></a><span class="ss">- </span>Clean exit!</span>
 <span id="cb36-280"><a href="#cb36-280"></a></span>
@@ -2555,9 +2553,9 @@ window.Quarto = {
 <span id="cb36-294"><a href="#cb36-294"></a></span>
 <span id="cb36-295"><a href="#cb36-295"></a><span class="ss">- </span>Use as follows:</span>
 <span id="cb36-296"><a href="#cb36-296"></a><span class="in">```{.email}</span></span>
-<span id="cb36-297"><a href="#cb36-297"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
-<span id="cb36-298"><a href="#cb36-298"></a>123,456</span>
-<span id="cb36-299"><a href="#cb36-299"></a>$</span>
+<span id="cb36-297"><a href="#cb36-297"></a><span class="in">$ gcc scanf.c &amp;&amp; ./a.out</span></span>
+<span id="cb36-298"><a href="#cb36-298"></a><span class="in">123,456</span></span>
+<span id="cb36-299"><a href="#cb36-299"></a><span class="in">$</span></span>
 <span id="cb36-300"><a href="#cb36-300"></a><span class="in">```</span></span>
 <span id="cb36-301"><a href="#cb36-301"></a><span class="ss">- </span>Clean exit!</span>
 <span id="cb36-302"><a href="#cb36-302"></a></span>
@@ -2576,14 +2574,14 @@ window.Quarto = {
 <span id="cb36-315"><a href="#cb36-315"></a><span class="ss">- </span>Can we print values back? </span>
 <span id="cb36-316"><a href="#cb36-316"></a></span>
 <span id="cb36-317"><a href="#cb36-317"></a><span class="in">```{.email}</span></span>
-<span id="cb36-318"><a href="#cb36-318"></a>scanf.c: In function ‘main’:</span>
-<span id="cb36-319"><a href="#cb36-319"></a>scanf.c:6:14: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘int *’ [-Wformat=]</span>
-<span id="cb36-320"><a href="#cb36-320"></a>    6 |     printf("%d%d\n", a, b);</span>
-<span id="cb36-321"><a href="#cb36-321"></a>      |             ~^       ~</span>
-<span id="cb36-322"><a href="#cb36-322"></a>      |              |       |</span>
-<span id="cb36-323"><a href="#cb36-323"></a>      |              int     int *</span>
-<span id="cb36-324"><a href="#cb36-324"></a>      |             %ls</span>
-<span id="cb36-325"><a href="#cb36-325"></a>...</span>
+<span id="cb36-318"><a href="#cb36-318"></a><span class="in">scanf.c: In function ‘main’:</span></span>
+<span id="cb36-319"><a href="#cb36-319"></a><span class="in">scanf.c:6:14: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘int *’ [-Wformat=]</span></span>
+<span id="cb36-320"><a href="#cb36-320"></a><span class="in">    6 |     printf("%d%d\n", a, b);</span></span>
+<span id="cb36-321"><a href="#cb36-321"></a><span class="in">      |             ~^       ~</span></span>
+<span id="cb36-322"><a href="#cb36-322"></a><span class="in">      |              |       |</span></span>
+<span id="cb36-323"><a href="#cb36-323"></a><span class="in">      |              int     int *</span></span>
+<span id="cb36-324"><a href="#cb36-324"></a><span class="in">      |             %ls</span></span>
+<span id="cb36-325"><a href="#cb36-325"></a><span class="in">...</span></span>
 <span id="cb36-326"><a href="#cb36-326"></a><span class="in">```</span></span>
 <span id="cb36-327"><a href="#cb36-327"></a></span>
 <span id="cb36-328"><a href="#cb36-328"></a><span class="fu">## Printing</span></span>
@@ -2602,10 +2600,10 @@ window.Quarto = {
 <span id="cb36-341"><a href="#cb36-341"></a><span class="ss">- </span>Print needs values, not references.</span>
 <span id="cb36-342"><a href="#cb36-342"></a></span>
 <span id="cb36-343"><a href="#cb36-343"></a><span class="in">```{.email}</span></span>
-<span id="cb36-344"><a href="#cb36-344"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
-<span id="cb36-345"><a href="#cb36-345"></a>123,456</span>
-<span id="cb36-346"><a href="#cb36-346"></a>123456</span>
-<span id="cb36-347"><a href="#cb36-347"></a>$</span>
+<span id="cb36-344"><a href="#cb36-344"></a><span class="in">$ gcc scanf.c &amp;&amp; ./a.out</span></span>
+<span id="cb36-345"><a href="#cb36-345"></a><span class="in">123,456</span></span>
+<span id="cb36-346"><a href="#cb36-346"></a><span class="in">123456</span></span>
+<span id="cb36-347"><a href="#cb36-347"></a><span class="in">$</span></span>
 <span id="cb36-348"><a href="#cb36-348"></a><span class="in">```</span></span>
 <span id="cb36-349"><a href="#cb36-349"></a></span>
 <span id="cb36-350"><a href="#cb36-350"></a><span class="fu">## Double it </span></span>
@@ -2635,13 +2633,13 @@ window.Quarto = {
 <span id="cb36-374"><a href="#cb36-374"></a>::: {.column width="50%"}</span>
 <span id="cb36-375"><a href="#cb36-375"></a></span>
 <span id="cb36-376"><a href="#cb36-376"></a><span class="in">```{.email}</span></span>
-<span id="cb36-377"><a href="#cb36-377"></a>$ gcc scanf.c &amp;&amp; ./a.out</span>
-<span id="cb36-378"><a href="#cb36-378"></a>123,456</span>
-<span id="cb36-379"><a href="#cb36-379"></a>246912</span>
-<span id="cb36-380"><a href="#cb36-380"></a>$ ./a.out</span>
-<span id="cb36-381"><a href="#cb36-381"></a>123,567</span>
-<span id="cb36-382"><a href="#cb36-382"></a>2461134</span>
-<span id="cb36-383"><a href="#cb36-383"></a>$</span>
+<span id="cb36-377"><a href="#cb36-377"></a><span class="in">$ gcc scanf.c &amp;&amp; ./a.out</span></span>
+<span id="cb36-378"><a href="#cb36-378"></a><span class="in">123,456</span></span>
+<span id="cb36-379"><a href="#cb36-379"></a><span class="in">246912</span></span>
+<span id="cb36-380"><a href="#cb36-380"></a><span class="in">$ ./a.out</span></span>
+<span id="cb36-381"><a href="#cb36-381"></a><span class="in">123,567</span></span>
+<span id="cb36-382"><a href="#cb36-382"></a><span class="in">2461134</span></span>
+<span id="cb36-383"><a href="#cb36-383"></a><span class="in">$</span></span>
 <span id="cb36-384"><a href="#cb36-384"></a><span class="in">```</span></span>
 <span id="cb36-385"><a href="#cb36-385"></a></span>
 <span id="cb36-386"><a href="#cb36-386"></a><span class="ss">- </span>Uh oh.</span>
@@ -2655,15 +2653,15 @@ window.Quarto = {
 <span id="cb36-394"><a href="#cb36-394"></a><span class="ss">- </span>One reason to put the one's place first is for carries.</span>
 <span id="cb36-395"><a href="#cb36-395"></a></span>
 <span id="cb36-398"><a href="#cb36-398"></a><span class="in">```{dot}</span></span>
-<span id="cb36-399"><a href="#cb36-399"></a><span class="co">//| echo: false</span></span>
-<span id="cb36-400"><a href="#cb36-400"></a><span class="co">//| fig-width: 800px</span></span>
-<span id="cb36-401"><a href="#cb36-401"></a><span class="co">//| fig-height: 200px</span></span>
-<span id="cb36-402"><a href="#cb36-402"></a><span class="kw">digraph</span> <span class="va">finite_automata</span> <span class="ot">{</span></span>
-<span id="cb36-403"><a href="#cb36-403"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">TD</span><span class="ot">;</span><span class="co"> </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"#191919"</span><span class="ot">;</span></span>
-<span id="cb36-404"><a href="#cb36-404"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">shape</span><span class="ot">=</span><span class="va">record</span><span class="ot">];</span></span>
+<span id="cb36-399"><a href="#cb36-399"></a><span class="in">//| echo: false</span></span>
+<span id="cb36-400"><a href="#cb36-400"></a><span class="in">//| fig-width: 800px</span></span>
+<span id="cb36-401"><a href="#cb36-401"></a><span class="in">//| fig-height: 200px</span></span>
+<span id="cb36-402"><a href="#cb36-402"></a><span class="in">digraph finite_automata {</span></span>
+<span id="cb36-403"><a href="#cb36-403"></a><span class="in">  rankdir=TD; bgcolor="#191919";</span></span>
+<span id="cb36-404"><a href="#cb36-404"></a><span class="in">  node [fontcolor = "#ffffff", color = "#ffffff", shape=record];</span></span>
 <span id="cb36-405"><a href="#cb36-405"></a></span>
-<span id="cb36-406"><a href="#cb36-406"></a><span class="co">  </span><span class="va">struct</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{2^||+|=}|{0|1|0|1}|{1|0|1|1}|{2|0|0|0}|{3|1|1|?}"</span><span class="ot">];</span></span>
-<span id="cb36-407"><a href="#cb36-407"></a><span class="ot">}</span></span>
+<span id="cb36-406"><a href="#cb36-406"></a><span class="in">  struct [label="{2^||+|=}|{0|1|0|1}|{1|0|1|1}|{2|0|0|0}|{3|1|1|?}"];</span></span>
+<span id="cb36-407"><a href="#cb36-407"></a><span class="in">}</span></span>
 <span id="cb36-408"><a href="#cb36-408"></a><span class="in">```</span></span>
 <span id="cb36-409"><a href="#cb36-409"></a><span class="ss">- </span>As we add across a value, we want to carry over a bit to a higher power.</span>
 <span id="cb36-410"><a href="#cb36-410"></a><span class="ss">- </span>Same with multiply!</span>
@@ -2673,15 +2671,15 @@ window.Quarto = {
 <span id="cb36-414"><a href="#cb36-414"></a><span class="ss">- </span>One reason to put the one's place first is for carries.</span>
 <span id="cb36-415"><a href="#cb36-415"></a></span>
 <span id="cb36-418"><a href="#cb36-418"></a><span class="in">```{dot}</span></span>
-<span id="cb36-419"><a href="#cb36-419"></a><span class="co">//| echo: false</span></span>
-<span id="cb36-420"><a href="#cb36-420"></a><span class="co">//| fig-width: 800px</span></span>
-<span id="cb36-421"><a href="#cb36-421"></a><span class="co">//| fig-height: 200px</span></span>
-<span id="cb36-422"><a href="#cb36-422"></a><span class="kw">digraph</span> <span class="va">finite_automata</span> <span class="ot">{</span></span>
-<span id="cb36-423"><a href="#cb36-423"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">TD</span><span class="ot">;</span><span class="co"> </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"#191919"</span><span class="ot">;</span></span>
-<span id="cb36-424"><a href="#cb36-424"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">shape</span><span class="ot">=</span><span class="va">record</span><span class="ot">];</span></span>
+<span id="cb36-419"><a href="#cb36-419"></a><span class="in">//| echo: false</span></span>
+<span id="cb36-420"><a href="#cb36-420"></a><span class="in">//| fig-width: 800px</span></span>
+<span id="cb36-421"><a href="#cb36-421"></a><span class="in">//| fig-height: 200px</span></span>
+<span id="cb36-422"><a href="#cb36-422"></a><span class="in">digraph finite_automata {</span></span>
+<span id="cb36-423"><a href="#cb36-423"></a><span class="in">  rankdir=TD; bgcolor="#191919";</span></span>
+<span id="cb36-424"><a href="#cb36-424"></a><span class="in">  node [fontcolor = "#ffffff", color = "#ffffff", shape=record];</span></span>
 <span id="cb36-425"><a href="#cb36-425"></a></span>
-<span id="cb36-426"><a href="#cb36-426"></a><span class="co">  </span><span class="va">struct</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{2^||+|c|=}|{0|1|0|0|1}|{1|0|1|0|1}|{2|0|0|0|0}|{3|1|1|0|0}"</span><span class="ot">];</span></span>
-<span id="cb36-427"><a href="#cb36-427"></a><span class="ot">}</span></span>
+<span id="cb36-426"><a href="#cb36-426"></a><span class="in">  struct [label="{2^||+|c|=}|{0|1|0|0|1}|{1|0|1|0|1}|{2|0|0|0|0}|{3|1|1|0|0}"];</span></span>
+<span id="cb36-427"><a href="#cb36-427"></a><span class="in">}</span></span>
 <span id="cb36-428"><a href="#cb36-428"></a><span class="in">```</span></span>
 <span id="cb36-429"><a href="#cb36-429"></a></span>
 <span id="cb36-430"><a href="#cb36-430"></a><span class="fu">## Carries</span></span>
@@ -2689,29 +2687,29 @@ window.Quarto = {
 <span id="cb36-432"><a href="#cb36-432"></a><span class="ss">- </span>Addition is easier least-to-most</span>
 <span id="cb36-433"><a href="#cb36-433"></a></span>
 <span id="cb36-436"><a href="#cb36-436"></a><span class="in">```{dot}</span></span>
-<span id="cb36-437"><a href="#cb36-437"></a><span class="co">//| echo: false</span></span>
-<span id="cb36-438"><a href="#cb36-438"></a><span class="co">//| fig-width: 800px</span></span>
-<span id="cb36-439"><a href="#cb36-439"></a><span class="co">//| fig-height: 200px</span></span>
-<span id="cb36-440"><a href="#cb36-440"></a><span class="kw">digraph</span> <span class="va">finite_automata</span> <span class="ot">{</span></span>
-<span id="cb36-441"><a href="#cb36-441"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">TD</span><span class="ot">;</span><span class="co"> </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"#191919"</span><span class="ot">;</span></span>
-<span id="cb36-442"><a href="#cb36-442"></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">fontcolor</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">color</span><span class="co"> </span><span class="ot">=</span><span class="co"> </span><span class="st">"#ffffff"</span><span class="co">, </span><span class="at">shape</span><span class="ot">=</span><span class="va">record</span><span class="ot">];</span></span>
+<span id="cb36-437"><a href="#cb36-437"></a><span class="in">//| echo: false</span></span>
+<span id="cb36-438"><a href="#cb36-438"></a><span class="in">//| fig-width: 800px</span></span>
+<span id="cb36-439"><a href="#cb36-439"></a><span class="in">//| fig-height: 200px</span></span>
+<span id="cb36-440"><a href="#cb36-440"></a><span class="in">digraph finite_automata {</span></span>
+<span id="cb36-441"><a href="#cb36-441"></a><span class="in">  rankdir=TD; bgcolor="#191919";</span></span>
+<span id="cb36-442"><a href="#cb36-442"></a><span class="in">  node [fontcolor = "#ffffff", color = "#ffffff", shape=record];</span></span>
 <span id="cb36-443"><a href="#cb36-443"></a></span>
-<span id="cb36-444"><a href="#cb36-444"></a><span class="co">  </span><span class="va">struct</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"{2^||+|c|=}|{0|1|0|0|1}|{1|0|1|0|1}|{2|0|0|0|0}|{3|1|1|0|0}|{4|0|0|1|1}"</span><span class="ot">];</span></span>
-<span id="cb36-445"><a href="#cb36-445"></a><span class="ot">}</span></span>
+<span id="cb36-444"><a href="#cb36-444"></a><span class="in">  struct [label="{2^||+|c|=}|{0|1|0|0|1}|{1|0|1|0|1}|{2|0|0|0|0}|{3|1|1|0|0}|{4|0|0|1|1}"];</span></span>
+<span id="cb36-445"><a href="#cb36-445"></a><span class="in">}</span></span>
 <span id="cb36-446"><a href="#cb36-446"></a><span class="in">```</span></span>
 <span id="cb36-447"><a href="#cb36-447"></a><span class="fu">## Check it</span></span>
 <span id="cb36-448"><a href="#cb36-448"></a></span>
 <span id="cb36-449"><a href="#cb36-449"></a><span class="ss">- </span>Can use a numerical computing technology (Python) to validate.</span>
 <span id="cb36-450"><a href="#cb36-450"></a><span class="ss">- </span>A add of <span class="in">`0b01001`</span> to <span class="in">`0b01010`</span> equals <span class="in">`0b10011`</span></span>
 <span id="cb36-451"><a href="#cb36-451"></a><span class="in">```{.python}</span></span>
-<span id="cb36-452"><a href="#cb36-452"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)</span>
-<span id="cb36-453"><a href="#cb36-453"></a><span class="co">'0b10011'</span></span>
-<span id="cb36-454"><a href="#cb36-454"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[<span class="dv">2</span>::<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb36-455"><a href="#cb36-455"></a><span class="co">'1b0'</span></span>
-<span id="cb36-456"><a href="#cb36-456"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[:<span class="dv">2</span>:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb36-457"><a href="#cb36-457"></a><span class="co">'1100'</span></span>
-<span id="cb36-458"><a href="#cb36-458"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">bin</span>(<span class="bn">0b01001</span> <span class="op">+</span> <span class="bn">0b01010</span>)[:<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb36-459"><a href="#cb36-459"></a><span class="co">'11001'</span></span>
+<span id="cb36-452"><a href="#cb36-452"></a><span class="in">&gt;&gt;&gt; bin(0b01001 + 0b01010)</span></span>
+<span id="cb36-453"><a href="#cb36-453"></a><span class="in">'0b10011'</span></span>
+<span id="cb36-454"><a href="#cb36-454"></a><span class="in">&gt;&gt;&gt; bin(0b01001 + 0b01010)[2::-1]</span></span>
+<span id="cb36-455"><a href="#cb36-455"></a><span class="in">'1b0'</span></span>
+<span id="cb36-456"><a href="#cb36-456"></a><span class="in">&gt;&gt;&gt; bin(0b01001 + 0b01010)[:2:-1]</span></span>
+<span id="cb36-457"><a href="#cb36-457"></a><span class="in">'1100'</span></span>
+<span id="cb36-458"><a href="#cb36-458"></a><span class="in">&gt;&gt;&gt; bin(0b01001 + 0b01010)[:1:-1]</span></span>
+<span id="cb36-459"><a href="#cb36-459"></a><span class="in">'11001'</span></span>
 <span id="cb36-460"><a href="#cb36-460"></a><span class="in">```</span></span>
 <span id="cb36-461"><a href="#cb36-461"></a></span>
 <span id="cb36-462"><a href="#cb36-462"></a><span class="fu">## Does it matter?</span></span>
@@ -2762,11 +2760,11 @@ window.Quarto = {
 <span id="cb36-507"><a href="#cb36-507"></a><span class="ss">- </span>Create a variable <span class="in">`x`</span></span>
 <span id="cb36-508"><a href="#cb36-508"></a><span class="ss">- </span>It *can* refer to an <span class="in">`int`</span></span>
 <span id="cb36-509"><a href="#cb36-509"></a><span class="in">```{.python}</span></span>
-<span id="cb36-510"><a href="#cb36-510"></a>x : <span class="bu">list</span>[<span class="bu">int</span>] <span class="co"># not x = [None]</span></span>
+<span id="cb36-510"><a href="#cb36-510"></a><span class="in">x : list[int] # not x = [None]</span></span>
 <span id="cb36-511"><a href="#cb36-511"></a><span class="in">```</span></span>
 <span id="cb36-512"><a href="#cb36-512"></a><span class="ss">- </span>Can't use yet.</span>
 <span id="cb36-513"><a href="#cb36-513"></a><span class="in">```{.python}</span></span>
-<span id="cb36-514"><a href="#cb36-514"></a>x[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># this would error</span></span>
+<span id="cb36-514"><a href="#cb36-514"></a><span class="in">x[0] = 1 # this would error</span></span>
 <span id="cb36-515"><a href="#cb36-515"></a><span class="in">```</span></span>
 <span id="cb36-516"><a href="#cb36-516"></a></span>
 <span id="cb36-517"><a href="#cb36-517"></a>:::</span>
@@ -2774,19 +2772,19 @@ window.Quarto = {
 <span id="cb36-519"><a href="#cb36-519"></a>::: {.column width="50%"}</span>
 <span id="cb36-520"><a href="#cb36-520"></a></span>
 <span id="cb36-521"><a href="#cb36-521"></a><span class="in">```{.c code-line-numbers="4"}</span></span>
-<span id="cb36-522"><a href="#cb36-522"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb36-522"><a href="#cb36-522"></a><span class="in">#include &lt;stdio.h&gt;</span></span>
 <span id="cb36-523"><a href="#cb36-523"></a></span>
-<span id="cb36-524"><a href="#cb36-524"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-525"><a href="#cb36-525"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
-<span id="cb36-526"><a href="#cb36-526"></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
-<span id="cb36-527"><a href="#cb36-527"></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
-<span id="cb36-528"><a href="#cb36-528"></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
-<span id="cb36-529"><a href="#cb36-529"></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
-<span id="cb36-530"><a href="#cb36-530"></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
-<span id="cb36-531"><a href="#cb36-531"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
-<span id="cb36-532"><a href="#cb36-532"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb36-533"><a href="#cb36-533"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-534"><a href="#cb36-534"></a><span class="op">}</span></span>
+<span id="cb36-524"><a href="#cb36-524"></a><span class="in">int main() {</span></span>
+<span id="cb36-525"><a href="#cb36-525"></a><span class="in">    int *x;</span></span>
+<span id="cb36-526"><a href="#cb36-526"></a><span class="in">    char buf[4];</span></span>
+<span id="cb36-527"><a href="#cb36-527"></a><span class="in">    buf[0] = 0xA;</span></span>
+<span id="cb36-528"><a href="#cb36-528"></a><span class="in">    buf[1] = 0xB;</span></span>
+<span id="cb36-529"><a href="#cb36-529"></a><span class="in">    buf[2] = 0xC;</span></span>
+<span id="cb36-530"><a href="#cb36-530"></a><span class="in">    buf[3] = 0xD;</span></span>
+<span id="cb36-531"><a href="#cb36-531"></a><span class="in">    x = (int *)buf;</span></span>
+<span id="cb36-532"><a href="#cb36-532"></a><span class="in">    printf("%x\n", x[0]);</span></span>
+<span id="cb36-533"><a href="#cb36-533"></a><span class="in">    return 0;</span></span>
+<span id="cb36-534"><a href="#cb36-534"></a><span class="in">}</span></span>
 <span id="cb36-535"><a href="#cb36-535"></a><span class="in">```</span></span>
 <span id="cb36-536"><a href="#cb36-536"></a></span>
 <span id="cb36-537"><a href="#cb36-537"></a>:::</span>
@@ -2804,7 +2802,7 @@ window.Quarto = {
 <span id="cb36-549"><a href="#cb36-549"></a><span class="ss">- </span>Versus a <span class="in">`char *`</span>:</span>
 <span id="cb36-550"><a href="#cb36-550"></a><span class="ss">    - </span>The value <span class="in">`buf`</span> holds *some* reference.</span>
 <span id="cb36-551"><a href="#cb36-551"></a><span class="in">```{.python}</span></span>
-<span id="cb36-552"><a href="#cb36-552"></a>buf <span class="op">=</span>  <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb36-552"><a href="#cb36-552"></a><span class="in">buf =  = [None] * 4</span></span>
 <span id="cb36-553"><a href="#cb36-553"></a><span class="in">```</span></span>
 <span id="cb36-554"><a href="#cb36-554"></a></span>
 <span id="cb36-555"><a href="#cb36-555"></a>:::</span>
@@ -2812,19 +2810,19 @@ window.Quarto = {
 <span id="cb36-557"><a href="#cb36-557"></a>::: {.column width="50%"}</span>
 <span id="cb36-558"><a href="#cb36-558"></a></span>
 <span id="cb36-559"><a href="#cb36-559"></a><span class="in">```{.c code-line-numbers="5"}</span></span>
-<span id="cb36-560"><a href="#cb36-560"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb36-560"><a href="#cb36-560"></a><span class="in">#include &lt;stdio.h&gt;</span></span>
 <span id="cb36-561"><a href="#cb36-561"></a></span>
-<span id="cb36-562"><a href="#cb36-562"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-563"><a href="#cb36-563"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
-<span id="cb36-564"><a href="#cb36-564"></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
-<span id="cb36-565"><a href="#cb36-565"></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
-<span id="cb36-566"><a href="#cb36-566"></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
-<span id="cb36-567"><a href="#cb36-567"></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
-<span id="cb36-568"><a href="#cb36-568"></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
-<span id="cb36-569"><a href="#cb36-569"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
-<span id="cb36-570"><a href="#cb36-570"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb36-571"><a href="#cb36-571"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-572"><a href="#cb36-572"></a><span class="op">}</span></span>
+<span id="cb36-562"><a href="#cb36-562"></a><span class="in">int main() {</span></span>
+<span id="cb36-563"><a href="#cb36-563"></a><span class="in">    int *x;</span></span>
+<span id="cb36-564"><a href="#cb36-564"></a><span class="in">    char buf[4];</span></span>
+<span id="cb36-565"><a href="#cb36-565"></a><span class="in">    buf[0] = 0xA;</span></span>
+<span id="cb36-566"><a href="#cb36-566"></a><span class="in">    buf[1] = 0xB;</span></span>
+<span id="cb36-567"><a href="#cb36-567"></a><span class="in">    buf[2] = 0xC;</span></span>
+<span id="cb36-568"><a href="#cb36-568"></a><span class="in">    buf[3] = 0xD;</span></span>
+<span id="cb36-569"><a href="#cb36-569"></a><span class="in">    x = (int *)buf;</span></span>
+<span id="cb36-570"><a href="#cb36-570"></a><span class="in">    printf("%x\n", x[0]);</span></span>
+<span id="cb36-571"><a href="#cb36-571"></a><span class="in">    return 0;</span></span>
+<span id="cb36-572"><a href="#cb36-572"></a><span class="in">}</span></span>
 <span id="cb36-573"><a href="#cb36-573"></a><span class="in">```</span></span>
 <span id="cb36-574"><a href="#cb36-574"></a></span>
 <span id="cb36-575"><a href="#cb36-575"></a>:::</span>
@@ -2847,19 +2845,19 @@ window.Quarto = {
 <span id="cb36-592"><a href="#cb36-592"></a>::: {.column width="50%"}</span>
 <span id="cb36-593"><a href="#cb36-593"></a></span>
 <span id="cb36-594"><a href="#cb36-594"></a><span class="in">```{.c code-line-numbers="6-9"}</span></span>
-<span id="cb36-595"><a href="#cb36-595"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb36-595"><a href="#cb36-595"></a><span class="in">#include &lt;stdio.h&gt;</span></span>
 <span id="cb36-596"><a href="#cb36-596"></a></span>
-<span id="cb36-597"><a href="#cb36-597"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-598"><a href="#cb36-598"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
-<span id="cb36-599"><a href="#cb36-599"></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
-<span id="cb36-600"><a href="#cb36-600"></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
-<span id="cb36-601"><a href="#cb36-601"></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
-<span id="cb36-602"><a href="#cb36-602"></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
-<span id="cb36-603"><a href="#cb36-603"></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
-<span id="cb36-604"><a href="#cb36-604"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
-<span id="cb36-605"><a href="#cb36-605"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb36-606"><a href="#cb36-606"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-607"><a href="#cb36-607"></a><span class="op">}</span></span>
+<span id="cb36-597"><a href="#cb36-597"></a><span class="in">int main() {</span></span>
+<span id="cb36-598"><a href="#cb36-598"></a><span class="in">    int *x;</span></span>
+<span id="cb36-599"><a href="#cb36-599"></a><span class="in">    char buf[4];</span></span>
+<span id="cb36-600"><a href="#cb36-600"></a><span class="in">    buf[0] = 0xA;</span></span>
+<span id="cb36-601"><a href="#cb36-601"></a><span class="in">    buf[1] = 0xB;</span></span>
+<span id="cb36-602"><a href="#cb36-602"></a><span class="in">    buf[2] = 0xC;</span></span>
+<span id="cb36-603"><a href="#cb36-603"></a><span class="in">    buf[3] = 0xD;</span></span>
+<span id="cb36-604"><a href="#cb36-604"></a><span class="in">    x = (int *)buf;</span></span>
+<span id="cb36-605"><a href="#cb36-605"></a><span class="in">    printf("%x\n", x[0]);</span></span>
+<span id="cb36-606"><a href="#cb36-606"></a><span class="in">    return 0;</span></span>
+<span id="cb36-607"><a href="#cb36-607"></a><span class="in">}</span></span>
 <span id="cb36-608"><a href="#cb36-608"></a><span class="in">```</span></span>
 <span id="cb36-609"><a href="#cb36-609"></a></span>
 <span id="cb36-610"><a href="#cb36-610"></a>:::</span>
@@ -2886,19 +2884,19 @@ window.Quarto = {
 <span id="cb36-631"><a href="#cb36-631"></a>::: {.column width="50%"}</span>
 <span id="cb36-632"><a href="#cb36-632"></a></span>
 <span id="cb36-633"><a href="#cb36-633"></a><span class="in">```{.c code-line-numbers="10"}</span></span>
-<span id="cb36-634"><a href="#cb36-634"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb36-634"><a href="#cb36-634"></a><span class="in">#include &lt;stdio.h&gt;</span></span>
 <span id="cb36-635"><a href="#cb36-635"></a></span>
-<span id="cb36-636"><a href="#cb36-636"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-637"><a href="#cb36-637"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
-<span id="cb36-638"><a href="#cb36-638"></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
-<span id="cb36-639"><a href="#cb36-639"></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
-<span id="cb36-640"><a href="#cb36-640"></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
-<span id="cb36-641"><a href="#cb36-641"></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
-<span id="cb36-642"><a href="#cb36-642"></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
-<span id="cb36-643"><a href="#cb36-643"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
-<span id="cb36-644"><a href="#cb36-644"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb36-645"><a href="#cb36-645"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-646"><a href="#cb36-646"></a><span class="op">}</span></span>
+<span id="cb36-636"><a href="#cb36-636"></a><span class="in">int main() {</span></span>
+<span id="cb36-637"><a href="#cb36-637"></a><span class="in">    int *x;</span></span>
+<span id="cb36-638"><a href="#cb36-638"></a><span class="in">    char buf[4];</span></span>
+<span id="cb36-639"><a href="#cb36-639"></a><span class="in">    buf[0] = 0xA;</span></span>
+<span id="cb36-640"><a href="#cb36-640"></a><span class="in">    buf[1] = 0xB;</span></span>
+<span id="cb36-641"><a href="#cb36-641"></a><span class="in">    buf[2] = 0xC;</span></span>
+<span id="cb36-642"><a href="#cb36-642"></a><span class="in">    buf[3] = 0xD;</span></span>
+<span id="cb36-643"><a href="#cb36-643"></a><span class="in">    x = (int *)buf;</span></span>
+<span id="cb36-644"><a href="#cb36-644"></a><span class="in">    printf("%x\n", x[0]);</span></span>
+<span id="cb36-645"><a href="#cb36-645"></a><span class="in">    return 0;</span></span>
+<span id="cb36-646"><a href="#cb36-646"></a><span class="in">}</span></span>
 <span id="cb36-647"><a href="#cb36-647"></a><span class="in">```</span></span>
 <span id="cb36-648"><a href="#cb36-648"></a></span>
 <span id="cb36-649"><a href="#cb36-649"></a>:::</span>
@@ -2923,19 +2921,19 @@ window.Quarto = {
 <span id="cb36-668"><a href="#cb36-668"></a>::: {.column width="50%"}</span>
 <span id="cb36-669"><a href="#cb36-669"></a></span>
 <span id="cb36-670"><a href="#cb36-670"></a><span class="in">```{.c code-line-numbers="11"}</span></span>
-<span id="cb36-671"><a href="#cb36-671"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb36-671"><a href="#cb36-671"></a><span class="in">#include &lt;stdio.h&gt;</span></span>
 <span id="cb36-672"><a href="#cb36-672"></a></span>
-<span id="cb36-673"><a href="#cb36-673"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-674"><a href="#cb36-674"></a>    <span class="dt">int</span> <span class="op">*</span>x<span class="op">;</span></span>
-<span id="cb36-675"><a href="#cb36-675"></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
-<span id="cb36-676"><a href="#cb36-676"></a>    buf<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xA</span><span class="op">;</span></span>
-<span id="cb36-677"><a href="#cb36-677"></a>    buf<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xB</span><span class="op">;</span></span>
-<span id="cb36-678"><a href="#cb36-678"></a>    buf<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xC</span><span class="op">;</span></span>
-<span id="cb36-679"><a href="#cb36-679"></a>    buf<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="bn">0xD</span><span class="op">;</span></span>
-<span id="cb36-680"><a href="#cb36-680"></a>    x <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>buf<span class="op">;</span></span>
-<span id="cb36-681"><a href="#cb36-681"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%x\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb36-682"><a href="#cb36-682"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-683"><a href="#cb36-683"></a><span class="op">}</span></span>
+<span id="cb36-673"><a href="#cb36-673"></a><span class="in">int main() {</span></span>
+<span id="cb36-674"><a href="#cb36-674"></a><span class="in">    int *x;</span></span>
+<span id="cb36-675"><a href="#cb36-675"></a><span class="in">    char buf[4];</span></span>
+<span id="cb36-676"><a href="#cb36-676"></a><span class="in">    buf[0] = 0xA;</span></span>
+<span id="cb36-677"><a href="#cb36-677"></a><span class="in">    buf[1] = 0xB;</span></span>
+<span id="cb36-678"><a href="#cb36-678"></a><span class="in">    buf[2] = 0xC;</span></span>
+<span id="cb36-679"><a href="#cb36-679"></a><span class="in">    buf[3] = 0xD;</span></span>
+<span id="cb36-680"><a href="#cb36-680"></a><span class="in">    x = (int *)buf;</span></span>
+<span id="cb36-681"><a href="#cb36-681"></a><span class="in">    printf("%x\n", x[0]);</span></span>
+<span id="cb36-682"><a href="#cb36-682"></a><span class="in">    return 0;</span></span>
+<span id="cb36-683"><a href="#cb36-683"></a><span class="in">}</span></span>
 <span id="cb36-684"><a href="#cb36-684"></a><span class="in">```</span></span>
 <span id="cb36-685"><a href="#cb36-685"></a></span>
 <span id="cb36-686"><a href="#cb36-686"></a><span class="ss">- </span>I got no warnings/errors.</span>
@@ -2969,19 +2967,19 @@ window.Quarto = {
 <span id="cb36-714"><a href="#cb36-714"></a><span class="fu">## Script</span></span>
 <span id="cb36-715"><a href="#cb36-715"></a></span>
 <span id="cb36-716"><a href="#cb36-716"></a><span class="in">```{.c filename="tester.c"}</span></span>
-<span id="cb36-717"><a href="#cb36-717"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb36-717"><a href="#cb36-717"></a><span class="in">#include &lt;stdio.h&gt;</span></span>
 <span id="cb36-718"><a href="#cb36-718"></a></span>
-<span id="cb36-719"><a href="#cb36-719"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-720"><a href="#cb36-720"></a>        <span class="dt">char</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-721"><a href="#cb36-721"></a>        <span class="dt">unsigned</span> <span class="dt">char</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-722"><a href="#cb36-722"></a>        <span class="dt">char</span> buf<span class="op">[</span><span class="bn">0x10</span><span class="op">];</span></span>
-<span id="cb36-723"><a href="#cb36-723"></a>        <span class="cf">while</span> <span class="op">(</span>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span> buf<span class="op">))</span> <span class="op">{</span></span>
-<span id="cb36-724"><a href="#cb36-724"></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%u\n</span><span class="st">"</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">);</span></span>
-<span id="cb36-725"><a href="#cb36-725"></a>                x <span class="op">+=</span> <span class="dv">10</span><span class="op">;</span></span>
-<span id="cb36-726"><a href="#cb36-726"></a>                y <span class="op">+=</span> <span class="dv">10</span><span class="op">;</span></span>
-<span id="cb36-727"><a href="#cb36-727"></a>        <span class="op">}</span></span>
-<span id="cb36-728"><a href="#cb36-728"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-729"><a href="#cb36-729"></a><span class="op">}</span></span>
+<span id="cb36-719"><a href="#cb36-719"></a><span class="in">int main() {</span></span>
+<span id="cb36-720"><a href="#cb36-720"></a><span class="in">        char x = 0;</span></span>
+<span id="cb36-721"><a href="#cb36-721"></a><span class="in">        unsigned char y = 0;</span></span>
+<span id="cb36-722"><a href="#cb36-722"></a><span class="in">        char buf[0x10];</span></span>
+<span id="cb36-723"><a href="#cb36-723"></a><span class="in">        while (scanf("%s", buf)) {</span></span>
+<span id="cb36-724"><a href="#cb36-724"></a><span class="in">                printf("%d, %u\n", x, y);</span></span>
+<span id="cb36-725"><a href="#cb36-725"></a><span class="in">                x += 10;</span></span>
+<span id="cb36-726"><a href="#cb36-726"></a><span class="in">                y += 10;</span></span>
+<span id="cb36-727"><a href="#cb36-727"></a><span class="in">        }</span></span>
+<span id="cb36-728"><a href="#cb36-728"></a><span class="in">        return 0;</span></span>
+<span id="cb36-729"><a href="#cb36-729"></a><span class="in">}</span></span>
 <span id="cb36-730"><a href="#cb36-730"></a><span class="in">```</span></span>
 <span id="cb36-731"><a href="#cb36-731"></a><span class="ss">- </span>Simply type any string then press ENTER.</span>
 <span id="cb36-732"><a href="#cb36-732"></a></span>
@@ -2992,22 +2990,22 @@ window.Quarto = {
 <span id="cb36-737"><a href="#cb36-737"></a>::: {.column width="50%"}</span>
 <span id="cb36-738"><a href="#cb36-738"></a></span>
 <span id="cb36-739"><a href="#cb36-739"></a><span class="in">```{.email}</span></span>
-<span id="cb36-740"><a href="#cb36-740"></a>a</span>
-<span id="cb36-741"><a href="#cb36-741"></a>0, 0</span>
-<span id="cb36-742"><a href="#cb36-742"></a>...</span>
-<span id="cb36-743"><a href="#cb36-743"></a>a</span>
-<span id="cb36-744"><a href="#cb36-744"></a>120, 120</span>
-<span id="cb36-745"><a href="#cb36-745"></a>a</span>
-<span id="cb36-746"><a href="#cb36-746"></a>-126, 130</span>
-<span id="cb36-747"><a href="#cb36-747"></a>a</span>
-<span id="cb36-748"><a href="#cb36-748"></a>-116, 140</span>
-<span id="cb36-749"><a href="#cb36-749"></a>...</span>
-<span id="cb36-750"><a href="#cb36-750"></a>a</span>
-<span id="cb36-751"><a href="#cb36-751"></a>-16, 240</span>
-<span id="cb36-752"><a href="#cb36-752"></a>a</span>
-<span id="cb36-753"><a href="#cb36-753"></a>-6, 250</span>
-<span id="cb36-754"><a href="#cb36-754"></a>a</span>
-<span id="cb36-755"><a href="#cb36-755"></a>4, 4</span>
+<span id="cb36-740"><a href="#cb36-740"></a><span class="in">a</span></span>
+<span id="cb36-741"><a href="#cb36-741"></a><span class="in">0, 0</span></span>
+<span id="cb36-742"><a href="#cb36-742"></a><span class="in">...</span></span>
+<span id="cb36-743"><a href="#cb36-743"></a><span class="in">a</span></span>
+<span id="cb36-744"><a href="#cb36-744"></a><span class="in">120, 120</span></span>
+<span id="cb36-745"><a href="#cb36-745"></a><span class="in">a</span></span>
+<span id="cb36-746"><a href="#cb36-746"></a><span class="in">-126, 130</span></span>
+<span id="cb36-747"><a href="#cb36-747"></a><span class="in">a</span></span>
+<span id="cb36-748"><a href="#cb36-748"></a><span class="in">-116, 140</span></span>
+<span id="cb36-749"><a href="#cb36-749"></a><span class="in">...</span></span>
+<span id="cb36-750"><a href="#cb36-750"></a><span class="in">a</span></span>
+<span id="cb36-751"><a href="#cb36-751"></a><span class="in">-16, 240</span></span>
+<span id="cb36-752"><a href="#cb36-752"></a><span class="in">a</span></span>
+<span id="cb36-753"><a href="#cb36-753"></a><span class="in">-6, 250</span></span>
+<span id="cb36-754"><a href="#cb36-754"></a><span class="in">a</span></span>
+<span id="cb36-755"><a href="#cb36-755"></a><span class="in">4, 4</span></span>
 <span id="cb36-756"><a href="#cb36-756"></a><span class="in">```</span></span>
 <span id="cb36-757"><a href="#cb36-757"></a></span>
 <span id="cb36-758"><a href="#cb36-758"></a>:::</span>
@@ -3031,13 +3029,13 @@ window.Quarto = {
 <span id="cb36-776"><a href="#cb36-776"></a><span class="ss">    - </span>an unsigned char and print.</span>
 <span id="cb36-777"><a href="#cb36-777"></a></span>
 <span id="cb36-778"><a href="#cb36-778"></a><span class="in">```{.c filename="tester.c"}</span></span>
-<span id="cb36-779"><a href="#cb36-779"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-780"><a href="#cb36-780"></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
-<span id="cb36-781"><a href="#cb36-781"></a>        <span class="cf">while</span> <span class="op">(</span>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> x<span class="op">))</span> <span class="op">{</span></span>
-<span id="cb36-782"><a href="#cb36-782"></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%hhd</span><span class="st">, </span><span class="sc">%u\n</span><span class="st">"</span><span class="op">,</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span>x<span class="op">[</span><span class="dv">0</span><span class="op">],</span> <span class="op">(</span><span class="dt">unsigned</span> <span class="dt">char</span><span class="op">)</span>x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb36-783"><a href="#cb36-783"></a>        <span class="op">}</span></span>
-<span id="cb36-784"><a href="#cb36-784"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-785"><a href="#cb36-785"></a><span class="op">}</span></span>
+<span id="cb36-779"><a href="#cb36-779"></a><span class="in">int main() {</span></span>
+<span id="cb36-780"><a href="#cb36-780"></a><span class="in">        int x[0];</span></span>
+<span id="cb36-781"><a href="#cb36-781"></a><span class="in">        while (scanf("%d", x)) {</span></span>
+<span id="cb36-782"><a href="#cb36-782"></a><span class="in">                printf("%hhd, %u\n", (char)x[0], (unsigned char)x[0]);</span></span>
+<span id="cb36-783"><a href="#cb36-783"></a><span class="in">        }</span></span>
+<span id="cb36-784"><a href="#cb36-784"></a><span class="in">        return 0;</span></span>
+<span id="cb36-785"><a href="#cb36-785"></a><span class="in">}</span></span>
 <span id="cb36-786"><a href="#cb36-786"></a><span class="in">```</span></span>
 <span id="cb36-787"><a href="#cb36-787"></a></span>
 <span id="cb36-788"><a href="#cb36-788"></a><span class="fu">## Output</span></span>
@@ -3047,18 +3045,18 @@ window.Quarto = {
 <span id="cb36-792"><a href="#cb36-792"></a>::: {.column width="50%"}</span>
 <span id="cb36-793"><a href="#cb36-793"></a></span>
 <span id="cb36-794"><a href="#cb36-794"></a><span class="in">```{.email}</span></span>
-<span id="cb36-795"><a href="#cb36-795"></a>10</span>
-<span id="cb36-796"><a href="#cb36-796"></a>10, 10</span>
-<span id="cb36-797"><a href="#cb36-797"></a>126</span>
-<span id="cb36-798"><a href="#cb36-798"></a>126, 126</span>
-<span id="cb36-799"><a href="#cb36-799"></a>127</span>
-<span id="cb36-800"><a href="#cb36-800"></a>127, 127</span>
-<span id="cb36-801"><a href="#cb36-801"></a>128</span>
-<span id="cb36-802"><a href="#cb36-802"></a>-128, 128</span>
-<span id="cb36-803"><a href="#cb36-803"></a>255</span>
-<span id="cb36-804"><a href="#cb36-804"></a>-1, 255</span>
-<span id="cb36-805"><a href="#cb36-805"></a>256</span>
-<span id="cb36-806"><a href="#cb36-806"></a>0, 0</span>
+<span id="cb36-795"><a href="#cb36-795"></a><span class="in">10</span></span>
+<span id="cb36-796"><a href="#cb36-796"></a><span class="in">10, 10</span></span>
+<span id="cb36-797"><a href="#cb36-797"></a><span class="in">126</span></span>
+<span id="cb36-798"><a href="#cb36-798"></a><span class="in">126, 126</span></span>
+<span id="cb36-799"><a href="#cb36-799"></a><span class="in">127</span></span>
+<span id="cb36-800"><a href="#cb36-800"></a><span class="in">127, 127</span></span>
+<span id="cb36-801"><a href="#cb36-801"></a><span class="in">128</span></span>
+<span id="cb36-802"><a href="#cb36-802"></a><span class="in">-128, 128</span></span>
+<span id="cb36-803"><a href="#cb36-803"></a><span class="in">255</span></span>
+<span id="cb36-804"><a href="#cb36-804"></a><span class="in">-1, 255</span></span>
+<span id="cb36-805"><a href="#cb36-805"></a><span class="in">256</span></span>
+<span id="cb36-806"><a href="#cb36-806"></a><span class="in">0, 0</span></span>
 <span id="cb36-807"><a href="#cb36-807"></a><span class="in">```</span></span>
 <span id="cb36-808"><a href="#cb36-808"></a></span>
 <span id="cb36-809"><a href="#cb36-809"></a>:::</span>
@@ -3079,35 +3077,35 @@ window.Quarto = {
 <span id="cb36-824"><a href="#cb36-824"></a></span>
 <span id="cb36-825"><a href="#cb36-825"></a></span>
 <span id="cb36-826"><a href="#cb36-826"></a><span class="in">```{.c filename="tester.c"}</span></span>
-<span id="cb36-827"><a href="#cb36-827"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb36-827"><a href="#cb36-827"></a><span class="in">#include &lt;stdio.h&gt;</span></span>
 <span id="cb36-828"><a href="#cb36-828"></a></span>
-<span id="cb36-829"><a href="#cb36-829"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb36-830"><a href="#cb36-830"></a>        <span class="dt">int</span> x<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
-<span id="cb36-831"><a href="#cb36-831"></a>        <span class="cf">while</span> <span class="op">(</span>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> x<span class="op">))</span> <span class="op">{</span></span>
-<span id="cb36-832"><a href="#cb36-832"></a>                printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%u</span><span class="st">, </span><span class="sc">%032b\n</span><span class="st">"</span><span class="op">,</span> </span>
-<span id="cb36-833"><a href="#cb36-833"></a>                <span class="op">*</span>x<span class="op">,</span> <span class="op">(</span><span class="dt">unsigned</span><span class="op">)*</span>x<span class="op">,</span> x<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb36-834"><a href="#cb36-834"></a>        <span class="op">}</span></span>
-<span id="cb36-835"><a href="#cb36-835"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb36-836"><a href="#cb36-836"></a><span class="op">}</span></span>
+<span id="cb36-829"><a href="#cb36-829"></a><span class="in">int main() {</span></span>
+<span id="cb36-830"><a href="#cb36-830"></a><span class="in">        int x[0];</span></span>
+<span id="cb36-831"><a href="#cb36-831"></a><span class="in">        while (scanf("%d", x)) {</span></span>
+<span id="cb36-832"><a href="#cb36-832"></a><span class="in">                printf("%d, %u, %032b\n", </span></span>
+<span id="cb36-833"><a href="#cb36-833"></a><span class="in">                *x, (unsigned)*x, x[0]);</span></span>
+<span id="cb36-834"><a href="#cb36-834"></a><span class="in">        }</span></span>
+<span id="cb36-835"><a href="#cb36-835"></a><span class="in">        return 0;</span></span>
+<span id="cb36-836"><a href="#cb36-836"></a><span class="in">}</span></span>
 <span id="cb36-837"><a href="#cb36-837"></a><span class="in">```</span></span>
 <span id="cb36-838"><a href="#cb36-838"></a></span>
 <span id="cb36-839"><a href="#cb36-839"></a><span class="fu">## Some things to try</span></span>
 <span id="cb36-840"><a href="#cb36-840"></a></span>
 <span id="cb36-841"><a href="#cb36-841"></a><span class="in">```{.email}</span></span>
-<span id="cb36-842"><a href="#cb36-842"></a>65536</span>
-<span id="cb36-843"><a href="#cb36-843"></a>65536, 65536, 00000000000000010000000000000000</span>
-<span id="cb36-844"><a href="#cb36-844"></a>-1</span>
-<span id="cb36-845"><a href="#cb36-845"></a>-1, 4294967295, 11111111111111111111111111111111</span>
-<span id="cb36-846"><a href="#cb36-846"></a>4294967295</span>
-<span id="cb36-847"><a href="#cb36-847"></a>-1, 4294967295, 11111111111111111111111111111111</span>
-<span id="cb36-848"><a href="#cb36-848"></a>4294967296</span>
-<span id="cb36-849"><a href="#cb36-849"></a>0, 0, 00000000000000000000000000000000</span>
-<span id="cb36-850"><a href="#cb36-850"></a>255</span>
-<span id="cb36-851"><a href="#cb36-851"></a>255, 255, 00000000000000000000000011111111</span>
-<span id="cb36-852"><a href="#cb36-852"></a>256</span>
-<span id="cb36-853"><a href="#cb36-853"></a>256, 256, 00000000000000000000000100000000</span>
-<span id="cb36-854"><a href="#cb36-854"></a>-255</span>
-<span id="cb36-855"><a href="#cb36-855"></a>-255, 4294967041, 11111111111111111111111100000001</span>
+<span id="cb36-842"><a href="#cb36-842"></a><span class="in">65536</span></span>
+<span id="cb36-843"><a href="#cb36-843"></a><span class="in">65536, 65536, 00000000000000010000000000000000</span></span>
+<span id="cb36-844"><a href="#cb36-844"></a><span class="in">-1</span></span>
+<span id="cb36-845"><a href="#cb36-845"></a><span class="in">-1, 4294967295, 11111111111111111111111111111111</span></span>
+<span id="cb36-846"><a href="#cb36-846"></a><span class="in">4294967295</span></span>
+<span id="cb36-847"><a href="#cb36-847"></a><span class="in">-1, 4294967295, 11111111111111111111111111111111</span></span>
+<span id="cb36-848"><a href="#cb36-848"></a><span class="in">4294967296</span></span>
+<span id="cb36-849"><a href="#cb36-849"></a><span class="in">0, 0, 00000000000000000000000000000000</span></span>
+<span id="cb36-850"><a href="#cb36-850"></a><span class="in">255</span></span>
+<span id="cb36-851"><a href="#cb36-851"></a><span class="in">255, 255, 00000000000000000000000011111111</span></span>
+<span id="cb36-852"><a href="#cb36-852"></a><span class="in">256</span></span>
+<span id="cb36-853"><a href="#cb36-853"></a><span class="in">256, 256, 00000000000000000000000100000000</span></span>
+<span id="cb36-854"><a href="#cb36-854"></a><span class="in">-255</span></span>
+<span id="cb36-855"><a href="#cb36-855"></a><span class="in">-255, 4294967041, 11111111111111111111111100000001</span></span>
 <span id="cb36-856"><a href="#cb36-856"></a><span class="in">```</span></span>
 <span id="cb36-857"><a href="#cb36-857"></a></span>
 <span id="cb36-858"><a href="#cb36-858"></a><span class="fu">## Takeaways</span></span>
@@ -3136,7 +3134,7 @@ window.Quarto = {
 <span id="cb36-881"><a href="#cb36-881"></a><span class="in">        return 0;</span></span>
 <span id="cb36-882"><a href="#cb36-882"></a><span class="in">}</span></span>
 <span id="cb36-883"><a href="#cb36-883"></a><span class="in">```</span></span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

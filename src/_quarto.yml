@@ -3,13 +3,13 @@ project:
     output-dir: ../
 
 website:
-    title: "Systems in C"
+    title: "HW & asm"
     sidebar:
         contents: auto
     search: true
     page-navigation: true
 
-subtitle: "Systems in C"
+subtitle: "HW & asm"
 
 format:
     html:
