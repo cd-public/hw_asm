@@ -11,8 +11,8 @@ format: html
 
 |Week Num.|Week Date|T|R|Lab|
 |:--:|:---|:----|:-------|:-------|
-|0x0|01/11|Intro|Instructions|
-|0x1|01/18|Encoding|Transistors|
+|0x0|01/11|Intro|Instructions| <!-- sure would like a compile to riscv asm, edit, simulate lab here -->
+|0x1|01/18|Circuits|Transistors|
 |0x2|01/25|Gates|Multiplex|Lab 1| <!-- out with multiplex, due after ~9 days -->
 |0x3|02/01|Minimze|Karnaugh|
 |0x4|02/08|Encoders|Adders|Lab 2| <!-- out with encoders, due after ALU  -->

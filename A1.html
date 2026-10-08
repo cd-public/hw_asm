@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.30">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,15 +67,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./B0.html" rel="next">
 <link href="./A0.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-a4a11d514c7d463668e07712114998e6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fc9c1a4fc1048689359919db0170c3de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-40a160e28a8c0a8ad2fc184c8ba4238c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -129,9 +132,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">HW &amp; asm</a> 
-    </div>
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -155,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Circuits</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -711,290 +713,294 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
           } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
         }
-        return container.innerHTML
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1002,185 +1008,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./A0.html" class="pagination-link" aria-label="Hazards">
@@ -1193,7 +1175,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> Source Bypassing </span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="an">subtitle:</span><span class="co"> "wAd1"</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">---</span></span>
@@ -1228,8 +1210,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-33"><a href="#cb1-33"></a><span class="fu">## Each pipeline register name is based on the stages it separates</span></span>
 <span id="cb1-34"><a href="#cb1-34"></a></span>
 <span id="cb1-35"><a href="#cb1-35"></a>Cycle 0</span>
-<span id="cb1-36"><a href="#cb1-36"></a>| Register Names | IF/ID | ID/EX | EX/MEM | MEM/WB |</span>
-<span id="cb1-37"><a href="#cb1-37"></a>| -------------- | ----- | ----- | ------ | ------ |</span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="pp">|</span> Register Names <span class="pp">|</span> IF/ID <span class="pp">|</span> ID/EX <span class="pp">|</span> EX/MEM <span class="pp">|</span> MEM/WB <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a><span class="pp">| --------------</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ------</span> <span class="pp">| ------</span> <span class="pp">|</span></span>
 <span id="cb1-38"><a href="#cb1-38"></a></span>
 <span id="cb1-39"><a href="#cb1-39"></a><span class="fu">## Cycle 0</span></span>
 <span id="cb1-40"><a href="#cb1-40"></a></span>
@@ -1277,8 +1259,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-82"><a href="#cb1-82"></a><span class="fu">## Cycle 4</span></span>
 <span id="cb1-83"><a href="#cb1-83"></a></span>
 <span id="cb1-84"><a href="#cb1-84"></a>sub x7, x5, x2</span>
-<span id="cb1-85"><a href="#cb1-85"></a>| STALL | STALL | add x5, x3, x4 |</span>
-<span id="cb1-86"><a href="#cb1-86"></a>| ----- | ----- | -------------- |</span>
+<span id="cb1-85"><a href="#cb1-85"></a><span class="pp">|</span> STALL <span class="pp">|</span> STALL <span class="pp">|</span> add x5, x3, x4 <span class="pp">|</span></span>
+<span id="cb1-86"><a href="#cb1-86"></a><span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| --------------</span> <span class="pp">|</span></span>
 <span id="cb1-87"><a href="#cb1-87"></a></span>
 <span id="cb1-88"><a href="#cb1-88"></a><span class="fu">## Cycle 4</span></span>
 <span id="cb1-89"><a href="#cb1-89"></a></span>
@@ -1304,10 +1286,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-109"><a href="#cb1-109"></a><span class="fu">## Pipeline Diagram</span></span>
 <span id="cb1-110"><a href="#cb1-110"></a></span>
 <span id="cb1-111"><a href="#cb1-111"></a>Instruction Cycle #</span>
-<span id="cb1-112"><a href="#cb1-112"></a>|                   | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14  |</span>
-<span id="cb1-113"><a href="#cb1-113"></a>| ----------------- | --- | --- | --- | --- | --- | ----- | ----- | --- |</span>
-<span id="cb1-114"><a href="#cb1-114"></a>| add x20, x21, x22 | F D | X M | W   |     |     |       |       |     |</span>
-<span id="cb1-115"><a href="#cb1-115"></a>| sub x28, x20, x15 | F   | D D | D X | M W |     |       |       |     |</span>
+<span id="cb1-112"><a href="#cb1-112"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-113"><a href="#cb1-113"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-114"><a href="#cb1-114"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-115"><a href="#cb1-115"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-116"><a href="#cb1-116"></a>and x27, x5,  x18</span>
 <span id="cb1-117"><a href="#cb1-117"></a>or  x9,  x28, x3</span>
 <span id="cb1-118"><a href="#cb1-118"></a>sub will remain in the decode stage until add writes back</span>
@@ -1321,18 +1303,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-126"><a href="#cb1-126"></a></span>
 <span id="cb1-127"><a href="#cb1-127"></a>happen in the same clock cycle?</span>
 <span id="cb1-128"><a href="#cb1-128"></a>The bold/dark parts are</span>
-<span id="cb1-129"><a href="#cb1-129"></a>|     |     |     |     |     |     | showing | when the stage is actively  |     |</span>
-<span id="cb1-130"><a href="#cb1-130"></a>| --- | --- | --- | --- | --- | --- | ------- | --------------------------- | --- |</span>
+<span id="cb1-129"><a href="#cb1-129"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> showing <span class="pp">|</span> when the stage is actively  <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-130"><a href="#cb1-130"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---------------------------</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-131"><a href="#cb1-131"></a>using its inputs / producing outputs</span>
 <span id="cb1-132"><a href="#cb1-132"></a>within the cycle.</span>
 <span id="cb1-133"><a href="#cb1-133"></a>add x20, x21, x22</span>
 <span id="cb1-134"><a href="#cb1-134"></a>Light parts are when we access</span>
 <span id="cb1-135"><a href="#cb1-135"></a>memory.</span>
 <span id="cb1-136"><a href="#cb1-136"></a>Instruction Cycle #</span>
-<span id="cb1-137"><a href="#cb1-137"></a>|                   | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14  |</span>
-<span id="cb1-138"><a href="#cb1-138"></a>| ----------------- | --- | --- | --- | --- | --- | ----- | ----- | --- |</span>
-<span id="cb1-139"><a href="#cb1-139"></a>| add x20, x21, x22 | F D | X M | W   |     |     |       |       |     |</span>
-<span id="cb1-140"><a href="#cb1-140"></a>| sub x28, x20, x15 | F   | D D | D X | M W |     |       |       |     |</span>
+<span id="cb1-137"><a href="#cb1-137"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-138"><a href="#cb1-138"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-139"><a href="#cb1-139"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-140"><a href="#cb1-140"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-141"><a href="#cb1-141"></a>2 stalls</span>
 <span id="cb1-142"><a href="#cb1-142"></a>RISC-V design:</span>
 <span id="cb1-143"><a href="#cb1-143"></a>Register file writes in the first half</span>
@@ -1342,16 +1324,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-147"><a href="#cb1-147"></a><span class="fu">## Pipeline Diagram</span></span>
 <span id="cb1-148"><a href="#cb1-148"></a></span>
 <span id="cb1-149"><a href="#cb1-149"></a>Instruction Cycle #</span>
-<span id="cb1-150"><a href="#cb1-150"></a>|                   | 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14  |</span>
-<span id="cb1-151"><a href="#cb1-151"></a>| ----------------- | --- | --- | --- | --- | --- | ----- | ----- | --- |</span>
-<span id="cb1-152"><a href="#cb1-152"></a>| add x20, x21, x22 | F D | X M | W   |     |     |       |       |     |</span>
-<span id="cb1-153"><a href="#cb1-153"></a>| sub x28, x20, x15 | F   | D D | D X | M W |     |       |       |     |</span>
+<span id="cb1-150"><a href="#cb1-150"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-151"><a href="#cb1-151"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-152"><a href="#cb1-152"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-153"><a href="#cb1-153"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-154"><a href="#cb1-154"></a>and x27, x5,  x18</span>
-<span id="cb1-155"><a href="#cb1-155"></a>|     |     | F F | F D | X M | W   |     |     |     |</span>
-<span id="cb1-156"><a href="#cb1-156"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-155"><a href="#cb1-155"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-156"><a href="#cb1-156"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-157"><a href="#cb1-157"></a>or  x9,  x28, x3</span>
-<span id="cb1-158"><a href="#cb1-158"></a>|     |     |     | F   | D D | X M | W   |     |     |</span>
-<span id="cb1-159"><a href="#cb1-159"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-158"><a href="#cb1-158"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-159"><a href="#cb1-159"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-160"><a href="#cb1-160"></a>sub will remain in the decode stage until add writes back</span>
 <span id="cb1-161"><a href="#cb1-161"></a>and will remain in the fetch stage while sub is in the decode state</span>
 <span id="cb1-162"><a href="#cb1-162"></a>F = Fetch</span>
@@ -1362,15 +1344,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-167"><a href="#cb1-167"></a></span>
 <span id="cb1-168"><a href="#cb1-168"></a><span class="fu">## Pipeline Diagram</span></span>
 <span id="cb1-169"><a href="#cb1-169"></a></span>
-<span id="cb1-170"><a href="#cb1-170"></a>| Instruction       |     |     |     | Cycle # |     |       |       |     |</span>
-<span id="cb1-171"><a href="#cb1-171"></a>| ----------------- | --- | --- | --- | ------- | --- | ----- | ----- | --- |</span>
-<span id="cb1-172"><a href="#cb1-172"></a>|                   | 0 1 | 2 3 | 4 5 | 6 7     | 8 9 | 10 11 | 12 13 | 14  |</span>
-<span id="cb1-173"><a href="#cb1-173"></a>| add x20, x21, x22 | F D | X M | W   |         |     |       |       |     |</span>
-<span id="cb1-174"><a href="#cb1-174"></a>| sub x28, x20, x15 | F   | D D | D X | M W     |     |       |       |     |</span>
-<span id="cb1-175"><a href="#cb1-175"></a>| and x27, x5,  x18 |     | F F | F D | X M     | W   |       |       |     |</span>
+<span id="cb1-170"><a href="#cb1-170"></a><span class="pp">|</span> Instruction       <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> Cycle # <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-171"><a href="#cb1-171"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-172"><a href="#cb1-172"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7     <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-173"><a href="#cb1-173"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>         <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-174"><a href="#cb1-174"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-175"><a href="#cb1-175"></a><span class="pp">|</span> and x27, x5,  x18 <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M     <span class="pp">|</span> W   <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-176"><a href="#cb1-176"></a>or  x9,  x28, x3</span>
-<span id="cb1-177"><a href="#cb1-177"></a>|     |     |     | F   | D D | X M | W   |     |     |</span>
-<span id="cb1-178"><a href="#cb1-178"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-177"><a href="#cb1-177"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-178"><a href="#cb1-178"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-179"><a href="#cb1-179"></a>or will remain in the decode stage until sub writes back</span>
 <span id="cb1-180"><a href="#cb1-180"></a>F = Fetch</span>
 <span id="cb1-181"><a href="#cb1-181"></a>D = Decode</span>
@@ -1389,35 +1371,35 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-194"><a href="#cb1-194"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
 <span id="cb1-195"><a href="#cb1-195"></a>𝐶𝑃𝐼 =</span>
 <span id="cb1-196"><a href="#cb1-196"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-197"><a href="#cb1-197"></a>| 0 1 | 2 3 | 4 5 | 6 7 | 8 9 | 10 11 | 12 13 | 14  |</span>
-<span id="cb1-198"><a href="#cb1-198"></a>| --- | --- | --- | --- | --- | ----- | ----- | --- |</span>
+<span id="cb1-197"><a href="#cb1-197"></a><span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4 5 <span class="pp">|</span> 6 7 <span class="pp">|</span> 8 9 <span class="pp">|</span> 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-198"><a href="#cb1-198"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -----</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-199"><a href="#cb1-199"></a>add x20, x21, x22</span>
-<span id="cb1-200"><a href="#cb1-200"></a>| F D | X M | W   |     |     |     |     |     |</span>
-<span id="cb1-201"><a href="#cb1-201"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-200"><a href="#cb1-200"></a><span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-201"><a href="#cb1-201"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-202"><a href="#cb1-202"></a>sub x28, x20, x15</span>
-<span id="cb1-203"><a href="#cb1-203"></a>| F   | D D | D X | M W |     |     |     |     |</span>
-<span id="cb1-204"><a href="#cb1-204"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-203"><a href="#cb1-203"></a><span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-204"><a href="#cb1-204"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-205"><a href="#cb1-205"></a>and x27, x5,  x18</span>
-<span id="cb1-206"><a href="#cb1-206"></a>|     | F F | F D | X M | W   |     |     |     |</span>
-<span id="cb1-207"><a href="#cb1-207"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-206"><a href="#cb1-206"></a><span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-207"><a href="#cb1-207"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-208"><a href="#cb1-208"></a>or  x9,  x28, x3</span>
-<span id="cb1-209"><a href="#cb1-209"></a>|     |     | F   | D D | X M | W   |     |     |</span>
-<span id="cb1-210"><a href="#cb1-210"></a>| --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb1-209"><a href="#cb1-209"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-210"><a href="#cb1-210"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-211"><a href="#cb1-211"></a></span>
 <span id="cb1-212"><a href="#cb1-212"></a><span class="fu">## Performance Metric: CPI (Cycles per instruction)</span></span>
 <span id="cb1-213"><a href="#cb1-213"></a></span>
 <span id="cb1-214"><a href="#cb1-214"></a>𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑐𝑦𝑐𝑙𝑒𝑠 𝑡𝑜 𝑒𝑥𝑒𝑐𝑢𝑡𝑒 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
 <span id="cb1-215"><a href="#cb1-215"></a>𝐶𝑃𝐼 =</span>
 <span id="cb1-216"><a href="#cb1-216"></a>𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑖𝑛𝑠𝑡𝑟𝑢𝑐𝑡𝑖𝑜𝑛𝑠 𝑖𝑛 𝑝𝑟𝑜𝑔𝑟𝑎𝑚</span>
-<span id="cb1-217"><a href="#cb1-217"></a>|                   | 0 1 | 2 3 | 4   | 5 6 | 7 8 | 9 10 11 | 12 13 | 14  |</span>
-<span id="cb1-218"><a href="#cb1-218"></a>| ----------------- | --- | --- | --- | --- | --- | ------- | ----- | --- |</span>
-<span id="cb1-219"><a href="#cb1-219"></a>| add x20, x21, x22 | F D | X M | W   |     |     |         |       |     |</span>
-<span id="cb1-220"><a href="#cb1-220"></a>| sub x28, x20, x15 | F   | D D | D   | X M | W   |         |       |     |</span>
-<span id="cb1-221"><a href="#cb1-221"></a>| and x27, x5,  x18 |     | F F | F   | D X | M W |         |       |     |</span>
-<span id="cb1-222"><a href="#cb1-222"></a>| or  x9,  x28, x3  |     |     |     | F D | D X | M W     |       |     |</span>
+<span id="cb1-217"><a href="#cb1-217"></a><span class="pp">|</span>                   <span class="pp">|</span> 0 1 <span class="pp">|</span> 2 3 <span class="pp">|</span> 4   <span class="pp">|</span> 5 6 <span class="pp">|</span> 7 8 <span class="pp">|</span> 9 10 11 <span class="pp">|</span> 12 13 <span class="pp">|</span> 14  <span class="pp">|</span></span>
+<span id="cb1-218"><a href="#cb1-218"></a><span class="pp">| -----------------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| -------</span> <span class="pp">| -----</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb1-219"><a href="#cb1-219"></a><span class="pp">|</span> add x20, x21, x22 <span class="pp">|</span> F D <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-220"><a href="#cb1-220"></a><span class="pp">|</span> sub x28, x20, x15 <span class="pp">|</span> F   <span class="pp">|</span> D D <span class="pp">|</span> D   <span class="pp">|</span> X M <span class="pp">|</span> W   <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-221"><a href="#cb1-221"></a><span class="pp">|</span> and x27, x5,  x18 <span class="pp">|</span>     <span class="pp">|</span> F F <span class="pp">|</span> F   <span class="pp">|</span> D X <span class="pp">|</span> M W <span class="pp">|</span>         <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-222"><a href="#cb1-222"></a><span class="pp">|</span> or  x9,  x28, x3  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> F D <span class="pp">|</span> D X <span class="pp">|</span> M W     <span class="pp">|</span>       <span class="pp">|</span>     <span class="pp">|</span></span>
 <span id="cb1-223"><a href="#cb1-223"></a>11</span>
-<span id="cb1-224"><a href="#cb1-224"></a>|     |     | 𝐶𝑃𝐼 | =   | = 2.75 |     |     |     |     |</span>
-<span id="cb1-225"><a href="#cb1-225"></a>| --- | --- | --- | --- | ------ | --- | --- | --- | --- |</span>
+<span id="cb1-224"><a href="#cb1-224"></a><span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span> 𝐶𝑃𝐼 <span class="pp">|</span> =   <span class="pp">|</span> = 2.75 <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span></span>
+<span id="cb1-225"><a href="#cb1-225"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ------</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
 <span id="cb1-226"><a href="#cb1-226"></a>4</span>
 <span id="cb1-227"><a href="#cb1-227"></a></span>
 <span id="cb1-228"><a href="#cb1-228"></a><span class="fu">## Ideal CPI (Cycles per instruction) = 1</span></span>
@@ -1739,7 +1721,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-544"><a href="#cb1-544"></a>overhead of bypass paths and the number of stall cases increase</span>
 <span id="cb1-545"><a href="#cb1-545"></a>.</span>
 <span id="cb1-546"><a href="#cb1-546"></a>Memory access time is our real bottleneck!</span>
-<span id="cb1-547"><a href="#cb1-547"></a>●</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-547"><a href="#cb1-547"></a>●</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
