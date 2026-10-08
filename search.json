@@ -9688,17 +9688,247 @@
     "href": "01.html#enter-the-dragon",
     "title": "Instructions",
     "section": "Enter the Dragon",
-    "text": "Enter the Dragon\n\n\n\nIntel\n\n\n\ngcc fact.c -S\n\nfact:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n.L2:\n    subl    $1, -20(%rbp)\n    cmpl    $0, -20(%rbp)\n    je  .L3\n    movl    -4(%rbp), %eax\n    imull   -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n    jmp .L2\n.L3:\n    movl    -4(%rbp), %eax\n    popq    %rbp\n    ret\n\n\n\nApple M1\n\n\n\naarch64-linux-gnu-gcc-13 fact.c -S\n\nfact:\n.LFB0:\n    sub sp, sp, #32\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    str w0, [sp, 28]\n.L2:\n    ldr w0, [sp, 12]\n    sub w0, w0, #1\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    cmp w0, 0\n    beq .L3\n    ldr w1, [sp, 28]\n    ldr w0, [sp, 12]\n    mul w0, w1, w0\n    str w0, [sp, 28]\n    b   .L2\n.L3:\n    ldr w0, [sp, 28]\n    add sp, sp, 32\n    ret\n\n\n\nfact: .LFB0: .cfi_startproc addi sp,sp,-48 .cfi_def_cfa_offset 48 sd s0,40(sp) .cfi_offset 8, -8 addi s0,sp,48 .cfi_def_cfa 8, 0 mv a5,a0 sw a5,-36(s0) lw a5,-36(s0) sw a5,-20(s0) .L2: lw a5,-36(s0) addiw a5,a5,-1 sw a5,-36(s0) lw a5,-36(s0) sext.w a5,a5 beq a5,zero,.L3 lw a5,-20(s0) mv a4,a5 lw a5,-36(s0) mulw a5,a4,a5 sw a5,-20(s0) j .L2 .L3: lw a5,-20(s0) mv a0,a5 ld s0,40(sp) .cfi_restore 8 .cfi_def_cfa 2, 48 addi sp,sp,48 .cfi_def_cfa_offset 0 jr ra",
+    "text": "Enter the Dragon\n\n\n\nIntel\n\n\n\ngcc\n\nfact:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n.L2:\n    subl    $1, -20(%rbp)\n    cmpl    $0, -20(%rbp)\n    je  .L3\n    movl    -4(%rbp), %eax\n    imull   -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n    jmp .L2\n.L3:\n    movl    -4(%rbp), %eax\n    popq    %rbp\n    ret\n\n\n\nApple M1\n\n\n\naarch64-linux-gnu-gcc-13\n\nfact:\n.LFB0:\n    sub sp, sp, #32\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    str w0, [sp, 28]\n.L2:\n    ldr w0, [sp, 12]\n    sub w0, w0, #1\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    cmp w0, 0\n    beq .L3\n    ldr w1, [sp, 28]\n    ldr w0, [sp, 12]\n    mul w0, w1, w0\n    str w0, [sp, 28]\n    b   .L2\n.L3:\n    ldr w0, [sp, 28]\n    add sp, sp, 32\n    ret\n\n\n\nOpen Source RISC-V\n\n\n\nriscv64-linux-gnu-gcc\n\nfact:\n    addi    sp,sp,-48\n    sd  s0,40(sp)\n    addi    s0,sp,48\n    mv  a5,a0\n    sw  a5,-36(s0)\n    lw  a5,-36(s0)\n    sw  a5,-20(s0)\n.L2:\n    lw  a5,-36(s0)\n    addiw   a5,a5,-1\n    sw  a5,-36(s0)\n    lw  a5,-36(s0)\n    sext.w  a5,a5\n    beq a5,zero,.L3\n    lw  a5,-20(s0)\n    mv  a4,a5\n    lw  a5,-36(s0)\n    mulw    a5,a4,a5\n    sw  a5,-20(s0)\n    j   .L2\n.L3:\n    lw  a5,-20(s0)\n    mv  a0,a5\n    ld  s0,40(sp)\n    addi    sp,sp,48\n    jr  ra",
     "crumbs": [
       "Instructions"
     ]
   },
   {
-    "objectID": "01.html#section-1",
-    "href": "01.html#section-1",
+    "objectID": "01.html#risc-v",
+    "href": "01.html#risc-v",
+    "title": "Instructions",
+    "section": "RISC-V",
+    "text": "RISC-V\n\nRISC-V (pronounced “risk-five”)  is a free and open standard instruction set architecture (ISA) based on reduced instruction set computer (RISC) principles. Unlike proprietary ISAs such as x86 and ARM, RISC-V is described as “free and open” because its specifications are released under permissive open-source licenses and can be implemented without paying royalties.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#rationale",
+    "href": "01.html#rationale",
+    "title": "Instructions",
+    "section": "Rationale",
+    "text": "Rationale\n\nRISC-V was begun with a goal to make a practical ISA that was open-sourced, usable academically, and deployable in any hardware or software design without royalties… The RISC-V authors are academics who have substantial experience in computer design, and the RISC-V ISA is a direct development from a series of academic computer-design projects, especially Berkeley RISC. RISC-V was originated in part to aid all such projects.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#going-forward",
+    "href": "01.html#going-forward",
+    "title": "Instructions",
+    "section": "Going Forward",
+    "text": "Going Forward\n\nFor the sake of instruction, all further discussions of assembly will use RISC-V.\nIf you wish to compile into RISC-V assembly on your own device, you can use riscv64-linux-gnu-gcc with the -S flag.\nNote the package and executable differ in name.\n\nsudo apt update && apt install \u0016\u0016gcc-riscv64-linux-gnu\nriscv64-linux-gnu-gcc -v",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#anatomy-of-an-instruction",
+    "href": "01.html#anatomy-of-an-instruction",
+    "title": "Instructions",
+    "section": "Anatomy of an Instruction",
+    "text": "Anatomy of an Instruction\n\nNearly all instructions can be made to fit a common template…\n\nOpcode\nDestination\nOperand1\nOperand2\n\nOperands are de facto zero indexed as destination is kinda an operand.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#opcodes",
+    "href": "01.html#opcodes",
+    "title": "Instructions",
+    "section": "Opcodes",
+    "text": "Opcodes\n\nThese are (not necessarily equivalent) opcodes.\n\n\n\n\nIntel\n\n\n\ngcc\n\nsubl\ncmpl\nmovl\npopq\nret\n\n\n\nApple M1\n\n\n\naarch64-linux-gnu-gcc-13\n\nsub\nstr\nldr\nstr\nret\n\n\n\nRISC-V\n\n\n\nriscv64-linux-gnu-gcc\n\nlw  \nmv  \nld  \naddi    \njr",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#destination",
+    "href": "01.html#destination",
+    "title": "Instructions",
+    "section": "Destination",
+    "text": "Destination\n\nFor destinations, we restrict to only looking at RISC-V as other architectures do not always necessary respect (1) having a destination or (2) keeping the destination as the initial argument.\n\n\n\nriscv64-linux-gnu-gcc\n\nlw      a5\nmv      a0\nld      s0\naddi    sp\njr      ra",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#destination-1",
+    "href": "01.html#destination-1",
+    "title": "Instructions",
+    "section": "Destination",
+    "text": "Destination\n\nWhat are these destinations?\n\nRegisters\n“Hardware” variables of fixed bit size and finite number.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#examples-1",
+    "href": "01.html#examples-1",
+    "title": "Instructions",
+    "section": "Examples",
+    "text": "Examples\n\nsp is “stack pointer”\nra is “return address”\na\\(n: \\forall n \\in \\mathbb{Z}/8\\mathbb{Z}\\) (integers modulo 8) is “integer argument”",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#operands",
+    "href": "01.html#operands",
+    "title": "Instructions",
+    "section": "Operands",
+    "text": "Operands\n\nDiffer between instructions.\n\n\n\nriscv64-linux-gnu-gcc\n\n    lw  a5,-20(s0)\n    mv  a0,a5\n    ld  s0,40(sp)\n    addi    sp,sp,48\n    jr  ra\n\n\nLet’s break it into a table.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#old-x86-table",
+    "href": "01.html#old-x86-table",
+    "title": "Instructions",
+    "section": "Old x86 Table",
+    "text": "Old x86 Table\n\nYou know, I bet we can align the mnemonics.\n\n\n\n\nAddr/Key\nVal[0]\nVal[1]\nVal[2]\n\n\n\n\n0x0\nsubl\n$1\n-20(%rbp)\n\n\n0x1\ncmpl\n$0\n-20(%rbp)\n\n\n0x2\nje\n0x7\n\n\n\n0x3\nmovl\n-4(%rbp)\n%eax\n\n\n0x4\nimull\n-20(%rbp)\n%eax\n\n\n0x5\nmovl\n%eax\n-4(%rbp)\n\n\n0x6\njmp\n0x0\n\n\n\n0x7\nmovl\n-4(%rbp)\n%eax\n\n\n0x8\npopq\n%rbp\n\n\n\n0x9\nret",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#new-risc-v-table",
+    "href": "01.html#new-risc-v-table",
+    "title": "Instructions",
+    "section": "New RISC-V Table",
+    "text": "New RISC-V Table\n\nYou know, I bet we can align the mnemonics.\n\n\n\n\n\n\n\n\n\n\n\n\nOpcode\nDest.\nOperand1\nOperand2\n\n\n\n\nlw a5,-20(s0)\nlw\na5\n-20\ns0\n\n\nmv a0,a5\nmv\na0\na5\n\n\n\nld s0,40(sp)\nld\ns0\n40\nsp\n\n\naddi sp,sp,48\naddi\nsp\nsp\n48\n\n\njr ra\njr\nra",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#operand-types",
+    "href": "01.html#operand-types",
+    "title": "Instructions",
+    "section": "Operand Types",
+    "text": "Operand Types\n\nConsider addi\n\nStands for “add immediate”\n\n\n\n\n\nOpcode\nDestination\nOperand1\nOperand2\n\n\n\n\naddi\nsp\nsp\n48\n\n\n\n\nThree operand types:\n\nDestination (sp)\nSource (sp)\nImmediate (48) - a numeric literal",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#operand-types-1",
+    "href": "01.html#operand-types-1",
+    "title": "Instructions",
+    "section": "Operand Types",
+    "text": "Operand Types\n\nSource and Destination are mutually exclusive.\n\nAn operand cannot be both.\nHowever, the same register can be both.\n\nIs specified twice: addi  sp,sp,48\n\n\nOperand1 and Operand2 may either be a register or an “immediate”\n\nA literally numeric value, like 7 or 3.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#meaning-of-an-instruction",
+    "href": "01.html#meaning-of-an-instruction",
+    "title": "Instructions",
+    "section": "Meaning of an Instruction",
+    "text": "Meaning of an Instruction\n\nOperations are abbreviated into opcodes\nInstructions are specified with a regular syntax.\n\nOpcodes precede arguements.\nDestinations precede sources.\nImmediates are terminal.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#why-this-order",
+    "href": "01.html#why-this-order",
+    "title": "Instructions",
+    "section": "Why this order?",
+    "text": "Why this order?\n\nConsider the highest possible level language:\n\nx = y + 1\n\nConsider the following assembly:\n\naddi rx, ry, $1\n\nThat’s why.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#instructions-are-simple",
+    "href": "01.html#instructions-are-simple",
+    "title": "Instructions",
+    "section": "Instructions are Simple",
+    "text": "Instructions are Simple\n\nComputers interpret “programs” by translating them from some (1) scripting or (2) programming language\nThe output is a sequence of “low level” simple instructions.\nThis output is, in point of fact, a bit array.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#compiled-languages",
+    "href": "01.html#compiled-languages",
+    "title": "Instructions",
+    "section": "Compiled Languages",
+    "text": "Compiled Languages\n\nCompiled languages like C and Rust are:\n\nExpressed in text\nSubmitted to an executable (compiler)\nThe executable outputs some other executable (the program).",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#interpreted-languages",
+    "href": "01.html#interpreted-languages",
+    "title": "Instructions",
+    "section": "Interpreted Languages",
+    "text": "Interpreted Languages\n\nInterpreted languages like Python and JavaScript are:\n\nExpressed in text\nSubmitted to an executable (interpreter)\nThis interpreter maps the text to machine instructions which are then run.\n\nUsually more complicated than this in practice.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#instructions-are-binary",
+    "href": "01.html#instructions-are-binary",
+    "title": "Instructions",
+    "section": "Instructions are Binary",
+    "text": "Instructions are Binary\n\nComputers interpret “assembly programs” by translating them from their mnemonic simple instructions into strings of bits.\nLet’s examine…\n\n\n\nmin.c\n\nint main() {\n        return 0;\n}",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#compile-ish",
+    "href": "01.html#compile-ish",
+    "title": "Instructions",
+    "section": "Compile… ish",
+    "text": "Compile… ish\n\nCompile into an object file.\n\nNot an executable, but something that can be configured to execute for some specific system.\nUse the -c flag.\n\n\nriscv64-linux-gnu-gcc min.c -c",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#view",
+    "href": "01.html#view",
+    "title": "Instructions",
+    "section": "View",
+    "text": "View\n\nMay have to install binutils to see this.\n\nsudo apt install binutils-riscv64-unknown-elf\n\nView via objdump\n\n\n\nriscv64-unknown-elf-objdump -d min.o\n\n   0:   1141                    addi    sp,sp,-16\n   2:   e422                    sd      s0,8(sp)\n   4:   0800                    addi    s0,sp,16\n   6:   4781                    li      a5,0\n   8:   853e                    mv      a0,a5\n   a:   6422                    ld      s0,8(sp)\n   c:   0141                    addi    sp,sp,16\n   e:   8082                    ret",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#a-series-of-instructions",
+    "href": "01.html#a-series-of-instructions",
+    "title": "Instructions",
+    "section": "A Series of Instructions",
+    "text": "A Series of Instructions\n\nExecutables are mostly sequences of instructions.\n\nRemember, we have access to goto\n\nInstructions are retrieved sequentially from memory\nAn instruction executes to completion before the next instruction is started\nThere are a lot of corner cases.",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#example-2",
+    "href": "01.html#example-2",
+    "title": "Instructions",
+    "section": "Example",
+    "text": "Example\n\nSay we had the following.\n\nli  a0,0\nli  a1,6\nadd a0,a1,a1\nadd a0,a0,a0\nadd a0,a0,a0\nsub a1,a0,a1",
+    "crumbs": [
+      "Instructions"
+    ]
+  },
+  {
+    "objectID": "01.html#section-2",
+    "href": "01.html#section-2",
     "title": "Instructions",
     "section": "",
-    "text": "Anatomy\n\nof an\nInstruction\n\n\n\n\n\n\n\n\n\n\n\n\nNearly all instructions can be made to fit a common template… | | | | OPCODE | | DESTINATION, | | OPERAND | , OPERAND | | | | — | —- | ——- | —— | — | ———— | —— | ——- | ——— | ——— | — | | | What | to do: | | | | | | 1 | | 2 | | | add | | | | Where | to put | | | | | | | | | | | | | | Who | to apply | | | | sub | | | | the result | | | | | | | | | | | | | | | the | operation | to… | and | | | | | | | | | variables, | constants, | etc.. | | — | — | — | — | — | — | — | — | ———- | ———- | —– | or beq bne | | Issues | remaining | … | | | | | CPU | | | | — | ——- | ———- | ———– | ————– | — | — | — | — | — | — | | | • Which | operations | to include? | | | | | | | | | | • Where | to get | variables | and constants? | | | | | | | Memory | | • Where | to store | the results? | | | | | | | | | — | ——- | ——– | ———— | — | — | — | — | — | — | — | 42\n\n\n\nAnatomy\n\nof\nan\nInstruction\n\n\n\n\n\n\n\n\n■ Computers execute a set of primitive operations called instructions | ■ Instructions | | specify | an operation | and | its operands | | | | ————– | ———— | ——- | ———— | ——- | ————- | — | — | | (arguments | | of the | operation) | | | | | | ■ Types | of operands: | | destination, | source, | and immediate | | | Operands | | | | | | (variables, | arguments, | etc.) | | — | — | ——– | — | — | ———– | ———- | —– | | | add | x0,x1,x2 | | | | | | Whydoallofthe variablesstart Source Operands with“X”? | CPU’shavea | | | | | Destination | Operand | | | ———- | — | — | — | — | ———– | ——- | — | smallnumber(16- 32)of registers | that areusedto | | | | | Immediate | | | | ————– | — | — | — | — | ———- | — | — | holdvariables Operand | | addi | x0,x1,1 | | | | | | | — | —- | ——- | — | — | — | — | — | 43\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeaning\n\n\n\nof\nan\n\nInstruction\n\n\n\n\n\n\n\n\n\n\n■ | | Operations | | are | abbreviated | | into | opcodes | | (1-4 | letters) | | | | — | ———- | — | — | ———– | — | —- | ——- | — | —- | ——– | — | — | ■ | | Instructions | | are | specified | | with | a very | regular | | syntax | | | | — | ———— | ——- | — | ——— | — | —- | ——— | ——- | — | —— | — | — | | | – | Opcodes | are | followed | | by | arguments | | | | | | – Usually the destination is next, then one or more source arguments | | | (This | is not | strictly the | | case, | but | it is | generally | | true) | | | — | — | —– | —— | ———— | — | —– | — | —– | ——— | — | —– | — | ■ | | Why | this order? | | | | | | | | | | | | — | ——- | ———– | ———- | — | ——– | — | —- | —- | —- | — | — | — | | | Analogy | to | high-level | | language | | like | Java | or C | | | | Theinstructionsyntax | | | | | | | | | | | int | x0, x1, | x2; | | — | — | — | — | — | — | — | — | — | — | — | ——- | —- | providesoperandsinthesame orderasyouwouldexpectina | | | | | | | | | | | x0 | = x1 + | x2; | | — | — | — | — | — | — | — | — | — | — | — | —— | — | statementfromahighlevel language. | | | | | | | | | | Instead | | of: | | | — | — | ——– | — | — | — | — | — | — | ——- | — | —- | —– | | | add | x0,x1,x2 | | | | | | | | | | | | | | | | | | | | | | x1 | + x2 | = x0; | 44\n\n\n\nInstructions\n\n\nare\nSimple\n\n\n\n\n\n\n\n■ Computers interpret “programs” by translating them from the high-level language | where | into | “low-level” | simple | instructions | that | it understands | | ———— | ——— | ———– | ——– | ———— | —- | ————– | | ■ High-Level | Languages | | | | | | | Compilers | | (C, C++, | Fortran) | | | | ▪ | Interpreters | | (Basic, | Ruby, | Lua, Python, | Perl, | JavaScript) | | ———— | — | ——- | —– | ———— | —– | ———– | ▪ Hybrids (Java) ▪ | | | | | | x: | .word 0 | | ———- | ——– | — | — | — | — | ——————- | | | | | | | y: | .word 0 | | ■ Assembly | Language | | | | | | | | | | | | c: | .word 123456 | | int | x, | y; | | | | | | | | | | | | lw t0,0(gp) # get x | y = (x-3)*(y+123456); | | | | | | | addi t0,t0,-3 | | — | — | — | — | — | — | ——————– | | | | | | | | lw t1,4(gp) # get y | | | | | | | | lw t2,8(gp) # get c | | | | | | | | add t1,t1,t2 | | | | | | | | mul t0,t0,t1 | | | | | | | | sw t0,0(gp) | # save y 45\n\n\n\nInstructions\n\n\n\nare\nBinary\n\n\n\n\n\n\n\n■ Computers interpret “assembly programs” by translating them from their | mnemonic | | simple | instructions | | into strings | of bits | | | ———- | — | ——– | ———— | — | ———— | ——- | — | | ■ Assembly | | Language | | | | | | | ■ Machine | | Language | | | | | | – Note the “mostly” one-to-one correspondence between lines of | | assembly | | code and | lines | of machine | code | | | — | ——– | — | ——– | —– | ———- | —- | — | 0x00000000 | | x: | .word | 0 | | | | 0x00000000 | | — | — | —– | —— | — | — | — | ———- | | | y: | .word | 0 | | | | 0x0001E240 | | | c: | .word | 123456 | | | | | … | | | lw | t0,0(gp) | | # get x | | | | — | — | — | ——– | — | ——- | — | — | 0x0001E240 addi t0,t0,-3 0x0001A283 | | | lw | t1,4(gp) | | # get y | | | | — | — | — | ——– | — | ——– | — | — | 0xFFD28293 | | | lw | t2,8(gp) | | # get c | | | | — | — | — | ——– | — | ——- | — | — | 0x0081A383 add t1,t1,t2 0x00730333 mul t0,t0,t1 0x026282B3 sw t0,0(gp) | | | | | | # save y | | | | — | — | — | — | — | ——– | — | — | 0x0051A023 46\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 45\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 46\nLooping the Flow ● Repeat the process treating the variables as unknowns or “formal variables” ● Knowing what the program does allows us to write down its specification, and give it a meaningful name ● The instruction sequence then becomes a general-purpose tool Instructions Variables times7: add t0,t1,t1 t0:Xw 8Xx 5X6x 392x An infinite add t0,t0,t0 t1:Xx 7Xx 4X9x 343x loop add t0,t0,t0 t2:y sub t1,t0,t1 t3:z j times7 4749\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen\n\nIssues\n\n\n\nin Our\n\nSimple\nModel?\n\n\n\n\n\n■ | | WHERE | | in memory | | are | INSTRUCTIONS | | stored? | | | — | —– | — | ——— | — | — | ———— | — | ——- | — | ■ | | HOW | are | instructions | | | represented? | | | | | — | — | — | ———— | — | — | ———— | — | — | — | ■ | | WHERE | | are | VARIABLES stored? | | | | | | | — | —– | — | — | —————– | — | — | — | — | — | ■ | | What | are | LABELs? | | How | do they | relate | to | | | — | —– | ———— | ———– | — | ———– | ——- | —— | —— | — | | | where | instructions | | | are | stored? | | | | | | ■ How | about | more | | complicated | | data | types? | | | | – | Arrays? | | | | | | | | | | – | Data | Structures? | | | | | | | | | – | Objects? | | | | | | | | ■ | | Where | | does | a program | | start | executing? | | | | — | —— | —- | —- | ——— | — | —– | ———- | — | — | | | ■ When | does | | it stop? | | | | | | 50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe\n\nStored-Program\n\n\n\n\n\n\n\n\nComputer\n\n\n\n\n\n\n\n■ The von Neumann architecture addresses these issues as follows: | ■ | Instructions | | | and | | Data | are | stored | | in a common | | memory | | | — | ———— | — | — | — | — | —- | — | —— | — | ———– | — | —— | — | Memory | ■ | Sequential | | | semantics: | | | To | the | PROGRAMMER | | | | | | — | ———- | — | — | ———- | — | — | — | — | ———- | — | — | — | — | Instruction | | all | instructions | | | appear | | to | execute | | in an | order, | | | | — | — | ———— | — | — | —— | — | — | ——- | — | —– | —— | — | — | Instruction | | or sequentially | | | | | | | | | | | | | | — | ————— | — | — | — | — | — | — | — | — | — | — | — | — | Instruction Central | | Key idea: | | Memory | | holds | not | only | | | | | | Instruction | | — | ——— | — | —— | — | —– | — | —– | — | — | — | — | — | ———– | Processing | | data, | but | coded instructions | | | | | that | | | | | | | — | —– | — | —————— | — | — | — | — | —– | — | — | — | — | — | Unit | | make | up | a program. | | | | | | | | | | data | | — | —- | — | ———- | — | — | — | — | — | — | — | — | — | —- | data | CPU | fetches and | | | executes | | instructions | | | from | memory | | | | | — | ———– | — | — | ——– | — | ———— | — | — | —- | —— | — | — | — | data | | • The | CPU | is | a H/W | interpreter | | | | | | | | | | — | ——— | ———- | ——- | —— | ———– | ———- | ——- | —————- | ——– | —— | — | — | — | | | • Program | | IS | simply | DATA | | for | this interpreter | | | | | | | | • Main | | memory: | | Single | expandable | | | resource | pool | | | | | | - | constrains | | both | data | and | program | | size | | | | | | | - | don’t | need | to | make | separate | | decisions | | of | | | | | | | how | large | of | a program | | or | data | memory | to buy | | | | 51\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V\n\n\n\nMemory\n\n\nDetails\n\n\n\n\n\n\n\n\n\n\n■\nMemory\n\nlocations\n\nare\naddressable\n\nin different\n\nsized chunks\n\n\n\n\n\n\n\n–\n8-bit\nchunks\n\n(bytes)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nshort2\n\nshort0\n\n\n\n\n\n–\n16-bit\n\nchunks\n(shorts)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbyte3\nbyte2\nbyte1\nbyte0\n\n\n\n\nword | | – | 32-bit | | chunks | (words) | | | | | | | | | | | — | — | —— | — | —— | ——- | — | — | — | — | — | — | — | — | — | Addr | | – | 64-bit | | chunks | | | | | | | | | | …43210 | | — | — | —— | — | —— | — | — | — | — | — | — | — | — | — | —— | 0: 313029… | | | | | | | | | | | | 2 | 1 | | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 3 long0 (longs/doubles) 4: | | | | | | | | | | | 7 | 6 | 5 | | 4 | | — | — | —- | ———- | — | —– | — | — | — | — | — | — | — | — | — | | ■ | We | also | frequently | | need | | | | 8: | 11 | 10 | 9 | | 8 | long8 | | access | | to individual | | bits! | | | | | | | | | | | — | —— | — | ————- | — | —— | — | — | — | — | — | — | — | — | — | 12: | | | | | | | | | | | 15 | 14 | 13 | | 12 | | — | ————- | ———— | — | —————- | ——– | ——– | ——– | — | — | — | — | — | — | — | | | (Instructions | | | help | with | this) | | | | | | | | | | ■ | Every | BYTE | | has | a unique | address | | | | | | | | | | | (RISC-V is | | a | byte-addressable | | | machine) | | | | | | | | | ■ | Most | instructions | | | are | one word | | | | | | | | | 52\n211 REVIEW: MEMORY 55\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 56\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 57\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 58\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 59\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 60\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 61\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n■ What\nif I want\nto store\nan integer?\n\n\n\n\n\n– sizeof(int)\n\n= 4 bytes\n\n\n\n\n\n\n\n\n\n\nVariables\nwhose\ntypes are\n\n\n\n\n\n\nlarger\nthan one\nbyte span\n\n\n\n\n\n\nmultiple\naddresses\nin memory!\n\n\n\n62\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | 63\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | Byte Data Address 0 What order 1 should we | store the | bits? | 2 | | | | | | | | | ——— | —– | — | — | — | — | — | — | — | — | 3 64\n\n\n\n\n\n\n\n\n\n\n\n\n\nMSB\nand\nLSB\n\n\n\n\n\n\n\n\n\n0b\n0000\n0000 0000\n0101\n0000\n0110\n1100\n1101\n\n\n\nMost Significant\nByte\n\n\n\nLeast Significant\nByte\n\n\n\n(MSB)\n\n\n\n\n(LSB)\n\n\n\n\n65\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 66\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 67\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 68\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —- | —– | —- | —- | —- | —————– | —– | | | Most Significant | | Byte | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | | 0 | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | | | | | | 0000 | 0101 | | | | 1 | | | | | 0000 | 0110 | | | | | — | — | — | — | —- | —- | — | — | — | 2 1100 1101 3 69\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b 0000 | 0000 | 0000 | | 0101 | 0000 | 0110 | 1100 | 1101 | | ——- | —- | —— | —— | ——– | —- | ——– | —- | —- | | | | Little | Endian | Ordering | is | dominant | in | | Most Significant Bpyrtoecessor architectures and is whaLtewaset Significant Byte | | (MSB) | | | | | | (LSB) | | | — | —– | — | —- | ——– | ——- | —— | —– | — | | | | | will | be using | in this | class! | | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 70",
+    "text": "Looping the Flow - Repeat the process treating the variables as unknowns or “formal variables” - Knowing what the program does allows us to write down its specification, and give it a meaningful name - The instruction sequence then becomes a generalpurpose tool Instructions Variables times7: add t0,t1,t1 t0:Xw 8Xx 5X6x 392x An infinite add t0,t0,t0 t1:Xx 7Xx 4X9x 343x loop add t0,t0,t0 t2:y sub t1,t0,t1 t3:z j times7 4749\nOpen Issues in Our Simple Model?\n\nWHERE in memory are INSTRUCTIONS stored?\nHOW are instructions represented?\nWHERE are VARIABLES stored?\nWhat are LABELs? How do they relate to\nwhere instructions are stored?\n\nHow about more complicated data types? – Arrays? – Data Structures? – Objects?\n\nWhere does a program start executing?\n\nWhen does it stop? 50\n\nThe StoredProgram Computer\nThe von Neumann architecture addresses these issues as follows:\nInstructions and Data are stored in a common memory\n\nMemory - Sequential semantics: To the PROGRAMMER\nInstruction all instructions appear to execute in an order,\nInstruction or sequentially\nInstruction Central Key idea: Memory holds not only Instruction\nProcessing data, but coded instructions that\nUnit make up a program. data\ndata CPU fetches and executes instructions from memory\ndata • The CPU is a H/W interpreter\n• Program IS simply DATA for this interpreter • Main memory: Single expandable resource pool constrains both data and program size don’t need to make separate decisions of how large of a program or data memory to buy 51\nRISCV Memory Details\n\nMemory locations are addressable in different sized chunks – 8bit chunks (bytes) short2 short0 – 16bit chunks (shorts) byte3 byte2 byte1 byte0 word – 32bit chunks (words)\n\nAddr – 64bit chunks …43210\n0: 313029… 2 1 0\n3 long0 (longs/doubles) 4: 7 6 5 4\n\nWe also frequently need 8: 11 10 9 8 long8 access to individual bits!\n\n12: 15 14 13 12\n(Instructions help with this) - Every BYTE has a unique address (RISCV is a byteaddressable machine) - Most instructions are one word 52",
     "crumbs": [
       "Instructions"
     ]
@@ -9960,14 +10190,175 @@
     "href": "01.rjs.html#enter-the-dragon",
     "title": "Instructions",
     "section": "Enter the Dragon",
-    "text": "Enter the Dragon\n\n\n\nIntel\n\n\n\ngcc fact.c -S\n\nfact:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n.L2:\n    subl    $1, -20(%rbp)\n    cmpl    $0, -20(%rbp)\n    je  .L3\n    movl    -4(%rbp), %eax\n    imull   -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n    jmp .L2\n.L3:\n    movl    -4(%rbp), %eax\n    popq    %rbp\n    ret\n\n\n\nApple M1\n\n\n\naarch64-linux-gnu-gcc-13 fact.c -S\n\nfact:\n.LFB0:\n    sub sp, sp, #32\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    str w0, [sp, 28]\n.L2:\n    ldr w0, [sp, 12]\n    sub w0, w0, #1\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    cmp w0, 0\n    beq .L3\n    ldr w1, [sp, 28]\n    ldr w0, [sp, 12]\n    mul w0, w1, w0\n    str w0, [sp, 28]\n    b   .L2\n.L3:\n    ldr w0, [sp, 28]\n    add sp, sp, 32\n    ret\n\n\nfact: .LFB0: .cfi_startproc addi sp,sp,-48 .cfi_def_cfa_offset 48 sd s0,40(sp) .cfi_offset 8, -8 addi s0,sp,48 .cfi_def_cfa 8, 0 mv a5,a0 sw a5,-36(s0) lw a5,-36(s0) sw a5,-20(s0) .L2: lw a5,-36(s0) addiw a5,a5,-1 sw a5,-36(s0) lw a5,-36(s0) sext.w a5,a5 beq a5,zero,.L3 lw a5,-20(s0) mv a4,a5 lw a5,-36(s0) mulw a5,a4,a5 sw a5,-20(s0) j .L2 .L3: lw a5,-20(s0) mv a0,a5 ld s0,40(sp) .cfi_restore 8 .cfi_def_cfa 2, 48 addi sp,sp,48 .cfi_def_cfa_offset 0 jr ra"
+    "text": "Enter the Dragon\n\n\n\nIntel\n\n\n\ngcc\n\nfact:\n.LFB0:\n    endbr64\n    pushq   %rbp\n    movq    %rsp, %rbp\n    movl    %edi, -20(%rbp)\n    movl    -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n.L2:\n    subl    $1, -20(%rbp)\n    cmpl    $0, -20(%rbp)\n    je  .L3\n    movl    -4(%rbp), %eax\n    imull   -20(%rbp), %eax\n    movl    %eax, -4(%rbp)\n    jmp .L2\n.L3:\n    movl    -4(%rbp), %eax\n    popq    %rbp\n    ret\n\n\n\nApple M1\n\n\n\naarch64-linux-gnu-gcc-13\n\nfact:\n.LFB0:\n    sub sp, sp, #32\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    str w0, [sp, 28]\n.L2:\n    ldr w0, [sp, 12]\n    sub w0, w0, #1\n    str w0, [sp, 12]\n    ldr w0, [sp, 12]\n    cmp w0, 0\n    beq .L3\n    ldr w1, [sp, 28]\n    ldr w0, [sp, 12]\n    mul w0, w1, w0\n    str w0, [sp, 28]\n    b   .L2\n.L3:\n    ldr w0, [sp, 28]\n    add sp, sp, 32\n    ret\n\n\n\nOpen Source RISC-V\n\n\n\nriscv64-linux-gnu-gcc\n\nfact:\n    addi    sp,sp,-48\n    sd  s0,40(sp)\n    addi    s0,sp,48\n    mv  a5,a0\n    sw  a5,-36(s0)\n    lw  a5,-36(s0)\n    sw  a5,-20(s0)\n.L2:\n    lw  a5,-36(s0)\n    addiw   a5,a5,-1\n    sw  a5,-36(s0)\n    lw  a5,-36(s0)\n    sext.w  a5,a5\n    beq a5,zero,.L3\n    lw  a5,-20(s0)\n    mv  a4,a5\n    lw  a5,-36(s0)\n    mulw    a5,a4,a5\n    sw  a5,-20(s0)\n    j   .L2\n.L3:\n    lw  a5,-20(s0)\n    mv  a0,a5\n    ld  s0,40(sp)\n    addi    sp,sp,48\n    jr  ra"
   },
   {
-    "objectID": "01.rjs.html#section-1",
-    "href": "01.rjs.html#section-1",
+    "objectID": "01.rjs.html#risc-v",
+    "href": "01.rjs.html#risc-v",
+    "title": "Instructions",
+    "section": "RISC-V",
+    "text": "RISC-V\n\nRISC-V (pronounced “risk-five”)  is a free and open standard instruction set architecture (ISA) based on reduced instruction set computer (RISC) principles. Unlike proprietary ISAs such as x86 and ARM, RISC-V is described as “free and open” because its specifications are released under permissive open-source licenses and can be implemented without paying royalties."
+  },
+  {
+    "objectID": "01.rjs.html#rationale",
+    "href": "01.rjs.html#rationale",
+    "title": "Instructions",
+    "section": "Rationale",
+    "text": "Rationale\n\nRISC-V was begun with a goal to make a practical ISA that was open-sourced, usable academically, and deployable in any hardware or software design without royalties… The RISC-V authors are academics who have substantial experience in computer design, and the RISC-V ISA is a direct development from a series of academic computer-design projects, especially Berkeley RISC. RISC-V was originated in part to aid all such projects."
+  },
+  {
+    "objectID": "01.rjs.html#going-forward",
+    "href": "01.rjs.html#going-forward",
+    "title": "Instructions",
+    "section": "Going Forward",
+    "text": "Going Forward\n\nFor the sake of instruction, all further discussions of assembly will use RISC-V.\nIf you wish to compile into RISC-V assembly on your own device, you can use riscv64-linux-gnu-gcc with the -S flag.\nNote the package and executable differ in name.\n\nsudo apt update && apt install \u0016\u0016gcc-riscv64-linux-gnu\nriscv64-linux-gnu-gcc -v"
+  },
+  {
+    "objectID": "01.rjs.html#anatomy-of-an-instruction",
+    "href": "01.rjs.html#anatomy-of-an-instruction",
+    "title": "Instructions",
+    "section": "Anatomy of an Instruction",
+    "text": "Anatomy of an Instruction\n\nNearly all instructions can be made to fit a common template…\n\nOpcode\nDestination\nOperand1\nOperand2\n\nOperands are de facto zero indexed as destination is kinda an operand."
+  },
+  {
+    "objectID": "01.rjs.html#opcodes",
+    "href": "01.rjs.html#opcodes",
+    "title": "Instructions",
+    "section": "Opcodes",
+    "text": "Opcodes\n\nThese are (not necessarily equivalent) opcodes.\n\n\n\n\nIntel\n\n\n\ngcc\n\nsubl\ncmpl\nmovl\npopq\nret\n\n\n\nApple M1\n\n\n\naarch64-linux-gnu-gcc-13\n\nsub\nstr\nldr\nstr\nret\n\n\n\nRISC-V\n\n\n\nriscv64-linux-gnu-gcc\n\nlw  \nmv  \nld  \naddi    \njr"
+  },
+  {
+    "objectID": "01.rjs.html#destination",
+    "href": "01.rjs.html#destination",
+    "title": "Instructions",
+    "section": "Destination",
+    "text": "Destination\n\nFor destinations, we restrict to only looking at RISC-V as other architectures do not always necessary respect (1) having a destination or (2) keeping the destination as the initial argument.\n\n\n\nriscv64-linux-gnu-gcc\n\nlw      a5\nmv      a0\nld      s0\naddi    sp\njr      ra"
+  },
+  {
+    "objectID": "01.rjs.html#destination-1",
+    "href": "01.rjs.html#destination-1",
+    "title": "Instructions",
+    "section": "Destination",
+    "text": "Destination\n\nWhat are these destinations?\n\nRegisters\n“Hardware” variables of fixed bit size and finite number."
+  },
+  {
+    "objectID": "01.rjs.html#examples-1",
+    "href": "01.rjs.html#examples-1",
+    "title": "Instructions",
+    "section": "Examples",
+    "text": "Examples\n\nsp is “stack pointer”\nra is “return address”\na\\(n: \\forall n \\in \\mathbb{Z}/8\\mathbb{Z}\\) (integers modulo 8) is “integer argument”"
+  },
+  {
+    "objectID": "01.rjs.html#operands",
+    "href": "01.rjs.html#operands",
+    "title": "Instructions",
+    "section": "Operands",
+    "text": "Operands\n\nDiffer between instructions.\n\n\n\nriscv64-linux-gnu-gcc\n\n    lw  a5,-20(s0)\n    mv  a0,a5\n    ld  s0,40(sp)\n    addi    sp,sp,48\n    jr  ra\n\n\nLet’s break it into a table."
+  },
+  {
+    "objectID": "01.rjs.html#old-x86-table",
+    "href": "01.rjs.html#old-x86-table",
+    "title": "Instructions",
+    "section": "Old x86 Table",
+    "text": "Old x86 Table\n\nYou know, I bet we can align the mnemonics.\n\n\n\n\nAddr/Key\nVal[0]\nVal[1]\nVal[2]\n\n\n\n\n0x0\nsubl\n$1\n-20(%rbp)\n\n\n0x1\ncmpl\n$0\n-20(%rbp)\n\n\n0x2\nje\n0x7\n\n\n\n0x3\nmovl\n-4(%rbp)\n%eax\n\n\n0x4\nimull\n-20(%rbp)\n%eax\n\n\n0x5\nmovl\n%eax\n-4(%rbp)\n\n\n0x6\njmp\n0x0\n\n\n\n0x7\nmovl\n-4(%rbp)\n%eax\n\n\n0x8\npopq\n%rbp\n\n\n\n0x9\nret"
+  },
+  {
+    "objectID": "01.rjs.html#new-risc-v-table",
+    "href": "01.rjs.html#new-risc-v-table",
+    "title": "Instructions",
+    "section": "New RISC-V Table",
+    "text": "New RISC-V Table\n\nYou know, I bet we can align the mnemonics.\n\n\n\n\n\n\n\n\n\n\n\n\nOpcode\nDest.\nOperand1\nOperand2\n\n\n\n\nlw a5,-20(s0)\nlw\na5\n-20\ns0\n\n\nmv a0,a5\nmv\na0\na5\n\n\n\nld s0,40(sp)\nld\ns0\n40\nsp\n\n\naddi sp,sp,48\naddi\nsp\nsp\n48\n\n\njr ra\njr\nra"
+  },
+  {
+    "objectID": "01.rjs.html#operand-types",
+    "href": "01.rjs.html#operand-types",
+    "title": "Instructions",
+    "section": "Operand Types",
+    "text": "Operand Types\n\nConsider addi\n\nStands for “add immediate”\n\n\n\n\n\nOpcode\nDestination\nOperand1\nOperand2\n\n\n\n\naddi\nsp\nsp\n48\n\n\n\n\nThree operand types:\n\nDestination (sp)\nSource (sp)\nImmediate (48) - a numeric literal"
+  },
+  {
+    "objectID": "01.rjs.html#operand-types-1",
+    "href": "01.rjs.html#operand-types-1",
+    "title": "Instructions",
+    "section": "Operand Types",
+    "text": "Operand Types\n\nSource and Destination are mutually exclusive.\n\nAn operand cannot be both.\nHowever, the same register can be both.\n\nIs specified twice: addi  sp,sp,48\n\n\nOperand1 and Operand2 may either be a register or an “immediate”\n\nA literally numeric value, like 7 or 3."
+  },
+  {
+    "objectID": "01.rjs.html#meaning-of-an-instruction",
+    "href": "01.rjs.html#meaning-of-an-instruction",
+    "title": "Instructions",
+    "section": "Meaning of an Instruction",
+    "text": "Meaning of an Instruction\n\nOperations are abbreviated into opcodes\nInstructions are specified with a regular syntax.\n\nOpcodes precede arguements.\nDestinations precede sources.\nImmediates are terminal."
+  },
+  {
+    "objectID": "01.rjs.html#why-this-order",
+    "href": "01.rjs.html#why-this-order",
+    "title": "Instructions",
+    "section": "Why this order?",
+    "text": "Why this order?\n\nConsider the highest possible level language:\n\nx = y + 1\n\nConsider the following assembly:\n\naddi rx, ry, $1\n\nThat’s why."
+  },
+  {
+    "objectID": "01.rjs.html#instructions-are-simple",
+    "href": "01.rjs.html#instructions-are-simple",
+    "title": "Instructions",
+    "section": "Instructions are Simple",
+    "text": "Instructions are Simple\n\nComputers interpret “programs” by translating them from some (1) scripting or (2) programming language\nThe output is a sequence of “low level” simple instructions.\nThis output is, in point of fact, a bit array."
+  },
+  {
+    "objectID": "01.rjs.html#compiled-languages",
+    "href": "01.rjs.html#compiled-languages",
+    "title": "Instructions",
+    "section": "Compiled Languages",
+    "text": "Compiled Languages\n\nCompiled languages like C and Rust are:\n\nExpressed in text\nSubmitted to an executable (compiler)\nThe executable outputs some other executable (the program)."
+  },
+  {
+    "objectID": "01.rjs.html#interpreted-languages",
+    "href": "01.rjs.html#interpreted-languages",
+    "title": "Instructions",
+    "section": "Interpreted Languages",
+    "text": "Interpreted Languages\n\nInterpreted languages like Python and JavaScript are:\n\nExpressed in text\nSubmitted to an executable (interpreter)\nThis interpreter maps the text to machine instructions which are then run.\n\nUsually more complicated than this in practice."
+  },
+  {
+    "objectID": "01.rjs.html#instructions-are-binary",
+    "href": "01.rjs.html#instructions-are-binary",
+    "title": "Instructions",
+    "section": "Instructions are Binary",
+    "text": "Instructions are Binary\n\nComputers interpret “assembly programs” by translating them from their mnemonic simple instructions into strings of bits.\nLet’s examine…\n\n\n\nmin.c\n\nint main() {\n        return 0;\n}"
+  },
+  {
+    "objectID": "01.rjs.html#compile-ish",
+    "href": "01.rjs.html#compile-ish",
+    "title": "Instructions",
+    "section": "Compile… ish",
+    "text": "Compile… ish\n\nCompile into an object file.\n\nNot an executable, but something that can be configured to execute for some specific system.\nUse the -c flag.\n\n\nriscv64-linux-gnu-gcc min.c -c"
+  },
+  {
+    "objectID": "01.rjs.html#view",
+    "href": "01.rjs.html#view",
+    "title": "Instructions",
+    "section": "View",
+    "text": "View\n\nMay have to install binutils to see this.\n\nsudo apt install binutils-riscv64-unknown-elf\n\nView via objdump\n\n\n\nriscv64-unknown-elf-objdump -d min.o\n\n   0:   1141                    addi    sp,sp,-16\n   2:   e422                    sd      s0,8(sp)\n   4:   0800                    addi    s0,sp,16\n   6:   4781                    li      a5,0\n   8:   853e                    mv      a0,a5\n   a:   6422                    ld      s0,8(sp)\n   c:   0141                    addi    sp,sp,16\n   e:   8082                    ret"
+  },
+  {
+    "objectID": "01.rjs.html#a-series-of-instructions",
+    "href": "01.rjs.html#a-series-of-instructions",
+    "title": "Instructions",
+    "section": "A Series of Instructions",
+    "text": "A Series of Instructions\n\nExecutables are mostly sequences of instructions.\n\nRemember, we have access to goto\n\nInstructions are retrieved sequentially from memory\nAn instruction executes to completion before the next instruction is started\nThere are a lot of corner cases."
+  },
+  {
+    "objectID": "01.rjs.html#example-2",
+    "href": "01.rjs.html#example-2",
+    "title": "Instructions",
+    "section": "Example",
+    "text": "Example\n\nSay we had the following.\n\nli  a0,0\nli  a1,6\nadd a0,a1,a1\nadd a0,a0,a0\nadd a0,a0,a0\nsub a1,a0,a1"
+  },
+  {
+    "objectID": "01.rjs.html#section-2",
+    "href": "01.rjs.html#section-2",
     "title": "Instructions",
     "section": "",
-    "text": "Anatomy\n\nof an\nInstruction\n\n\n\n\n\n\n\n\n\n\n\n\nNearly all instructions can be made to fit a common template… | | | | OPCODE | | DESTINATION, | | OPERAND | , OPERAND | | | | — | —- | ——- | —— | — | ———— | —— | ——- | ——— | ——— | — | | | What | to do: | | | | | | 1 | | 2 | | | add | | | | Where | to put | | | | | | | | | | | | | | Who | to apply | | | | sub | | | | the result | | | | | | | | | | | | | | | the | operation | to… | and | | | | | | | | | variables, | constants, | etc.. | | — | — | — | — | — | — | — | — | ———- | ———- | —– | or beq bne | | Issues | remaining | … | | | | | CPU | | | | — | ——- | ———- | ———– | ————– | — | — | — | — | — | — | | | • Which | operations | to include? | | | | | | | | | | • Where | to get | variables | and constants? | | | | | | | Memory | | • Where | to store | the results? | | | | | | | | | — | ——- | ——– | ———— | — | — | — | — | — | — | — | 42\n\n\n\nAnatomy\n\nof\nan\nInstruction\n\n\n\n\n\n\n\n\n■ Computers execute a set of primitive operations called instructions | ■ Instructions | | specify | an operation | and | its operands | | | | ————– | ———— | ——- | ———— | ——- | ————- | — | — | | (arguments | | of the | operation) | | | | | | ■ Types | of operands: | | destination, | source, | and immediate | | | Operands | | | | | | (variables, | arguments, | etc.) | | — | — | ——– | — | — | ———– | ———- | —– | | | add | x0,x1,x2 | | | | | | Whydoallofthe variablesstart Source Operands with“X”? | CPU’shavea | | | | | Destination | Operand | | | ———- | — | — | — | — | ———– | ——- | — | smallnumber(16- 32)of registers | that areusedto | | | | | Immediate | | | | ————– | — | — | — | — | ———- | — | — | holdvariables Operand | | addi | x0,x1,1 | | | | | | | — | —- | ——- | — | — | — | — | — | 43\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeaning\n\n\n\nof\nan\n\nInstruction\n\n\n\n\n\n\n\n\n\n\n■ | | Operations | | are | abbreviated | | into | opcodes | | (1-4 | letters) | | | | — | ———- | — | — | ———– | — | —- | ——- | — | —- | ——– | — | — | ■ | | Instructions | | are | specified | | with | a very | regular | | syntax | | | | — | ———— | ——- | — | ——— | — | —- | ——— | ——- | — | —— | — | — | | | – | Opcodes | are | followed | | by | arguments | | | | | | – Usually the destination is next, then one or more source arguments | | | (This | is not | strictly the | | case, | but | it is | generally | | true) | | | — | — | —– | —— | ———— | — | —– | — | —– | ——— | — | —– | — | ■ | | Why | this order? | | | | | | | | | | | | — | ——- | ———– | ———- | — | ——– | — | —- | —- | —- | — | — | — | | | Analogy | to | high-level | | language | | like | Java | or C | | | | Theinstructionsyntax | | | | | | | | | | | int | x0, x1, | x2; | | — | — | — | — | — | — | — | — | — | — | — | ——- | —- | providesoperandsinthesame orderasyouwouldexpectina | | | | | | | | | | | x0 | = x1 + | x2; | | — | — | — | — | — | — | — | — | — | — | — | —— | — | statementfromahighlevel language. | | | | | | | | | | Instead | | of: | | | — | — | ——– | — | — | — | — | — | — | ——- | — | —- | —– | | | add | x0,x1,x2 | | | | | | | | | | | | | | | | | | | | | | x1 | + x2 | = x0; | 44\n\n\n\nInstructions\n\n\nare\nSimple\n\n\n\n\n\n\n\n■ Computers interpret “programs” by translating them from the high-level language | where | into | “low-level” | simple | instructions | that | it understands | | ———— | ——— | ———– | ——– | ———— | —- | ————– | | ■ High-Level | Languages | | | | | | | Compilers | | (C, C++, | Fortran) | | | | ▪ | Interpreters | | (Basic, | Ruby, | Lua, Python, | Perl, | JavaScript) | | ———— | — | ——- | —– | ———— | —– | ———– | ▪ Hybrids (Java) ▪ | | | | | | x: | .word 0 | | ———- | ——– | — | — | — | — | ——————- | | | | | | | y: | .word 0 | | ■ Assembly | Language | | | | | | | | | | | | c: | .word 123456 | | int | x, | y; | | | | | | | | | | | | lw t0,0(gp) # get x | y = (x-3)*(y+123456); | | | | | | | addi t0,t0,-3 | | — | — | — | — | — | — | ——————– | | | | | | | | lw t1,4(gp) # get y | | | | | | | | lw t2,8(gp) # get c | | | | | | | | add t1,t1,t2 | | | | | | | | mul t0,t0,t1 | | | | | | | | sw t0,0(gp) | # save y 45\n\n\n\nInstructions\n\n\n\nare\nBinary\n\n\n\n\n\n\n\n■ Computers interpret “assembly programs” by translating them from their | mnemonic | | simple | instructions | | into strings | of bits | | | ———- | — | ——– | ———— | — | ———— | ——- | — | | ■ Assembly | | Language | | | | | | | ■ Machine | | Language | | | | | | – Note the “mostly” one-to-one correspondence between lines of | | assembly | | code and | lines | of machine | code | | | — | ——– | — | ——– | —– | ———- | —- | — | 0x00000000 | | x: | .word | 0 | | | | 0x00000000 | | — | — | —– | —— | — | — | — | ———- | | | y: | .word | 0 | | | | 0x0001E240 | | | c: | .word | 123456 | | | | | … | | | lw | t0,0(gp) | | # get x | | | | — | — | — | ——– | — | ——- | — | — | 0x0001E240 addi t0,t0,-3 0x0001A283 | | | lw | t1,4(gp) | | # get y | | | | — | — | — | ——– | — | ——– | — | — | 0xFFD28293 | | | lw | t2,8(gp) | | # get c | | | | — | — | — | ——– | — | ——- | — | — | 0x0081A383 add t1,t1,t2 0x00730333 mul t0,t0,t1 0x026282B3 sw t0,0(gp) | | | | | | # save y | | | | — | — | — | — | — | ——– | — | — | 0x0051A023 46\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 45\nA Series of Instructions Generally… Instructions are retrieved sequentially from memory An instruction executes to completion before the next instruction is started But, there are exceptions to these rules Instructions Variables add t0, t1, t1 t0:X0 1X2 2X4 48 What does this add t0, t0, t0 t1:X6 42 program do? add t0, t0, t0 t2:8 sub t1, t0, t1 t3:10 46\nLooping the Flow ● Repeat the process treating the variables as unknowns or “formal variables” ● Knowing what the program does allows us to write down its specification, and give it a meaningful name ● The instruction sequence then becomes a general-purpose tool Instructions Variables times7: add t0,t1,t1 t0:Xw 8Xx 5X6x 392x An infinite add t0,t0,t0 t1:Xx 7Xx 4X9x 343x loop add t0,t0,t0 t2:y sub t1,t0,t1 t3:z j times7 4749\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen\n\nIssues\n\n\n\nin Our\n\nSimple\nModel?\n\n\n\n\n\n■ | | WHERE | | in memory | | are | INSTRUCTIONS | | stored? | | | — | —– | — | ——— | — | — | ———— | — | ——- | — | ■ | | HOW | are | instructions | | | represented? | | | | | — | — | — | ———— | — | — | ———— | — | — | — | ■ | | WHERE | | are | VARIABLES stored? | | | | | | | — | —– | — | — | —————– | — | — | — | — | — | ■ | | What | are | LABELs? | | How | do they | relate | to | | | — | —– | ———— | ———– | — | ———– | ——- | —— | —— | — | | | where | instructions | | | are | stored? | | | | | | ■ How | about | more | | complicated | | data | types? | | | | – | Arrays? | | | | | | | | | | – | Data | Structures? | | | | | | | | | – | Objects? | | | | | | | | ■ | | Where | | does | a program | | start | executing? | | | | — | —— | —- | —- | ——— | — | —– | ———- | — | — | | | ■ When | does | | it stop? | | | | | | 50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe\n\nStored-Program\n\n\n\n\n\n\n\n\nComputer\n\n\n\n\n\n\n\n■ The von Neumann architecture addresses these issues as follows: | ■ | Instructions | | | and | | Data | are | stored | | in a common | | memory | | | — | ———— | — | — | — | — | —- | — | —— | — | ———– | — | —— | — | Memory | ■ | Sequential | | | semantics: | | | To | the | PROGRAMMER | | | | | | — | ———- | — | — | ———- | — | — | — | — | ———- | — | — | — | — | Instruction | | all | instructions | | | appear | | to | execute | | in an | order, | | | | — | — | ———— | — | — | —— | — | — | ——- | — | —– | —— | — | — | Instruction | | or sequentially | | | | | | | | | | | | | | — | ————— | — | — | — | — | — | — | — | — | — | — | — | — | Instruction Central | | Key idea: | | Memory | | holds | not | only | | | | | | Instruction | | — | ——— | — | —— | — | —– | — | —– | — | — | — | — | — | ———– | Processing | | data, | but | coded instructions | | | | | that | | | | | | | — | —– | — | —————— | — | — | — | — | —– | — | — | — | — | — | Unit | | make | up | a program. | | | | | | | | | | data | | — | —- | — | ———- | — | — | — | — | — | — | — | — | — | —- | data | CPU | fetches and | | | executes | | instructions | | | from | memory | | | | | — | ———– | — | — | ——– | — | ———— | — | — | —- | —— | — | — | — | data | | • The | CPU | is | a H/W | interpreter | | | | | | | | | | — | ——— | ———- | ——- | —— | ———– | ———- | ——- | —————- | ——– | —— | — | — | — | | | • Program | | IS | simply | DATA | | for | this interpreter | | | | | | | | • Main | | memory: | | Single | expandable | | | resource | pool | | | | | | - | constrains | | both | data | and | program | | size | | | | | | | - | don’t | need | to | make | separate | | decisions | | of | | | | | | | how | large | of | a program | | or | data | memory | to buy | | | | 51\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V\n\n\n\nMemory\n\n\nDetails\n\n\n\n\n\n\n\n\n\n\n■\nMemory\n\nlocations\n\nare\naddressable\n\nin different\n\nsized chunks\n\n\n\n\n\n\n\n–\n8-bit\nchunks\n\n(bytes)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nshort2\n\nshort0\n\n\n\n\n\n–\n16-bit\n\nchunks\n(shorts)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbyte3\nbyte2\nbyte1\nbyte0\n\n\n\n\nword | | – | 32-bit | | chunks | (words) | | | | | | | | | | | — | — | —— | — | —— | ——- | — | — | — | — | — | — | — | — | — | Addr | | – | 64-bit | | chunks | | | | | | | | | | …43210 | | — | — | —— | — | —— | — | — | — | — | — | — | — | — | — | —— | 0: 313029… | | | | | | | | | | | | 2 | 1 | | 0 | | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | 3 long0 (longs/doubles) 4: | | | | | | | | | | | 7 | 6 | 5 | | 4 | | — | — | —- | ———- | — | —– | — | — | — | — | — | — | — | — | — | | ■ | We | also | frequently | | need | | | | 8: | 11 | 10 | 9 | | 8 | long8 | | access | | to individual | | bits! | | | | | | | | | | | — | —— | — | ————- | — | —— | — | — | — | — | — | — | — | — | — | 12: | | | | | | | | | | | 15 | 14 | 13 | | 12 | | — | ————- | ———— | — | —————- | ——– | ——– | ——– | — | — | — | — | — | — | — | | | (Instructions | | | help | with | this) | | | | | | | | | | ■ | Every | BYTE | | has | a unique | address | | | | | | | | | | | (RISC-V is | | a | byte-addressable | | | machine) | | | | | | | | | ■ | Most | instructions | | | are | one word | | | | | | | | | 52\n211 REVIEW: MEMORY 55\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 56\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 57\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 58\n\n\n\n\nStoring\n\nData\nin Memory\n\n\n\n\n\n1 byte = 8 bits | Each | of these rows | can | | | | —– | ————- | ——- | — | — | | store | one byte | of data | | | 59\nStoring Data in Memory 1 byte = 8 bits Each of these rows can 0b0000 0101 store one byte of data 0b0000 0100 0b1111 1110 Let’s say we want to store the number 5 in the top row, 4 in the next row, and -2 in the next row. 60\n\n\n\nByte\nAddresses\n\n\n\n\n\n\n\n\n\n1 byte = 8 bits Byte Address | | | | 0 | 0b0000 | 0101 | | — | — | — | — | —— | —- | | | | | 1 | 0b0000 | 0100 | | | | | | 0b1111 | 1110 | 2 | To reference | | each of these | | | | | ———— | — | ————– | — | — | — | 3 | locations, we | use | something | | | | | ————- | —— | ———- | — | — | — | | called | a byte | address. | 4 | | | 5 6 | Note that | these | addresses | | | | | ——— | —– | ——— | — | — | — | 7 | are not | stored | anywhere! | | | | | ——- | —— | ——— | — | — | — | 8 9 10 11 61\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n■ What\nif I want\nto store\nan integer?\n\n\n\n\n\n– sizeof(int)\n\n= 4 bytes\n\n\n\n\n\n\n\n\n\n\nVariables\nwhose\ntypes are\n\n\n\n\n\n\nlarger\nthan one\nbyte span\n\n\n\n\n\n\nmultiple\naddresses\nin memory!\n\n\n\n62\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | 63\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStoring\n\nLarger\nData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 int =\n4 bytes\n\n\n\n■ Let’s say I want to store an integer whose value is 329,421 | 329421 | = 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | —— | —- | —- | —- | —- | —- | —- | —- | —- | —- | Byte Data Address 0 What order 1 should we | store the | bits? | 2 | | | | | | | | | ——— | —– | — | — | — | — | — | — | — | — | 3 64\n\n\n\n\n\n\n\n\n\n\n\n\n\nMSB\nand\nLSB\n\n\n\n\n\n\n\n\n\n0b\n0000\n0000 0000\n0101\n0000\n0110\n1100\n1101\n\n\n\nMost Significant\nByte\n\n\n\nLeast Significant\nByte\n\n\n\n(MSB)\n\n\n\n\n(LSB)\n\n\n\n\n65\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 66\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 67\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —– | —- | —- | —- | —- | —————– | —– | | | Most Significant | Byte | | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address 0 1 2 3 68\n\n\n\nBig\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the largest address | 0b | 0000 | 0000 | 0000 | 0101 | 0000 | 0110 | 1100 | 1101 | | — | —————- | —- | —– | —- | —- | —- | —————– | —– | | | Most Significant | | Byte | | | | Least Significant | Byte | | | (MSB) | | | | | | (LSB) | | Byte Data Address | | | | 0 | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | | | | | | 0000 | 0101 | | | | 1 | | | | | 0000 | 0110 | | | | | — | — | — | — | —- | —- | — | — | — | 2 1100 1101 3 69\n\n\n\nLittle\nEndian\n\nOrdering\n\n\n\n\n\n\n\n\n\n\n■ The least significant byte of the integer goes in the lowest address | 0b 0000 | 0000 | 0000 | | 0101 | 0000 | 0110 | 1100 | 1101 | | ——- | —- | —— | —— | ——– | —- | ——– | —- | —- | | | | Little | Endian | Ordering | is | dominant | in | | Most Significant Bpyrtoecessor architectures and is whaLtewaset Significant Byte | | (MSB) | | | | | | (LSB) | | | — | —– | — | —- | ——– | ——- | —— | —– | — | | | | | will | be using | in this | class! | | | Byte Data Address | | | 0 | | 1100 1101 | | | | | | — | — | — | — | ——— | —- | — | — | — | | | | | | 0000 | 0110 | | | | 1 | | | | | 0000 | 0101 | | | | | — | — | — | — | —- | —- | — | — | — | 2 | | | | | 0000 | 0000 | | | | | — | — | — | — | —- | —- | — | — | — | 3 70"
+    "text": "Looping the Flow - Repeat the process treating the variables as unknowns or “formal variables” - Knowing what the program does allows us to write down its specification, and give it a meaningful name - The instruction sequence then becomes a generalpurpose tool Instructions Variables times7: add t0,t1,t1 t0:Xw 8Xx 5X6x 392x An infinite add t0,t0,t0 t1:Xx 7Xx 4X9x 343x loop add t0,t0,t0 t2:y sub t1,t0,t1 t3:z j times7 4749\nOpen Issues in Our Simple Model?\n\nWHERE in memory are INSTRUCTIONS stored?\nHOW are instructions represented?\nWHERE are VARIABLES stored?\nWhat are LABELs? How do they relate to\nwhere instructions are stored?\n\nHow about more complicated data types? – Arrays? – Data Structures? – Objects?\n\nWhere does a program start executing?\n\nWhen does it stop? 50\n\nThe StoredProgram Computer\nThe von Neumann architecture addresses these issues as follows:\nInstructions and Data are stored in a common memory\n\nMemory - Sequential semantics: To the PROGRAMMER\nInstruction all instructions appear to execute in an order,\nInstruction or sequentially\nInstruction Central Key idea: Memory holds not only Instruction\nProcessing data, but coded instructions that\nUnit make up a program. data\ndata CPU fetches and executes instructions from memory\ndata • The CPU is a H/W interpreter\n• Program IS simply DATA for this interpreter • Main memory: Single expandable resource pool constrains both data and program size don’t need to make separate decisions of how large of a program or data memory to buy 51\nRISCV Memory Details\n\nMemory locations are addressable in different sized chunks – 8bit chunks (bytes) short2 short0 – 16bit chunks (shorts) byte3 byte2 byte1 byte0 word – 32bit chunks (words)\n\nAddr – 64bit chunks …43210\n0: 313029… 2 1 0\n3 long0 (longs/doubles) 4: 7 6 5 4\n\nWe also frequently need 8: 11 10 9 8 long8 access to individual bits!\n\n12: 15 14 13 12\n(Instructions help with this) - Every BYTE has a unique address (RISCV is a byteaddressable machine) - Most instructions are one word 52"
   },
   {
     "objectID": "00.rjs.html#announcements",
