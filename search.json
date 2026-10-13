@@ -21431,6 +21431,13 @@
     "text": "Gates\n\nWe introduce the 5 great logic gates and their representations.\n\n\n\n\nName\nEffect\nPython\n\n\n\n\nBuffer\nIdentity\nlambda a: a\n\n\nInverter\nNegation\nlambda a: not a\n\n\nAND\nAnd\nlambda a, b: a and b\n\n\nOR\nInclusive or\nlambda a, b: a or b\n\n\nXOR\nExclusive or\nlambda a, b: a != b"
   },
   {
+    "objectID": "10.rjs.html#truth-tables",
+    "href": "10.rjs.html#truth-tables",
+    "title": "Circuits",
+    "section": "Truth Tables",
+    "text": "Truth Tables\n\nWe also introduce the notion of a truth table.\n\n\nA truth table is a mathematical table used in logic—specifically in connection with Boolean algebra, Boolean functions, and propositional calculus—which sets out the functional values of logical expressions on each of their functional arguments, that is, for each combination of values taken by their logical variables."
+  },
+  {
     "objectID": "10.rjs.html#buffer",
     "href": "10.rjs.html#buffer",
     "title": "Circuits",
@@ -21438,11 +21445,228 @@
     "text": "Buffer\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nBuffer(A)\n\n\n\n\ntrue\ntrue\n\n\nfalse\nfalse"
   },
   {
+    "objectID": "10.rjs.html#inverter",
+    "href": "10.rjs.html#inverter",
+    "title": "Circuits",
+    "section": "Inverter",
+    "text": "Inverter\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nInverter(A)\n\n\n\n\ntrue\nfalse\n\n\nfalse\ntrue"
+  },
+  {
+    "objectID": "10.rjs.html#and",
+    "href": "10.rjs.html#and",
+    "title": "Circuits",
+    "section": "AND",
+    "text": "AND\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nAND(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\nfalse\n\n\nfalse\ntrue\nfalse\n\n\nfalse\nfalse\nfalse"
+  },
+  {
+    "objectID": "10.rjs.html#or",
+    "href": "10.rjs.html#or",
+    "title": "Circuits",
+    "section": "OR",
+    "text": "OR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nOR(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse"
+  },
+  {
+    "objectID": "10.rjs.html#xor",
+    "href": "10.rjs.html#xor",
+    "title": "Circuits",
+    "section": "XOR",
+    "text": "XOR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nXOR(A,B)\n\n\n\n\ntrue\ntrue\nfalse\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse"
+  },
+  {
     "objectID": "10.rjs.html#section",
     "href": "10.rjs.html#section",
     "title": "Circuits",
     "section": "",
     "text": "Name\n\n\nSymbol\n\n\n\n\nBuffer\n\n\n\n\n\n\n\nInverter\n\n\n\n\n\n\n\nAND\n\n\n\n\n\n\n\nOR\n\n\n\n\n\n\n\nXOR"
+  },
+  {
+    "objectID": "10.rjs.html#making-gates",
+    "href": "10.rjs.html#making-gates",
+    "title": "Circuits",
+    "section": "Making Gates",
+    "text": "Making Gates\n\nA controllable switch is the common link of all computing technologies\nSwitches control voltages by creating and opening paths between higher and lower potentials"
+  },
+  {
+    "objectID": "10.rjs.html#closeopen",
+    "href": "10.rjs.html#closeopen",
+    "title": "Circuits",
+    "section": "Close/Open",
+    "text": "Close/Open\n\nClosed circuit:\n\nfully connected, allows electricity to flow uninterrupted\n\nOpen circuit\n\nA circuit that contains a broken connection\n\nElectricity stops flowing at the point where the connection was lost"
+  },
+  {
+    "objectID": "10.rjs.html#switches",
+    "href": "10.rjs.html#switches",
+    "title": "Circuits",
+    "section": "Switches",
+    "text": "Switches\n\nElectricity can flow through a closed switch, it cannot flow through an open switch\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)"
+  },
+  {
+    "objectID": "10.rjs.html#apply-voltage",
+    "href": "10.rjs.html#apply-voltage",
+    "title": "Circuits",
+    "section": "Apply Voltage",
+    "text": "Apply Voltage\nApply 5V to the left side of the switch\n\nIf the switch is open, we don’t necessarily know the voltage on the right\n\nWould need to see the full circuit to determine the voltage\n\nIf the switch is closed, the voltage on the right is 5V\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)"
+  },
+  {
+    "objectID": "10.rjs.html#absent-voltage",
+    "href": "10.rjs.html#absent-voltage",
+    "title": "Circuits",
+    "section": "Absent Voltage",
+    "text": "Absent Voltage\nApply 0V to the left side of the switch\n\nIf the switch is open, we don’t necessarily know the voltage on the right\n\nWould need to see the full circuit to determine the voltage\n\nIf the switch is closed, the voltage on the right is 0V\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)"
+  },
+  {
+    "objectID": "10.rjs.html#switches-in-series",
+    "href": "10.rjs.html#switches-in-series",
+    "title": "Circuits",
+    "section": "Switches in Series",
+    "text": "Switches in Series\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCurrent can only flow between the two ends if both switches are closed\ncurrent_flow = switch AND switch"
+  },
+  {
+    "objectID": "10.rjs.html#switches-in-parallel",
+    "href": "10.rjs.html#switches-in-parallel",
+    "title": "Circuits",
+    "section": "Switches in Parallel",
+    "text": "Switches in Parallel\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCurrent can flow between the two ends if either of the switches is closed\ncurrent_flow = switch OR switch"
+  },
+  {
+    "objectID": "10.rjs.html#digital-variables",
+    "href": "10.rjs.html#digital-variables",
+    "title": "Circuits",
+    "section": "Digital Variables",
+    "text": "Digital Variables\n\nA binary variable, 0 or 1, can represent the state of switch\n\non or off\nopen or closed\nopen or closed\n\n\n\n\n\\(x = 0\\)\n\n\n\n\n\\(x = 1\\)"
+  },
+  {
+    "objectID": "10.rjs.html#switch-variables",
+    "href": "10.rjs.html#switch-variables",
+    "title": "Circuits",
+    "section": "Switch Variables",
+    "text": "Switch Variables\n\nTypically express this with a switch \\(\\text{S}\\).\nExpress the value of the \\(i\\)’th switch \\(\\text{S}\\) as \\(x_i\\).\n\n\n  \\(x_i\\)"
+  },
+  {
+    "objectID": "10.rjs.html#and-function",
+    "href": "10.rjs.html#and-function",
+    "title": "Circuits",
+    "section": "AND function",
+    "text": "AND function\n\nTwo switches in series.\n\n\n  \\(x_1 \\land x_2\\)"
+  },
+  {
+    "objectID": "10.rjs.html#or-function",
+    "href": "10.rjs.html#or-function",
+    "title": "Circuits",
+    "section": "OR function",
+    "text": "OR function\n\nTwo switches in series.\n\n\n  \\(x_1 \\lor x_2\\)"
+  },
+  {
+    "objectID": "10.rjs.html#threes",
+    "href": "10.rjs.html#threes",
+    "title": "Circuits",
+    "section": "Threes",
+    "text": "Threes\n\nThere exist some ternary operations.\nWe’ve seen choice, median/majority in SHA.\nSee also: any, all.\nLet’s make one."
+  },
+  {
+    "objectID": "10.rjs.html#median-function",
+    "href": "10.rjs.html#median-function",
+    "title": "Circuits",
+    "section": "Median function",
+    "text": "Median function\n\nTwo or more are “true”.\n\nNote we use 2 switches twice.\nWe allow this for the sake of example"
+  },
+  {
+    "objectID": "10.rjs.html#arbitrary-function",
+    "href": "10.rjs.html#arbitrary-function",
+    "title": "Circuits",
+    "section": "Arbitrary function",
+    "text": "Arbitrary function\n\nAvoid recycling switches.\n\n\n  \\[\nx_1 \\land (x_2 \\lor x_3)\n\\]"
+  },
+  {
+    "objectID": "10.rjs.html#truth-tables-1",
+    "href": "10.rjs.html#truth-tables-1",
+    "title": "Circuits",
+    "section": "Truth Tables",
+    "text": "Truth Tables\n\n\n\n\n\n\n\n\n\n\n\\(x_1\\)\n\\(x_2\\)\n\\(x_3\\)\n\\(x_2 \\lor x_3\\)\n\\(x_1 \\land (x_2 \\lor x_3)\\)\n\n\n\n\n1\n1\n1\n1\n1\n\n\n1\n1\n0\n1\n1\n\n\n1\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n0\n\n\n0\n\\(n\\)\n\\(n\\)\n0\n0"
+  },
+  {
+    "objectID": "10.rjs.html#consider",
+    "href": "10.rjs.html#consider",
+    "title": "Circuits",
+    "section": "Consider:",
+    "text": "Consider:\n\nWhat is the relationship between:\n\nThe number of switches, and\nThe number of rows of the truth table."
+  },
+  {
+    "objectID": "10.rjs.html#physical-building-blocks",
+    "href": "10.rjs.html#physical-building-blocks",
+    "title": "Circuits",
+    "section": "Physical Building Blocks",
+    "text": "Physical Building Blocks\n\nTransistors are the physical building blocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s.\nYou can think of it as an electrically controlled switch that turns current on or off.\n“Programmable logic”"
+  },
+  {
+    "objectID": "10.rjs.html#switch-like",
+    "href": "10.rjs.html#switch-like",
+    "title": "Circuits",
+    "section": "Switch-like",
+    "text": "Switch-like\n\nSwitches are controlled by physical contact\nTransistors are controlled by a voltage"
+  },
+  {
+    "objectID": "10.rjs.html#binary-states",
+    "href": "10.rjs.html#binary-states",
+    "title": "Circuits",
+    "section": "Binary States",
+    "text": "Binary States\n\nTransistors can be in two distinct states: on or off\nThis is why our machines communicate in binary (1s and 0s)!"
+  },
+  {
+    "objectID": "10.rjs.html#logic-levels",
+    "href": "10.rjs.html#logic-levels",
+    "title": "Circuits",
+    "section": "Logic Levels",
+    "text": "Logic Levels\n\nInstead of specifying the exact voltage level (e.g. 3V or 5V), we’ll simply use binary terms when discussing transistors.\n\nThis is an abstraction.\n\nWe’ll either have a high voltage or a low voltage."
+  },
+  {
+    "objectID": "10.rjs.html#high-low",
+    "href": "10.rjs.html#high-low",
+    "title": "Circuits",
+    "section": "High & Low",
+    "text": "High & Low\n\nThere are a few different terms for these voltage levels.\n\nHigh voltage: logic high = logic 1 = 1\nLow voltage: logic low = logic 0 = 0\n\nI just call these “high” and “low”"
+  },
+  {
+    "objectID": "10.rjs.html#transistors-1",
+    "href": "10.rjs.html#transistors-1",
+    "title": "Circuits",
+    "section": "Transistors",
+    "text": "Transistors\n\nWe will be working with two types of transistors\n\nnMOS transistors (today)\npMOS transistors (someday)"
+  },
+  {
+    "objectID": "10.rjs.html#terminals",
+    "href": "10.rjs.html#terminals",
+    "title": "Circuits",
+    "section": "Terminals",
+    "text": "Terminals\n\nThere are three terminals\n\nGate: controls whether the transistor is on or off\nSource and Drain: endpoints"
+  },
+  {
+    "objectID": "10.rjs.html#transistor-symbol",
+    "href": "10.rjs.html#transistor-symbol",
+    "title": "Circuits",
+    "section": "Transistor Symbol",
+    "text": "Transistor Symbol\nBlue determines if current flows between terminals labelled with red.\n\n\n\n\n\n\n\n\n\n\n\nSwitch\n\n\nTransistor"
+  },
+  {
+    "objectID": "10.rjs.html#nmos-transistor",
+    "href": "10.rjs.html#nmos-transistor",
+    "title": "Circuits",
+    "section": "NMOS Transistor",
+    "text": "NMOS Transistor\n\n\n\n\\(V_D\\) in red is the drain, or the output.\n\\(V_S\\) in red is the source, an input, but in practice mostly useful to determine if…\n\\(V_G\\) in blue is the gate, controls whether the transistor is on or off"
+  },
+  {
+    "objectID": "10.rjs.html#nmos-transistor-1",
+    "href": "10.rjs.html#nmos-transistor-1",
+    "title": "Circuits",
+    "section": "NMOS Transistor",
+    "text": "NMOS Transistor\n\n\n\nIf the gate voltage is high (logic 1), current can flow between source (bottom) and drain (top)\nSource and drain have same voltage.\nDenote as \\(V_S = V_D\\)"
+  },
+  {
+    "objectID": "10.rjs.html#nmos-transistor-2",
+    "href": "10.rjs.html#nmos-transistor-2",
+    "title": "Circuits",
+    "section": "NMOS Transistor",
+    "text": "NMOS Transistor\n\n\n\nIf the gate voltage is low (logic 0), current can’t flow between source (bottom) and drain (top)\nDrain has ambigious voltage."
   },
   {
     "objectID": "10.html",
@@ -21725,11 +21949,61 @@
     ]
   },
   {
+    "objectID": "10.html#truth-tables",
+    "href": "10.html#truth-tables",
+    "title": "Circuits",
+    "section": "Truth Tables",
+    "text": "Truth Tables\n\nWe also introduce the notion of a truth table.\n\n\nA truth table is a mathematical table used in logic—specifically in connection with Boolean algebra, Boolean functions, and propositional calculus—which sets out the functional values of logical expressions on each of their functional arguments, that is, for each combination of values taken by their logical variables.",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
     "objectID": "10.html#buffer",
     "href": "10.html#buffer",
     "title": "Circuits",
     "section": "Buffer",
     "text": "Buffer\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nBuffer(A)\n\n\n\n\ntrue\ntrue\n\n\nfalse\nfalse",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#inverter",
+    "href": "10.html#inverter",
+    "title": "Circuits",
+    "section": "Inverter",
+    "text": "Inverter\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nInverter(A)\n\n\n\n\ntrue\nfalse\n\n\nfalse\ntrue",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#and",
+    "href": "10.html#and",
+    "title": "Circuits",
+    "section": "AND",
+    "text": "AND\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nAND(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\nfalse\n\n\nfalse\ntrue\nfalse\n\n\nfalse\nfalse\nfalse",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#or",
+    "href": "10.html#or",
+    "title": "Circuits",
+    "section": "OR",
+    "text": "OR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nOR(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#xor",
+    "href": "10.html#xor",
+    "title": "Circuits",
+    "section": "XOR",
+    "text": "XOR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nXOR(A,B)\n\n\n\n\ntrue\ntrue\nfalse\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse",
     "crumbs": [
       "Circuits"
     ]
@@ -21745,164 +22019,21 @@
     ]
   },
   {
-    "objectID": "10.html#truth-tables",
-    "href": "10.html#truth-tables",
-    "title": "Circuits",
-    "section": "Truth Tables",
-    "text": "Truth Tables\n\nWe also introduce the notion of a truth table.\n\n\nA truth table is a mathematical table used in logic—specifically in connection with Boolean algebra, Boolean functions, and propositional calculus—which sets out the functional values of logical expressions on each of their functional arguments, that is, for each combination of values taken by their logical variables.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#truth-tables",
-    "href": "10.rjs.html#truth-tables",
-    "title": "Circuits",
-    "section": "Truth Tables",
-    "text": "Truth Tables\n\nWe also introduce the notion of a truth table.\n\n\nA truth table is a mathematical table used in logic—specifically in connection with Boolean algebra, Boolean functions, and propositional calculus—which sets out the functional values of logical expressions on each of their functional arguments, that is, for each combination of values taken by their logical variables."
-  },
-  {
-    "objectID": "10.html#inverter",
-    "href": "10.html#inverter",
-    "title": "Circuits",
-    "section": "Inverter",
-    "text": "Inverter\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nInverter(A)\n\n\n\n\ntrue\nfalse\n\n\nfalse\ntrue",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#inverter",
-    "href": "10.rjs.html#inverter",
-    "title": "Circuits",
-    "section": "Inverter",
-    "text": "Inverter\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nInverter(A)\n\n\n\n\ntrue\nfalse\n\n\nfalse\ntrue"
-  },
-  {
-    "objectID": "10.html#inverter-1",
-    "href": "10.html#inverter-1",
-    "title": "Circuits",
-    "section": "Inverter",
-    "text": "Inverter\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nInverter(A)\n\n\n\n\ntrue\nfalse\n\n\nfalse\ntrue",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#inverter-1",
-    "href": "10.rjs.html#inverter-1",
-    "title": "Circuits",
-    "section": "Inverter",
-    "text": "Inverter\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\nA\nInverter(A)\n\n\n\n\ntrue\nfalse\n\n\nfalse\ntrue"
-  },
-  {
-    "objectID": "10.html#and",
-    "href": "10.html#and",
-    "title": "Circuits",
-    "section": "AND",
-    "text": "AND\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nAND(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\nfalse\n\n\nfalse\ntrue\nfalse\n\n\nfalse\nfalse\nfalse",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#and",
-    "href": "10.rjs.html#and",
-    "title": "Circuits",
-    "section": "AND",
-    "text": "AND\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nAND(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\nfalse\n\n\nfalse\ntrue\nfalse\n\n\nfalse\nfalse\nfalse"
-  },
-  {
-    "objectID": "10.html#and-1",
-    "href": "10.html#and-1",
-    "title": "Circuits",
-    "section": "AND",
-    "text": "AND\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nAND(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\nfalse\n\n\nfalse\ntrue\nfalse\n\n\nfalse\nfalse\nfalse",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#and-1",
-    "href": "10.rjs.html#and-1",
-    "title": "Circuits",
-    "section": "AND",
-    "text": "AND\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\ntrue\ntrue\n\n\ntrue\nfalse\n\n\nfalse\ntrue\n\n\nfalse\nfalse"
-  },
-  {
-    "objectID": "10.html#or",
-    "href": "10.html#or",
-    "title": "Circuits",
-    "section": "OR",
-    "text": "OR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nOR(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#or",
-    "href": "10.rjs.html#or",
-    "title": "Circuits",
-    "section": "OR",
-    "text": "OR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nOR(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse"
-  },
-  {
-    "objectID": "10.html#xor",
-    "href": "10.html#xor",
-    "title": "Circuits",
-    "section": "XOR",
-    "text": "XOR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nXOR(A,B)\n\n\n\n\ntrue\ntrue\nfalse\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#xor",
-    "href": "10.rjs.html#xor",
-    "title": "Circuits",
-    "section": "XOR",
-    "text": "XOR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nXOR(A,B)\n\n\n\n\ntrue\ntrue\nfalse\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse"
-  },
-  {
-    "objectID": "10.html#altogether",
-    "href": "10.html#altogether",
-    "title": "Circuits",
-    "section": "Altogether",
-    "text": "Altogether\n\n\n\nName\n\n\nSymbol\n\n\n\n\nBuffer\n\n\n\n\n\n\n\nInverter\n\n\n\n\n\n\n\nAND\n\n\n\n\n\n\n\nOR\n\n\n\n\n\n\n\nXOR",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#altogether",
-    "href": "10.rjs.html#altogether",
-    "title": "Circuits",
-    "section": "Altogether",
-    "text": "Altogether\n\n\n\nName\n\n\nSymbol\n\n\n\n\nBuffer\n\n\n\n\n\n\n\nInverter\n\n\n\n\n\n\n\nAND\n\n\n\n\n\n\n\nOR\n\n\n\n\n\n\n\nXOR"
-  },
-  {
-    "objectID": "10.html#section-1",
-    "href": "10.html#section-1",
-    "title": "Circuits",
-    "section": "",
-    "text": "– on or off, open or closed -The setting of switches can be used to turn on and off other switches to compose more complicated functions. 55\nA Simple Function: Turning on a Light -By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. -This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON 56\nFunctions with Two Switches -Two switches can be connected either in series or in parallel -Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions -· is logical AND 57\nFunctions with Two Switches -With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. -“+” is logical OR Two basic two-input logic functions 58\nA Three-Switch Function -Three switches can be used to control the light in more complex ways. This series- parallel connection of switches realizes the logic function: – L(x1, x2, x3) = (x1 + x2) · x3 -The light is on if x3 = 1 and, at the same time, at least one of the x1 or x2 are 1. 59\nA Three-Switch Function 60\nTruth Tables -Every logical function over a finite set of inputs can be described in a tabular fashion that enumerates all possible input combinations and provides the associated output. -Functions expressed this way are called truth tables. 61\nPondering Truth Tables 62\nTRANSISTORS 63\nTransistors are the physical building blocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s. You can think of it as an electrically controlled switch that turns current on or off. 64\nTransistors are like switches Off On Switches are controlled by physical contact Transistors are controlled by a voltage 65\nTwo States: Binary! -Transistors can be in two distinct states: on or off -This is why our machines communicate in binary (1s and 0s)! On Off 66\nLogic Levels -Instead of specifying the exact voltage level (e.g. 3V or 5V), we’ll simply use binary terms when discussing transistors. -We’ll either have a high voltage or a low voltage. -There are a few different terms for these voltage levels. – High voltage -logic high = logic 1 = 1 – Low voltage -logic low = logic 0 = 0 67\nTransistors -We will be working with two types of transistors – nMOS transistors – pMOS transistors -There are three terminals – Gate: controls whether the transistor is on or off – Source and Drain: endpoints 68\nTransistor Symbol Transistor Switch (n-channel MOSFET) The terminal labeled with the blue dot determines whether current can flow between the terminals labeled with the red dot. 69\nNMOS Transistor -There are three terminals V (drain voltage) D – Gate: controls whether the transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (source voltage) S 70\nNMOS Transistor -If the gate voltage is high (logic 1), V (drain voltage) D current can flow between source and drain – The source and drain will be connected and will have the V (gate voltage) G same voltage -If the gate voltage is low, current cannot flow between source and drain V (source voltage) S – The source and drain are not connected 71\nNMOS Transistor Let’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | D | | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? V | | V | | V | | | | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | | | D | | D | | | | D | | D | | V | | V | | | V | | | V | | | G | | G | | | G | | | G | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | V | | V | | | | V | | V | | | S | | S | | | | S | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 | 72\nNMOS Transistor V V V V D D D D Logic 0 Logic 1 unknown unknown V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are connected V is low, so source and drain are not connected G G 73",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#section-1",
-    "href": "10.rjs.html#section-1",
-    "title": "Circuits",
-    "section": "",
-    "text": "– on or off, open or closed -The setting of switches can be used to turn on and off other switches to compose more complicated functions. 55\nA Simple Function: Turning on a Light -By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. -This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON 56\nFunctions with Two Switches -Two switches can be connected either in series or in parallel -Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions -· is logical AND 57\nFunctions with Two Switches -With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. -“+” is logical OR Two basic two-input logic functions 58\nA Three-Switch Function -Three switches can be used to control the light in more complex ways. This series- parallel connection of switches realizes the logic function: – L(x1, x2, x3) = (x1 + x2) · x3 -The light is on if x3 = 1 and, at the same time, at least one of the x1 or x2 are 1. 59\nA Three-Switch Function 60\nTruth Tables -Every logical function over a finite set of inputs can be described in a tabular fashion that enumerates all possible input combinations and provides the associated output. -Functions expressed this way are called truth tables. 61\nPondering Truth Tables 62\nTRANSISTORS 63\nTransistors are the physical building blocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s. You can think of it as an electrically controlled switch that turns current on or off. 64\nTransistors are like switches Off On Switches are controlled by physical contact Transistors are controlled by a voltage 65\nTwo States: Binary! -Transistors can be in two distinct states: on or off -This is why our machines communicate in binary (1s and 0s)! On Off 66\nLogic Levels -Instead of specifying the exact voltage level (e.g. 3V or 5V), we’ll simply use binary terms when discussing transistors. -We’ll either have a high voltage or a low voltage. -There are a few different terms for these voltage levels. – High voltage -logic high = logic 1 = 1 – Low voltage -logic low = logic 0 = 0 67\nTransistors -We will be working with two types of transistors – nMOS transistors – pMOS transistors -There are three terminals – Gate: controls whether the transistor is on or off – Source and Drain: endpoints 68\nTransistor Symbol Transistor Switch (n-channel MOSFET) The terminal labeled with the blue dot determines whether current can flow between the terminals labeled with the red dot. 69\nNMOS Transistor -There are three terminals V (drain voltage) D – Gate: controls whether the transistor is on or off – Source and Drain: endpoints V (gate voltage) G V (source voltage) S 70\nNMOS Transistor -If the gate voltage is high (logic 1), V (drain voltage) D current can flow between source and drain – The source and drain will be connected and will have the V (gate voltage) G same voltage -If the gate voltage is low, current cannot flow between source and drain V (source voltage) S – The source and drain are not connected 71\nNMOS Transistor Let’s say that we know the values of V and V . What is the value of V in | | | | | G | | S | | | D | | — | — | — | — | — | — | — | — | — | — | each of the following diagrams? V | | V | | V | | | | | | V | | ——- | ——- | ——- | ——- | — | ——- | — | ——- | ——- | ——- | | | D | | D | | | | D | | D | | V | | V | | | V | | | V | | | G | | G | | | G | | | G | | | Logic 1 | | Logic 1 | | | Logic 0 | | | Logic 0 | | | | V | | V | | | | V | | V | | | S | | S | | | | S | | S | | | Logic 0 | | Logic 1 | | | | Logic 0 | | Logic 1 | 72\nNMOS Transistor V V V V D D D D Logic 0 Logic 1 unknown unknown V V V V G G G G Logic 1 Logic 1 Logic 0 Logic 0 V V V V S S S S Logic 0 Logic 1 Logic 0 Logic 1 V is high, so source and drain are connected V is low, so source and drain are not connected G G 73"
-  },
-  {
     "objectID": "10.html#making-gates",
     "href": "10.html#making-gates",
     "title": "Circuits",
     "section": "Making Gates",
     "text": "Making Gates\n\nA controllable switch is the common link of all computing technologies\nSwitches control voltages by creating and opening paths between higher and lower potentials",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#closeopen",
+    "href": "10.html#closeopen",
+    "title": "Circuits",
+    "section": "Close/Open",
+    "text": "Close/Open\n\nClosed circuit:\n\nfully connected, allows electricity to flow uninterrupted\n\nOpen circuit\n\nA circuit that contains a broken connection\n\nElectricity stops flowing at the point where the connection was lost",
     "crumbs": [
       "Circuits"
     ]
@@ -21918,37 +22049,6 @@
     ]
   },
   {
-    "objectID": "10.rjs.html#making-gates",
-    "href": "10.rjs.html#making-gates",
-    "title": "Circuits",
-    "section": "Making Gates",
-    "text": "Making Gates\n\nA controllable switch is the common link of all computing technologies\nSwitches control voltages by creating and opening paths between higher and lower potentials"
-  },
-  {
-    "objectID": "10.rjs.html#switches",
-    "href": "10.rjs.html#switches",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\n\nElectricity can flow through a closed switch, it cannot flow through an open switch\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)"
-  },
-  {
-    "objectID": "10.html#closeopen",
-    "href": "10.html#closeopen",
-    "title": "Circuits",
-    "section": "Close/Open",
-    "text": "Close/Open\n\nClosed circuit:\n\nfully connected, allows electricity to flow uninterrupted\n\nOpen circuit\n\nA circuit that contains a broken connection\n\nElectricity stops flowing at the point where the connection was lost",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#closeopen",
-    "href": "10.rjs.html#closeopen",
-    "title": "Circuits",
-    "section": "Close/Open",
-    "text": "Close/Open\n\nClosed circuit:\n\nfully connected, allows electricity to flow uninterrupted\n\nOpen circuit\n\nA circuit that contains a broken connection\n\nElectricity stops flowing at the point where the connection was lost"
-  },
-  {
     "objectID": "10.html#apply-voltage",
     "href": "10.html#apply-voltage",
     "title": "Circuits",
@@ -21957,13 +22057,6 @@
     "crumbs": [
       "Circuits"
     ]
-  },
-  {
-    "objectID": "10.rjs.html#apply-voltage",
-    "href": "10.rjs.html#apply-voltage",
-    "title": "Circuits",
-    "section": "Apply Voltage",
-    "text": "Apply Voltage\nApply 5V to the left side of the switch\n\nIf the switch is open, we don’t necessarily know the voltage on the right\n\nWould need to see the full circuit to determine the voltage\n\nIf the switch is closed, the voltage on the right is 5V\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)"
   },
   {
     "objectID": "10.html#absent-voltage",
@@ -21976,355 +22069,11 @@
     ]
   },
   {
-    "objectID": "10.rjs.html#absent-voltage",
-    "href": "10.rjs.html#absent-voltage",
-    "title": "Circuits",
-    "section": "Absent Voltage",
-    "text": "Absent Voltage\nApply 0V to the left side of the switch\n\nIf the switch is open, we don’t necessarily know the voltage on the right\n\nWould need to see the full circuit to determine the voltage\n\nIf the switch is closed, the voltage on the right is 0V\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)"
-  },
-  {
     "objectID": "10.html#switches-in-series",
     "href": "10.html#switches-in-series",
     "title": "Circuits",
     "section": "Switches in Series",
     "text": "Switches in Series\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCurrent can only flow between the two ends if both switches are closed\ncurrent_flow = switch AND switch",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.rjs.html#switches-in-series",
-    "href": "10.rjs.html#switches-in-series",
-    "title": "Circuits",
-    "section": "Switches in Series",
-    "text": "Switches in Series\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCurrent can only flow between the two ends if both switches are closed\ncurrent_flow = switch AND switch"
-  },
-  {
-    "objectID": "10.html#a-substrate-for-computation-1",
-    "href": "10.html#a-substrate-for-computation-1",
-    "title": "Circuits",
-    "section": "A Substrate for Computation",
-    "text": "A Substrate for Computation\n\nWe begin at a high level:\n\nIt would useful to have computers.\nWe would have to build those computers out of something.\n\nWe claim:\n\n\nWe can build devices for processing and representing bits using almost any physical phenomenon",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#some-options-1",
-    "href": "10.html#some-options-1",
-    "title": "Circuits",
-    "section": "Some Options",
-    "text": "Some Options\n\nHistorically, vacuum tubes, now, integrated circuits.\n\nmagnetic flux\ntrained elephants\nfalling water\nturning gears\nDNA sequences\npolarization of a photon",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#games-1",
-    "href": "10.html#games-1",
-    "title": "Circuits",
-    "section": "Games",
-    "text": "Games\nMagic: The Gathering is Turing Complete\n\nMagic: The Gathering is a popular and famously complicated trading card game about magical combat. In this paper we show that optimal play in real-world Magic is at least as hard as the Halting Problem, solving a problem that has been open for a decade.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#electormagnetism-em-1",
-    "href": "10.html#electormagnetism-em-1",
-    "title": "Circuits",
-    "section": "Electormagnetism (E&M)",
-    "text": "Electormagnetism (E&M)\n\nVoltages, phase, currents, frequency\n\nWith today’s technologies voltages are most often used.\n\nVoltage pros:\n\neasy generation, detection\nvoltage changes can be very fast\nlots of engineering knowledge\n\nVoltage cons:\n\neasily affected by environment",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#voltage-and-current-1",
-    "href": "10.html#voltage-and-current-1",
-    "title": "Circuits",
-    "section": "Voltage and Current",
-    "text": "Voltage and Current\n\nVoltage\n\nThe force that makes electrons flow\nMeasured in Volts (V)\n\nCurrent\n\nThe rate of flow of electrons\nMeasured in Amperes (A)\n\nFine to pretend this is water.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#representation-1",
-    "href": "10.html#representation-1",
-    "title": "Circuits",
-    "section": "Representation",
-    "text": "Representation\n\nConsider grayscale images.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#pixelwise-1",
-    "href": "10.html#pixelwise-1",
-    "title": "Circuits",
-    "section": "Pixelwise",
-    "text": "Pixelwise\n\nRepresen each point (x, y)\n\n0 volts: black (no brightness)\n1 volt: white (max brightness)\n0.37 volts: 37% gray",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#full-image-1",
-    "href": "10.html#full-image-1",
-    "title": "Circuits",
-    "section": "Full Image",
-    "text": "Full Image\n\nScan points in some order.\n\nE.g. row-major\n\nGenerate a waveform of voltages.\n\nEach time point corresponds to some pixel.\n\nInformation density set by generator/sensor accuracy.\n\nExpect lossy.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#computation-1",
-    "href": "10.html#computation-1",
-    "title": "Circuits",
-    "section": "Computation",
-    "text": "Computation\n\nInformation processing is inherently computation.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#system-design-1",
-    "href": "10.html#system-design-1",
-    "title": "Circuits",
-    "section": "System Design",
-    "text": "System Design\n\nContract: an agreement to adhere to specified behavior.\n\n“I will use 1 to represent black” vs. “…white”\n\nSystem: a structure guarantee to exhibit specied behavior given certain assumptions\n\nUsually that underlying systems adhere to contracts.\nMonitor will display colors accurate under adequate power.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#we-claim-1",
-    "href": "10.html#we-claim-1",
-    "title": "Circuits",
-    "section": "We Claim",
-    "text": "We Claim\n\nEvery system component will have clear obligations and responsibilities. If these are maintained we have every right to expect the system to behave as planned. If contracts are violated all bets are off.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#a-contract-1",
-    "href": "10.html#a-contract-1",
-    "title": "Circuits",
-    "section": "A Contract",
-    "text": "A Contract\n\nWe previously used a contract this term:\n\nint sqrt(int x) {\n    int r = 0;\n    while (++r * r &lt;= x) {}\n    return r - 1;\n}\n\nOur square root assumed a positive int\n\nA proper contract would use e.g. unsigned.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#digital-contracts-1",
-    "href": "10.html#digital-contracts-1",
-    "title": "Circuits",
-    "section": "Digital Contracts",
-    "text": "Digital Contracts\n\nDigital implementation keeps the contracts simple (or more simple).\nThe price we pay?\n\nAll the information that we transfer between components is only one bit!\nBut, in exchange, we get reliable, modular, and reproducible systems.\n\nIs it easier to think about 2 things or more than 2 things?",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#abstraction-1",
-    "href": "10.html#abstraction-1",
-    "title": "Circuits",
-    "section": "Abstraction",
-    "text": "Abstraction\n\nThe real world might not be digital.\n\nMany scholars say “isn’t”, I’m not so sure.\n\nThings that don’t seem digital:\n\nTime (might be continous)\nLanguage (might lack total orderings/boundaries)\nThe universe (might not be fixed in size)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#my-claim-1",
-    "href": "10.html#my-claim-1",
-    "title": "Circuits",
-    "section": "My Claim",
-    "text": "My Claim\n\nThe universe is totally digital.\n\nPlanck constants, photons, blah blah blah.\n\nThis doesn’t matter.\n\nWe don’t have that granularity in our sensors.\n\nSo we’re “abstracting” things anyways.\n\nE.g. color hexcodes.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#digital-processing-1",
-    "href": "10.html#digital-processing-1",
-    "title": "Circuits",
-    "section": "Digital Processing",
-    "text": "Digital Processing\n\nTerm: “Combinational device”\nA digital element that has\n\none or more digital inputs (a bit array of nonzero length)\none or more digital outputs (““)\na functional specification that details the value of each output for every possible combination of valid input values",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#another-component-1",
-    "href": "10.html#another-component-1",
-    "title": "Circuits",
-    "section": "Another component",
-    "text": "Another component\n\nKaki Ryan (and I) have a bit of background in real-time computing so we further specify:\n\nA timing specification consisting (at a minimum) an upper bound on the required time for the device to compute",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#example-1",
-    "href": "10.html#example-1",
-    "title": "Circuits",
-    "section": "Example",
-    "text": "Example\n\nLogical not over bytes.\nExpress a bit as a value in \\(\\{0, 1\\}\\)\nExpress 8 bits as an 8th dimensional value, so \\(\\{0, 1\\}_8\\) \\[\nf(x) = \\begin{cases}\n  0  & \\text{if } 1 \\notin x  \\\\\n  1  & \\text{if } 1 \\in x \\\\\n\\end{cases}\n\\]\nI’d typically claim this should be a constant factor of bit length in time cost.\n\nFun question: How about division?",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#other-examples-1",
-    "href": "10.html#other-examples-1",
-    "title": "Circuits",
-    "section": "Other Examples",
-    "text": "Other Examples\n\nWe wrote things very close to specifications for CHOICE and MAJORITY/MEDIAN for SHA.\n\n\\[\n\\text{CHOICE}(U, V, W) = (U \\land V) \\oplus (\\lnot U \\land W)\n\\] \\[\n\\text{MEDIAN}(U, V, W) = (U \\land V) \\oplus (U \\land W) \\oplus (V \\land W)\n\\]",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#combination-digital-systems-1",
-    "href": "10.html#combination-digital-systems-1",
-    "title": "Circuits",
-    "section": "Combination Digital Systems",
-    "text": "Combination Digital Systems\nA system of interconnected elements is combinational if:\n\nEach circuit element is combinational\nEvery input is connected to exactly one output or directly to some source of 0’s or 1’s\nThe circuit contains no directed cycles\nBut, in order to realize digital processing, elements have one more requirement!",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#noise-margins-1",
-    "href": "10.html#noise-margins-1",
-    "title": "Circuits",
-    "section": "Noise Margins",
-    "text": "Noise Margins\n\nKey idea: Don’t allow “0” to be mistaken for a “1” or vice versa\nTo implement devices with high reliability, we outlaw “close calls” via a representation convention which forbids a range of voltages between “0” and “1”.\nEnsure the valid input range is more tolerant (larger) than the valid output range",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#startup-costs-1",
-    "href": "10.html#startup-costs-1",
-    "title": "Circuits",
-    "section": "Startup Costs",
-    "text": "Startup Costs\n\nOur definition of valid does not preclude inputs and outputs from passing through invalid values.\n\nIn fact, they must, but only during transitions.\nOur specifications allow for this (i.e. outputs are specified some time \\(T\\) after inputs become valid).",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#gates-1",
-    "href": "10.html#gates-1",
-    "title": "Circuits",
-    "section": "Gates",
-    "text": "Gates\n\nWe introduce the 5 great logic gates and their representations.\n\n\n\n\nName\nEffect\nPython\n\n\n\n\nBuffer\nIdentity\nlambda a: a\n\n\nInverter\nNegation\nlambda a: not a\n\n\nAND\nAnd\nlambda a, b: a and b\n\n\nOR\nInclusive or\nlambda a, b: a or b\n\n\nXOR\nExclusive or\nlambda a, b: a != b",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#truth-tables-1",
-    "href": "10.html#truth-tables-1",
-    "title": "Circuits",
-    "section": "Truth Tables",
-    "text": "Truth Tables\n\nWe also introduce the notion of a truth table.\n\n\nA truth table is a mathematical table used in logic—specifically in connection with Boolean algebra, Boolean functions, and propositional calculus—which sets out the functional values of logical expressions on each of their functional arguments, that is, for each combination of values taken by their logical variables.",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#buffer-1",
-    "href": "10.html#buffer-1",
-    "title": "Circuits",
-    "section": "Buffer",
-    "text": "Buffer\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nBuffer(A)\n\n\n\n\ntrue\ntrue\n\n\nfalse\nfalse",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#or-1",
-    "href": "10.html#or-1",
-    "title": "Circuits",
-    "section": "OR",
-    "text": "OR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nOR(A,B)\n\n\n\n\ntrue\ntrue\ntrue\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#xor-1",
-    "href": "10.html#xor-1",
-    "title": "Circuits",
-    "section": "XOR",
-    "text": "XOR\n\n\n\nUsually expressed graphically as follows.\n\n\n\n\n\n\n\n\nA\nB\nXOR(A,B)\n\n\n\n\ntrue\ntrue\nfalse\n\n\ntrue\nfalse\ntrue\n\n\nfalse\ntrue\ntrue\n\n\nfalse\nfalse\nfalse",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#making-gates-1",
-    "href": "10.html#making-gates-1",
-    "title": "Circuits",
-    "section": "Making Gates",
-    "text": "Making Gates\n\nA controllable switch is the common link of all computing technologies\nSwitches control voltages by creating and opening paths between higher and lower potentials",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#closeopen-1",
-    "href": "10.html#closeopen-1",
-    "title": "Circuits",
-    "section": "Close/Open",
-    "text": "Close/Open\n\nClosed circuit:\n\nfully connected, allows electricity to flow uninterrupted\n\nOpen circuit\n\nA circuit that contains a broken connection\n\nElectricity stops flowing at the point where the connection was lost",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#switches-1",
-    "href": "10.html#switches-1",
-    "title": "Circuits",
-    "section": "Switches",
-    "text": "Switches\n\nElectricity can flow through a closed switch, it cannot flow through an open switch\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#apply-voltage-1",
-    "href": "10.html#apply-voltage-1",
-    "title": "Circuits",
-    "section": "Apply Voltage",
-    "text": "Apply Voltage\nApply 5V to the left side of the switch\n\nIf the switch is open, we don’t necessarily know the voltage on the right\n\nWould need to see the full circuit to determine the voltage\n\nIf the switch is closed, the voltage on the right is 5V\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#absent-voltage-1",
-    "href": "10.html#absent-voltage-1",
-    "title": "Circuits",
-    "section": "Absent Voltage",
-    "text": "Absent Voltage\nApply 0V to the left side of the switch\n\nIf the switch is open, we don’t necessarily know the voltage on the right\n\nWould need to see the full circuit to determine the voltage\n\nIf the switch is closed, the voltage on the right is 0V\n\n\n\nOpen (off)\n\n\n\n\nClosed (on)",
-    "crumbs": [
-      "Circuits"
-    ]
-  },
-  {
-    "objectID": "10.html#switches-in-series-1",
-    "href": "10.html#switches-in-series-1",
-    "title": "Circuits",
-    "section": "Switches in Series",
-    "text": "Switches in Series\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCurrent can only flow between the two ends if both switches are closed\ncurrent_flow = switch AND switch```\n\n\n\nSwitches in Parallel\nswitch0 switch0\nswitch1 switch1\nswitch0 switch0\nswitch1 switch1\nCurrent can flow between the two ends if either of the switches is closed\ncurrent_flow = switch OR switch\n0 1\n54\n\nDigital Variables and Functions\n-A binary variable, 0 or 1, can represent the state of switch\n– on or off, open or closed\n-The setting of switches can be used to turn on and off other switches\nto compose more complicated functions.\n55\n\nA Simple Function: Turning on a Light\n-By simply adding a power\nsource and connecting a load\n(light bulb) our controlled\nswitch can use a binary\nvariable to control a light.\n-This simple logic expression\ndescribes the output as a\nfunction of its inputs.\n– We say that L(x) = x is a\nx light\nlogic function and that x is\nL(x) = x\n0 OFF\nan input variable x.\n1 ON\n56\n\nFunctions with Two Switches\n-Two switches can be\nconnected either in series or\nin parallel\n-Using a series connection,\nthe light will be turned on only\nif both switches are closed. If\neither switch is open, the light\nwill be off.\n– L(x1, x2) = x1 · x2\nwhere L = 1 if x1 = 1 and\nx2 = 1, L = 0 otherwise.\nTwo basic two-input logic functions\n-· is logical AND\n57\n\nFunctions with Two Switches\n-With a parallel connection of the\ntwo switches, the light will be on if\neither the x1 or x2 switch is closed.\nThe light will also be on if both\nswitches are closed. The light will\nbe off only if both switches are\nopen.\n– L(x1, x2) = x1 + x2\nwhere L = 1 if x1 = 1 or x2 = 1\nor if x1 = x2 = 1.\nL = 0 if x1 = x2 = 0.\n-“+” is logical OR\nTwo basic two-input logic functions\n58\n\nA Three-Switch Function\n-Three switches can be used to\ncontrol the light in more\ncomplex ways. This series-\nparallel connection of switches\nrealizes the logic function:\n– L(x1, x2, x3) = (x1 + x2) · x3\n-The light is on if x3 = 1 and, at\nthe same time, at least one of\nthe x1 or x2 are 1.\n59\n\nA Three-Switch Function\n60\n\nTruth Tables\n-Every logical function over a finite set of inputs can be\ndescribed in a tabular fashion that enumerates all possible\ninput combinations and provides the associated output.\n-Functions expressed this way are called truth tables.\n61\n\nPondering Truth Tables\n62\n\nTRANSISTORS\n63\n\nTransistors are the physical building\nblocks of modern computers!\nA transistor is the\nphysical device we use to\nturn continuous electrical\nbehavior into digital 0s\nand 1s.\nYou can think of it as an\nelectrically controlled\nswitch that turns current\non or off.\n64\n\nTransistors are like switches\nOff On\nSwitches are controlled by physical contact\nTransistors are controlled by a voltage\n65\n\nTwo States: Binary!\n-Transistors can be in two distinct states: on or off\n-This is why our machines communicate in binary (1s and 0s)!\nOn Off\n66\n\nLogic Levels\n-Instead of specifying the exact voltage level (e.g. 3V or 5V), we’ll\nsimply use binary terms when discussing transistors.\n-We’ll either have a high voltage or a low voltage.\n-There are a few different terms for these voltage levels.\n– High voltage\n-logic high = logic 1 = 1\n– Low voltage\n-logic low = logic 0 = 0\n67\n\nTransistors\n-We will be working with two types of transistors\n– nMOS transistors\n– pMOS transistors\n-There are three terminals\n– Gate: controls whether the transistor is on or off\n– Source and Drain: endpoints\n68\n\nTransistor Symbol\nTransistor\nSwitch\n(n-channel MOSFET)\nThe terminal labeled with the blue dot determines whether\ncurrent can flow between the terminals labeled with the red dot.\n69\n\nNMOS Transistor\n-There are three terminals V (drain voltage)\nD\n– Gate: controls whether the\ntransistor is on or off\n– Source and Drain: endpoints\nV (gate voltage)\nG\nV (source voltage)\nS\n70\n\nNMOS Transistor\n-If the gate voltage is high (logic 1), V (drain voltage)\nD\ncurrent can flow between source\nand drain\n– The source and drain will be\nconnected and will have the\nV (gate voltage)\nG\nsame voltage\n-If the gate voltage is low, current\ncannot flow between source and\ndrain\nV (source voltage)\nS\n– The source and drain are not\nconnected\n71\n\nNMOS Transistor\nLet’s say that we know the values of V  and V . What is the value of V  in\n|     |     |     |     | G   |     | S   |     |     | D   |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\neach of the following diagrams?\nV\n|         | V       |         | V       |     |         |     |         |         | V       |\n| ------- | ------- | ------- | ------- | --- | ------- | --- | ------- | ------- | ------- |\n|         | D       |         | D       |     |         |     | D       |         | D       |\n| V       |         | V       |         |     | V       |     |         | V       |         |\n| G       |         | G       |         |     | G       |     |         | G       |         |\n| Logic 1 |         | Logic 1 |         |     | Logic 0 |     |         | Logic 0 |         |\n|         | V       |         | V       |     |         |     | V       |         | V       |\n|         | S       |         | S       |     |         |     | S       |         | S       |\n|         | Logic 0 |         | Logic 1 |     |         |     | Logic 0 |         | Logic 1 |\n72\n\nNMOS Transistor\nV V\nV V\nD D\nD D\nLogic 0 Logic 1\nunknown unknown\nV V\nV V\nG G\nG G\nLogic 1 Logic 1\nLogic 0 Logic 0\nV V\nV V\nS S\nS S\nLogic 0 Logic 1\nLogic 0 Logic 1\nV is high, so source and drain are connected V is low, so source and drain are not connected\nG G\n73\n:::",
     "crumbs": [
       "Circuits"
     ]
@@ -22340,13 +22089,6 @@
     ]
   },
   {
-    "objectID": "10.rjs.html#switches-in-parallel",
-    "href": "10.rjs.html#switches-in-parallel",
-    "title": "Circuits",
-    "section": "Switches in Parallel",
-    "text": "Switches in Parallel\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCurrent can flow between the two ends if either of the switches is closed\ncurrent_flow = switch OR switch"
-  },
-  {
     "objectID": "10.html#digital-variables",
     "href": "10.html#digital-variables",
     "title": "Circuits",
@@ -22355,13 +22097,6 @@
     "crumbs": [
       "Circuits"
     ]
-  },
-  {
-    "objectID": "10.rjs.html#digital-variables",
-    "href": "10.rjs.html#digital-variables",
-    "title": "Circuits",
-    "section": "Digital Variables",
-    "text": "Digital Variables\n\nA binary variable, 0 or 1, can represent the state of switch\n\non or off\nopen or closed\nopen or closed\n\n\n\n\n\\(x = 0\\)\n\n\n\n\n\\(x = 1\\)"
   },
   {
     "objectID": "10.html#switch-variables",
@@ -22374,13 +22109,6 @@
     ]
   },
   {
-    "objectID": "10.rjs.html#switch-variables",
-    "href": "10.rjs.html#switch-variables",
-    "title": "Circuits",
-    "section": "Switch Variables",
-    "text": "Switch Variables\n\nTypically express this with a switch \\(\\text{S}\\).\nExpress the value of the \\(i\\)’th switch \\(\\text{S}\\) as \\(x_i\\).\n\n\n  \\(x_i\\)"
-  },
-  {
     "objectID": "10.html#and-function",
     "href": "10.html#and-function",
     "title": "Circuits",
@@ -22391,27 +22119,173 @@
     ]
   },
   {
-    "objectID": "10.rjs.html#and-function",
-    "href": "10.rjs.html#and-function",
+    "objectID": "10.html#or-function",
+    "href": "10.html#or-function",
     "title": "Circuits",
-    "section": "AND function",
-    "text": "AND function\n\nTwo switches in series.\n\n\n  \\(x_1 \\land x_2\\)"
-  },
-  {
-    "objectID": "10.html#and-function-1",
-    "href": "10.html#and-function-1",
-    "title": "Circuits",
-    "section": "AND function",
-    "text": "AND function\n\nTwo switches in series.\n\n\n  \\(x_1 \\lor x_2\\)",
+    "section": "OR function",
+    "text": "OR function\n\nTwo switches in series.\n\n\n  \\(x_1 \\lor x_2\\)",
     "crumbs": [
       "Circuits"
     ]
   },
   {
-    "objectID": "10.rjs.html#and-function-1",
-    "href": "10.rjs.html#and-function-1",
+    "objectID": "10.html#threes",
+    "href": "10.html#threes",
     "title": "Circuits",
-    "section": "AND function",
-    "text": "AND function\n\nTwo switches in series.\n\n\n  \\(x_1 \\lor x_2\\)"
+    "section": "Threes",
+    "text": "Threes\n\nThere exist some ternary operations.\nWe’ve seen choice, median/majority in SHA.\nSee also: any, all.\nLet’s make one.",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#median-function",
+    "href": "10.html#median-function",
+    "title": "Circuits",
+    "section": "Median function",
+    "text": "Median function\n\nTwo or more are “true”.\n\nNote we use 2 switches twice.\nWe allow this for the sake of example",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#arbitrary-function",
+    "href": "10.html#arbitrary-function",
+    "title": "Circuits",
+    "section": "Arbitrary function",
+    "text": "Arbitrary function\n\nAvoid recycling switches.\n\n\n  \\[\nx_1 \\land (x_2 \\lor x_3)\n\\]",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#truth-tables-1",
+    "href": "10.html#truth-tables-1",
+    "title": "Circuits",
+    "section": "Truth Tables",
+    "text": "Truth Tables\n\n\n\n\n\n\n\n\n\n\n\\(x_1\\)\n\\(x_2\\)\n\\(x_3\\)\n\\(x_2 \\lor x_3\\)\n\\(x_1 \\land (x_2 \\lor x_3)\\)\n\n\n\n\n1\n1\n1\n1\n1\n\n\n1\n1\n0\n1\n1\n\n\n1\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n0\n\n\n0\n\\(n\\)\n\\(n\\)\n0\n0",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#consider",
+    "href": "10.html#consider",
+    "title": "Circuits",
+    "section": "Consider:",
+    "text": "Consider:\n\nWhat is the relationship between:\n\nThe number of switches, and\nThe number of rows of the truth table.",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#physical-building-blocks",
+    "href": "10.html#physical-building-blocks",
+    "title": "Circuits",
+    "section": "Physical Building Blocks",
+    "text": "Physical Building Blocks\n\nTransistors are the physical building blocks of modern computers! A transistor is the physical device we use to turn continuous electrical behavior into digital 0s and 1s.\nYou can think of it as an electrically controlled switch that turns current on or off.\n“Programmable logic”",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#switch-like",
+    "href": "10.html#switch-like",
+    "title": "Circuits",
+    "section": "Switch-like",
+    "text": "Switch-like\n\nSwitches are controlled by physical contact\nTransistors are controlled by a voltage",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#binary-states",
+    "href": "10.html#binary-states",
+    "title": "Circuits",
+    "section": "Binary States",
+    "text": "Binary States\n\nTransistors can be in two distinct states: on or off\nThis is why our machines communicate in binary (1s and 0s)!",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#logic-levels",
+    "href": "10.html#logic-levels",
+    "title": "Circuits",
+    "section": "Logic Levels",
+    "text": "Logic Levels\n\nInstead of specifying the exact voltage level (e.g. 3V or 5V), we’ll simply use binary terms when discussing transistors.\n\nThis is an abstraction.\n\nWe’ll either have a high voltage or a low voltage.",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#high-low",
+    "href": "10.html#high-low",
+    "title": "Circuits",
+    "section": "High & Low",
+    "text": "High & Low\n\nThere are a few different terms for these voltage levels.\n\nHigh voltage: logic high = logic 1 = 1\nLow voltage: logic low = logic 0 = 0\n\nI just call these “high” and “low”",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#transistors-1",
+    "href": "10.html#transistors-1",
+    "title": "Circuits",
+    "section": "Transistors",
+    "text": "Transistors\n\nWe will be working with two types of transistors\n\nnMOS transistors (today)\npMOS transistors (someday)",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#terminals",
+    "href": "10.html#terminals",
+    "title": "Circuits",
+    "section": "Terminals",
+    "text": "Terminals\n\nThere are three terminals\n\nGate: controls whether the transistor is on or off\nSource and Drain: endpoints",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#transistor-symbol",
+    "href": "10.html#transistor-symbol",
+    "title": "Circuits",
+    "section": "Transistor Symbol",
+    "text": "Transistor Symbol\nBlue determines if current flows between terminals labelled with red.\n\n\n\n\n\n\n\n\n\n\n\nSwitch\n\n\nTransistor",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#nmos-transistor",
+    "href": "10.html#nmos-transistor",
+    "title": "Circuits",
+    "section": "NMOS Transistor",
+    "text": "NMOS Transistor\n\n\n\n\\(V_D\\) in red is the drain, or the output.\n\\(V_S\\) in red is the source, an input, but in practice mostly useful to determine if…\n\\(V_G\\) in blue is the gate, controls whether the transistor is on or off",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#nmos-transistor-1",
+    "href": "10.html#nmos-transistor-1",
+    "title": "Circuits",
+    "section": "NMOS Transistor",
+    "text": "NMOS Transistor\n\n\n\nIf the gate voltage is high (logic 1), current can flow between source (bottom) and drain (top)\nSource and drain have same voltage.\nDenote as \\(V_S = V_D\\)",
+    "crumbs": [
+      "Circuits"
+    ]
+  },
+  {
+    "objectID": "10.html#nmos-transistor-2",
+    "href": "10.html#nmos-transistor-2",
+    "title": "Circuits",
+    "section": "NMOS Transistor",
+    "text": "NMOS Transistor\n\n\n\nIf the gate voltage is low (logic 0), current can’t flow between source (bottom) and drain (top)\nDrain has ambigious voltage.",
+    "crumbs": [
+      "Circuits"
+    ]
   }
 ]
