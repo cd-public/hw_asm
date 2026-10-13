@@ -1157,9 +1157,60 @@ XOR
 <p>Current can flow between the two ends if either of the switches is closed</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb4-1"><a></a>current_flow = switch OR switch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="digital-variables" class="slide level2">
+<h2>Digital Variables</h2>
+<ul>
+<li>A binary variable, 0 or 1, can represent the state of switch
+<ul>
+<li><em>on</em> or <em>off</em></li>
+<li><em>open</em> or <em>closed</em></li>
+<li><em>open</em> or <em>closed</em></li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math inline">\(x = 0\)</span></p>
+<center>
+<img src="drawio/10_open.drawio.svg">
+</center>
+</div><div class="column" style="width:50%;">
+<p><span class="math inline">\(x = 1\)</span></p>
+<center>
+<img src="drawio/10_closed.drawio.svg">
+</center>
+</div></div>
+</section>
+<section id="switch-variables" class="slide level2">
+<h2>Switch Variables</h2>
+<ul>
+<li>Typically express this with a switch <span class="math inline">\(\text{S}\)</span>.</li>
+<li>Express the value of the <span class="math inline">\(i\)</span>’th switch <span class="math inline">\(\text{S}\)</span> as <span class="math inline">\(x_i\)</span>.</li>
+</ul>
+<center>
+<img src="drawio/10_switch.drawio.svg"> <br> <span class="math inline">\(x_i\)</span>
+</center>
+</section>
+<section id="and-function" class="slide level2">
+<h2>AND function</h2>
+<ul>
+<li>Two switches in series.</li>
+</ul>
+<center>
+<img src="drawio/10_and_func.drawio.svg"> <br> <span class="math inline">\(x_1 \land x_2\)</span>
+</center>
+</section>
+<section id="and-function-1" class="slide level2">
+<h2>AND function</h2>
+<ul>
+<li>Two switches in series.</li>
+</ul>
+<center>
+<img src="drawio/10_or_func.drawio.svg"> <br> <span class="math inline">\(x_1 \lor x_2\)</span>
+</center>
+</section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<p>Digital Variables and Functions -A binary variable, 0 or 1, can represent the state of switch – on or off, open or closed -The setting of switches can be used to turn on and off other switches to compose more complicated functions. 55</p>
+<p>– on or off, open or closed -The setting of switches can be used to turn on and off other switches to compose more complicated functions. 55</p>
 <p>A Simple Function: Turning on a Light -By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. -This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON 56</p>
 <p>Functions with Two Switches -Two switches can be connected either in series or in parallel -Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions -· is logical AND 57</p>
 <p>Functions with Two Switches -With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. -“+” is logical OR Two basic two-input logic functions 58</p>

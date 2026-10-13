@@ -378,6 +378,10 @@ window.Quarto = {
   <li><a href="#absent-voltage" id="toc-absent-voltage" class="nav-link" data-scroll-target="#absent-voltage">Absent Voltage</a></li>
   <li><a href="#switches-in-series" id="toc-switches-in-series" class="nav-link" data-scroll-target="#switches-in-series">Switches in Series</a></li>
   <li><a href="#switches-in-parallel" id="toc-switches-in-parallel" class="nav-link" data-scroll-target="#switches-in-parallel">Switches in Parallel</a></li>
+  <li><a href="#digital-variables" id="toc-digital-variables" class="nav-link" data-scroll-target="#digital-variables">Digital Variables</a></li>
+  <li><a href="#switch-variables" id="toc-switch-variables" class="nav-link" data-scroll-target="#switch-variables">Switch Variables</a></li>
+  <li><a href="#and-function" id="toc-and-function" class="nav-link" data-scroll-target="#and-function">AND function</a></li>
+  <li><a href="#and-function-1" id="toc-and-function-1" class="nav-link" data-scroll-target="#and-function-1">AND function</a></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
   </ul></li>
   </ul>
@@ -1169,9 +1173,61 @@ XOR
 <p>Current can flow between the two ends if either of the switches is closed</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource email number-lines code-with-copy"><code class="sourceCode email"><span id="cb4-1"><a href="#cb4-1"></a>current_flow = switch OR switch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="digital-variables" class="level2">
+<h2 class="anchored" data-anchor-id="digital-variables">Digital Variables</h2>
+<ul>
+<li>A binary variable, 0 or 1, can represent the state of switch
+<ul>
+<li><em>on</em> or <em>off</em></li>
+<li><em>open</em> or <em>closed</em></li>
+<li><em>open</em> or <em>closed</em></li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math inline">\(x = 0\)</span></p>
+<center>
+<img src="drawio/10_open.drawio.svg">
+</center>
+</div><div class="column" style="width:50%;">
+<p><span class="math inline">\(x = 1\)</span></p>
+<center>
+<img src="drawio/10_closed.drawio.svg">
+</center>
+</div>
+</div>
+</section>
+<section id="switch-variables" class="level2">
+<h2 class="anchored" data-anchor-id="switch-variables">Switch Variables</h2>
+<ul>
+<li>Typically express this with a switch <span class="math inline">\(\text{S}\)</span>.</li>
+<li>Express the value of the <span class="math inline">\(i\)</span>’th switch <span class="math inline">\(\text{S}\)</span> as <span class="math inline">\(x_i\)</span>.</li>
+</ul>
+<center>
+<img src="drawio/10_switch.drawio.svg"> <br> <span class="math inline">\(x_i\)</span>
+</center>
+</section>
+<section id="and-function" class="level2">
+<h2 class="anchored" data-anchor-id="and-function">AND function</h2>
+<ul>
+<li>Two switches in series.</li>
+</ul>
+<center>
+<img src="drawio/10_and_func.drawio.svg"> <br> <span class="math inline">\(x_1 \land x_2\)</span>
+</center>
+</section>
+<section id="and-function-1" class="level2">
+<h2 class="anchored" data-anchor-id="and-function-1">AND function</h2>
+<ul>
+<li>Two switches in series.</li>
+</ul>
+<center>
+<img src="drawio/10_or_func.drawio.svg"> <br> <span class="math inline">\(x_1 \lor x_2\)</span>
+</center>
+</section>
 <section id="section-1" class="level2">
 <h2 class="anchored" data-anchor-id="section-1"></h2>
-<p>Digital Variables and Functions -A binary variable, 0 or 1, can represent the state of switch – on or off, open or closed -The setting of switches can be used to turn on and off other switches to compose more complicated functions. 55</p>
+<p>– on or off, open or closed -The setting of switches can be used to turn on and off other switches to compose more complicated functions. 55</p>
 <p>A Simple Function: Turning on a Light -By simply adding a power source and connecting a load (light bulb) our controlled switch can use a binary variable to control a light. -This simple logic expression describes the output as a function of its inputs. – We say that L(x) = x is a x light logic function and that x is L(x) = x 0 OFF an input variable x. 1 ON 56</p>
 <p>Functions with Two Switches -Two switches can be connected either in series or in parallel -Using a series connection, the light will be turned on only if both switches are closed. If either switch is open, the light will be off. – L(x1, x2) = x1 · x2 where L = 1 if x1 = 1 and x2 = 1, L = 0 otherwise. Two basic two-input logic functions -· is logical AND 57</p>
 <p>Functions with Two Switches -With a parallel connection of the two switches, the light will be on if either the x1 or x2 switch is closed. The light will also be on if both switches are closed. The light will be off only if both switches are open. – L(x1, x2) = x1 + x2 where L = 1 if x1 = 1 or x2 = 1 or if x1 = x2 = 1. L = 0 if x1 = x2 = 0. -“+” is logical OR Two basic two-input logic functions 58</p>
@@ -2268,216 +2324,283 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-585"><a href="#cb5-585"></a><span class="in">current_flow = switch OR switch</span></span>
 <span id="cb5-586"><a href="#cb5-586"></a><span class="in">```</span></span>
 <span id="cb5-587"><a href="#cb5-587"></a></span>
-<span id="cb5-588"><a href="#cb5-588"></a><span class="fu">## </span></span>
+<span id="cb5-588"><a href="#cb5-588"></a><span class="fu">##  Digital Variables</span></span>
 <span id="cb5-589"><a href="#cb5-589"></a></span>
-<span id="cb5-590"><a href="#cb5-590"></a>Digital Variables and Functions</span>
-<span id="cb5-591"><a href="#cb5-591"></a>-A binary variable, 0 or 1, can represent the state of switch</span>
-<span id="cb5-592"><a href="#cb5-592"></a>– on or off, open or closed</span>
-<span id="cb5-593"><a href="#cb5-593"></a>-The setting of switches can be used to turn on and off other switches</span>
-<span id="cb5-594"><a href="#cb5-594"></a>to compose more complicated functions.</span>
-<span id="cb5-595"><a href="#cb5-595"></a>55</span>
+<span id="cb5-590"><a href="#cb5-590"></a><span class="ss">- </span>A binary variable, 0 or 1, can represent the state of switch</span>
+<span id="cb5-591"><a href="#cb5-591"></a><span class="ss">    - </span>*on* or *off*</span>
+<span id="cb5-592"><a href="#cb5-592"></a><span class="ss">    - </span>*open* or *closed*</span>
+<span id="cb5-593"><a href="#cb5-593"></a><span class="ss">    - </span>*open* or *closed*</span>
+<span id="cb5-594"><a href="#cb5-594"></a></span>
+<span id="cb5-595"><a href="#cb5-595"></a>:::: {.columns}</span>
 <span id="cb5-596"><a href="#cb5-596"></a></span>
-<span id="cb5-597"><a href="#cb5-597"></a>A Simple Function: Turning on a Light</span>
-<span id="cb5-598"><a href="#cb5-598"></a>-By simply adding a power</span>
-<span id="cb5-599"><a href="#cb5-599"></a>source and connecting a load</span>
-<span id="cb5-600"><a href="#cb5-600"></a>(light bulb) our controlled</span>
-<span id="cb5-601"><a href="#cb5-601"></a>switch can use a binary</span>
-<span id="cb5-602"><a href="#cb5-602"></a>variable to control a light.</span>
-<span id="cb5-603"><a href="#cb5-603"></a>-This simple logic expression</span>
-<span id="cb5-604"><a href="#cb5-604"></a>describes the output as a</span>
-<span id="cb5-605"><a href="#cb5-605"></a>function of its inputs.</span>
-<span id="cb5-606"><a href="#cb5-606"></a>– We say that L(x) = x is a</span>
-<span id="cb5-607"><a href="#cb5-607"></a>x light</span>
-<span id="cb5-608"><a href="#cb5-608"></a>logic function and that x is</span>
-<span id="cb5-609"><a href="#cb5-609"></a>L(x) = x</span>
-<span id="cb5-610"><a href="#cb5-610"></a>0 OFF</span>
-<span id="cb5-611"><a href="#cb5-611"></a>an input variable x.</span>
-<span id="cb5-612"><a href="#cb5-612"></a>1 ON</span>
-<span id="cb5-613"><a href="#cb5-613"></a>56</span>
-<span id="cb5-614"><a href="#cb5-614"></a></span>
-<span id="cb5-615"><a href="#cb5-615"></a>Functions with Two Switches</span>
-<span id="cb5-616"><a href="#cb5-616"></a>-Two switches can be</span>
-<span id="cb5-617"><a href="#cb5-617"></a>connected either in series or</span>
-<span id="cb5-618"><a href="#cb5-618"></a>in parallel</span>
-<span id="cb5-619"><a href="#cb5-619"></a>-Using a series connection,</span>
-<span id="cb5-620"><a href="#cb5-620"></a>the light will be turned on only</span>
-<span id="cb5-621"><a href="#cb5-621"></a>if both switches are closed. If</span>
-<span id="cb5-622"><a href="#cb5-622"></a>either switch is open, the light</span>
-<span id="cb5-623"><a href="#cb5-623"></a>will be off.</span>
-<span id="cb5-624"><a href="#cb5-624"></a>– L(x1, x2) = x1 · x2</span>
-<span id="cb5-625"><a href="#cb5-625"></a>where L = 1 if x1 = 1 and</span>
-<span id="cb5-626"><a href="#cb5-626"></a>x2 = 1, L = 0 otherwise.</span>
-<span id="cb5-627"><a href="#cb5-627"></a>Two basic two-input logic functions</span>
-<span id="cb5-628"><a href="#cb5-628"></a>-· is logical AND</span>
-<span id="cb5-629"><a href="#cb5-629"></a>57</span>
+<span id="cb5-597"><a href="#cb5-597"></a>::: {.column width="50%"}</span>
+<span id="cb5-598"><a href="#cb5-598"></a></span>
+<span id="cb5-599"><a href="#cb5-599"></a></span>
+<span id="cb5-600"><a href="#cb5-600"></a>$x = 0$</span>
+<span id="cb5-601"><a href="#cb5-601"></a></span>
+<span id="cb5-602"><a href="#cb5-602"></a>&lt;center&gt;</span>
+<span id="cb5-603"><a href="#cb5-603"></a>&lt;img src="drawio/10_open.drawio.svg"&gt;</span>
+<span id="cb5-604"><a href="#cb5-604"></a>&lt;/center&gt;</span>
+<span id="cb5-605"><a href="#cb5-605"></a></span>
+<span id="cb5-606"><a href="#cb5-606"></a></span>
+<span id="cb5-607"><a href="#cb5-607"></a>:::</span>
+<span id="cb5-608"><a href="#cb5-608"></a></span>
+<span id="cb5-609"><a href="#cb5-609"></a>::: {.column width="50%"}</span>
+<span id="cb5-610"><a href="#cb5-610"></a></span>
+<span id="cb5-611"><a href="#cb5-611"></a></span>
+<span id="cb5-612"><a href="#cb5-612"></a>$x = 1$</span>
+<span id="cb5-613"><a href="#cb5-613"></a></span>
+<span id="cb5-614"><a href="#cb5-614"></a>&lt;center&gt;</span>
+<span id="cb5-615"><a href="#cb5-615"></a>&lt;img src="drawio/10_closed.drawio.svg"&gt;</span>
+<span id="cb5-616"><a href="#cb5-616"></a>&lt;/center&gt;</span>
+<span id="cb5-617"><a href="#cb5-617"></a></span>
+<span id="cb5-618"><a href="#cb5-618"></a></span>
+<span id="cb5-619"><a href="#cb5-619"></a></span>
+<span id="cb5-620"><a href="#cb5-620"></a>:::</span>
+<span id="cb5-621"><a href="#cb5-621"></a></span>
+<span id="cb5-622"><a href="#cb5-622"></a>::::</span>
+<span id="cb5-623"><a href="#cb5-623"></a></span>
+<span id="cb5-624"><a href="#cb5-624"></a><span class="fu">## Switch Variables</span></span>
+<span id="cb5-625"><a href="#cb5-625"></a></span>
+<span id="cb5-626"><a href="#cb5-626"></a><span class="ss">- </span>Typically express this with a switch $\text{S}$.</span>
+<span id="cb5-627"><a href="#cb5-627"></a><span class="ss">- </span>Express the value of the $i$'th switch $\text{S}$ as $x_i$.</span>
+<span id="cb5-628"><a href="#cb5-628"></a></span>
+<span id="cb5-629"><a href="#cb5-629"></a></span>
 <span id="cb5-630"><a href="#cb5-630"></a></span>
-<span id="cb5-631"><a href="#cb5-631"></a>Functions with Two Switches</span>
-<span id="cb5-632"><a href="#cb5-632"></a>-With a parallel connection of the</span>
-<span id="cb5-633"><a href="#cb5-633"></a>two switches, the light will be on if</span>
-<span id="cb5-634"><a href="#cb5-634"></a>either the x1 or x2 switch is closed.</span>
-<span id="cb5-635"><a href="#cb5-635"></a>The light will also be on if both</span>
-<span id="cb5-636"><a href="#cb5-636"></a>switches are closed. The light will</span>
-<span id="cb5-637"><a href="#cb5-637"></a>be off only if both switches are</span>
-<span id="cb5-638"><a href="#cb5-638"></a>open.</span>
-<span id="cb5-639"><a href="#cb5-639"></a>– L(x1, x2) = x1 + x2</span>
-<span id="cb5-640"><a href="#cb5-640"></a>where L = 1 if x1 = 1 or x2 = 1</span>
-<span id="cb5-641"><a href="#cb5-641"></a>or if x1 = x2 = 1.</span>
-<span id="cb5-642"><a href="#cb5-642"></a>L = 0 if x1 = x2 = 0.</span>
-<span id="cb5-643"><a href="#cb5-643"></a>-“+” is logical OR</span>
-<span id="cb5-644"><a href="#cb5-644"></a>Two basic two-input logic functions</span>
-<span id="cb5-645"><a href="#cb5-645"></a>58</span>
+<span id="cb5-631"><a href="#cb5-631"></a>&lt;center&gt;</span>
+<span id="cb5-632"><a href="#cb5-632"></a>&lt;img src="drawio/10_switch.drawio.svg"&gt;</span>
+<span id="cb5-633"><a href="#cb5-633"></a>&lt;br&gt;</span>
+<span id="cb5-634"><a href="#cb5-634"></a>$x_i$</span>
+<span id="cb5-635"><a href="#cb5-635"></a>&lt;/center&gt;</span>
+<span id="cb5-636"><a href="#cb5-636"></a></span>
+<span id="cb5-637"><a href="#cb5-637"></a><span class="fu">## AND function</span></span>
+<span id="cb5-638"><a href="#cb5-638"></a></span>
+<span id="cb5-639"><a href="#cb5-639"></a><span class="ss">- </span>Two switches in series.</span>
+<span id="cb5-640"><a href="#cb5-640"></a></span>
+<span id="cb5-641"><a href="#cb5-641"></a>&lt;center&gt;</span>
+<span id="cb5-642"><a href="#cb5-642"></a>&lt;img src="drawio/10_and_func.drawio.svg"&gt;</span>
+<span id="cb5-643"><a href="#cb5-643"></a>&lt;br&gt;</span>
+<span id="cb5-644"><a href="#cb5-644"></a>$x_1 \land x_2$</span>
+<span id="cb5-645"><a href="#cb5-645"></a>&lt;/center&gt;</span>
 <span id="cb5-646"><a href="#cb5-646"></a></span>
-<span id="cb5-647"><a href="#cb5-647"></a>A Three-Switch Function</span>
-<span id="cb5-648"><a href="#cb5-648"></a>-Three switches can be used to</span>
-<span id="cb5-649"><a href="#cb5-649"></a>control the light in more</span>
-<span id="cb5-650"><a href="#cb5-650"></a>complex ways. This series-</span>
-<span id="cb5-651"><a href="#cb5-651"></a>parallel connection of switches</span>
-<span id="cb5-652"><a href="#cb5-652"></a>realizes the logic function:</span>
-<span id="cb5-653"><a href="#cb5-653"></a>– L(x1, x2, x3) = (x1 + x2) · x3</span>
-<span id="cb5-654"><a href="#cb5-654"></a>-The light is on if x3 = 1 and, at</span>
-<span id="cb5-655"><a href="#cb5-655"></a>the same time, at least one of</span>
-<span id="cb5-656"><a href="#cb5-656"></a>the x1 or x2 are 1.</span>
-<span id="cb5-657"><a href="#cb5-657"></a>59</span>
+<span id="cb5-647"><a href="#cb5-647"></a><span class="fu">## AND function</span></span>
+<span id="cb5-648"><a href="#cb5-648"></a></span>
+<span id="cb5-649"><a href="#cb5-649"></a><span class="ss">- </span>Two switches in series.</span>
+<span id="cb5-650"><a href="#cb5-650"></a></span>
+<span id="cb5-651"><a href="#cb5-651"></a>&lt;center&gt;</span>
+<span id="cb5-652"><a href="#cb5-652"></a>&lt;img src="drawio/10_or_func.drawio.svg"&gt;</span>
+<span id="cb5-653"><a href="#cb5-653"></a>&lt;br&gt;</span>
+<span id="cb5-654"><a href="#cb5-654"></a>$x_1 \lor x_2$</span>
+<span id="cb5-655"><a href="#cb5-655"></a>&lt;/center&gt;</span>
+<span id="cb5-656"><a href="#cb5-656"></a></span>
+<span id="cb5-657"><a href="#cb5-657"></a><span class="fu">## </span></span>
 <span id="cb5-658"><a href="#cb5-658"></a></span>
-<span id="cb5-659"><a href="#cb5-659"></a>A Three-Switch Function</span>
-<span id="cb5-660"><a href="#cb5-660"></a>60</span>
-<span id="cb5-661"><a href="#cb5-661"></a></span>
-<span id="cb5-662"><a href="#cb5-662"></a>Truth Tables</span>
-<span id="cb5-663"><a href="#cb5-663"></a>-Every logical function over a finite set of inputs can be</span>
-<span id="cb5-664"><a href="#cb5-664"></a>described in a tabular fashion that enumerates all possible</span>
-<span id="cb5-665"><a href="#cb5-665"></a>input combinations and provides the associated output.</span>
-<span id="cb5-666"><a href="#cb5-666"></a>-Functions expressed this way are called truth tables.</span>
-<span id="cb5-667"><a href="#cb5-667"></a>61</span>
-<span id="cb5-668"><a href="#cb5-668"></a></span>
-<span id="cb5-669"><a href="#cb5-669"></a>Pondering Truth Tables</span>
-<span id="cb5-670"><a href="#cb5-670"></a>62</span>
-<span id="cb5-671"><a href="#cb5-671"></a></span>
-<span id="cb5-672"><a href="#cb5-672"></a>TRANSISTORS</span>
-<span id="cb5-673"><a href="#cb5-673"></a>63</span>
-<span id="cb5-674"><a href="#cb5-674"></a></span>
-<span id="cb5-675"><a href="#cb5-675"></a>Transistors are the physical building</span>
-<span id="cb5-676"><a href="#cb5-676"></a>blocks of modern computers!</span>
-<span id="cb5-677"><a href="#cb5-677"></a>A transistor is the</span>
-<span id="cb5-678"><a href="#cb5-678"></a>physical device we use to</span>
-<span id="cb5-679"><a href="#cb5-679"></a>turn continuous electrical</span>
-<span id="cb5-680"><a href="#cb5-680"></a>behavior into digital 0s</span>
-<span id="cb5-681"><a href="#cb5-681"></a>and 1s.</span>
-<span id="cb5-682"><a href="#cb5-682"></a>You can think of it as an</span>
-<span id="cb5-683"><a href="#cb5-683"></a>electrically controlled</span>
-<span id="cb5-684"><a href="#cb5-684"></a>switch that turns current</span>
-<span id="cb5-685"><a href="#cb5-685"></a>on or off.</span>
-<span id="cb5-686"><a href="#cb5-686"></a>64</span>
-<span id="cb5-687"><a href="#cb5-687"></a></span>
-<span id="cb5-688"><a href="#cb5-688"></a>Transistors are like switches</span>
-<span id="cb5-689"><a href="#cb5-689"></a>Off On</span>
-<span id="cb5-690"><a href="#cb5-690"></a>Switches are controlled by physical contact</span>
-<span id="cb5-691"><a href="#cb5-691"></a>Transistors are controlled by a voltage</span>
-<span id="cb5-692"><a href="#cb5-692"></a>65</span>
-<span id="cb5-693"><a href="#cb5-693"></a></span>
-<span id="cb5-694"><a href="#cb5-694"></a>Two States: Binary!</span>
-<span id="cb5-695"><a href="#cb5-695"></a>-Transistors can be in two distinct states: on or off</span>
-<span id="cb5-696"><a href="#cb5-696"></a>-This is why our machines communicate in binary (1s and 0s)!</span>
-<span id="cb5-697"><a href="#cb5-697"></a>On Off</span>
-<span id="cb5-698"><a href="#cb5-698"></a>66</span>
-<span id="cb5-699"><a href="#cb5-699"></a></span>
-<span id="cb5-700"><a href="#cb5-700"></a>Logic Levels</span>
-<span id="cb5-701"><a href="#cb5-701"></a>-Instead of specifying the exact voltage level (e.g. 3V or 5V), we’ll</span>
-<span id="cb5-702"><a href="#cb5-702"></a>simply use binary terms when discussing transistors.</span>
-<span id="cb5-703"><a href="#cb5-703"></a>-We’ll either have a high voltage or a low voltage.</span>
-<span id="cb5-704"><a href="#cb5-704"></a>-There are a few different terms for these voltage levels.</span>
-<span id="cb5-705"><a href="#cb5-705"></a>– High voltage</span>
-<span id="cb5-706"><a href="#cb5-706"></a>-logic high = logic 1 = 1</span>
-<span id="cb5-707"><a href="#cb5-707"></a>– Low voltage</span>
-<span id="cb5-708"><a href="#cb5-708"></a>-logic low = logic 0 = 0</span>
-<span id="cb5-709"><a href="#cb5-709"></a>67</span>
-<span id="cb5-710"><a href="#cb5-710"></a></span>
-<span id="cb5-711"><a href="#cb5-711"></a>Transistors</span>
-<span id="cb5-712"><a href="#cb5-712"></a>-We will be working with two types of transistors</span>
-<span id="cb5-713"><a href="#cb5-713"></a>– nMOS transistors</span>
-<span id="cb5-714"><a href="#cb5-714"></a>– pMOS transistors</span>
-<span id="cb5-715"><a href="#cb5-715"></a>-There are three terminals</span>
-<span id="cb5-716"><a href="#cb5-716"></a>– Gate: controls whether the transistor is on or off</span>
-<span id="cb5-717"><a href="#cb5-717"></a>– Source and Drain: endpoints</span>
-<span id="cb5-718"><a href="#cb5-718"></a>68</span>
-<span id="cb5-719"><a href="#cb5-719"></a></span>
-<span id="cb5-720"><a href="#cb5-720"></a>Transistor Symbol</span>
-<span id="cb5-721"><a href="#cb5-721"></a>Transistor</span>
-<span id="cb5-722"><a href="#cb5-722"></a>Switch</span>
-<span id="cb5-723"><a href="#cb5-723"></a>(n-channel MOSFET)</span>
-<span id="cb5-724"><a href="#cb5-724"></a>The terminal labeled with the blue dot determines whether</span>
-<span id="cb5-725"><a href="#cb5-725"></a>current can flow between the terminals labeled with the red dot.</span>
-<span id="cb5-726"><a href="#cb5-726"></a>69</span>
-<span id="cb5-727"><a href="#cb5-727"></a></span>
-<span id="cb5-728"><a href="#cb5-728"></a>NMOS Transistor</span>
-<span id="cb5-729"><a href="#cb5-729"></a>-There are three terminals V (drain voltage)</span>
-<span id="cb5-730"><a href="#cb5-730"></a>D</span>
-<span id="cb5-731"><a href="#cb5-731"></a>– Gate: controls whether the</span>
-<span id="cb5-732"><a href="#cb5-732"></a>transistor is on or off</span>
-<span id="cb5-733"><a href="#cb5-733"></a>– Source and Drain: endpoints</span>
-<span id="cb5-734"><a href="#cb5-734"></a>V (gate voltage)</span>
-<span id="cb5-735"><a href="#cb5-735"></a>G</span>
-<span id="cb5-736"><a href="#cb5-736"></a>V (source voltage)</span>
-<span id="cb5-737"><a href="#cb5-737"></a>S</span>
-<span id="cb5-738"><a href="#cb5-738"></a>70</span>
-<span id="cb5-739"><a href="#cb5-739"></a></span>
-<span id="cb5-740"><a href="#cb5-740"></a>NMOS Transistor</span>
-<span id="cb5-741"><a href="#cb5-741"></a>-If the gate voltage is high (logic 1), V (drain voltage)</span>
-<span id="cb5-742"><a href="#cb5-742"></a>D</span>
-<span id="cb5-743"><a href="#cb5-743"></a>current can flow between source</span>
-<span id="cb5-744"><a href="#cb5-744"></a>and drain</span>
-<span id="cb5-745"><a href="#cb5-745"></a>– The source and drain will be</span>
-<span id="cb5-746"><a href="#cb5-746"></a>connected and will have the</span>
-<span id="cb5-747"><a href="#cb5-747"></a>V (gate voltage)</span>
-<span id="cb5-748"><a href="#cb5-748"></a>G</span>
-<span id="cb5-749"><a href="#cb5-749"></a>same voltage</span>
-<span id="cb5-750"><a href="#cb5-750"></a>-If the gate voltage is low, current</span>
-<span id="cb5-751"><a href="#cb5-751"></a>cannot flow between source and</span>
-<span id="cb5-752"><a href="#cb5-752"></a>drain</span>
-<span id="cb5-753"><a href="#cb5-753"></a>V (source voltage)</span>
-<span id="cb5-754"><a href="#cb5-754"></a>S</span>
-<span id="cb5-755"><a href="#cb5-755"></a>– The source and drain are not</span>
-<span id="cb5-756"><a href="#cb5-756"></a>connected</span>
-<span id="cb5-757"><a href="#cb5-757"></a>71</span>
-<span id="cb5-758"><a href="#cb5-758"></a></span>
-<span id="cb5-759"><a href="#cb5-759"></a>NMOS Transistor</span>
-<span id="cb5-760"><a href="#cb5-760"></a>Let’s say that we know the values of V  and V . What is the value of V  in</span>
-<span id="cb5-761"><a href="#cb5-761"></a>|     |     |     |     | G   |     | S   |     |     | D   |</span>
-<span id="cb5-762"><a href="#cb5-762"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
-<span id="cb5-763"><a href="#cb5-763"></a>each of the following diagrams?</span>
-<span id="cb5-764"><a href="#cb5-764"></a>V</span>
-<span id="cb5-765"><a href="#cb5-765"></a>|         | V       |         | V       |     |         |     |         |         | V       |</span>
-<span id="cb5-766"><a href="#cb5-766"></a>| ------- | ------- | ------- | ------- | --- | ------- | --- | ------- | ------- | ------- |</span>
-<span id="cb5-767"><a href="#cb5-767"></a>|         | D       |         | D       |     |         |     | D       |         | D       |</span>
-<span id="cb5-768"><a href="#cb5-768"></a>| V       |         | V       |         |     | V       |     |         | V       |         |</span>
-<span id="cb5-769"><a href="#cb5-769"></a>| G       |         | G       |         |     | G       |     |         | G       |         |</span>
-<span id="cb5-770"><a href="#cb5-770"></a>| Logic 1 |         | Logic 1 |         |     | Logic 0 |     |         | Logic 0 |         |</span>
-<span id="cb5-771"><a href="#cb5-771"></a>|         | V       |         | V       |     |         |     | V       |         | V       |</span>
-<span id="cb5-772"><a href="#cb5-772"></a>|         | S       |         | S       |     |         |     | S       |         | S       |</span>
-<span id="cb5-773"><a href="#cb5-773"></a>|         | Logic 0 |         | Logic 1 |     |         |     | Logic 0 |         | Logic 1 |</span>
-<span id="cb5-774"><a href="#cb5-774"></a>72</span>
-<span id="cb5-775"><a href="#cb5-775"></a></span>
-<span id="cb5-776"><a href="#cb5-776"></a>NMOS Transistor</span>
-<span id="cb5-777"><a href="#cb5-777"></a>V V</span>
-<span id="cb5-778"><a href="#cb5-778"></a>V V</span>
-<span id="cb5-779"><a href="#cb5-779"></a>D D</span>
-<span id="cb5-780"><a href="#cb5-780"></a>D D</span>
-<span id="cb5-781"><a href="#cb5-781"></a>Logic 0 Logic 1</span>
-<span id="cb5-782"><a href="#cb5-782"></a>unknown unknown</span>
-<span id="cb5-783"><a href="#cb5-783"></a>V V</span>
-<span id="cb5-784"><a href="#cb5-784"></a>V V</span>
-<span id="cb5-785"><a href="#cb5-785"></a>G G</span>
-<span id="cb5-786"><a href="#cb5-786"></a>G G</span>
-<span id="cb5-787"><a href="#cb5-787"></a>Logic 1 Logic 1</span>
-<span id="cb5-788"><a href="#cb5-788"></a>Logic 0 Logic 0</span>
-<span id="cb5-789"><a href="#cb5-789"></a>V V</span>
-<span id="cb5-790"><a href="#cb5-790"></a>V V</span>
-<span id="cb5-791"><a href="#cb5-791"></a>S S</span>
-<span id="cb5-792"><a href="#cb5-792"></a>S S</span>
-<span id="cb5-793"><a href="#cb5-793"></a>Logic 0 Logic 1</span>
-<span id="cb5-794"><a href="#cb5-794"></a>Logic 0 Logic 1</span>
-<span id="cb5-795"><a href="#cb5-795"></a>V is high, so source and drain are connected V is low, so source and drain are not connected</span>
-<span id="cb5-796"><a href="#cb5-796"></a>G G</span>
-<span id="cb5-797"><a href="#cb5-797"></a>73</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb5-659"><a href="#cb5-659"></a>– on or off, open or closed</span>
+<span id="cb5-660"><a href="#cb5-660"></a>-The setting of switches can be used to turn on and off other switches</span>
+<span id="cb5-661"><a href="#cb5-661"></a>to compose more complicated functions.</span>
+<span id="cb5-662"><a href="#cb5-662"></a>55</span>
+<span id="cb5-663"><a href="#cb5-663"></a></span>
+<span id="cb5-664"><a href="#cb5-664"></a>A Simple Function: Turning on a Light</span>
+<span id="cb5-665"><a href="#cb5-665"></a>-By simply adding a power</span>
+<span id="cb5-666"><a href="#cb5-666"></a>source and connecting a load</span>
+<span id="cb5-667"><a href="#cb5-667"></a>(light bulb) our controlled</span>
+<span id="cb5-668"><a href="#cb5-668"></a>switch can use a binary</span>
+<span id="cb5-669"><a href="#cb5-669"></a>variable to control a light.</span>
+<span id="cb5-670"><a href="#cb5-670"></a>-This simple logic expression</span>
+<span id="cb5-671"><a href="#cb5-671"></a>describes the output as a</span>
+<span id="cb5-672"><a href="#cb5-672"></a>function of its inputs.</span>
+<span id="cb5-673"><a href="#cb5-673"></a>– We say that L(x) = x is a</span>
+<span id="cb5-674"><a href="#cb5-674"></a>x light</span>
+<span id="cb5-675"><a href="#cb5-675"></a>logic function and that x is</span>
+<span id="cb5-676"><a href="#cb5-676"></a>L(x) = x</span>
+<span id="cb5-677"><a href="#cb5-677"></a>0 OFF</span>
+<span id="cb5-678"><a href="#cb5-678"></a>an input variable x.</span>
+<span id="cb5-679"><a href="#cb5-679"></a>1 ON</span>
+<span id="cb5-680"><a href="#cb5-680"></a>56</span>
+<span id="cb5-681"><a href="#cb5-681"></a></span>
+<span id="cb5-682"><a href="#cb5-682"></a>Functions with Two Switches</span>
+<span id="cb5-683"><a href="#cb5-683"></a>-Two switches can be</span>
+<span id="cb5-684"><a href="#cb5-684"></a>connected either in series or</span>
+<span id="cb5-685"><a href="#cb5-685"></a>in parallel</span>
+<span id="cb5-686"><a href="#cb5-686"></a>-Using a series connection,</span>
+<span id="cb5-687"><a href="#cb5-687"></a>the light will be turned on only</span>
+<span id="cb5-688"><a href="#cb5-688"></a>if both switches are closed. If</span>
+<span id="cb5-689"><a href="#cb5-689"></a>either switch is open, the light</span>
+<span id="cb5-690"><a href="#cb5-690"></a>will be off.</span>
+<span id="cb5-691"><a href="#cb5-691"></a>– L(x1, x2) = x1 · x2</span>
+<span id="cb5-692"><a href="#cb5-692"></a>where L = 1 if x1 = 1 and</span>
+<span id="cb5-693"><a href="#cb5-693"></a>x2 = 1, L = 0 otherwise.</span>
+<span id="cb5-694"><a href="#cb5-694"></a>Two basic two-input logic functions</span>
+<span id="cb5-695"><a href="#cb5-695"></a>-· is logical AND</span>
+<span id="cb5-696"><a href="#cb5-696"></a>57</span>
+<span id="cb5-697"><a href="#cb5-697"></a></span>
+<span id="cb5-698"><a href="#cb5-698"></a>Functions with Two Switches</span>
+<span id="cb5-699"><a href="#cb5-699"></a>-With a parallel connection of the</span>
+<span id="cb5-700"><a href="#cb5-700"></a>two switches, the light will be on if</span>
+<span id="cb5-701"><a href="#cb5-701"></a>either the x1 or x2 switch is closed.</span>
+<span id="cb5-702"><a href="#cb5-702"></a>The light will also be on if both</span>
+<span id="cb5-703"><a href="#cb5-703"></a>switches are closed. The light will</span>
+<span id="cb5-704"><a href="#cb5-704"></a>be off only if both switches are</span>
+<span id="cb5-705"><a href="#cb5-705"></a>open.</span>
+<span id="cb5-706"><a href="#cb5-706"></a>– L(x1, x2) = x1 + x2</span>
+<span id="cb5-707"><a href="#cb5-707"></a>where L = 1 if x1 = 1 or x2 = 1</span>
+<span id="cb5-708"><a href="#cb5-708"></a>or if x1 = x2 = 1.</span>
+<span id="cb5-709"><a href="#cb5-709"></a>L = 0 if x1 = x2 = 0.</span>
+<span id="cb5-710"><a href="#cb5-710"></a>-“+” is logical OR</span>
+<span id="cb5-711"><a href="#cb5-711"></a>Two basic two-input logic functions</span>
+<span id="cb5-712"><a href="#cb5-712"></a>58</span>
+<span id="cb5-713"><a href="#cb5-713"></a></span>
+<span id="cb5-714"><a href="#cb5-714"></a>A Three-Switch Function</span>
+<span id="cb5-715"><a href="#cb5-715"></a>-Three switches can be used to</span>
+<span id="cb5-716"><a href="#cb5-716"></a>control the light in more</span>
+<span id="cb5-717"><a href="#cb5-717"></a>complex ways. This series-</span>
+<span id="cb5-718"><a href="#cb5-718"></a>parallel connection of switches</span>
+<span id="cb5-719"><a href="#cb5-719"></a>realizes the logic function:</span>
+<span id="cb5-720"><a href="#cb5-720"></a>– L(x1, x2, x3) = (x1 + x2) · x3</span>
+<span id="cb5-721"><a href="#cb5-721"></a>-The light is on if x3 = 1 and, at</span>
+<span id="cb5-722"><a href="#cb5-722"></a>the same time, at least one of</span>
+<span id="cb5-723"><a href="#cb5-723"></a>the x1 or x2 are 1.</span>
+<span id="cb5-724"><a href="#cb5-724"></a>59</span>
+<span id="cb5-725"><a href="#cb5-725"></a></span>
+<span id="cb5-726"><a href="#cb5-726"></a>A Three-Switch Function</span>
+<span id="cb5-727"><a href="#cb5-727"></a>60</span>
+<span id="cb5-728"><a href="#cb5-728"></a></span>
+<span id="cb5-729"><a href="#cb5-729"></a>Truth Tables</span>
+<span id="cb5-730"><a href="#cb5-730"></a>-Every logical function over a finite set of inputs can be</span>
+<span id="cb5-731"><a href="#cb5-731"></a>described in a tabular fashion that enumerates all possible</span>
+<span id="cb5-732"><a href="#cb5-732"></a>input combinations and provides the associated output.</span>
+<span id="cb5-733"><a href="#cb5-733"></a>-Functions expressed this way are called truth tables.</span>
+<span id="cb5-734"><a href="#cb5-734"></a>61</span>
+<span id="cb5-735"><a href="#cb5-735"></a></span>
+<span id="cb5-736"><a href="#cb5-736"></a>Pondering Truth Tables</span>
+<span id="cb5-737"><a href="#cb5-737"></a>62</span>
+<span id="cb5-738"><a href="#cb5-738"></a></span>
+<span id="cb5-739"><a href="#cb5-739"></a>TRANSISTORS</span>
+<span id="cb5-740"><a href="#cb5-740"></a>63</span>
+<span id="cb5-741"><a href="#cb5-741"></a></span>
+<span id="cb5-742"><a href="#cb5-742"></a>Transistors are the physical building</span>
+<span id="cb5-743"><a href="#cb5-743"></a>blocks of modern computers!</span>
+<span id="cb5-744"><a href="#cb5-744"></a>A transistor is the</span>
+<span id="cb5-745"><a href="#cb5-745"></a>physical device we use to</span>
+<span id="cb5-746"><a href="#cb5-746"></a>turn continuous electrical</span>
+<span id="cb5-747"><a href="#cb5-747"></a>behavior into digital 0s</span>
+<span id="cb5-748"><a href="#cb5-748"></a>and 1s.</span>
+<span id="cb5-749"><a href="#cb5-749"></a>You can think of it as an</span>
+<span id="cb5-750"><a href="#cb5-750"></a>electrically controlled</span>
+<span id="cb5-751"><a href="#cb5-751"></a>switch that turns current</span>
+<span id="cb5-752"><a href="#cb5-752"></a>on or off.</span>
+<span id="cb5-753"><a href="#cb5-753"></a>64</span>
+<span id="cb5-754"><a href="#cb5-754"></a></span>
+<span id="cb5-755"><a href="#cb5-755"></a>Transistors are like switches</span>
+<span id="cb5-756"><a href="#cb5-756"></a>Off On</span>
+<span id="cb5-757"><a href="#cb5-757"></a>Switches are controlled by physical contact</span>
+<span id="cb5-758"><a href="#cb5-758"></a>Transistors are controlled by a voltage</span>
+<span id="cb5-759"><a href="#cb5-759"></a>65</span>
+<span id="cb5-760"><a href="#cb5-760"></a></span>
+<span id="cb5-761"><a href="#cb5-761"></a>Two States: Binary!</span>
+<span id="cb5-762"><a href="#cb5-762"></a>-Transistors can be in two distinct states: on or off</span>
+<span id="cb5-763"><a href="#cb5-763"></a>-This is why our machines communicate in binary (1s and 0s)!</span>
+<span id="cb5-764"><a href="#cb5-764"></a>On Off</span>
+<span id="cb5-765"><a href="#cb5-765"></a>66</span>
+<span id="cb5-766"><a href="#cb5-766"></a></span>
+<span id="cb5-767"><a href="#cb5-767"></a>Logic Levels</span>
+<span id="cb5-768"><a href="#cb5-768"></a>-Instead of specifying the exact voltage level (e.g. 3V or 5V), we’ll</span>
+<span id="cb5-769"><a href="#cb5-769"></a>simply use binary terms when discussing transistors.</span>
+<span id="cb5-770"><a href="#cb5-770"></a>-We’ll either have a high voltage or a low voltage.</span>
+<span id="cb5-771"><a href="#cb5-771"></a>-There are a few different terms for these voltage levels.</span>
+<span id="cb5-772"><a href="#cb5-772"></a>– High voltage</span>
+<span id="cb5-773"><a href="#cb5-773"></a>-logic high = logic 1 = 1</span>
+<span id="cb5-774"><a href="#cb5-774"></a>– Low voltage</span>
+<span id="cb5-775"><a href="#cb5-775"></a>-logic low = logic 0 = 0</span>
+<span id="cb5-776"><a href="#cb5-776"></a>67</span>
+<span id="cb5-777"><a href="#cb5-777"></a></span>
+<span id="cb5-778"><a href="#cb5-778"></a>Transistors</span>
+<span id="cb5-779"><a href="#cb5-779"></a>-We will be working with two types of transistors</span>
+<span id="cb5-780"><a href="#cb5-780"></a>– nMOS transistors</span>
+<span id="cb5-781"><a href="#cb5-781"></a>– pMOS transistors</span>
+<span id="cb5-782"><a href="#cb5-782"></a>-There are three terminals</span>
+<span id="cb5-783"><a href="#cb5-783"></a>– Gate: controls whether the transistor is on or off</span>
+<span id="cb5-784"><a href="#cb5-784"></a>– Source and Drain: endpoints</span>
+<span id="cb5-785"><a href="#cb5-785"></a>68</span>
+<span id="cb5-786"><a href="#cb5-786"></a></span>
+<span id="cb5-787"><a href="#cb5-787"></a>Transistor Symbol</span>
+<span id="cb5-788"><a href="#cb5-788"></a>Transistor</span>
+<span id="cb5-789"><a href="#cb5-789"></a>Switch</span>
+<span id="cb5-790"><a href="#cb5-790"></a>(n-channel MOSFET)</span>
+<span id="cb5-791"><a href="#cb5-791"></a>The terminal labeled with the blue dot determines whether</span>
+<span id="cb5-792"><a href="#cb5-792"></a>current can flow between the terminals labeled with the red dot.</span>
+<span id="cb5-793"><a href="#cb5-793"></a>69</span>
+<span id="cb5-794"><a href="#cb5-794"></a></span>
+<span id="cb5-795"><a href="#cb5-795"></a>NMOS Transistor</span>
+<span id="cb5-796"><a href="#cb5-796"></a>-There are three terminals V (drain voltage)</span>
+<span id="cb5-797"><a href="#cb5-797"></a>D</span>
+<span id="cb5-798"><a href="#cb5-798"></a>– Gate: controls whether the</span>
+<span id="cb5-799"><a href="#cb5-799"></a>transistor is on or off</span>
+<span id="cb5-800"><a href="#cb5-800"></a>– Source and Drain: endpoints</span>
+<span id="cb5-801"><a href="#cb5-801"></a>V (gate voltage)</span>
+<span id="cb5-802"><a href="#cb5-802"></a>G</span>
+<span id="cb5-803"><a href="#cb5-803"></a>V (source voltage)</span>
+<span id="cb5-804"><a href="#cb5-804"></a>S</span>
+<span id="cb5-805"><a href="#cb5-805"></a>70</span>
+<span id="cb5-806"><a href="#cb5-806"></a></span>
+<span id="cb5-807"><a href="#cb5-807"></a>NMOS Transistor</span>
+<span id="cb5-808"><a href="#cb5-808"></a>-If the gate voltage is high (logic 1), V (drain voltage)</span>
+<span id="cb5-809"><a href="#cb5-809"></a>D</span>
+<span id="cb5-810"><a href="#cb5-810"></a>current can flow between source</span>
+<span id="cb5-811"><a href="#cb5-811"></a>and drain</span>
+<span id="cb5-812"><a href="#cb5-812"></a>– The source and drain will be</span>
+<span id="cb5-813"><a href="#cb5-813"></a>connected and will have the</span>
+<span id="cb5-814"><a href="#cb5-814"></a>V (gate voltage)</span>
+<span id="cb5-815"><a href="#cb5-815"></a>G</span>
+<span id="cb5-816"><a href="#cb5-816"></a>same voltage</span>
+<span id="cb5-817"><a href="#cb5-817"></a>-If the gate voltage is low, current</span>
+<span id="cb5-818"><a href="#cb5-818"></a>cannot flow between source and</span>
+<span id="cb5-819"><a href="#cb5-819"></a>drain</span>
+<span id="cb5-820"><a href="#cb5-820"></a>V (source voltage)</span>
+<span id="cb5-821"><a href="#cb5-821"></a>S</span>
+<span id="cb5-822"><a href="#cb5-822"></a>– The source and drain are not</span>
+<span id="cb5-823"><a href="#cb5-823"></a>connected</span>
+<span id="cb5-824"><a href="#cb5-824"></a>71</span>
+<span id="cb5-825"><a href="#cb5-825"></a></span>
+<span id="cb5-826"><a href="#cb5-826"></a>NMOS Transistor</span>
+<span id="cb5-827"><a href="#cb5-827"></a>Let’s say that we know the values of V  and V . What is the value of V  in</span>
+<span id="cb5-828"><a href="#cb5-828"></a>|     |     |     |     | G   |     | S   |     |     | D   |</span>
+<span id="cb5-829"><a href="#cb5-829"></a>| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |</span>
+<span id="cb5-830"><a href="#cb5-830"></a>each of the following diagrams?</span>
+<span id="cb5-831"><a href="#cb5-831"></a>V</span>
+<span id="cb5-832"><a href="#cb5-832"></a>|         | V       |         | V       |     |         |     |         |         | V       |</span>
+<span id="cb5-833"><a href="#cb5-833"></a>| ------- | ------- | ------- | ------- | --- | ------- | --- | ------- | ------- | ------- |</span>
+<span id="cb5-834"><a href="#cb5-834"></a>|         | D       |         | D       |     |         |     | D       |         | D       |</span>
+<span id="cb5-835"><a href="#cb5-835"></a>| V       |         | V       |         |     | V       |     |         | V       |         |</span>
+<span id="cb5-836"><a href="#cb5-836"></a>| G       |         | G       |         |     | G       |     |         | G       |         |</span>
+<span id="cb5-837"><a href="#cb5-837"></a>| Logic 1 |         | Logic 1 |         |     | Logic 0 |     |         | Logic 0 |         |</span>
+<span id="cb5-838"><a href="#cb5-838"></a>|         | V       |         | V       |     |         |     | V       |         | V       |</span>
+<span id="cb5-839"><a href="#cb5-839"></a>|         | S       |         | S       |     |         |     | S       |         | S       |</span>
+<span id="cb5-840"><a href="#cb5-840"></a>|         | Logic 0 |         | Logic 1 |     |         |     | Logic 0 |         | Logic 1 |</span>
+<span id="cb5-841"><a href="#cb5-841"></a>72</span>
+<span id="cb5-842"><a href="#cb5-842"></a></span>
+<span id="cb5-843"><a href="#cb5-843"></a>NMOS Transistor</span>
+<span id="cb5-844"><a href="#cb5-844"></a>V V</span>
+<span id="cb5-845"><a href="#cb5-845"></a>V V</span>
+<span id="cb5-846"><a href="#cb5-846"></a>D D</span>
+<span id="cb5-847"><a href="#cb5-847"></a>D D</span>
+<span id="cb5-848"><a href="#cb5-848"></a>Logic 0 Logic 1</span>
+<span id="cb5-849"><a href="#cb5-849"></a>unknown unknown</span>
+<span id="cb5-850"><a href="#cb5-850"></a>V V</span>
+<span id="cb5-851"><a href="#cb5-851"></a>V V</span>
+<span id="cb5-852"><a href="#cb5-852"></a>G G</span>
+<span id="cb5-853"><a href="#cb5-853"></a>G G</span>
+<span id="cb5-854"><a href="#cb5-854"></a>Logic 1 Logic 1</span>
+<span id="cb5-855"><a href="#cb5-855"></a>Logic 0 Logic 0</span>
+<span id="cb5-856"><a href="#cb5-856"></a>V V</span>
+<span id="cb5-857"><a href="#cb5-857"></a>V V</span>
+<span id="cb5-858"><a href="#cb5-858"></a>S S</span>
+<span id="cb5-859"><a href="#cb5-859"></a>S S</span>
+<span id="cb5-860"><a href="#cb5-860"></a>Logic 0 Logic 1</span>
+<span id="cb5-861"><a href="#cb5-861"></a>Logic 0 Logic 1</span>
+<span id="cb5-862"><a href="#cb5-862"></a>V is high, so source and drain are connected V is low, so source and drain are not connected</span>
+<span id="cb5-863"><a href="#cb5-863"></a>G G</span>
+<span id="cb5-864"><a href="#cb5-864"></a>73</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
