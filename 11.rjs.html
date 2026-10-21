@@ -27,6 +27,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-0f071606cd187ea9c4f27a73aca9ddf7.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -623,66 +688,259 @@ Transistor
 <section id="example" class="slide level2">
 <h2>Example</h2>
 
-<img data-src="drawio/11_abstract.drawio.svg" class="r-stretch"></section>
-<section id="lets-design-an-inverter" class="slide level2">
-<h2>Let’s Design an Inverter!</h2>
-<p>I want to design a circuit that takes as an input a one-bit value and outputs the complement of that number. Symbol Truth Table A Y A Y 0 1 1 0</p>
+<img data-src="drawio/11_abstract.drawio.svg" class="r-stretch"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource py number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>A <span class="kw">or</span> (B <span class="kw">and</span> C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="lets-design" class="slide level2">
+<h2>Let’s Design!</h2>
+<ul>
+<li>How to design a circuit that
+<ul>
+<li>takes as an input a one-bit value and</li>
+<li>outputs the complement of that number.</li>
+</ul></li>
+<li>This is the inverter.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(V_{in}\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(V_{out}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<p><img style="transform:scale(3);transform-origin: top left" src="drawio/10_inverter.drawio.svg"></p>
+</div></div>
 </section>
 <section id="new-components" class="slide level2">
 <h2>New Components</h2>
-<p>■ Power – a component that produces a logic high value ■ Ground – a component that produces a logic low value</p>
+<ul>
+<li>We introduce
+<ul>
+<li>Power – a component that produces a logic high value
+<ul>
+<li>Horizontal bar, with a vertical power downward from the middle.</li>
+</ul></li>
+<li>Ground
+<ul>
+<li>a component that produces a logic low value</li>
+<li>Triangle pointing downward.</li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
-<section id="an-inverter-with-switches" class="slide level2">
-<h2>An Inverter with Switches</h2>
-<p>Power Y A Ground</p>
+<section id="new-components-1" class="slide level2">
+<h2>New Components</h2>
+<ul>
+<li>(This would blow up)</li>
+</ul>
+
+<img data-src="drawio/11_power_ground.drawio.svg" class="r-stretch"></section>
+<section id="recall" class="slide level2">
+<h2>Recall</h2>
+<ul>
+<li>We have two gate types…</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>NMOS</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(V_S\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(V_G\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(V_D\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">?</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">?</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<p>PMOS</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(V_S\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(V_G\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(V_D\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">?</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div></div>
 </section>
-<section id="an-inverter-with-switches-1" class="slide level2">
-<h2>An Inverter with Switches</h2>
-<p>■ When the input is 0 Power = 1 – The top switch is closed. – The bottom switch is open. – This will connect power to the output which will make Y = 1 A = 0 the output 1. Ground = 0</p>
-</section>
-<section id="an-inverter-with-switches-2" class="slide level2">
-<h2>An Inverter with Switches</h2>
-<p>■ When the input is 1 Power = 1 – The bottom switch is closed. – The top switch is open. – This will connect ground to Y = 0 the output which will make A = 1 the output 0. Ground = 0</p>
-</section>
-<section id="building-logic-gates-with-transistors" class="slide level2">
-<h2>Building Logic Gates with Transistors</h2>
-<p>■ Engineering Digital Behavior from Analog Devices – NMOS transistors act as controllable connections to ground – PMOS transistors act as controllable connections to power CMOS gates work by carefully arranging these Another way to say this: CMOS gates work by devices so physics is forced to produce clean using NMOS transistors to pull outputs down digital logic! and PMOS transistors to pull outputs up.</p>
-</section>
-<section id="building-an-inverter-with-transistors" class="slide level2">
-<h2>Building an Inverter with Transistors</h2>
-<p>Power Should this switch be replaced by an nmos or pmos transistor? Y A Should this switch be replaced by an nmos or pmos transistor? Ground</p>
-</section>
-<section id="cmos-inverter" class="slide level2">
-<h2>CMOS Inverter</h2>
-<p>Power In Out In Out 0 1 1 0 Ground</p>
-</section>
-<section id="cmos-inverter-1" class="slide level2">
-<h2>CMOS Inverter</h2>
-<p>Power In Out In = 0 Out = 1 0 1 1 0 Ground</p>
-</section>
-<section id="cmos-inverter-2" class="slide level2">
-<h2>CMOS Inverter</h2>
-<p>Power In Out In = 1 Out = 0 0 1 1 0 Ground</p>
+<section id="gate-to-power" class="slide level2">
+<h2>Gate to Power</h2>
+<ul>
+<li>If we connect a gate to power, we can conditionally transmit “logic high”.</li>
+<li>Using a NMOS gate, we can transmit only if we have “logic low” on our gate.</li>
+<li><span class="math inline">\(V_S = 1 \land V_G = 0 \implies V_D = 1\)</span></li>
+</ul>
+
+<img data-src="drawio/11_inv_nmos.drawio.svg" class="r-stretch"></section>
+<section id="gate-to-power-1" class="slide level2">
+<h2>Gate to Power</h2>
+<ul>
+<li>If we connect a gate to ground, we can conditionally transmit “logic low”.</li>
+<li>Using a PMOS gate, we can transmit only if we have “logic high” on our gate.</li>
+<li><span class="math inline">\(V_S = 0 \land V_G = 1 \implies V_D = 0\)</span></li>
+</ul>
+
+<img data-src="drawio/11_inv_pmos.drawio.svg" class="r-stretch"></section>
+<section id="by-our-powers-combined" class="slide level2">
+<h2>By Our Powers Combined</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Direct input to both a PMOS and NMOS</li>
+<li>One will always transmit.</li>
+<li>Therefore always transmitting 0 (ground) or 1 (power)</li>
+<li>And always inverting!</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img style="transform:scale(2);transform-origin: top left" src="drawio/11_inv_cmos.drawio.svg"></p>
+</div></div>
 </section>
 <section id="cmos-gates" class="slide level2">
 <h2>CMOS Gates</h2>
-<p>■ CMOS = Complementary MOS – The pMOS and nMOS transistors complement each other to form the logic gate ■ Common confusion – CMOS is not a type of transistor! – It is a technology that combines both nMOS and pMOS transistors You might also see MOSFET: MOS: Metal Oxide Metal Oxide Semiconductor Semiconductor ☺ Field-Effect Transistor</p>
+<ul>
+<li>CMOS = Complementary MOS
+<ul>
+<li>The PMOS and NMOS transistors complement each other to form the logic gate</li>
+</ul></li>
+<li>CMOS is not a type of transistor!
+<ul>
+<li>It is a technology that combines both NMOS and PMOS</li>
+</ul></li>
+<li>You might also see MOSFET: Metal Oxide Semiconductor Field-Effect Transistor</li>
+</ul>
 </section>
 <section id="pull-up-and-pull-down-networks" class="slide level2">
 <h2>Pull-up and Pull-down Networks</h2>
-<p>Power ■ Only one network will be on at a time ■ The pull-up network drives the output when the output is 1 ■ The pull-down network drives the output when the output is 0 Ground</p>
+<ul>
+<li>Only one network will be on at a time</li>
+<li>The pull-up network drives the output when the output is 1.</li>
+<li>The pull-down network drives the output when the output is 0.</li>
+<li>Output, not input, relevant.
+<ul>
+<li>We’re “closing all the switches” to either power or ground.</li>
+</ul></li>
+</ul>
 </section>
-<section id="cmos-inverter-3" class="slide level2">
+<section id="cmos-inverter" class="slide level2">
 <h2>CMOS Inverter</h2>
-<p>Power pull-up network In Out 0 1 1 0 pull-down network Ground</p>
+<ul>
+<li>The pull-up network drives the output when the output is 1. - PMOS “closes the switch” when low. - Which connects power to out.</li>
+<li>The pull-down network drives the output when the output is 0. - NMOS “closes the switch” when high. - Which connects ground to out.</li>
+</ul>
 </section>
 <section id="general-cmos-gate-recipe" class="slide level2">
 <h2>General CMOS Gate Recipe</h2>
-<p>A Recall: Step 1. Figure out pulldown network that Series = AND does what you want (i.e the set of conditions B C Parallel = OR where the output is ‘0’) e.g., F = A*(B+C) This comes from B Step 2. Build the “opposite” version of that DeMorgan’s Laws! In A network to figure out when the output should C practice, we swap series + be 1. parallel connections, use pMOS instead of nMOS But isn’t it Step 3. Combine the two so you have a circuit A B hard to wire Yes it is! that always pulls the output either up to 1 or C it all up? This does down to 0. not scale… A B C 32</p>
+<ol type="1">
+<li>Figure out pulldown network that does what you want (e.g., what gives <code>0</code>)</li>
+<li>Build the “opposite” version of that network for “pull up”</li>
+<li>Combine the two, splitting inputs across them.</li>
+</ol>
+<ul>
+<li>Generally, invert a network by swaping series/parallel and swapping PMOS/NMOS.</li>
+</ul>
 </section>
-<section id="what-function-does-this-gate-compute" class="slide level2">
-<h2>What function does this gate compute?</h2>
-<p>B A B C 0 0 0 1 1 0 1 1 A</p>
+<section id="what-does-this-compute" class="slide level2">
+<h2>What does this compute?</h2>
+<ul>
+<li>For power in draw.io, use “Vdd”, <a href="https://en.wikipedia.org/wiki/IC_power-supply_pin">read more</a></li>
+</ul>
+
+<img data-src="drawio/11_nor.drawio.svg" class="r-stretch"></section>
+<section id="exercise" class="slide level2">
+<h2>Exercise</h2>
+<ul>
+<li>Create XNOR</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(A\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(B\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(A == B\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
 
 
 </section></section>

@@ -8917,17 +8917,17 @@
     "href": "11.html#example",
     "title": "Transistors",
     "section": "Example",
-    "text": "Example",
+    "text": "Example\n\nA or (B and C)",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#lets-design-an-inverter",
-    "href": "11.html#lets-design-an-inverter",
+    "objectID": "11.html#lets-design",
+    "href": "11.html#lets-design",
     "title": "Transistors",
-    "section": "Let’s Design an Inverter!",
-    "text": "Let’s Design an Inverter!\nI want to design a circuit that takes as an input a one-bit value and outputs the complement of that number. Symbol Truth Table A Y A Y 0 1 1 0",
+    "section": "Let’s Design!",
+    "text": "Let’s Design!\n\nHow to design a circuit that\n\ntakes as an input a one-bit value and\noutputs the complement of that number.\n\nThis is the inverter.\n\n\n\n\n\n\n\\(V_{in}\\)\n\\(V_{out}\\)\n\n\n\n\n0\n1\n\n\n1\n0",
     "crumbs": [
       "Transistors"
     ]
@@ -8937,87 +8937,57 @@
     "href": "11.html#new-components",
     "title": "Transistors",
     "section": "New Components",
-    "text": "New Components\n■ Power – a component that produces a logic high value ■ Ground – a component that produces a logic low value",
+    "text": "New Components\n\nWe introduce\n\nPower – a component that produces a logic high value\n\nHorizontal bar, with a vertical power downward from the middle.\n\nGround\n\na component that produces a logic low value\nTriangle pointing downward.",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#an-inverter-with-switches",
-    "href": "11.html#an-inverter-with-switches",
+    "objectID": "11.html#new-components-1",
+    "href": "11.html#new-components-1",
     "title": "Transistors",
-    "section": "An Inverter with Switches",
-    "text": "An Inverter with Switches\nPower Y A Ground",
+    "section": "New Components",
+    "text": "New Components\n\n(This would blow up)",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#an-inverter-with-switches-1",
-    "href": "11.html#an-inverter-with-switches-1",
+    "objectID": "11.html#recall",
+    "href": "11.html#recall",
     "title": "Transistors",
-    "section": "An Inverter with Switches",
-    "text": "An Inverter with Switches\n■ When the input is 0 Power = 1 – The top switch is closed. – The bottom switch is open. – This will connect power to the output which will make Y = 1 A = 0 the output 1. Ground = 0",
+    "section": "Recall",
+    "text": "Recall\n\nWe have two gate types…\n\n\n\nNMOS\n\n\n\n\\(V_S\\)\n\\(V_G\\)\n\\(V_D\\)\n\n\n\n\n0\n1\n0\n\n\n1\n1\n1\n\n\n0\n0\n?\n\n\n1\n0\n?\n\n\n\n\nPMOS\n\n\n\n\\(V_S\\)\n\\(V_G\\)\n\\(V_D\\)\n\n\n\n\n0\n1\n?\n\n\n1\n1\n?\n\n\n0\n0\n0\n\n\n1\n0\n1",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#an-inverter-with-switches-2",
-    "href": "11.html#an-inverter-with-switches-2",
+    "objectID": "11.html#gate-to-power",
+    "href": "11.html#gate-to-power",
     "title": "Transistors",
-    "section": "An Inverter with Switches",
-    "text": "An Inverter with Switches\n■ When the input is 1 Power = 1 – The bottom switch is closed. – The top switch is open. – This will connect ground to Y = 0 the output which will make A = 1 the output 0. Ground = 0",
+    "section": "Gate to Power",
+    "text": "Gate to Power\n\nIf we connect a gate to power, we can conditionally transmit “logic high”.\nUsing a NMOS gate, we can transmit only if we have “logic low” on our gate.\n\\(V_S = 1 \\land V_G = 0 \\implies V_D = 1\\)",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#building-logic-gates-with-transistors",
-    "href": "11.html#building-logic-gates-with-transistors",
+    "objectID": "11.html#gate-to-power-1",
+    "href": "11.html#gate-to-power-1",
     "title": "Transistors",
-    "section": "Building Logic Gates with Transistors",
-    "text": "Building Logic Gates with Transistors\n■ Engineering Digital Behavior from Analog Devices – NMOS transistors act as controllable connections to ground – PMOS transistors act as controllable connections to power CMOS gates work by carefully arranging these Another way to say this: CMOS gates work by devices so physics is forced to produce clean using NMOS transistors to pull outputs down digital logic! and PMOS transistors to pull outputs up.",
+    "section": "Gate to Power",
+    "text": "Gate to Power\n\nIf we connect a gate to ground, we can conditionally transmit “logic low”.\nUsing a PMOS gate, we can transmit only if we have “logic high” on our gate.\n\\(V_S = 0 \\land V_G = 1 \\implies V_D = 0\\)",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#building-an-inverter-with-transistors",
-    "href": "11.html#building-an-inverter-with-transistors",
+    "objectID": "11.html#by-our-powers-combined",
+    "href": "11.html#by-our-powers-combined",
     "title": "Transistors",
-    "section": "Building an Inverter with Transistors",
-    "text": "Building an Inverter with Transistors\nPower Should this switch be replaced by an nmos or pmos transistor? Y A Should this switch be replaced by an nmos or pmos transistor? Ground",
-    "crumbs": [
-      "Transistors"
-    ]
-  },
-  {
-    "objectID": "11.html#cmos-inverter",
-    "href": "11.html#cmos-inverter",
-    "title": "Transistors",
-    "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower In Out In Out 0 1 1 0 Ground",
-    "crumbs": [
-      "Transistors"
-    ]
-  },
-  {
-    "objectID": "11.html#cmos-inverter-1",
-    "href": "11.html#cmos-inverter-1",
-    "title": "Transistors",
-    "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower In Out In = 0 Out = 1 0 1 1 0 Ground",
-    "crumbs": [
-      "Transistors"
-    ]
-  },
-  {
-    "objectID": "11.html#cmos-inverter-2",
-    "href": "11.html#cmos-inverter-2",
-    "title": "Transistors",
-    "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower In Out In = 1 Out = 0 0 1 1 0 Ground",
+    "section": "By Our Powers Combined",
+    "text": "By Our Powers Combined\n\n\n\nDirect input to both a PMOS and NMOS\nOne will always transmit.\nTherefore always transmitting 0 (ground) or 1 (power)\nAnd always inverting!",
     "crumbs": [
       "Transistors"
     ]
@@ -9027,7 +8997,7 @@
     "href": "11.html#cmos-gates",
     "title": "Transistors",
     "section": "CMOS Gates",
-    "text": "CMOS Gates\n■ CMOS = Complementary MOS – The pMOS and nMOS transistors complement each other to form the logic gate ■ Common confusion – CMOS is not a type of transistor! – It is a technology that combines both nMOS and pMOS transistors You might also see MOSFET: MOS: Metal Oxide Metal Oxide Semiconductor Semiconductor ☺ Field-Effect Transistor",
+    "text": "CMOS Gates\n\nCMOS = Complementary MOS\n\nThe PMOS and NMOS transistors complement each other to form the logic gate\n\nCMOS is not a type of transistor!\n\nIt is a technology that combines both NMOS and PMOS\n\nYou might also see MOSFET: Metal Oxide Semiconductor Field-Effect Transistor",
     "crumbs": [
       "Transistors"
     ]
@@ -9037,17 +9007,17 @@
     "href": "11.html#pull-up-and-pull-down-networks",
     "title": "Transistors",
     "section": "Pull-up and Pull-down Networks",
-    "text": "Pull-up and Pull-down Networks\nPower ■ Only one network will be on at a time ■ The pull-up network drives the output when the output is 1 ■ The pull-down network drives the output when the output is 0 Ground",
+    "text": "Pull-up and Pull-down Networks\n\nOnly one network will be on at a time\nThe pull-up network drives the output when the output is 1.\nThe pull-down network drives the output when the output is 0.\nOutput, not input, relevant.\n\nWe’re “closing all the switches” to either power or ground.",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#cmos-inverter-3",
-    "href": "11.html#cmos-inverter-3",
+    "objectID": "11.html#cmos-inverter",
+    "href": "11.html#cmos-inverter",
     "title": "Transistors",
     "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower pull-up network In Out 0 1 1 0 pull-down network Ground",
+    "text": "CMOS Inverter\n\nThe pull-up network drives the output when the output is 1. - PMOS “closes the switch” when low. - Which connects power to out.\nThe pull-down network drives the output when the output is 0. - NMOS “closes the switch” when high. - Which connects ground to out.",
     "crumbs": [
       "Transistors"
     ]
@@ -9057,17 +9027,27 @@
     "href": "11.html#general-cmos-gate-recipe",
     "title": "Transistors",
     "section": "General CMOS Gate Recipe",
-    "text": "General CMOS Gate Recipe\nA Recall: Step 1. Figure out pulldown network that Series = AND does what you want (i.e the set of conditions B C Parallel = OR where the output is ‘0’) e.g., F = A*(B+C) This comes from B Step 2. Build the “opposite” version of that DeMorgan’s Laws! In A network to figure out when the output should C practice, we swap series + be 1. parallel connections, use pMOS instead of nMOS But isn’t it Step 3. Combine the two so you have a circuit A B hard to wire Yes it is! that always pulls the output either up to 1 or C it all up? This does down to 0. not scale… A B C 32",
+    "text": "General CMOS Gate Recipe\n\nFigure out pulldown network that does what you want (e.g., what gives 0)\nBuild the “opposite” version of that network for “pull up”\nCombine the two, splitting inputs across them.\n\n\nGenerally, invert a network by swaping series/parallel and swapping PMOS/NMOS.",
     "crumbs": [
       "Transistors"
     ]
   },
   {
-    "objectID": "11.html#what-function-does-this-gate-compute",
-    "href": "11.html#what-function-does-this-gate-compute",
+    "objectID": "11.html#what-does-this-compute",
+    "href": "11.html#what-does-this-compute",
     "title": "Transistors",
-    "section": "What function does this gate compute?",
-    "text": "What function does this gate compute?\nB A B C 0 0 0 1 1 0 1 1 A",
+    "section": "What does this compute?",
+    "text": "What does this compute?\n\nFor power in draw.io, use “Vdd”, read more",
+    "crumbs": [
+      "Transistors"
+    ]
+  },
+  {
+    "objectID": "11.html#exercise",
+    "href": "11.html#exercise",
+    "title": "Transistors",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate XNOR\n\n\n\n\n\\(A\\)\n\\(B\\)\n\\(A == B\\)\n\n\n\n\n0\n0\n1\n\n\n0\n1\n0\n\n\n1\n0\n0\n\n\n1\n1\n1",
     "crumbs": [
       "Transistors"
     ]
@@ -9189,112 +9169,98 @@
     "href": "11.rjs.html#example",
     "title": "Transistors",
     "section": "Example",
-    "text": "Example"
+    "text": "Example\n\nA or (B and C)"
   },
   {
-    "objectID": "11.rjs.html#lets-design-an-inverter",
-    "href": "11.rjs.html#lets-design-an-inverter",
+    "objectID": "11.rjs.html#lets-design",
+    "href": "11.rjs.html#lets-design",
     "title": "Transistors",
-    "section": "Let’s Design an Inverter!",
-    "text": "Let’s Design an Inverter!\nI want to design a circuit that takes as an input a one-bit value and outputs the complement of that number. Symbol Truth Table A Y A Y 0 1 1 0"
+    "section": "Let’s Design!",
+    "text": "Let’s Design!\n\nHow to design a circuit that\n\ntakes as an input a one-bit value and\noutputs the complement of that number.\n\nThis is the inverter.\n\n\n\n\n\n\n\\(V_{in}\\)\n\\(V_{out}\\)\n\n\n\n\n0\n1\n\n\n1\n0"
   },
   {
     "objectID": "11.rjs.html#new-components",
     "href": "11.rjs.html#new-components",
     "title": "Transistors",
     "section": "New Components",
-    "text": "New Components\n■ Power – a component that produces a logic high value ■ Ground – a component that produces a logic low value"
+    "text": "New Components\n\nWe introduce\n\nPower – a component that produces a logic high value\n\nHorizontal bar, with a vertical power downward from the middle.\n\nGround\n\na component that produces a logic low value\nTriangle pointing downward."
   },
   {
-    "objectID": "11.rjs.html#an-inverter-with-switches",
-    "href": "11.rjs.html#an-inverter-with-switches",
+    "objectID": "11.rjs.html#new-components-1",
+    "href": "11.rjs.html#new-components-1",
     "title": "Transistors",
-    "section": "An Inverter with Switches",
-    "text": "An Inverter with Switches\nPower Y A Ground"
+    "section": "New Components",
+    "text": "New Components\n\n(This would blow up)"
   },
   {
-    "objectID": "11.rjs.html#an-inverter-with-switches-1",
-    "href": "11.rjs.html#an-inverter-with-switches-1",
+    "objectID": "11.rjs.html#recall",
+    "href": "11.rjs.html#recall",
     "title": "Transistors",
-    "section": "An Inverter with Switches",
-    "text": "An Inverter with Switches\n■ When the input is 0 Power = 1 – The top switch is closed. – The bottom switch is open. – This will connect power to the output which will make Y = 1 A = 0 the output 1. Ground = 0"
+    "section": "Recall",
+    "text": "Recall\n\nWe have two gate types…\n\n\n\nNMOS\n\n\n\n\\(V_S\\)\n\\(V_G\\)\n\\(V_D\\)\n\n\n\n\n0\n1\n0\n\n\n1\n1\n1\n\n\n0\n0\n?\n\n\n1\n0\n?\n\n\n\n\nPMOS\n\n\n\n\\(V_S\\)\n\\(V_G\\)\n\\(V_D\\)\n\n\n\n\n0\n1\n?\n\n\n1\n1\n?\n\n\n0\n0\n0\n\n\n1\n0\n1"
   },
   {
-    "objectID": "11.rjs.html#an-inverter-with-switches-2",
-    "href": "11.rjs.html#an-inverter-with-switches-2",
+    "objectID": "11.rjs.html#gate-to-power",
+    "href": "11.rjs.html#gate-to-power",
     "title": "Transistors",
-    "section": "An Inverter with Switches",
-    "text": "An Inverter with Switches\n■ When the input is 1 Power = 1 – The bottom switch is closed. – The top switch is open. – This will connect ground to Y = 0 the output which will make A = 1 the output 0. Ground = 0"
+    "section": "Gate to Power",
+    "text": "Gate to Power\n\nIf we connect a gate to power, we can conditionally transmit “logic high”.\nUsing a NMOS gate, we can transmit only if we have “logic low” on our gate.\n\\(V_S = 1 \\land V_G = 0 \\implies V_D = 1\\)"
   },
   {
-    "objectID": "11.rjs.html#building-logic-gates-with-transistors",
-    "href": "11.rjs.html#building-logic-gates-with-transistors",
+    "objectID": "11.rjs.html#gate-to-power-1",
+    "href": "11.rjs.html#gate-to-power-1",
     "title": "Transistors",
-    "section": "Building Logic Gates with Transistors",
-    "text": "Building Logic Gates with Transistors\n■ Engineering Digital Behavior from Analog Devices – NMOS transistors act as controllable connections to ground – PMOS transistors act as controllable connections to power CMOS gates work by carefully arranging these Another way to say this: CMOS gates work by devices so physics is forced to produce clean using NMOS transistors to pull outputs down digital logic! and PMOS transistors to pull outputs up."
+    "section": "Gate to Power",
+    "text": "Gate to Power\n\nIf we connect a gate to ground, we can conditionally transmit “logic low”.\nUsing a PMOS gate, we can transmit only if we have “logic high” on our gate.\n\\(V_S = 0 \\land V_G = 1 \\implies V_D = 0\\)"
   },
   {
-    "objectID": "11.rjs.html#building-an-inverter-with-transistors",
-    "href": "11.rjs.html#building-an-inverter-with-transistors",
+    "objectID": "11.rjs.html#by-our-powers-combined",
+    "href": "11.rjs.html#by-our-powers-combined",
     "title": "Transistors",
-    "section": "Building an Inverter with Transistors",
-    "text": "Building an Inverter with Transistors\nPower Should this switch be replaced by an nmos or pmos transistor? Y A Should this switch be replaced by an nmos or pmos transistor? Ground"
-  },
-  {
-    "objectID": "11.rjs.html#cmos-inverter",
-    "href": "11.rjs.html#cmos-inverter",
-    "title": "Transistors",
-    "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower In Out In Out 0 1 1 0 Ground"
-  },
-  {
-    "objectID": "11.rjs.html#cmos-inverter-1",
-    "href": "11.rjs.html#cmos-inverter-1",
-    "title": "Transistors",
-    "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower In Out In = 0 Out = 1 0 1 1 0 Ground"
-  },
-  {
-    "objectID": "11.rjs.html#cmos-inverter-2",
-    "href": "11.rjs.html#cmos-inverter-2",
-    "title": "Transistors",
-    "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower In Out In = 1 Out = 0 0 1 1 0 Ground"
+    "section": "By Our Powers Combined",
+    "text": "By Our Powers Combined\n\n\n\nDirect input to both a PMOS and NMOS\nOne will always transmit.\nTherefore always transmitting 0 (ground) or 1 (power)\nAnd always inverting!"
   },
   {
     "objectID": "11.rjs.html#cmos-gates",
     "href": "11.rjs.html#cmos-gates",
     "title": "Transistors",
     "section": "CMOS Gates",
-    "text": "CMOS Gates\n■ CMOS = Complementary MOS – The pMOS and nMOS transistors complement each other to form the logic gate ■ Common confusion – CMOS is not a type of transistor! – It is a technology that combines both nMOS and pMOS transistors You might also see MOSFET: MOS: Metal Oxide Metal Oxide Semiconductor Semiconductor ☺ Field-Effect Transistor"
+    "text": "CMOS Gates\n\nCMOS = Complementary MOS\n\nThe PMOS and NMOS transistors complement each other to form the logic gate\n\nCMOS is not a type of transistor!\n\nIt is a technology that combines both NMOS and PMOS\n\nYou might also see MOSFET: Metal Oxide Semiconductor Field-Effect Transistor"
   },
   {
     "objectID": "11.rjs.html#pull-up-and-pull-down-networks",
     "href": "11.rjs.html#pull-up-and-pull-down-networks",
     "title": "Transistors",
     "section": "Pull-up and Pull-down Networks",
-    "text": "Pull-up and Pull-down Networks\nPower ■ Only one network will be on at a time ■ The pull-up network drives the output when the output is 1 ■ The pull-down network drives the output when the output is 0 Ground"
+    "text": "Pull-up and Pull-down Networks\n\nOnly one network will be on at a time\nThe pull-up network drives the output when the output is 1.\nThe pull-down network drives the output when the output is 0.\nOutput, not input, relevant.\n\nWe’re “closing all the switches” to either power or ground."
   },
   {
-    "objectID": "11.rjs.html#cmos-inverter-3",
-    "href": "11.rjs.html#cmos-inverter-3",
+    "objectID": "11.rjs.html#cmos-inverter",
+    "href": "11.rjs.html#cmos-inverter",
     "title": "Transistors",
     "section": "CMOS Inverter",
-    "text": "CMOS Inverter\nPower pull-up network In Out 0 1 1 0 pull-down network Ground"
+    "text": "CMOS Inverter\n\nThe pull-up network drives the output when the output is 1. - PMOS “closes the switch” when low. - Which connects power to out.\nThe pull-down network drives the output when the output is 0. - NMOS “closes the switch” when high. - Which connects ground to out."
   },
   {
     "objectID": "11.rjs.html#general-cmos-gate-recipe",
     "href": "11.rjs.html#general-cmos-gate-recipe",
     "title": "Transistors",
     "section": "General CMOS Gate Recipe",
-    "text": "General CMOS Gate Recipe\nA Recall: Step 1. Figure out pulldown network that Series = AND does what you want (i.e the set of conditions B C Parallel = OR where the output is ‘0’) e.g., F = A*(B+C) This comes from B Step 2. Build the “opposite” version of that DeMorgan’s Laws! In A network to figure out when the output should C practice, we swap series + be 1. parallel connections, use pMOS instead of nMOS But isn’t it Step 3. Combine the two so you have a circuit A B hard to wire Yes it is! that always pulls the output either up to 1 or C it all up? This does down to 0. not scale… A B C 32"
+    "text": "General CMOS Gate Recipe\n\nFigure out pulldown network that does what you want (e.g., what gives 0)\nBuild the “opposite” version of that network for “pull up”\nCombine the two, splitting inputs across them.\n\n\nGenerally, invert a network by swaping series/parallel and swapping PMOS/NMOS."
   },
   {
-    "objectID": "11.rjs.html#what-function-does-this-gate-compute",
-    "href": "11.rjs.html#what-function-does-this-gate-compute",
+    "objectID": "11.rjs.html#what-does-this-compute",
+    "href": "11.rjs.html#what-does-this-compute",
     "title": "Transistors",
-    "section": "What function does this gate compute?",
-    "text": "What function does this gate compute?\nB A B C 0 0 0 1 1 0 1 1 A"
+    "section": "What does this compute?",
+    "text": "What does this compute?\n\nFor power in draw.io, use “Vdd”, read more"
+  },
+  {
+    "objectID": "11.rjs.html#exercise",
+    "href": "11.rjs.html#exercise",
+    "title": "Transistors",
+    "section": "Exercise",
+    "text": "Exercise\n\nCreate XNOR\n\n\n\n\n\\(A\\)\n\\(B\\)\n\\(A == B\\)\n\n\n\n\n0\n0\n1\n\n\n0\n1\n0\n\n\n1\n0\n0\n\n\n1\n1\n1"
   },
   {
     "objectID": "01.html",
