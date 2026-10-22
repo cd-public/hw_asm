@@ -9017,7 +9017,7 @@
     "href": "11.html#cmos-inverter",
     "title": "Transistors",
     "section": "CMOS Inverter",
-    "text": "CMOS Inverter\n\nThe pull-up network drives the output when the output is 1. - PMOS “closes the switch” when low. - Which connects power to out.\nThe pull-down network drives the output when the output is 0. - NMOS “closes the switch” when high. - Which connects ground to out.",
+    "text": "CMOS Inverter\n\nThe pull-up network drives the output when the output is 1.\n\nPMOS “closes the switch” when low.\nWhich connects power to out.\n\nThe pull-down network drives the output when the output is 0.\n\nNMOS “closes the switch” when high.\nWhich connects ground to out.",
     "crumbs": [
       "Transistors"
     ]
@@ -9047,7 +9047,7 @@
     "href": "11.html#exercise",
     "title": "Transistors",
     "section": "Exercise",
-    "text": "Exercise\n\nCreate XNOR\n\n\n\n\n\\(A\\)\n\\(B\\)\n\\(A == B\\)\n\n\n\n\n0\n0\n1\n\n\n0\n1\n0\n\n\n1\n0\n0\n\n\n1\n1\n1",
+    "text": "Exercise\n\nCreate XNOR.\n\n\n\n\n\\(A\\)\n\\(B\\)\n\\(A == B\\)\n\n\n\n\n0\n0\n1\n\n\n0\n1\n0\n\n\n1\n0\n0\n\n\n1\n1\n1",
     "crumbs": [
       "Transistors"
     ]
@@ -9239,7 +9239,7 @@
     "href": "11.rjs.html#cmos-inverter",
     "title": "Transistors",
     "section": "CMOS Inverter",
-    "text": "CMOS Inverter\n\nThe pull-up network drives the output when the output is 1. - PMOS “closes the switch” when low. - Which connects power to out.\nThe pull-down network drives the output when the output is 0. - NMOS “closes the switch” when high. - Which connects ground to out."
+    "text": "CMOS Inverter\n\nThe pull-up network drives the output when the output is 1.\n\nPMOS “closes the switch” when low.\nWhich connects power to out.\n\nThe pull-down network drives the output when the output is 0.\n\nNMOS “closes the switch” when high.\nWhich connects ground to out."
   },
   {
     "objectID": "11.rjs.html#general-cmos-gate-recipe",
@@ -9260,7 +9260,7 @@
     "href": "11.rjs.html#exercise",
     "title": "Transistors",
     "section": "Exercise",
-    "text": "Exercise\n\nCreate XNOR\n\n\n\n\n\\(A\\)\n\\(B\\)\n\\(A == B\\)\n\n\n\n\n0\n0\n1\n\n\n0\n1\n0\n\n\n1\n0\n0\n\n\n1\n1\n1"
+    "text": "Exercise\n\nCreate XNOR.\n\n\n\n\n\\(A\\)\n\\(B\\)\n\\(A == B\\)\n\n\n\n\n0\n0\n1\n\n\n0\n1\n0\n\n\n1\n0\n0\n\n\n1\n1\n1"
   },
   {
     "objectID": "01.html",
