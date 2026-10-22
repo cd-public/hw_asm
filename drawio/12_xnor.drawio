@@ -136,9 +136,6 @@
             <mxPoint x="150" y="660" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="oYbUtwg7mEi8Pyhm9lwU-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="A" vertex="1">
-          <mxGeometry height="30" width="60" x="320" y="100" as="geometry" />
-        </mxCell>
         <mxCell id="oYbUtwg7mEi8Pyhm9lwU-5" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.signal_sources.signal_ground;labelPerimeter=1;" value="" vertex="1">
           <mxGeometry height="30" width="30" x="135" y="730" as="geometry" />
         </mxCell>
