@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="RE-wInhFWiV95BQWOOoZ">
+    <mxGraphModel dx="309" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="w7FqoaqsFwr9CvzN7q9L-1" parent="1" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.transistors.nmos;pointerEvents=1;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="100" width="60" x="260" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="w7FqoaqsFwr9CvzN7q9L-2" parent="1" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.transistors.nmos;pointerEvents=1;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="100" width="60" x="260" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="w7FqoaqsFwr9CvzN7q9L-3" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.signal_sources.signal_ground;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="30" width="40" x="300" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="w7FqoaqsFwr9CvzN7q9L-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="A" vertex="1">
+          <mxGeometry height="30" width="60" x="220" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="w7FqoaqsFwr9CvzN7q9L-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="B" vertex="1">
+          <mxGeometry height="30" width="60" x="220" y="685" as="geometry" />
+        </mxCell>
+        <mxCell id="w7FqoaqsFwr9CvzN7q9L-6" edge="1" parent="1" source="w7FqoaqsFwr9CvzN7q9L-1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;exitX=1.008;exitY=0.054;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="560" />
+            </Array>
+            <mxPoint x="380" y="720" as="sourcePoint" />
+            <mxPoint x="440" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w7FqoaqsFwr9CvzN7q9L-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Y" vertex="1">
+          <mxGeometry height="20" width="60" x="420" y="550" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
