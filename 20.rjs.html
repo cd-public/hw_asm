@@ -1202,20 +1202,141 @@
 <li>With four bits of information, we can express <span class="math inline">\(2^4 = 16\)</span> possible gates.</li>
 </ul>
 </section>
-<section id="they-are" class="slide level2">
+<section id="they-are" class="slide level2 smaller">
 <h2>They are</h2>
-<ul>
-<li>Recall, we need to design our gates using a pull-up network of pMOS transistors and a pull-down network of nMOS transistors AND OR NAND NOR What gates can we</li>
-<li>build?</li>
-<li>define? Let’s start by considering only 2-input gates. How many possible 2-input gates are there? KEY IDEA: As many as there are 2-input truth tables.</li>
-</ul>
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><code>0</code></th>
+<th><code>&amp;</code></th>
+<th><code>&lt;</code></th>
+<th><code>A</code></th>
+<th><code>&gt;</code></th>
+<th><code>B</code></th>
+<th><code>^</code></th>
+<th><code>|</code></th>
+<th><code>!|</code></th>
+<th><code>!^</code></th>
+<th><code>!B</code></th>
+<th><code>&lt;=</code></th>
+<th><code>!A</code></th>
+<th><code>&gt;=</code></th>
+<th><code>!&amp;</code></th>
+<th><code>1</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>(We note that many of these are BORING)</p>
 </section>
-<section id="all-the-gates" class="slide level2">
-<h2>All the gates!</h2>
-<p>There are only 16 possible 2-input gates… Let’s examine all of them. Some we already know, others are just silly. How many of these gates can be implemented using a single CMOS gate? Do we really need all of these gates? Nope! Once we realize that we can describe all of them using just AND, OR, and NOT</p>
+<section id="composition" class="slide level2">
+<h2>Composition</h2>
 </section>
-<section id="composing-gates-and-and-or" class="slide level2">
-<h2>Composing gates: AND and OR</h2>
+<section id="section" class="slide level2">
+<h2></h2>
 <p>Each can be constructed using a pair of CMOS gates AND is just NAND with an inverter, and OR is just NOR with an inverted output. AND OR These two gates are particularly important. Using them will allows us to develop a systematic approach for constructing any combinational A A y Y function. B B</p>
 </section>
 <section id="composing-gates" class="slide level2">

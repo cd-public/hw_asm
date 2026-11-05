@@ -2710,27 +2710,27 @@
     "href": "20.html#they-are",
     "title": "Gates",
     "section": "They are",
-    "text": "They are\n\nRecall, we need to design our gates using a pull-up network of pMOS transistors and a pull-down network of nMOS transistors AND OR NAND NOR What gates can we\nbuild?\ndefine? Let’s start by considering only 2-input gates. How many possible 2-input gates are there? KEY IDEA: As many as there are 2-input truth tables.",
+    "text": "They are\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(A\\)\n\\(B\\)\n0\n&\n&lt;\nA\n&gt;\nB\n^\n|\n!|\n!^\n!B\n&lt;=\n!A\n&gt;=\n!&\n1\n\n\n\n\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n1\n1\n1\n1\n1\n1\n1\n\n\n0\n1\n0\n0\n0\n0\n1\n1\n1\n1\n0\n0\n0\n0\n1\n1\n1\n1\n\n\n1\n0\n0\n0\n1\n1\n0\n0\n1\n1\n0\n0\n1\n1\n0\n0\n1\n1\n\n\n1\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n\n\n\n(We note that many of these are BORING)",
     "crumbs": [
       "Gates"
     ]
   },
   {
-    "objectID": "20.html#all-the-gates",
-    "href": "20.html#all-the-gates",
+    "objectID": "20.html#composition",
+    "href": "20.html#composition",
     "title": "Gates",
-    "section": "All the gates!",
-    "text": "All the gates!\nThere are only 16 possible 2-input gates… Let’s examine all of them. Some we already know, others are just silly. How many of these gates can be implemented using a single CMOS gate? Do we really need all of these gates? Nope! Once we realize that we can describe all of them using just AND, OR, and NOT",
+    "section": "Composition",
+    "text": "Composition",
     "crumbs": [
       "Gates"
     ]
   },
   {
-    "objectID": "20.html#composing-gates-and-and-or",
-    "href": "20.html#composing-gates-and-and-or",
+    "objectID": "20.html#section",
+    "href": "20.html#section",
     "title": "Gates",
-    "section": "Composing gates: AND and OR",
-    "text": "Composing gates: AND and OR\nEach can be constructed using a pair of CMOS gates AND is just NAND with an inverter, and OR is just NOR with an inverted output. AND OR These two gates are particularly important. Using them will allows us to develop a systematic approach for constructing any combinational A A y Y function. B B",
+    "section": "",
+    "text": "Each can be constructed using a pair of CMOS gates AND is just NAND with an inverter, and OR is just NOR with an inverted output. AND OR These two gates are particularly important. Using them will allows us to develop a systematic approach for constructing any combinational A A y Y function. B B",
     "crumbs": [
       "Gates"
     ]
@@ -3490,21 +3490,21 @@
     "href": "20.rjs.html#they-are",
     "title": "Gates",
     "section": "They are",
-    "text": "They are\n\nRecall, we need to design our gates using a pull-up network of pMOS transistors and a pull-down network of nMOS transistors AND OR NAND NOR What gates can we\nbuild?\ndefine? Let’s start by considering only 2-input gates. How many possible 2-input gates are there? KEY IDEA: As many as there are 2-input truth tables."
+    "text": "They are\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(A\\)\n\\(B\\)\n0\n&\n&lt;\nA\n&gt;\nB\n^\n|\n!|\n!^\n!B\n&lt;=\n!A\n&gt;=\n!&\n1\n\n\n\n\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n1\n1\n1\n1\n1\n1\n1\n\n\n0\n1\n0\n0\n0\n0\n1\n1\n1\n1\n0\n0\n0\n0\n1\n1\n1\n1\n\n\n1\n0\n0\n0\n1\n1\n0\n0\n1\n1\n0\n0\n1\n1\n0\n0\n1\n1\n\n\n1\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n\n\n\n(We note that many of these are BORING)"
   },
   {
-    "objectID": "20.rjs.html#all-the-gates",
-    "href": "20.rjs.html#all-the-gates",
+    "objectID": "20.rjs.html#composition",
+    "href": "20.rjs.html#composition",
     "title": "Gates",
-    "section": "All the gates!",
-    "text": "All the gates!\nThere are only 16 possible 2-input gates… Let’s examine all of them. Some we already know, others are just silly. How many of these gates can be implemented using a single CMOS gate? Do we really need all of these gates? Nope! Once we realize that we can describe all of them using just AND, OR, and NOT"
+    "section": "Composition",
+    "text": "Composition"
   },
   {
-    "objectID": "20.rjs.html#composing-gates-and-and-or",
-    "href": "20.rjs.html#composing-gates-and-and-or",
+    "objectID": "20.rjs.html#section",
+    "href": "20.rjs.html#section",
     "title": "Gates",
-    "section": "Composing gates: AND and OR",
-    "text": "Composing gates: AND and OR\nEach can be constructed using a pair of CMOS gates AND is just NAND with an inverter, and OR is just NOR with an inverted output. AND OR These two gates are particularly important. Using them will allows us to develop a systematic approach for constructing any combinational A A y Y function. B B"
+    "section": "",
+    "text": "Each can be constructed using a pair of CMOS gates AND is just NAND with an inverter, and OR is just NOR with an inverted output. AND OR These two gates are particularly important. Using them will allows us to develop a systematic approach for constructing any combinational A A y Y function. B B"
   },
   {
     "objectID": "20.rjs.html#composing-gates",
