@@ -7768,7 +7768,7 @@
     "href": "21.html",
     "title": "Multiplexers",
     "section": "",
-    "text": "Welcome to HW/asm\nAction Items discussion",
+    "text": "Welcome to HW/asm\nAction Items discussion ## LOGIC GATES WITH\n\n2+ INPUTS\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\nFor any number of inputs, the output is 1 when an odd number of inputs is 1\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0\n\n\n\n\n\n\n\n\n\nGate\nNumber of Transistors\n\n\n\n\nNOT\n2\n\n\nAND\n6\n\n\nOR\n6\n\n\nNAND\n4\n\n\nNOR\n4\n\n\nXOR\n12\n\n\nXNOR\n12\n\n\n\n\n\n\nGate # of Transistors NOT 2 n-input AND 2n + 2 n-input OR 2n + 2 n-input NAND 2n n-input NOR 2n 2-input XOR 12 3-input XOR 28 2-input XNOR 12 3-input XNOR 28",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7778,7 +7778,7 @@
     "href": "21.html#announcements",
     "title": "Multiplexers",
     "section": "",
-    "text": "Welcome to HW/asm\nAction Items discussion",
+    "text": "Welcome to HW/asm\nAction Items discussion ## LOGIC GATES WITH\n\n2+ INPUTS",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7817,8 +7817,8 @@
     "objectID": "21.html#input-and",
     "href": "21.html#input-and",
     "title": "Multiplexers",
-    "section": "3-input AND",
-    "text": "3-input AND\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n\nA | | | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | B Y | | | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | C | | | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | logically | | equivalent | 0 | 1 | 1 | 0 | | — | ———– | — | — | — | — | circuits | | | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | A | | | 1 | 0 | 1 | 0 | | — | — | — | — | — | — | B Y | C | | 1 | 1 | 0 | 0 | | — | — | — | — | — | — | | | | 1 | 1 | 1 | 1 |",
+    "section": "",
+    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7827,8 +7827,8 @@
     "objectID": "21.html#input-or",
     "href": "21.html#input-or",
     "title": "Multiplexers",
-    "section": "3-input OR",
-    "text": "3-input OR\n\n\n\n\nA\nB\nC\nY\n\n\n\n\nA\n0\n0\n0\n0\n\n\n\nB Y | | 0 | 0 | 1 | 1 | | — | — | — | — | — | C | | 0 | 1 | 0 | 1 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 1 | | — | — | — | — | — | equivalent circuits | | 1 | 0 | 0 | 1 | | — | — | — | — | — | A | | 1 | 0 | 1 | 1 | | — | — | — | — | — | B Y | | 1 | 1 | 0 | 1 | | — | — | — | — | — | C | | 1 | 1 | 1 | 1 | | — | — | — | — | — |",
+    "section": "",
+    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7837,8 +7837,8 @@
     "objectID": "21.html#input-nand",
     "href": "21.html#input-nand",
     "title": "Multiplexers",
-    "section": "3-input NAND",
-    "text": "3-input NAND\n\n\n\n\nA\nB\nC\nY\n\n\n\n\nA\n0\n0\n0\n1\n\n\n\nB Y | | 0 | 0 | 1 | 1 | | — | — | — | — | — | C | | 0 | 1 | 0 | 1 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 1 | | — | — | — | — | — | equivalent circuits | | 1 | 0 | 0 | 1 | | — | — | — | — | — | A | | 1 | 0 | 1 | 1 | | — | — | — | — | — | B Y | | 1 | 1 | 0 | 1 | | — | — | — | — | — | C | | 1 | 1 | 1 | 0 | | — | — | — | — | — |",
+    "section": "",
+    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7847,8 +7847,8 @@
     "objectID": "21.html#input-nor",
     "href": "21.html#input-nor",
     "title": "Multiplexers",
-    "section": "3-input NOR",
-    "text": "3-input NOR\n\n\n\n\nA\nB\nC\nY\n\n\n\n\nA\n0\n0\n0\n1\n\n\n\nB Y | | 0 | 0 | 1 | 0 | | — | — | — | — | — | C | | 0 | 1 | 0 | 0 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 0 | | — | — | — | — | — | equivalent circuits | | 1 | 0 | 0 | 0 | | — | — | — | — | — | A | | 1 | 0 | 1 | 0 | | — | — | — | — | — | B Y | | 1 | 1 | 0 | 0 | | — | — | — | — | — | C | | 1 | 1 | 1 | 0 | | — | — | — | — | — |",
+    "section": "",
+    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7857,8 +7857,8 @@
     "objectID": "21.html#input-xor",
     "href": "21.html#input-xor",
     "title": "Multiplexers",
-    "section": "3-input XOR",
-    "text": "3-input XOR\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n\nA | | | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | B Y | | | 0 | 0 | 1 | 1 | | — | — | — | — | — | — | C | | | 0 | 1 | 0 | 1 | | — | — | — | — | — | — | logically | | equivalent | 0 | 1 | 1 | 0 | | — | ———– | — | — | — | — | circuits | A | | 1 | 0 | 0 | 1 | | — | — | — | — | — | — | | | | 1 | 0 | 1 | 0 | B Y C | | | 1 | 1 | 0 | 0 | | — | — | — | — | — | — | | | | 1 | 1 | 1 | 1 | For any number of inputs, the output is 1 when an odd number of inputs is 1",
+    "section": "",
+    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\nFor any number of inputs, the output is 1 when an odd number of inputs is 1",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7867,8 +7867,8 @@
     "objectID": "21.html#input-xnor",
     "href": "21.html#input-xnor",
     "title": "Multiplexers",
-    "section": "3-input XNOR",
-    "text": "3-input XNOR\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n\nA | | 0 | 0 | 0 | 1 | | — | — | — | — | — | Y B | | 0 | 0 | 1 | 0 | | — | — | — | — | — | C | | 0 | 1 | 0 | 0 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 1 | | — | — | — | — | — | equivalent circuits | A | 1 | 0 | 0 | 0 | | — | — | — | — | — | | | 1 | 0 | 1 | 1 | B Y C | | 1 | 1 | 0 | 1 | | — | — | — | — | — | | | 1 | 1 | 1 | 0 |",
+    "section": "",
+    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7877,8 +7877,8 @@
     "objectID": "21.html#recall-transistor-count",
     "href": "21.html#recall-transistor-count",
     "title": "Multiplexers",
-    "section": "Recall: Transistor Count",
-    "text": "Recall: Transistor Count\nGate Number of Transistors NOT 2 AND 6 OR 6 NAND 4 NOR 4 XOR 12 XNOR 12",
+    "section": "",
+    "text": "Gate\nNumber of Transistors\n\n\n\n\nNOT\n2\n\n\nAND\n6\n\n\nOR\n6\n\n\nNAND\n4\n\n\nNOR\n4\n\n\nXOR\n12\n\n\nXNOR\n12",
     "crumbs": [
       "Multiplexers"
     ]
@@ -7887,8 +7887,8 @@
     "objectID": "21.html#transistor-count",
     "href": "21.html#transistor-count",
     "title": "Multiplexers",
-    "section": "Transistor Count",
-    "text": "Transistor Count\nGate # of Transistors NOT 2 n-input AND 2n + 2 n-input OR 2n + 2 n-input NAND 2n n-input NOR 2n 2-input XOR 12 3-input XOR 28 2-input XNOR 12 3-input XNOR 28",
+    "section": "",
+    "text": "Gate # of Transistors NOT 2 n-input AND 2n + 2 n-input OR 2n + 2 n-input NAND 2n n-input NOR 2n 2-input XOR 12 3-input XOR 28 2-input XNOR 12 3-input XNOR 28",
     "crumbs": [
       "Multiplexers"
     ]
@@ -8068,7 +8068,7 @@
     "href": "21.html#ex-forming-equations-from-truth-tables-1",
     "title": "Multiplexers",
     "section": "Ex: Forming Equations from Truth Tables",
-    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n\n\n\n\nҧ ത ҧ 𝐴𝐵𝐶 | 0 | 0 | 0 | 1 | | | | | | — | — | — | — | — | — | — | — | | 0 | 0 | 1 | 0 | | | | | ҧ ҧ 𝐴𝐵𝐶 | 0 | 1 | 0 | 1 | | | | | | — | — | — | — | — | —– | — | — | | | | | | | ҧ ത ҧ | ҧ ҧ | ത | 𝑌 = 𝐴𝐵𝐶+ 𝐴𝐵𝐶 + 𝐴𝐵𝐶 | 0 | 1 | 1 | 0 | | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 0 | 0 | | | | | ത | 1 | 0 | 1 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 1 | 1 | 0 | 0 | | | | | | 1 | 1 | 1 | 0 | | | | |",
+    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\n\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0",
     "crumbs": [
       "Multiplexers"
     ]
@@ -8088,7 +8088,7 @@
     "href": "21.html#forming-equations-from-truth-tables-1",
     "title": "Multiplexers",
     "section": "Forming Equations from Truth Tables",
-    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n\n\n\n0\n0\n0\n0\n\n\n\n\n\n\n\nҧ ത | 0 | 0 | 1 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 0 | 1 | 0 | 0 | | | | | | | | | | | ҧ ത | ത ҧ | ҧ | 𝑌 = 𝐴𝐵𝐶 + 𝐴𝐵𝐶 + 𝐴𝐵𝐶 + 𝐴𝐵𝐶 | 0 | 1 | 1 | 0 | | | | | | — | — | — | — | — | — | — | — | ത ҧ | 1 | 0 | 0 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 0 | | | | | ҧ | 1 | 1 | 0 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 1 | 1 | 1 | 1 | 𝐴𝐵𝐶 | | | |",
+    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n0\n\n\n\n0\n0\n1\n1\n𝐴𝐵𝐶\n\n\n0\n1\n0\n0\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n1\n𝐴𝐵𝐶\n\n\n1\n0\n1\n0\n\n\n\n1\n1\n0\n1\n𝐴𝐵𝐶\n\n\n1\n1\n1\n1\n𝐴𝐵𝐶",
     "crumbs": [
       "Multiplexers"
     ]
@@ -8348,7 +8348,7 @@
     "href": "21.rjs.html#announcements",
     "title": "Multiplexers",
     "section": "Announcements",
-    "text": "Announcements\n\nWelcome to HW/asm\nAction Items discussion"
+    "text": "Announcements\n\nWelcome to HW/asm\nAction Items discussion ## LOGIC GATES WITH\n\n2+ INPUTS"
   },
   {
     "objectID": "21.rjs.html#logistics-updates",
@@ -8376,49 +8376,49 @@
     "href": "21.rjs.html#input-and",
     "title": "Multiplexers",
     "section": "3-input AND",
-    "text": "3-input AND\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n\nA | | | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | B Y | | | 0 | 0 | 1 | 0 | | — | — | — | — | — | — | C | | | 0 | 1 | 0 | 0 | | — | — | — | — | — | — | logically | | equivalent | 0 | 1 | 1 | 0 | | — | ———– | — | — | — | — | circuits | | | 1 | 0 | 0 | 0 | | — | — | — | — | — | — | A | | | 1 | 0 | 1 | 0 | | — | — | — | — | — | — | B Y | C | | 1 | 1 | 0 | 0 | | — | — | — | — | — | — | | | | 1 | 1 | 1 | 1 |"
+    "text": "3-input AND\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1"
   },
   {
     "objectID": "21.rjs.html#input-or",
     "href": "21.rjs.html#input-or",
     "title": "Multiplexers",
     "section": "3-input OR",
-    "text": "3-input OR\n\n\n\n\nA\nB\nC\nY\n\n\n\n\nA\n0\n0\n0\n0\n\n\n\nB Y | | 0 | 0 | 1 | 1 | | — | — | — | — | — | C | | 0 | 1 | 0 | 1 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 1 | | — | — | — | — | — | equivalent circuits | | 1 | 0 | 0 | 1 | | — | — | — | — | — | A | | 1 | 0 | 1 | 1 | | — | — | — | — | — | B Y | | 1 | 1 | 0 | 1 | | — | — | — | — | — | C | | 1 | 1 | 1 | 1 | | — | — | — | — | — |"
+    "text": "3-input OR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1"
   },
   {
     "objectID": "21.rjs.html#input-nand",
     "href": "21.rjs.html#input-nand",
     "title": "Multiplexers",
     "section": "3-input NAND",
-    "text": "3-input NAND\n\n\n\n\nA\nB\nC\nY\n\n\n\n\nA\n0\n0\n0\n1\n\n\n\nB Y | | 0 | 0 | 1 | 1 | | — | — | — | — | — | C | | 0 | 1 | 0 | 1 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 1 | | — | — | — | — | — | equivalent circuits | | 1 | 0 | 0 | 1 | | — | — | — | — | — | A | | 1 | 0 | 1 | 1 | | — | — | — | — | — | B Y | | 1 | 1 | 0 | 1 | | — | — | — | — | — | C | | 1 | 1 | 1 | 0 | | — | — | — | — | — |"
+    "text": "3-input NAND\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0"
   },
   {
     "objectID": "21.rjs.html#input-nor",
     "href": "21.rjs.html#input-nor",
     "title": "Multiplexers",
     "section": "3-input NOR",
-    "text": "3-input NOR\n\n\n\n\nA\nB\nC\nY\n\n\n\n\nA\n0\n0\n0\n1\n\n\n\nB Y | | 0 | 0 | 1 | 0 | | — | — | — | — | — | C | | 0 | 1 | 0 | 0 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 0 | | — | — | — | — | — | equivalent circuits | | 1 | 0 | 0 | 0 | | — | — | — | — | — | A | | 1 | 0 | 1 | 0 | | — | — | — | — | — | B Y | | 1 | 1 | 0 | 0 | | — | — | — | — | — | C | | 1 | 1 | 1 | 0 | | — | — | — | — | — |"
+    "text": "3-input NOR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0"
   },
   {
     "objectID": "21.rjs.html#input-xor",
     "href": "21.rjs.html#input-xor",
     "title": "Multiplexers",
     "section": "3-input XOR",
-    "text": "3-input XOR\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n\nA | | | 0 | 0 | 0 | 0 | | — | — | — | — | — | — | B Y | | | 0 | 0 | 1 | 1 | | — | — | — | — | — | — | C | | | 0 | 1 | 0 | 1 | | — | — | — | — | — | — | logically | | equivalent | 0 | 1 | 1 | 0 | | — | ———– | — | — | — | — | circuits | A | | 1 | 0 | 0 | 1 | | — | — | — | — | — | — | | | | 1 | 0 | 1 | 0 | B Y C | | | 1 | 1 | 0 | 0 | | — | — | — | — | — | — | | | | 1 | 1 | 1 | 1 | For any number of inputs, the output is 1 when an odd number of inputs is 1"
+    "text": "3-input XOR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\nFor any number of inputs, the output is 1 when an odd number of inputs is 1"
   },
   {
     "objectID": "21.rjs.html#input-xnor",
     "href": "21.rjs.html#input-xnor",
     "title": "Multiplexers",
     "section": "3-input XNOR",
-    "text": "3-input XNOR\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n\nA | | 0 | 0 | 0 | 1 | | — | — | — | — | — | Y B | | 0 | 0 | 1 | 0 | | — | — | — | — | — | C | | 0 | 1 | 0 | 0 | | — | — | — | — | — | logically | | 0 | 1 | 1 | 1 | | — | — | — | — | — | equivalent circuits | A | 1 | 0 | 0 | 0 | | — | — | — | — | — | | | 1 | 0 | 1 | 1 | B Y C | | 1 | 1 | 0 | 1 | | — | — | — | — | — | | | 1 | 1 | 1 | 0 |"
+    "text": "3-input XNOR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0"
   },
   {
     "objectID": "21.rjs.html#recall-transistor-count",
     "href": "21.rjs.html#recall-transistor-count",
     "title": "Multiplexers",
     "section": "Recall: Transistor Count",
-    "text": "Recall: Transistor Count\nGate Number of Transistors NOT 2 AND 6 OR 6 NAND 4 NOR 4 XOR 12 XNOR 12"
+    "text": "Recall: Transistor Count\n\n\n\nGate\nNumber of Transistors\n\n\n\n\nNOT\n2\n\n\nAND\n6\n\n\nOR\n6\n\n\nNAND\n4\n\n\nNOR\n4\n\n\nXOR\n12\n\n\nXNOR\n12"
   },
   {
     "objectID": "21.rjs.html#transistor-count",
@@ -8551,7 +8551,7 @@
     "href": "21.rjs.html#ex-forming-equations-from-truth-tables-1",
     "title": "Multiplexers",
     "section": "Ex: Forming Equations from Truth Tables",
-    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n\n\n\n\nҧ ത ҧ 𝐴𝐵𝐶 | 0 | 0 | 0 | 1 | | | | | | — | — | — | — | — | — | — | — | | 0 | 0 | 1 | 0 | | | | | ҧ ҧ 𝐴𝐵𝐶 | 0 | 1 | 0 | 1 | | | | | | — | — | — | — | — | —– | — | — | | | | | | | ҧ ത ҧ | ҧ ҧ | ത | 𝑌 = 𝐴𝐵𝐶+ 𝐴𝐵𝐶 + 𝐴𝐵𝐶 | 0 | 1 | 1 | 0 | | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 0 | 0 | | | | | ത | 1 | 0 | 1 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 1 | 1 | 0 | 0 | | | | | | 1 | 1 | 1 | 0 | | | | |"
+    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\n\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0"
   },
   {
     "objectID": "21.rjs.html#forming-equations-from-truth-tables",
@@ -8565,7 +8565,7 @@
     "href": "21.rjs.html#forming-equations-from-truth-tables-1",
     "title": "Multiplexers",
     "section": "Forming Equations from Truth Tables",
-    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n\n\n\n0\n0\n0\n0\n\n\n\n\n\n\n\nҧ ത | 0 | 0 | 1 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 0 | 1 | 0 | 0 | | | | | | | | | | | ҧ ത | ത ҧ | ҧ | 𝑌 = 𝐴𝐵𝐶 + 𝐴𝐵𝐶 + 𝐴𝐵𝐶 + 𝐴𝐵𝐶 | 0 | 1 | 1 | 0 | | | | | | — | — | — | — | — | — | — | — | ത ҧ | 1 | 0 | 0 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 0 | | | | | ҧ | 1 | 1 | 0 | 1 | 𝐴𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | | 1 | 1 | 1 | 1 | 𝐴𝐵𝐶 | | | |"
+    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n0\n\n\n\n0\n0\n1\n1\n𝐴𝐵𝐶\n\n\n0\n1\n0\n0\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n1\n𝐴𝐵𝐶\n\n\n1\n0\n1\n0\n\n\n\n1\n1\n0\n1\n𝐴𝐵𝐶\n\n\n1\n1\n1\n1\n𝐴𝐵𝐶"
   },
   {
     "objectID": "21.rjs.html#a-systematic-design-approach",
@@ -22049,5 +22049,29 @@
     "crumbs": [
       "Security"
     ]
+  },
+  {
+    "objectID": "21.html#sum-of-products-form",
+    "href": "21.html#sum-of-products-form",
+    "title": "Multiplexers",
+    "section": "Sum of Products Form",
+    "text": "Sum of Products Form\nWhen two or more products (AND) are summed (OR) together\n\n\n\nSum of Products\nNot Sum of Products\n\n\n\n\n\\(Y = AB + AC\\)\n\\(Y = (A+B)(C+A)\\)\n\n\n\nApproach: write down a boolean expression for every ‘1’ in the output.",
+    "crumbs": [
+      "Multiplexers"
+    ]
+  },
+  {
+    "objectID": "21.rjs.html#input-and-1",
+    "href": "21.rjs.html#input-and-1",
+    "title": "Multiplexers",
+    "section": "3-input AND",
+    "text": "3-input AND"
+  },
+  {
+    "objectID": "21.rjs.html#sum-of-products-form",
+    "href": "21.rjs.html#sum-of-products-form",
+    "title": "Multiplexers",
+    "section": "Sum of Products Form",
+    "text": "Sum of Products Form\nWhen two or more products (AND) are summed (OR) together\n\n\n\nSum of Products\nNot Sum of Products\n\n\n\n\n\\(Y = AB + AC\\)\n\\(Y = (A+B)(C+A)\\)\n\n\n\nApproach: write down a boolean expression for every ‘1’ in the output."
   }
 ]
