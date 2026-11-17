@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Hardware & Assembly",
     "section": "",
-    "text": "Calendar\n\n\n\n\nWeek Num.\nWeek Date\nT\nR\nLab\n\n\n\n\n0x0\n01/11\nIntro\nInstructions\n\n\n\n0x1\n01/18\nCircuits\nTransistors\n\n\n\n0x2\n01/25\nGates\nMultiplex\nLab 1\n\n\n0x3\n02/01\nMinimze\nKarnaugh\n\n\n\n0x4\n02/08\nEncoders\nAdders\nLab 2\n\n\n0x5\n02/15\nALU\nRegisters\n\n\n\n0x6\n02/22\nTiming\nPerformance\n\n\n\n0x7\n03/01\nPipelines\nlw\nLab 3\n\n\n0x8\n03/08\nRISC-V\nStages\nLab 4\n\n\n0x9\n03/15\nProc.\nStack\n\n\n\n0bX\n03/22\nHazard\nBypass\nLab 5\n\n\n0xA\n03/29\nHierarchy\nCache\n\n\n\n0xB\n04/05\nnop\nSecurity\n\n\n\n0xC\n04/12\nSpectre\nAstarte\n\n\n\n0xD\n04/19\nIsadora\nvcd2df\n\n\n\n\n\n\nRecordings\nThis isn’t real, its a placeholder from a previous term.\n\n\n\n\nCS 371 “Hardware & Assembly”\n\nCalled:\n\nCS 371: Advanced Systems Computing\nCS 371: Hardware Designs and Assembly Language\nCS 371: Hardware and Assembly\n\nThe second semester class in a:\n\nCompiled language, with\nNo garbage collector.\n\nIn the second semester, one of the great \\(n\\) systems\n\nOperating System (OS)\nCompiler\n\nWe cover the special case of compiler design from the level of hardware design.\n\nServer.\n\nTaught this year in language-agnostic digital logic.\n\nThough I expect you’ll want to know C; Rust may be okay.\n\n\nCourse Description:\n\nA semester-long study of computer architecture and organization, information management, networking and communication, operating systems, or parallel and distributed computing that applies or extends the content of CS 271 or more advanced classes.\n\nSemester Description:\n\nThis course provides a foundational understanding of how computers work at the hardware level, from binary data to instruction execution. Students will begin with binary arithmetic and Boolean algebra, developing the skills to reason about digital logic and data representation. The course then introduces the RISC-V assembly language, allowing students to explore how high-level instructions are translated into machine-level operations.\n\n\nBuilding on this knowledge, students will learn how a processor executes instructions by designing a single-cycle RISC-V datapath. Students will design and implement core processor components—including the Arithmetic Logic Unit (ALU) and the control unit—and integrate them into a working datapath. Using a graphical digital logic simulator, they will construct and test their designs by simulating real RISC-V instructions. By the end of the course, students will have a working understanding of the key architectural components of a processor and the logical structures that support them.\n\n\nProf. Calvin\n\n\nSyllabus\n\nSyllabus link\n\n\n\nCitation\n\nThis course adapted from a course by Kaki Ryan"
+    "text": "Calendar\n\n\n\n\nWeek Num.\nWeek Date\nT\nR\nLab\n\n\n\n\n0x0\n01/11\nIntro\nInstructions\n\n\n\n0x1\n01/18\nCircuits\nTransistors\n\n\n\n0x2\n01/25\nGates\nMultigate\nLab 1\n\n\n0x3\n02/01\nMinimze\nKarnaugh\n\n\n\n0x4\n02/08\nEncoders\nAdders\nLab 2\n\n\n0x5\n02/15\nALU\nRegisters\n\n\n\n0x6\n02/22\nTiming\nPerformance\n\n\n\n0x7\n03/01\nPipelines\nlw\nLab 3\n\n\n0x8\n03/08\nRISC-V\nStages\nLab 4\n\n\n0x9\n03/15\nProc.\nStack\n\n\n\n0bX\n03/22\nHazard\nBypass\nLab 5\n\n\n0xA\n03/29\nHierarchy\nCache\n\n\n\n0xB\n04/05\nnop\nSecurity\n\n\n\n0xC\n04/12\nSpectre\nAstarte\n\n\n\n0xD\n04/19\nIsadora\nvcd2df\n\n\n\n\n\n\nRecordings\nThis isn’t real, its a placeholder from a previous term.\n\n\n\n\nCS 371 “Hardware & Assembly”\n\nCalled:\n\nCS 371: Advanced Systems Computing\nCS 371: Hardware Designs and Assembly Language\nCS 371: Hardware and Assembly\n\nThe second semester class in a:\n\nCompiled language, with\nNo garbage collector.\n\nIn the second semester, one of the great \\(n\\) systems\n\nOperating System (OS)\nCompiler\n\nWe cover the special case of compiler design from the level of hardware design.\n\nServer.\n\nTaught this year in language-agnostic digital logic.\n\nThough I expect you’ll want to know C; Rust may be okay.\n\n\nCourse Description:\n\nA semester-long study of computer architecture and organization, information management, networking and communication, operating systems, or parallel and distributed computing that applies or extends the content of CS 271 or more advanced classes.\n\nSemester Description:\n\nThis course provides a foundational understanding of how computers work at the hardware level, from binary data to instruction execution. Students will begin with binary arithmetic and Boolean algebra, developing the skills to reason about digital logic and data representation. The course then introduces the RISC-V assembly language, allowing students to explore how high-level instructions are translated into machine-level operations.\n\n\nBuilding on this knowledge, students will learn how a processor executes instructions by designing a single-cycle RISC-V datapath. Students will design and implement core processor components—including the Arithmetic Logic Unit (ALU) and the control unit—and integrate them into a working datapath. Using a graphical digital logic simulator, they will construct and test their designs by simulating real RISC-V instructions. By the end of the course, students will have a working understanding of the key architectural components of a processor and the logical structures that support them.\n\n\nProf. Calvin\n\n\nSyllabus\n\nSyllabus link\n\n\n\nCitation\n\nThis course adapted from a course by Kaki Ryan"
   },
   {
     "objectID": "B1.html",
@@ -7766,979 +7766,758 @@
   {
     "objectID": "21.html",
     "href": "21.html",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "",
-    "text": "Welcome to HW/asm\nAction Items discussion ## LOGIC GATES WITH\n\n2+ INPUTS\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0\n\n\n\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\nFor any number of inputs, the output is 1 when an odd number of inputs is 1\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0\n\n\n\n\n\n\n\n\n\nGate\nNumber of Transistors\n\n\n\n\nNOT\n2\n\n\nAND\n6\n\n\nOR\n6\n\n\nNAND\n4\n\n\nNOR\n4\n\n\nXOR\n12\n\n\nXNOR\n12\n\n\n\n\n\n\nGate # of Transistors NOT 2 n-input AND 2n + 2 n-input OR 2n + 2 n-input NAND 2n n-input NOR 2n 2-input XOR 12 3-input XOR 28 2-input XNOR 12 3-input XNOR 28",
+    "text": "Welcome to HW/asm\nAction Items discussion",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#announcements",
     "href": "21.html#announcements",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "",
-    "text": "Welcome to HW/asm\nAction Items discussion ## LOGIC GATES WITH\n\n2+ INPUTS",
+    "text": "Welcome to HW/asm\nAction Items discussion",
     "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#logistics-updates",
-    "href": "21.html#logistics-updates",
-    "title": "Multiplexers",
-    "section": "Logistics Updates",
-    "text": "Logistics Updates\n■ Quiz schedule updated – Quiz 2 & 3 shifted by one week. ■ Quiz 2 is next class! Next Wednesday. ■ Quiz 1 grades posted – Mean: 90 – Median: 91",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#quiz-topics",
-    "href": "21.html#quiz-topics",
-    "title": "Multiplexers",
-    "section": "Quiz Topics",
-    "text": "Quiz Topics\n■ Topics: – Tracing CMOS gates – Going between circuit diagrams, boolean equations, and truth tables – Be able to draw basic circuit diagrams made of logic gates! – Multiplexers – Counting the number of transistors – Boolean algebra simplification – Whatever we get through today",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#logic-gates-with",
-    "href": "21.html#logic-gates-with",
-    "title": "Multiplexers",
-    "section": "LOGIC GATES WITH",
-    "text": "LOGIC GATES WITH\n2+ INPUTS",
-    "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#input-and",
     "href": "21.html#input-and",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1",
+    "title": "Multigate",
+    "section": "3-input AND",
+    "text": "3-input AND\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#input-or",
     "href": "21.html#input-or",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1",
+    "title": "Multigate",
+    "section": "3-input OR",
+    "text": "3-input OR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#input-nand",
     "href": "21.html#input-nand",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0",
+    "title": "Multigate",
+    "section": "3-input NAND",
+    "text": "3-input NAND\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#input-nor",
     "href": "21.html#input-nor",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0",
+    "title": "Multigate",
+    "section": "3-input NOR",
+    "text": "3-input NOR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#input-xor",
     "href": "21.html#input-xor",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\nFor any number of inputs, the output is 1 when an odd number of inputs is 1",
+    "title": "Multigate",
+    "section": "3-input XOR",
+    "text": "3-input XOR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#xor-explainer",
+    "href": "21.html#xor-explainer",
+    "title": "Multigate",
+    "section": "XOR explainer",
+    "text": "XOR explainer\nFor any number of inputs, the output is 1 when an odd number of inputs is 1\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n1\n0\n0\n1\n\n\n1\n1\n1\n1",
+    "crumbs": [
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#input-xnor",
     "href": "21.html#input-xnor",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "A\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0",
+    "title": "Multigate",
+    "section": "3-input XNOR",
+    "text": "3-input XNOR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#recall-transistor-count",
     "href": "21.html#recall-transistor-count",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "Gate\nNumber of Transistors\n\n\n\n\nNOT\n2\n\n\nAND\n6\n\n\nOR\n6\n\n\nNAND\n4\n\n\nNOR\n4\n\n\nXOR\n12\n\n\nXNOR\n12",
+    "title": "Multigate",
+    "section": "Recall: Transistor Count",
+    "text": "Recall: Transistor Count\n\n\n\nGate\nNumber of Transistors\n\n\n\n\nNOT\n2\n\n\nAND\n6\n\n\nOR\n6\n\n\nNAND\n4\n\n\nNOR\n4\n\n\nXOR\n12\n\n\nXNOR\n12",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#transistor-count",
     "href": "21.html#transistor-count",
-    "title": "Multiplexers",
-    "section": "",
-    "text": "Gate # of Transistors NOT 2 n-input AND 2n + 2 n-input OR 2n + 2 n-input NAND 2n n-input NOR 2n 2-input XOR 12 3-input XOR 28 2-input XNOR 12 3-input XNOR 28",
+    "title": "Multigate",
+    "section": "Transistor Count",
+    "text": "Transistor Count\n\n\n\nGate\n# of Transistors\n\n\n\n\nn-input AND\n2n + 2\n\n\nn-input OR\n2n + 2\n\n\nn-input NAND\n2n\n\n\nn-input NOR\n2n",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
-    "objectID": "21.html#multiplexers",
-    "href": "21.html#multiplexers",
-    "title": "Multiplexers",
-    "section": "MULTIPLEXERS",
-    "text": "MULTIPLEXERS",
+    "objectID": "21.html#transistor-count-1",
+    "href": "21.html#transistor-count-1",
+    "title": "Multigate",
+    "section": "Transistor Count",
+    "text": "Transistor Count\n\n\n\nGate\n# of Transistors\n\n\n\n\n2-input XOR\n12\n\n\n3-input XOR\n28\n\n\n2-input XNOR\n12\n\n\n3-input XNOR\n28",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
-    "objectID": "21.html#an-interesting-3-input-gate",
-    "href": "21.html#an-interesting-3-input-gate",
-    "title": "Multiplexers",
-    "section": "An interesting 3-input gate…!",
-    "text": "An interesting 3-input gate…!\nBased on C, select the A or B input to be copied to Y. A Truth Table Y If C is 1 then B copy B to Y, otherwise copy C A to Y 2-input Multiplexer A B 0 C Y B 1 Gate A symbol C schematic 14",
+    "objectID": "21.html#sum-of-products-form",
+    "href": "21.html#sum-of-products-form",
+    "title": "Multigate",
+    "section": "Sum of Products Form",
+    "text": "Sum of Products Form\n\nWhen two or more products (AND) are summed (OR) together\n\n\n\n\nSum of Products\nNot Sum of Products\n\n\n\n\n\\(Y = AB + AC\\)\n\\(Y = (A+B)(C+A)\\)\n\n\n\n\n“Simply” write down a boolean expression for every ‘1’ in the output.",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
-    "objectID": "21.html#a-circuit-for-if-statements",
-    "href": "21.html#a-circuit-for-if-statements",
-    "title": "Multiplexers",
-    "section": "A Circuit for If-Statements! ☺",
-    "text": "A Circuit for If-Statements! ☺\nif (S == 0) Y = A elseif (S == 1) Y = B",
+    "objectID": "21.html#example",
+    "href": "21.html#example",
+    "title": "Multigate",
+    "section": "Example",
+    "text": "Example\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
-    "objectID": "21.html#in-assembly",
-    "href": "21.html#in-assembly",
-    "title": "Multiplexers",
-    "section": "In Assembly…",
-    "text": "In Assembly…\nbeq x10, x0, S_is_zero # if S == 0, jump addi x14, x0, 1 beq x10, x14, S_is_one # if S == 1, jump S_is_zero: add x13, x11, x0 # Y = A S_is_one: add x13, x12, x0 # Y = B New instruction: beq: branch if equal",
+    "objectID": "21.html#add-column",
+    "href": "21.html#add-column",
+    "title": "Multigate",
+    "section": "Add Column",
+    "text": "Add Column\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\n\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
-    "objectID": "21.html#multiplexers-1",
-    "href": "21.html#multiplexers-1",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nDiagram Truth Table Equation | S | A | B | Y | | — | — | — | — | | 0 | 0 | 0 | | | 0 | 0 | 1 | | | 0 | 1 | 0 | | | 0 | 1 | 1 | | | 1 | 0 | 0 | | | 1 | 0 | 1 | | | 1 | 1 | 0 | | | 1 | 1 | 1 | |",
+    "objectID": "21.html#express-requirements",
+    "href": "21.html#express-requirements",
+    "title": "Multigate",
+    "section": "Express Requirements",
+    "text": "Express Requirements\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n!A & !B & !C\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n!A & B & !C\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\nA & !B & C\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
-    "objectID": "21.html#multiplexers-2",
-    "href": "21.html#multiplexers-2",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nTruth Table Equation Diagram | S | A | B | Y | | — | — | — | — | | 0 | 0 | 0 | 0 | | 0 | 0 | 1 | 0 | | 0 | 1 | 0 | 1 | | 0 | 1 | 1 | 1 | | 1 | 0 | 0 | 0 | | 1 | 0 | 1 | 1 | | 1 | 1 | 0 | 0 | | 1 | 1 | 1 | 1 | | S | A | B | Y |",
+    "objectID": "21.html#sum-requirements",
+    "href": "21.html#sum-requirements",
+    "title": "Multigate",
+    "section": "Sum Requirements",
+    "text": "Sum Requirements\n\nSum of products\n“OR” of “AND”’s\n\n(!A & !B & !C) | (!A & B & !C) | A & !B & C\n\\[\n(\\neg A \\land \\neg B \\land \\neg C) \\lor (\\neg A \\land B \\land \\neg C) \\lor (A \\land \\neg B \\land C)\n\\]",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
-    "objectID": "21.html#multiplexers-3",
-    "href": "21.html#multiplexers-3",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nTruth Table Equation Diagram | S | A | B | Y | | | | | — | — | — | — | — | — | — | | 0 | 0 | 0 | 0 | | | | | 0 | 0 | 1 | 0 | | | | | 0 | 1 | 0 | 1 | | | | | 0 | 1 | 1 | 1 | | | | ҧ | 1 | 0 | 0 | 0 | 𝑌 = | 𝐴𝑆 + | 𝐵𝑆 | | — | — | — | — | — | —- | — | | 1 | 0 | 1 | 1 | | | | | 1 | 1 | 0 | 0 | | | | | 1 | 1 | 1 | 1 | | | | | S | A | B | Y | | | | | 0 | 0 | X | 0 | | | | | 0 | 1 | X | 1 | | | | | 1 | X | 0 | 0 | | | | | 1 | X | 1 | 1 | | | |",
+    "objectID": "21.html#exercise",
+    "href": "21.html#exercise",
+    "title": "Multigate",
+    "section": "Exercise",
+    "text": "Exercise\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1",
     "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#multiplexers-4",
-    "href": "21.html#multiplexers-4",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nTruth Table Equation Diagram | S | A | B | Y | | | | | — | — | — | — | — | — | — | | 0 | 0 | 0 | 0 | | | | | 0 | 0 | 1 | 0 | | | | | 0 | 1 | 0 | 1 | | | | | 0 | 1 | 1 | 1 | | | | Don’t-cares can be used to simplify logic! ҧ | 1 | 0 | 0 | 0 | 𝑌 = | 𝐴𝑆 + | 𝐵𝑆 | | — | — | — | — | — | —- | — | | 1 | 0 | 1 | 1 | | | | For input combinations that never occur, the | 1 | 1 | 0 | 0 | | | | | — | — | — | — | — | — | — | designer may assume either 1 or 0, | 1 | 1 | 1 | 1 | | | | | — | — | — | — | — | — | — | whichever is more useful to achieving a | S | A | B | Y | | | | | — | — | — | — | — | — | — | minimum-cost implementation. | 0 | 0 | X | 0 | | | | | — | — | — | — | — | — | — | | 0 | 1 | X | 1 | | | | | 1 | X | 0 | 0 | | | | | 1 | X | 1 | 1 | | | |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#multiplexer-21-mux",
-    "href": "21.html#multiplexer-21-mux",
-    "title": "Multiplexers",
-    "section": "2:1 Multiplexer (2:1 mux)",
-    "text": "2:1 Multiplexer (2:1 mux)\n■ A circuit that chooses an output from among two inputs based on the value of a select signal A 0 Y B 1 S 2:1 Multiplexer Schematic 2:1 Multiplexer Symbol (Gate Diagram)",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#multiplexer-21-mux-1",
-    "href": "21.html#multiplexer-21-mux-1",
-    "title": "Multiplexers",
-    "section": "2:1 Multiplexer (2:1 mux)",
-    "text": "2:1 Multiplexer (2:1 mux)\nThese labels tell us how the multiplexer chooses the output based on the value of the select signal inputs A output 0 When S = 0, Y = A Y When S = 1, Y = B B 1 S select signal",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#multiplexer-21-mux-2",
-    "href": "21.html#multiplexer-21-mux-2",
-    "title": "Multiplexers",
-    "section": "2:1 Multiplexer (2:1 mux)",
-    "text": "2:1 Multiplexer (2:1 mux)\n\n\n\nA\n\nA\n\n\n\n\n\n\n0\n\n1\n\n\n\nY Y | B | 1 | B | 0 | | —————– | —————– | — | — | | | S | | S | | When S = 0, Y = A | When S = 0, Y = B | | | | When S = 1, Y = B | When S = 1, Y = A | | |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#mux-compositions-and-shortcuts",
-    "href": "21.html#mux-compositions-and-shortcuts",
-    "title": "Multiplexers",
-    "section": "MUX Compositions and Shortcuts",
-    "text": "MUX Compositions and Shortcuts\nA 4-bit wide 2-input Mux A | | A 4-input Mux | | 0 | 0 | | | | | — | ————- | — | — | — | — | — | — | | | | | | 0 | Y | | | 0 B | (implemented as a tree) | | | 0 | 11 | | | | | ———————– | — | — | — | — | — | — | — | S A I | 0 0 | | | 1 | 0 | | | | | — | — | — | — | — | — | — | — | | 0 | | | | 0 | | | | | I | | | B | | Y | | | 1 | 1 11 | | A | 1 | 11 | | | | | —- | — | — | — | — | — | — | — | | S | | | | S | | | | | | 0 Y | 0 | | | | A | | 0 | | | B | | | | 0-3 | | | — | — | — | — | — | — | — | — | Y Y | I | 11 | 1 | A | | | | 0-3 | | — | — | — | — | — | — | — | — | | | S | | | | | B | | | 2 0 | | | 2 | 0 | | 0-3 | | | 0 | | C 2 | | 0 | | | | | I | | | B | | Y | | | | 3 | | | | | 2 | | | | 11 | | | 2 | 11 | | | | | S | | D 3 | | S | | | | S S A | | | | 3 | 0 0 | | | | | — | — | — | — | — | — | — | — | Y | | | | B | | 3 | | | | — | —– | — | — | — | — | — | — | | S | S | | 3 | 11 | | | | | | 0 1 | | | S | | | | S 24",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#a-mux-plus-constants-is-enough-to",
-    "href": "21.html#a-mux-plus-constants-is-enough-to",
-    "title": "Multiplexers",
-    "section": "A mux plus constants is enough to",
-    "text": "A mux plus constants is enough to\nMUX Function Synthesis implement any Boolean function Consider implementation of some arbitrary Combinational function, F(A,B,C)… using a MULTIPLEXER as the only circuit element: Mux: An example “configurable” logic element 0 0 0 1 0 2 1 Y 3 0 4 1 5 1 6 1 7 A,B,C 25",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#mux-logic-tricks",
-    "href": "21.html#mux-logic-tricks",
-    "title": "Multiplexers",
-    "section": "MUX Logic Tricks",
-    "text": "MUX Logic Tricks\nWe can apply certain optimizations to MUX Function synthesis Desired Logic - Largely by inspection or exhaustive search Function 0 0 C 1 Y There’s something interesting going on C 2 in those MUXes 1 3 A,B - N-input function == N-1 input MUX & 1 inverter If adjacent truth-table rows differ by just one bit, that bit can become a mux input 2266",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#forming",
-    "href": "21.html#forming",
-    "title": "Multiplexers",
-    "section": "FORMING",
-    "text": "FORMING\nEQUATIONS FROM TRUTH TABLES",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#from-last-time-sum-of-products-form",
-    "href": "21.html#from-last-time-sum-of-products-form",
-    "title": "Multiplexers",
-    "section": "From Last Time: Sum of Products Form",
-    "text": "From Last Time: Sum of Products Form\nWhen two or more products (AND) are summed (OR) together | Sum of Products | | | | | Not Sum of Products | | —————- | — | — | — | — | ——————— | | 𝑌 = 𝐴𝐵 + 𝐴𝐶 | | | | | 𝑌 = (𝐴 + 𝐵)(𝐶 + 𝐴) | Approach: write down a boolean expression for every ‘1’ in the output",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#ex-forming-equations-from-truth-tables",
-    "href": "21.html#ex-forming-equations-from-truth-tables",
-    "title": "Multiplexers",
-    "section": "Ex: Forming Equations from Truth Tables",
-    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#ex-forming-equations-from-truth-tables-1",
-    "href": "21.html#ex-forming-equations-from-truth-tables-1",
-    "title": "Multiplexers",
-    "section": "Ex: Forming Equations from Truth Tables",
-    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\n\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#forming-equations-from-truth-tables",
-    "href": "21.html#forming-equations-from-truth-tables",
-    "title": "Multiplexers",
-    "section": "Forming Equations from Truth Tables",
-    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#forming-equations-from-truth-tables-1",
-    "href": "21.html#forming-equations-from-truth-tables-1",
-    "title": "Multiplexers",
-    "section": "Forming Equations from Truth Tables",
-    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n0\n\n\n\n0\n0\n1\n1\n𝐴𝐵𝐶\n\n\n0\n1\n0\n0\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n1\n𝐴𝐵𝐶\n\n\n1\n0\n1\n0\n\n\n\n1\n1\n0\n1\n𝐴𝐵𝐶\n\n\n1\n1\n1\n1\n𝐴𝐵𝐶",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#a-systematic-design-approach",
-    "href": "21.html#a-systematic-design-approach",
-    "title": "Multiplexers",
-    "section": "A Systematic Design Approach",
-    "text": "A Systematic Design Approach\nTruth Table 1) Write the functional spec as a truth table 2) Write down a Boolean expression for every ‘1’ in the output Y = (!C && !B && A) || (!C && B && A) || (C && B && !A) || (C && B && A) 3) Wire up the ideal gates, replace them with equivalent realizable gates, call it a day, and go home! This approach will always give us logic -it’s systematic! -it works! expressions in a particular form: -it’s easy! SUM-OF-PRODUCTS -we are done! (?)",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#straightforward-synthesis",
-    "href": "21.html#straightforward-synthesis",
-    "title": "Multiplexers",
-    "section": "Straightforward Synthesis",
-    "text": "Straightforward Synthesis\nA B C We can implement sum-of- A products with just 3 levels of B C logic, using… Y A INVERTERS/AND/OR! B C A B C",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#lets-try-it-out",
-    "href": "21.html#lets-try-it-out",
-    "title": "Multiplexers",
-    "section": "Let’s Try it Out",
-    "text": "Let’s Try it Out\n\n\n\nA\nA\nB\nB\nY\n\n\n\n\n\n\n\n\n1\n0\n1\n0\n\n\n\n\n\n\n\n\nI want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | | — | — | — | — | — | ———————- | —– | ————– | — | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | | Additionally, define 𝐴 | and 𝐵 | as the left | | | | | | | | | 1 | 1 | | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | bits of A and B, and 𝐴 | and 𝐵 | as the right | | | | | | | | | 0 | 0 | | | 1 | 0 | 1 | 0 | 0 | | | | | bits. | 1 | 0 | 0 | 1 | 1 | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | | 0 | 1 | 0 | 0 | 1 | | | | | | 0 | 1 | 1 | 0 | 1 | | | | | | 0 | 1 | 0 | 1 | 0 | | | | | | 0 | 1 | 1 | 1 | 0 | | | | | | 1 | 1 | 0 | 0 | 1 | | | | | | 1 | 1 | 1 | 0 | 1 | | | | | | 1 | 1 | 0 | 1 | 1 | | | | | | 1 | 1 | 1 | 1 | 0 | | | | 35 |\nLet’s Try it Out | A | A | B | B | Y | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 0 | | | | | | I want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | | — | — | — | — | — | ———————- | — | —– | ————– | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | | Additionally, define 𝐴 | | and 𝐵 | as the left | | | | | | | | | 1 | 1 | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | bits of A and B, and 𝐴 | | and 𝐵 | as the right | | 1 | 0 | 1 | 0 | 0 | | | 0 | 0 | bits. | 1 | 0 | 0 | 1 | 1 | | | | | | — | — | — | — | — | — | ——————————– | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | | 0 | 1 | 0 | 0 | 1 | | | | | | 0 | 1 | 1 | 0 | 0 | | | | | | 0 | 1 | 0 | 1 | 0 | | | | | | 0 | 1 | 1 | 1 | 0 | | | | | | 1 | 1 | 0 | 0 | 1 | | | | | | 1 | 1 | 1 | 0 | 1 | | Is the simplest possible form?? | | | | 1 | 1 | 0 | 1 | 1 | | | | | | 1 | 1 | 1 | 1 | 0 | | | | |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#gate-minimization",
-    "href": "21.html#gate-minimization",
-    "title": "Multiplexers",
-    "section": "GATE MINIMIZATION",
-    "text": "GATE MINIMIZATION",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#optimizing-our-circuits",
-    "href": "21.html#optimizing-our-circuits",
-    "title": "Multiplexers",
-    "section": "Optimizing our circuits…",
-    "text": "Optimizing our circuits…\n■ Fewer transistors means…. – Smaller area! – Lower power consumption! – Shorter time from input to output! – Lower cost! ■ How will we do this? – Visual inspection – Boolean algebra simplification – In practice, → advanced synthesis algorithms to create logically equivalent, more efficient circuits! ☺",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#recall-transistor-count-1",
-    "href": "21.html#recall-transistor-count-1",
-    "title": "Multiplexers",
-    "section": "Recall: Transistor Count",
-    "text": "Recall: Transistor Count\nGate Number of Transistors NOT 2 AND 6 OR 6 NAND 4 NOR 4 XOR 12 XNOR 12",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#boolean-algebra-laws",
-    "href": "21.html#boolean-algebra-laws",
-    "title": "Multiplexers",
-    "section": "Boolean Algebra Laws",
-    "text": "Boolean Algebra Laws\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\n\nOR Form\n\n\nAND Form\n\n\n\n\n\nIdentity\n\nA + 0 = A\n\n\nA · 1 = A\n\n\n\nNull\n\nA + 1 = 1\n\n\nA · 0 = 0\n\n\nIdempotent\n\n\nA + A = A\n\n\nA · A = A\n\n\n\n\n\n\nഥ\n\nഥ\n\n\nComplement\n\n\nA + A = 1\n\n\nA · A = 0\n\n\nCommutative\n\n\nA + B = B + A\n\n\nA · B = B · A\n\n\n\nAssociative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) ഥ ഥ ഥ ഥ | De Morgan’s | | A | + B | = A · B | A · B | = A + B | | ———– | — | — | —- | ———- | —– | ——— |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#boolean-algebra-practice",
-    "href": "21.html#boolean-algebra-practice",
-    "title": "Multiplexers",
-    "section": "Boolean Algebra Practice",
-    "text": "Boolean Algebra Practice\nUsing the laws that you have just learned, simplify the following Boolean expression: A · (A + B)",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#boolean-algebra-practice-1",
-    "href": "21.html#boolean-algebra-practice-1",
-    "title": "Multiplexers",
-    "section": "Boolean Algebra Practice",
-    "text": "Boolean Algebra Practice\nA · (A + B) | | | Name | OR Form | | AND Form | | | —– | — | ———– | ————- | — | ————- | — | | 𝐴𝐴 + | 𝐴𝐵 | Identity | A + 0 = A | | A · 1 = A | | | | | Null | A + 1 = 1 | | A · 0 = 0 | | | 𝐴 + | 𝐴𝐵 | | | | | | | | | Idempotent | A + A = A | | A · A = A | | | 𝐴 1 + | 𝐵 | | | | | | | | | | | ഥ | | ഥ | | | | Complement | A + A = 1 | | A · A = 0 | | | 𝐴 | 1 | | | | | | | | | Commutative | A + B = B + A | | A · B = B · A | | 𝐴 Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | | | De Morgan’s | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | — | — | ———– | —— | ———— | ——— | ——- | Absorption Law: A · (A + B) = A",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#comparing-number-of-transistors-used",
-    "href": "21.html#comparing-number-of-transistors-used",
-    "title": "Multiplexers",
-    "section": "Comparing Number of Transistors Used",
-    "text": "Comparing Number of Transistors Used\nOriginal Circuit Simplified Circuit Y = A · (A + B) Y = A Number of Transistors = 12 Number of Transistors = 0",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#boolean-algebra-practice-2",
-    "href": "21.html#boolean-algebra-practice-2",
-    "title": "Multiplexers",
-    "section": "Boolean Algebra Practice",
-    "text": "Boolean Algebra Practice\nSimplify the following Boolean expression: ഥ 𝑩 + 𝑩𝑪 | | Name | OR Form | | AND Form | | | ———– | ——– | ————- | —– | ————- | —– | | | Identity | A + 0 = A | | A · 1 = A | | | | Null | A + 1 = 1 | | A · 0 = 0 | | | Idempotent | | A + A = A | | A · A = A | | | | | | ഥ = 1 | | ഥ = 0 | | Complement | | A + A | | A · A | | | Commutative | | A + B = B + A | | A · B = B · A | | Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | De Morgan’s | | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | ———– | — | —— | ———— | ——— | ——- | Absorption | | | A · (A + B) = A | | A + (A · B) = A | | | — | — | ————— | — | ————— | — |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#boolean-algebra-practice-3",
-    "href": "21.html#boolean-algebra-practice-3",
-    "title": "Multiplexers",
-    "section": "Boolean Algebra Practice",
-    "text": "Boolean Algebra Practice\nഥ 𝑩 + 𝑩𝑪 | | | | Name | OR Form | | AND Form | | | —– | —– | —- | ———– | ————- | — | ————- | — | | | | | Identity | A + 0 = A | | A · 1 = A | | | | ത | | Null | A + 1 = 1 | | A · 0 = 0 | | | (𝐵 + | 𝐵)(𝐵 | + 𝐶) | | | | | | | | | | Idempotent | A + A = A | | A · A = A | | | (1)(𝐵 | + | 𝐶) | | | | | | | | | | | | ഥ | | ഥ | | | | | Complement | A + A = 1 | | A · A = 0 | | | | 𝐵 + 𝐶 | | | | | | | | | | | Commutative | A + B = B + A | | A · B = B · A | | Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | | | | De Morgan’s | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | — | — | — | ———– | —— | ———— | ——— | ——- |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#recall-de-morgans-theorem",
-    "href": "21.html#recall-de-morgans-theorem",
-    "title": "Multiplexers",
-    "section": "Recall: De Morgan’s Theorem",
-    "text": "Recall: De Morgan’s Theorem\nDe Morgan’s Theorem: express conjunctions & disjunctions (ANDS, ORS) solely in terms of negation! | | | | | ഥ | ഥ | | | — | — | — | — | — | — | — | | A | + | B | = | A | · B | | | | | | | ഥ | | ഥ | | | AB | | = | A | + | B |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#applying-demorgans",
-    "href": "21.html#applying-demorgans",
-    "title": "Multiplexers",
-    "section": "Applying DeMorgan’s",
-    "text": "Applying DeMorgan’s\n\n\n\n𝐴𝐵\n+ 𝐶𝐷\n\n\n\n\n\n\n■ How would you apply DeMorgan’s to this expression? – We group our terms based on the lowest operator precedence under the bar – The order of operations for Boolean Algebra is NOT, then AND, then OR. Expressions inside brackets are always evaluated first. – In this case, the operator with the lowest precedence is OR (𝐴𝐵)(𝐶𝐷) | ҧ | ത | ҧ ഥ | | —- | —- | —- | | (𝐴 + | 𝐵)(𝐶 | + 𝐷) |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#demorgans-practice",
-    "href": "21.html#demorgans-practice",
-    "title": "Multiplexers",
-    "section": "DeMorgan’s Practice",
-    "text": "DeMorgan’s Practice\nҧ ҧ 𝐴𝐵 + 𝐶 ■ How would you apply DeMorgan’s to this expression?",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#demorgans-practice-1",
-    "href": "21.html#demorgans-practice-1",
-    "title": "Multiplexers",
-    "section": "DeMorgan’s Practice",
-    "text": "DeMorgan’s Practice\nҧ ҧ 𝐴𝐵 + 𝐶 ■ How would you apply DeMorgan’s to this expression? ҧ 𝐴𝐵𝐶 ത (𝐴 + 𝐵)𝐶",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#demorgans-practice-2",
-    "href": "21.html#demorgans-practice-2",
-    "title": "Multiplexers",
-    "section": "DeMorgan’s Practice",
-    "text": "DeMorgan’s Practice\n■ How would you apply DeMorgan’s to this expression? ҧ | 𝐴 + | 𝐵 𝐶 | + 𝐷 | 𝐸 + | 𝐹 + | 𝐺 | | — | — | — | — | — | — |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#demorgans-practice-3",
-    "href": "21.html#demorgans-practice-3",
-    "title": "Multiplexers",
-    "section": "DeMorgan’s Practice",
-    "text": "DeMorgan’s Practice\n■ How would you apply DeMorgan’s to this expression? ҧ | 𝐴 | + | 𝐵 | 𝐶 | + | 𝐷 | 𝐸 + | 𝐹 | + | 𝐺 | | — | — | — | — | — | — | — | — | — | —- | | | ҧ | | | | | | | | ҧ | | 𝐴 | + | 𝐵 | 𝐶 | + | 𝐷 | 𝐸 + | 𝐹 | | ∙ 𝐺 | | | ҧ | | | | | | | | ҧ | | ( 𝐴 | + | 𝐵 | + | 𝐶 + | 𝐷 | + 𝐸 | + | 𝐹) | ∙ 𝐺 | | | | ത | | ҧ ഥ | | | | | ҧ | | | (𝐴𝐵 | | + | 𝐶𝐷 | + | 𝐸 + | 𝐹) | ∙ | 𝐺 |",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#can-we-optimize-this",
-    "href": "21.html#can-we-optimize-this",
-    "title": "Multiplexers",
-    "section": "Can we optimize this?",
-    "text": "Can we optimize this?",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.html#simplify-the-following-boolean-expression",
-    "href": "21.html#simplify-the-following-boolean-expression",
-    "title": "Multiplexers",
-    "section": "Simplify the following Boolean expression",
-    "text": "Simplify the following Boolean expression\n\n\n\n𝐴𝐵𝐶\n+ 𝐴𝐵𝐶\nҧ + 𝐴𝐶𝐵\n+ 𝐴𝐶𝐵\n+ 𝐴𝐵𝐶 𝐷\nഥ ഥ +\n𝐴𝐵 ҧ +\n𝐶 ҧ",
-    "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#solution",
     "href": "21.html#solution",
-    "title": "Multiplexers",
+    "title": "Multigate",
+    "section": "Solution",
+    "text": "Solution\n\n(!A & !B & C) | (A & !B & !C) | (A & B & !C) | A & B & C\n\\[\n(\\neg A \\land \\neg B \\land C) \\lor (A \\land \\neg B \\land \\neg C) \\lor (A \\land B \\land \\neg C) \\lor (A \\land B \\land C)\n\\]",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#a-systematic-design-approach",
+    "href": "21.html#a-systematic-design-approach",
+    "title": "Multigate",
+    "section": "A Systematic Design Approach",
+    "text": "A Systematic Design Approach\n\nWrite the functional spec as a truth table\nWrite down a Boolean expression for every ‘1’ in the output\nWire up the ideal gates, replace them with equivalent realizable gates, call it a day, and go home!",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#pros",
+    "href": "21.html#pros",
+    "title": "Multigate",
+    "section": "Pros",
+    "text": "Pros\nThis approach will always give us logic\n\nIt’s systematic!\nIt works! expressions in a particular form:\nIt’s easy!\nWe are done! (?)",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#straightforward-synthesis",
+    "href": "21.html#straightforward-synthesis",
+    "title": "Multigate",
+    "section": "Straightforward Synthesis",
+    "text": "Straightforward Synthesis\nA B C We can implement sum-of- A products with just 3 levels of B C logic, using… Y A INVERTERS/AND/OR! B C A B C",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#lets-try-it-out",
+    "href": "21.html#lets-try-it-out",
+    "title": "Multigate",
+    "section": "Let’s Try it Out",
+    "text": "Let’s Try it Out\n\n\n\nA\nA\nB\nB\nY\n\n\n\n\n\n\n\n\n1\n0\n1\n0\n\n\n\n\n\n\n\n\nI want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | | — | — | — | — | — | ———————- | —– | ————– | — | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | | Additionally, define 𝐴 | and 𝐵 | as the left | | | | | | | | | 1 | 1 | | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | bits of A and B, and 𝐴 | and 𝐵 | as the right | | | | | | | | | 0 | 0 | | | 1 | 0 | 1 | 0 | 0 | | | | | bits. | 1 | 0 | 0 | 1 | 1 | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | | 0 | 1 | 0 | 0 | 1 | | | | | | 0 | 1 | 1 | 0 | 1 | | | | | | 0 | 1 | 0 | 1 | 0 | | | | | | 0 | 1 | 1 | 1 | 0 | | | | | | 1 | 1 | 0 | 0 | 1 | | | | | | 1 | 1 | 1 | 0 | 1 | | | | | | 1 | 1 | 0 | 1 | 1 | | | | | | 1 | 1 | 1 | 1 | 0 | | | | 35 |\nLet’s Try it Out | A | A | B | B | Y | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 0 | | | | | | I want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | | — | — | — | — | — | ———————- | — | —– | ————– | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | | Additionally, define 𝐴 | | and 𝐵 | as the left | | | | | | | | | 1 | 1 | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | bits of A and B, and 𝐴 | | and 𝐵 | as the right | | 1 | 0 | 1 | 0 | 0 | | | 0 | 0 | bits. | 1 | 0 | 0 | 1 | 1 | | | | | | — | — | — | — | — | — | ——————————– | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | | 0 | 1 | 0 | 0 | 1 | | | | | | 0 | 1 | 1 | 0 | 0 | | | | | | 0 | 1 | 0 | 1 | 0 | | | | | | 0 | 1 | 1 | 1 | 0 | | | | | | 1 | 1 | 0 | 0 | 1 | | | | | | 1 | 1 | 1 | 0 | 1 | | Is the simplest possible form?? | | | | 1 | 1 | 0 | 1 | 1 | | | | | | 1 | 1 | 1 | 1 | 0 | | | | |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#gate-minimization",
+    "href": "21.html#gate-minimization",
+    "title": "Multigate",
+    "section": "GATE MINIMIZATION",
+    "text": "GATE MINIMIZATION",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#optimizing-our-circuits",
+    "href": "21.html#optimizing-our-circuits",
+    "title": "Multigate",
+    "section": "Optimizing our circuits…",
+    "text": "Optimizing our circuits…\n■ Fewer transistors means…. – Smaller area! – Lower power consumption! – Shorter time from input to output! – Lower cost! ■ How will we do this? – Visual inspection – Boolean algebra simplification – In practice, → advanced synthesis algorithms to create logically equivalent, more efficient circuits! ☺",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#recall-transistor-count-1",
+    "href": "21.html#recall-transistor-count-1",
+    "title": "Multigate",
+    "section": "Recall: Transistor Count",
+    "text": "Recall: Transistor Count\nGate Number of Transistors NOT 2 AND 6 OR 6 NAND 4 NOR 4 XOR 12 XNOR 12",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#boolean-algebra-laws",
+    "href": "21.html#boolean-algebra-laws",
+    "title": "Multigate",
+    "section": "Boolean Algebra Laws",
+    "text": "Boolean Algebra Laws\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\n\nOR Form\n\n\nAND Form\n\n\n\n\n\nIdentity\n\nA + 0 = A\n\n\nA · 1 = A\n\n\n\nNull\n\nA + 1 = 1\n\n\nA · 0 = 0\n\n\nIdempotent\n\n\nA + A = A\n\n\nA · A = A\n\n\n\n\n\n\nഥ\n\nഥ\n\n\nComplement\n\n\nA + A = 1\n\n\nA · A = 0\n\n\nCommutative\n\n\nA + B = B + A\n\n\nA · B = B · A\n\n\n\nAssociative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) ഥ ഥ ഥ ഥ | De Morgan’s | | A | + B | = A · B | A · B | = A + B | | ———– | — | — | —- | ———- | —– | ——— |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#boolean-algebra-practice",
+    "href": "21.html#boolean-algebra-practice",
+    "title": "Multigate",
+    "section": "Boolean Algebra Practice",
+    "text": "Boolean Algebra Practice\nUsing the laws that you have just learned, simplify the following Boolean expression: A · (A + B)",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#boolean-algebra-practice-1",
+    "href": "21.html#boolean-algebra-practice-1",
+    "title": "Multigate",
+    "section": "Boolean Algebra Practice",
+    "text": "Boolean Algebra Practice\nA · (A + B) | | | Name | OR Form | | AND Form | | | —– | — | ———– | ————- | — | ————- | — | | 𝐴𝐴 + | 𝐴𝐵 | Identity | A + 0 = A | | A · 1 = A | | | | | Null | A + 1 = 1 | | A · 0 = 0 | | | 𝐴 + | 𝐴𝐵 | | | | | | | | | Idempotent | A + A = A | | A · A = A | | | 𝐴 1 + | 𝐵 | | | | | | | | | | | ഥ | | ഥ | | | | Complement | A + A = 1 | | A · A = 0 | | | 𝐴 | 1 | | | | | | | | | Commutative | A + B = B + A | | A · B = B · A | | 𝐴 Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | | | De Morgan’s | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | — | — | ———– | —— | ———— | ——— | ——- | Absorption Law: A · (A + B) = A",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#comparing-number-of-transistors-used",
+    "href": "21.html#comparing-number-of-transistors-used",
+    "title": "Multigate",
+    "section": "Comparing Number of Transistors Used",
+    "text": "Comparing Number of Transistors Used\nOriginal Circuit Simplified Circuit Y = A · (A + B) Y = A Number of Transistors = 12 Number of Transistors = 0",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#boolean-algebra-practice-2",
+    "href": "21.html#boolean-algebra-practice-2",
+    "title": "Multigate",
+    "section": "Boolean Algebra Practice",
+    "text": "Boolean Algebra Practice\nSimplify the following Boolean expression: ഥ 𝑩 + 𝑩𝑪 | | Name | OR Form | | AND Form | | | ———– | ——– | ————- | —– | ————- | —– | | | Identity | A + 0 = A | | A · 1 = A | | | | Null | A + 1 = 1 | | A · 0 = 0 | | | Idempotent | | A + A = A | | A · A = A | | | | | | ഥ = 1 | | ഥ = 0 | | Complement | | A + A | | A · A | | | Commutative | | A + B = B + A | | A · B = B · A | | Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | De Morgan’s | | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | ———– | — | —— | ———— | ——— | ——- | Absorption | | | A · (A + B) = A | | A + (A · B) = A | | | — | — | ————— | — | ————— | — |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#boolean-algebra-practice-3",
+    "href": "21.html#boolean-algebra-practice-3",
+    "title": "Multigate",
+    "section": "Boolean Algebra Practice",
+    "text": "Boolean Algebra Practice\nഥ 𝑩 + 𝑩𝑪 | | | | Name | OR Form | | AND Form | | | —– | —– | —- | ———– | ————- | — | ————- | — | | | | | Identity | A + 0 = A | | A · 1 = A | | | | ത | | Null | A + 1 = 1 | | A · 0 = 0 | | | (𝐵 + | 𝐵)(𝐵 | + 𝐶) | | | | | | | | | | Idempotent | A + A = A | | A · A = A | | | (1)(𝐵 | + | 𝐶) | | | | | | | | | | | | ഥ | | ഥ | | | | | Complement | A + A = 1 | | A · A = 0 | | | | 𝐵 + 𝐶 | | | | | | | | | | | Commutative | A + B = B + A | | A · B = B · A | | Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | | | | De Morgan’s | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | — | — | — | ———– | —— | ———— | ——— | ——- |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#recall-de-morgans-theorem",
+    "href": "21.html#recall-de-morgans-theorem",
+    "title": "Multigate",
+    "section": "Recall: De Morgan’s Theorem",
+    "text": "Recall: De Morgan’s Theorem\nDe Morgan’s Theorem: express conjunctions & disjunctions (ANDS, ORS) solely in terms of negation! | | | | | ഥ | ഥ | | | — | — | — | — | — | — | — | | A | + | B | = | A | · B | | | | | | | ഥ | | ഥ | | | AB | | = | A | + | B |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#applying-demorgans",
+    "href": "21.html#applying-demorgans",
+    "title": "Multigate",
+    "section": "Applying DeMorgan’s",
+    "text": "Applying DeMorgan’s\n\n\n\n𝐴𝐵\n+ 𝐶𝐷\n\n\n\n\n\n\n■ How would you apply DeMorgan’s to this expression? – We group our terms based on the lowest operator precedence under the bar – The order of operations for Boolean Algebra is NOT, then AND, then OR. Expressions inside brackets are always evaluated first. – In this case, the operator with the lowest precedence is OR (𝐴𝐵)(𝐶𝐷) | ҧ | ത | ҧ ഥ | | —- | —- | —- | | (𝐴 + | 𝐵)(𝐶 | + 𝐷) |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#demorgans-practice",
+    "href": "21.html#demorgans-practice",
+    "title": "Multigate",
+    "section": "DeMorgan’s Practice",
+    "text": "DeMorgan’s Practice\nҧ ҧ 𝐴𝐵 + 𝐶 ■ How would you apply DeMorgan’s to this expression?",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#demorgans-practice-1",
+    "href": "21.html#demorgans-practice-1",
+    "title": "Multigate",
+    "section": "DeMorgan’s Practice",
+    "text": "DeMorgan’s Practice\nҧ ҧ 𝐴𝐵 + 𝐶 ■ How would you apply DeMorgan’s to this expression? ҧ 𝐴𝐵𝐶 ത (𝐴 + 𝐵)𝐶",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#demorgans-practice-2",
+    "href": "21.html#demorgans-practice-2",
+    "title": "Multigate",
+    "section": "DeMorgan’s Practice",
+    "text": "DeMorgan’s Practice\n■ How would you apply DeMorgan’s to this expression? ҧ | 𝐴 + | 𝐵 𝐶 | + 𝐷 | 𝐸 + | 𝐹 + | 𝐺 | | — | — | — | — | — | — |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#demorgans-practice-3",
+    "href": "21.html#demorgans-practice-3",
+    "title": "Multigate",
+    "section": "DeMorgan’s Practice",
+    "text": "DeMorgan’s Practice\n■ How would you apply DeMorgan’s to this expression? ҧ | 𝐴 | + | 𝐵 | 𝐶 | + | 𝐷 | 𝐸 + | 𝐹 | + | 𝐺 | | — | — | — | — | — | — | — | — | — | —- | | | ҧ | | | | | | | | ҧ | | 𝐴 | + | 𝐵 | 𝐶 | + | 𝐷 | 𝐸 + | 𝐹 | | ∙ 𝐺 | | | ҧ | | | | | | | | ҧ | | ( 𝐴 | + | 𝐵 | + | 𝐶 + | 𝐷 | + 𝐸 | + | 𝐹) | ∙ 𝐺 | | | | ത | | ҧ ഥ | | | | | ҧ | | | (𝐴𝐵 | | + | 𝐶𝐷 | + | 𝐸 + | 𝐹) | ∙ | 𝐺 |",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#can-we-optimize-this",
+    "href": "21.html#can-we-optimize-this",
+    "title": "Multigate",
+    "section": "Can we optimize this?",
+    "text": "Can we optimize this?",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#simplify-the-following-boolean-expression",
+    "href": "21.html#simplify-the-following-boolean-expression",
+    "title": "Multigate",
+    "section": "Simplify the following Boolean expression",
+    "text": "Simplify the following Boolean expression\n\n\n\n𝐴𝐵𝐶\n+ 𝐴𝐵𝐶\nҧ + 𝐴𝐶𝐵\n+ 𝐴𝐶𝐵\n+ 𝐴𝐵𝐶 𝐷\nഥ ഥ +\n𝐴𝐵 ҧ +\n𝐶 ҧ",
+    "crumbs": [
+      "Multigate"
+    ]
+  },
+  {
+    "objectID": "21.html#solution-1",
+    "href": "21.html#solution-1",
+    "title": "Multigate",
     "section": "Solution",
     "text": "Solution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nҧ\n\n\n\n\n\n\nഥ\nഥ\nҧ\nҧ\n\n\n\n\n𝐴𝐵𝐶\n\n+ 𝐴𝐵𝐶\n\n+\n𝐴𝐶𝐵\n+\n𝐴𝐶𝐵\n\n+\n𝐴𝐵𝐶 𝐷\n\n+\n𝐴𝐵 +\n𝐶\n\n\n\n\n\nҧ\n\n\n\n\n\n\n\n\n\nҧ\n\n\n\n𝐴𝐵\n𝐶\n+ 𝐶\n+\n𝐵\n𝐴𝐶\n+\n𝐴𝐶\n+\n𝐴𝐵\n+\n𝐶\n+ 𝐷\n+ (𝐴𝐵)𝐶\n\n\n\n\n𝐴𝐵\n1\n+\n𝐵\n1\n+ 𝐴𝐵\n\n+ 𝐶\n+\n𝐷\n+ (𝐴\n+ 𝐵)𝐶\nത\n\n\n\n\nത | | | 𝐴𝐵 | + | 𝐵 | + | 𝐴𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | | + 𝐵𝐶 | | | | — | — | — | — | — | — | — | — | — | — | —- | — | —- | — | — | ത | | | | 𝐴𝐵 | + | 𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | | + 𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | — | —- | — | —- | — | — | — | ത | | | | 𝐵 | 𝐴 + | 1 | + | 𝐶 | 1 + | 𝐴 | + 𝐵𝐶 | | + 𝐷 | | | | — | — | — | — | — | — | — | — | — | — | —- | — | — | — | — | ത | | | | | 𝐵 | 1 | + 𝐶 | 1 | + 𝐵𝐶 | | | + 𝐷 | | | | | — | — | — | — | — | — | — | — | —- | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶 | + 𝐵𝐶 | | + | 𝐷 | | | | | | — | — | — | — | — | — | — | —- | — | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶(1 | | + 𝐵) | | + 𝐷 | | | | | | — | — | — | — | — | — | —– | —— | —- | — | — | — | — | — | — | | | | | | | | 𝐵 | + 𝐶(1) | | + | 𝐷 | | | | | | | | | | | | 𝐵 | + 𝐶 | + | 𝐷 | | | | | |",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#optimizing-our-gates",
     "href": "21.html#optimizing-our-gates",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Optimizing Our Gates",
     "text": "Optimizing Our Gates\nYay! We did it!",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#recall-our-problem-from-earlier",
     "href": "21.html#recall-our-problem-from-earlier",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Recall: Our Problem from Earlier",
     "text": "Recall: Our Problem from Earlier\n\n\n\nA\nA\nB\nB\nY\n\n\n\n\n\n\n\n1\n0\n1\n0\n\n\n\n\n\n\n\nI want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | — | — | — | — | — | ———————- | —– | ————– | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | Additionally, define 𝐴 | and 𝐵 | as the left | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | 1 | 1 | | 1 | 0 | 1 | 0 | 0 | bits of A and B, and 𝐴 | and 𝐵 | as the right | | | | | | | | 0 | 0 | bits. | 1 | 0 | 0 | 1 | 1 | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | 0 | 1 | 0 | 0 | 1 | | | | | 0 | 1 | 1 | 0 | 0 | | | | | 0 | 1 | 0 | 1 | 0 | | | | | 0 | 1 | 1 | 1 | 0 | | | | | 1 | 1 | 0 | 0 | 1 | | | | | 1 | 1 | 1 | 0 | 1 | | | | Is the simplest possible form?? | 1 | 1 | 0 | 1 | 1 | | | | | — | — | — | — | — | — | — | — | | 1 | 1 | 1 | 1 | 0 | | | |",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#simplify",
     "href": "21.html#simplify",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Simplify?",
     "text": "Simplify?",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.html#our-problem-from-earlier",
     "href": "21.html#our-problem-from-earlier",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Our Problem from Earlier",
     "text": "Our Problem from Earlier\n\n\n\nA\nA\nB\nB\nY\n\n\n\n\n\n\n\n1\n0\n1\n0\n\n\n\n\n\n\n\nI want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | — | — | — | — | — | ———————- | —– | ————– | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | Additionally, define 𝐴 | and 𝐵 | as the left | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | 1 | 1 | | 1 | 0 | 1 | 0 | 0 | bits of A and B, and 𝐴 | and 𝐵 | as the right | | | | | | | | 0 | 0 | bits. | 1 | 0 | 0 | 1 | 1 | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | 0 | 1 | 0 | 0 | 1 | | | | | 0 | 1 | 1 | 0 | 1 | | | | | 0 | 1 | 0 | 1 | 0 | | | | | 0 | 1 | 1 | 1 | 0 | | | | | 1 | 1 | 0 | 0 | 1 | | | | | 1 | 1 | 1 | 0 | 1 | | | | | 1 | 1 | 0 | 1 | 1 | | | | | 1 | 1 | 1 | 1 | 0 | | | |",
     "crumbs": [
-      "Multiplexers"
+      "Multigate"
     ]
   },
   {
     "objectID": "21.rjs.html#announcements",
     "href": "21.rjs.html#announcements",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Announcements",
-    "text": "Announcements\n\nWelcome to HW/asm\nAction Items discussion ## LOGIC GATES WITH\n\n2+ INPUTS"
-  },
-  {
-    "objectID": "21.rjs.html#logistics-updates",
-    "href": "21.rjs.html#logistics-updates",
-    "title": "Multiplexers",
-    "section": "Logistics Updates",
-    "text": "Logistics Updates\n■ Quiz schedule updated – Quiz 2 & 3 shifted by one week. ■ Quiz 2 is next class! Next Wednesday. ■ Quiz 1 grades posted – Mean: 90 – Median: 91"
-  },
-  {
-    "objectID": "21.rjs.html#quiz-topics",
-    "href": "21.rjs.html#quiz-topics",
-    "title": "Multiplexers",
-    "section": "Quiz Topics",
-    "text": "Quiz Topics\n■ Topics: – Tracing CMOS gates – Going between circuit diagrams, boolean equations, and truth tables – Be able to draw basic circuit diagrams made of logic gates! – Multiplexers – Counting the number of transistors – Boolean algebra simplification – Whatever we get through today"
-  },
-  {
-    "objectID": "21.rjs.html#logic-gates-with",
-    "href": "21.rjs.html#logic-gates-with",
-    "title": "Multiplexers",
-    "section": "LOGIC GATES WITH",
-    "text": "LOGIC GATES WITH\n2+ INPUTS"
+    "text": "Announcements\n\nWelcome to HW/asm\nAction Items discussion"
   },
   {
     "objectID": "21.rjs.html#input-and",
     "href": "21.rjs.html#input-and",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "3-input AND",
-    "text": "3-input AND\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1"
+    "text": "3-input AND\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1"
   },
   {
     "objectID": "21.rjs.html#input-or",
     "href": "21.rjs.html#input-or",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "3-input OR",
-    "text": "3-input OR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1"
+    "text": "3-input OR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1"
   },
   {
     "objectID": "21.rjs.html#input-nand",
     "href": "21.rjs.html#input-nand",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "3-input NAND",
-    "text": "3-input NAND\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0"
+    "text": "3-input NAND\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0"
   },
   {
     "objectID": "21.rjs.html#input-nor",
     "href": "21.rjs.html#input-nor",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "3-input NOR",
-    "text": "3-input NOR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0"
+    "text": "3-input NOR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0"
   },
   {
     "objectID": "21.rjs.html#input-xor",
     "href": "21.rjs.html#input-xor",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "3-input XOR",
-    "text": "3-input XOR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1\n\n\n\nFor any number of inputs, the output is 1 when an odd number of inputs is 1"
+    "text": "3-input XOR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n1"
+  },
+  {
+    "objectID": "21.rjs.html#xor-explainer",
+    "href": "21.rjs.html#xor-explainer",
+    "title": "Multigate",
+    "section": "XOR explainer",
+    "text": "XOR explainer\nFor any number of inputs, the output is 1 when an odd number of inputs is 1\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n\n\n1\n0\n0\n1\n\n\n1\n1\n1\n1"
   },
   {
     "objectID": "21.rjs.html#input-xnor",
     "href": "21.rjs.html#input-xnor",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "3-input XNOR",
-    "text": "3-input XNOR\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0"
+    "text": "3-input XNOR\n\n\n\nThese are logically equivalent circuits!\n\n\n\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n1\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n0"
   },
   {
     "objectID": "21.rjs.html#recall-transistor-count",
     "href": "21.rjs.html#recall-transistor-count",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Recall: Transistor Count",
     "text": "Recall: Transistor Count\n\n\n\nGate\nNumber of Transistors\n\n\n\n\nNOT\n2\n\n\nAND\n6\n\n\nOR\n6\n\n\nNAND\n4\n\n\nNOR\n4\n\n\nXOR\n12\n\n\nXNOR\n12"
   },
   {
     "objectID": "21.rjs.html#transistor-count",
     "href": "21.rjs.html#transistor-count",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Transistor Count",
-    "text": "Transistor Count\nGate # of Transistors NOT 2 n-input AND 2n + 2 n-input OR 2n + 2 n-input NAND 2n n-input NOR 2n 2-input XOR 12 3-input XOR 28 2-input XNOR 12 3-input XNOR 28"
+    "text": "Transistor Count\n\n\n\nGate\n# of Transistors\n\n\n\n\nn-input AND\n2n + 2\n\n\nn-input OR\n2n + 2\n\n\nn-input NAND\n2n\n\n\nn-input NOR\n2n"
   },
   {
-    "objectID": "21.rjs.html#multiplexers",
-    "href": "21.rjs.html#multiplexers",
-    "title": "Multiplexers",
-    "section": "MULTIPLEXERS",
-    "text": "MULTIPLEXERS"
+    "objectID": "21.rjs.html#transistor-count-1",
+    "href": "21.rjs.html#transistor-count-1",
+    "title": "Multigate",
+    "section": "Transistor Count",
+    "text": "Transistor Count\n\n\n\nGate\n# of Transistors\n\n\n\n\n2-input XOR\n12\n\n\n3-input XOR\n28\n\n\n2-input XNOR\n12\n\n\n3-input XNOR\n28"
   },
   {
-    "objectID": "21.rjs.html#an-interesting-3-input-gate",
-    "href": "21.rjs.html#an-interesting-3-input-gate",
-    "title": "Multiplexers",
-    "section": "An interesting 3-input gate…!",
-    "text": "An interesting 3-input gate…!\nBased on C, select the A or B input to be copied to Y. A Truth Table Y If C is 1 then B copy B to Y, otherwise copy C A to Y 2-input Multiplexer A B 0 C Y B 1 Gate A symbol C schematic 14"
+    "objectID": "21.rjs.html#sum-of-products-form",
+    "href": "21.rjs.html#sum-of-products-form",
+    "title": "Multigate",
+    "section": "Sum of Products Form",
+    "text": "Sum of Products Form\n\nWhen two or more products (AND) are summed (OR) together\n\n\n\n\nSum of Products\nNot Sum of Products\n\n\n\n\n\\(Y = AB + AC\\)\n\\(Y = (A+B)(C+A)\\)\n\n\n\n\n“Simply” write down a boolean expression for every ‘1’ in the output."
   },
   {
-    "objectID": "21.rjs.html#a-circuit-for-if-statements",
-    "href": "21.rjs.html#a-circuit-for-if-statements",
-    "title": "Multiplexers",
-    "section": "A Circuit for If-Statements! ☺",
-    "text": "A Circuit for If-Statements! ☺\nif (S == 0) Y = A elseif (S == 1) Y = B"
+    "objectID": "21.rjs.html#example",
+    "href": "21.rjs.html#example",
+    "title": "Multigate",
+    "section": "Example",
+    "text": "Example\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0"
   },
   {
-    "objectID": "21.rjs.html#in-assembly",
-    "href": "21.rjs.html#in-assembly",
-    "title": "Multiplexers",
-    "section": "In Assembly…",
-    "text": "In Assembly…\nbeq x10, x0, S_is_zero # if S == 0, jump addi x14, x0, 1 beq x10, x14, S_is_one # if S == 1, jump S_is_zero: add x13, x11, x0 # Y = A S_is_one: add x13, x12, x0 # Y = B New instruction: beq: branch if equal"
+    "objectID": "21.rjs.html#add-column",
+    "href": "21.rjs.html#add-column",
+    "title": "Multigate",
+    "section": "Add Column",
+    "text": "Add Column\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\n\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0"
   },
   {
-    "objectID": "21.rjs.html#multiplexers-1",
-    "href": "21.rjs.html#multiplexers-1",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nDiagram Truth Table Equation | S | A | B | Y | | — | — | — | — | | 0 | 0 | 0 | | | 0 | 0 | 1 | | | 0 | 1 | 0 | | | 0 | 1 | 1 | | | 1 | 0 | 0 | | | 1 | 0 | 1 | | | 1 | 1 | 0 | | | 1 | 1 | 1 | |"
+    "objectID": "21.rjs.html#express-requirements",
+    "href": "21.rjs.html#express-requirements",
+    "title": "Multigate",
+    "section": "Express Requirements",
+    "text": "Express Requirements\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n!A & !B & !C\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n!A & B & !C\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\nA & !B & C\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0"
   },
   {
-    "objectID": "21.rjs.html#multiplexers-2",
-    "href": "21.rjs.html#multiplexers-2",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nTruth Table Equation Diagram | S | A | B | Y | | — | — | — | — | | 0 | 0 | 0 | 0 | | 0 | 0 | 1 | 0 | | 0 | 1 | 0 | 1 | | 0 | 1 | 1 | 1 | | 1 | 0 | 0 | 0 | | 1 | 0 | 1 | 1 | | 1 | 1 | 0 | 0 | | 1 | 1 | 1 | 1 | | S | A | B | Y |"
+    "objectID": "21.rjs.html#sum-requirements",
+    "href": "21.rjs.html#sum-requirements",
+    "title": "Multigate",
+    "section": "Sum Requirements",
+    "text": "Sum Requirements\n\nSum of products\n“OR” of “AND”’s\n\n(!A & !B & !C) | (!A & B & !C) | A & !B & C\n\\[\n(\\neg A \\land \\neg B \\land \\neg C) \\lor (\\neg A \\land B \\land \\neg C) \\lor (A \\land \\neg B \\land C)\n\\]"
   },
   {
-    "objectID": "21.rjs.html#multiplexers-3",
-    "href": "21.rjs.html#multiplexers-3",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nTruth Table Equation Diagram | S | A | B | Y | | | | | — | — | — | — | — | — | — | | 0 | 0 | 0 | 0 | | | | | 0 | 0 | 1 | 0 | | | | | 0 | 1 | 0 | 1 | | | | | 0 | 1 | 1 | 1 | | | | ҧ | 1 | 0 | 0 | 0 | 𝑌 = | 𝐴𝑆 + | 𝐵𝑆 | | — | — | — | — | — | —- | — | | 1 | 0 | 1 | 1 | | | | | 1 | 1 | 0 | 0 | | | | | 1 | 1 | 1 | 1 | | | | | S | A | B | Y | | | | | 0 | 0 | X | 0 | | | | | 0 | 1 | X | 1 | | | | | 1 | X | 0 | 0 | | | | | 1 | X | 1 | 1 | | | |"
+    "objectID": "21.rjs.html#exercise",
+    "href": "21.rjs.html#exercise",
+    "title": "Multigate",
+    "section": "Exercise",
+    "text": "Exercise\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1"
   },
   {
-    "objectID": "21.rjs.html#multiplexers-4",
-    "href": "21.rjs.html#multiplexers-4",
-    "title": "Multiplexers",
-    "section": "Multiplexers",
-    "text": "Multiplexers\nTruth Table Equation Diagram | S | A | B | Y | | | | | — | — | — | — | — | — | — | | 0 | 0 | 0 | 0 | | | | | 0 | 0 | 1 | 0 | | | | | 0 | 1 | 0 | 1 | | | | | 0 | 1 | 1 | 1 | | | | Don’t-cares can be used to simplify logic! ҧ | 1 | 0 | 0 | 0 | 𝑌 = | 𝐴𝑆 + | 𝐵𝑆 | | — | — | — | — | — | —- | — | | 1 | 0 | 1 | 1 | | | | For input combinations that never occur, the | 1 | 1 | 0 | 0 | | | | | — | — | — | — | — | — | — | designer may assume either 1 or 0, | 1 | 1 | 1 | 1 | | | | | — | — | — | — | — | — | — | whichever is more useful to achieving a | S | A | B | Y | | | | | — | — | — | — | — | — | — | minimum-cost implementation. | 0 | 0 | X | 0 | | | | | — | — | — | — | — | — | — | | 0 | 1 | X | 1 | | | | | 1 | X | 0 | 0 | | | | | 1 | X | 1 | 1 | | | |"
-  },
-  {
-    "objectID": "21.rjs.html#multiplexer-21-mux",
-    "href": "21.rjs.html#multiplexer-21-mux",
-    "title": "Multiplexers",
-    "section": "2:1 Multiplexer (2:1 mux)",
-    "text": "2:1 Multiplexer (2:1 mux)\n■ A circuit that chooses an output from among two inputs based on the value of a select signal A 0 Y B 1 S 2:1 Multiplexer Schematic 2:1 Multiplexer Symbol (Gate Diagram)"
-  },
-  {
-    "objectID": "21.rjs.html#multiplexer-21-mux-1",
-    "href": "21.rjs.html#multiplexer-21-mux-1",
-    "title": "Multiplexers",
-    "section": "2:1 Multiplexer (2:1 mux)",
-    "text": "2:1 Multiplexer (2:1 mux)\nThese labels tell us how the multiplexer chooses the output based on the value of the select signal inputs A output 0 When S = 0, Y = A Y When S = 1, Y = B B 1 S select signal"
-  },
-  {
-    "objectID": "21.rjs.html#multiplexer-21-mux-2",
-    "href": "21.rjs.html#multiplexer-21-mux-2",
-    "title": "Multiplexers",
-    "section": "2:1 Multiplexer (2:1 mux)",
-    "text": "2:1 Multiplexer (2:1 mux)\n\n\n\nA\n\nA\n\n\n\n\n\n\n0\n\n1\n\n\n\nY Y | B | 1 | B | 0 | | —————– | —————– | — | — | | | S | | S | | When S = 0, Y = A | When S = 0, Y = B | | | | When S = 1, Y = B | When S = 1, Y = A | | |"
-  },
-  {
-    "objectID": "21.rjs.html#mux-compositions-and-shortcuts",
-    "href": "21.rjs.html#mux-compositions-and-shortcuts",
-    "title": "Multiplexers",
-    "section": "MUX Compositions and Shortcuts",
-    "text": "MUX Compositions and Shortcuts\nA 4-bit wide 2-input Mux A | | A 4-input Mux | | 0 | 0 | | | | | — | ————- | — | — | — | — | — | — | | | | | | 0 | Y | | | 0 B | (implemented as a tree) | | | 0 | 11 | | | | | ———————– | — | — | — | — | — | — | — | S A I | 0 0 | | | 1 | 0 | | | | | — | — | — | — | — | — | — | — | | 0 | | | | 0 | | | | | I | | | B | | Y | | | 1 | 1 11 | | A | 1 | 11 | | | | | —- | — | — | — | — | — | — | — | | S | | | | S | | | | | | 0 Y | 0 | | | | A | | 0 | | | B | | | | 0-3 | | | — | — | — | — | — | — | — | — | Y Y | I | 11 | 1 | A | | | | 0-3 | | — | — | — | — | — | — | — | — | | | S | | | | | B | | | 2 0 | | | 2 | 0 | | 0-3 | | | 0 | | C 2 | | 0 | | | | | I | | | B | | Y | | | | 3 | | | | | 2 | | | | 11 | | | 2 | 11 | | | | | S | | D 3 | | S | | | | S S A | | | | 3 | 0 0 | | | | | — | — | — | — | — | — | — | — | Y | | | | B | | 3 | | | | — | —– | — | — | — | — | — | — | | S | S | | 3 | 11 | | | | | | 0 1 | | | S | | | | S 24"
-  },
-  {
-    "objectID": "21.rjs.html#a-mux-plus-constants-is-enough-to",
-    "href": "21.rjs.html#a-mux-plus-constants-is-enough-to",
-    "title": "Multiplexers",
-    "section": "A mux plus constants is enough to",
-    "text": "A mux plus constants is enough to\nMUX Function Synthesis implement any Boolean function Consider implementation of some arbitrary Combinational function, F(A,B,C)… using a MULTIPLEXER as the only circuit element: Mux: An example “configurable” logic element 0 0 0 1 0 2 1 Y 3 0 4 1 5 1 6 1 7 A,B,C 25"
-  },
-  {
-    "objectID": "21.rjs.html#mux-logic-tricks",
-    "href": "21.rjs.html#mux-logic-tricks",
-    "title": "Multiplexers",
-    "section": "MUX Logic Tricks",
-    "text": "MUX Logic Tricks\nWe can apply certain optimizations to MUX Function synthesis Desired Logic - Largely by inspection or exhaustive search Function 0 0 C 1 Y There’s something interesting going on C 2 in those MUXes 1 3 A,B - N-input function == N-1 input MUX & 1 inverter If adjacent truth-table rows differ by just one bit, that bit can become a mux input 2266"
-  },
-  {
-    "objectID": "21.rjs.html#forming",
-    "href": "21.rjs.html#forming",
-    "title": "Multiplexers",
-    "section": "FORMING",
-    "text": "FORMING\nEQUATIONS FROM TRUTH TABLES"
-  },
-  {
-    "objectID": "21.rjs.html#from-last-time-sum-of-products-form",
-    "href": "21.rjs.html#from-last-time-sum-of-products-form",
-    "title": "Multiplexers",
-    "section": "From Last Time: Sum of Products Form",
-    "text": "From Last Time: Sum of Products Form\nWhen two or more products (AND) are summed (OR) together | Sum of Products | | | | | Not Sum of Products | | —————- | — | — | — | — | ——————— | | 𝑌 = 𝐴𝐵 + 𝐴𝐶 | | | | | 𝑌 = (𝐴 + 𝐵)(𝐶 + 𝐴) | Approach: write down a boolean expression for every ‘1’ in the output"
-  },
-  {
-    "objectID": "21.rjs.html#ex-forming-equations-from-truth-tables",
-    "href": "21.rjs.html#ex-forming-equations-from-truth-tables",
-    "title": "Multiplexers",
-    "section": "Ex: Forming Equations from Truth Tables",
-    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n1\n\n\n0\n0\n1\n0\n\n\n0\n1\n0\n1\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n0\n\n\n1\n0\n1\n1\n\n\n1\n1\n0\n0\n\n\n1\n1\n1\n0"
-  },
-  {
-    "objectID": "21.rjs.html#ex-forming-equations-from-truth-tables-1",
-    "href": "21.rjs.html#ex-forming-equations-from-truth-tables-1",
-    "title": "Multiplexers",
-    "section": "Ex: Forming Equations from Truth Tables",
-    "text": "Ex: Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n1\n\n\n\n0\n0\n1\n0\n\n\n\n0\n1\n0\n1\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n0\n\n\n\n1\n0\n1\n1\n\n\n\n1\n1\n0\n0\n\n\n\n1\n1\n1\n0"
-  },
-  {
-    "objectID": "21.rjs.html#forming-equations-from-truth-tables",
-    "href": "21.rjs.html#forming-equations-from-truth-tables",
-    "title": "Multiplexers",
-    "section": "Forming Equations from Truth Tables",
-    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n0\n0\n0\n0\n\n\n0\n0\n1\n1\n\n\n0\n1\n0\n0\n\n\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n\n\n1\n0\n1\n0\n\n\n1\n1\n0\n1\n\n\n1\n1\n1\n1"
-  },
-  {
-    "objectID": "21.rjs.html#forming-equations-from-truth-tables-1",
-    "href": "21.rjs.html#forming-equations-from-truth-tables-1",
-    "title": "Multiplexers",
-    "section": "Forming Equations from Truth Tables",
-    "text": "Forming Equations from Truth Tables\n\n\n\nA\nB\nC\nY\n\n\n\n\n\n0\n0\n0\n0\n\n\n\n0\n0\n1\n1\n𝐴𝐵𝐶\n\n\n0\n1\n0\n0\n\n\n\n0\n1\n1\n0\n\n\n\n1\n0\n0\n1\n𝐴𝐵𝐶\n\n\n1\n0\n1\n0\n\n\n\n1\n1\n0\n1\n𝐴𝐵𝐶\n\n\n1\n1\n1\n1\n𝐴𝐵𝐶"
+    "objectID": "21.rjs.html#solution",
+    "href": "21.rjs.html#solution",
+    "title": "Multigate",
+    "section": "Solution",
+    "text": "Solution\n\n(!A & !B & C) | (A & !B & !C) | (A & B & !C) | A & B & C\n\\[\n(\\neg A \\land \\neg B \\land C) \\lor (A \\land \\neg B \\land \\neg C) \\lor (A \\land B \\land \\neg C) \\lor (A \\land B \\land C)\n\\]"
   },
   {
     "objectID": "21.rjs.html#a-systematic-design-approach",
     "href": "21.rjs.html#a-systematic-design-approach",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "A Systematic Design Approach",
-    "text": "A Systematic Design Approach\nTruth Table 1) Write the functional spec as a truth table 2) Write down a Boolean expression for every ‘1’ in the output Y = (!C && !B && A) || (!C && B && A) || (C && B && !A) || (C && B && A) 3) Wire up the ideal gates, replace them with equivalent realizable gates, call it a day, and go home! This approach will always give us logic -it’s systematic! -it works! expressions in a particular form: -it’s easy! SUM-OF-PRODUCTS -we are done! (?)"
+    "text": "A Systematic Design Approach\n\nWrite the functional spec as a truth table\nWrite down a Boolean expression for every ‘1’ in the output\nWire up the ideal gates, replace them with equivalent realizable gates, call it a day, and go home!"
+  },
+  {
+    "objectID": "21.rjs.html#pros",
+    "href": "21.rjs.html#pros",
+    "title": "Multigate",
+    "section": "Pros",
+    "text": "Pros\nThis approach will always give us logic\n\nIt’s systematic!\nIt works! expressions in a particular form:\nIt’s easy!\nWe are done! (?)"
   },
   {
     "objectID": "21.rjs.html#straightforward-synthesis",
     "href": "21.rjs.html#straightforward-synthesis",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Straightforward Synthesis",
     "text": "Straightforward Synthesis\nA B C We can implement sum-of- A products with just 3 levels of B C logic, using… Y A INVERTERS/AND/OR! B C A B C"
   },
   {
     "objectID": "21.rjs.html#lets-try-it-out",
     "href": "21.rjs.html#lets-try-it-out",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Let’s Try it Out",
     "text": "Let’s Try it Out\n\n\n\nA\nA\nB\nB\nY\n\n\n\n\n\n\n\n\n1\n0\n1\n0\n\n\n\n\n\n\n\n\nI want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | | — | — | — | — | — | ———————- | —– | ————– | — | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | | Additionally, define 𝐴 | and 𝐵 | as the left | | | | | | | | | 1 | 1 | | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | bits of A and B, and 𝐴 | and 𝐵 | as the right | | | | | | | | | 0 | 0 | | | 1 | 0 | 1 | 0 | 0 | | | | | bits. | 1 | 0 | 0 | 1 | 1 | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | | 0 | 1 | 0 | 0 | 1 | | | | | | 0 | 1 | 1 | 0 | 1 | | | | | | 0 | 1 | 0 | 1 | 0 | | | | | | 0 | 1 | 1 | 1 | 0 | | | | | | 1 | 1 | 0 | 0 | 1 | | | | | | 1 | 1 | 1 | 0 | 1 | | | | | | 1 | 1 | 0 | 1 | 1 | | | | | | 1 | 1 | 1 | 1 | 0 | | | | 35 |\nLet’s Try it Out | A | A | B | B | Y | | | | | | — | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 0 | | | | | | I want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | | — | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | | — | — | — | — | — | ———————- | — | —– | ————– | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | | Additionally, define 𝐴 | | and 𝐵 | as the left | | | | | | | | | 1 | 1 | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | bits of A and B, and 𝐴 | | and 𝐵 | as the right | | 1 | 0 | 1 | 0 | 0 | | | 0 | 0 | bits. | 1 | 0 | 0 | 1 | 1 | | | | | | — | — | — | — | — | — | ——————————– | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | | 0 | 1 | 0 | 0 | 1 | | | | | | 0 | 1 | 1 | 0 | 0 | | | | | | 0 | 1 | 0 | 1 | 0 | | | | | | 0 | 1 | 1 | 1 | 0 | | | | | | 1 | 1 | 0 | 0 | 1 | | | | | | 1 | 1 | 1 | 0 | 1 | | Is the simplest possible form?? | | | | 1 | 1 | 0 | 1 | 1 | | | | | | 1 | 1 | 1 | 1 | 0 | | | | |"
   },
   {
     "objectID": "21.rjs.html#gate-minimization",
     "href": "21.rjs.html#gate-minimization",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "GATE MINIMIZATION",
     "text": "GATE MINIMIZATION"
   },
   {
     "objectID": "21.rjs.html#optimizing-our-circuits",
     "href": "21.rjs.html#optimizing-our-circuits",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Optimizing our circuits…",
     "text": "Optimizing our circuits…\n■ Fewer transistors means…. – Smaller area! – Lower power consumption! – Shorter time from input to output! – Lower cost! ■ How will we do this? – Visual inspection – Boolean algebra simplification – In practice, → advanced synthesis algorithms to create logically equivalent, more efficient circuits! ☺"
   },
   {
     "objectID": "21.rjs.html#recall-transistor-count-1",
     "href": "21.rjs.html#recall-transistor-count-1",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Recall: Transistor Count",
     "text": "Recall: Transistor Count\nGate Number of Transistors NOT 2 AND 6 OR 6 NAND 4 NOR 4 XOR 12 XNOR 12"
   },
   {
     "objectID": "21.rjs.html#boolean-algebra-laws",
     "href": "21.rjs.html#boolean-algebra-laws",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Boolean Algebra Laws",
     "text": "Boolean Algebra Laws\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\n\nOR Form\n\n\nAND Form\n\n\n\n\n\nIdentity\n\nA + 0 = A\n\n\nA · 1 = A\n\n\n\nNull\n\nA + 1 = 1\n\n\nA · 0 = 0\n\n\nIdempotent\n\n\nA + A = A\n\n\nA · A = A\n\n\n\n\n\n\nഥ\n\nഥ\n\n\nComplement\n\n\nA + A = 1\n\n\nA · A = 0\n\n\nCommutative\n\n\nA + B = B + A\n\n\nA · B = B · A\n\n\n\nAssociative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) ഥ ഥ ഥ ഥ | De Morgan’s | | A | + B | = A · B | A · B | = A + B | | ———– | — | — | —- | ———- | —– | ——— |"
   },
   {
     "objectID": "21.rjs.html#boolean-algebra-practice",
     "href": "21.rjs.html#boolean-algebra-practice",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Boolean Algebra Practice",
     "text": "Boolean Algebra Practice\nUsing the laws that you have just learned, simplify the following Boolean expression: A · (A + B)"
   },
   {
     "objectID": "21.rjs.html#boolean-algebra-practice-1",
     "href": "21.rjs.html#boolean-algebra-practice-1",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Boolean Algebra Practice",
     "text": "Boolean Algebra Practice\nA · (A + B) | | | Name | OR Form | | AND Form | | | —– | — | ———– | ————- | — | ————- | — | | 𝐴𝐴 + | 𝐴𝐵 | Identity | A + 0 = A | | A · 1 = A | | | | | Null | A + 1 = 1 | | A · 0 = 0 | | | 𝐴 + | 𝐴𝐵 | | | | | | | | | Idempotent | A + A = A | | A · A = A | | | 𝐴 1 + | 𝐵 | | | | | | | | | | | ഥ | | ഥ | | | | Complement | A + A = 1 | | A · A = 0 | | | 𝐴 | 1 | | | | | | | | | Commutative | A + B = B + A | | A · B = B · A | | 𝐴 Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | | | De Morgan’s | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | — | — | ———– | —— | ———— | ——— | ——- | Absorption Law: A · (A + B) = A"
   },
   {
     "objectID": "21.rjs.html#comparing-number-of-transistors-used",
     "href": "21.rjs.html#comparing-number-of-transistors-used",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Comparing Number of Transistors Used",
     "text": "Comparing Number of Transistors Used\nOriginal Circuit Simplified Circuit Y = A · (A + B) Y = A Number of Transistors = 12 Number of Transistors = 0"
   },
   {
     "objectID": "21.rjs.html#boolean-algebra-practice-2",
     "href": "21.rjs.html#boolean-algebra-practice-2",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Boolean Algebra Practice",
     "text": "Boolean Algebra Practice\nSimplify the following Boolean expression: ഥ 𝑩 + 𝑩𝑪 | | Name | OR Form | | AND Form | | | ———– | ——– | ————- | —– | ————- | —– | | | Identity | A + 0 = A | | A · 1 = A | | | | Null | A + 1 = 1 | | A · 0 = 0 | | | Idempotent | | A + A = A | | A · A = A | | | | | | ഥ = 1 | | ഥ = 0 | | Complement | | A + A | | A · A | | | Commutative | | A + B = B + A | | A · B = B · A | | Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | De Morgan’s | | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | ———– | — | —— | ———— | ——— | ——- | Absorption | | | A · (A + B) = A | | A + (A · B) = A | | | — | — | ————— | — | ————— | — |"
   },
   {
     "objectID": "21.rjs.html#boolean-algebra-practice-3",
     "href": "21.rjs.html#boolean-algebra-practice-3",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Boolean Algebra Practice",
     "text": "Boolean Algebra Practice\nഥ 𝑩 + 𝑩𝑪 | | | | Name | OR Form | | AND Form | | | —– | —– | —- | ———– | ————- | — | ————- | — | | | | | Identity | A + 0 = A | | A · 1 = A | | | | ത | | Null | A + 1 = 1 | | A · 0 = 0 | | | (𝐵 + | 𝐵)(𝐵 | + 𝐶) | | | | | | | | | | Idempotent | A + A = A | | A · A = A | | | (1)(𝐵 | + | 𝐶) | | | | | | | | | | | | ഥ | | ഥ | | | | | Complement | A + A = 1 | | A · A = 0 | | | | 𝐵 + 𝐶 | | | | | | | | | | | Commutative | A + B = B + A | | A · B = B · A | | Associative (A + B) + C = A + (B + C) (A · B) · C = A · (B · C) Distributive A · (B + C) = (A · B) + (A · C) A + (B · C) = (A + B) · (A + C) | | | | De Morgan’s | A + B | = A ഥ · B ഥ | A · B = A | ഥ + B ഥ | | — | — | — | ———– | —— | ———— | ——— | ——- |"
   },
   {
     "objectID": "21.rjs.html#recall-de-morgans-theorem",
     "href": "21.rjs.html#recall-de-morgans-theorem",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Recall: De Morgan’s Theorem",
     "text": "Recall: De Morgan’s Theorem\nDe Morgan’s Theorem: express conjunctions & disjunctions (ANDS, ORS) solely in terms of negation! | | | | | ഥ | ഥ | | | — | — | — | — | — | — | — | | A | + | B | = | A | · B | | | | | | | ഥ | | ഥ | | | AB | | = | A | + | B |"
   },
   {
     "objectID": "21.rjs.html#applying-demorgans",
     "href": "21.rjs.html#applying-demorgans",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Applying DeMorgan’s",
     "text": "Applying DeMorgan’s\n\n\n\n𝐴𝐵\n+ 𝐶𝐷\n\n\n\n\n\n\n■ How would you apply DeMorgan’s to this expression? – We group our terms based on the lowest operator precedence under the bar – The order of operations for Boolean Algebra is NOT, then AND, then OR. Expressions inside brackets are always evaluated first. – In this case, the operator with the lowest precedence is OR (𝐴𝐵)(𝐶𝐷) | ҧ | ത | ҧ ഥ | | —- | —- | —- | | (𝐴 + | 𝐵)(𝐶 | + 𝐷) |"
   },
   {
     "objectID": "21.rjs.html#demorgans-practice",
     "href": "21.rjs.html#demorgans-practice",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "DeMorgan’s Practice",
     "text": "DeMorgan’s Practice\nҧ ҧ 𝐴𝐵 + 𝐶 ■ How would you apply DeMorgan’s to this expression?"
   },
   {
     "objectID": "21.rjs.html#demorgans-practice-1",
     "href": "21.rjs.html#demorgans-practice-1",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "DeMorgan’s Practice",
     "text": "DeMorgan’s Practice\nҧ ҧ 𝐴𝐵 + 𝐶 ■ How would you apply DeMorgan’s to this expression? ҧ 𝐴𝐵𝐶 ത (𝐴 + 𝐵)𝐶"
   },
   {
     "objectID": "21.rjs.html#demorgans-practice-2",
     "href": "21.rjs.html#demorgans-practice-2",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "DeMorgan’s Practice",
     "text": "DeMorgan’s Practice\n■ How would you apply DeMorgan’s to this expression? ҧ | 𝐴 + | 𝐵 𝐶 | + 𝐷 | 𝐸 + | 𝐹 + | 𝐺 | | — | — | — | — | — | — |"
   },
   {
     "objectID": "21.rjs.html#demorgans-practice-3",
     "href": "21.rjs.html#demorgans-practice-3",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "DeMorgan’s Practice",
     "text": "DeMorgan’s Practice\n■ How would you apply DeMorgan’s to this expression? ҧ | 𝐴 | + | 𝐵 | 𝐶 | + | 𝐷 | 𝐸 + | 𝐹 | + | 𝐺 | | — | — | — | — | — | — | — | — | — | —- | | | ҧ | | | | | | | | ҧ | | 𝐴 | + | 𝐵 | 𝐶 | + | 𝐷 | 𝐸 + | 𝐹 | | ∙ 𝐺 | | | ҧ | | | | | | | | ҧ | | ( 𝐴 | + | 𝐵 | + | 𝐶 + | 𝐷 | + 𝐸 | + | 𝐹) | ∙ 𝐺 | | | | ത | | ҧ ഥ | | | | | ҧ | | | (𝐴𝐵 | | + | 𝐶𝐷 | + | 𝐸 + | 𝐹) | ∙ | 𝐺 |"
   },
   {
     "objectID": "21.rjs.html#can-we-optimize-this",
     "href": "21.rjs.html#can-we-optimize-this",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Can we optimize this?",
     "text": "Can we optimize this?"
   },
   {
     "objectID": "21.rjs.html#simplify-the-following-boolean-expression",
     "href": "21.rjs.html#simplify-the-following-boolean-expression",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Simplify the following Boolean expression",
     "text": "Simplify the following Boolean expression\n\n\n\n𝐴𝐵𝐶\n+ 𝐴𝐵𝐶\nҧ + 𝐴𝐶𝐵\n+ 𝐴𝐶𝐵\n+ 𝐴𝐵𝐶 𝐷\nഥ ഥ +\n𝐴𝐵 ҧ +\n𝐶 ҧ"
   },
   {
-    "objectID": "21.rjs.html#solution",
-    "href": "21.rjs.html#solution",
-    "title": "Multiplexers",
+    "objectID": "21.rjs.html#solution-1",
+    "href": "21.rjs.html#solution-1",
+    "title": "Multigate",
     "section": "Solution",
     "text": "Solution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nҧ\n\n\n\n\n\n\nഥ\nഥ\nҧ\nҧ\n\n\n\n\n𝐴𝐵𝐶\n\n+ 𝐴𝐵𝐶\n\n+\n𝐴𝐶𝐵\n+\n𝐴𝐶𝐵\n\n+\n𝐴𝐵𝐶 𝐷\n\n+\n𝐴𝐵 +\n𝐶\n\n\n\n\n\nҧ\n\n\n\n\n\n\n\n\n\nҧ\n\n\n\n𝐴𝐵\n𝐶\n+ 𝐶\n+\n𝐵\n𝐴𝐶\n+\n𝐴𝐶\n+\n𝐴𝐵\n+\n𝐶\n+ 𝐷\n+ (𝐴𝐵)𝐶\n\n\n\n\n𝐴𝐵\n1\n+\n𝐵\n1\n+ 𝐴𝐵\n\n+ 𝐶\n+\n𝐷\n+ (𝐴\n+ 𝐵)𝐶\nത\n\n\n\n\nത | | | 𝐴𝐵 | + | 𝐵 | + | 𝐴𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | | + 𝐵𝐶 | | | | — | — | — | — | — | — | — | — | — | — | —- | — | —- | — | — | ത | | | | 𝐴𝐵 | + | 𝐵 | + 𝐶 | + | 𝐷 | + 𝐴𝐶 | | + 𝐵𝐶 | | | | | — | — | — | — | — | — | — | — | — | —- | — | —- | — | — | — | ത | | | | 𝐵 | 𝐴 + | 1 | + | 𝐶 | 1 + | 𝐴 | + 𝐵𝐶 | | + 𝐷 | | | | — | — | — | — | — | — | — | — | — | — | —- | — | — | — | — | ത | | | | | 𝐵 | 1 | + 𝐶 | 1 | + 𝐵𝐶 | | | + 𝐷 | | | | | — | — | — | — | — | — | — | — | —- | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶 | + 𝐵𝐶 | | + | 𝐷 | | | | | | — | — | — | — | — | — | — | —- | — | — | — | — | — | — | — | ത | | | | | | 𝐵 | + 𝐶(1 | | + 𝐵) | | + 𝐷 | | | | | | — | — | — | — | — | — | —– | —— | —- | — | — | — | — | — | — | | | | | | | | 𝐵 | + 𝐶(1) | | + | 𝐷 | | | | | | | | | | | | 𝐵 | + 𝐶 | + | 𝐷 | | | | | |"
   },
   {
     "objectID": "21.rjs.html#optimizing-our-gates",
     "href": "21.rjs.html#optimizing-our-gates",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Optimizing Our Gates",
     "text": "Optimizing Our Gates\nYay! We did it!"
   },
   {
     "objectID": "21.rjs.html#recall-our-problem-from-earlier",
     "href": "21.rjs.html#recall-our-problem-from-earlier",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Recall: Our Problem from Earlier",
     "text": "Recall: Our Problem from Earlier\n\n\n\nA\nA\nB\nB\nY\n\n\n\n\n\n\n\n1\n0\n1\n0\n\n\n\n\n\n\n\nI want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | — | — | — | — | — | ———————- | —– | ————– | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | Additionally, define 𝐴 | and 𝐵 | as the left | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | 1 | 1 | | 1 | 0 | 1 | 0 | 0 | bits of A and B, and 𝐴 | and 𝐵 | as the right | | | | | | | | 0 | 0 | bits. | 1 | 0 | 0 | 1 | 1 | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | 0 | 1 | 0 | 0 | 1 | | | | | 0 | 1 | 1 | 0 | 0 | | | | | 0 | 1 | 0 | 1 | 0 | | | | | 0 | 1 | 1 | 1 | 0 | | | | | 1 | 1 | 0 | 0 | 1 | | | | | 1 | 1 | 1 | 0 | 1 | | | | Is the simplest possible form?? | 1 | 1 | 0 | 1 | 1 | | | | | — | — | — | — | — | — | — | — | | 1 | 1 | 1 | 1 | 0 | | | |"
   },
   {
     "objectID": "21.rjs.html#simplify",
     "href": "21.rjs.html#simplify",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Simplify?",
     "text": "Simplify?"
   },
   {
     "objectID": "21.rjs.html#our-problem-from-earlier",
     "href": "21.rjs.html#our-problem-from-earlier",
-    "title": "Multiplexers",
+    "title": "Multigate",
     "section": "Our Problem from Earlier",
     "text": "Our Problem from Earlier\n\n\n\nA\nA\nB\nB\nY\n\n\n\n\n\n\n\n1\n0\n1\n0\n\n\n\n\n\n\n\nI want to build a circuit that will output 1 if | 0 | 0 | 0 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | A &gt; B, and 0 if A &lt;= B. A and B are both | 0 | 0 | 1 | 0 | 0 | | | | | — | — | — | — | — | — | — | — | two-bit unsigned numbers. | 0 | 0 | 0 | 1 | 0 | | | | | — | — | — | — | — | ———————- | —– | ————– | | 0 | 0 | 1 | 1 | 0 | | | | | | | | | | Additionally, define 𝐴 | and 𝐵 | as the left | | 1 | 0 | 0 | 0 | 1 | | | | | | | | | | | 1 | 1 | | 1 | 0 | 1 | 0 | 0 | bits of A and B, and 𝐴 | and 𝐵 | as the right | | | | | | | | 0 | 0 | bits. | 1 | 0 | 0 | 1 | 1 | | | | | — | — | — | — | — | — | — | — | | 1 | 0 | 1 | 1 | 0 | | | | | 0 | 1 | 0 | 0 | 1 | | | | | 0 | 1 | 1 | 0 | 1 | | | | | 0 | 1 | 0 | 1 | 0 | | | | | 0 | 1 | 1 | 1 | 0 | | | | | 1 | 1 | 0 | 0 | 1 | | | | | 1 | 1 | 1 | 0 | 1 | | | | | 1 | 1 | 0 | 1 | 1 | | | | | 1 | 1 | 1 | 1 | 0 | | | |"
   },
@@ -22049,29 +21828,5 @@
     "crumbs": [
       "Security"
     ]
-  },
-  {
-    "objectID": "21.html#sum-of-products-form",
-    "href": "21.html#sum-of-products-form",
-    "title": "Multiplexers",
-    "section": "Sum of Products Form",
-    "text": "Sum of Products Form\nWhen two or more products (AND) are summed (OR) together\n\n\n\nSum of Products\nNot Sum of Products\n\n\n\n\n\\(Y = AB + AC\\)\n\\(Y = (A+B)(C+A)\\)\n\n\n\nApproach: write down a boolean expression for every ‘1’ in the output.",
-    "crumbs": [
-      "Multiplexers"
-    ]
-  },
-  {
-    "objectID": "21.rjs.html#input-and-1",
-    "href": "21.rjs.html#input-and-1",
-    "title": "Multiplexers",
-    "section": "3-input AND",
-    "text": "3-input AND"
-  },
-  {
-    "objectID": "21.rjs.html#sum-of-products-form",
-    "href": "21.rjs.html#sum-of-products-form",
-    "title": "Multiplexers",
-    "section": "Sum of Products Form",
-    "text": "Sum of Products Form\nWhen two or more products (AND) are summed (OR) together\n\n\n\nSum of Products\nNot Sum of Products\n\n\n\n\n\\(Y = AB + AC\\)\n\\(Y = (A+B)(C+A)\\)\n\n\n\nApproach: write down a boolean expression for every ‘1’ in the output."
   }
 ]
