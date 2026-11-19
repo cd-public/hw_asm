@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.30">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,15 +67,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./21.html" rel="next">
 <link href="./11.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-a4a11d514c7d463668e07712114998e6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fc9c1a4fc1048689359919db0170c3de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-40a160e28a8c0a8ad2fc184c8ba4238c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -135,7 +138,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -158,9 +161,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">HW &amp; asm</a> 
-    </div>
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -1914,8 +1916,8 @@ XOR
 <section id="and-or-not" class="level2">
 <h2 class="anchored" data-anchor-id="and-or-not">AND, OR, NOT</h2>
 <p><img src="drawio/20_xor_first.drawio.svg" class="img-fluid"></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Test it</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>xor <span class="op">=</span> <span class="kw">lambda</span> a, b: (a <span class="kw">or</span> b) <span class="kw">and</span> (<span class="kw">not</span> (a <span class="kw">and</span> b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Test it</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>xor <span class="op">=</span> <span class="kw">lambda</span> a, b: (a <span class="kw">or</span> b) <span class="kw">and</span> (<span class="kw">not</span> (a <span class="kw">and</span> b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="nand" class="level2">
 <h2 class="anchored" data-anchor-id="nand">NAND</h2>
@@ -1934,12 +1936,12 @@ XOR
 </section>
 <section id="nand-1" class="level2">
 <h2 class="anchored" data-anchor-id="nand-1">NAND</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Define</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Define</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>nand <span class="op">=</span> <span class="kw">lambda</span> a, b: <span class="kw">not</span> (a <span class="kw">and</span> b)</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Compose</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a>nand_not <span class="op">=</span> <span class="kw">lambda</span> a: nand(a, a)</span>
 <span id="cb2-5"><a href="#cb2-5"></a>nand_and <span class="op">=</span> <span class="kw">lambda</span> a, b : nand_not(nand(a, b))</span>
-<span id="cb2-6"><a href="#cb2-6"></a>nand_or  <span class="op">=</span> <span class="kw">lambda</span> a, b : nand(nand_not(a), nand_not(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6"></a>nand_or  <span class="op">=</span> <span class="kw">lambda</span> a, b : nand(nand_not(a), nand_not(b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="nor" class="level2">
 <h2 class="anchored" data-anchor-id="nor">NOR</h2>
@@ -1956,17 +1958,17 @@ XOR
 <li>We <span class="math inline">\(AB = A \land B\)</span> and <span class="math inline">\(A+B = A \lor B\)</span></li>
 <li>Why?</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">for</span> a,b <span class="kw">in</span> [(<span class="dv">0</span>,<span class="dv">0</span>),(<span class="dv">0</span>,<span class="dv">1</span>),(<span class="dv">1</span>,<span class="dv">0</span>),(<span class="dv">1</span>,<span class="dv">1</span>)]:</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="cf">assert</span>(a <span class="kw">or</span> b <span class="op">==</span> <span class="bu">bool</span>(a <span class="op">+</span> b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">for</span> a,b <span class="kw">in</span> [(<span class="dv">0</span>,<span class="dv">0</span>),(<span class="dv">0</span>,<span class="dv">1</span>),(<span class="dv">1</span>,<span class="dv">0</span>),(<span class="dv">1</span>,<span class="dv">1</span>)]:</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="cf">assert</span>(a <span class="kw">or</span> b <span class="op">==</span> <span class="bu">bool</span>(a <span class="op">+</span> b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Can also use prefix notation, like this:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Define</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Define</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>nand <span class="op">=</span> <span class="kw">lambda</span> a, b: <span class="kw">not</span> (a <span class="kw">and</span> b)</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co"># Compose</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>nand_not <span class="op">=</span> <span class="kw">lambda</span> a: nand(a, a)</span>
 <span id="cb4-5"><a href="#cb4-5"></a>nand_and <span class="op">=</span> <span class="kw">lambda</span> a, b : nand_not(nand(a, b))</span>
-<span id="cb4-6"><a href="#cb4-6"></a>nand_or  <span class="op">=</span> <span class="kw">lambda</span> a, b : nand(nand_not(a), nand_not(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6"></a>nand_or  <span class="op">=</span> <span class="kw">lambda</span> a, b : nand(nand_not(a), nand_not(b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="what-is-this" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-this">What is this?</h2>
@@ -2047,7 +2049,7 @@ XOR
 <li>Substitute in input values and compute.</li>
 <li>You can also automate:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>_ <span class="op">=</span> [<span class="bu">print</span>(a,b, <span class="bu">int</span>(a <span class="kw">or</span> <span class="kw">not</span> b)) <span class="cf">for</span> a,b <span class="kw">in</span> [(<span class="dv">0</span>,<span class="dv">0</span>),(<span class="dv">0</span>,<span class="dv">1</span>),(<span class="dv">1</span>,<span class="dv">0</span>),(<span class="dv">1</span>,<span class="dv">1</span>)]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>_ <span class="op">=</span> [<span class="bu">print</span>(a,b, <span class="bu">int</span>(a <span class="kw">or</span> <span class="kw">not</span> b)) <span class="cf">for</span> a,b <span class="kw">in</span> [(<span class="dv">0</span>,<span class="dv">0</span>),(<span class="dv">0</span>,<span class="dv">1</span>),(<span class="dv">1</span>,<span class="dv">0</span>),(<span class="dv">1</span>,<span class="dv">1</span>)]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="equation-from-truth-table" class="level1">
@@ -2218,290 +2220,294 @@ XOR
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
           } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
         }
-        return container.innerHTML
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2509,185 +2515,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./11.html" class="pagination-link" aria-label="Transistors">
@@ -2700,7 +2682,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">---</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="an">title:</span><span class="co"> Gates </span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="an">subtitle:</span><span class="co"> "w2d0"</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="co">---</span></span>
@@ -2751,7 +2733,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-49"><a href="#cb6-49"></a></span>
 <span id="cb6-50"><a href="#cb6-50"></a>NMOS "closes the switch" when high.</span>
 <span id="cb6-51"><a href="#cb6-51"></a></span>
-<span id="cb6-52"><a href="#cb6-52"></a>&lt;img style="transform:scale(3);transform-origin: top left" src="drawio/11_nmos.drawio.svg"&gt;</span>
+<span id="cb6-52"><a href="#cb6-52"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">"transform:scale(3);transform-origin: top left"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/11_nmos.drawio.svg"</span><span class="dt">&gt;</span></span>
 <span id="cb6-53"><a href="#cb6-53"></a></span>
 <span id="cb6-54"><a href="#cb6-54"></a>:::</span>
 <span id="cb6-55"><a href="#cb6-55"></a></span>
@@ -2759,7 +2741,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-57"><a href="#cb6-57"></a></span>
 <span id="cb6-58"><a href="#cb6-58"></a>PMOS "closes the switch" when low.</span>
 <span id="cb6-59"><a href="#cb6-59"></a></span>
-<span id="cb6-60"><a href="#cb6-60"></a>&lt;img style="transform:scale(3);transform-origin: top left" src="drawio/11_pmos.drawio.svg"&gt;</span>
+<span id="cb6-60"><a href="#cb6-60"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">"transform:scale(3);transform-origin: top left"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/11_pmos.drawio.svg"</span><span class="dt">&gt;</span></span>
 <span id="cb6-61"><a href="#cb6-61"></a></span>
 <span id="cb6-62"><a href="#cb6-62"></a>:::</span>
 <span id="cb6-63"><a href="#cb6-63"></a></span>
@@ -2784,12 +2766,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-82"><a href="#cb6-82"></a></span>
 <span id="cb6-83"><a href="#cb6-83"></a><span class="ss">- </span>How would we make this?</span>
 <span id="cb6-84"><a href="#cb6-84"></a></span>
-<span id="cb6-85"><a href="#cb6-85"></a>| $A$ | $B$ | $A == B$ |</span>
-<span id="cb6-86"><a href="#cb6-86"></a>| :---: | :---: | :---: |</span>
-<span id="cb6-87"><a href="#cb6-87"></a>| 0 | 0 | 1 |</span>
-<span id="cb6-88"><a href="#cb6-88"></a>| 0 | 1 | 0 |</span>
-<span id="cb6-89"><a href="#cb6-89"></a>| 1 | 0 | 0 |</span>
-<span id="cb6-90"><a href="#cb6-90"></a>| 1 | 1 | 1 |</span>
+<span id="cb6-85"><a href="#cb6-85"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $A == B$ <span class="pp">|</span></span>
+<span id="cb6-86"><a href="#cb6-86"></a><span class="pp">| :---:</span> <span class="pp">| :---:</span> <span class="pp">| :---:</span> <span class="pp">|</span></span>
+<span id="cb6-87"><a href="#cb6-87"></a><span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span></span>
+<span id="cb6-88"><a href="#cb6-88"></a><span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span></span>
+<span id="cb6-89"><a href="#cb6-89"></a><span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span></span>
+<span id="cb6-90"><a href="#cb6-90"></a><span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span></span>
 <span id="cb6-91"><a href="#cb6-91"></a></span>
 <span id="cb6-92"><a href="#cb6-92"></a><span class="fu">## Use Inverters!</span></span>
 <span id="cb6-93"><a href="#cb6-93"></a></span>
@@ -2817,24 +2799,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-115"><a href="#cb6-115"></a></span>
 <span id="cb6-116"><a href="#cb6-116"></a><span class="ss">- </span>Specify all combinations of $A$ and $B$</span>
 <span id="cb6-117"><a href="#cb6-117"></a></span>
-<span id="cb6-118"><a href="#cb6-118"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-119"><a href="#cb6-119"></a>| --- | --- | --- |</span>
-<span id="cb6-120"><a href="#cb6-120"></a>| 0   | 0   | 1   |</span>
-<span id="cb6-121"><a href="#cb6-121"></a>| 0   | 1   | 0   |</span>
-<span id="cb6-122"><a href="#cb6-122"></a>| 1   | 0   | 0   |</span>
-<span id="cb6-123"><a href="#cb6-123"></a>| 1   | 1   | 0   |</span>
+<span id="cb6-118"><a href="#cb6-118"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-119"><a href="#cb6-119"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-120"><a href="#cb6-120"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-121"><a href="#cb6-121"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-122"><a href="#cb6-122"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-123"><a href="#cb6-123"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-124"><a href="#cb6-124"></a></span>
 <span id="cb6-125"><a href="#cb6-125"></a></span>
 <span id="cb6-126"><a href="#cb6-126"></a><span class="fu">## Pull Up</span></span>
 <span id="cb6-127"><a href="#cb6-127"></a></span>
 <span id="cb6-128"><a href="#cb6-128"></a><span class="ss">- </span>Check the "yes"/"high"/"true"/<span class="in">`1`</span></span>
 <span id="cb6-129"><a href="#cb6-129"></a></span>
-<span id="cb6-130"><a href="#cb6-130"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-131"><a href="#cb6-131"></a>| --- | --- | --- |</span>
-<span id="cb6-132"><a href="#cb6-132"></a>| **0**   | **0**   | **1**   |</span>
-<span id="cb6-133"><a href="#cb6-133"></a>| 0   | 1   | 0   |</span>
-<span id="cb6-134"><a href="#cb6-134"></a>| 1   | 0   | 0   |</span>
-<span id="cb6-135"><a href="#cb6-135"></a>| 1   | 1   | 0   |</span>
+<span id="cb6-130"><a href="#cb6-130"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-131"><a href="#cb6-131"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-132"><a href="#cb6-132"></a><span class="pp">|</span> **0**   | **0**   | **1**   <span class="pp">|</span></span>
+<span id="cb6-133"><a href="#cb6-133"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-134"><a href="#cb6-134"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-135"><a href="#cb6-135"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-136"><a href="#cb6-136"></a></span>
 <span id="cb6-137"><a href="#cb6-137"></a><span class="fu">## Pull Up CMOS</span></span>
 <span id="cb6-138"><a href="#cb6-138"></a></span>
@@ -2846,12 +2828,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-144"><a href="#cb6-144"></a></span>
 <span id="cb6-145"><a href="#cb6-145"></a><span class="ss">- </span>Check the "no"/"low"/"false"/<span class="in">`0`</span></span>
 <span id="cb6-146"><a href="#cb6-146"></a></span>
-<span id="cb6-147"><a href="#cb6-147"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-148"><a href="#cb6-148"></a>| --- | --- | --- |</span>
-<span id="cb6-149"><a href="#cb6-149"></a>| 0   | 0   | 1   |</span>
-<span id="cb6-150"><a href="#cb6-150"></a>| **0**   | **1**   | **0**   |</span>
-<span id="cb6-151"><a href="#cb6-151"></a>| **1**   | **0**   | **0**   |</span>
-<span id="cb6-152"><a href="#cb6-152"></a>| **1**   | **1**   | **0**   |</span>
+<span id="cb6-147"><a href="#cb6-147"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-148"><a href="#cb6-148"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-149"><a href="#cb6-149"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-150"><a href="#cb6-150"></a><span class="pp">|</span> **0**   | **1**   | **0**   <span class="pp">|</span></span>
+<span id="cb6-151"><a href="#cb6-151"></a><span class="pp">|</span> **1**   | **0**   | **0**   <span class="pp">|</span></span>
+<span id="cb6-152"><a href="#cb6-152"></a><span class="pp">|</span> **1**   | **1**   | **0**   <span class="pp">|</span></span>
 <span id="cb6-153"><a href="#cb6-153"></a></span>
 <span id="cb6-154"><a href="#cb6-154"></a><span class="fu">## Pull Down CMOS</span></span>
 <span id="cb6-155"><a href="#cb6-155"></a></span>
@@ -2862,12 +2844,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-160"><a href="#cb6-160"></a></span>
 <span id="cb6-161"><a href="#cb6-161"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb6-162"><a href="#cb6-162"></a></span>
-<span id="cb6-163"><a href="#cb6-163"></a>| $A$   | $B$   | $Y$   | network |</span>
-<span id="cb6-164"><a href="#cb6-164"></a>| --- | --- | --- | --- |</span>
-<span id="cb6-165"><a href="#cb6-165"></a>| 0   | 0   | 1   | pull-up   |</span>
-<span id="cb6-166"><a href="#cb6-166"></a>| 0   | 1   | 0   | pull-down |</span>
-<span id="cb6-167"><a href="#cb6-167"></a>| 1   | 0   | 0   | pull-down |</span>
-<span id="cb6-168"><a href="#cb6-168"></a>| 1   | 1   | 0   | pull-down |</span>
+<span id="cb6-163"><a href="#cb6-163"></a><span class="pp">|</span> $A$   <span class="pp">|</span> $B$   <span class="pp">|</span> $Y$   <span class="pp">|</span> network <span class="pp">|</span></span>
+<span id="cb6-164"><a href="#cb6-164"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-165"><a href="#cb6-165"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> pull-up   <span class="pp">|</span></span>
+<span id="cb6-166"><a href="#cb6-166"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> pull-down <span class="pp">|</span></span>
+<span id="cb6-167"><a href="#cb6-167"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> pull-down <span class="pp">|</span></span>
+<span id="cb6-168"><a href="#cb6-168"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> pull-down <span class="pp">|</span></span>
 <span id="cb6-169"><a href="#cb6-169"></a></span>
 <span id="cb6-170"><a href="#cb6-170"></a><span class="fu">## Altogether</span></span>
 <span id="cb6-171"><a href="#cb6-171"></a></span>
@@ -2879,16 +2861,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-177"><a href="#cb6-177"></a></span>
 <span id="cb6-178"><a href="#cb6-178"></a>::: {.column width="80%"}</span>
 <span id="cb6-179"><a href="#cb6-179"></a></span>
-<span id="cb6-180"><a href="#cb6-180"></a>&lt;img style="transform:scale(1.5);transform-origin: top left" src="drawio/20_nor_both.drawio.svg"&gt;</span>
+<span id="cb6-180"><a href="#cb6-180"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">"transform:scale(1.5);transform-origin: top left"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/20_nor_both.drawio.svg"</span><span class="dt">&gt;</span></span>
 <span id="cb6-181"><a href="#cb6-181"></a></span>
 <span id="cb6-182"><a href="#cb6-182"></a></span>
 <span id="cb6-183"><a href="#cb6-183"></a>:::</span>
 <span id="cb6-184"><a href="#cb6-184"></a></span>
 <span id="cb6-185"><a href="#cb6-185"></a>::: {.column width="20%"}</span>
 <span id="cb6-186"><a href="#cb6-186"></a></span>
-<span id="cb6-187"><a href="#cb6-187"></a>| $A$   | $B$   | $Y$   |</span>
-<span id="cb6-188"><a href="#cb6-188"></a>| --- | --- | --- |</span>
-<span id="cb6-189"><a href="#cb6-189"></a>| 0   | 0   | 1   |</span>
+<span id="cb6-187"><a href="#cb6-187"></a><span class="pp">|</span> $A$   <span class="pp">|</span> $B$   <span class="pp">|</span> $Y$   <span class="pp">|</span></span>
+<span id="cb6-188"><a href="#cb6-188"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-189"><a href="#cb6-189"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
 <span id="cb6-190"><a href="#cb6-190"></a></span>
 <span id="cb6-191"><a href="#cb6-191"></a>:::</span>
 <span id="cb6-192"><a href="#cb6-192"></a></span>
@@ -2901,16 +2883,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-199"><a href="#cb6-199"></a></span>
 <span id="cb6-200"><a href="#cb6-200"></a>::: {.column width="80%"}</span>
 <span id="cb6-201"><a href="#cb6-201"></a></span>
-<span id="cb6-202"><a href="#cb6-202"></a>&lt;img style="transform:scale(1.5);transform-origin: top left" src="drawio/20_nor_one.drawio.svg"&gt;</span>
+<span id="cb6-202"><a href="#cb6-202"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">"transform:scale(1.5);transform-origin: top left"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/20_nor_one.drawio.svg"</span><span class="dt">&gt;</span></span>
 <span id="cb6-203"><a href="#cb6-203"></a></span>
 <span id="cb6-204"><a href="#cb6-204"></a></span>
 <span id="cb6-205"><a href="#cb6-205"></a>:::</span>
 <span id="cb6-206"><a href="#cb6-206"></a></span>
 <span id="cb6-207"><a href="#cb6-207"></a>::: {.column width="20%"}</span>
 <span id="cb6-208"><a href="#cb6-208"></a></span>
-<span id="cb6-209"><a href="#cb6-209"></a>| $A$   | $B$   | $Y$   |</span>
-<span id="cb6-210"><a href="#cb6-210"></a>| --- | --- | --- |</span>
-<span id="cb6-211"><a href="#cb6-211"></a>| 0   | 1   | 0   |</span>
+<span id="cb6-209"><a href="#cb6-209"></a><span class="pp">|</span> $A$   <span class="pp">|</span> $B$   <span class="pp">|</span> $Y$   <span class="pp">|</span></span>
+<span id="cb6-210"><a href="#cb6-210"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-211"><a href="#cb6-211"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-212"><a href="#cb6-212"></a></span>
 <span id="cb6-213"><a href="#cb6-213"></a>:::</span>
 <span id="cb6-214"><a href="#cb6-214"></a></span>
@@ -2921,10 +2903,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-219"><a href="#cb6-219"></a><span class="ss">- </span>We leave these to the interested student.</span>
 <span id="cb6-220"><a href="#cb6-220"></a></span>
 <span id="cb6-221"><a href="#cb6-221"></a></span>
-<span id="cb6-222"><a href="#cb6-222"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-223"><a href="#cb6-223"></a>| --- | --- | --- |</span>
-<span id="cb6-224"><a href="#cb6-224"></a>| 1   | 0   | 0   |</span>
-<span id="cb6-225"><a href="#cb6-225"></a>| 1   | 1   | 0   |</span>
+<span id="cb6-222"><a href="#cb6-222"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-223"><a href="#cb6-223"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-224"><a href="#cb6-224"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-225"><a href="#cb6-225"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-226"><a href="#cb6-226"></a></span>
 <span id="cb6-227"><a href="#cb6-227"></a></span>
 <span id="cb6-228"><a href="#cb6-228"></a></span>
@@ -2935,23 +2917,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-233"><a href="#cb6-233"></a></span>
 <span id="cb6-234"><a href="#cb6-234"></a><span class="ss">- </span>Specify all combinations of $A$ and $B$</span>
 <span id="cb6-235"><a href="#cb6-235"></a></span>
-<span id="cb6-236"><a href="#cb6-236"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-237"><a href="#cb6-237"></a>| --- | --- | --- |</span>
-<span id="cb6-238"><a href="#cb6-238"></a>| 0   | 0   | 1   |</span>
-<span id="cb6-239"><a href="#cb6-239"></a>| 0   | 1   | 1   |</span>
-<span id="cb6-240"><a href="#cb6-240"></a>| 1   | 0   | 1   |</span>
-<span id="cb6-241"><a href="#cb6-241"></a>| 1   | 1   | 0   |</span>
+<span id="cb6-236"><a href="#cb6-236"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-237"><a href="#cb6-237"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-238"><a href="#cb6-238"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-239"><a href="#cb6-239"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-240"><a href="#cb6-240"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-241"><a href="#cb6-241"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-242"><a href="#cb6-242"></a></span>
 <span id="cb6-243"><a href="#cb6-243"></a><span class="fu">## Pull Up</span></span>
 <span id="cb6-244"><a href="#cb6-244"></a></span>
 <span id="cb6-245"><a href="#cb6-245"></a><span class="ss">- </span>Check the "yes"/"high"/"true"/<span class="in">`1`</span></span>
 <span id="cb6-246"><a href="#cb6-246"></a></span>
-<span id="cb6-247"><a href="#cb6-247"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-248"><a href="#cb6-248"></a>| --- | --- | --- |</span>
-<span id="cb6-249"><a href="#cb6-249"></a>| **0**   | **0**   | **1**   |</span>
-<span id="cb6-250"><a href="#cb6-250"></a>| **0**   | **1**   | **1**   |</span>
-<span id="cb6-251"><a href="#cb6-251"></a>| **1**   | **0**   | **1**   |</span>
-<span id="cb6-252"><a href="#cb6-252"></a>| 1   | 1   | 0   |</span>
+<span id="cb6-247"><a href="#cb6-247"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-248"><a href="#cb6-248"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-249"><a href="#cb6-249"></a><span class="pp">|</span> **0**   | **0**   | **1**   <span class="pp">|</span></span>
+<span id="cb6-250"><a href="#cb6-250"></a><span class="pp">|</span> **0**   | **1**   | **1**   <span class="pp">|</span></span>
+<span id="cb6-251"><a href="#cb6-251"></a><span class="pp">|</span> **1**   | **0**   | **1**   <span class="pp">|</span></span>
+<span id="cb6-252"><a href="#cb6-252"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-253"><a href="#cb6-253"></a></span>
 <span id="cb6-254"><a href="#cb6-254"></a><span class="fu">## Pull Up CMOS</span></span>
 <span id="cb6-255"><a href="#cb6-255"></a></span>
@@ -2963,12 +2945,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-261"><a href="#cb6-261"></a></span>
 <span id="cb6-262"><a href="#cb6-262"></a><span class="ss">- </span>Check the "no"/"low"/"false"/<span class="in">`0`</span></span>
 <span id="cb6-263"><a href="#cb6-263"></a></span>
-<span id="cb6-264"><a href="#cb6-264"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-265"><a href="#cb6-265"></a>| --- | --- | --- |</span>
-<span id="cb6-266"><a href="#cb6-266"></a>| 0   | 0   | 1   |</span>
-<span id="cb6-267"><a href="#cb6-267"></a>| 0   | 1   | 1   |</span>
-<span id="cb6-268"><a href="#cb6-268"></a>| 1   | 0   | 1   |</span>
-<span id="cb6-269"><a href="#cb6-269"></a>| **1**   | **1**   | **0**   |</span>
+<span id="cb6-264"><a href="#cb6-264"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-265"><a href="#cb6-265"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-266"><a href="#cb6-266"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-267"><a href="#cb6-267"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-268"><a href="#cb6-268"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-269"><a href="#cb6-269"></a><span class="pp">|</span> **1**   | **1**   | **0**   <span class="pp">|</span></span>
 <span id="cb6-270"><a href="#cb6-270"></a></span>
 <span id="cb6-271"><a href="#cb6-271"></a><span class="fu">## Pull Down CMOS</span></span>
 <span id="cb6-272"><a href="#cb6-272"></a></span>
@@ -2979,12 +2961,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-277"><a href="#cb6-277"></a></span>
 <span id="cb6-278"><a href="#cb6-278"></a><span class="fu">## CMOS NOR</span></span>
 <span id="cb6-279"><a href="#cb6-279"></a></span>
-<span id="cb6-280"><a href="#cb6-280"></a>| $A$   | $B$   | $Y$   | network |</span>
-<span id="cb6-281"><a href="#cb6-281"></a>| --- | --- | --- | --- |</span>
-<span id="cb6-282"><a href="#cb6-282"></a>| 0   | 0   | 1   | pull-up   |</span>
-<span id="cb6-283"><a href="#cb6-283"></a>| 0   | 1   | 1   | pull-up |</span>
-<span id="cb6-284"><a href="#cb6-284"></a>| 1   | 0   | 1   | pull-up |</span>
-<span id="cb6-285"><a href="#cb6-285"></a>| 1   | 1   | 0   | pull-down |</span>
+<span id="cb6-280"><a href="#cb6-280"></a><span class="pp">|</span> $A$   <span class="pp">|</span> $B$   <span class="pp">|</span> $Y$   <span class="pp">|</span> network <span class="pp">|</span></span>
+<span id="cb6-281"><a href="#cb6-281"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-282"><a href="#cb6-282"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> pull-up   <span class="pp">|</span></span>
+<span id="cb6-283"><a href="#cb6-283"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> pull-up <span class="pp">|</span></span>
+<span id="cb6-284"><a href="#cb6-284"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> pull-up <span class="pp">|</span></span>
+<span id="cb6-285"><a href="#cb6-285"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> pull-down <span class="pp">|</span></span>
 <span id="cb6-286"><a href="#cb6-286"></a></span>
 <span id="cb6-287"><a href="#cb6-287"></a><span class="fu">## Altogether</span></span>
 <span id="cb6-288"><a href="#cb6-288"></a></span>
@@ -2996,12 +2978,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-294"><a href="#cb6-294"></a><span class="ss">- </span>Trace out each of the following</span>
 <span id="cb6-295"><a href="#cb6-295"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Draw.io</span><span class="co">](draw.io)</span> or <span class="co">[</span><span class="ot">jspaint.app</span><span class="co">](jspaint.app)</span></span>
 <span id="cb6-296"><a href="#cb6-296"></a></span>
-<span id="cb6-297"><a href="#cb6-297"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-298"><a href="#cb6-298"></a>| --- | --- | --- |</span>
-<span id="cb6-299"><a href="#cb6-299"></a>| 0   | 0   | 1   |</span>
-<span id="cb6-300"><a href="#cb6-300"></a>| 0   | 1   | 1   |</span>
-<span id="cb6-301"><a href="#cb6-301"></a>| 1   | 0   | 1   |</span>
-<span id="cb6-302"><a href="#cb6-302"></a>| 1   | 1   | 0   |</span>
+<span id="cb6-297"><a href="#cb6-297"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-298"><a href="#cb6-298"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-299"><a href="#cb6-299"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-300"><a href="#cb6-300"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-301"><a href="#cb6-301"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-302"><a href="#cb6-302"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-303"><a href="#cb6-303"></a></span>
 <span id="cb6-304"><a href="#cb6-304"></a><span class="fu"># CMOS AND</span></span>
 <span id="cb6-305"><a href="#cb6-305"></a></span>
@@ -3014,23 +2996,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-312"><a href="#cb6-312"></a></span>
 <span id="cb6-313"><a href="#cb6-313"></a><span class="fu">## CMOS AND</span></span>
 <span id="cb6-314"><a href="#cb6-314"></a></span>
-<span id="cb6-315"><a href="#cb6-315"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-316"><a href="#cb6-316"></a>| --- | --- | --- |</span>
-<span id="cb6-317"><a href="#cb6-317"></a>| 0   | 0   | 0   |</span>
-<span id="cb6-318"><a href="#cb6-318"></a>| 0   | 1   | 0   |</span>
-<span id="cb6-319"><a href="#cb6-319"></a>| 1   | 0   | 0   |</span>
-<span id="cb6-320"><a href="#cb6-320"></a>| 1   | 1   | 1   |</span>
+<span id="cb6-315"><a href="#cb6-315"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-316"><a href="#cb6-316"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-317"><a href="#cb6-317"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-318"><a href="#cb6-318"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-319"><a href="#cb6-319"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-320"><a href="#cb6-320"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
 <span id="cb6-321"><a href="#cb6-321"></a></span>
 <span id="cb6-322"><a href="#cb6-322"></a><span class="fu">## We would try...</span></span>
 <span id="cb6-323"><a href="#cb6-323"></a></span>
 <span id="cb6-324"><a href="#cb6-324"></a><span class="ss">- </span>We would just place a pull-up on the last row:</span>
 <span id="cb6-325"><a href="#cb6-325"></a></span>
-<span id="cb6-326"><a href="#cb6-326"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-327"><a href="#cb6-327"></a>| --- | --- | --- |</span>
-<span id="cb6-328"><a href="#cb6-328"></a>| 0   | 0   | 0   |</span>
-<span id="cb6-329"><a href="#cb6-329"></a>| 0   | 1   | 0   |</span>
-<span id="cb6-330"><a href="#cb6-330"></a>| 1   | 0   | 0   |</span>
-<span id="cb6-331"><a href="#cb6-331"></a>| **1**   | **1**  | **1**   |</span>
+<span id="cb6-326"><a href="#cb6-326"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-327"><a href="#cb6-327"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-328"><a href="#cb6-328"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-329"><a href="#cb6-329"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-330"><a href="#cb6-330"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-331"><a href="#cb6-331"></a><span class="pp">|</span> **1**   | **1**  | **1**   <span class="pp">|</span></span>
 <span id="cb6-332"><a href="#cb6-332"></a></span>
 <span id="cb6-333"><a href="#cb6-333"></a><span class="fu">## Pull Up Candidate</span></span>
 <span id="cb6-334"><a href="#cb6-334"></a></span>
@@ -3057,12 +3039,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-355"><a href="#cb6-355"></a></span>
 <span id="cb6-356"><a href="#cb6-356"></a><span class="ss">- </span>We also have previously made NOT.</span>
 <span id="cb6-357"><a href="#cb6-357"></a></span>
-<span id="cb6-358"><a href="#cb6-358"></a>| $A$ | $B$ | NAND | AND |</span>
-<span id="cb6-359"><a href="#cb6-359"></a>| --- | --- | ---  | --- |</span>
-<span id="cb6-360"><a href="#cb6-360"></a>| 0   | 0   | 1    | 0   |     </span>
-<span id="cb6-361"><a href="#cb6-361"></a>| 0   | 1   | 1    | 0   |   </span>
-<span id="cb6-362"><a href="#cb6-362"></a>| 1   | 0   | 1    | 0   |   </span>
-<span id="cb6-363"><a href="#cb6-363"></a>| 1   | 1   | 0    | 1   |   </span>
+<span id="cb6-358"><a href="#cb6-358"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> NAND <span class="pp">|</span> AND <span class="pp">|</span></span>
+<span id="cb6-359"><a href="#cb6-359"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span>  <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-360"><a href="#cb6-360"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1    <span class="pp">|</span> 0   <span class="pp">|</span>     </span>
+<span id="cb6-361"><a href="#cb6-361"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1    <span class="pp">|</span> 0   <span class="pp">|</span>   </span>
+<span id="cb6-362"><a href="#cb6-362"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1    <span class="pp">|</span> 0   <span class="pp">|</span>   </span>
+<span id="cb6-363"><a href="#cb6-363"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0    <span class="pp">|</span> 1   <span class="pp">|</span>   </span>
 <span id="cb6-364"><a href="#cb6-364"></a></span>
 <span id="cb6-365"><a href="#cb6-365"></a><span class="fu">## NOT NAND gives AND</span></span>
 <span id="cb6-366"><a href="#cb6-366"></a></span>
@@ -3078,23 +3060,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-376"><a href="#cb6-376"></a></span>
 <span id="cb6-377"><a href="#cb6-377"></a><span class="fu">## CMOS OR</span></span>
 <span id="cb6-378"><a href="#cb6-378"></a></span>
-<span id="cb6-379"><a href="#cb6-379"></a>| $A$ | $B$ | $Y$ |</span>
-<span id="cb6-380"><a href="#cb6-380"></a>| --- | --- | --- |</span>
-<span id="cb6-381"><a href="#cb6-381"></a>| 0   | 0   | 0   |</span>
-<span id="cb6-382"><a href="#cb6-382"></a>| 0   | 1   | 1   |</span>
-<span id="cb6-383"><a href="#cb6-383"></a>| 1   | 0   | 1   |</span>
-<span id="cb6-384"><a href="#cb6-384"></a>| 1   | 1   | 1   |</span>
+<span id="cb6-379"><a href="#cb6-379"></a><span class="pp">|</span> $A$ <span class="pp">|</span> $B$ <span class="pp">|</span> $Y$ <span class="pp">|</span></span>
+<span id="cb6-380"><a href="#cb6-380"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-381"><a href="#cb6-381"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-382"><a href="#cb6-382"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-383"><a href="#cb6-383"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-384"><a href="#cb6-384"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
 <span id="cb6-385"><a href="#cb6-385"></a></span>
 <span id="cb6-386"><a href="#cb6-386"></a><span class="fu">## We would try </span></span>
 <span id="cb6-387"><a href="#cb6-387"></a></span>
 <span id="cb6-388"><a href="#cb6-388"></a><span class="ss"> - </span>Let's look at these:</span>
 <span id="cb6-389"><a href="#cb6-389"></a></span>
-<span id="cb6-390"><a href="#cb6-390"></a>| $A$   | $B$   | $Y$|</span>
-<span id="cb6-391"><a href="#cb6-391"></a>| --- | --- | --- |</span>
-<span id="cb6-392"><a href="#cb6-392"></a>| 0   | 0   | 0   |</span>
-<span id="cb6-393"><a href="#cb6-393"></a>| **0**   | **1**   | **1**   |</span>
-<span id="cb6-394"><a href="#cb6-394"></a>| **1**   | **0**   | **1**   |</span>
-<span id="cb6-395"><a href="#cb6-395"></a>| **1**   | **1**   | **1**   |</span>
+<span id="cb6-390"><a href="#cb6-390"></a><span class="pp">|</span> $A$   <span class="pp">|</span> $B$   <span class="pp">|</span> $Y$<span class="pp">|</span></span>
+<span id="cb6-391"><a href="#cb6-391"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-392"><a href="#cb6-392"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-393"><a href="#cb6-393"></a><span class="pp">|</span> **0**   | **1**   | **1**   <span class="pp">|</span></span>
+<span id="cb6-394"><a href="#cb6-394"></a><span class="pp">|</span> **1**   | **0**   | **1**   <span class="pp">|</span></span>
+<span id="cb6-395"><a href="#cb6-395"></a><span class="pp">|</span> **1**   | **1**   | **1**   <span class="pp">|</span></span>
 <span id="cb6-396"><a href="#cb6-396"></a></span>
 <span id="cb6-397"><a href="#cb6-397"></a></span>
 <span id="cb6-398"><a href="#cb6-398"></a><span class="fu">## CMOS OR</span></span>
@@ -3116,15 +3098,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-414"><a href="#cb6-414"></a></span>
 <span id="cb6-415"><a href="#cb6-415"></a><span class="fu">## Why it matters</span></span>
 <span id="cb6-416"><a href="#cb6-416"></a></span>
-<span id="cb6-417"><a href="#cb6-417"></a>|Gate | # of Transistors|</span>
-<span id="cb6-418"><a href="#cb6-418"></a>|-|-:|</span>
-<span id="cb6-419"><a href="#cb6-419"></a>|NOT  |  2|</span>
-<span id="cb6-420"><a href="#cb6-420"></a>|AND  |  6|</span>
-<span id="cb6-421"><a href="#cb6-421"></a>|OR   |  6|</span>
-<span id="cb6-422"><a href="#cb6-422"></a>|NAND |  4|</span>
-<span id="cb6-423"><a href="#cb6-423"></a>|NOR  |  4|</span>
-<span id="cb6-424"><a href="#cb6-424"></a>|XOR  | 12|</span>
-<span id="cb6-425"><a href="#cb6-425"></a>|XNOR | 12|</span>
+<span id="cb6-417"><a href="#cb6-417"></a><span class="pp">|</span>Gate <span class="pp">|</span> # of Transistors<span class="pp">|</span></span>
+<span id="cb6-418"><a href="#cb6-418"></a><span class="pp">|</span>-<span class="pp">|</span>-:<span class="pp">|</span></span>
+<span id="cb6-419"><a href="#cb6-419"></a><span class="pp">|</span>NOT  <span class="pp">|</span>  2<span class="pp">|</span></span>
+<span id="cb6-420"><a href="#cb6-420"></a><span class="pp">|</span>AND  <span class="pp">|</span>  6<span class="pp">|</span></span>
+<span id="cb6-421"><a href="#cb6-421"></a><span class="pp">|</span>OR   <span class="pp">|</span>  6<span class="pp">|</span></span>
+<span id="cb6-422"><a href="#cb6-422"></a><span class="pp">|</span>NAND <span class="pp">|</span>  4<span class="pp">|</span></span>
+<span id="cb6-423"><a href="#cb6-423"></a><span class="pp">|</span>NOR  <span class="pp">|</span>  4<span class="pp">|</span></span>
+<span id="cb6-424"><a href="#cb6-424"></a><span class="pp">|</span>XOR  <span class="pp">|</span> 12<span class="pp">|</span></span>
+<span id="cb6-425"><a href="#cb6-425"></a><span class="pp">|</span>XNOR <span class="pp">|</span> 12<span class="pp">|</span></span>
 <span id="cb6-426"><a href="#cb6-426"></a></span>
 <span id="cb6-427"><a href="#cb6-427"></a><span class="fu">##  Design larger systems!</span></span>
 <span id="cb6-428"><a href="#cb6-428"></a></span>
@@ -3141,30 +3123,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-439"><a href="#cb6-439"></a></span>
 <span id="cb6-440"><a href="#cb6-440"></a><span class="ss">- </span>NOT and identity are minimal examples.</span>
 <span id="cb6-441"><a href="#cb6-441"></a></span>
-<span id="cb6-442"><a href="#cb6-442"></a>| A   | Y   | </span>
-<span id="cb6-443"><a href="#cb6-443"></a>| --- | --- | </span>
-<span id="cb6-444"><a href="#cb6-444"></a>| 0   | 1   | </span>
-<span id="cb6-445"><a href="#cb6-445"></a>| 1   | 0   | </span>
+<span id="cb6-442"><a href="#cb6-442"></a><span class="pp">|</span> A   <span class="pp">|</span> Y   <span class="pp">|</span> </span>
+<span id="cb6-443"><a href="#cb6-443"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span> </span>
+<span id="cb6-444"><a href="#cb6-444"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> </span>
+<span id="cb6-445"><a href="#cb6-445"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> </span>
 <span id="cb6-446"><a href="#cb6-446"></a></span>
 <span id="cb6-447"><a href="#cb6-447"></a><span class="fu">## We note</span></span>
 <span id="cb6-448"><a href="#cb6-448"></a></span>
 <span id="cb6-449"><a href="#cb6-449"></a><span class="ss">- </span>We do note however there are *four* (4) possible "gates" that take a single input</span>
 <span id="cb6-450"><a href="#cb6-450"></a></span>
-<span id="cb6-451"><a href="#cb6-451"></a>|$A$| <span class="in">`0`</span> | <span class="in">`1`</span> | <span class="in">`=`</span> | <span class="in">`!`</span> |</span>
-<span id="cb6-452"><a href="#cb6-452"></a>| - | - | - | - | - |</span>
-<span id="cb6-453"><a href="#cb6-453"></a>| 0 | 0 | 1 | 0 | 1 |</span>
-<span id="cb6-454"><a href="#cb6-454"></a>| 1 | 0 | 1 | 1 | 0 |</span>
+<span id="cb6-451"><a href="#cb6-451"></a><span class="pp">|</span>$A$<span class="pp">|</span> <span class="in">`0`</span> <span class="pp">|</span> <span class="in">`1`</span> <span class="pp">|</span> <span class="in">`=`</span> <span class="pp">|</span> <span class="in">`!`</span> <span class="pp">|</span></span>
+<span id="cb6-452"><a href="#cb6-452"></a><span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span></span>
+<span id="cb6-453"><a href="#cb6-453"></a><span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span></span>
+<span id="cb6-454"><a href="#cb6-454"></a><span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span></span>
 <span id="cb6-455"><a href="#cb6-455"></a></span>
 <span id="cb6-456"><a href="#cb6-456"></a><span class="fu">## What can we build?</span></span>
 <span id="cb6-457"><a href="#cb6-457"></a></span>
 <span id="cb6-458"><a href="#cb6-458"></a><span class="ss">- </span>Thus far we have looked at only a subset of possible gates.</span>
 <span id="cb6-459"><a href="#cb6-459"></a></span>
-<span id="cb6-460"><a href="#cb6-460"></a>|$A$|$B$| <span class="in">`&amp;`</span> | <span class="in">`|`</span> | <span class="in">`!&amp;`</span>| <span class="in">`!|`</span>|</span>
-<span id="cb6-461"><a href="#cb6-461"></a>| - | - | -   | -   | -   | -   |</span>
-<span id="cb6-462"><a href="#cb6-462"></a>| 0 | 0 | 0   | 0   | 1   | 1   |</span>
-<span id="cb6-463"><a href="#cb6-463"></a>| 0 | 1 | 0   | 1   | 1   | 0   |</span>
-<span id="cb6-464"><a href="#cb6-464"></a>| 1 | 0 | 0   | 1   | 1   | 0   |</span>
-<span id="cb6-465"><a href="#cb6-465"></a>| 1 | 1 | 1   | 1   | 0   | 0   |</span>
+<span id="cb6-460"><a href="#cb6-460"></a><span class="pp">|</span>$A$<span class="pp">|</span>$B$<span class="pp">|</span> <span class="in">`&amp;`</span> <span class="pp">|</span> <span class="in">`|`</span> <span class="pp">|</span> <span class="in">`!&amp;`</span><span class="pp">|</span> <span class="in">`!|`</span><span class="pp">|</span></span>
+<span id="cb6-461"><a href="#cb6-461"></a><span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span> -   <span class="pp">|</span> -   <span class="pp">|</span> -   <span class="pp">|</span> -   <span class="pp">|</span></span>
+<span id="cb6-462"><a href="#cb6-462"></a><span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-463"><a href="#cb6-463"></a><span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-464"><a href="#cb6-464"></a><span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-465"><a href="#cb6-465"></a><span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-466"><a href="#cb6-466"></a></span>
 <span id="cb6-467"><a href="#cb6-467"></a></span>
 <span id="cb6-468"><a href="#cb6-468"></a><span class="fu">## How many?</span></span>
@@ -3184,12 +3166,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-482"><a href="#cb6-482"></a><span class="fu">## They are{.smaller}</span></span>
 <span id="cb6-483"><a href="#cb6-483"></a></span>
 <span id="cb6-484"><a href="#cb6-484"></a></span>
-<span id="cb6-485"><a href="#cb6-485"></a>|$A$|$B$| <span class="in">`0`</span>  |<span class="in">`&amp;`</span> |  <span class="in">`&lt;`</span> | <span class="in">`A`</span> | <span class="in">`&gt;`</span> |  <span class="in">`B`</span> | <span class="in">`^`</span> | <span class="in">`|`</span> | <span class="in">`!|`</span> |<span class="in">`!^`</span>|<span class="in">`!B`</span>|<span class="in">`&lt;=`</span>|<span class="in">`!A`</span> | <span class="in">`&gt;=`</span> |<span class="in">`!&amp;`</span>| <span class="in">`1`</span> |</span>
-<span id="cb6-486"><a href="#cb6-486"></a>| - | - |  -   |-   |  -   | -   | -   |  -   | -   | -   |  -   |-   |-   |-   | -   |  -   |-   | -   |</span>
-<span id="cb6-487"><a href="#cb6-487"></a>| 0 | 0 |  0   |0   |  0   | 0   | 0   |  0   | 0   | 0   |  1   |1   |1   |1   | 1   |  1   |1   | 1   |</span>
-<span id="cb6-488"><a href="#cb6-488"></a>| 0 | 1 |  0   |0   |  0   | 0   | 1   |  1   | 1   | 1   |  0   |0   |0   |0   | 1   |  1   |1   | 1   |</span>
-<span id="cb6-489"><a href="#cb6-489"></a>| 1 | 0 |  0   |0   |  1   | 1   | 0   |  0   | 1   | 1   |  0   |0   |1   |1   | 0   |  0   |1   | 1   |</span>
-<span id="cb6-490"><a href="#cb6-490"></a>| 1 | 1 |  0   |1   |  0   | 1   | 0   |  1   | 0   | 1   |  0   |1   |0   |1   | 0   |  1   |0   | 1   |</span>
+<span id="cb6-485"><a href="#cb6-485"></a><span class="pp">|</span>$A$<span class="pp">|</span>$B$<span class="pp">|</span> <span class="in">`0`</span>  <span class="pp">|</span><span class="in">`&amp;`</span> <span class="pp">|</span>  <span class="in">`&lt;`</span> <span class="pp">|</span> <span class="in">`A`</span> <span class="pp">|</span> <span class="in">`&gt;`</span> <span class="pp">|</span>  <span class="in">`B`</span> <span class="pp">|</span> <span class="in">`^`</span> <span class="pp">|</span> <span class="in">`|`</span> <span class="pp">|</span> <span class="in">`!|`</span> <span class="pp">|</span><span class="in">`!^`</span><span class="pp">|</span><span class="in">`!B`</span><span class="pp">|</span><span class="in">`&lt;=`</span><span class="pp">|</span><span class="in">`!A`</span> <span class="pp">|</span> <span class="in">`&gt;=`</span> <span class="pp">|</span><span class="in">`!&amp;`</span><span class="pp">|</span> <span class="in">`1`</span> <span class="pp">|</span></span>
+<span id="cb6-486"><a href="#cb6-486"></a><span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span>  -   <span class="pp">|</span>-   <span class="pp">|</span>  -   <span class="pp">|</span> -   <span class="pp">|</span> -   <span class="pp">|</span>  -   <span class="pp">|</span> -   <span class="pp">|</span> -   <span class="pp">|</span>  -   <span class="pp">|</span>-   <span class="pp">|</span>-   <span class="pp">|</span>-   <span class="pp">|</span> -   <span class="pp">|</span>  -   <span class="pp">|</span>-   <span class="pp">|</span> -   <span class="pp">|</span></span>
+<span id="cb6-487"><a href="#cb6-487"></a><span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span>  0   <span class="pp">|</span>0   <span class="pp">|</span>  0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>  0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span>  1   <span class="pp">|</span>1   <span class="pp">|</span>1   <span class="pp">|</span>1   <span class="pp">|</span> 1   <span class="pp">|</span>  1   <span class="pp">|</span>1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-488"><a href="#cb6-488"></a><span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span>  0   <span class="pp">|</span>0   <span class="pp">|</span>  0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>  1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>  0   <span class="pp">|</span>0   <span class="pp">|</span>0   <span class="pp">|</span>0   <span class="pp">|</span> 1   <span class="pp">|</span>  1   <span class="pp">|</span>1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-489"><a href="#cb6-489"></a><span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span>  0   <span class="pp">|</span>0   <span class="pp">|</span>  1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>  0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>  0   <span class="pp">|</span>0   <span class="pp">|</span>1   <span class="pp">|</span>1   <span class="pp">|</span> 0   <span class="pp">|</span>  0   <span class="pp">|</span>1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-490"><a href="#cb6-490"></a><span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span>  0   <span class="pp">|</span>1   <span class="pp">|</span>  0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>  1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span>  0   <span class="pp">|</span>1   <span class="pp">|</span>0   <span class="pp">|</span>1   <span class="pp">|</span> 0   <span class="pp">|</span>  1   <span class="pp">|</span>0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
 <span id="cb6-491"><a href="#cb6-491"></a></span>
 <span id="cb6-492"><a href="#cb6-492"></a>(We note that many of these are BORING)</span>
 <span id="cb6-493"><a href="#cb6-493"></a></span>
@@ -3204,32 +3186,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-502"><a href="#cb6-502"></a></span>
 <span id="cb6-503"><a href="#cb6-503"></a><span class="fu">## </span></span>
 <span id="cb6-504"><a href="#cb6-504"></a></span>
-<span id="cb6-505"><a href="#cb6-505"></a>&lt;table&gt;</span>
-<span id="cb6-506"><a href="#cb6-506"></a>  &lt;tr&gt;</span>
-<span id="cb6-507"><a href="#cb6-507"></a>    &lt;th&gt;Name&lt;/th&gt;</span>
-<span id="cb6-508"><a href="#cb6-508"></a>    &lt;th&gt;Symbol&lt;/th&gt;</span>
-<span id="cb6-509"><a href="#cb6-509"></a>  &lt;/tr&gt;</span>
-<span id="cb6-510"><a href="#cb6-510"></a>  &lt;tr&gt;</span>
-<span id="cb6-511"><a href="#cb6-511"></a>    &lt;td&gt;Buffer&lt;/td&gt;</span>
-<span id="cb6-512"><a href="#cb6-512"></a>    &lt;td&gt;&lt;img src="drawio/10_buffer.drawio.svg" style="background-color:white"&gt;&lt;/td&gt;</span>
-<span id="cb6-513"><a href="#cb6-513"></a>  &lt;/tr&gt;</span>
-<span id="cb6-514"><a href="#cb6-514"></a>  &lt;tr&gt;</span>
-<span id="cb6-515"><a href="#cb6-515"></a>    &lt;td&gt;Inverter&lt;/td&gt;</span>
-<span id="cb6-516"><a href="#cb6-516"></a>    &lt;td&gt;&lt;img src="drawio/10_inverter.drawio.svg" style="background-color:white"&gt;&lt;/td&gt;</span>
-<span id="cb6-517"><a href="#cb6-517"></a>  &lt;/tr&gt;</span>
-<span id="cb6-518"><a href="#cb6-518"></a>  &lt;tr&gt;</span>
-<span id="cb6-519"><a href="#cb6-519"></a>    &lt;td&gt;AND&lt;/td&gt;</span>
-<span id="cb6-520"><a href="#cb6-520"></a>    &lt;td&gt;&lt;img src="drawio/10_and.drawio.svg" style="background-color:white"&gt;&lt;/td&gt;</span>
-<span id="cb6-521"><a href="#cb6-521"></a>  &lt;/tr&gt;</span>
-<span id="cb6-522"><a href="#cb6-522"></a>  &lt;tr&gt;</span>
-<span id="cb6-523"><a href="#cb6-523"></a>    &lt;td&gt;OR&lt;/td&gt;</span>
-<span id="cb6-524"><a href="#cb6-524"></a>    &lt;td&gt;&lt;img src="drawio/10_or.drawio.svg" style="background-color:white"&gt;&lt;/td&gt;</span>
-<span id="cb6-525"><a href="#cb6-525"></a>  &lt;/tr&gt;</span>
-<span id="cb6-526"><a href="#cb6-526"></a>  &lt;tr&gt;</span>
-<span id="cb6-527"><a href="#cb6-527"></a>    &lt;td&gt;XOR&lt;/td&gt;</span>
-<span id="cb6-528"><a href="#cb6-528"></a>    &lt;td&gt;&lt;img src="drawio/10_xor.drawio.svg" style="background-color:white"&gt;&lt;/td&gt;</span>
-<span id="cb6-529"><a href="#cb6-529"></a>  &lt;/tr&gt;</span>
-<span id="cb6-530"><a href="#cb6-530"></a>&lt;/table&gt;</span>
+<span id="cb6-505"><a href="#cb6-505"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="dt">&gt;</span></span>
+<span id="cb6-506"><a href="#cb6-506"></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-507"><a href="#cb6-507"></a>    <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Name<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb6-508"><a href="#cb6-508"></a>    <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Symbol<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb6-509"><a href="#cb6-509"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-510"><a href="#cb6-510"></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-511"><a href="#cb6-511"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>Buffer<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-512"><a href="#cb6-512"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/10_buffer.drawio.svg"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color:white"</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-513"><a href="#cb6-513"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-514"><a href="#cb6-514"></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-515"><a href="#cb6-515"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>Inverter<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-516"><a href="#cb6-516"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/10_inverter.drawio.svg"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color:white"</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-517"><a href="#cb6-517"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-518"><a href="#cb6-518"></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-519"><a href="#cb6-519"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>AND<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-520"><a href="#cb6-520"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/10_and.drawio.svg"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color:white"</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-521"><a href="#cb6-521"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-522"><a href="#cb6-522"></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-523"><a href="#cb6-523"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>OR<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-524"><a href="#cb6-524"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/10_or.drawio.svg"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color:white"</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-525"><a href="#cb6-525"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-526"><a href="#cb6-526"></a>  <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-527"><a href="#cb6-527"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>XOR<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-528"><a href="#cb6-528"></a>    <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/10_xor.drawio.svg"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color:white"</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb6-529"><a href="#cb6-529"></a>  <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb6-530"><a href="#cb6-530"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span>
 <span id="cb6-531"><a href="#cb6-531"></a></span>
 <span id="cb6-532"><a href="#cb6-532"></a><span class="fu">## We note</span></span>
 <span id="cb6-533"><a href="#cb6-533"></a></span>
@@ -3240,7 +3222,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-538"><a href="#cb6-538"></a></span>
 <span id="cb6-539"><a href="#cb6-539"></a><span class="ss">- </span>AND is just NAND with an inverter.</span>
 <span id="cb6-540"><a href="#cb6-540"></a></span>
-<span id="cb6-541"><a href="#cb6-541"></a>&lt;img style="transform:scale(2);transform-origin: top left" src="drawio/20_cmos_and.drawio.svg"&gt;</span>
+<span id="cb6-541"><a href="#cb6-541"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">"transform:scale(2);transform-origin: top left"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/20_cmos_and.drawio.svg"</span><span class="dt">&gt;</span></span>
 <span id="cb6-542"><a href="#cb6-542"></a></span>
 <span id="cb6-543"><a href="#cb6-543"></a>:::</span>
 <span id="cb6-544"><a href="#cb6-544"></a></span>
@@ -3248,7 +3230,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-546"><a href="#cb6-546"></a></span>
 <span id="cb6-547"><a href="#cb6-547"></a><span class="ss">- </span>OR is just NOR with an inverter.</span>
 <span id="cb6-548"><a href="#cb6-548"></a></span>
-<span id="cb6-549"><a href="#cb6-549"></a>&lt;img style="transform:scale(2);transform-origin: top left" src="drawio/20_cmos_or.drawio.svg"&gt;</span>
+<span id="cb6-549"><a href="#cb6-549"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">"transform:scale(2);transform-origin: top left"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/20_cmos_or.drawio.svg"</span><span class="dt">&gt;</span></span>
 <span id="cb6-550"><a href="#cb6-550"></a></span>
 <span id="cb6-551"><a href="#cb6-551"></a>:::</span>
 <span id="cb6-552"><a href="#cb6-552"></a></span>
@@ -3258,12 +3240,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-556"><a href="#cb6-556"></a></span>
 <span id="cb6-557"><a href="#cb6-557"></a><span class="ss">- </span>What about $B&gt;A$</span>
 <span id="cb6-558"><a href="#cb6-558"></a></span>
-<span id="cb6-559"><a href="#cb6-559"></a>|$A$|$B$|$B&gt;A$ |</span>
-<span id="cb6-560"><a href="#cb6-560"></a>| - | - |  :-: |</span>
-<span id="cb6-561"><a href="#cb6-561"></a>| 0 | 0 |  0   |</span>
-<span id="cb6-562"><a href="#cb6-562"></a>| 0 | 1 |  1   |</span>
-<span id="cb6-563"><a href="#cb6-563"></a>| 1 | 0 |  0   |</span>
-<span id="cb6-564"><a href="#cb6-564"></a>| 1 | 1 |  0   |</span>
+<span id="cb6-559"><a href="#cb6-559"></a><span class="pp">|</span>$A$<span class="pp">|</span>$B$<span class="pp">|</span>$B&gt;A$ <span class="pp">|</span></span>
+<span id="cb6-560"><a href="#cb6-560"></a><span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span>  :-: <span class="pp">|</span></span>
+<span id="cb6-561"><a href="#cb6-561"></a><span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span>  0   <span class="pp">|</span></span>
+<span id="cb6-562"><a href="#cb6-562"></a><span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span>  1   <span class="pp">|</span></span>
+<span id="cb6-563"><a href="#cb6-563"></a><span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span>  0   <span class="pp">|</span></span>
+<span id="cb6-564"><a href="#cb6-564"></a><span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span>  0   <span class="pp">|</span></span>
 <span id="cb6-565"><a href="#cb6-565"></a></span>
 <span id="cb6-566"><a href="#cb6-566"></a><span class="fu">## Thought process</span></span>
 <span id="cb6-567"><a href="#cb6-567"></a></span>
@@ -3271,12 +3253,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-569"><a href="#cb6-569"></a></span>
 <span id="cb6-570"><a href="#cb6-570"></a>::: {.column width="50%"}</span>
 <span id="cb6-571"><a href="#cb6-571"></a></span>
-<span id="cb6-572"><a href="#cb6-572"></a>|$A$|$B$|$B&gt;A$ |</span>
-<span id="cb6-573"><a href="#cb6-573"></a>| - | - |  :-: |</span>
-<span id="cb6-574"><a href="#cb6-574"></a>| 0 | 0 |  0   |</span>
-<span id="cb6-575"><a href="#cb6-575"></a>| 0 | 1 |  0   |</span>
-<span id="cb6-576"><a href="#cb6-576"></a>| 1 | 0 |  1   |</span>
-<span id="cb6-577"><a href="#cb6-577"></a>| 1 | 1 |  0   |</span>
+<span id="cb6-572"><a href="#cb6-572"></a><span class="pp">|</span>$A$<span class="pp">|</span>$B$<span class="pp">|</span>$B&gt;A$ <span class="pp">|</span></span>
+<span id="cb6-573"><a href="#cb6-573"></a><span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span>  :-: <span class="pp">|</span></span>
+<span id="cb6-574"><a href="#cb6-574"></a><span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span>  0   <span class="pp">|</span></span>
+<span id="cb6-575"><a href="#cb6-575"></a><span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span>  0   <span class="pp">|</span></span>
+<span id="cb6-576"><a href="#cb6-576"></a><span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span>  1   <span class="pp">|</span></span>
+<span id="cb6-577"><a href="#cb6-577"></a><span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span>  0   <span class="pp">|</span></span>
 <span id="cb6-578"><a href="#cb6-578"></a></span>
 <span id="cb6-579"><a href="#cb6-579"></a>:::</span>
 <span id="cb6-580"><a href="#cb6-580"></a></span>
@@ -3299,18 +3281,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-597"><a href="#cb6-597"></a></span>
 <span id="cb6-598"><a href="#cb6-598"></a>::: {.column width="50%"}</span>
 <span id="cb6-599"><a href="#cb6-599"></a></span>
-<span id="cb6-600"><a href="#cb6-600"></a>|$A$|$B$|$B&gt;A$ |</span>
-<span id="cb6-601"><a href="#cb6-601"></a>| - | - |  :-: |</span>
-<span id="cb6-602"><a href="#cb6-602"></a>| 0 | 0 |  0   |</span>
-<span id="cb6-603"><a href="#cb6-603"></a>| 0 | 1 |  0   |</span>
-<span id="cb6-604"><a href="#cb6-604"></a>| 1 | 0 |  1   |</span>
-<span id="cb6-605"><a href="#cb6-605"></a>| 1 | 1 |  0   |</span>
+<span id="cb6-600"><a href="#cb6-600"></a><span class="pp">|</span>$A$<span class="pp">|</span>$B$<span class="pp">|</span>$B&gt;A$ <span class="pp">|</span></span>
+<span id="cb6-601"><a href="#cb6-601"></a><span class="pp">|</span> - <span class="pp">|</span> - <span class="pp">|</span>  :-: <span class="pp">|</span></span>
+<span id="cb6-602"><a href="#cb6-602"></a><span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span>  0   <span class="pp">|</span></span>
+<span id="cb6-603"><a href="#cb6-603"></a><span class="pp">|</span> 0 <span class="pp">|</span> 1 <span class="pp">|</span>  0   <span class="pp">|</span></span>
+<span id="cb6-604"><a href="#cb6-604"></a><span class="pp">|</span> 1 <span class="pp">|</span> 0 <span class="pp">|</span>  1   <span class="pp">|</span></span>
+<span id="cb6-605"><a href="#cb6-605"></a><span class="pp">|</span> 1 <span class="pp">|</span> 1 <span class="pp">|</span>  0   <span class="pp">|</span></span>
 <span id="cb6-606"><a href="#cb6-606"></a></span>
 <span id="cb6-607"><a href="#cb6-607"></a>:::</span>
 <span id="cb6-608"><a href="#cb6-608"></a></span>
 <span id="cb6-609"><a href="#cb6-609"></a>::: {.column width="50%"}</span>
 <span id="cb6-610"><a href="#cb6-610"></a></span>
-<span id="cb6-611"><a href="#cb6-611"></a>&lt;img style="transform:scale(2);transform-origin: top left" src="drawio/20_cmos_b_gt_a.drawio.svg"&gt;</span>
+<span id="cb6-611"><a href="#cb6-611"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> style</span><span class="op">=</span><span class="st">"transform:scale(2);transform-origin: top left"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"drawio/20_cmos_b_gt_a.drawio.svg"</span><span class="dt">&gt;</span></span>
 <span id="cb6-612"><a href="#cb6-612"></a>    </span>
 <span id="cb6-613"><a href="#cb6-613"></a>:::</span>
 <span id="cb6-614"><a href="#cb6-614"></a></span>
@@ -3325,12 +3307,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-623"><a href="#cb6-623"></a></span>
 <span id="cb6-624"><a href="#cb6-624"></a><span class="fu">## XOR with AND, OR, NOT!</span></span>
 <span id="cb6-625"><a href="#cb6-625"></a></span>
-<span id="cb6-626"><a href="#cb6-626"></a>| A   | B   | Y   |</span>
-<span id="cb6-627"><a href="#cb6-627"></a>| --- | --- | --- |</span>
-<span id="cb6-628"><a href="#cb6-628"></a>| 0   | 0   | 0   |</span>
-<span id="cb6-629"><a href="#cb6-629"></a>| 0   | 1   | 1   |</span>
-<span id="cb6-630"><a href="#cb6-630"></a>| 1   | 0   | 1   |</span>
-<span id="cb6-631"><a href="#cb6-631"></a>| 1   | 1   | 0   |</span>
+<span id="cb6-626"><a href="#cb6-626"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
+<span id="cb6-627"><a href="#cb6-627"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-628"><a href="#cb6-628"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-629"><a href="#cb6-629"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-630"><a href="#cb6-630"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-631"><a href="#cb6-631"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-632"><a href="#cb6-632"></a></span>
 <span id="cb6-633"><a href="#cb6-633"></a><span class="at">&gt; Challenge question: convert this use ONLY NAND gates. How many NAND gates did you use?</span></span>
 <span id="cb6-634"><a href="#cb6-634"></a></span>
@@ -3397,9 +3379,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-695"><a href="#cb6-695"></a></span>
 <span id="cb6-696"><a href="#cb6-696"></a><span class="al">![](drawio/20_abcd_eq_ex.drawio.svg)</span></span>
 <span id="cb6-697"><a href="#cb6-697"></a></span>
-<span id="cb6-698"><a href="#cb6-698"></a>&lt;details&gt;</span>
+<span id="cb6-698"><a href="#cb6-698"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb6-699"><a href="#cb6-699"></a>$AB + CD$</span>
-<span id="cb6-700"><a href="#cb6-700"></a>&lt;/details&gt;</span>
+<span id="cb6-700"><a href="#cb6-700"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb6-701"><a href="#cb6-701"></a></span>
 <span id="cb6-702"><a href="#cb6-702"></a><span class="fu">## Steps</span></span>
 <span id="cb6-703"><a href="#cb6-703"></a></span>
@@ -3413,9 +3395,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-711"><a href="#cb6-711"></a></span>
 <span id="cb6-712"><a href="#cb6-712"></a>$(\neg A)(\neg (B+C))(\neg(DE))$</span>
 <span id="cb6-713"><a href="#cb6-713"></a></span>
-<span id="cb6-714"><a href="#cb6-714"></a>&lt;details&gt;</span>
+<span id="cb6-714"><a href="#cb6-714"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb6-715"><a href="#cb6-715"></a><span class="al">![](drawio/20_abcde_eq_ex.drawio.svg)</span></span>
-<span id="cb6-716"><a href="#cb6-716"></a>&lt;/details&gt;</span>
+<span id="cb6-716"><a href="#cb6-716"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb6-717"><a href="#cb6-717"></a></span>
 <span id="cb6-718"><a href="#cb6-718"></a><span class="fu">## Steps</span></span>
 <span id="cb6-719"><a href="#cb6-719"></a></span>
@@ -3430,14 +3412,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-728"><a href="#cb6-728"></a></span>
 <span id="cb6-729"><a href="#cb6-729"></a>$Y = A + \neg B$</span>
 <span id="cb6-730"><a href="#cb6-730"></a></span>
-<span id="cb6-731"><a href="#cb6-731"></a>&lt;details&gt;</span>
-<span id="cb6-732"><a href="#cb6-732"></a>| A   | B   | Y   |</span>
-<span id="cb6-733"><a href="#cb6-733"></a>| --- | --- | --- |</span>
-<span id="cb6-734"><a href="#cb6-734"></a>| 0   | 0   | 1   |</span>
-<span id="cb6-735"><a href="#cb6-735"></a>| 0   | 1   | 0   |</span>
-<span id="cb6-736"><a href="#cb6-736"></a>| 1   | 0   | 1   |</span>
-<span id="cb6-737"><a href="#cb6-737"></a>| 1   | 1   | 1   |</span>
-<span id="cb6-738"><a href="#cb6-738"></a>&lt;/details&gt;</span>
+<span id="cb6-731"><a href="#cb6-731"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb6-732"><a href="#cb6-732"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Y   <span class="pp">|</span></span>
+<span id="cb6-733"><a href="#cb6-733"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-734"><a href="#cb6-734"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-735"><a href="#cb6-735"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-736"><a href="#cb6-736"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-737"><a href="#cb6-737"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-738"><a href="#cb6-738"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb6-739"><a href="#cb6-739"></a></span>
 <span id="cb6-740"><a href="#cb6-740"></a><span class="fu">## Steps</span></span>
 <span id="cb6-741"><a href="#cb6-741"></a></span>
@@ -3453,16 +3435,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-751"><a href="#cb6-751"></a></span>
 <span id="cb6-752"><a href="#cb6-752"></a><span class="ss">- </span>This should immediately be nontrivial to you.</span>
 <span id="cb6-753"><a href="#cb6-753"></a></span>
-<span id="cb6-754"><a href="#cb6-754"></a>| A   | B   | C   | Y   |</span>
-<span id="cb6-755"><a href="#cb6-755"></a>| --- | --- | --- | --- |</span>
-<span id="cb6-756"><a href="#cb6-756"></a>| 0   | 0   | 0   | 1   |</span>
-<span id="cb6-757"><a href="#cb6-757"></a>| 0   | 0   | 1   | 0   |</span>
-<span id="cb6-758"><a href="#cb6-758"></a>| 0   | 1   | 0   | 1   |</span>
-<span id="cb6-759"><a href="#cb6-759"></a>| 0   | 1   | 1   | 0   |</span>
-<span id="cb6-760"><a href="#cb6-760"></a>| 1   | 0   | 0   | 0   |</span>
-<span id="cb6-761"><a href="#cb6-761"></a>| 1   | 0   | 1   | 1   |</span>
-<span id="cb6-762"><a href="#cb6-762"></a>| 1   | 1   | 0   | 0   |</span>
-<span id="cb6-763"><a href="#cb6-763"></a>| 1   | 1   | 1   | 0   |</span>
+<span id="cb6-754"><a href="#cb6-754"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span></span>
+<span id="cb6-755"><a href="#cb6-755"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-756"><a href="#cb6-756"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-757"><a href="#cb6-757"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-758"><a href="#cb6-758"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-759"><a href="#cb6-759"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-760"><a href="#cb6-760"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-761"><a href="#cb6-761"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span></span>
+<span id="cb6-762"><a href="#cb6-762"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-763"><a href="#cb6-763"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
 <span id="cb6-764"><a href="#cb6-764"></a></span>
 <span id="cb6-765"><a href="#cb6-765"></a></span>
 <span id="cb6-766"><a href="#cb6-766"></a><span class="fu">## A Systematic Design Approach</span></span>
@@ -3479,20 +3461,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-777"><a href="#cb6-777"></a></span>
 <span id="cb6-778"><a href="#cb6-778"></a><span class="fu">## Straightforward Synthesis{.smaller}</span></span>
 <span id="cb6-779"><a href="#cb6-779"></a></span>
-<span id="cb6-780"><a href="#cb6-780"></a>| A   | B   | C   | Y   | Expression |</span>
-<span id="cb6-781"><a href="#cb6-781"></a>| --- | --- | --- | --- | --- |</span>
-<span id="cb6-782"><a href="#cb6-782"></a>| 0   | 0   | 0   | 1   | $(\neg A)(\neg B)(\neg C)$ |</span>
-<span id="cb6-783"><a href="#cb6-783"></a>| 0   | 0   | 1   | 0   |</span>
-<span id="cb6-784"><a href="#cb6-784"></a>| 0   | 1   | 0   | 1   | $(\neg A)B(\neg C)$ |</span>
-<span id="cb6-785"><a href="#cb6-785"></a>| 0   | 1   | 1   | 0   |</span>
-<span id="cb6-786"><a href="#cb6-786"></a>| 1   | 0   | 0   | 0   |</span>
-<span id="cb6-787"><a href="#cb6-787"></a>| 1   | 0   | 1   | 1   |$A(\neg B)C$ |</span>
-<span id="cb6-788"><a href="#cb6-788"></a>| 1   | 1   | 0   | 0   |</span>
-<span id="cb6-789"><a href="#cb6-789"></a>| 1   | 1   | 1   | 0   |$ABC$ |</span>
+<span id="cb6-780"><a href="#cb6-780"></a><span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> C   <span class="pp">|</span> Y   <span class="pp">|</span> Expression <span class="pp">|</span></span>
+<span id="cb6-781"><a href="#cb6-781"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb6-782"><a href="#cb6-782"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> $(\neg A)(\neg B)(\neg C)$ <span class="pp">|</span></span>
+<span id="cb6-783"><a href="#cb6-783"></a><span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-784"><a href="#cb6-784"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> $(\neg A)B(\neg C)$ <span class="pp">|</span></span>
+<span id="cb6-785"><a href="#cb6-785"></a><span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-786"><a href="#cb6-786"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-787"><a href="#cb6-787"></a><span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span>$A(\neg B)C$ <span class="pp">|</span></span>
+<span id="cb6-788"><a href="#cb6-788"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span> 0   <span class="pp">|</span></span>
+<span id="cb6-789"><a href="#cb6-789"></a><span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 1   <span class="pp">|</span> 0   <span class="pp">|</span>$ABC$ <span class="pp">|</span></span>
 <span id="cb6-790"><a href="#cb6-790"></a></span>
 <span id="cb6-791"><a href="#cb6-791"></a>$$</span>
 <span id="cb6-792"><a href="#cb6-792"></a>(\neg A)(\neg B)(\neg C) + (\neg A)B(\neg C) + A(\neg B)C + ABC</span>
-<span id="cb6-793"><a href="#cb6-793"></a>$$</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb6-793"><a href="#cb6-793"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
